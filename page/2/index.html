@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/2/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-10-22 13:17:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4252620551.html" title="07丨Raft算法（一）：如何选举领导者？">07丨Raft算法（一）：如何选举领导者？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-08T00:00:00.000Z" title="发表于 2023-10-08 00:00:00">2023-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+通过前两节课，我带你打卡了 Paxos 算法，今天我想和你聊聊最常用的共识算法，Raft 算法。
+Raft 算法属于 Multi-Paxos 算法，它是在兰伯特 Multi-Paxos 思想的基础上，做了一些简化和限制，比如增加了日志必须是连续的，只支持领导者、跟随者和候选人三种状态，在理解和算法实现上都相对容易许多。
+除此之外，Raft 算法是现在分布式系统开发首选的共识算法。绝大多数选用 Paxos 算法的系统（比如 Cubby、Spanner）都是在 Raft 算法发布前开发的，当时没得选；而全新的系统大多选择了 Raft 算法（比如 Etcd、Consul、CockroachDB）。
+对你来说，掌握这个算法，可以得心应手地处理绝大部分场景的容错和一致性需求，比如分布式配置系统、分布式 NoSQL 存储等等，轻松突破系统的单机限制。
+如果要用一句话概括 Raft 算法，我觉得是这样的：从本质上说，Raft 算法是通过一切以领导者为准的方式，实现一系列值的共识和各节点日志的一致。这句话比较抽象，我来做个比喻，领导者就是 Raft 算法中的霸道总裁，通过霸道的“一切以我为准”的方式，决定了日志中命令的值，也实现了各节点日志的一致。
+我会用三讲的时间，分别以领导者选举、日志复制、成员变更为核心，讲解 Raft 算法的原理，在实战篇中，会带你进一步剖析 Raft 算 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2671809515.html" title="08丨Raft算法（二）：如何复制日志？">08丨Raft算法（二）：如何复制日志？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-09T00:00:00.000Z" title="发表于 2023-10-09 00:00:00">2023-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+通过上一讲的学习，你应该知道 Raft 除了能实现一系列值的共识之外，还能实现各节点日志的一致，不过你也许会有这样的疑惑：“什么是日志呢？它和我的业务数据有什么关系呢？”
+想象一下，一个木筏（Raft）是由多根整齐一致的原木（Log）组成的，而原木又是由木质材料组成，所以你可以认为日志是由多条日志项（Log entry）组成的，如果把日志比喻成原木，那么日志项就是木质材料。
+在 Raft 算法中，副本数据是以日志的形式存在的，领导者接收到来自客户端写请求后，处理写请求的过程就是一个复制和提交日志项的过程。
+那 Raft 是如何复制日志的呢？又如何实现日志的一致的呢？这些内容是 Raft 中非常核心的内容，也是我今天讲解的重点，我希望你不懂就问，多在留言区提出你的想法。首先，咱们先来理解日志，这是你掌握如何复制日志、实现日志一致的基础。
+如何理解日志？刚刚我提到，副本数据是以日志的形式存在的，日志是由日志项组成，日志项究竟是什么样子呢？
+其实，日志项是一种数据格式，它主要包含用户指定的数据，也就是指令（Command），还包含一些附加信息，比如索引值（Log index）、任期编号（Term）。那你该怎么理解这些信息呢？
+
+指令：一条由客户端请求指定的、状态机需要执行的指令。你可以将指令理解成客户端指定的数据。
+索引值：日志项对应的整数索引值。它其实就是用来标识日志 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3109798557.html" title="09丨Raft算法（三）：如何解决成员变更的问题？">09丨Raft算法（三）：如何解决成员变更的问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-10T00:00:00.000Z" title="发表于 2023-10-10 00:00:00">2023-10-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+在日常工作中，你可能会遇到服务器故障的情况，这时你就需要替换集群中的服务器。如果遇到需要改变数据副本数的情况，则需要增加或移除集群中的服务器。总的来说，在日常工作中，集群中的服务器数量是会发生变化的。
+讲到这儿，也许你会问：“老韩，Raft 是共识算法，对集群成员进行变更时（比如增加 2 台服务器），会不会因为集群分裂，出现 2 个领导者呢？”
+在我看来，的确会出现这个问题，因为 Raft 的领导者选举，建立在“大多数”的基础之上，那么当成员变更时，集群成员发生了变化，就可能同时存在新旧配置的 2 个“大多数”，出现 2 个领导者，破坏了 Raft 集群的领导者唯一性，影响了集群的运行。
+而关于成员变更，不仅是 Raft 算法中比较难理解的一部分，非常重要，也是 Raft 算法中唯一被优化和改进的部分。比如，最初实现成员变更的是联合共识（Joint Consensus），但这个方法实现起来难，后来 Raft 的作者就提出了一种改进后的方法，单节点变更（single-server changes）。
+为了帮你掌握这块内容，今天我除了带你了解成员变更问题的本质之外，还会讲一下如何通过单节点变更的方法，解决成员变更的问题。学完本讲内容之后，你不仅能理解成员变更的问题和单节点变更的原理，也能更好地理解 Raft 源码实现，掌握解决成员变更问题的方法。
+在开始今天内容之前， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4126319489.html" title="10丨一致哈希算法：如何分群，突破集群的“领导者”限制？">10丨一致哈希算法：如何分群，突破集群的“领导者”限制？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-11T00:00:00.000Z" title="发表于 2023-10-11 00:00:00">2023-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+学完前面几讲后，有些同学可能有这样的疑问：如果我们通过 Raft 算法实现了 KV 存储，虽然领导者模型简化了算法实现和共识协商，但写请求只能限制在领导者节点上处理，导致了集群的接入性能约等于单机，那么随着业务发展，集群的性能可能就扛不住了，会造成系统过载和服务不可用，这时该怎么办呢？
+其实这是一个非常常见的问题。在我看来，这时我们就要通过分集群，突破单集群的性能限制了。
+说到这儿，有同学可能会说了，分集群还不简单吗？加个 Proxy 层，由 Proxy 层处理来自客户端的读写请求，接收到读写请求后，通过对 Key 做哈希找到对应的集群就可以了啊。
+是的，哈希算法的确是个办法，但它有个明显的缺点：当需要变更集群数时（比如从 2 个集群扩展为 3 个集群），这时大部分的数据都需要迁移，重新映射，数据的迁移成本是非常高的。那么如何解决哈希算法，数据迁移成本高的痛点呢？答案就是一致哈希（Consistent Hashing）。
+为了帮你更好地理解如何通过哈希寻址实现 KV 存储的分集群，我除了会带你了解哈希算法寻址问题的本质之外，还会讲一下一致哈希是如何解决哈希算法数据迁移成本高这个痛点，以及如何实现数据访问的冷热相对均匀。
+对你来说，学完本讲内容之后，不仅能理解一致哈希的原理，还能掌握通过一致哈希实现数据访问冷热均匀的实战能力。
+老规矩，在正式开始学习之前，我们先看一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2182109993.html" title="11丨Gossip协议：流言蜚语，原来也可以实现一致性">11丨Gossip协议：流言蜚语，原来也可以实现一致性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-12T00:00:00.000Z" title="发表于 2023-10-12 00:00:00">2023-10-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+有一部分同学的业务在可用性上比较敏感，比如监控主机和业务运行的告警系统。这个时候，相信你希望自己的系统能在极端情况下（比如集群中只有一个节点在运行）也能运行。回忆了二阶段提交协议和 Raft 算法之后，你发现它们都需要全部节点或者大多数节点正常运行，才能稳定运行，那么它们就不适合了。而根据 Base 理论，你需要实现最终一致性，怎么样才能实现最终一致性呢？
+在我看来，你可以通过 Gossip 协议实现这个目标。
+Gossip 协议，顾名思义，就像流言蜚语一样，利用一种随机、带有传染性的方式，将信息传播到整个网络中，并在一定时间内，使得系统内的所有节点数据一致。对你来说，掌握这个协议不仅能很好地理解这种最常用的，实现最终一致性的算法，也能在后续工作中得心应手地实现数据的最终一致性。
+为了帮你彻底吃透 Gossip 协议，掌握实现最终一致性的实战能力，我会先带你了解 Gossip 三板斧，因为这是 Gossip 协议的核心内容，也是实现最终一致性的常用三种方法。然后以实际系统为例，带你了解在实际系统中是如何实现反熵的。接下来，就让我们开始今天的内容吧。
+Gossip 的三板斧Gossip 的三板斧分别是：直接邮寄（Direct Mail）、反熵（Anti-entropy）和谣言传播（Rumor mongering）。
+直接邮寄：就是直接发送更新数据，当数据发送失败时， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3451445473.html" title="12丨QuorumNWR算法：想要灵活地自定义一致性，没问题！">12丨QuorumNWR算法：想要灵活地自定义一致性，没问题！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-13T00:00:00.000Z" title="发表于 2023-10-13 00:00:00">2023-10-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+不知道你在工作中有没有遇到这样的事儿：你开发实现了一套 AP 型的分布式系统（我在04 讲提到了 AP 型系统的特点，你可以回顾一下），实现了最终一致性。业务也接入了，运行正常，一起看起来都那么美好。
+可是，突然有同事说，我们要拉这几个业务的数据做实时分析，希望数据写入成功后，就能立即读取到新数据，也就是要实现强一致性（Werner Vogels 提出的客户端侧一致性模型，不是指线性一致性），数据更改后，要保证用户能立即查询到。这时你该怎么办呢？首先你要明确最终一致性和强一致性有什么区别。
+强一致性能保证写操作完成后，任何后续访问都能读到更新后的值；
+最终一致性只能保证如果对某个对象没有新的写操作了，最终所有后续访问都能读到相同的最近更新的值。也就是说，写操作完成后，后续访问可能会读到旧数据。
+其实，在我看来，为了一个临时的需求，我们重新开发一套系统，或者迁移数据到新系统，肯定是不合适的。因为工作量比较大，而且耗时也长，而我建议你通过 Quorum NWR 解决这个问题。
+也就是说，在原有系统上开发实现一个新功能，就可以满足业务同学的需求了。因为通过 Quorum NWR，你可以自定义一致性级别，通过临时调整写入或者查询的方式，当 W + R &gt; N 时，就可以实现强一致性了。
+其实，在 AP 型分布式系统中（比如 Dynamo、Cassandra、Infl ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3262029384.html" title="13丨PBFT算法：有人作恶，如何达成共识？">13丨PBFT算法：有人作恶，如何达成共识？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-14T00:00:00.000Z" title="发表于 2023-10-14 00:00:00">2023-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+学完了01 讲的拜占庭将军问题之后，有同学在留言中表达了自己的思考和困惑：口信消息型拜占庭问题之解在实际项目中是如何落地的呢？先给这位同学点个赞，很棒！你能在学习的同时思考落地实战。
+不过事实上，它很难在实际项目落地，因为口信消息型拜占庭问题之解是一个非常理论化的算法，没有和实际场景结合，也没有考虑如何在实际场景中落地和实现。
+比如，它实现的是在拜占庭错误场景下，忠将们如何在叛徒干扰时，就一致行动达成共识。但是它并不关心结果是什么，这会出现一种情况：现在适合进攻，但将军们达成的最终共识却是撤退。
+很显然，这不是我们想要的结果。因为在实际场景中，我们需要就提议的一系列值（而不是单值），即使在拜占庭错误发生的时候也能被达成共识。那你要怎么做呢？答案就是掌握 PBFT 算法。
+PBFT 算法非常实用，是一种能在实际场景中落地的拜占庭容错算法，它在区块链中应用广泛（比如 Hyperledger Sawtooth、Zilliqa）。为了帮助你更好地理解 PBFT 算法，在今天的内容中，我除了带你了解 PBFT 达成共识的原理之外，还会介绍口信消息型拜占庭问题之解的局限。相信学习完本讲内容后，你不仅能理解 PBFT 达成共识的基本原理，还能理解算法背后的演化和改进。
+老规矩，在开始今天的学习之前，咱们先看一道思考题：
+假设苏秦再一次带队抗秦，这一天，苏秦和 4 个国家的 4  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4021567135.html" title="14丨PoW算法：有办法黑比特币吗？">14丨PoW算法：有办法黑比特币吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-15T00:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+谈起比特币，你应该再熟悉不过了，比特币是基于区块链实现的，而区块链运行在因特网上，这就存在有人试图作恶的情况。学完01 讲和13 讲之后，有些同学可能已经发现了，口信消息型拜占庭问题之解、PBFT 算法虽然能防止坏人作恶，但只能防止少数的坏人作恶，也就是 (n - 1) &#x2F; 3 个坏人 (其中 n 为节点数)。可如果区块链也只能防止一定比例的坏人作恶，那就麻烦了，因为坏人可以不断增加节点数，轻松突破 (n - 1) &#x2F; 3 的限制。
+那区块链是如何改进这个问题的呢？答案就是 PoW 算法。
+在我看来，区块链通过工作量证明（Proof of Work）增加了坏人作恶的成本，以此防止坏人作恶。比如，如果坏人要发起 51% 攻击，需要控制现网 51% 的算力，成本是非常高昂的。为啥呢？因为根据 Cryptoslate 估算，对比特币进行 51% 算力攻击需要上百亿人民币！
+那么为了帮你更好地理解和掌握 PoW 算法，我会详细讲解它的原理和 51% 攻击的本质。希望让你在理解 PoW 算法的同时，也了解 PoW 算法的局限。
+首先我来说说 PoW 的原理，换句话说，就是 PoW 是如何运行的。
+如何理解工作量证明？什么是工作量证明 (Proof Of Work，简称 PoW) 呢？你可以这么理解：就是一份证明，用来确认你做过一定量的工作。比如，你的大学 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3813020379.html" title="15丨ZAB协议：如何实现操作的顺序性？">15丨ZAB协议：如何实现操作的顺序性？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-16T00:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+很多同学应该使用过 ZooKeeper，它是一个开源的分布式协调服务，比如你可以使用它进行配置管理、名字服务等等。在 ZooKeeper 中，数据是以节点的形式存储的。如果你要用 ZooKeeper 做配置管理，那么就需要在里面创建指定配置，假设创建节点”&#x2F;geekbang”和”&#x2F;geekbang&#x2F;time”，步骤如下：
+[zk: localhost:2181(CONNECTED) 7] create /geekbang 123     
+Created /geekbang
+[zk: localhost:2181(CONNECTED) 8] create /geekbang/time 456
+Created /geekbang/time
+
+
+
+我们分别创建了配置”&#x2F;geekbang” 和”&#x2F;geekbang&#x2F;time”，对应的值分别为 123 和 456。那么在这里我提个问题：你觉得在 ZooKeeper 中，能用兰伯特的 Multi-Paxos 实现各节点数据的共识和一致吗？
+当然不行。因为兰伯特的 Multi-Paxos，虽然能保证达成共识后的值不再改变，但它不管关心达成共识的值是什么，也无法保证各值（也就是操作）的顺序性。这是为什么呢？这个问题是 ZAB 协议着力解决的，也是理解 ZAB 协议的关键 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1602580574.html" title="16丨InfluxDB企业版一致性实现剖析：他山之石，可以攻玉">16丨InfluxDB企业版一致性实现剖析：他山之石，可以攻玉</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-17T00:00:00.000Z" title="发表于 2023-10-17 00:00:00">2023-10-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+学习了前面 15 讲的内容后，我们了解了很多常用的理论和算法（比如 CAP 定理、Raft 算法等）。是不是理解了这些内容，就能够游刃有余地处理实际系统的问题了呢？
+在我看来，还远远不够，因为理论和实践的中间是存在鸿沟的，比如，你可能有这样的感受，提到编程语言的语法或者分布式算法的论文，你说起来头头是道，但遇到实际系统时，还是无法写程序，开发分布式系统。
+而我常说，实战是学习的最终目的。为了帮你更好地掌握前面的理论和算法，接下来，我用 5 讲的时间，分别以 InfluxDB 企业版一致性实现、Hashicorp Raft、KV 系统开发实战为例，带你了解如何在实战中使用技术，掌握分布式的实战能力。
+今天这一讲，我就以 InfluxDB 企业版为例，带你看一看系统是如何实现一致性的。有的同学可能会问了：为什么是 InfluxDB 企业版呢？因为它是排名第一的时序数据库，相比其他分布式系统（比如 KV 存储），时序数据库更加复杂，因为我们要分别设计 2 个完全不一样的一致性模型。当你理解了这样一个复杂的系统实现后，就能更加得心应手地处理简单系统的问题了。
+那么为了帮你达到这个目的。我会先介绍一下时序数据库的背景知识，因为技术是用来解决实际场景的问题的，正如我之前常说的“要根据场景特点，权衡折中来设计系统”。所以当你了解了这些背景知识后，就能更好的理解为什么要这么设计了 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">3</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

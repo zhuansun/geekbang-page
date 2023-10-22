@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>17丨Hashicorp Raft（一）：如何跨过理论和代码之间的鸿沟？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="你好，我是韩健。 很多同学在开发系统的时候，都会有这样的感觉：明明自己看了很多资料，掌握了技术背后的原理，可在开发和调试的时候还是很吃力，这是为什么呢？ 答案很简单，因为理论和实践本来就是两回事，实践不仅需要掌握 API 接口的用法，还需要理解 API 背后的代码实现。 所以，如果你在使用 Raft 开发分布式系统的时候，仅仅阅读 Raft 论文或者 Raft 实现的 API 手册，是远远不够的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17丨Hashicorp Raft（一）：如何跨过理论和代码之间的鸿沟？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2916810521.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="你好，我是韩健。 很多同学在开发系统的时候，都会有这样的感觉：明明自己看了很多资料，掌握了技术背后的原理，可在开发和调试的时候还是很吃力，这是为什么呢？ 答案很简单，因为理论和实践本来就是两回事，实践不仅需要掌握 API 接口的用法，还需要理解 API 背后的代码实现。 所以，如果你在使用 Raft 开发分布式系统的时候，仅仅阅读 Raft 论文或者 Raft 实现的 API 手册，是远远不够的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-22T01:02:55.368Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2916810521"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '17丨Hashicorp Raft（一）：如何跨过理论和代码之间的鸿沟？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-22 01:02:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">17丨Hashicorp Raft（一）：如何跨过理论和代码之间的鸿沟？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-18T00:00:00.000Z" title="发表于 2023-10-18 00:00:00">2023-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>你好，我是韩健。</p>
+<p>很多同学在开发系统的时候，都会有这样的感觉：明明自己看了很多资料，掌握了技术背后的原理，可在开发和调试的时候还是很吃力，这是为什么呢？</p>
+<p>答案很简单，因为理论和实践本来就是两回事，实践不仅需要掌握 API 接口的用法，还需要理解 API 背后的代码实现。</p>
+<p>所以，如果你在使用 Raft 开发分布式系统的时候，仅仅阅读 Raft 论文或者 Raft 实现的 API 手册，是远远不够的。你还要吃透 API 背后的代码实现，“不仅知其然，也要知其所以然”，这样才能“一切尽在掌握中”，从而开发实现能稳定运行的分布式系统。那么怎么做才能吃透 Raft 的代码实现呢？</p>
+<p>要知道，任何 Raft 实现都承载了两个目标：实现 Raft 算法的原理，设计易用的 API 接口。所以，你不仅要从算法原理的角度理解代码实现，而且要从场景使用的角度理解 API 接口的用法。</p>
+<p>而我会用两节课的时间，<strong>从代码实现和接口使用两个角度，</strong>带你循序渐进地掌握当前流行的一个 Raft 实现：Hashicorp Raft（以最新稳定版 v1.1.1 为例）。希望你在这个过程中集中注意力，勾划重点，以便提高学习效率，吃透原理对应的技术实现，彻底掌握 Raft 算法的实战技巧。</p>
+<p>本节课，我会从算法原理的角度，聊一聊 Raft 算法的核心功能（领导者选举和日志复制）在 Hashicorp Raft 中是如何实现的。（如果 Raft 算法的原理你已经忘得差不多了，那你可以先回顾下 7～9 讲，加深印象之后，再进入今天的学习。）</p>
+<h2 id="Hashicorp-Raft-如何实现领导者选举？"><a href="#Hashicorp-Raft-如何实现领导者选举？" class="headerlink" title="Hashicorp Raft 如何实现领导者选举？"></a>Hashicorp Raft 如何实现领导者选举？</h2><p><strong>在我看来，阅读源码的关键，在于找到代码的入口函数，</strong>比如在 Golang 代码中，程序的入口函数一般为 main() 函数，那么领导者选举的入口函数是哪个呢？</p>
+<p>我们知道，典型的领导者选举在本质上是节点状态的变更。具体到 Hashicorp Raft 源码中，领导者选举的入口函数 run()，在 raft.go 中以一个单独的协程运行，来实现节点状态变迁，就像下面的样子：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">func <span class="token punctuation">(</span>r *Raft<span class="token punctuation">)</span> <span class="token function-name function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+                // 关闭节点
+                <span class="token keyword">case</span> <span class="token operator">&lt;</span>-r.shutdownCh:
+                        r.setLeader<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+                        <span class="token builtin class-name">return</span>
+                default:
+                <span class="token punctuation">&#125;</span>
+                switch r.<span class="token function-name function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                // 跟随者
+                <span class="token keyword">case</span> Follower:
+                        r.runFollower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                // 候选人
+                <span class="token keyword">case</span> Candidate:
+                        r.runCandidate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                // 领导者
+                <span class="token keyword">case</span> Leader:
+                        r.runLeader<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从上面这段代码中，你能看到，Follower（跟随者）、Candidate（候选人）、Leader（领导者）三个节点状态对应的功能，都被抽象成一个函数，分别是 runFollower()、runCandidate() 和 runLeader()。</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>在07 讲中，我们先学习了节点状态，不过主要侧重理解节点状态的功能作用（比如说，跟随者相当于普通群众，领导者是霸道总裁），并没有关注它在实际代码中是如何实现的，所以我们先来看看在 Hashicorp Raft 中是如何实现节点状态的。</p>
+<p>节点状态相关的数据结构和函数，是在 state.go 中实现的。跟随者、候选人和领导者的 3 个状态，是由 RaftState 定义的，一个无符号 32 位的只读整型数值（uint32）：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">type</span> RaftState uint32
+const <span class="token punctuation">(</span>
+        // 跟随者
+        Follower RaftState <span class="token operator">=</span> iota
+        // 候选人
+        Candidate
+        // 领导者
+        Leader
+        // 关闭状态
+        Shutdown
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>需要注意的是，<strong>也存在一些需要使用字符串格式的节点状态的场景（比如日志输出），</strong>这时你可以使用 RaftState.String() 函数。</p>
+<p>你应该还记得，每个节点都有属于本节点的信息（比如任期编号），那么在代码中如何实现这些信息呢？这就要说到 raftState 数据结构了。</p>
+<p>raftState 属于结构体类型，是表示节点信息的一个大数据结构，里面包含了只属于本节点的信息，比如节点的当前任期编号、最新提交的日志项的索引值、存储中最新日志项的索引值和任期编号、当前节点的状态等，就像下面的样子：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">type</span> raftState struct <span class="token punctuation">&#123;</span>
+        // 当前任期编号
+        currentTerm uint64
+        // 最大被提交的日志项的索引值
+        commitIndex uint64
+        // 最新被应用到状态机的日志项的索引值
+        lastApplied uint64
+        // 存储中最新的日志项的索引值和任期编号  
+        lastLogIndex uint64
+        lastLogTerm  uint64
+        // 当前节点的状态
+        state RaftState
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>节点状态与节点信息的定义就是这么简单，这里我就不多说了。而在分布式系统中要实现领导者选举，更重要的一层内容是实现 RPC 消息，因为领导者选举的过程，就是一个 RPC 通讯的过程。</p>
+<p>在理论篇中我说过，Raft 算法中支持多种 RPC 消息（比如请求投票 RPC 消息、日志复制 RPC 消息）。所以接下来我们看一看，在 Hashicorp Raft 中又是怎样实现 RPC 消息的。又因为在一个 RPC 消息中，最重要的部分就是消息的内容，所以我们先来看一看 RPC 消息对应的数据结构。</p>
+<p>RPC 消息相关的数据结构是在 commands.go 中定义的，比如，日志复制 RPC 的请求消息，对应的数据结构为 AppendEntriesRequest。而 AppendEntriesRequest 是一个结构体类型，里面包含了 Raft 算法论文中约定的字段，比如以下这些内容。</p>
+<p>Term：当前的任期编号。</p>
+<p>PrevLogEntry：表示当前要复制的日志项，前面一条日志项的索引值。</p>
+<p>PrevLogTerm：表示当前要复制的日志项，前面一条日志项的任期编号。</p>
+<p>Entries：新日志项。</p>
+<p>具体的结构信息，就像下面的样子：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">type</span> AppendEntriesRequest struct <span class="token punctuation">&#123;</span>
+        // 当前的任期编号，和领导者信息（包括服务器ID和地址信息）
+        Term   uint64
+        Leader <span class="token punctuation">[</span><span class="token punctuation">]</span>byte
+        // 当前要复制的日志项，前面一条日志项的索引值和任期编号
+        PrevLogEntry uint64
+        PrevLogTerm  uint64
+        // 新日志项
+        Entries <span class="token punctuation">[</span><span class="token punctuation">]</span>*Log
+        // 领导者节点上的已提交的日志项的最大索引值
+        LeaderCommitIndex uint64
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我建议你可以采用上面的思路，对照着算法原理去学习其他 RPC 消息的实现，这样一来你就能掌握独立学习的能力了。其他 RPC 消息的数据结构我就不一一描述了（如果你遇到问题，可以在留言区留言）。</p>
+<p>现在，你已经了解了节点状态和 RPC 消息的格式，掌握了这些基础知识后，我们继续下一步，看看在 Hashicorp Raft 中是如何进行领导者选举的。</p>
+<h3 id="选举领导者"><a href="#选举领导者" class="headerlink" title="选举领导者"></a>选举领导者</h3><p>首先，在初始状态下，集群中所有的节点都处于跟随者状态，函数 runFollower() 运行，大致的执行步骤，就像下图的样子：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928183141669.png" alt="image-20230928183141669"></p>
+<p>我带你走一遍这五个步骤，便于你加深印象。</p>
+<p>根据配置中的心跳超时时长，调用 randomTimeout() 函数来获取一个随机值，用以设置心跳超时时间间隔。</p>
+<p>进入到 for 循环中，通过 select 实现多路 IO 复用，周期性地获取消息和处理。如果步骤 1 中设置的心跳超时时间间隔发生了超时，执行步骤 3。</p>
+<p>如果等待心跳信息未超时，执行步骤 4，如果等待心跳信息超时，执行步骤 5。</p>
+<p>执行 continue 语句，开始一次新的 for 循环。</p>
+<p>设置节点状态为候选人，并退出 runFollower() 函数。</p>
+<p>当节点推举自己为候选人之后，函数 runCandidate() 执行，大致的执行步骤，如图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928183151191.png" alt="image-20230928183151191"></p>
+<p>同样的，我们走一遍这个过程，加深一下印象。</p>
+<p>首先调用 electSelf() 发起选举，给自己投一张选票，并向其他节点发送请求投票 RPC 消息，请求他们选举自己为领导者。然后调用 randomTimeout() 函数，获取一个随机值，设置选举超时时间。</p>
+<p>进入到 for 循环中，通过 select 实现多路 IO 复用，周期性地获取消息和处理。如果发生了选举超时，执行步骤 3，如果得到了投票信息，执行步骤 4。</p>
+<p>发现了选举超时，退出 runCandidate() 函数，然后再重新执行 runCandidate() 函数，发起新一轮的选举。</p>
+<p>如果候选人在指定时间内赢得了大多数选票，那么候选人将当选为领导者，调用 setState() 函数，将自己的状态变更为领导者，并退出 runCandidate() 函数。</p>
+<p>当节点当选为领导者后，函数 runLeader() 就执行了：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928183200325.png" alt="image-20230928183200325"></p>
+<p>整个过程，主要有 4 个步骤。</p>
+<p>调用 startStopReplication()，执行日志复制功能。</p>
+<p>然后启动新的协程，调用 replicate() 函数，执行日志复制功能。</p>
+<p>接着在 replicate() 函数中，启动一个新的协程，调用 heartbeat() 函数，执行心跳功能。</p>
+<p>在 heartbeat() 函数中，周期性地发送心跳信息，通知其他节点，我是领导者，我还活着，不需要你们发起新的选举。</p>
+<p>其实，在 Hashicorp Raft 中实现领导者选举并不难，你只要充分理解上述步骤，并记住，领导者选举本质上是节点状态变迁，跟随者、候选人、领导者对应的功能函数分别为 runFollower()、runCandidate()、runLeader()，就可以了。</p>
+<h2 id="Hashicorp-Raft-如何复制日志？"><a href="#Hashicorp-Raft-如何复制日志？" class="headerlink" title="Hashicorp Raft 如何复制日志？"></a>Hashicorp Raft 如何复制日志？</h2><p>学习08讲之后，你应该知道了日志复制的重要性，因为 Raft 是基于强领导者模型和日志复制，最终实现强一致性的。那么你该如何学习日志复制的代码实现呢？和学习“如何实现领导者选举”一样，你需要先了解了日志相关的数据结构，阅读日志复制相关的代码。</p>
+<p>学习了理论篇后，你应该还记得日志复制是由领导者发起的，跟随者来接收的。可能有同学已经想到了，领导者复制日志和跟随者接收日志的入口函数，应该分别在 runLeader() 和 runFollower() 函数中调用的。赞！理解正确！</p>
+<p>领导者复制日志的入口函数为 startStopReplication()，在 runLeader() 中，以 r.startStopReplication() 形式被调用，作为一个单独协程运行。</p>
+<p>跟随者接收日志的入口函数为 processRPC()，在 runFollower() 中以 r.processRPC(rpc) 形式被调用，来处理日志复制 RPC 消息。</p>
+<p>不过，在分析日志复制的代码实现之前，咱们先来聊聊日志相关的数据结构，便于你更好地理解代码实现。</p>
+<h3 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h3><p>08 讲中我提到过，一条日志项主要包含了 3 种信息，分别是指令、索引值、任期编号，而在 Hashicorp Raft 实现中，日志对应的数据结构和函数接口是在 log.go 中实现的，其中，日志项对应的数据结构是结构体类型的，就像下面的样子：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">type</span> Log struct <span class="token punctuation">&#123;</span>
+        // 索引值
+        Index uint64
+        // 任期编号
+        Term uint64
+        // 日志项类别
+        Type LogType
+        // 指令
+        Data <span class="token punctuation">[</span><span class="token punctuation">]</span>byte
+        // 扩展信息
+        Extensions <span class="token punctuation">[</span><span class="token punctuation">]</span>byte
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>我强调一下，与协议中的定义不同，日志项对应的数据结构中，包含了 LogType 和 Extensions 两个额外的字段：</p>
+<p>LogType 可用于标识不同用途的日志项，比如，使用 LogCommand 标识指令对应的日志项，使用 LogConfiguration 表示成员变更配置对应的日志项。</p>
+<p>Extensions 可用于在指定日志项中存储一些额外的信息。<strong>这个字段使用的比较少，在调试等场景中可能会用到，你知道有这么个字段就可以了。</strong></p>
+<p>说完日志复制对应的数据结构，我们分步骤看一下，在 Hashicorp Raft 中是如何实现日志复制的。</p>
+<h3 id="领导者复制日志"><a href="#领导者复制日志" class="headerlink" title="领导者复制日志"></a>领导者复制日志</h3><p>日志复制是由领导者发起，在 runLeader() 函数中执行的，主要有这样几个步骤。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928183220997.png" alt="image-20230928183220997"></p>
+<p>在 runLeader() 函数中，调用 startStopReplication() 函数，执行日志复制功能。</p>
+<p>启动一个新协程，调用 replicate() 函数，执行日志复制相关的功能。</p>
+<p>在 replicate() 函数中，调用 replicateTo() 函数，执行步骤 4，如果开启了流水线复制模式，执行步骤 5。</p>
+<p>在 replicateTo() 函数中，进行日志复制和日志一致性检测，如果日志复制成功，则设置 s.allowPipeline &#x3D; true，开启流水线复制模式。</p>
+<p>调用 pipelineReplicate() 函数，采用更高效的流水线方式，进行日志复制。</p>
+<p>在这里我强调一下，在什么条件下开启了流水线复制模式，很多同学可能会在这一块儿产生困惑，因为代码逻辑上有点儿绕。<strong>你可以这么理解，是在不需要进行日志一致性检测，复制功能已正常运行的时候，开启了流水线复制模式，</strong>目标是在环境正常的情况下，提升日志复制性能，如果在日志复制过程中出错了，就进入 RPC 复制模式，继续调用 replicateTo() 函数，进行日志复制。</p>
+<h3 id="跟随者接收日志"><a href="#跟随者接收日志" class="headerlink" title="跟随者接收日志"></a>跟随者接收日志</h3><p>领导者复制完日志后，跟随者会接收日志并开始处理日志。跟随者接收和处理日志，是在 runFollower() 函数中执行的，主要有这样几个步骤。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928183230986.png" alt="image-20230928183230986"></p>
+<p>在 runFollower() 函数中，调用 processRPC() 函数，处理接收到的 RPC 消息。</p>
+<p>在 processRPC() 函数中，调用 appendEntries() 函数，处理接收到的日志复制 RPC 请求。</p>
+<p>appendEntries() 函数，是跟随者处理日志的核心函数。在步骤 3.1 中，比较日志一致性；在步骤 3.2 中，将新日志项存放在本地；在步骤 3.3 中，根据领导者最新提交的日志项索引值，来计算当前需要被应用的日志项，并应用到本地状态机。</p>
+<p>讲到这儿，你应该可以了解日志复制的代码实现了吧。关于更多的 Raft 原理的代码实现，你可以继续阅读源码来学习，如果在学习过程中有疑问，欢迎给我留言。</p>
+<h2 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h2><p>本节课我主要带你了解了如何从算法原理的角度理解 Hashicorp Raft 实现，有几个重点我想强调一下：</p>
+<p>跟随者、候选人、领导者 3 种节点状态都有分别对应的功能函数，当需要查看各节点状态相关的功能实现时（比如，跟随者如何接收和处理日志），都可以将对应的函数作为入口函数，来阅读代码和研究功能实现。</p>
+<p>raft.go 是 Hashicorp Raft 的核心代码文件，大部分的核心功能都是在这个文件中实现的，平时可以多研究这个文件中的代码，直到彻底吃透，掌握。</p>
+<p>在 Hashicorp Raft 中，支持两种节点间通讯机制，内存型和 TCP 协议型，其中，内存型通讯机制，主要用于测试，2 种通讯机制的代码实现，分别在文件 inmem_transport.go 和 tcp_transport.go 中。</p>
+<p>Hashicorp Raft 实现，是常用的 Golang 版 Raft 算法的实现，被众多流行软件使用，如 Consul、InfluxDB、IPFS 等，相信你对它并不陌生。其他的实现还有Go-Raft、LogCabin、Willemt-Raft等，不过我建议你在后续开发分布式系统时，优先考虑 Hashicorp Raft，因为 Hashicorp Raft 实现，功能完善、代码简洁高效、流行度高，可用性和稳定性被充分打磨。</p>
+<p>最后，关于如何高效地阅读源码，我还想多说一说。在我看来，高效阅读源码的关键在于抓住重点，要有“底线”，不要芝麻和西瓜一把抓，什么都想要，最终陷入到枝节琐碎的细节中出不来。什么是重点呢？我认为重点是数据结构和关键的代码执行流程，比如在 Hashicorp Raft 源码中，日志项对应的数据结构、RPC 消息对应的数据结构、选举领导者的流程、日志复制的流程等，这些就是重点。</p>
+<p>有的同学可能还有疑问：在阅读源码的时候，如果遇到不是很明白的代码，该怎么办呢？我建议你可以通过打印日志或 GDB 单步调试的方式，查看上下文中的变量的内容、代码执行逻辑等，帮助理解。</p>
+<h2 id="课堂思考"><a href="#课堂思考" class="headerlink" title="课堂思考"></a>课堂思考</h2><p>在 Hashicorp Raft 实现中，我讲了如何实现选举领导者，以及如何复制日志等，那么在 Hashicorp Raft 中，网络通讯是如何实现的呢？欢迎在留言区分享你的看法，与我一同讨论。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+<iframe width="100%"  frameborder=1 height=500px src="https://time.geekbang.org/comment/nice/213872" > </iframe></article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hashicorp-Raft-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%A2%86%E5%AF%BC%E8%80%85%E9%80%89%E4%B8%BE%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">Hashicorp Raft 如何实现领导者选举？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E4%B8%BE%E9%A2%86%E5%AF%BC%E8%80%85"><span class="toc-number">1.2.</span> <span class="toc-text">选举领导者</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hashicorp-Raft-%E5%A6%82%E4%BD%95%E5%A4%8D%E5%88%B6%E6%97%A5%E5%BF%97%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">Hashicorp Raft 如何复制日志？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1"><span class="toc-number">2.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%86%E5%AF%BC%E8%80%85%E5%A4%8D%E5%88%B6%E6%97%A5%E5%BF%97"><span class="toc-number">2.2.</span> <span class="toc-text">领导者复制日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%9F%E9%9A%8F%E8%80%85%E6%8E%A5%E6%94%B6%E6%97%A5%E5%BF%97"><span class="toc-number">2.3.</span> <span class="toc-text">跟随者接收日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">内容小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E6%80%9D%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">课堂思考</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

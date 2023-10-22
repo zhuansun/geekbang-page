@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>13丨PBFT算法：有人作恶，如何达成共识？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="你好，我是韩健。 学完了01 讲的拜占庭将军问题之后，有同学在留言中表达了自己的思考和困惑：口信消息型拜占庭问题之解在实际项目中是如何落地的呢？先给这位同学点个赞，很棒！你能在学习的同时思考落地实战。 不过事实上，它很难在实际项目落地，因为口信消息型拜占庭问题之解是一个非常理论化的算法，没有和实际场景结合，也没有考虑如何在实际场景中落地和实现。 比如，它实现的是在拜占庭错误场景下，忠将们如何在叛徒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13丨PBFT算法：有人作恶，如何达成共识？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3262029384.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="你好，我是韩健。 学完了01 讲的拜占庭将军问题之后，有同学在留言中表达了自己的思考和困惑：口信消息型拜占庭问题之解在实际项目中是如何落地的呢？先给这位同学点个赞，很棒！你能在学习的同时思考落地实战。 不过事实上，它很难在实际项目落地，因为口信消息型拜占庭问题之解是一个非常理论化的算法，没有和实际场景结合，也没有考虑如何在实际场景中落地和实现。 比如，它实现的是在拜占庭错误场景下，忠将们如何在叛徒">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-14T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-22T01:02:55.358Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3262029384"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '13丨PBFT算法：有人作恶，如何达成共识？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-22 01:02:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">13丨PBFT算法：有人作恶，如何达成共识？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-14T00:00:00.000Z" title="发表于 2023-10-14 00:00:00">2023-10-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>你好，我是韩健。</p>
+<p>学完了01 讲的拜占庭将军问题之后，有同学在留言中表达了自己的思考和困惑：口信消息型拜占庭问题之解在实际项目中是如何落地的呢？先给这位同学点个赞，很棒！你能在学习的同时思考落地实战。</p>
+<p>不过事实上，它很难在实际项目落地，因为口信消息型拜占庭问题之解是一个非常理论化的算法，没有和实际场景结合，也没有考虑如何在实际场景中落地和实现。</p>
+<p>比如，它实现的是在拜占庭错误场景下，忠将们如何在叛徒干扰时，就一致行动达成共识。但是它并不关心结果是什么，这会出现一种情况：现在适合进攻，但将军们达成的最终共识却是撤退。</p>
+<p>很显然，这不是我们想要的结果。因为在实际场景中，我们需要就提议的一系列值（而不是单值），即使在拜占庭错误发生的时候也能被达成共识。那你要怎么做呢？答案就是掌握 PBFT 算法。</p>
+<p>PBFT 算法非常实用，是一种能在实际场景中落地的拜占庭容错算法，它在区块链中应用广泛（比如 Hyperledger Sawtooth、Zilliqa）。为了帮助你更好地理解 PBFT 算法，在今天的内容中，我除了带你了解 PBFT 达成共识的原理之外，还会介绍口信消息型拜占庭问题之解的局限。相信学习完本讲内容后，你不仅能理解 PBFT 达成共识的基本原理，还能理解算法背后的演化和改进。</p>
+<p>老规矩，在开始今天的学习之前，咱们先看一道思考题：</p>
+<p>假设苏秦再一次带队抗秦，这一天，苏秦和 4 个国家的 4 位将军赵、魏、韩、楚商量军机要事，结果刚商量完没多久苏秦就接到了情报，情报上写道：联军中可能存在一个叛徒。这时，苏秦要如何下发作战指令，保证忠将们正确、一致地执行下发的作战指令，而不是被叛徒干扰呢？</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182504234.png" alt="image-20230928182504234"></p>
+<p>带着这个问题，我们正式进入今天的学习。</p>
+<p>首先，咱们先来研究一下，为什么口信消息型拜占庭问题之解很难在实际场景中落地，除了我在开篇提到的非常理论化，没有和实际的需求结合之外，还有其他的原因么？</p>
+<p>其实，这些问题是后续众多拜占庭容错算法在努力改进和解决的，理解了这些问题，能帮助你更好地理解后来的拜占庭容错算法（包括 PBFT 算法）。</p>
+<h2 id="口信消息型拜占庭问题之解的局限"><a href="#口信消息型拜占庭问题之解的局限" class="headerlink" title="口信消息型拜占庭问题之解的局限"></a>口信消息型拜占庭问题之解的局限</h2><p>我想说的是，这个算法有个非常致命的缺陷。如果将军数为 n、叛将数为 f，那么算法需要递归协商 f+1 轮，消息复杂度为 O(n ^ (f + 1))，消息数量指数级暴增。你可以想象一下，如果叛将数为 64，消息数已经远远超过 <strong>int64</strong> 所能表示的了，这是无法想象的，肯定不行啊。</p>
+<p>另外，尽管对于签名消息，不管叛将数（比如 f）是多少，经过 f + 1 轮的协商，忠将们都能达成一致的作战指令，但是这个算法同样存在“理论化”和“消息数指数级暴增”的痛点。</p>
+<p>讲到这儿，你肯定明白为什么这个算法很难在实际场景中落地了。可技术是不断发展的，算法也是在解决实际场景问题中不断改进的。那么 PBFT 算法的原理是什么呢？为什么它能在实际场景中落地呢？</p>
+<h2 id="PBFT-是如何达成共识的？"><a href="#PBFT-是如何达成共识的？" class="headerlink" title="PBFT 是如何达成共识的？"></a>PBFT 是如何达成共识的？</h2><p>我们先来看看如何通过 PBFT 算法，解决苏秦面临的共识问题。先假设苏秦制定的作战指令是进攻，而楚是叛徒（为了演示方便）：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182515760.png" alt="image-20230928182515760"></p>
+<p>需要你注意的是，所有的消息都是签名消息，也就是说，消息发送者的身份和消息内容都是无法伪造和篡改的（比如，楚无法伪造一个假装来自赵的消息）。</p>
+<p>首先，苏秦联系赵，向赵发送包含作战指令“进攻”的请求（就像下图的样子）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182524785.png" alt="image-20230928182524785"></p>
+<p>当赵接收到苏秦的请求之后，会执行三阶段协议（Three-phase protocol）。</p>
+<p>赵将进入预准备（Pre-prepare）阶段，构造包含作战指令的预准备消息，并广播给其他将军（魏、韩、楚）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182533606.png" alt="image-20230928182533606"></p>
+<p>那么在这里，我想问你一个问题：魏、韩、楚，收到消息后，能直接执行指令吗？</p>
+<p>答案是不能，因为他们不能确认自己接收到指令和其他人接收到的指令是相同的。比如，赵可能是叛徒，赵收到了 2 个指令，分别是“进攻”和“准备 30 天的粮草”，然后他给魏发送的是“进攻”，给韩、楚发送的是“准备 30 天粮草”，这样就会出现无法一致行动的情况。那么他们具体怎么办呢？我接着说一下。</p>
+<p>接收到预准备消息之后，魏、韩、楚将进入准备（Prepare）阶段，并分别广播包含作战指令的准备消息给其他将军。比如，魏广播准备消息给赵、韩、楚（如图所示）。为了方便演示，我们假设叛徒楚想通过不发送消息，来干扰共识协商（你能看到，图中的楚是没有发送消息的）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182543069.png" alt="image-20230928182543069"></p>
+<p>然后，当某个将军收到 2f 个一致的包含作战指令的准备消息后，会进入提交（Commit）阶段（这里的 2f 包括自己，其中 f 为叛徒数，在我的演示中是 1）。在这里，我也给你提一个问题：这个时候该将军（比如魏）可以直接执行指令吗？</p>
+<p>答案还是不能，因为魏不能确认赵、韩、楚是否收到了 2f 个一致的包含作战指令的准备消息。也就是说，魏这时无法确认赵、韩、楚是否准备好了执行作战指令。那么怎么办呢？别着急，咱们继续往下看。</p>
+<p>进入提交阶段后，各将军分别广播提交消息给其他将军，也就是告诉其他将军，我已经准备好了，可以执行指令了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182552036.png" alt="image-20230928182552036"></p>
+<p>最后，当某个将军收到 2f + 1 个验证通过的提交消息后（包括自己，其中 f 为叛徒数，在我的演示中为 1），也就是说，大部分的将军们已经达成共识，这时可以执行作战指令了，那么该将军将执行苏秦的作战指令，执行完毕后发送执行成功的消息给苏秦。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928182601843.png" alt="image-20230928182601843"></p>
+<p>最后，当苏秦收到 f+1 个相同的响应（Reply）消息时，说明各位将军们已经就作战指令达成了共识，并执行了作战指令（其中 f 为叛徒数，在我的演示中为 1）。</p>
+<p>你看，经过了三轮协商，是不是就指定的作战指令达成了共识，并执行了作战指令了呢？</p>
+<p>在这里，苏秦采用的就是<strong>简化版的 PBFT 算法</strong>。在这个算法中：</p>
+<p>你可以将赵、魏、韩、楚理解为分布式系统的四个节点，其中赵是主节点（Primary node），魏、韩、楚是从节点（Secondary node）；</p>
+<p>将苏秦理解为业务，也就是客户端；</p>
+<p>将消息理解为网络消息；</p>
+<p>将作战指令“进攻”，理解成客户端提议的值，也就是希望被各节点达成共识，并提交给状态机的值。</p>
+<p><strong>在这里我想说的是，</strong> PBFT 算法是通过签名（或消息认证码 MAC）约束恶意节点的行为，也就是说，每个节点都可以通过验证消息签名确认消息的发送来源，一个节点无法伪造另外一个节点的消息。最终，基于大多数原则（2f + 1）实现共识的。</p>
+<p>需要你注意的是，最终的共识是否达成，客户端是会做判断的，如果客户端在指定时间内未收到请求对应的 f + 1 相同响应，就认为集群出故障了，共识未达成，客户端会重新发送请求。</p>
+<p>另外需要你注意的是，PBFT 算法通过视图变更（View Change）的方式，来处理主节点作恶，当发现主节点在作恶时，会以“轮流上岗”方式，推举新的主节点。</p>
+<p>最后我想说的是，尽管 PBFT 算法相比口信消息型拜占庭之解已经有了很大的优化，将消息复杂度从 O(n ^ (f + 1)) 降低为 O(n ^ 2)，能在实际场景中落地，并解决实际的共识问题。但 PBFT 还是需要比较多的消息。比如在 13 节点集群中（f 为 4）。</p>
+<p>请求消息：1</p>
+<p>预准备消息：3f &#x3D; 12</p>
+<p>准备消息：3f * (3f - f) &#x3D; 96</p>
+<p>提交消息：(3f - f + 1) * (3f + 1)&#x3D; 117</p>
+<p>回复消息：3f - 1 &#x3D; 11</p>
+<p>也就是说，一次共识协商需要 237 个消息，你看，消息数还是蛮多的，所以我推荐你，在中小型分布式系统中使用 PBFT 算法。</p>
+<h2 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h2><p>以上就是本节课的全部内容了，本节课我主要带你了解了口信消息型拜占庭问题之解的局限和 PBFT 的原理，我希望你明确这样几个重点。</p>
+<p>不管口信消息型拜占庭问题之解，还是签名消息型拜占庭问题之解，都是非常理论化的，未考虑实际场景的需求，而且协商成本非常高，指数级的消息复杂度是很难在实际场景中落地，和解决实际场景问题的。</p>
+<p>PBFT 算法是通过签名（或消息认证码 MAC）约束恶意节点的行为，采用三阶段协议，基于大多数原则达成共识的。另外，与口信消息型拜占庭问题之解（以及签名消息型拜占庭问题之解）不同的是，PBFT 算法实现的是一系列值的共识，而不是单值的共识。</p>
+<p>最后，我想说的是，相比 Raft 算法完全不适应有人作恶的场景，PBFT 算法能容忍 (n - 1)&#x2F;3 个恶意节点 (也可以是故障节点)。另外，相比 PoW 算法，PBFT 的优点是不消耗算力，所以在日常实践中，PBFT 比较适用于相对“可信”的场景中，比如联盟链。</p>
+<p>需要你注意的是，PBFT 算法与 Raft 算法类似，也存在一个“领导者”（就是主节点），同样，集群的性能也受限于“领导者”。另外，O(n ^ 2) 的消息复杂度，以及随着消息数的增加，网络时延对系统运行的影响也会越大，这些都限制了运行 PBFT 算法的分布式系统的规模，也决定了 PBFT 算法适用于中小型分布式系统。</p>
+<h2 id="课堂思考"><a href="#课堂思考" class="headerlink" title="课堂思考"></a>课堂思考</h2><p>当客户端在收到了 f + 1 个结果，就认为共识达成了，那么为什么这个值不能小于 f + 1 呢？欢迎在留言区分享你的看法，与我一同讨论。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+<iframe width="100%"  frameborder=1 height=500px src="https://time.geekbang.org/comment/nice/209450" > </iframe></article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%A3%E4%BF%A1%E6%B6%88%E6%81%AF%E5%9E%8B%E6%8B%9C%E5%8D%A0%E5%BA%AD%E9%97%AE%E9%A2%98%E4%B9%8B%E8%A7%A3%E7%9A%84%E5%B1%80%E9%99%90"><span class="toc-number">1.</span> <span class="toc-text">口信消息型拜占庭问题之解的局限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PBFT-%E6%98%AF%E5%A6%82%E4%BD%95%E8%BE%BE%E6%88%90%E5%85%B1%E8%AF%86%E7%9A%84%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">PBFT 是如何达成共识的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">内容小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E6%80%9D%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">课堂思考</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

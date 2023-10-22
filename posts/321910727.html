@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>04丨BASE理论：CAP的碱，追求可用性 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="你好，我是韩健。 很多同学可能喜欢使用事务型的分布式系统，或者是强一致性的分布式系统，因为使用起来很方便，不需要考虑太多，就像使用单机系统一样。但是学了 CAP 理论后，你肯定知道在分布式系统中要实现强一致性必然会影响可用性。比如，在采用两阶段提交协议的集群系统中，因为执行提交操作，需要所有节点确认和投票。 所以，集群的可用性是每个节点可用性的乘积，比如，假设 3 个节点的集群，每个节点的可用性为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04丨BASE理论：CAP的碱，追求可用性">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/321910727.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="你好，我是韩健。 很多同学可能喜欢使用事务型的分布式系统，或者是强一致性的分布式系统，因为使用起来很方便，不需要考虑太多，就像使用单机系统一样。但是学了 CAP 理论后，你肯定知道在分布式系统中要实现强一致性必然会影响可用性。比如，在采用两阶段提交协议的集群系统中，因为执行提交操作，需要所有节点确认和投票。 所以，集群的可用性是每个节点可用性的乘积，比如，假设 3 个节点的集群，每个节点的可用性为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-05T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-22T01:02:55.336Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/321910727"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '04丨BASE理论：CAP的碱，追求可用性',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-22 01:02:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">04丨BASE理论：CAP的碱，追求可用性</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-05T00:00:00.000Z" title="发表于 2023-10-05 00:00:00">2023-10-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>你好，我是韩健。</p>
+<p>很多同学可能喜欢使用事务型的分布式系统，或者是强一致性的分布式系统，因为使用起来很方便，不需要考虑太多，就像使用单机系统一样。但是学了 CAP 理论后，你肯定知道在分布式系统中要实现强一致性必然会影响可用性。比如，在采用两阶段提交协议的集群系统中，因为执行提交操作，需要所有节点确认和投票。</p>
+<p>所以，集群的可用性是每个节点可用性的乘积，比如，假设 3 个节点的集群，每个节点的可用性为 99.9％，那么整个集群的可用性为 99.7％，也就是说，每个月约宕机 129.6 分钟，<strong>这是非常严重的问题。</strong> 而解决可用性低的关键在于，根据实际场景，尽量采用可用性优先的 AP 模型。</p>
+<p>讲到这儿，可能会有一些同学“举手提问”：这也太难了，难道没有现成的库或者方案，来实现合适的 AP 模型？是的，的确没有。因为它是一个动态模型，是基于业务场景特点妥协折中后设计实现的。不过，你可以借助 BASE 理论帮助你达成目的。</p>
+<p>在我看来，BASE 理论是 CAP 理论中的 AP 的延伸，是对互联网大规模分布式系统的实践总结，强调可用性。几乎所有的互联网后台分布式系统都有 BASE 的支持，这个理论很重要，地位也很高。一旦掌握它，你就能掌握绝大部分场景的分布式系统的架构技巧，设计出适合业务场景特点的、高可用性的分布式系统。</p>
+<p>而它的核心就是基本可用（Basically Available）和最终一致性（Eventually consistent）。也有人会提到软状态（Soft state），在我看来，软状态描述的是实现服务可用性的时候系统数据的一种过渡状态，也就是说不同节点间，数据副本存在短暂的不一致。你只需要知道软状态是一种过渡状态就可以了，我们不多说。</p>
+<p>那么基本可用以及最终一致性到底是什么呢？你又如何在实践中使用 BASE 理论提升系统的可用性呢？这些就是本节课的重点了，而我建议你集中注意力，认真学习本节课的内容，学以致用，将 BASE 理论应用到日常工作中。</p>
+<h2 id="实现基本可用的-4-板斧"><a href="#实现基本可用的-4-板斧" class="headerlink" title="实现基本可用的 4 板斧"></a>实现基本可用的 4 板斧</h2><p>在我看来，基本可用是说，当分布式系统在出现不可预知的故障时，允许损失部分功能的可用性，保障核心功能的可用性。就像弹簧一样，遇到外界的压迫，它不是折断，而是变形伸缩，不断适应外力，实现基本的可用。</p>
+<p>具体说的话，你可以把基本可用理解成，当系统节点出现大规模故障的时候，比如专线的光纤被挖断、突发流量导致系统过载（出现了突发事件，服务被大量访问），这个时候可以通过服务降级，牺牲部分功能的可用性，保障系统的核心功能可用。</p>
+<p>就拿 12306 订票系统基本可用的设计为例，这个订票系统在春运期间，因为开始售票后先到先得的缘故，会出现极其海量的请求峰值，如何处理这个问题呢？</p>
+<p>咱们可以在不同的时间，出售不同区域的票，将访问请求错开，削弱请求峰值。比如，在春运期间，深圳出发的火车票在 8 点开售，北京出发的火车票在 9 点开售。<strong>这就是我们常说的流量削峰。</strong></p>
+<p>另外，你可能已经发现了，在春运期间，自己提交的购票请求，往往会在队列中排队等待处理，可能几分钟或十几分钟后，系统才开始处理，然后响应处理结果，<strong>这就是你熟悉的延迟响应。</strong> 你看，12306 订票系统在出现超出系统处理能力的突发流量的情况下，会通过牺牲响应时间的可用性，保障核心功能的运行。</p>
+<p>而 12306 通过流量削峰和延迟响应，是不是就实现了基本的可用呢？现在它不会再像最初的时候那样，常常 404 了吧？</p>
+<p>再比如，你正负责一个互联网系统，突然出现了网络热点事件，好多用户涌进来，产生了海量的突发流量，系统过载了，大量图片因为网络超时无法显示。那么这个时候你可以通过哪些方法，保障系统的基本可用呢？</p>
+<p><strong>相信你马上就能想到体验降级，</strong> 比如用小图片来替代原始图片，通过降低图片的清晰度和大小，提升系统的处理能力。</p>
+<p><strong>然后你还能想到过载保护，</strong> 比如把接收到的请求放在指定的队列中排队处理，如果请求等待时间超时了（假设是 100ms），这个时候直接拒绝超时请求；再比如队列满了之后，就清除队列中一定数量的排队请求，保护系统不过载，实现系统的基本可用。</p>
+<p><strong>你看，和 12306 的设计类似，只不过你负责的互联网系统是通过牺牲部分功能的可用性，保障核心功能的运行。</strong></p>
+<p>我说了这么多，主要是想强调：基本可用在本质上是一种妥协，也就是在出现节点故障或系统过载的时候，通过牺牲非核心功能的可用性，保障核心功能的稳定运行。</p>
+<p>我希望你能在后续的分布式系统的开发中，<strong>不仅掌握流量削峰、延迟响应、体验降级、过载保护这 4 板斧</strong>，更能理解这 4 板斧背后的妥协折中，从而灵活地处理不可预知的突发问题。</p>
+<p>带你了解了基本可用之后，我再来说说 BASE 理论中，另一个非常核心的内容：最终一致性。</p>
+<h2 id="最终的一致"><a href="#最终的一致" class="headerlink" title="最终的一致"></a>最终的一致</h2><p>在我看来，最终一致性是说，系统中所有的数据副本在经过一段时间的同步后，最终能够达到一个一致的状态。也就是说，在数据一致性上，存在一个短暂的延迟。</p>
+<p>几乎所有的互联网系统采用的都是最终一致性，只有在实在无法使用最终一致性，才使用强一致性或事务，比如，对于决定系统运行的敏感元数据，需要考虑采用强一致性，对于与钱有关的支付系统或金融系统的数据，需要考虑采用事务。</p>
+<p>你可以将强一致性理解为最终一致性的特例，也就是说，你可以把强一致性看作是不存在延迟的一致性。<strong>在实践中，你也可以这样思考：</strong> 如果业务的某功能无法容忍一致性的延迟（比如分布式锁对应的数据），需要实现的是强一致性；如果能容忍短暂的一致性的延迟（比如 QQ 状态数据），就可以考虑最终一致性。</p>
+<p>那么如何实现最终一致性呢？你首先要知道它以什么为准，因为这是实现最终一致性的关键。一般来说，在实际工程实践中有这样几种方式：</p>
+<p>以最新写入的数据为准，比如 AP 模型的 KV 存储采用的就是这种方式；</p>
+<p>以第一次写入的数据为准，如果你不希望存储的数据被更改，可以以它为准。</p>
+<p>那实现最终一致性的具体方式是什么呢？常用的有这样几种。</p>
+<p>读时修复：在读取数据时，检测数据的不一致，进行修复。比如 Cassandra 的 Read Repair 实现，具体来说，在向 Cassandra 系统查询数据的时候，如果检测到不同节点的副本数据不一致，系统就自动修复数据。</p>
+<p>写时修复：在写入数据，检测数据的不一致时，进行修复。比如 Cassandra 的 Hinted Handoff 实现。具体来说，Cassandra 集群的节点之间远程写数据的时候，如果写失败就将数据缓存下来，然后定时重传，修复数据的不一致性。</p>
+<p>异步修复：这个是最常用的方式，通过定时对账检测副本数据的一致性，并修复。</p>
+<p>在这里，我想强调的是因为写时修复不需要做数据一致性对比，性能消耗比较低，对系统运行影响也不大，所以我推荐你在实现最终一致性时优先实现这种方式。而读时修复和异步修复因为需要做数据的一致性对比，性能消耗比较多，在开发实际系统时，你要尽量优化一致性对比的算法，降低性能消耗，避免对系统运行造成影响。</p>
+<p>另外，我还想补充一点，在实现最终一致性的时候，<strong>我推荐同时实现自定义写一致性级别（All、Quorum、One、Any），</strong> 让用户可以自主选择相应的一致性级别，比如可以通过设置一致性级别为 All，来实现强一致性。</p>
+<p>现在，想必你了解了 BASE 理论的核心内容了吧？不过这是理论层面上的，那么在实践中，该如何使用 BASE 理论的呢？</p>
+<h2 id="如何使用-BASE-理论"><a href="#如何使用-BASE-理论" class="headerlink" title="如何使用 BASE 理论"></a>如何使用 BASE 理论</h2><p>我以自研 InfluxDB 系统中 DATA 节点的集群实现为例，带你来使用 BASE 理论。咱们先来看看如何保障基本可用。</p>
+<p>DATA 节点的核心功能是读和写，所以基本可用是指读和写的基本可用。那么我们可以通过分片和多副本，实现读和写的基本可用。也就是说，将同一业务的数据先分片，然后再以多份副本的形式分布在不同的节点上。比如下面这张图，这个 3 节点 2 副本的集群，除非超过一半的节点都故障了，否则是能保障所有数据的读写的。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230925144649788.png" alt="image-20230925144649788"></p>
+<p>那么如果实现最终一致性呢？就像我上文提到的样子，我们可以通过写时修复和异步修复实现最终一致性。另外，还实现自定义写一致性级别，支持 All、Quorum、One、Any 4 种写一致性级别，用户在写数据的时候，可以根据业务数据的特点，设置不同的写一致性级别。</p>
+<h2 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h2><p>本节课我主要带你了解了 BASE 理论，以及 BASE 理论的应用，我希望你明确几个重点：</p>
+<p>BASE 理论是对 CAP 中一致性和可用性权衡的结果，它来源于对大规模互联网分布式系统实践的总结，是基于 CAP 定理逐步演化而来的。它的核心思想是，如果不是必须的话，不推荐实现事务或强一致性，鼓励可用性和性能优先，根据业务的场景特点，来实现非常弹性的基本可用，以及实现数据的最终一致性。</p>
+<p>BASE 理论主张通过牺牲部分功能的可用性，实现整体的基本可用，也就是说，通过服务降级的方式，努力保障极端情况下的系统可用性。</p>
+<p>ACID 理论是传统数据库常用的设计理念，追求强一致性模型。BASE 理论支持的是大型分布式系统，通过牺牲强一致性获得高可用性。BASE 理论在很大程度上，解决了事务型系统在性能、容错、可用性等方面痛点。另外我再多说一句，BASE 理论在 NoSQL 中应用广泛，是 NoSQL 系统设计的事实上的理论支撑。</p>
+<p>最后我强调一下，对于任何集群而言，不可预知的故障的最终后果，都是系统过载。如何设计过载保护，实现系统在过载时的基本可用，是开发和运营互联网后台的分布式系统的重中之重。那么我建议你，在开发实现分布式系统，要充分考虑如何实现基本可用。</p>
+<h2 id="课堂思考"><a href="#课堂思考" class="headerlink" title="课堂思考"></a>课堂思考</h2><p>我在文章中提了一些实现基本可用的方法，比如流量削峰、延迟响应、体验降级、过载保护等，那么你不妨思考一下，还有哪些方法可以用来实现基本可用呢？欢迎在留言区分享你的看法，与我一同讨论。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+<iframe width="100%" frameborder=1 height=500px src="https://time.geekbang.org/comment/nice/200717" > </iframe></article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%9F%BA%E6%9C%AC%E5%8F%AF%E7%94%A8%E7%9A%84-4-%E6%9D%BF%E6%96%A7"><span class="toc-number">1.</span> <span class="toc-text">实现基本可用的 4 板斧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%9A%84%E4%B8%80%E8%87%B4"><span class="toc-number">2.</span> <span class="toc-text">最终的一致</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-BASE-%E7%90%86%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">如何使用 BASE 理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%B0%8F%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">内容小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E6%80%9D%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">课堂思考</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

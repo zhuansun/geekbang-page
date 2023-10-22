@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>15丨ZAB协议：如何实现操作的顺序性？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="你好，我是韩健。 很多同学应该使用过 ZooKeeper，它是一个开源的分布式协调服务，比如你可以使用它进行配置管理、名字服务等等。在 ZooKeeper 中，数据是以节点的形式存储的。如果你要用 ZooKeeper 做配置管理，那么就需要在里面创建指定配置，假设创建节点”&#x2F;geekbang”和”&#x2F;geekbang&#x2F;time”，步骤如下： [zk: localhost">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15丨ZAB协议：如何实现操作的顺序性？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3813020379.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="你好，我是韩健。 很多同学应该使用过 ZooKeeper，它是一个开源的分布式协调服务，比如你可以使用它进行配置管理、名字服务等等。在 ZooKeeper 中，数据是以节点的形式存储的。如果你要用 ZooKeeper 做配置管理，那么就需要在里面创建指定配置，假设创建节点”&#x2F;geekbang”和”&#x2F;geekbang&#x2F;time”，步骤如下： [zk: localhost">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-16T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-22T01:02:55.363Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3813020379"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '15丨ZAB协议：如何实现操作的顺序性？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-22 01:02:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">15丨ZAB协议：如何实现操作的顺序性？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-16T00:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>你好，我是韩健。</p>
+<p>很多同学应该使用过 ZooKeeper，它是一个开源的分布式协调服务，比如你可以使用它进行配置管理、名字服务等等。在 ZooKeeper 中，数据是以节点的形式存储的。如果你要用 ZooKeeper 做配置管理，那么就需要在里面创建指定配置，假设创建节点”&#x2F;geekbang”和”&#x2F;geekbang&#x2F;time”，步骤如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>zk: localhost:2181<span class="token punctuation">(</span>CONNECTED<span class="token punctuation">)</span> <span class="token number">7</span><span class="token punctuation">]</span> create /geekbang <span class="token number">123</span>     
+Created /geekbang
+<span class="token punctuation">[</span>zk: localhost:2181<span class="token punctuation">(</span>CONNECTED<span class="token punctuation">)</span> <span class="token number">8</span><span class="token punctuation">]</span> create /geekbang/time <span class="token number">456</span>
+Created /geekbang/time<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>我们分别创建了配置”&#x2F;geekbang” 和”&#x2F;geekbang&#x2F;time”，对应的值分别为 123 和 456。那么在这里我提个问题：你觉得在 ZooKeeper 中，能用兰伯特的 Multi-Paxos 实现各节点数据的共识和一致吗？</p>
+<p>当然不行。因为兰伯特的 Multi-Paxos，虽然能保证达成共识后的值不再改变，但它不管关心达成共识的值是什么，也无法保证各值（也就是操作）的顺序性。这是为什么呢？这个问题是 ZAB 协议着力解决的，也是理解 ZAB 协议的关键。</p>
+<p>不过，虽然大家都在提 ZAB 协议，但是在我看来，ZAB 协议和 ZooKeeper 代码耦合在一起，也就是说，你是无法单独使用 ZAB 协议的，所以一般而言，只需要理解 ZAB 协议的架构和基础原理就可以了，不需要对代码和细节做太多的深究。所以，我会从 ZAB 协议的最核心设计目标（如何实现操作的顺序性）出发，带你了解它的基础原理。</p>
+<h2 id="为什么-Multi-Paxos-无法实现操作顺序性？"><a href="#为什么-Multi-Paxos-无法实现操作顺序性？" class="headerlink" title="为什么 Multi-Paxos 无法实现操作顺序性？"></a>为什么 Multi-Paxos 无法实现操作顺序性？</h2><p>兰伯特的 Multi-Paxos 解决的是一系列值如何达成共识的问题，它关心的是，对于指定序号的位置，最多只有一个指令（Command）会被选定，但它不关心选定的是哪个指令，也就是说，它不关心指令的顺序性（也就是操作的顺序性）。</p>
+<p>这么说可能比较抽象，为了方便你理解，我举个具体的例子演示一下（一个 3 节点的 Multi-Paxos 集群），为了演示方便，我们假设当前所有节点被选定的指令的最大序号为 100，也就是说，新提议的指令对应的序号将为 101。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230927221251695.png" alt="image-20230927221251695"></p>
+<p>首先节点 A 是领导者，提议了指令 X、Y，但是因为网络故障，指令只成功复制到了节点 A</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230927221304781.png" alt="image-20230927221304781"></p>
+<p>假设这时节点 A 故障了，新当选的领导者为节点 B。节点 B 当选领导者后，需要先作为学习者了解目前已被选定的指令。节点 B 学习之后，发现当前被选定指令的最大序号为 100（因为节点 A 故障了，它被选定指令的最大序号 102，无法被节点 B 发现），那么它可以从序号 101 开始提议新的指令。这时它接收到客户端请求，并提议了指令 Z，指令 Z 被成功复制到节点 B、C。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230927221316938.png" alt="image-20230927221316938"></p>
+<p>这时节点 B 故障了，节点 A 恢复了，选举出领导者 C 后，节点 B 故障也恢复了。节点 C 当选领导者后，需要先作为学习者，了解目前已被选定的指令，这时它执行 Basic Paxos 的准备阶段，就会发现之前选定的值（比如 Z、Y），然后发送接受请求，最终在序号 101、102 处达成共识的指令是 Z、Y。就像下图的样子。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230927221329435.png" alt="image-20230927221329435"></p>
+<p>在这里，你可以看到，原本预期的指令是 X、Y，最后变成了 Z、Y，也就是说，虽然 Multi-Paxos 能就一系列值达成共识，但它不关心达成共识后的值是什么，这显然不是我们想要的结果。</p>
+<p>比如，假设在 ZooKeeper 中直接使用了兰伯特的 Multi-Paxos，这时咱们创建节点”&#x2F;geekbang”和”&#x2F;geekbang&#x2F;time”，那么就可能出现，系统先创建了节点”&#x2F;geekbang&#x2F;time”，这样肯定就出错了：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>zk: localhost:2181<span class="token punctuation">(</span>CONNECTED<span class="token punctuation">)</span> <span class="token number">6</span><span class="token punctuation">]</span> create /geekbang/time <span class="token number">456</span>
+Node does not exist: /geekbang/time<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>因为创建节点”&#x2F;geekbang&#x2F;time”时，找不到节点”&#x2F;geekbang”，所以就会创建失败。</p>
+<p>在这里我多说几句，兰伯特有很多关于分布式的理论，这些理论都很经典（比如拜占庭将军问题、Paxos），但也因为太早了，与实际场景结合的不多，所以后续的众多算法是在这个基础之上做了大量的改进（比如，PBFT、Raft 等）。关于这一点，我在13 讲也强调过，你需要注意。</p>
+<p>另外我还想补充一下，在我看来，在ZAB 论文中，关于 Paxos 问题（Figure 1 ）的分析是有争议的。因为 ZooKeeper 当时应该考虑的是 Multi-Paxos，而不是有多个提议者的 Basic Paxos。对于 Multi-Paxos 而言，领导者作为唯一提议者，不存在同时多个提议者的情况。也就是说，Multi-Paxos 无法保证操作的顺序性的问题是存在的，但原因不是文中演示的原因，<strong>本质上是因为 Multi-Paxos 实现的是一系列值的共识，不关心最终达成共识的值是什么，不关心各值的顺序。</strong></p>
+<p>既然 Multi-Paxos 不行，ZooKeeper 怎么实现操作的顺序性的呢? 答案是它实现了 ZAB 协议。</p>
+<p>你可能会说了：Multi-Paxos 无法实现操作的顺序性，但 Raft 可以啊，为什么 ZooKeeper 不用 Raft 呢？这个问题其实比较简单，因为 Raft 出来的比较晚，直到 2013 年才正式提出，在 2007 年开发 ZooKeeper 的时候，还没有 Raft 呢。</p>
+<h2 id="ZAB-是如何保证操作的顺序性的？"><a href="#ZAB-是如何保证操作的顺序性的？" class="headerlink" title="ZAB 是如何保证操作的顺序性的？"></a>ZAB 是如何保证操作的顺序性的？</h2><p>与兰伯特的 Multi-Paxos 不同，ZAB 不是共识算法，不基于状态机，而是基于主备模式的原子广播协议，最终实现了操作的顺序性。</p>
+<p>这里我说的主备，就是 Master-Slave 模型，一个主节点和多个备份节点，所有副本的数据都以主节点为准，主节点采用二阶段提交，向备份节点同步数据，如果主节点发生故障，数据最完备的节点将当选主节点。而原子广播协议，你可以理解成广播一组消息，消息的顺序是固定的。</p>
+<p>需要你注意的是，ZAB 在这里做了个优化，为了实现分区容错能力，将数据复制到大多数节点后（也就是如果大多数节点准备好了），领导者就会进入提交执行阶段，通知备份节点执行提交操作。<strong>在这一点上，Raft 和 ZAB 是类似的，我建议你可以对比着 Raft 算法来理解 ZAB。</strong></p>
+<p>讲到这儿我再多说一句，前面几讲的留言中有同学问状态机的事情：在 Multi-Paxos、Raft 中为什么需要状态机？这是一个很棒的问题，为你的深入思考点个赞！所以咱们先来看一下这个问题。</p>
+<h3 id="什么是状态机？"><a href="#什么是状态机？" class="headerlink" title="什么是状态机？"></a>什么是状态机？</h3><p>本质上来说，状态机指的是有限状态机，它是一个数学模型。你可以这么理解：状态机是一个功能模块，用来处理一系列请求，最大的特点就是确定性，也就是说，对于相同的输入，不管重复运行多少次，最终的内部状态和输出都是相同的。</p>
+<p>就像你敲击键盘，在 Word 文档上打字一样，你敲击键盘的顺序决定了 Word 文档上的文字，你按照相同的顺序敲击键盘，一定能敲出相同的文字，这就是一个现实版的状态机。</p>
+<p>那么为什么在 Multi-Paxos、Raft 中需要状态机呢？</p>
+<p>你想一下，Multi-Paxos、Raft 都是共识算法，而共识算法是就一系列值达成共识的，达成共识后，这个值就不能改了。但有时候我们是需要更改数据的值的，比如 KV 存储，我们肯定需要更改指定 key（比如 X）对应的值，这时我们就可以通过状态机来解决这个问题。</p>
+<p>比如，如果你想把 X 的值改为 7，那你可以提议一个新的指令“SET X &#x3D; 7”，当这个指令被达成共识并提交到状态机后，你查询到的值就是 7 了，也就成功修改了 X 的值。</p>
+<p>讲到这儿，你应该理解什么是状态机，为什共识算法需要状态机了吧？在解决这个问题之后，咱们说回刚刚的话题：ZAB 协议如何保证操作的顺序性？</p>
+<h3 id="如何实现操作的顺序性？"><a href="#如何实现操作的顺序性？" class="headerlink" title="如何实现操作的顺序性？"></a>如何实现操作的顺序性？</h3><p>首先，ZAB 实现了主备模式，也就是所有的数据都以主节点为准：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230927221403951.png" alt="image-20230927221403951"></p>
+<p>其次，ZAB 实现了 FIFO 队列，保证消息处理的顺序性。</p>
+<p>另外，ZAB 还实现了当主节点崩溃后，只有日志最完备的节点才能当选主节点，因为日志最完备的节点包含了所有已经提交的日志，所以这样就能保证提交的日志不会再改变。</p>
+<p>你看，ZAB 协议通过这几个特性就能保证后来的操作不会比当前的操作先执行，也就能保证节点”&#x2F;geekbang”会在节点”&#x2F;geekbang&#x2F;time”之前创建。</p>
+<p>学到这里，想必你已经发现了，这些特性好像和 Raft 很像。是的，因为在前面几讲，我们已经学习了 Raft 算法，所以你可以类比 Raft 来理解，在 Raft 中：</p>
+<ul>
+<li>所有日志以领导者的为准；</li>
+<li>领导者接收到客户端请求后，会基于请求中的指令，创建日志项，并将日志项缓存在本地，然后按照顺序，复制到其他节点和提交 ;</li>
+<li>在 Raft 中，也是日志最完备的节点才能当选领导者。</li>
+</ul>
+<h2 id="内容小结"><a href="#内容小结" class="headerlink" title="内容小结"></a>内容小结</h2><p>本节课我主要带你了解了状态机、为什么 Multi-Paxos 无法实现操作的顺序性，以及 ZAB 协议如何保证操作的顺序性。我希望你明确这样几个重点。</p>
+<p>状态机最大的特点是确定性，对于相同的输入不管运行多少次，最终的内部状态和输出都是相同的。需要你注意的是，在共识算法中，我们可以通过提议新的指令，达成共识后，提交给状态机执行，来达到修改指定内容的效果，比如修改 KV 存储中指定 key 对应的值。</p>
+<p>ZAB 是通过“一切以领导者为准”的强领导者模型和严格按照顺序提交日志，来实现操作的顺序性的，这一点和 Raft 是一样的。</p>
+<p>最后我想说的是，兰伯特的 Multi-Paxos 只考虑了如何实现共识，也就是，如何就一系列值达成共识，未考虑如何实现各值（也就是操作）的顺序性。最终 ZooKeeper 实现了基于主备模式的原子广播协议，保证了操作的顺序性，而且，ZAB 协议的实现，影响到了后来的共识算法，也就是 Raft 算法，Raft 除了能就一些值达成共识，还能保证各值的顺序性。</p>
+<p>学习完本讲内容后，你可以看到，Raft 算法和 ZAB 协议很类似，比如主备模式（也就是领导者、跟随者模型）、日志必须是连续的、以领导者的日志为准是日志一致等等。你可以想一下，那为什么它们会比较类似呢？</p>
+<p>我的看法是，“英雄所见略同”。比如 ZAB 协议要实现操作的顺序性，而 Raft 的设计目标，不仅仅是操作的顺序性，而是线性一致性，这两个目标，都决定了它们不能允许日志不连续，要按照顺序提交日志，那么，它们就要通过上面的方法实现日志的顺序性，并保证达成共识（也就是提交）后的日志不会再改变。</p>
+<h2 id="课堂思考"><a href="#课堂思考" class="headerlink" title="课堂思考"></a>课堂思考</h2><p>我提到在 ZAB 中，写操作必须在主节点上执行，主节点是通过简化版的二阶段提交向备份节点同步数据。那么如果读操作访问的是备份节点，能保证每次都能读到最新的数据吗？为什么呢？欢迎在留言区分享你的看法，与我一同讨论。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+<iframe width="100%"  frameborder=1 height=1000px src="https://time.geekbang.org/comment/nice/211954" > </iframe>
+
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Multi-Paxos-%E6%97%A0%E6%B3%95%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E9%A1%BA%E5%BA%8F%E6%80%A7%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">为什么 Multi-Paxos 无法实现操作顺序性？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZAB-%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%93%8D%E4%BD%9C%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%80%A7%E7%9A%84%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">ZAB 是如何保证操作的顺序性的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">什么是状态机？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%80%A7%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">如何实现操作的顺序性？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">内容小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E6%80%9D%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">课堂思考</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

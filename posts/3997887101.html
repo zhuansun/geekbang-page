@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>082丨程序员练级攻略：分布式架构经典图书和论文 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="经典图书首先，我推荐几本分布式架构方面的经典图书。  **Distributed Systems for fun and profit**，这是一本免费的电子书。作者撰写此书的目的是希望以一种更易于理解的方式，讲述以亚马逊的 Dynamo、谷歌的 Bigtable 和 MapReduce 等为代表的分布式系统背后的核心思想。  **Designing Data Intensive Applicat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="082丨程序员练级攻略：分布式架构经典图书和论文">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3997887101.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="经典图书首先，我推荐几本分布式架构方面的经典图书。  **Distributed Systems for fun and profit**，这是一本免费的电子书。作者撰写此书的目的是希望以一种更易于理解的方式，讲述以亚马逊的 Dynamo、谷歌的 Bigtable 和 MapReduce 等为代表的分布式系统背后的核心思想。  **Designing Data Intensive Applicat">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-10-21T14:12:09.749Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3997887101"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '082丨程序员练级攻略：分布式架构经典图书和论文',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-21 14:12:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">082丨程序员练级攻略：分布式架构经典图书和论文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="经典图书"><a href="#经典图书" class="headerlink" title="经典图书"></a>经典图书</h1><p>首先，我推荐几本分布式架构方面的经典图书。</p>
+<ul>
+<li><p>**<a target="_blank" rel="noopener" href="http://book.mixu.net/distsys/single-page.html">Distributed Systems for fun and profit</a>**，这是一本免费的电子书。作者撰写此书的目的是希望以一种更易于理解的方式，讲述以亚马逊的 Dynamo、谷歌的 Bigtable 和 MapReduce 等为代表的分布式系统背后的核心思想。</p>
+</li>
+<li><p>**<a target="_blank" rel="noopener" href="https://book.douban.com/subject/27154352/">Designing Data Intensive Applications</a>**，这本书是一本非常好的书，我们知道，在分布式的世界里，数据结点的扩展是一件非常麻烦的事。这本书深入浅出地用很多的工程案例讲解了如何让数据结点做扩展。作者马丁·科勒普曼（Martin Kleppmann）在分布式数据系统领域有着很深的功底，并在这本书中完整地梳理各类纷繁复杂设计背后的技术逻辑，不同架构之间的妥协与超越，很值得开发人员与架构设计者阅读。</p>
+<p>这本书深入到 B-Tree、SSTables、LSM 这类数据存储结构中，并且从外部的视角来审视这些数据结构对 NoSQL 和关系型数据库的影响。这本书可以让你很清楚地了解到真正世界的大数据架构中的数据分区、数据复制的一些坑，并提供了很好的解决方案。最赞的是，作者将各种各样技术的本质非常好地关联在一起，令你触类旁通。</p>
+<p>而且，这本书完全就是抽丝剥茧，循循善诱，从“提出问题”到“解决问题”、“解决方案”、“优化方案”和“对比不同的方案”，一点一点地把非常晦涩的技术和知识展开。本书的引用相当多，每章后面都有几百个 Reference，通过这些 Reference 你可以看到更为广阔、更为精彩的世界。</p>
+</li>
+<li><p>[Distributed Systems: Principles and Paradigms](<a target="_blank" rel="noopener" href="http://barbie.uta.edu/~jli/Resources/MapReduce&Hadoop/Distributed">http://barbie.uta.edu/~jli/Resources/MapReduce&amp;Hadoop/Distributed</a> Systems Principles and Paradigms.pdf) ，本书是由计算机科学家安德鲁·斯图尔特·塔能鲍姆（Andrew S. Tanenbaum）和其同事马丁·范·斯蒂恩（Martin van Steen）合力撰写的，是分布式系统方面的经典教材。</p>
+<p>语言简洁，内容通俗易懂，介绍了分布式系统的七大核心原理，并给出了大量的例子；系统讲述了分布式系统的概念和技术，包括通信、进程、命名、同步化、一致性和复制、容错以及安全等；讨论了分布式应用的开发方法（即范型）。但本书不是一本指导“如何做”的手册，仅适合系统性地学习基础知识，了解编写分布式系统的基本原则和逻辑。中文翻译版为<a target="_blank" rel="noopener" href="https://item.jd.com/10079452.html">《分布式系统原理与范型》（第二版）</a>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.aosabook.org/en/distsys.html">Scalable Web Architecture and Distributed Systems</a>，<br>这是一本免费的在线小册子，其中文翻译版 <a target="_blank" rel="noopener" href="http://nettee.github.io/posts/2016/Scalable-Web-Architecture-and-Distributed-Systems/">可扩展的 Web 架构和分布式系统</a>。本书主要针对面向互联网（公网）的分布式系统，但其中的原理或许也可以应用于其他分布式系统的设计中。作者的观点是，通过了解大型网站的分布式架构原理，小型网站的构建也能从中受益。本书从大型互联网系统的常见特性，如高可用、高性能、高可靠、易管理等出发，引出了一个类似于 Flickr 的典型的大型图片网站的例子。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://dcg.ethz.ch/lectures/podc_allstars/lecture/podc.pdf">Principles of Distributed Systems</a> ，本书是苏黎世联邦理工学院的教材。它讲述了多种分布式系统中会用到的算法。虽然分布式系统的不同场景会用到不同算法，但并不表示这些算法都会被用到。不过，作为学生来说，掌握了算法设计的精髓也就能举一反三地设计出解决其他问题的算法，从而得到分布式系统架构设计中所需的算法。</p>
+</li>
+</ul>
+<h1 id="经典论文"><a href="#经典论文" class="headerlink" title="经典论文"></a>经典论文</h1><h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p>想了解分布式模型中最难的“分布式事务”，你需要看看 Google App Engine 联合创始人瑞恩·巴雷特（Ryan Barrett）在 2009 年的 Google I&#x2F;O 大会上的演讲《<a target="_blank" rel="noopener" href="http://snarfed.org/transactions_across_datacenters_io.html">Transaction Across DataCenter</a>》（<a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=srOgpXECblk">YouTube 视频</a>）。</p>
+<p>在这个演讲中，巴雷特讲述了各种经典的解决方案如何在一致性、事务、性能和错误上做平衡。而最后得到为什么分布式系统的事务只有 Paxos 算法是最好的。</p>
+<p>下面这个图是这个算法中的结论。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202310/image-20230928091230650.png" alt="image-20230928091230650"></p>
+<p>你也可以移步看一下我在 Coolshell 上写的这篇文章《<a target="_blank" rel="noopener" href="https://coolshell.cn/articles/10910.html">分布式系统的事务处理</a>》。</p>
+<h2 id="Paxos-一致性算法"><a href="#Paxos-一致性算法" class="headerlink" title="Paxos 一致性算法"></a>Paxos 一致性算法</h2><p>Paxos 算法，是莱斯利·兰伯特（Lesile Lamport）于 1990 年提出来的一种基于消息传递且具有高度容错特性的一致性算法。但是这个算法太过于晦涩，所以一直以来都属于理论上的论文性质的东西。其真正进入工程圈，主要是来源于 Google 的 Chubby lock——一个分布式的锁服务，用在了 Bigtable 中。直到 Google 发布了下面这两篇论文，Paxos 才进入到工程界的视野中来。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf">Bigtable: A Distributed Storage System for Structured Data</a></li>
+<li><a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf">The Chubby lock service for loosely-coupled distributed systems</a></li>
+</ul>
+<p>Google 与 Bigtable 相齐名的还有另外两篇论文。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf">The Google File System</a></li>
+<li><a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+</ul>
+<p>不过，这几篇文章中并没有讲太多的 Paxos 算法上的细节，反而是在<a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/en//archive/paxos_made_live.pdf">Paxos Made Live - An Engineering Perspective</a> 这篇论文中提到了很多工程实现的细节。这篇论文详细解释了 Google 实现 Paxos 时遇到的各种问题和解决方案，讲述了从理论到实际应用二者之间巨大的鸿沟。</p>
+<p>Paxos 算法的原版论文比较晦涩，也不易懂。这里推荐一篇比较容易读的—— <a target="_blank" rel="noopener" href="http://harry.me/blog/2014/12/27/neat-algorithms-paxos/">Neat Algorithms - Paxos</a> 。这篇文章中还有一些小动画帮助你读懂。还有一篇可以帮你理解的文章是 <a target="_blank" rel="noopener" href="https://angus.nyc/2012/paxos-by-example/">Paxos by Examples</a>。</p>
+<h2 id="Raft-一致性算法"><a href="#Raft-一致性算法" class="headerlink" title="Raft 一致性算法"></a>Raft 一致性算法</h2><p>因为 Paxos 算法太过于晦涩，而且在实际的实现上有太多的坑，并不太容易写对。所以，有人搞出了另外一个一致性的算法，叫 Raft。其原始论文是 <a target="_blank" rel="noopener" href="https://raft.github.io/raft.pdf">In search of an Understandable Consensus Algorithm (Extended Version) </a>，寻找一种易于理解的 Raft 算法。这篇论文的译文在 InfoQ 上，题为《<a href="%5Bhttps://infoq.cn/article/raft-paper%5D(https://infoq.cn/article/raft-paper)">Raft 一致性算法论文译文</a>》，推荐你读一读。</p>
+<p>这里推荐几个不错的 Raft 算法的动画演示。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://thesecretlivesofdata.com/raft/"><br>Raft - The Secret Lives of Data</a></li>
+<li><a target="_blank" rel="noopener" href="https://raft.github.io/">Raft Consensus Algorithm</a></li>
+<li><a target="_blank" rel="noopener" href="http://kanaka.github.io/raft.js/">Raft Distributed Consensus Algorithm Visualization</a></li>
+</ul>
+<h2 id="Gossip-一致性算法"><a href="#Gossip-一致性算法" class="headerlink" title="Gossip 一致性算法"></a>Gossip 一致性算法</h2><p>后面，业内又搞出来一些工程上的东西，比如 Amazon 的 DynamoDB，其论文<a target="_blank" rel="noopener" href="http://bnrg.eecs.berkeley.edu/~randy/Courses/CS294.F07/Dynamo.pdf">Dynamo: Amazon’s Highly Available Key Value Store</a> 的影响力非常大。这篇论文中讲述了 Amazon 的 DynamoDB 是如何满足系统的高可用、高扩展和高可靠的。其中展示了系统架构是如何做到数据分布以及数据一致性的。GFS 采用的是查表式的数据分布，而 DynamoDB 采用的是计算式的，也是一个改进版的通过虚拟结点减少增加结点带来数据迁移的一致性哈希。</p>
+<p>这篇文章中有几个关键的概念，一个是 Vector Clock，另一个是 Gossip 协议。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/publication/time-clocks-ordering-events-distributed-system/">Time, Clocks and the Ordering of Events in a Distributed System</a> ，这篇文章是莱斯利·兰伯特（Leslie Lamport）于 1978 年发表的，并在 2007 年被选入 SOSP 的名人堂，被誉为第一篇真正的“分布式系统”论文，该论文曾一度成为计算机科学史上被引用最多的文章。分布式系统中的时钟同步是一个非常难的问题，因为分布式系统中是使用消息进行通信的，若使用物理时钟来进行同步，一方面是不同的 process 的时钟有差异，另一方面是时间的计算也有一定的误差，这样若有两个时间相同的事件，则无法区分它们谁前谁后了。这篇文章主要解决分布式系统中的时钟同步问题。</li>
+<li><a target="_blank" rel="noopener" href="http://lass.cs.umass.edu/~shenoy/courses/spring05/lectures.html">马萨诸塞大学课程 Distributed Operating System</a> 中第 10 节 <a target="_blank" rel="noopener" href="http://lass.cs.umass.edu/~shenoy/courses/spring05/lectures/Lec10.pdf">Clock Synchronization</a>，这篇讲义讲述了时钟同步的问题。</li>
+<li>关于 Vector Clock，你可以看一下<a target="_blank" rel="noopener" href="http://basho.com/posts/technical/why-vector-clocks-are-easy/"> Why Vector Clocks are Easy</a> 和 <a target="_blank" rel="noopener" href="http://basho.com/posts/technical/why-vector-clocks-are-hard/">Why Vector Clocks are Hard</a> 这两篇文章。</li>
+</ul>
+<p>用来做数据同步的 Gossip 协议的原始论文是 <a target="_blank" rel="noopener" href="https://www.cs.cornell.edu/home/rvr/papers/flowgossip.pdf">Efficient Reconciliation and Flow Control for Anti-Entropy Protocols</a>。Gossip 算法也是 Cassandra 使用的数据复制协议。这个协议就像八卦和谣言传播一样，可以“一传十、十传百”传播开来。但是这个协议看似简单，细节上却非常麻烦。</p>
+<p>Gossip 协议也是 NoSQL 数据库 Cassandra 中使用到的数据协议，你可以上 YouTube 上看一下这个视频介绍： <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FuP1Fvrv6ZQ">Understanding Gossip (Cassandra Internals)</a>。</p>
+<p>关于 Gossip 的一些图示化的东西，你可以看一下动画 <a target="_blank" rel="noopener" href="https://rrmoelker.github.io/gossip-visualization/">Gossip Visualization</a>。</p>
+<h2 id="分布式存储和数据库"><a href="#分布式存储和数据库" class="headerlink" title="分布式存储和数据库"></a>分布式存储和数据库</h2><p>除了前面的 Google 的 BigTable 和 Google File System 那两篇论文，还有 Amazon 的 DynamoDB 的论文，下面也有几篇也是要读一下的。</p>
+<ul>
+<li>一篇是 AWS Aurora 的论文 <a target="_blank" rel="noopener" href="http://www.allthingsdistributed.com/files/p1041-verbitski.pdf">Amazon Aurora: Design Considerations for High Throughput Cloud -Native Relation Databases</a>。</li>
+<li>另一篇是比较有代表的论文是 Google 的 <a target="_blank" rel="noopener" href="http://static.googleusercontent.com/media/research.google.com/zh-CN//archive/spanner-osdi2012.pdf">Spanner: Google’s Globally-Distributed Database</a>。 其 2017 年的新版论文：<a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45855.pdf">Spanner, TrueTime &amp; The CAP Theorem</a>。</li>
+<li><a target="_blank" rel="noopener" href="http://research.google.com/pubs/archive/38125.pdf">F1 - The Fault-Tolerant Distributed RDBMS Supporting Google’s Ad Business</a> 。</li>
+<li><a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.161.6751&rep=rep1&type=pdf">Cassandra: A Decentralized Structured Storage System</a> 。</li>
+<li><a target="_blank" rel="noopener" href="http://www.ssrc.ucsc.edu/Papers/weil-sc06.pdf">CRUSH: Controlled, Scalable, Decentralized Placement of Replicated Data</a>, 这里提到的算法被应用在了 Ceph 分布式文件系统中，其架构可以读一下 <a target="_blank" rel="noopener" href="https://ceph.com/wp-content/uploads/2016/08/weil-rados-pdsw07.pdf">RADOS - A Scalable, Reliable Storage Service for Petabyte-scale<br>Storage Clusters</a> 以及 <a target="_blank" rel="noopener" href="http://docs.ceph.com/docs/jewel/architecture/">Ceph 的架构文档</a>。</li>
+</ul>
+<h2 id="分布式消息系统"><a href="#分布式消息系统" class="headerlink" title="分布式消息系统"></a>分布式消息系统</h2><ul>
+<li>分布式消息系统，你一定要读一下 Kafka 的这篇论文 <a target="_blank" rel="noopener" href="http://research.microsoft.com/en-us/UM/people/srikanth/netdb11/netdb11papers/netdb11-final12.pdf">Kafka: a Distributed Messaging System for Log Processing</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/nsdi15/nsdi15-paper-sharma.pdf">Wormhole: Reliable Pub-Sub to Support Geo-replicated Internet Services</a> ，Wormhole 是 Facebook 内部使用的一个 Pub-Sub 系统，目前还没有开源。它和 Kafka 之类的消息中间件很类似。但是它又不像其它的 Pub-Sub 系统，Wormhole 没有自己的存储来保存消息，它也不需要数据源在原有的更新路径上去插入一个操作来发送消息，是非侵入式的。其直接部署在数据源的机器上并直接扫描数据源的 transaction logs，这样还带来一个好处，Wormhole 本身不需要做任何地域复制（geo-replication）策略，只需要依赖于数据源的 geo-replication 策略即可。</li>
+<li><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/research/2012/all-aboard-the-databus-linkedlns-scalable-consistent-change-data-capture-platform">All Aboard the Databus! LinkedIn’s Scalable Consistent Change Data Capture Platform</a> ， 在 LinkedIn 投稿 SOCC 2012 的这篇论文中，指出支持对不同数据源的抽取，允许不同数据源抽取器的开发和接入，只需该抽取器遵循设计规范即可。该规范的一个重要方面就是每个数据变化都必须被一个单调递增的数字标注（SCN），用于同步。这其中的一些方法完全可以用做异地双活的系统架构中。（和这篇论文相关的几个链接如下：<a target="_blank" rel="noopener" href="https://915bbc94-a-62cb3a1a-s-sites.googlegroups.com/site/acm2012socc/s18-das.pdf?attachauth=ANoY7cpF7igQlU-DGe3gMeW4PZr0cnRDm6cFsuJnv8n5LtJqYrEE9TMMzctK8P9OUTzPD-M2efmpes3zsc10VXN0g6RmdqTpSv3YwgUIW08RBmUvv3XMpUhEAiHkLdrzqC5thiAu5kyskHhkflK3wPYPvA6PeH4uM_XD3u4Quo0MR87BXnE_TcmnRnPzUzNAAYLng2K5t5elUuTj9NaU4o8QSfFX8edgwA==&attredirects=0">PDF 论文</a> 、 <a target="_blank" rel="noopener" href="https://www.slideshare.net/amywtang/databus-socc-v3">PPT 分享</a>。）</li>
+</ul>
+<h2 id="日志和数据"><a href="#日志和数据" class="headerlink" title="日志和数据"></a>日志和数据</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying">The Log: What every software engineer should know about real-time data’s unifying abstraction</a> ，这篇文章好长，不过这是一篇非常好非常好的文章，这是每个工程师都应用知道的事，必看啊。你可以看中译版《<a target="_blank" rel="noopener" href="https://github.com/oldratlee/translations/blob/master/log-what-every-software-engineer-should-know-about-real-time-datas-unifying/README.md">日志：每个软件工程师都应该知道的有关实时数据的统一概念</a>》。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cs.umb.edu/~poneil/lsmtree.pdf">The Log-Structured Merge-Tree (LSM-Tree)</a> ，N 多年前，谷歌发表了 Bigtable 的论文，论文中很多很酷的方面，其一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree。LSM 是当前被用在许多产品的文件结构策略：HBase、Cassandra、LevelDB、SQLite，甚至在 MongoDB 3.0 中也带了一个可选的 LSM 引擎（Wired Tiger 实现的）。LSM 有趣的地方是它抛弃了大多数数据库所使用的传统文件组织方法。实际上，当你第一次看它时是违反直觉的。这篇论文可以让你明白这个技术。（如果读起来有些费解的话，你可以看看中文社区里的这几篇文章：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/siegfang/archive/2013/01/12/lsm-tree.html">文章一</a>、<a target="_blank" rel="noopener" href="https://kernelmaker.github.io/lsm-tree">文章二</a>。）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://cidrdb.org/cidr2015/Papers/CIDR15_Paper16.pdf">Immutability Changes Everything</a> ，这篇论文是现任 Salesforce 软件架构师帕特·赫兰德（Pat Helland）在 CIDR 2015 大会上发表的（<a target="_blank" rel="noopener" href="https://vimeo.com/52831373">相关视频演讲</a>）。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2013/11/Tango.pdf">Tango: Distributed Data Structures over a Shared Log</a>）。这个论文非常经典，其中说明了不可变性（immutability）架构设计的优点。随着为海量数据集存储和计算而设计的以数据为中心的新型抽象技术的出现，分布式系统比以往任何时候都更容易构建。但是，对于元数据的存储和访问不存在类似的抽象。</p>
+<p>为了填补这一空白，Tango 为开发人员提供了一个由共享日志支持的内存复制数据结构（例如地图或树）的抽象。Tango 对象易于构建和使用，通过共享日志上简单的追加和读取操作来复制状态，而不是复杂的分布式协议。在这个过程中，它们从共享日志中获得诸如线性化、持久性和高可用性等属性。Tango 还利用共享日志支持跨不同对象的快速事务处理，允许应用程序跨机器进行状态划分，并在不牺牲一致性的情况下扩展到底层日志的上限。</p>
+</li>
+</ul>
+<h2 id="分布式监控和跟踪"><a href="#分布式监控和跟踪" class="headerlink" title="分布式监控和跟踪"></a>分布式监控和跟踪</h2><ul>
+<li>Google 的分布式跟踪监控论文 - <a target="_blank" rel="noopener" href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36356.pdf">Dapper, a Large-Scale Distributed Systems Tracing Infrastructure</a>， 其开源实现有三个 <a target="_blank" rel="noopener" href="http://zipkin.io/">Zipkin</a>、<a target="_blank" rel="noopener" href="https://github.com/naver/pinpoint">Pinpoint</a> 和 <a target="_blank" rel="noopener" href="http://htrace.incubator.apache.org/">HTrace</a>。我个人更喜欢 Zipkin。</li>
+</ul>
+<h2 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://vldb.org/pvldb/vol5/p1771_georgelee_vldb2012.pdf">The Unified Logging Infrastructure for Data Analytics at Twitter</a> ，Twitter 公司的一篇关于日志架构和数据分析的论文。</li>
+<li>[Scaling Big Data Mining Infrastructure: The Twitter Experience](<a target="_blank" rel="noopener" href="http://www.datascienceassn.org/sites/default/files/Scaling">http://www.datascienceassn.org/sites/default/files/Scaling</a> Big Data Mining Infrastructure - The Twitter Experience.pdf) ，讲 Twitter 公司的数据分析平台在数据量越来越大，架构越来越复杂，业务需求越来越多的情况下，数据分析从头到底是怎么做的。</li>
+<li><a target="_blank" rel="noopener" href="http://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en/us/pubs/archive/36632.pdf">Dremel: Interactive Analysis of Web-Scale Datasets</a>，Google 公司的 Dremel，是一个针对临时查询提供服务的系统，它处理的是只读的多层数据。本篇文章介绍了它的架构与实现，以及它与 MapReduce 是如何互补的。</li>
+<li><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf">Resident Distributed Datasets: a Fault-Tolerant Abstraction for In-Memory Cluster Computing</a>，这篇论文提出了弹性分布式数据集（Resilient Distributed Dataset，RDD）的概念，它是一个分布式存储抽象，使得程序员可以在大型集群上以容错的方式执行内存计算；解释了其出现原因：解决之前计算框架在迭代算法和交互式数据挖掘工具两种应用场景下处理效率低下的问题，并指出将数据保存在内存中，可以将性能提高一个数量级；同时阐述了其实现原理及应用场景等多方面内容。很有趣儿，推荐阅读。</li>
+</ul>
+<h2 id="与编程相关的论文"><a href="#与编程相关的论文" class="headerlink" title="与编程相关的论文"></a>与编程相关的论文</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://web.cs.ucdavis.edu/~pandey/Research/Papers/icdcs01.pdf">Distributed Programming Model</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.di.ens.fr/~cezarad/popl16.pdf">PSync: a partially synchronous language for fault-tolerant distributed algorithms</a></li>
+<li><a target="_blank" rel="noopener" href="http://heather.miller.am/teaching/cs7680/">Programming Models for Distributed Computing</a></li>
+<li><a target="_blank" rel="noopener" href="http://db.cs.berkeley.edu/papers/UCB-lattice-tr.pdf">Logic and Lattices for Distributed Programming</a></li>
+</ul>
+<h2 id="其它的分布式论文阅读列表"><a href="#其它的分布式论文阅读列表" class="headerlink" title="其它的分布式论文阅读列表"></a>其它的分布式论文阅读列表</h2><p>除了上面上的那些我觉得不错的论文，下面还有三个我觉得不错的分布式系统论文的阅读列表，你可以浏览一下。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mmcgrana/services-engineering">Services Engineering Reading List</a></li>
+<li><a target="_blank" rel="noopener" href="http://christophermeiklejohn.com/distributed/systems/2013/07/12/readings-in-distributed-systems.html">Readings in Distributed Systems</a></li>
+<li><a target="_blank" rel="noopener" href="https://ai.google/research/pubs/?area=DistributedSystemsandParallelComputing">Google Research - Distributed Systems and Parallel Computing</a></li>
+</ul>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>今天分享的内容是分布式架构方面的经典图书和论文，并给出了导读文字，几乎涵盖了分布式系统架构方面的所有关键的理论知识。这些内容非常重要，是学好分布式架构的基石，请一定要认真学习。</p>
+<p>下篇文章中，我们将讲述分布式架构工程设计方面的内容，包括设计原则、设计模式以及工程实践等方面的内容。敬请期待。</p>
+<iframe width="100%"  frameborder=1 height=500px src="https://time.geekbang.org/comment/nice/10604" > </iframe>
+
+
+
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9B%BE%E4%B9%A6"><span class="toc-number">1.</span> <span class="toc-text">经典图书</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E8%AE%BA%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">经典论文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">2.1.</span> <span class="toc-text">分布式事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Paxos-%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">Paxos 一致性算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft-%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">Raft 一致性算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gossip-%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">Gossip 一致性算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.5.</span> <span class="toc-text">分布式存储和数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.6.</span> <span class="toc-text">分布式消息系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%92%8C%E6%95%B0%E6%8D%AE"><span class="toc-number">2.7.</span> <span class="toc-text">日志和数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%91%E6%8E%A7%E5%92%8C%E8%B7%9F%E8%B8%AA"><span class="toc-number">2.8.</span> <span class="toc-text">分布式监控和跟踪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.9.</span> <span class="toc-text">数据分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%E7%9A%84%E8%AE%BA%E6%96%87"><span class="toc-number">2.10.</span> <span class="toc-text">与编程相关的论文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E5%88%97%E8%A1%A8"><span class="toc-number">2.11.</span> <span class="toc-text">其它的分布式论文阅读列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

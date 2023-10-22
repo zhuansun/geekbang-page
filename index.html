@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-10-22 13:17:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3011702932.html" title="00 | 开篇词丨你好，产品经理！你的未来价值壁垒在哪儿？">00 | 开篇词丨你好，产品经理！你的未来价值壁垒在哪儿？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-01T00:00:00.000Z" title="发表于 2023-10-01 00:00:00">2023-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是刘海丰。
+很高兴能和你在这个专栏中见面，跟你一起聊聊产品经理这个岗位，尤其是人工智能领域的产品经理，也叫 AI 产品经理。
+我先来介绍一下我自己吧。我现在是京东集团的高级架构师，负责京东生活服务事业群的数据模型与算法，主导过推荐系统、用户意图识别、高潜用户预测、商品内容生成等多款 AI 产品的设计落地。
+在来到京东之前，我曾经作为 AI 产研负责人带领整个产品和研发团队，为用户提供基于大数据和 AI 技术的产品解决方案。这段经历也让我既懂研发技术架构，又具备了产品思维和商业视角。
+但其实，我刚开始的工作也和 AI 产品没有关系，是在机缘巧合之下才转型的。当时，我们公司突然要上线一个 AI 项目，因为一时没有合适的 AI 产品经理接手，我才被动地成为这个 AI 项目的负责人，去组建和培养整个 AI 产品团队，同时还要带领算法团队。
+项目完成之后，我就继续在这个领域深耕，又成了京东的高级架构师。在这个过程中，我也帮助过团队中的很多产品经理成功转型 AI 产品经理。可以说，不管是我自己转型，还是帮助别人转型，我都踩过很多的“坑”，也总结了很多的经验。
+未来产品经理的价值壁垒其实，我们身边的很多人都会因为类似的情况而调换岗位，最终在这个岗位走得更远。那随着越来越多的公司认识到  AI  的重要性，去建立算法团队之后，传统产品经理转型  AI  产品经理的情况会越来越普遍。
+甚至我 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2547653008.html" title="00丨开篇词丨想成为分布式高手？那就先把协议和算法烂熟于心吧">00丨开篇词丨想成为分布式高手？那就先把协议和算法烂熟于心吧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-01T00:00:00.000Z" title="发表于 2023-10-01 00:00:00">2023-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健，你叫我“老韩”就可以了。
+在专栏开始之前，我想先和你聊聊自己的经历，加深彼此的了解。在重庆大学的软件工程专业毕业之后，我就开始和分布式系统打交道，至今有十多年了。早期，我接触了电信级分布式系统，比如内核态 HA Cluster，现在是互联网分布式系统，比如名字服务、NoSQL 存储、监控大数平台。
+我曾经做过创业公司的 CTO，后来加入腾讯之后，负责过 QQ 后台海量服务分布式中间件，以及时序数据库 InfluxDB 自研集群系统的架构设计和研发工作。
+你可能会问我，为什么要单独讲分布式协议和算法呢？（为了不啰嗦，咱们下文都简称分布式算法）在我看来，它其实就是决定分布式系统如何运行的核心规则和关键步骤。 如果一个人想真正搞懂分布式技术，开发出一个分布式系统，最先需要掌握的就是这部分知识。
+举个例子，学数学的时候，我们总是会学到很多公式或者定理，我上学的时候，还觉得这些定理枯燥至极。但后来我明白了，这些定理和公式其实就是前人花了很长时间思考、验证、总结出来的规律，如果我们能在这之上做事情，更容易快速地找到正确答案。同样，你学习咱们这个专栏也是这个道理。
+分布式算法是分布式技术中的核心可能有些同学会说：“老韩，你别忽悠我，我可是系统看过分布式领域的经典书的，比如《分布式系统：概念与设计》《分布式系统原理与范型》，这些书里分布式算法的篇幅可不多啊。”
+是的，这也是我奇怪的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3293296664.html" title="01丨行业视角：产品经理眼中的人工智能">01丨行业视角：产品经理眼中的人工智能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-02T00:00:00.000Z" title="发表于 2023-10-02 00:00:00">2023-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是海丰，很高兴能在这个专栏和你见面。
+随着人工智能的火热，越来越多的产品经理开始关注这个领域，希望借着风口转型成为 AI 产品经理，进而可以拓宽自己的职业道路。确实，这是一条很不错的出路，我本人就是一个转型的深度体验者和倡导者。
+对比传统的产品经理，AI 产品经理更加注重对于人工智能行业、场景算法，以及验收评估标准的理解。这节课，我们就来学习这些内容。不过在学习之前，我准备了 3 个问题，来测试一下你对这个领域的了解程度：
+你理解人工智能吗？
+它的产业发展现状如何？
+人工智能产品经理的人才结构是怎样的？
+接下来，我将从人工智能产品经理的角度，带你一起解答以上问题，让你对这个领域有一个整体的认知。这是基础，更是必学！
+理解人工智能对于人工智能的理解，网上的文章早已铺天盖地，如果要我概括一下，我认为：如果一个系统可以像人类一样思考和行动，同时这些思考和行动都是理性的，那么这个系统我们就可以认为它是人工智能（Artificial Intelligence，英文缩写为 AI，后面我会直接简称为 AI）。
+什么意思呢？举个例子。
+比如说，我们在浏览电商网站的时候，经常会发现自己看到的页面展示的商品和其他人不太一样，这是因为电商平台的推荐系统，会根据我们过去的浏览行为和下单情况，来预测我们可能喜欢的产品，再把它们展示出来。
+再比如说，我们都使用过类似小爱音箱这样的智能音箱，当我们跟它说 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3880415578.html" title="01丨拜占庭将军问题：有叛徒的情况下，如何才能达成共识？">01丨拜占庭将军问题：有叛徒的情况下，如何才能达成共识？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-02T00:00:00.000Z" title="发表于 2023-10-02 00:00:00">2023-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+在日常工作中，我常听到有人吐槽“没看懂拜占庭将军问题”“中文的文章看不懂，英文论文更看不下去”。想必你也跟他们一样，有类似的感受。
+在我看来，拜占庭将军问题（The Byzantine Generals Problem），它其实是借拜占庭将军的故事展现了分布式共识问题，还探讨和论证了解决的办法。而大多数人觉得它难理解，除了因为分布式共识问题比较复杂之外，还与莱斯利·兰伯特（Leslie Lamport）的讲述方式有关，他在一些细节上（比如，口信消息型拜占庭问题之解的算法过程上）没有说清楚。
+实际上，它是分布式领域最复杂的一个容错模型，一旦搞懂它，你就能掌握分布式共识问题的解决思路，还能更深刻地理解常用的共识算法，在设计分布式系统的时候，也能根据场景特点选择适合的算法，或者设计适合的算法了。而我把拜占庭将军的问题放到第一讲，主要是因为它很好地抽象了分布式系统面临的共识问题，理解了这个问题，会为你接下来的学习打下基础。
+那么接下来，我就以战国时期六国抗秦的故事为主线串联起整篇文章，让你读懂、学透。
+苏秦的困境战国时期，齐、楚、燕、韩、赵、魏、秦七雄并立，后来秦国的势力不断强大起来，成了东方六国的共同威胁。于是，这六个国家决定联合，全力抗秦，免得被秦国各个击破。一天，苏秦作为合纵长，挂六国相印，带着六国的军队叩关函谷，驻军在了秦国边境，为围攻秦国作准备。但是，因为各国军 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3137460286.html" title="02丨个人视角：成为AI产品经理，要先搞定这两个问题">02丨个人视角：成为AI产品经理，要先搞定这两个问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-03T00:00:00.000Z" title="发表于 2023-10-03 00:00:00">2023-10-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是海丰。今天，我们来聊聊 AI 产品经理的工作职责与能力要求。
+假设，你正在参加一个 AI 产品岗的面试，面试官问了你这两个问题，你会怎么回答：
+你觉得 AI 产品经理和传统产品经理有什么区别？
+在你看来 AI 产品经理的工作职责是什么？
+你可别小瞧这两个问题，这实际上是面试官在考察面试者对 AI 产品经理这个岗位的理解程度，以及你到底有没有相关的实战经验，甚至在工作中有没有独立的思考。
+因此，这两个问题如果能回答好，我们肯定能给面试官留下一个好的印象。而且，搞清楚这两个问题，也能帮助你在转型时更清楚这个岗位的要求，能够有的放矢地去补足自己的短处，发挥自己的优势。
+AI 产品经理和传统产品经理有什么区别？我们先来看看，AI 产品经理和传统产品经理的区别。从 “AI 产品经理” 这个词来看，它可以分解为“产品经理” + “AI”，AI 产品经理作为产品经理，核心职责和底层能力与传统产品经理是一致的，仍然是通过技术手段实现业务目标，但是它们在面向的对象，使用的技术，以及岗位边界这三个方面却大有不同，不同在哪呢？接下来，我详细给你讲讲。
+首先，我们来看面向对象上的不同。传统的产品经理更多活跃在 C 端，他们面向的是用户，比如电商产品经理、策略产品经理、社区产品经理等等。但是 AI 产品经理更多活跃在 B 端，面向的是各大企业，而且 AI 产品更多应用在 B 端的场景下，比如云从科 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/972094249.html" title="02丨CAP理论：分布式系统的PH试纸，用它来测酸碱度">02丨CAP理论：分布式系统的PH试纸，用它来测酸碱度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-03T00:00:00.000Z" title="发表于 2023-10-03 00:00:00">2023-10-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+很多同学可能都有这样的感觉，每次要开发分布式系统的时候，就会遇到一个非常棘手的问题，那就是如何根据业务特点，为系统设计合适的分区容错一致性模型，以实现集群能力。这个问题棘手在当发生分区错误时，应该如何保障系统稳定运行，不影响业务。
+这和我之前经历的一件事比较像，当时，我负责自研 InfluxDB 系统的项目，接手这个项目后，我遇到的第一个问题就是，如何为单机开源版的 InfluxDB 设计分区容错一致性模型。 因为 InfluxDB 有 META 和 DATA 两个节点，它们的功能和数据特点不同，所以我还需要考虑这两个逻辑单元的特点，然后分别设计分区容错一致性模型。
+那个时候，我想到了 CAP 理论，并且在 CAP 理论的帮助下，成功地解决了问题。讲到这儿，你可能会问了：为什么 CAP 理论可以解决这个问题呢？
+因为在我看来，CAP 理论是一个很好的思考框架，它对分布式系统的特性做了高度抽象，比如抽象成了一致性、可用性和分区容错性，并对特性间的冲突（也就是 CAP 不可能三角）做了总结。一旦掌握它，你就像拥有了引路人，自然而然就能根据业务场景的特点进行权衡，设计出适合的分区容错一致性模型。
+那么问题来了：我说的一致性、可用性和分区容错性是什么呢？它们之间有什么关系？你又该如何使用 CAP 理论来思考和设计分区容错一致性模型呢？这些问题就是我们本节课所要讲的重点了。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2876362069.html" title="03丨ACID理论：CAP的酸，追求一致性">03丨ACID理论：CAP的酸，追求一致性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-04T00:00:00.000Z" title="发表于 2023-10-04 00:00:00">2023-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+提到 ACID，我想你并不陌生，很多同学也会觉得它容易理解，在单机上实现 ACID 也不难，比如可以通过锁、时间序列等机制保障操作的顺序执行，让系统实现 ACID 特性。但是，一说要实现分布式系统的 ACID 特性，很多同学就犯难了。那么问题来了，为什么分布式系统的 ACID 特性在实现上，比较难掌握呢？
+在我看来，ACID 理论是对事务特性的抽象和总结，方便我们实现事务。你可以理解成：如果实现了操作的 ACID 特性，那么就实现了事务。而大多数人觉得比较难，是因为分布式系统涉及多个节点间的操作。加锁、时间序列等机制，只能保证单个节点上操作的 ACID 特性，无法保证节点间操作的 ACID 特性。
+那么怎么做才会让实现不那么难呢？答案是你要掌握分布式事务协议，比如二阶段提交协议和 TCC（Try-Confirm-Cancel）。这也是我接下来重点和你分享的内容。
+不过在带你了解二阶段提交协议和 TCC 之前，咱们先继续看看苏秦的故事，看这回苏秦又遇到了什么事儿。
+最近呢，秦国按捺不住自己躁动的心，开始骚扰魏国边境，魏王头疼，向苏秦求助，苏秦认为“三晋一家亲”，建议魏王联合赵、韩一起对抗秦国。但是这三个国家实力都很弱，需要大家都同意联合，一致行动，如果有任何一方不方便行动，就取消整个计划。
+根据侦查情况，明天发动反攻胜算比较大。苏秦想协调赵、魏、韩，明天一起行动。那 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/321910727.html" title="04丨BASE理论：CAP的碱，追求可用性">04丨BASE理论：CAP的碱，追求可用性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-05T00:00:00.000Z" title="发表于 2023-10-05 00:00:00">2023-10-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+很多同学可能喜欢使用事务型的分布式系统，或者是强一致性的分布式系统，因为使用起来很方便，不需要考虑太多，就像使用单机系统一样。但是学了 CAP 理论后，你肯定知道在分布式系统中要实现强一致性必然会影响可用性。比如，在采用两阶段提交协议的集群系统中，因为执行提交操作，需要所有节点确认和投票。
+所以，集群的可用性是每个节点可用性的乘积，比如，假设 3 个节点的集群，每个节点的可用性为 99.9％，那么整个集群的可用性为 99.7％，也就是说，每个月约宕机 129.6 分钟，这是非常严重的问题。 而解决可用性低的关键在于，根据实际场景，尽量采用可用性优先的 AP 模型。
+讲到这儿，可能会有一些同学“举手提问”：这也太难了，难道没有现成的库或者方案，来实现合适的 AP 模型？是的，的确没有。因为它是一个动态模型，是基于业务场景特点妥协折中后设计实现的。不过，你可以借助 BASE 理论帮助你达成目的。
+在我看来，BASE 理论是 CAP 理论中的 AP 的延伸，是对互联网大规模分布式系统的实践总结，强调可用性。几乎所有的互联网后台分布式系统都有 BASE 的支持，这个理论很重要，地位也很高。一旦掌握它，你就能掌握绝大部分场景的分布式系统的架构技巧，设计出适合业务场景特点的、高可用性的分布式系统。
+而它的核心就是基本可用（Basically Available）和最终一致性（ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/97654580.html" title="05丨Paxos算法（一）：如何在多个节点间确定某变量的值？">05丨Paxos算法（一）：如何在多个节点间确定某变量的值？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-06T00:00:00.000Z" title="发表于 2023-10-06 00:00:00">2023-10-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">Paxos：帕克索斯
+你好，我是韩健。
+提到分布式算法，就不得不提 Paxos 算法，在过去几十年里，它基本上是分布式共识的代名词，因为当前最常用的一批共识算法都是基于它改进的。比如，Fast Paxos 算法、Cheap Paxos 算法、Raft 算法、ZAB 协议等等。而很多同学都会在准确和系统理解 Paxos 算法上踩坑，比如，只知道它可以用来达成共识，但不知道它是如何达成共识的。
+这其实侧面说明了 Paxos 算法有一定的难度，可分布式算法本身就很复杂，Paxos 算法自然也不会例外，当然了，除了这一点，还跟兰伯特有关。
+兰伯特提出的 Paxos 算法包含 2 个部分：
+一个是 Basic Paxos 算法，描述的是多节点之间如何就某个值（提案 Value）达成共识；
+另一个是 Multi-Paxos 思想，描述的是执行多个 Basic Paxos 实例，就一系列值达成共识。
+可因为兰伯特提到的 Multi-Paxos 思想，缺少代码实现的必要细节（比如怎么选举领导者），所以在理解上比较难。
+为了让你理解 Paxos 算法，接下来我会用 2 节课的时间，分别以 Basic Paxos 和 Multi-Paxos 为核心，带你了解 Basic Paxos 如何达成共识，以及针对 Basic Paxos 的局限性 Multi-Paxos 又是如何改进的。今天咱们先来聊聊 Ba ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/391286059.html" title="06丨Paxos算法（二）：Multi-Paxos不是一个算法，而是统称">06丨Paxos算法（二）：Multi-Paxos不是一个算法，而是统称</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-07T00:00:00.000Z" title="发表于 2023-10-07 00:00:00">2023-10-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+经过上节课的学习，你应该知道，Basic Paxos 只能就单个值（Value）达成共识，一旦遇到为一系列的值实现共识的时候，它就不管用了。虽然兰伯特提到可以通过多次执行 Basic Paxos 实例（比如每接收到一个值时，就执行一次 Basic Paxos 算法）实现一系列值的共识。但是，很多同学读完论文后，应该还是两眼摸黑，虽然每个英文单词都能读懂，但还是不理解兰伯特提到的 Multi-Paxos，为什么 Multi-Paxos 这么难理解呢？
+在我看来，兰伯特并没有把 Multi-Paxos 讲清楚，只是介绍了大概的思想，缺少算法过程的细节和编程所必须的细节（比如缺少选举领导者的细节）。这也就导致每个人实现的 Multi-Paxos 都不一样。不过从本质上看，大家都是在兰伯特提到的 Multi-Paxos 思想上补充细节，设计自己的 Multi-Paxos 算法，然后实现它（比如 Chubby 的 Multi-Paxos 实现、Raft 算法、ZAB 协议等）。
+所以在这里，我补充一下：兰伯特提到的 Multi-Paxos 是一种思想，不是算法。而 Multi-Paxos 算法是一个统称，它是指基于 Multi-Paxos 思想，通过多个 Basic Paxos 实例实现一系列值的共识的算法（比如 Chubby 的 Multi-Paxos 实现、Raft 算 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">3</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

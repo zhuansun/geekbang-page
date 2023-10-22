@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/5/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-10-22 13:17:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4258323358.html" title="018丨故障处理最佳实践：故障改进">018丨故障处理最佳实践：故障改进</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">在上篇文章中，我跟你分享了在故障发生时，我们该怎样做，以及在故障前该做些什么准备。只要做到我提到的那几点，你基本上就能游刃有余地处理好故障了。然而，在故障排除后，如何做故障复盘及整改优化则更为重要。在这篇文章中，我就跟你聊聊这几个方面的内容。
+故障复盘过程对于故障，复盘是一件非常重要的事情，因为我们的成长基本上就是从故障中总结各种经验教训，从而可以获得最大的提升。在亚马逊和阿里，面对故障的复盘有不一样的流程，虽然在内容上差不多，但细节上有很多不同。
+亚马逊内部面对 S1 和 S2 的故障复盘，需要那个团队的经理写一个叫 COE（Correction of Errors）的文档。这个 COE 文档，基本上包括以下几方面的内容。
+
+故障处理的整个过程。就像一个 log 一样，需要详细地记录几点几分干了什么事，把故障从发生到解决的所有细节过程都记录下来。
+故障原因分析。需要说明故障的原因和分析报告。
+Ask 5 Whys。需要反思并反问至少 5 个为什么，并为这些“为什么”找到答案。
+故障后续整改计划。需要针对上述的“Ask 5 Whys”说明后续如何举一反三地从根本上解决所有的问题。
+
+然后，这个文档要提交到管理层，向公司的 VP 级的负责人进行汇报，并由他们来审查。
+阿里的故障复盘会会把所有的相关人员都叫到现场进行复盘。我比较喜欢这样的方式，而不是亚马逊的由经理来操作这个事的方式。虽 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2098821550.html" title="019丨答疑解惑：我们应该能够识别的表象和本质">019丨答疑解惑：我们应该能够识别的表象和本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">前两天，我以前在亚马逊（Amazon）团队的一个小伙伴从西雅图打来电话，和我主要聊了一下他最近的一些想法和动向。他在最近几个月面试了很多美国的本土公司，从大公司到创业公司都有，比如 Facebook、Snapchat、Oracle、微软、谷歌、Netflix、Uber 等。他今年 30 岁出头，到美国那边也有 3 年多时间了，所以想要多一些经历，到不同的公司看一下。
+我觉得他这个想法挺好的。于是我们聊了一些对这些公司的看法，进而聊到他想要什么，感兴趣什么，想要经历什么，以及擅长什么，未来如何发展等话题……在两个多小时交谈的过程中，我们谈论到了一些关于他个人发展以及技术上的东西。他听我的建议后，说很有价值。于是，我想既然有价值，那么就把这些分享出来，供更多的人参考吧。
+首先，我觉得在美国做技术真的比国内幸福好多，有那么多很不错的不同类别的公司可供选择。这与国内相比，选择空间实在是太大了，真是幸福。所以，在如此纷乱和多样化的地方，真是需要确定自己的发展方向和目标。不然就会像这个小伙儿一样，当 offer 像雪片一样飞过来的时候，却有点不知所措了。
+我直接和他说，你现在不愁工作了，可以规划自己的职业生涯了，那么问题是你想走哪条路，对什么方向有兴趣，或是自己的长项是什么？结果，他说他也不知道，说就是想多看看多经历一些事情，也不知道自己最终会对什么事有兴趣，也不知道哪个方向更适合自己，可能再 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2876477423.html" title="069丨程序员练级攻略：开篇词">069丨程序员练级攻略：开篇词</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">2011 年，我在 CoolShell 上发表了 《程序员技术练级攻略》一文，收到了很多读读者的追捧，同时，这几年时间里，我还陆续收到了一些人的反馈，说跟着这篇文章找到了不错的工作，他们希望我把这篇文章更新一下，因为毕竟行业的变化很快。
+是的，老实说，抛开这几年技术的更新迭代不说，那篇文章写得也不算特别系统，同时标准也有点低，当时是给一个想要入门的朋友写的。所以，非常有必要从头更新一下《程序员练级攻略》这一主题。
+前言导读升级版的《程序员练级攻略》会比 Coolshell 上的内容更多，也更专业。这篇文章有【入门篇】、【修养篇】、【专业基础篇】、【软件设计篇】、【高手成长篇】五大篇章。它们会帮助你从零开始，一步步地，系统地，完成从陌生到熟悉，到理解掌握，从编码到设计再到架构，从码农到程序员再到工程师再到架构师的进阶，实现从普通到精通到卓越的完美转身……
+在入门篇中，我先推荐的是把 Python 和 JavaScript 作为入门语言，并给出了相应的学习资源和方法。Python 语法比较简单，有大量的库和语法糖，是零基础的人学习编程的不二之选。而 JavaScript 是前端语言，更容易让你获得编程的成就感。
+随后，我们需要学习使用操作系统 Linux、编程工具 Visual Studio Code 等入门必学内容。Web 互联网作为第三次工业革命信息化浪潮中最大的发明，也是每个程序 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2791059186.html" title="070丨程序员练级攻略：零基础启蒙">070丨程序员练级攻略：零基础启蒙</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">如果你从来没有接触过程序语言，这里给你两个方面的教程，一个偏后端，一个偏前端。对从零基础开始的人来说，最重要的是能够对编程有兴趣，而要对编程有兴趣，就要有成就感。而成就感又来自于用程序打造东西，所以，我推荐下面这份不错的入门教程。
+第一份入门教程，主要是让你体会到编程是什么。
+
+《与孩子一起学编程》 ，这本书以 Python 语言教你如何写程序，是一本老少咸宜的编程书。其中会教你编一些小游戏，还会和你讲基本的编程知识，相当不错。
+两个在线编程入门的网站：Codecademy: Learn Python 和 People Can Program ，你也可以在这两个网站上学习 Python，只不过是英文的。
+
+然后，你可以到 CodeAbbey 上去做一些在线编程的小练习。
+第二份入门教程，主要是让你做点实际有用的东西。嗯，做个网页吧。
+
+MDN 的 Web 开发入门 ，MDN 全称是 Mozilla Developer Network，你可以认为是 Web 方面的官方技术网站。这个教程会带着你建立一个网站。然后，你可以把你的网页发布在 GitHub 上。
+
+这两份教程都很不错，都是从零开始，带着你从环境准备开始，一点一点地从一些简单又有意思的东西入手，让你感觉一下编程世界是什么样的，相信这两个教程可以让零基础的你喜欢上编程。
+编程入门在这时，我们使用 Python 和 JavaScr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4219119099.html" title="071丨程序员练级攻略：正式入门">071丨程序员练级攻略：正式入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">学习了前面文章中的入门级经验和知识后，你可能会有两种反应。
+
+一种反应可能是，你对编程有一点的兴趣了，甚至有一点点小骄傲，可能还会四处炫耀。我想说，请保持这种感觉，但是你也要清醒一下，上面的那些东西，还不算真正的入门，你只是入门了一条腿。
+另一种反应也可能是，你被吓着了，觉得太难了。感觉不是一般人能玩的，如果是这样的话，我想鼓励你一下–“无论你做什么事，你都会面对各式各样的困难，这对每个人来说都是一样的，而只有兴趣、热情和成就感才能让你不畏惧这些困难”。所以，你问问你自己，是否从中收获了成就感，如果没有的话，可能这条路并不适合你。如果有的话，哪怕一丁点儿，你也应该继续坚持下来。
+
+这篇文章，我主要是让你成为更为专业的入门程序员。请注意，此时，你可能需要读一些比较枯燥的书，但我想说，这些是非常非常重要的。你一定要坚持住。
+编程技能在系统地学习编程技能之前，我希望你能先看一下 “ The Key To Accelerating Your Coding Skills“， 这篇文章会告诉你如何有效地快速提高自己的编程能力。
+然后接下来是下面几大块内容，但还只是入门级的。
+
+编程技巧方面 - 你可以开始看怎么把程序写好的书了，这里推荐的是《代码大全》。这本书好多年没有更新了，其中有一些内容可能有点过时，但还是一本非常好的书，有点厚，你不需要马上就看完。在你的编程路上，这本书可以陪你走很久，因 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3091156493.html" title="073丨程序员练级攻略：编程语言">073丨程序员练级攻略：编程语言</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">为了进入专业的编程领域，我们需要认真学习以下三方面的知识。
+编程语言。你需要学习 C、C++ 和 Java 这三个工业级的编程语言。为什么说它们是工业级的呢？主要是，C 和 C++ 语言规范都由 ISO 标准化过，而且都有工业界厂商组成的标准化委员会来制定工业标准。次要原因是，它们已经在业界应用于许多重要的生产环境中。
+
+C 语言不用多说，现今这个世界上几乎所有重要的软件都跟 C 有直接和间接的关系，操作系统、网络、硬件驱动等等。说得霸气一点儿，这个世界就是在 C 语言之上运行的。
+而对于 C++ 来说，现在主流的浏览器、数据库、Microsoft Office、主流的图形界面、著名的游戏引擎等都是用 C++ 编写的。而且，很多公司都用 C++ 开发核心架构，如 Google、腾讯、百度、阿里云等。
+而金融电商公司则广泛地使用 Java 语言，因为 Java 的好处太多了，代码稳定性超过 C 和 C++，生产力远超 C 和 C++。有 JVM 在，可以轻松地跨平台，做代码优化，做 AOP 和 IoC 这样的高级技术。以 Spring 为首的由庞大的社区开发的高质量的各种轮子让你只需关注业务，是能够快速搭建企业级应用的不二之选。
+
+此外，我推荐学习 Go 语言。一方面，Go 语言现在很受关注，它是取代 C 和 C++ 的另一门有潜力的语言。C 语言太原始了，C++ 太复杂了，Java ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/163837357.html" title="074丨程序员练级攻略：理论学科">074丨程序员练级攻略：理论学科</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">进入专业的编程领域，算法、数据结构、网络模型、计算机原理等这样的计算机科学专业需要学习的理论知识是必须要学习的。下面我们先来看看数据结构和算法。
+数据结构和算法算法是比较难学习的，而且学习“算法”是需要智商的。数组、链表、哈希表、二叉树、排序算法等一些基础知识，对大多数人来说是没什么问题的。但是一旦进入到路径规划、背包问题、字符串匹配、动态规划、递归遍历等一些比较复杂的问题上，就会让很多人跟不上了，不但跟不上，而且还会非常痛苦。是的，解决算法问题的确是可以区分人类智商的一个比较好的方式，这也是为什么好些公司用算法题当面试题来找到智商比较高的程序员。
+然而，在很多时候，我们在工作中却发现根本用不到算法，或是一些基本的算法也没有必要实现，只需要使用一下第三方的库就好了。于是，导致社会上出现很多“算法无用论”的声音。
+对此，我想说，算法真的很重要。我这 20 年的经历告诉我，无论是做业务还是做底层系统，经常需要使用算法处理各种各样的问题。比如，业务上我需要用算法比较两个数组中差异的布隆过滤器，或是在做监控系统时实时计算过去一分钟的 P99 统计时的蓄水池算法，或是数据库的 B+ 树索引，还有 Linux 内核中的 epoll 的红黑树，还有在做服务调度里的“背包问题”等都会用算法，真的是会本质上帮助到你，也是会让你瞬间会产生成就感的事情。
+虽然算法很难，需要智商，但我还是想鼓励你，这其中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1018932928.html" title="072丨程序员练级攻略：程序员修养">072丨程序员练级攻略：程序员修养</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">在完成上述的入门知识学习之后，我们要向专业的计算机软件开发进军了。但是在学习那些专业的知识前，我们先要抽一部分的篇幅来说一下程序员的修养。这是程序员的工程师文化，也就是程序员的价值观，因为我觉得如果你的技术修养不够的话，你学再多的知识也是没有用的。
+要了解程序员的修养，你可以先从 Quora 上的这个贴子开始 “What are some of the most basic things every programmer should know?”，我摘录一些在这里供你参考。
+
+Bad architecture causes more problems than bad code.
+You will spend more time thinking than coding.
+The best programmers are always building things.
+There’s always a better way.
+Code reviews by your peers will make all of you better.
+Fewer features for better code is always the right answer in the end.
+If it’s not tested, it doesn’t work.
+Don’t reinvent th ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2522467552.html" title="075丨程序员练级攻略：系统知识">075丨程序员练级攻略：系统知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">进入专业的编程领域，学习系统知识是非常关键的一部分。
+首先推荐的是翻译版图书《深入理解计算机系统》，原书名为《Computer Systems A Programmer’s Perspective》。不过，这本书叫做《程序员所需要了解的计算机知识》更为合适。
+本书的最大优点是为程序员描述计算机系统的实现细节，帮助其在大脑中构造一个层次型的计算机系统。从最底层的数据在内存中的表示到流水线指令的构成，到虚拟存储器，到编译系统，到动态加载库，到最后的用户态应用。通过掌握程序是如何映射到系统上，以及程序是如何执行的，你能够更好地理解程序的行为为什么是这样的，以及效率低下是如何造成的。
+再强调一下，这本书是程序员必读的一本书！
+然后就是美国计算机科学家 理查德·史蒂文斯（Richard Stevens） 的三套巨经典无比的书。（理查德·史蒂文斯于 1999 年 9 月 1 日离世，终年 48 岁。死因不详，有人说是滑雪意外，有人说是攀岩意外，有人说是滑翔机意外。总之，家人没有透露。大师的 个人主页 今天还可以访问。）
+
+《Unix 高级环境编程》。
+《Unix 网络编程》 第 1 卷 套接口 API 、第 2 卷 进程间通信 。
+《TCP&#x2F;IP 详解 卷 I 协议》。
+
+这几本书的地位我就不多说了，你可以自己看相关的书评。但是，这三本书可能都不容易读，一方面是比较厚，另一方面是知识 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2280971856.html" title="076丨程序员练级攻略：软件设计">076丨程序员练级攻略：软件设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">学习软件设计的方法、理念、范式和模式，是让你从一个程序员通向工程师的必备技能。如果你不懂这些设计方法，那么你将无法做出优质的软件。这就好像写作文一样，文章人人都能写，但是能写得有条理，有章法，有血有肉，就不简单了。软件开发也一样，实现功能，做出来并不难，但是要做漂亮，做优雅，就非常不容易了。
+Linus 说过，这世界程序员之所有高下之分，最大的区别就是程序员的“品味”不一样。有品位的程序员和没有品位的程序员写出来的代码，做出来的软件，差距非常大。所以，如果你想成为一名优秀的程序员，软件设计定是你的必修课。
+然而，软件设计这个事，并不是一朝一夕就能学会的，也不是别人能把你教会的，很多东西需要你自己用实践、用时间、用错误、用教训、用痛苦才能真正体会其中的精髓。所以，除了学习理论知识外，你还需要大量的工程实践，然后每过一段时间就把这些设计的东西重新回炉一下。你会发现这些软件设计的东西，就像饮茶一样，一开始是苦的，然后慢慢回甘，最终你会喝出真正的滋味。
+要学好这些软件开发和设计的方法，你真的需要磨练和苦行，反复咀嚼，反复推敲，在实践和理论中螺旋式地学习，才能真正掌握。 所以，你需要有足够的耐心和恒心。
+编程范式学习编程范式可以让你明白编程的本质和各种语言的编程方式。因此，我推荐以下一些资料，以帮助你系统化地学习和理解。
+
+一个是我在极客时间写的《编程范式游记》系列文章，目录如下。
+
+编程范 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">3</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
