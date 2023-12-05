@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-11-01 11:54:06'
+  postUpdate: '2023-12-05 12:57:48'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,82 +138,101 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4252620551.html" title="07丨Raft算法（一）：如何选举领导者？">07丨Raft算法（一）：如何选举领导者？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-08T00:00:00.000Z" title="发表于 2023-10-08 00:00:00">2023-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-通过前两节课，我带你打卡了 Paxos 算法，今天我想和你聊聊最常用的共识算法，Raft 算法。
-Raft 算法属于 Multi-Paxos 算法，它是在兰伯特 Multi-Paxos 思想的基础上，做了一些简化和限制，比如增加了日志必须是连续的，只支持领导者、跟随者和候选人三种状态，在理解和算法实现上都相对容易许多。
-除此之外，Raft 算法是现在分布式系统开发首选的共识算法。绝大多数选用 Paxos 算法的系统（比如 Cubby、Spanner）都是在 Raft 算法发布前开发的，当时没得选；而全新的系统大多选择了 Raft 算法（比如 Etcd、Consul、CockroachDB）。
-对你来说，掌握这个算法，可以得心应手地处理绝大部分场景的容错和一致性需求，比如分布式配置系统、分布式 NoSQL 存储等等，轻松突破系统的单机限制。
-如果要用一句话概括 Raft 算法，我觉得是这样的：从本质上说，Raft 算法是通过一切以领导者为准的方式，实现一系列值的共识和各节点日志的一致。这句话比较抽象，我来做个比喻，领导者就是 Raft 算法中的霸道总裁，通过霸道的“一切以我为准”的方式，决定了日志中命令的值，也实现了各节点日志的一致。
-我会用三讲的时间，分别以领导者选举、日志复制、成员变更为核心，讲解 Raft 算法的原理，在实战篇中，会带你进一步剖析 Raft 算 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2671809515.html" title="08丨Raft算法（二）：如何复制日志？">08丨Raft算法（二）：如何复制日志？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-09T00:00:00.000Z" title="发表于 2023-10-09 00:00:00">2023-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-通过上一讲的学习，你应该知道 Raft 除了能实现一系列值的共识之外，还能实现各节点日志的一致，不过你也许会有这样的疑惑：“什么是日志呢？它和我的业务数据有什么关系呢？”
-想象一下，一个木筏（Raft）是由多根整齐一致的原木（Log）组成的，而原木又是由木质材料组成，所以你可以认为日志是由多条日志项（Log entry）组成的，如果把日志比喻成原木，那么日志项就是木质材料。
-在 Raft 算法中，副本数据是以日志的形式存在的，领导者接收到来自客户端写请求后，处理写请求的过程就是一个复制和提交日志项的过程。
-那 Raft 是如何复制日志的呢？又如何实现日志的一致的呢？这些内容是 Raft 中非常核心的内容，也是我今天讲解的重点，我希望你不懂就问，多在留言区提出你的想法。首先，咱们先来理解日志，这是你掌握如何复制日志、实现日志一致的基础。
-如何理解日志？刚刚我提到，副本数据是以日志的形式存在的，日志是由日志项组成，日志项究竟是什么样子呢？
-其实，日志项是一种数据格式，它主要包含用户指定的数据，也就是指令（Command），还包含一些附加信息，比如索引值（Log index）、任期编号（Term）。那你该怎么理解这些信息呢？
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/10.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理你好，我是黄佳，欢迎来到LangChain实战课！
+在上一讲中，我们深入LangChain程序内部机制，探索了AgentExecutor究竟是如何思考（Thought）、执行（Execute&#x2F;Act）和观察（Observe）的，这些步骤之间的紧密联系就是代理在推理（Reasoning）和工具调用过程中的“生死因果”。
+现在我们趁热打铁，再学习几种更为复杂的代理：Structured Tool Chat（结构化工具对话）代理、Self-Ask with Search（自主询问搜索）代理、Plan and execute（计划与执行） 代理。
+什么是结构化工具LangChain的第一个版本是在 2022 年 11 月推出的，当时的设计是基于 ReAct 论文构建的，主要围绕着代理和工具的使用，并将二者集成到提示模板的框架中。
+早期的工具使用十分简单，AgentExecutor引导模型经过推理调用工具时，仅仅能够生成两部分内容：一是工具的名称，二是输入工具的内容。而且，在每一轮中，代理只被允许使用一个工具，并且输入内容只能是一个简单的字符串。这种简化的设计方式是为了让模型的任务变得更简单，因为进行复杂的操作可能会使得执行过程变得不太稳定。
+不过，随着语言模型的发展， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/11.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">12｜代理（中）：AgentExecutor究竟是怎样驱动模型和工具完成任务的？你好，我是黄佳，欢迎来到LangChain实战课！
+上节课中，你了解了ReAct框架的原理，最后我给你留了一道思考题，让你说一说LangChain中的“代理”和“链”的差异究竟是什么。
+我的答案是： 在链中，一系列操作被硬编码（在代码中）。在代理中，语言模型被用作推理引擎来确定要采取哪些操作以及按什么顺序执行这些操作。
+下面这个图，就展现出了Agent接到任务之后，自动进行推理，然后自主调用工具完成任务的过程。
 
-指令：一条由客户端请求指定的、状态机需要执行的指令。你可以将指令理解成客户端指定的数据。
-索引值：日志项对应的整数索引值。它其实就是用来标识日志 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3109798557.html" title="09丨Raft算法（三）：如何解决成员变更的问题？">09丨Raft算法（三）：如何解决成员变更的问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-10T00:00:00.000Z" title="发表于 2023-10-10 00:00:00">2023-10-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-在日常工作中，你可能会遇到服务器故障的情况，这时你就需要替换集群中的服务器。如果遇到需要改变数据副本数的情况，则需要增加或移除集群中的服务器。总的来说，在日常工作中，集群中的服务器数量是会发生变化的。
-讲到这儿，也许你会问：“老韩，Raft 是共识算法，对集群成员进行变更时（比如增加 2 台服务器），会不会因为集群分裂，出现 2 个领导者呢？”
-在我看来，的确会出现这个问题，因为 Raft 的领导者选举，建立在“大多数”的基础之上，那么当成员变更时，集群成员发生了变化，就可能同时存在新旧配置的 2 个“大多数”，出现 2 个领导者，破坏了 Raft 集群的领导者唯一性，影响了集群的运行。
-而关于成员变更，不仅是 Raft 算法中比较难理解的一部分，非常重要，也是 Raft 算法中唯一被优化和改进的部分。比如，最初实现成员变更的是联合共识（Joint Consensus），但这个方法实现起来难，后来 Raft 的作者就提出了一种改进后的方法，单节点变更（single-server changes）。
-为了帮你掌握这块内容，今天我除了带你了解成员变更问题的本质之外，还会讲一下如何通过单节点变更的方法，解决成员变更的问题。学完本讲内容之后，你不仅能理解成员变更的问题和单节点变更的原理，也能更好地理解 Raft 源码实现，掌握解决成员变更问题的方法。
-在开始今天内容之前， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4126319489.html" title="10丨一致哈希算法：如何分群，突破集群的“领导者”限制？">10丨一致哈希算法：如何分群，突破集群的“领导者”限制？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-11T00:00:00.000Z" title="发表于 2023-10-11 00:00:00">2023-10-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-学完前面几讲后，有些同学可能有这样的疑问：如果我们通过 Raft 算法实现了 KV 存储，虽然领导者模型简化了算法实现和共识协商，但写请求只能限制在领导者节点上处理，导致了集群的接入性能约等于单机，那么随着业务发展，集群的性能可能就扛不住了，会造成系统过载和服务不可用，这时该怎么办呢？
-其实这是一个非常常见的问题。在我看来，这时我们就要通过分集群，突破单集群的性能限制了。
-说到这儿，有同学可能会说了，分集群还不简单吗？加个 Proxy 层，由 Proxy 层处理来自客户端的读写请求，接收到读写请求后，通过对 Key 做哈希找到对应的集群就可以了啊。
-是的，哈希算法的确是个办法，但它有个明显的缺点：当需要变更集群数时（比如从 2 个集群扩展为 3 个集群），这时大部分的数据都需要迁移，重新映射，数据的迁移成本是非常高的。那么如何解决哈希算法，数据迁移成本高的痛点呢？答案就是一致哈希（Consistent Hashing）。
-为了帮你更好地理解如何通过哈希寻址实现 KV 存储的分集群，我除了会带你了解哈希算法寻址问题的本质之外，还会讲一下一致哈希是如何解决哈希算法数据迁移成本高这个痛点，以及如何实现数据访问的冷热相对均匀。
-对你来说，学完本讲内容之后，不仅能理解一致哈希的原理，还能掌握通过一致哈希实现数据访问冷热均匀的实战能力。
-老规矩，在正式开始学习之前，我们先看一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2182109993.html" title="11丨Gossip协议：流言蜚语，原来也可以实现一致性">11丨Gossip协议：流言蜚语，原来也可以实现一致性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-12T00:00:00.000Z" title="发表于 2023-10-12 00:00:00">2023-10-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-有一部分同学的业务在可用性上比较敏感，比如监控主机和业务运行的告警系统。这个时候，相信你希望自己的系统能在极端情况下（比如集群中只有一个节点在运行）也能运行。回忆了二阶段提交协议和 Raft 算法之后，你发现它们都需要全部节点或者大多数节点正常运行，才能稳定运行，那么它们就不适合了。而根据 Base 理论，你需要实现最终一致性，怎么样才能实现最终一致性呢？
-在我看来，你可以通过 Gossip 协议实现这个目标。
-Gossip 协议，顾名思义，就像流言蜚语一样，利用一种随机、带有传染性的方式，将信息传播到整个网络中，并在一定时间内，使得系统内的所有节点数据一致。对你来说，掌握这个协议不仅能很好地理解这种最常用的，实现最终一致性的算法，也能在后续工作中得心应手地实现数据的最终一致性。
-为了帮你彻底吃透 Gossip 协议，掌握实现最终一致性的实战能力，我会先带你了解 Gossip 三板斧，因为这是 Gossip 协议的核心内容，也是实现最终一致性的常用三种方法。然后以实际系统为例，带你了解在实际系统中是如何实现反熵的。接下来，就让我们开始今天的内容吧。
-Gossip 的三板斧Gossip 的三板斧分别是：直接邮寄（Direct Mail）、反熵（Anti-entropy）和谣言传播（Rumor mongering）。
-直接邮寄：就是直接发送更新数据，当数据发送失败时， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3451445473.html" title="12丨QuorumNWR算法：想要灵活地自定义一致性，没问题！">12丨QuorumNWR算法：想要灵活地自定义一致性，没问题！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-13T00:00:00.000Z" title="发表于 2023-10-13 00:00:00">2023-10-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-不知道你在工作中有没有遇到这样的事儿：你开发实现了一套 AP 型的分布式系统（我在04 讲提到了 AP 型系统的特点，你可以回顾一下），实现了最终一致性。业务也接入了，运行正常，一起看起来都那么美好。
-可是，突然有同事说，我们要拉这几个业务的数据做实时分析，希望数据写入成功后，就能立即读取到新数据，也就是要实现强一致性（Werner Vogels 提出的客户端侧一致性模型，不是指线性一致性），数据更改后，要保证用户能立即查询到。这时你该怎么办呢？首先你要明确最终一致性和强一致性有什么区别。
-强一致性能保证写操作完成后，任何后续访问都能读到更新后的值；
-最终一致性只能保证如果对某个对象没有新的写操作了，最终所有后续访问都能读到相同的最近更新的值。也就是说，写操作完成后，后续访问可能会读到旧数据。
-其实，在我看来，为了一个临时的需求，我们重新开发一套系统，或者迁移数据到新系统，肯定是不合适的。因为工作量比较大，而且耗时也长，而我建议你通过 Quorum NWR 解决这个问题。
-也就是说，在原有系统上开发实现一个新功能，就可以满足业务同学的需求了。因为通过 Quorum NWR，你可以自定义一致性级别，通过临时调整写入或者查询的方式，当 W + R &gt; N 时，就可以实现强一致性了。
-其实，在 AP 型分布式系统中（比如 Dynamo、Cassandra、Infl ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3262029384.html" title="13丨PBFT算法：有人作恶，如何达成共识？">13丨PBFT算法：有人作恶，如何达成共识？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-14T00:00:00.000Z" title="发表于 2023-10-14 00:00:00">2023-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-学完了01 讲的拜占庭将军问题之后，有同学在留言中表达了自己的思考和困惑：口信消息型拜占庭问题之解在实际项目中是如何落地的呢？先给这位同学点个赞，很棒！你能在学习的同时思考落地实战。
-不过事实上，它很难在实际项目落地，因为口信消息型拜占庭问题之解是一个非常理论化的算法，没有和实际场景结合，也没有考虑如何在实际场景中落地和实现。
-比如，它实现的是在拜占庭错误场景下，忠将们如何在叛徒干扰时，就一致行动达成共识。但是它并不关心结果是什么，这会出现一种情况：现在适合进攻，但将军们达成的最终共识却是撤退。
-很显然，这不是我们想要的结果。因为在实际场景中，我们需要就提议的一系列值（而不是单值），即使在拜占庭错误发生的时候也能被达成共识。那你要怎么做呢？答案就是掌握 PBFT 算法。
-PBFT 算法非常实用，是一种能在实际场景中落地的拜占庭容错算法，它在区块链中应用广泛（比如 Hyperledger Sawtooth、Zilliqa）。为了帮助你更好地理解 PBFT 算法，在今天的内容中，我除了带你了解 PBFT 达成共识的原理之外，还会介绍口信消息型拜占庭问题之解的局限。相信学习完本讲内容后，你不仅能理解 PBFT 达成共识的基本原理，还能理解算法背后的演化和改进。
-老规矩，在开始今天的学习之前，咱们先看一道思考题：
-假设苏秦再一次带队抗秦，这一天，苏秦和 4 个国家的 4  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4021567135.html" title="14丨PoW算法：有办法黑比特币吗？">14丨PoW算法：有办法黑比特币吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-15T00:00:00.000Z" title="发表于 2023-10-15 00:00:00">2023-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-谈起比特币，你应该再熟悉不过了，比特币是基于区块链实现的，而区块链运行在因特网上，这就存在有人试图作恶的情况。学完01 讲和13 讲之后，有些同学可能已经发现了，口信消息型拜占庭问题之解、PBFT 算法虽然能防止坏人作恶，但只能防止少数的坏人作恶，也就是 (n - 1) &#x2F; 3 个坏人 (其中 n 为节点数)。可如果区块链也只能防止一定比例的坏人作恶，那就麻烦了，因为坏人可以不断增加节点数，轻松突破 (n - 1) &#x2F; 3 的限制。
-那区块链是如何改进这个问题的呢？答案就是 PoW 算法。
-在我看来，区块链通过工作量证明（Proof of Work）增加了坏人作恶的成本，以此防止坏人作恶。比如，如果坏人要发起 51% 攻击，需要控制现网 51% 的算力，成本是非常高昂的。为啥呢？因为根据 Cryptoslate 估算，对比特币进行 51% 算力攻击需要上百亿人民币！
-那么为了帮你更好地理解和掌握 PoW 算法，我会详细讲解它的原理和 51% 攻击的本质。希望让你在理解 PoW 算法的同时，也了解 PoW 算法的局限。
-首先我来说说 PoW 的原理，换句话说，就是 PoW 是如何运行的。
-如何理解工作量证明？什么是工作量证明 (Proof Of Work，简称 PoW) 呢？你可以这么理解：就是一份证明，用来确认你做过一定量的工作。比如，你的大学 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3813020379.html" title="15丨ZAB协议：如何实现操作的顺序性？">15丨ZAB协议：如何实现操作的顺序性？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-16T00:00:00.000Z" title="发表于 2023-10-16 00:00:00">2023-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-很多同学应该使用过 ZooKeeper，它是一个开源的分布式协调服务，比如你可以使用它进行配置管理、名字服务等等。在 ZooKeeper 中，数据是以节点的形式存储的。如果你要用 ZooKeeper 做配置管理，那么就需要在里面创建指定配置，假设创建节点”&#x2F;geekbang”和”&#x2F;geekbang&#x2F;time”，步骤如下：
-[zk: localhost:2181(CONNECTED) 7] create /geekbang 123     
-Created /geekbang
-[zk: localhost:2181(CONNECTED) 8] create /geekbang/time 456
-Created /geekbang/time
+那么，你看LangChain，乃至整个大模型应用开发的核心理念就呼之欲出了。这个核心理念就是 操作的序列并非硬编码在代码中，而是使用语言模型（如GPT-3或GPT-4）来选择执行的操作序列。
+这里，我又一次重复了上一段话，显得有点啰嗦，但是这个思路真的是太重要了，它也凸显了LLM作为AI自主决定程序逻辑这个编程新范式的价值，我希望你仔细认真地去理解。
+Agent 的关键组件在LangChain的代理中，有这样几个关键组件。
 
+代理（Agent）：这个类决定下一步执行什么操作。它由一个语言模型和一个提示（prompt）驱动。提示可能包含代理的性格（也就是给它分配角色，让它以特定方式进行响应）、任务的背景（用于给它提供更多任务类型的上下文）以及用于激发更好推理能力的提示策略（例如ReAct）。La ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/12.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">14｜工具和工具箱：LangChain中的Tool和Toolkits一览你好，我是黄佳，欢迎来到LangChain实战课！
+这节课我们来一起看一看LangChain中各种强大的工具（Tool），以及如何使用它们。
+在之前的几节课中，我们深入讲解了LangChain中的代理。未来的AI Agent，应该就是以LLM为核心控制器的代理系统。而 工具，则是代理身上延展出的三头六臂，是代理的武器，代理通过工具来与世界进行交互，控制并改造世界。
+工具是代理的武器LangChain之所以强大，第一是大模型的推理能力强大，第二则是工具的执行能力强大！孙猴子法力再强，没有金箍棒，也降伏不了妖怪。大模型再能思考，没有工具也不行。
+工具是代理可以用来与世界交互的功能。这些工具可以是通用实用程序（例如搜索），也可以是其他链，甚至其他的代理。
+那么到底什么是工具？在LangChain中，工具是如何发挥作用的？
+LangChain通过提供一个统一的框架来集成功能的具体实现。在这个框架中，每个功能都被封装成一个工具。每个工具都有自己的输入和输出，以及处理这些输入和生成输出的方法。
+当代理接收到一个任务时，它会根据任务的类型和需求，通过大模型的推理，来选择合适的工具处理这个任务。这个选择过程可以基于各种策略，例如基于工具的性能，或者基于工具处理特定类型任务的能力。
+一旦选择了合适的工具，LangChain就会将 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/13.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">15｜检索增强生成：通过RAG助力鲜花运营你好，我是黄佳，欢迎来到LangChain实战课！
+在 第2课 中，我曾经带着你完成了一个基于本地文档的问答系统。用当下时髦的话说，你实现了一个RAG 应用。
+什么是RAG？其全称为Retrieval-Augmented Generation，即检索增强生成，它结合了检索和生成的能力，为文本序列生成任务引入外部知识。RAG将传统的语言生成模型与大规模的外部知识库相结合，使模型在生成响应或文本时可以动态地从这些知识库中检索相关信息。这种结合方法旨在增强模型的生成能力，使其能够产生更为丰富、准确和有根据的内容，特别是在需要具体细节或外部事实支持的场合。
+RAG 的工作原理可以概括为几个步骤。
 
+检索 ： 对于给定的输入（问题），模型首先使用检索系统从大型文档集合中查找相关的文档或段落。这个检索系统通常基于密集向量搜索，例如ChromaDB、Faiss这样的向量数据库。
+上下文编码 ： 找到相关的文档或段落后，模型将它们与原始输入（问题）一起编码。
+生成 ： 使用编码的上下文信息，模型生成输出（答案）。这通常当然是通过大模型完成的。
 
-我们分别创建了配置”&#x2F;geekbang” 和”&#x2F;geekbang&#x2F;time”，对应的值分别为 123 和 456。那么在这里我提个问题：你觉得在 ZooKeeper 中，能用兰伯特的 Multi-Paxos 实现各节点数据的共识和一致吗？
-当然不行。因为兰伯特的 Multi-Paxos，虽然能保证达成共识后的值不再改变，但它不管关心达成共识的值是什么，也无法保证各值（也就是操作）的顺序性。这是为什么呢？这个问题是 ZAB 协议着力解决的，也是理解 ZAB 协议的关键 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1602580574.html" title="16丨InfluxDB企业版一致性实现剖析：他山之石，可以攻玉">16丨InfluxDB企业版一致性实现剖析：他山之石，可以攻玉</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-17T00:00:00.000Z" title="发表于 2023-10-17 00:00:00">2023-10-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-学习了前面 15 讲的内容后，我们了解了很多常用的理论和算法（比如 CAP 定理、Raft 算法等）。是不是理解了这些内容，就能够游刃有余地处理实际系统的问题了呢？
-在我看来，还远远不够，因为理论和实践的中间是存在鸿沟的，比如，你可能有这样的感受，提到编程语言的语法或者分布式算法的论文，你说起来头头是道，但遇到实际系统时，还是无法写程序，开发分布式系统。
-而我常说，实战是学习的最终目的。为了帮你更好地掌握前面的理论和算法，接下来，我用 5 讲的时间，分别以 InfluxDB 企业版一致性实现、Hashicorp Raft、KV 系统开发实战为例，带你了解如何在实战中使用技术，掌握分布式的实战能力。
-今天这一讲，我就以 InfluxDB 企业版为例，带你看一看系统是如何实现一致性的。有的同学可能会问了：为什么是 InfluxDB 企业版呢？因为它是排名第一的时序数据库，相比其他分布式系统（比如 KV 存储），时序数据库更加复杂，因为我们要分别设计 2 个完全不一样的一致性模型。当你理解了这样一个复杂的系统实现后，就能更加得心应手地处理简单系统的问题了。
-那么为了帮你达到这个目的。我会先介绍一下时序数据库的背景知识，因为技术是用来解决实际场景的问题的，正如我之前常说的“要根据场景特点，权衡折中来设计系统”。所以当你了解了这些背景知识后，就能更好的理解为什么要这么设计了 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+RAG 的一个关键特点是，它不仅仅依赖于训练数据中的信息，还可以从大型外部知识库中检索信息。这使得RAG模型特别适合处理在训练数据中未出现的问题。
+
+RAG类的任务，目前企业实际应用场景中的需求量相当大，也是Lan ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/14.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">16｜连接数据库：通过链和代理查询鲜花信息你好，我是黄佳，欢迎来到 LangChain 实战课！
+一直以来，在计算机编程和数据库管理领域，所有的操作都需要通过严格、专业且结构化的语法来完成。这就是结构化查询语言（SQL）。当你想从一个数据库中提取信息或进行某种操作时，你需要使用这种特定的语言明确地告诉计算机你的要求。这不仅需要我们深入了解正在使用的技术，还需要对所操作的数据有充分的了解。
+
+你需要拥有一个程序员基本的技能和知识才能有效地与计算机交互。不过，随着人工智能的兴起和大语言模型的发展，情况开始发生变化。
+现在，我们正进入一个 全新的编程范式，其中机器学习和自然语言处理技术使得与计算机的交互变得更加自然。这意味着，我们可以用更加接近我们日常话语的自然语言来与计算机交流。例如，不用复杂的SQL语句查询数据库，我们可以简单地问：“请告诉我去年的销售额是多少？” 计算机能够理解这个问题，并给出相应的答案。
+这种转变不仅使得非技术人员更容易与计算机交互，还为开发者提供了更大的便利性。简而言之，我们从“ 告诉计算机每一步怎么做”，转变为“ 告诉计算机我们想要什么”，整个过程变得更加人性化和高效。
+新的数据库查询范式下面这个图，非常清晰地解释了这个以LLM为驱动引擎，从自然语言的（模糊）询问，到自然语言的查询结果输出的流程。
+
+这种范式结合了自然语言处理和传统数据库查询的功能，为用户提供 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/15.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">17｜回调函数：在AI应用中引入异步通信机制你好，我是黄佳，欢迎来到LangChain实战课！
+这节课我们一起来学习一下LangChain中的回调函数。
+回调函数和异步编程回调函数，你可能并不陌生。它是函数A作为参数传给另一个函数B，然后在函数B内部执行函数A。当函数B完成某些操作后，会调用（即“回调”）函数A。这种编程模式常见于处理异步操作，如事件监听、定时任务或网络请求。
+
+在编程中，异步通常是指代码不必等待某个操作完成（如I&#x2F;O操作、网络请求、数据库查询等）就可以继续执行的能力。异步机制的实现涉及事件循环、任务队列和其他复杂的底层机制。这与同步编程形成对比，在同步编程中，操作必须按照它们出现的顺序完成。
+
+下面是回调函数的一个简单示例。
+def compute(x, y, callback):
+    result = x + y
+    callback(result)
+
+def print_result(value):
+    print(f"The result is: &#123;value&#125;")
+
+def square_result(value):
+    print(f"The squared result is: &#123;value**2&#125;")
+
+# 使用print_result作为回调
+compute(3, 4, print_ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/16.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">18｜CAMEL：通过角色扮演脑暴一个鲜花营销方案你好，我是黄佳，欢迎来到LangChain实战课！
+大模型的成功，在很大程度上依赖于用户的输入来引导对话生成。如果用户能够详细描述他们的任务和需求，并与ChatGPT建立一个连贯的聊天上下文，那么ChatGPT往往能提供更精确和高质量的答案。但是，为模型提供这种引导是一项既费时又费力的任务。
+这就引出了一个有趣的问题： 能否让ChatGPT自己生成这些引导文本呢？
+基于这个想法，KAUST（阿卜杜拉国王大学）的研究团队提出了一个名为CAMEL的框架。CAMEL采用了一种基于“角色扮演”方式的大模型交互策略。在这种策略中，不同的AI代理扮演不同的角色，通过互相交流来完成任务。
+CAMEL 交流式代理框架下面我们一起来看看CAMEL——这个多AI通过角色扮演进行交互的框架，以及它在LangChain中的具体实现。
+
+CAMEL，字面意思是骆驼。这个框架来自于论文《 CAMEL: Communicative Agents for “Mind” Exploration of Large Scale Language Model Society》（CAMEL：用于大规模语言模型社会的“心智”探索的交流式代理）。这里面所谓的CAMEL，实际上来自 沟通（也就是交流）、 代理、 心智、 探索 以及 LLM 这五个单词的英文首字母。
+CAMEL框架 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/17.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">19｜BabyAGI：根据气候变化自动制定鲜花存储策略你好，我是黄佳，欢迎来到LangChain实战课！
+在上节课中，我们深入探讨了如何利用CAMEL框架制定出一个高效的鲜花营销方案。然而，LangChain目前是将基于CAMEL框架的代理定义为Simulation Agents（模拟代理）。这种代理在模拟环境中进行角色扮演，试图模拟特定场景或行为，而不是在真实世界中完成具体的任务。
+随着ChatGPT的崭露头角，我们迎来了一种新型的代理——Autonomous Agents（自治代理或自主代理）。这些代理的设计初衷就是能够独立地执行任务，并持续地追求长期目标。在LangChain的代理、工具和记忆这些组件的支持下， 它们能够在无需外部干预的情况下自主运行，这在真实世界的应用中具有巨大的价值。
+目前，GitHub上已有好几个备受关注的“网红”项目，如AutoGPT、BabyAGI和HuggingGPT，它们都代表了自治代理的初步尝试。尽管这些代理仍处于实验阶段，但潜力十分巨大。它们都是基于LangChain框架构建的。通过LangChain，你可以在这些开源项目中轻松地切换和测试多种LLM、使用多种向量存储作为记忆，以及充分利用LangChain的丰富工具集。
+今天的这节课，我就带着你看一看这些项目，同时也通过LangChain完成一个 BabyAGI 的实现。
+AutoGPTAu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/18.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">20｜部署一个鲜花网络电商的人脉工具（上）你好，我是黄佳，欢迎来到LangChain实战课！
+从今天开始，我要用4节课的篇幅，带着你设计两个有趣而又实用的应用程序。设计这两个应用程序的目的，是为了让你能够把LangChain中的各个组件灵活地组合起来，融会贯通，并以此作为启发，在你熟悉的业务场景中，利用LangChain和LLM的能力，开发出更多、更强大的效率工具。
+第一个应用程序，是用LangChain创建出一个专属于“易速鲜花”的网络人脉工具。光这么说，有些模糊，这个人脉工具长啥样？有些啥具体功能？
+动手之前，让我先给你把这个所谓“人脉”工具的能力和细节说清楚。
+“人脉工具”项目说明项目背景：易速鲜花电商网络自从创建以来，通过微信、抖音、小红书等自媒体宣传推广，短期内获得了广泛流量展示。目前，营销部门希望以此为契机，再接再厉，继续扩大品牌影响力。经过调研，发现很多用户会通过微博热搜推荐的新闻来购买鲜花赠送给明星、达人等，因此各部门一致认为应该联络相关微博大V，共同推广，带动品牌成长。
+然而，发掘并选择适合于“鲜花推广”的微博大V有一定难度。营销部门员工表示，这个任务比找微信、抖音和小红书达人要难得多。他们都希望技术部门能够给出一个“人脉搜索工具”来协助完成这一目标。
+项目目标： 帮助市场营销部门的员工找到微博上适合做鲜花推广的大V，并给出具体的联络方案。
+项目的技术实现细节这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/19.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">21｜部署一个鲜花网络电商的人脉工具（下）你好，我是黄佳，欢迎来到LangChain实战课！
+在上节课中，我们通过LangChain，找到了适合为某一类鲜花做推广的微博大V，并且爬取了他的信息。下面，我带着你继续完成易速鲜花电商人脉工具的后续部分。
+项目步骤复习先复习一下项目实现过程的五个具体步骤。
+第一步： 通过LangChain的搜索工具，以模糊搜索的方式，帮助运营人员找到微博中有可能对相关鲜花推广感兴趣的大V（比如喜欢牡丹花的大V），并返回UID。
+第二步： 根据微博UID，通过爬虫工具拿到相关大V的微博公开信息，并以JSON格式返回大V的数据。
+第三步： 通过LangChain调用LLM，通过信息整合以及文本生成功能，根据大V的个人信息，写一篇热情洋溢的介绍型文章，谋求与该大V的合作。
+第四步： 把LangChain输出解析功能加入进来，让LLM生成可以嵌入提示模板的格式化数据结构。
+第五步： 添加HTML、CSS，并用Flask创建一个App，在网络上部署及发布这个鲜花电商人脉工具，供市场营销部门的人员使用。
+
+第三步 ： 生成介绍文章下面我们开始第三个步骤，把步骤二中返回的JSON数据（大V的个人简介）传递给LLM，发挥大模型超强的总结整理和文本生成能力，帮助运营人员创建文案。
+这个文案可以有很多种形式，比如说可以总结一下大V的特点，根据他的自我介绍猜测一下他的兴趣爱好 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#content-inner">12</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">3</span></a></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">7</span></a></li>
             </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {

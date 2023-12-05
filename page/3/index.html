@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-11-01 11:54:06'
+  postUpdate: '2023-12-05 12:57:48'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,93 +138,90 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">84</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2916810521.html" title="17丨Hashicorp Raft（一）：如何跨过理论和代码之间的鸿沟？">17丨Hashicorp Raft（一）：如何跨过理论和代码之间的鸿沟？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-18T00:00:00.000Z" title="发表于 2023-10-18 00:00:00">2023-10-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-很多同学在开发系统的时候，都会有这样的感觉：明明自己看了很多资料，掌握了技术背后的原理，可在开发和调试的时候还是很吃力，这是为什么呢？
-答案很简单，因为理论和实践本来就是两回事，实践不仅需要掌握 API 接口的用法，还需要理解 API 背后的代码实现。
-所以，如果你在使用 Raft 开发分布式系统的时候，仅仅阅读 Raft 论文或者 Raft 实现的 API 手册，是远远不够的。你还要吃透 API 背后的代码实现，“不仅知其然，也要知其所以然”，这样才能“一切尽在掌握中”，从而开发实现能稳定运行的分布式系统。那么怎么做才能吃透 Raft 的代码实现呢？
-要知道，任何 Raft 实现都承载了两个目标：实现 Raft 算法的原理，设计易用的 API 接口。所以，你不仅要从算法原理的角度理解代码实现，而且要从场景使用的角度理解 API 接口的用法。
-而我会用两节课的时间，从代码实现和接口使用两个角度，带你循序渐进地掌握当前流行的一个 Raft 实现：Hashicorp Raft（以最新稳定版 v1.1.1 为例）。希望你在这个过程中集中注意力，勾划重点，以便提高学习效率，吃透原理对应的技术实现，彻底掌握 Raft 算法的实战技巧。
-本节课，我会从算法原理的角度，聊一聊 Raft 算法的核心功能（领导者选举和日志复制）在 Hashicorp Raft 中是如何实现的。（如 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3051083458.html" title="18丨Hashicorp Raft（二）：如何以“集群节点”为中心使用API？">18丨Hashicorp Raft（二）：如何以“集群节点”为中心使用API？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-19T00:00:00.000Z" title="发表于 2023-10-19 00:00:00">2023-10-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-上一讲结束后，相信有的同学已经跃跃欲试，想把 Hashicorp Raft 使用起来了。不过，也有一些同学跟我反馈，说自己看到 Hashicorp Raft 的Godoc，阅读完接口文档后，感觉有些不知所措，无从下手，Hashicorp Raft 支持了那么多的函数，自己却不知道如何将这些函数使用起来。
-这似乎是一个共性的问题，在我看来，之所以出现这个问题，是因为文档里虽然提到了 API 的功能，但并没有提如何在实际场景中使用这些 API，每个 API 都是孤立的点，缺乏一些场景化的线将它们串联起来。
-所以，为了帮你更好地理解 Hashicorp Raft 的 API 接口，在实践中将它们用起来，我以“集群节点”为核心，通过创建、增加、移除集群节点，查看集群节点状态这 4 个典型的场景，具体聊一聊在 Hashicorp Raft 中，通过哪些 API 接口能创建、增加、移除集群节点，查看集群节点状态。这样一来，我们会一步一步，循序渐进地彻底吃透 Hashicorp Raft 的 API 接口用法。
-我们知道，开发实现一个 Raft 集群的时候，首先要做的第一个事情就是创建 Raft 节点，那么在 Hashicorp Raft 中如何创建节点呢？
-如何创建 Raft 节点在 Hashicorp Raft 中，你可以通过 NewRaft() 函数，来创建 Raft 节 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3137639375.html" title="19丨基于Raft的分布式KV系统开发实战（一）：如何设计架构？">19丨基于Raft的分布式KV系统开发实战（一）：如何设计架构？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T00:00:00.000Z" title="发表于 2023-10-20 00:00:00">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
-学完前面 2 讲之后，相信你已经大致了解了 Raft 算法的代码实现（Hashcorp Raft），也掌握了常用 API 接口的用法，对 Raft 算法的理解也更深刻了。那么，是不是掌握这些，就能得心应手的处理实际场景的问题了呢？
-在我看来，掌握的还不够，因为 Raft 算法的实现只是工具。而掌握了工具的用法，和能使用工具得心应手地处理实际场景的问题，是两回事。也就是说，我们还需要掌握使用 Raft 算法开发分布式系统的实战能力，然后才能游刃有余的处理实际场景的问题。
-我从这个角度出发，在接下来的 2 节课中，我会分别从架构和代码实现的角度，以一个基本的分布式 KV 系统为例，具体说一说，如何基于 Raft 算法构建一个分布式 KV 系统。那么我希望你能课下多动手，自己写一遍，不给自己留下盲区。如果条件允许的话，你还可以按需开发实现需要的功能，并将这套系统作为自己的“配置中心”“名字路由”维护下去，不断在实战中加深自己对技术的理解。
-可能有同学会问：“老韩，为什么不以 Etcd 为例呢？它不是已经在生产环境中落地了吗？”
-我是这么考虑的，这个基本的分布式 KV 系统的代码比较少，相对纯粹聚焦在技术本身，涉及的 KV 业务层面的逻辑少，适合入门学习（比如你可以从零开始，动手编程实现），是一个很好的学习案例。
-另外，对一些有经验的开发者来说，这部分知识能够帮助你掌握  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/893575325.html" title="000开篇词 | 洞悉技术的本质，享受科技的乐趣">000开篇词 | 洞悉技术的本质，享受科技的乐趣</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">你好，我是陈皓，网名左耳朵耗子。我目前在创业，MegaEase 是我的公司，致力于为企业提供高可用、高并发、高性能的分布式技术产品，同时也提供物联网（IoT）方向的技术产品。
-我之前在阿里巴巴、亚马逊、汤森路透等公司任职，职业背景是金融和电子商务行业，主要研究的技术方向是一些大规模分布式系统的基础架构。
-从大学毕业一直做技术工作，到今天有 20 年了，还在写代码，因为我对技术有很大的热情。我从 2002 年开始写技术博客，到 2009 年左右开始在独立的域名 CoolShell.cn（酷壳）上分享我对技术的一些见解和心得。
-本来只想记录一下，没想到得到了很多人的认可，这对我来说是一个不小的鼓励。我的文章和分享始终坚持观点鲜明的特点，因为我希望可以引发大家的讨论和批评，这样分享才更有意义。
-无论我的观点是否偏激、不成熟，或者言辞犀利，在经历过大家的批评和讨论后，我都能够从中得到不在我视角内的思考和认知，这对我来说是非常重要的补充，对我的个人成长非常重要。
-我相信，看到这些文章和讨论的人，也能从中收获到更多的东西。
-坦率地讲，刚收到专栏撰写邀请的时候，我心里面是拒绝的。正如前面所说的，我分享的目的是跟大家交流和讨论，我认为，全年付费专栏这样的方式可能并不好。而且，付费专栏还有文章更新频率的 KPI，这对于像我这样一定要有想法才会写文章的人来说是很痛苦的，因为我不想为了写而写。
-所以，最 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/540365869.html" title="001丨程序员如何用技术变现（上）">001丨程序员如何用技术变现（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">程序员用自己的技术变现，其实是一件天经地义的事儿。写程序是一门“手艺活儿”，那么作为手艺人，程序员当然可以做到靠自己的手艺和技能养活自己。
-然而，现在很多手艺人程序员却说自己是“码农”，编码的农民工，在工作上被各种使唤，各种加班，累得像个牲口。在职业发展上各种迷茫和彷徨，完全看不到未来的希望，更别说可以成为一个手艺人用自己的技能变现了。
-从大学时代帮人打字挣点零花钱，到逐渐通过自己的技能帮助别人，由此获得相对丰厚的收入，我在很早就意识到，从事编程这个事可以做到，完全靠自己的手艺、不依赖任何人或公司去生活的。
-这对于程序员来说，本就应该是件天经地义的事，只是好像并不是所有的程序员都能意识到自己的价值。这里，我想结合我的一些经历来跟你聊聊。当然，我的经历有限，也不一定全对，只希望能给你一个参考。
-学生时代我是 1994 年上的大学，计算机科学软件专业。在 1996 年上大二的时候，因为五笔学得好打字很快，我应征到教务处帮忙，把一些文档录入到电脑里。打了三个月的字，学校按照每千字 10 元，给了我 1000 元钱。
-由于我的五笔越打越快，还会用 CCED 和 WPS 排版，于是引起了别人的注意，叫我帮忙去他的打字工作室，一个月收入 400 元。我的大学是在昆明上的，这相当于那会当地收入的中上水平了。
-后来，1997 年的时候，我帮一个开公司的老师写一些 MIS 软件，用 Delphi 和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1371351109.html" title="002丨程序员如何用技术变现（下）">002丨程序员如何用技术变现（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">我不算是聪明的人，经历也不算特别成功，但一步一步走来，我认为，我能做到的，你一定也能做到，而且应该还能做得比我更好。
-如何让自己的技能变现还是那句话，本质上来说，程序员是个手艺人，有手艺的人就能做出别人做不出来的东西，而付费也是一件很自然的事了。那么，这个问题就变成如何让自己的“手艺”更为值钱的问题了。
-第一，千里之行，积于跬步。任何一件成功的大事，都是通过一个一个的小成功达到的。所以，你得确保你有一个一个的小成功。
-具体说来，首先，你得让自己身边的人有求于你，或是向别人推荐你。这就需要你能够掌握大多数人不能掌握的技能或技术，需要你更多地学习，并要有更多的别人没有的经验和经历。
-一旦你身边的人开始有求于你，或是向别人推荐你，你就会被外部的人注意到，于是其他人就会付费来获取你的帮助。而一旦你的帮忙对别人来说有效果，那就会产生效益，无论是经济效益还是社会效益，都会为你开拓更大的空间。
-你也会因为这样的正向反馈而鼓励自己去学习和钻研更多的东西，从而得到一个正向的循环。而且这个正向循环，一旦开始就停不下来了。
-第二，关注有价值的东西。什么是有价值的东西？价值其实是受供需关系影响的，供大于求，就没什么价值，供不应求，就有价值。这意味着你不仅要看到市场，还要看到技术的趋势，能够分辨出什么是主流技术，什么是过渡式的技术。当你比别人有更好的嗅觉时，你就能启动得更快，也就比别人有先发优势。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/20.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">22｜易速鲜花聊天客服机器人的开发（上）你好，我是黄佳，欢迎来到LangChain实战课！
+上节课，咱们的易速鲜花人脉工具成功上线。市场部的朋友们用了都说好。
+这节课，我们继续为易速鲜花市场部、销售部和客服部门的员工，以及易速鲜花的广大用户来开发一个聊天机器人。
+“聊天机器人”项目说明聊天机器人（Chatbot）是LLM和LangChain的核心用例之一，很多人学习大语言模型，学习LangChain，就是为了开发出更好的、更能理解用户意图的聊天机器人。聊天机器人的核心特征是，它们可以进行长时间的对话并访问用户想要了解的信息。
 
-关于市 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1945011386.html" title="004丨从Equifax信息泄露看数据安全">004丨从Equifax信息泄露看数据安全</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">上篇文章中，我们讲了 Equifax 信息泄露始末，并对造成此次事件的漏洞进行了分析。今天，我们就来回顾一下互联网时代的其他几次大规模数据泄露事件，分析背后的原因，给出解决这类安全问题的技术手段和方法。
-数据泄露介绍以及历史回顾类似于 Equifax 这样的大规模数据泄露事件在互联网时代时不时地会发生。上一次如此大规模的数据泄露事件主角应该是雅虎。
-继 2013 年大规模数据泄露之后，雅虎在 2014 年又遭遇攻击，泄露出 5 亿用户的密码，直到 2016 年有人在黑市公开交易这些数据时才为大众所知。雅虎股价在事件爆出的第二天就下跌了 2.4%。而此次 Equifax 的股价下跌超过 30%，市值缩水约 53 亿。这让各大企业不得不警惕。
-类似的，LinkedIn 在 2012 年也泄露了 6500 万用户名和密码。事件发生后，LinkedIn 为了亡羊补牢，及时阻止被黑账户的登录，强制被黑用户修改密码，并改进了登录措施，从单步认证增强为带短信验证的两步认证。
-国内也有类似的事件。2014 年携程网安全支付日志存在漏洞，导致大量用户信息如姓名、身份证号、银行卡类别、银行卡号、银行卡 CVV 码等信息泄露。这意味着，一旦这些信息被黑客窃取，在网络上盗刷银行卡消费将易如反掌。
-如果说网络运维安全是一道防线，那么社会工程学攻击则可能攻破另一道防线——人。2011 年，RSA 公司声称他们 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/782015863.html" title="005丨何为技术领导力？">005丨何为技术领导力？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">我先说明一下，我们要谈的并不是“如何成为一名管理者”。我想谈的是技术上的领先，技术上的优势，而不是一个职称，一个人事组织者。另外，我不想在理论上泛泛而谈这个事，我想谈得更落地、更实际一些，所以，我需要直面一些问题。
-首先，要考虑的问题是——做技术有没有前途？我们在很多场合都能听到：技术做不长，技术无用商业才有用等这样的言论。所以，在谈技术领导力前，我需要直面这个问题，否则，技术领导力就成为一个伪命题了。
-技术重要吗？在中国，程序员把自己称做“码农”，说自己是编程的农民工，干的都是体力活，加班很严重，认为做技术没有什么前途，好多人都拼命地想转管理或是转行。这是中国技术人员的一个现实问题。
-与国外相比，似乎中国的程序员在生存上遇到的问题更多。为什么会有这样的问题？我是这么理解的，在中国，需要解决的问题很多，而且人口众多。也就是说，中国目前处于加速发展中，遍地机会，公司可以通过“野蛮开采”来实现自身业务的快速拓展和扩张。而西方发达国家人口少一些，相对成熟一些，竞争比较激烈，所以，更多的是采用“精耕细作”的方式。
-此外，中国的基础技术还正在发展中，技术能力不足，所以，目前的状态下，销售、运营、地推等简单快速的业务手段显得更为有效一些，需要比拼的是如何拿到更多的“地”。而西方的“精耕细作”需要比拼的是在同样大小的一块田里，如何才能更快更多地种出“粮食”，这完全就是在拼技术了。
-每个民族、国家 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/268182706.html" title="006丨如何才能拥有技术领导力？">006丨如何才能拥有技术领导力？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">通过上篇文章，相信你现在已经理解了“什么才是技术领导力”。今天，我就要跟你继续聊聊，怎样才能拥有技术领导力。
-第一，你要吃透基础技术。基础技术是各种上层技术共同的基础。吃透基础技术是为了更好地理解程序的运行原理，并基于这些基础技术进化出更优化的产品。吃透基础技术，有很多好处，具体来说，有如下几点。
+如图所示，聊天机器人设计过程中的核心组件包括：
 
-万丈高楼平地起。一栋楼能盖多高，一座大桥能造多长，重要的是它们的地基。同样对于技术人员来说，基础知识越扎实，走得就会越远。
-计算机技术太多了，但是仔细分析你会发现，只是表现形式很多，而基础技术并不多。学好基础技术，能让你一通百通，更快地使用各种新技术，从而可以更轻松地与时代同行。
-很多分布式系统架构，以及高可用、高性能、高并发的解决方案基本都可以在基础技术上找到它们的身影。所以，学习基础技术能让你更好地掌握更高维度的技术。
+聊天模型：这是对话的基础，它更偏向于自然的对话风格。你可以参考LangChain相关文档中所支持的聊天模型的列表。尽管大模型（LLM）也可以应用于聊天机器人，但专用的聊天模型（Chat Model）更适合对话场景。
+提示模板：帮助你整合默认消息、用户输入、历史交互以及检索时需要的上下文。
+记忆：它允许机器人记住与用户之间的先前互动，增强对话连贯性。
+检索器：这是一个可选组件，特别适合那些需要提供特定领域知识的机器人。
 
-那么，哪些才是基础技术呢？我在下面罗列了一些。老实说，这些技术你学起来可能会感到枯燥无味，但是，我还是鼓励你能够克服人性的弱点，努力啃完。
-具体来说，可以分成两个部分：编程和系统。
-编程部分
-C 语言：相对于很多其他高级语言来说，C 语言更接近底层。在具备跨平台能力的前提下，它可以比较容易地被人工翻译成相应的汇编代码。它的内存管理更为直接，可以让我们直接和内存地址打交道。
-学习好 C 语言的好处是能掌握程序的运行情况，并能进行应用程序和操作系统编程（操作系统一般是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4126243316.html" title="007丨推荐阅读：每个程序员都该知道的知识">007丨推荐阅读：每个程序员都该知道的知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">在整个为期一年的专栏内容中，我会逐步向你推荐一些有价值的内容，供你参考，这些内容有中文，有英文，也有视频，它们都是我认为对我非常有价值的信息，我也希望它们对你能有同样的帮助和启发。
-今天，我为你推荐的 5 篇文章，它们分别是：
+整体来说，聊天机器人的关键在于其记忆和检索能力，记忆使聊天机器人能够记住过去的交互，而检索则为聊天机器人提供最新的、特定于领域的信息。
+项目的技术实现细节在这个聊天机器人的实现过程中，我们将遵 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/21.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">23｜易速鲜花聊天客服机器人的开发（下）你好，我是黄佳，欢迎来到LangChain实战课！
+上节课，咱们的聊天机器人已经基本完成，这节课，我们要看一看如何把它部署到网络上。
+“聊天机器人”项目说明简单回顾一下这个项目的设计。
+第一步： 通过LangChain的ConversationChain，实现一个最基本的聊天对话工具。
+第二步： 通过LangChain中的记忆功能，让这个聊天机器人能够记住用户之前所说的话。
+第三步： 通过LangChain中的检索功能，整合易速鲜花的内部文档资料，让聊天机器人不仅能够基于自己的知识，还可以基于易速鲜花的业务流程，给出专业的回答。
+第四步（可选）： 通过LangChain中的数据库查询功能，用户可以输入订单号来查询订单状态，或者看看有没有存货等等。
+第五步： 在网络上部署及发布这个聊天机器人，供企业内部员工和易速鲜花用户使用。
+在上一个项目中，我们是通过 Flask 部署的人脉工具。Flask是一个通用的、微型的Web应用框架，非常适合创建各种Web应用程序，不仅仅局限于机器学习或数据科学项目。Flask为开发者提供了很高的灵活性，你可以自定义路由、模板、前端和后端的交互等等。对于初学者，Flask可能需要更长时间来学习，尤其是需要结合其他前端技术或数据库技术时。
+不过，对于机器学习项目来说，我们还有其他部署方案。比如 Streamlit 和  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/22.html" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="content">结束语｜人生的价值就在于创造你好，我是黄佳。
+时间过得真快，转眼间就到了本专栏的最后一节课，我想为坚持学到最后的你大声鼓掌，也很开心能将我的阶段性沉淀传递出去，相信此刻的你已经体验到了 LangChain 的魅力。
+技术上的进步，还需要你不断去练习，因为我深知： 动手实践，比千言万语更有力量。所以在结束语中，我们不再谈技术细节，只分享一点我近期的感悟吧！如果我们恰好有共鸣，那就太棒了。
+某一个深夜，SpaceX 研发的最新一代运载火箭系统“星舰”升空，但在发射仅3分钟后，“超重型推进器”未能与“星舰”分离，在高空解体。
+不过，SpaceX CEO 马斯克没有太多的情绪，他在推特写道：“恭喜 SpaceX 团队令人兴奋的星舰试射，这为几个月后的下一次试射积累了许多经验。”马斯克希望在10年内建造1000艘“星舰”登陆火星，使人类成为跨行星物种的愿景不变。
 
-Stack Overflow 上推荐的一个经典书单；
-美国某大学教授给计算机专业学生的一些建议，其中有很多的学习资源；
-LinkedIn 的高效代码复查实践，很不错的方法，值得你一读；
-一份关于程序语言和 bug 数相关的有趣的报告，可以让你对各种语言有所了解；
-最后是一本关于 C++ 性能优化的电子书。
+仰望苍穹，宇宙浩瀚。每每想起人类已在月球上留下脚印，而今又要再度出发，就不由在心中感慨：如此有幸，能生活在这个时代。如此有幸，能见证通用人工智能时代的到来！
+是的，人类见证过一次次的历史时刻，现在，我们又站在另一个历史的节点上——通用人工智能的诞生。这并不仅仅是一个技术的进步，更是对未来世界的重新塑造。让我深感幸运的是，即便 AI 如此发达，有些东西仍是不可替代的，那就是人的创造力和情感。
+也许， 人生的真正价值并不仅仅是在于我们 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3011702932.html" title="00 | 开篇词丨你好，产品经理！你的未来价值壁垒在哪儿？">00 | 开篇词丨你好，产品经理！你的未来价值壁垒在哪儿？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-01T00:00:00.000Z" title="发表于 2023-10-01 00:00:00">2023-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是刘海丰。
+很高兴能和你在这个专栏中见面，跟你一起聊聊产品经理这个岗位，尤其是人工智能领域的产品经理，也叫 AI 产品经理。
+我先来介绍一下我自己吧。我现在是京东集团的高级架构师，负责京东生活服务事业群的数据模型与算法，主导过推荐系统、用户意图识别、高潜用户预测、商品内容生成等多款 AI 产品的设计落地。
+在来到京东之前，我曾经作为 AI 产研负责人带领整个产品和研发团队，为用户提供基于大数据和 AI 技术的产品解决方案。这段经历也让我既懂研发技术架构，又具备了产品思维和商业视角。
+但其实，我刚开始的工作也和 AI 产品没有关系，是在机缘巧合之下才转型的。当时，我们公司突然要上线一个 AI 项目，因为一时没有合适的 AI 产品经理接手，我才被动地成为这个 AI 项目的负责人，去组建和培养整个 AI 产品团队，同时还要带领算法团队。
+项目完成之后，我就继续在这个领域深耕，又成了京东的高级架构师。在这个过程中，我也帮助过团队中的很多产品经理成功转型 AI 产品经理。可以说，不管是我自己转型，还是帮助别人转型，我都踩过很多的“坑”，也总结了很多的经验。
+未来产品经理的价值壁垒其实，我们身边的很多人都会因为类似的情况而调换岗位，最终在这个岗位走得更远。那随着越来越多的公司认识到  AI  的重要性，去建立算法团队之后，传统产品经理转型  AI  产品经理的情况会越来越普遍。
+甚至我 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2547653008.html" title="00丨开篇词丨想成为分布式高手？那就先把协议和算法烂熟于心吧">00丨开篇词丨想成为分布式高手？那就先把协议和算法烂熟于心吧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-01T00:00:00.000Z" title="发表于 2023-10-01 00:00:00">2023-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健，你叫我“老韩”就可以了。
+在专栏开始之前，我想先和你聊聊自己的经历，加深彼此的了解。在重庆大学的软件工程专业毕业之后，我就开始和分布式系统打交道，至今有十多年了。早期，我接触了电信级分布式系统，比如内核态 HA Cluster，现在是互联网分布式系统，比如名字服务、NoSQL 存储、监控大数平台。
+我曾经做过创业公司的 CTO，后来加入腾讯之后，负责过 QQ 后台海量服务分布式中间件，以及时序数据库 InfluxDB 自研集群系统的架构设计和研发工作。
+你可能会问我，为什么要单独讲分布式协议和算法呢？（为了不啰嗦，咱们下文都简称分布式算法）在我看来，它其实就是决定分布式系统如何运行的核心规则和关键步骤。 如果一个人想真正搞懂分布式技术，开发出一个分布式系统，最先需要掌握的就是这部分知识。
+举个例子，学数学的时候，我们总是会学到很多公式或者定理，我上学的时候，还觉得这些定理枯燥至极。但后来我明白了，这些定理和公式其实就是前人花了很长时间思考、验证、总结出来的规律，如果我们能在这之上做事情，更容易快速地找到正确答案。同样，你学习咱们这个专栏也是这个道理。
+分布式算法是分布式技术中的核心可能有些同学会说：“老韩，你别忽悠我，我可是系统看过分布式领域的经典书的，比如《分布式系统：概念与设计》《分布式系统原理与范型》，这些书里分布式算法的篇幅可不多啊。”
+是的，这也是我奇怪的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3293296664.html" title="01丨行业视角：产品经理眼中的人工智能">01丨行业视角：产品经理眼中的人工智能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-02T00:00:00.000Z" title="发表于 2023-10-02 00:00:00">2023-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是海丰，很高兴能在这个专栏和你见面。
+随着人工智能的火热，越来越多的产品经理开始关注这个领域，希望借着风口转型成为 AI 产品经理，进而可以拓宽自己的职业道路。确实，这是一条很不错的出路，我本人就是一个转型的深度体验者和倡导者。
+对比传统的产品经理，AI 产品经理更加注重对于人工智能行业、场景算法，以及验收评估标准的理解。这节课，我们就来学习这些内容。不过在学习之前，我准备了 3 个问题，来测试一下你对这个领域的了解程度：
+你理解人工智能吗？
+它的产业发展现状如何？
+人工智能产品经理的人才结构是怎样的？
+接下来，我将从人工智能产品经理的角度，带你一起解答以上问题，让你对这个领域有一个整体的认知。这是基础，更是必学！
+理解人工智能对于人工智能的理解，网上的文章早已铺天盖地，如果要我概括一下，我认为：如果一个系统可以像人类一样思考和行动，同时这些思考和行动都是理性的，那么这个系统我们就可以认为它是人工智能（Artificial Intelligence，英文缩写为 AI，后面我会直接简称为 AI）。
+什么意思呢？举个例子。
+比如说，我们在浏览电商网站的时候，经常会发现自己看到的页面展示的商品和其他人不太一样，这是因为电商平台的推荐系统，会根据我们过去的浏览行为和下单情况，来预测我们可能喜欢的产品，再把它们展示出来。
+再比如说，我们都使用过类似小爱音箱这样的智能音箱，当我们跟它说 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3880415578.html" title="01丨拜占庭将军问题：有叛徒的情况下，如何才能达成共识？">01丨拜占庭将军问题：有叛徒的情况下，如何才能达成共识？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-02T00:00:00.000Z" title="发表于 2023-10-02 00:00:00">2023-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+在日常工作中，我常听到有人吐槽“没看懂拜占庭将军问题”“中文的文章看不懂，英文论文更看不下去”。想必你也跟他们一样，有类似的感受。
+在我看来，拜占庭将军问题（The Byzantine Generals Problem），它其实是借拜占庭将军的故事展现了分布式共识问题，还探讨和论证了解决的办法。而大多数人觉得它难理解，除了因为分布式共识问题比较复杂之外，还与莱斯利·兰伯特（Leslie Lamport）的讲述方式有关，他在一些细节上（比如，口信消息型拜占庭问题之解的算法过程上）没有说清楚。
+实际上，它是分布式领域最复杂的一个容错模型，一旦搞懂它，你就能掌握分布式共识问题的解决思路，还能更深刻地理解常用的共识算法，在设计分布式系统的时候，也能根据场景特点选择适合的算法，或者设计适合的算法了。而我把拜占庭将军的问题放到第一讲，主要是因为它很好地抽象了分布式系统面临的共识问题，理解了这个问题，会为你接下来的学习打下基础。
+那么接下来，我就以战国时期六国抗秦的故事为主线串联起整篇文章，让你读懂、学透。
+苏秦的困境战国时期，齐、楚、燕、韩、赵、魏、秦七雄并立，后来秦国的势力不断强大起来，成了东方六国的共同威胁。于是，这六个国家决定联合，全力抗秦，免得被秦国各个击破。一天，苏秦作为合纵长，挂六国相印，带着六国的军队叩关函谷，驻军在了秦国边境，为围攻秦国作准备。但是，因为各国军 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3137460286.html" title="02丨个人视角：成为AI产品经理，要先搞定这两个问题">02丨个人视角：成为AI产品经理，要先搞定这两个问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-03T00:00:00.000Z" title="发表于 2023-10-03 00:00:00">2023-10-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是海丰。今天，我们来聊聊 AI 产品经理的工作职责与能力要求。
+假设，你正在参加一个 AI 产品岗的面试，面试官问了你这两个问题，你会怎么回答：
+你觉得 AI 产品经理和传统产品经理有什么区别？
+在你看来 AI 产品经理的工作职责是什么？
+你可别小瞧这两个问题，这实际上是面试官在考察面试者对 AI 产品经理这个岗位的理解程度，以及你到底有没有相关的实战经验，甚至在工作中有没有独立的思考。
+因此，这两个问题如果能回答好，我们肯定能给面试官留下一个好的印象。而且，搞清楚这两个问题，也能帮助你在转型时更清楚这个岗位的要求，能够有的放矢地去补足自己的短处，发挥自己的优势。
+AI 产品经理和传统产品经理有什么区别？我们先来看看，AI 产品经理和传统产品经理的区别。从 “AI 产品经理” 这个词来看，它可以分解为“产品经理” + “AI”，AI 产品经理作为产品经理，核心职责和底层能力与传统产品经理是一致的，仍然是通过技术手段实现业务目标，但是它们在面向的对象，使用的技术，以及岗位边界这三个方面却大有不同，不同在哪呢？接下来，我详细给你讲讲。
+首先，我们来看面向对象上的不同。传统的产品经理更多活跃在 C 端，他们面向的是用户，比如电商产品经理、策略产品经理、社区产品经理等等。但是 AI 产品经理更多活跃在 B 端，面向的是各大企业，而且 AI 产品更多应用在 B 端的场景下，比如云从科 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/972094249.html" title="02丨CAP理论：分布式系统的PH试纸，用它来测酸碱度">02丨CAP理论：分布式系统的PH试纸，用它来测酸碱度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-03T00:00:00.000Z" title="发表于 2023-10-03 00:00:00">2023-10-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+很多同学可能都有这样的感觉，每次要开发分布式系统的时候，就会遇到一个非常棘手的问题，那就是如何根据业务特点，为系统设计合适的分区容错一致性模型，以实现集群能力。这个问题棘手在当发生分区错误时，应该如何保障系统稳定运行，不影响业务。
+这和我之前经历的一件事比较像，当时，我负责自研 InfluxDB 系统的项目，接手这个项目后，我遇到的第一个问题就是，如何为单机开源版的 InfluxDB 设计分区容错一致性模型。 因为 InfluxDB 有 META 和 DATA 两个节点，它们的功能和数据特点不同，所以我还需要考虑这两个逻辑单元的特点，然后分别设计分区容错一致性模型。
+那个时候，我想到了 CAP 理论，并且在 CAP 理论的帮助下，成功地解决了问题。讲到这儿，你可能会问了：为什么 CAP 理论可以解决这个问题呢？
+因为在我看来，CAP 理论是一个很好的思考框架，它对分布式系统的特性做了高度抽象，比如抽象成了一致性、可用性和分区容错性，并对特性间的冲突（也就是 CAP 不可能三角）做了总结。一旦掌握它，你就像拥有了引路人，自然而然就能根据业务场景的特点进行权衡，设计出适合的分区容错一致性模型。
+那么问题来了：我说的一致性、可用性和分区容错性是什么呢？它们之间有什么关系？你又该如何使用 CAP 理论来思考和设计分区容错一致性模型呢？这些问题就是我们本节课所要讲的重点了。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3884234976.html" title="03丨技术视角：AI产品经理需要懂的技术全景图">03丨技术视角：AI产品经理需要懂的技术全景图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-04T00:00:00.000Z" title="发表于 2023-10-04 00:00:00">2023-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">你好，我是海丰。今天，我想和你聊聊 AI 产品经理需要懂的技术有哪些。
+在转型成为 AI 产品经理之前，你一定最关心技术问题。这也是很多同学的疑问，比如：AI 产品经理要不要懂技术？现在市面上 AI 的课程特别多，但都面向算法工程师，内容太复杂，我到底要掌握到哪种程度呢？
+这些疑问我现在就能给你一个肯定的回答：AI 产品经理一定要懂技术。这就像一个产品经理要懂研发技术是一样的道理。但是，我们具体要掌握哪些技术，掌握到什么程度，是不是要像技术人员一样去学习市面上那些 AI 课程呢？这就是我们今天要解决的问题。
+这节课，我会站在 AI 产品经理的视角，结合一张 AI 技术全景图，来帮你解决学什么技术和学到什么程度的问题。让你能够和算法工程师同频沟通，知道该如何去管控 AI 项目进度，让你最终有能力去牵头主导一个 AI 项目。
 
-每个程序员都应该要读的书在 Stack Overflow 上有用户问了一个问题，大意是想让大家推荐一些每个程序员都应该阅读的最有影响力的图书。
-虽然这个问题已经被关闭了，但这真是一个非常热门的话题。排在第一位的用户给出了一大串图书的列表，看上去着实吓人，不过都是一些相当经典相当有影响力的书，在这里我重新罗列一些我觉得你必须要看的。
-
-《代码大全》 虽然这本书有点过时了，而且厚到可以垫显示器，但是这绝对是一本经典的书。
-
-《程序员修练之道》 这本书也是相当经典，我觉得就是你的指路明灯。
-
-《计算机的构造和解释》 经典中的经典，必读。
-
-《算法导论》 美国的本科生教材，这本书应该也是中国计算机学生的教材。
-
-《设计模式》 这本书是面向对象设计的经典书籍。
- ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+总的来说，AI 产品经理需要知道五方面的技术知识，分别是数学统计学相关的基本概念，模型构建的整个流程，常见算法的原理和应用场景，模型验收的具体指标和方法，以及模型相关的技术名词。其中，模型的构建流程、算法的技术知识和模型的验收标准这三项知识非常重要，它们也是 AI 产品经理必备的核心能力，所以我还会在后面的课程中单独来讲。
+数学统计学基础概念首先，我们来看产品经理需要学习的数学统计学知识。你可能会奇怪，作为一个产品经理，为什么还要学数学呢？
+因为今天的各种人工智 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#content-inner">12</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">3</span></a></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">7</span></a></li>
             </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {

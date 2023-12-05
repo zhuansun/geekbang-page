@@ -1,0 +1,533 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="20｜部署一个鲜花网络电商的人脉工具（上）你好，我是黄佳，欢迎来到LangChain实战课！ 从今天开始，我要用4节课的篇幅，带着你设计两个有趣而又实用的应用程序。设计这两个应用程序的目的，是为了让你能够把LangChain中的各个组件灵活地组合起来，融会贯通，并以此作为启发，在你熟悉的业务场景中，利用LangChain和LLM的能力，开发出更多、更强大的效率工具。 第一个应用程序，是用LangC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/18.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="20｜部署一个鲜花网络电商的人脉工具（上）你好，我是黄佳，欢迎来到LangChain实战课！ 从今天开始，我要用4节课的篇幅，带着你设计两个有趣而又实用的应用程序。设计这两个应用程序的目的，是为了让你能够把LangChain中的各个组件灵活地组合起来，融会贯通，并以此作为启发，在你熟悉的业务场景中，利用LangChain和LLM的能力，开发出更多、更强大的效率工具。 第一个应用程序，是用LangC">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-05T12:57:35.796Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/18"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-05 12:57:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="1970-01-01T00:00:00.000Z" title="发表于 1970-01-01 00:00:00">1970-01-01</time></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="20｜部署一个鲜花网络电商的人脉工具（上）"><a href="#20｜部署一个鲜花网络电商的人脉工具（上）" class="headerlink" title="20｜部署一个鲜花网络电商的人脉工具（上）"></a>20｜部署一个鲜花网络电商的人脉工具（上）</h1><p>你好，我是黄佳，欢迎来到LangChain实战课！</p>
+<p>从今天开始，我要用4节课的篇幅，带着你设计两个有趣而又实用的应用程序。设计这两个应用程序的目的，是为了让你能够把LangChain中的各个组件灵活地组合起来，融会贯通，并以此作为启发，在你熟悉的业务场景中，利用LangChain和LLM的能力，开发出更多、更强大的效率工具。</p>
+<p>第一个应用程序，是用LangChain创建出一个专属于“易速鲜花”的网络人脉工具。光这么说，有些模糊，这个人脉工具长啥样？有些啥具体功能？</p>
+<p>动手之前，让我先给你把这个所谓“人脉”工具的能力和细节说清楚。</p>
+<h2 id="“人脉工具”项目说明"><a href="#“人脉工具”项目说明" class="headerlink" title="“人脉工具”项目说明"></a>“人脉工具”项目说明</h2><p><strong>项目背景</strong>：易速鲜花电商网络自从创建以来，通过微信、抖音、小红书等自媒体宣传推广，短期内获得了广泛流量展示。目前，营销部门希望以此为契机，再接再厉，继续扩大品牌影响力。经过调研，发现很多用户会通过微博热搜推荐的新闻来购买鲜花赠送给明星、达人等，因此各部门一致认为应该联络相关微博大V，共同推广，带动品牌成长。</p>
+<p>然而，发掘并选择适合于“鲜花推广”的微博大V有一定难度。营销部门员工表示，这个任务比找微信、抖音和小红书达人要难得多。他们都希望技术部门能够给出一个“人脉搜索工具”来协助完成这一目标。</p>
+<p><strong>项目目标：</strong> 帮助市场营销部门的员工找到微博上适合做鲜花推广的大V，并给出具体的联络方案。</p>
+<h2 id="项目的技术实现细节"><a href="#项目的技术实现细节" class="headerlink" title="项目的技术实现细节"></a>项目的技术实现细节</h2><p>这个项目的具体技术实现细节，这里简述如下。</p>
+<p><strong>第一步：</strong> 通过LangChain的搜索工具，以模糊搜索的方式，帮助运营人员找到微博中有可能对相关鲜花推广感兴趣的大V（比如喜欢玫瑰花的大V），并返回UID。</p>
+<p><strong>第二步：</strong> 根据微博UID，通过爬虫工具拿到相关大V的微博公开信息，并以JSON格式返回大V的数据。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0049810d3cfe1aee633d29722ded8e5f.png"></p>
+<p><strong>第三步：</strong> 通过LangChain调用LLM，通过LLM的总结整理以及生成功能，根据大V的个人信息，写一篇热情洋溢的介绍型文章，谋求与该大V的合作。</p>
+<p><strong>第四步：</strong> 把LangChain输出解析功能加入进来，让LLM生成可以嵌入提示模板的格式化数据结构。</p>
+<p><strong>第五步：</strong> 添加HTML、CSS，并用Flask创建一个App，在网络上部署及发布这个鲜花电商人脉工具，供市场营销部门的人员使用。</p>
+<p>在上面的5个步骤中，我们使用到很多LangChain技术，包括 <strong>提示工程、模型、链、代理、输出解析</strong> 等。</p>
+<p>这节课我们先来实现项目的前两个部分。</p>
+<h2 id="第一步：找到大-V"><a href="#第一步：找到大-V" class="headerlink" title="第一步：找到大 V"></a>第一步：找到大 V</h2><p>因为咱们的项目需要用到很多工具，所以我创建了一个项目目录，叫做socializer_v0（项目每完成一步，我就创建一个新目录，并把版本号加1）。当第一个步骤“找到大 V”实现之后，项目中的文档结构如下。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/5dab492f802d34086975616d06708e0c.jpg"></p>
+<p>这里，主程序是findbigV.py。意思就是派程序来作为智能代理，找到喜欢鲜花的微博大V。</p>
+<h2 id="主程序-findbigV-py"><a href="#主程序-findbigV-py" class="headerlink" title="主程序 findbigV.py"></a>主程序 findbigV.py</h2><p>主程序findbigV.py在第一步完成之后，是这样的。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 设置OpenAI API密钥
+import os
+os.environ["OPENAI_API_KEY"] = ''
+os.environ["SERPAPI_API_KEY"] = ''
+
+# 导入所取的库
+import re
+from agents.weibo_agent import lookup_V
+
+if __name__ == "__main__":
+
+    # 拿到UID
+    response_UID = lookup_V(flower_type = "牡丹" )
+    print(response_UID)
+
+    # 抽取UID里面的数字
+    UID = re.findall(r'\d+', response_UID)[0]
+    print("这位鲜花大V的微博ID是", UID)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里，我们要搜到的，是一个热爱鲜花的大V的微博UID，而不是URL。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/520688ef98a70c3d3651420bcc26bef1.jpg"></p>
+<p>比如，上面这位喜欢牡丹花的大V，他的UID是6053338099。这些都是公开的信息。</p>
+<p>为什么我们希望得到UID呢？因为我们可以通过这个ID，爬取他个人主页里的更多介绍信息，有利于进一步了解他。</p>
+<h3 id="微博-Agent：查找大-V-的-ID"><a href="#微博-Agent：查找大-V-的-ID" class="headerlink" title="微博 Agent：查找大 V 的 ID"></a>微博 Agent：查找大 V 的 ID</h3><p>下面，我们就来看看，文件agents\weibo_agent.py中的lookup_V函数是如何实现这个搜寻UID的功能的。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 导入一个搜索UID的工具
+from tools.search_tool import get_UID
+
+# 导入所需的库
+from langchain.prompts import PromptTemplate
+from langchain.chat_models import ChatOpenAI
+from langchain.agents import initialize_agent, Tool
+from langchain.agents import AgentType
+
+# 通过LangChain代理找到UID的函数
+def lookup_V(flower_type: str) :
+    # 初始化大模型
+    llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
+
+    # 寻找UID的模板
+    template = """given the &#123;flower&#125; I want you to get a related 微博 UID.
+                  Your answer should contain only a UID.
+                  The URL always starts with https://weibo.com/u/
+                  for example, if https://weibo.com/u/1669879400 is her 微博, then 1669879400 is her UID
+                  This is only the example don't give me this, but the actual UID"""
+    # 完整的提示模板
+    prompt_template = PromptTemplate(
+        input_variables=["flower"], template=template
+    )
+
+    # 代理的工具
+    tools = [
+        Tool(
+            name="Crawl Google for 微博 page",
+            func=get_UID,
+            description="useful for when you need get the 微博 UID",
+        )
+    ]
+
+    # 初始化代理
+    agent = initialize_agent(
+        tools,
+        llm,
+        agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+        verbose=True
+    )
+
+    # 返回找到的UID
+    ID = agent.run(prompt_template.format_prompt(flower=flower_type))
+
+    return ID
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码的目的，是为了通过提供的花的类型（flower type）来查找与之相关的微博UID。其中使用了LangChain中的代理和工具。</p>
+<p>这里有两点需要特别说明：</p>
+<ol>
+<li>搜索UID的工具通过from tools.search_tool import get_UID导入，这个内容后面还会介绍。</li>
+<li>下面的提示模板说明，强调了需要的是UID，而不是URL。刚才说了，这是因为后续的爬虫工具需要一个特定的UID，来获取该微博大V的个人信息（公开）。然后我们会继续利用这些信息让LLM为我们写“勾搭”文案。</li>
+</ol>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">    # 寻找UID的模板
+    template = """given the &#123;flower&#125; I want you to get a related 微博 UID.
+                  Your answer should contain only a UID.
+                  The URL always starts with https://weibo.com/u/
+                  for example, if https://weibo.com/u/1669879400 is her 微博, then 1669879400 is her UID
+                  This is only the example don't give me this, but the actual UID"""
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="定制的-SerpAPI：getUID"><a href="#定制的-SerpAPI：getUID" class="headerlink" title="定制的 SerpAPI：getUID"></a>定制的 SerpAPI：getUID</h3><p>上面的程序只是调用了代理，但是没有给出具体的工具实现。现在我们来继续实现搜索大V的UID的功能。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 导入一个搜索UID的工具
+from tools.search_tool import get_UID
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这个具体的实现，在代码 \tools\search_tool.py 中。</p>
+<p>说到通过LangChain来搜索微博，相信你会马上想到已经多次使用过的SerpAPI。我们先来试一试标准的SerpAPI，看看它能否满足我们的需求。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">from langchain.utilities import SerpAPIWrapper
+
+def get_UID(flower: str):
+    """Searches for Linkedin or twitter Profile Page."""
+    search = SerpAPIWrapper()
+    res = search.run(f"&#123;flower&#125;")
+    return res
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>写好了这段代码，第一步就可以说是完成了。下面我们跑一遍findbigV.py，看看程序会给出我们什么样的结果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a22043515a4b9686c58ccedcda2075d8.jpg"></p>
+<p>结果还好，不算太失望，SerpAPI找到了一个貌似喜欢牡丹花的大V，名叫戏精牡丹，搜到的信息也都是真实的。看起来他蛮适合为我们的牡丹花代言。然而，这个大V的微博ID肯定不是6。</p>
+<p>中间哪里或许是出了点小问题。</p>
+<p>像这样的错误，明显发生在LangChain内部，那你的 trouble_shooting 也只能通过Debug来解决。这里，我就忽略掉一长串的错误排查过程，直接指出问题的根本原因所在。</p>
+<p>让我们把断点设置在SerpAPIWrapper类的_process_response中。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/86238bae7452cde52f23e4d6ea3a1688.jpg"></p>
+<p>当程序进入 <code> if &quot;organic_results&quot; in res.keys()</code> 这段逻辑之后，我发现，它返回的总是一个snippet（摘要文字），而不是link（URL）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/38643a041b2f24ed9e8405a485580cbe.jpg"></p>
+<p>无论这背后的逻辑何在，这并不是我们所想要的。在Debug过程中，我们发现，新浪微博的UID，实际上包含在URL中，也就是 <a target="_blank" rel="noopener" href="https://weibo.com/u/6053338099">https://weibo.com/u/6053338099</a>。因此，如果我们不返回微博的简短说明（戏精牡丹，搞笑视频自媒体……），而是返回URL，会更有利于大模型提炼出UID。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2a78e4b1cc0734f1c5ce171a05f153c0.jpg"></p>
+<p>如何做呢？直接修改LangChain的SerpAPIWrapper类的_process_response源代码肯定不是一个好办法。</p>
+<p>因此，这里我们可以继承SerpAPIWrapper类，并构造一个CustomSerpAPIWrapper类，在这个类中，我们重构_process_response这个静态方法。</p>
+<p>新的search_tool.py完整代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 导入SerpAPIWrapper
+from langchain.utilities import SerpAPIWrapper
+
+# 重新定制SerpAPIWrapper，重构_process_response，返回URL
+class CustomSerpAPIWrapper(SerpAPIWrapper):
+    def __init__(self):
+        super(CustomSerpAPIWrapper, self).__init__()
+
+    @staticmethod
+    def _process_response(res: dict) -> str:
+        """Process response from SerpAPI."""
+        if "error" in res.keys():
+            raise ValueError(f"Got error from SerpAPI: &#123;res['error']&#125;")
+        if "answer_box_list" in res.keys():
+            res["answer_box"] = res["answer_box_list"]
+        '''删去很多无关代码'''
+        snippets = []
+        if "knowledge_graph" in res.keys():
+            knowledge_graph = res["knowledge_graph"]
+            title = knowledge_graph["title"] if "title" in knowledge_graph else ""
+            if "description" in knowledge_graph.keys():
+                snippets.append(knowledge_graph["description"])
+            for key, value in knowledge_graph.items():
+                if (
+                    isinstance(key, str)
+                    and isinstance(value, str)
+                    and key not in ["title", "description"]
+                    and not key.endswith("_stick")
+                    and not key.endswith("_link")
+                    and not value.startswith("http")
+                ):
+                    snippets.append(f"&#123;title&#125; &#123;key&#125;: &#123;value&#125;.")
+        if "organic_results" in res.keys():
+            first_organic_result = res["organic_results"][0]
+            if "snippet" in first_organic_result.keys():
+                # 此处是关键修改
+                # snippets.append(first_organic_result["snippet"])
+                snippets.append(first_organic_result["link"])
+            elif "snippet_highlighted_words" in first_organic_result.keys():
+                snippets.append(first_organic_result["snippet_highlighted_words"])
+            elif "rich_snippet" in first_organic_result.keys():
+                snippets.append(first_organic_result["rich_snippet"])
+            elif "rich_snippet_table" in first_organic_result.keys():
+                snippets.append(first_organic_result["rich_snippet_table"])
+            elif "link" in first_organic_result.keys():
+                snippets.append(first_organic_result["link"])
+        if "buying_guide" in res.keys():
+            snippets.append(res["buying_guide"])
+        if "local_results" in res.keys() and "places" in res["local_results"].keys():
+            snippets.append(res["local_results"]["places"])
+
+        if len(snippets) > 0:
+            return str(snippets)
+        else:
+            return "No good search result found"
+
+# 获取与某种鲜花相关的微博UID的函数
+def get_UID(flower: str):
+    """Searches for Linkedin or twitter Profile Page."""
+    # search = SerpAPIWrapper()
+    search = CustomSerpAPIWrapper()
+    res = search.run(f"&#123;flower&#125;")
+    return res
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>唯一的区别就是，我们在下面的逻辑中返回了link，而不是snippet。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">        if "organic_results" in res.keys():
+            first_organic_result = res["organic_results"][0]
+            if "snippet" in first_organic_result.keys():
+                # snippets.append(first_organic_result["snippet"])
+                snippets.append(first_organic_result["link"])
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再次Debug，我们发现返回的snippets里面包含了URL信息，其中UID信息包含在URL中了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/06da407d1f6d93eeaefa6e9f450cdf5e.jpg"></p>
+<p>此时运行主程序findbigV.py，会发现代理中返回了URL信息，并且经过进一步思考，提炼出了UID。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/ab67de9be2b4f26be53c0e8af713f16f.jpg"></p>
+<h2 id="第二步：爬取大-V-资料"><a href="#第二步：爬取大-V-资料" class="headerlink" title="第二步：爬取大 V 资料"></a>第二步：爬取大 V 资料</h2><p>好的，第一步虽然是有磕有绊，但是经过了调整的CustomSerpAPIWrapper工具和代理，在LLM的帮助之下，总算是不辱使命，完成了找到UID的任务。</p>
+<p>这位大V，看起来又喜欢牡丹，又喜欢搞笑。我们很想和他联络一下，也许他很适合为我们的牡丹花品牌代言。（到底是否适合，不必特别认真哈，总之搜索“牡丹”，Agent给了这个ID，就可以了。咱学的是LangChain，不是真的要找他代言）</p>
+<p>不过，知己知彼，百战不殆。想要和他沟通，就得了解他更多。下面，我们将使用爬虫程序，通过UID来爬取他的更多信息。</p>
+<h3 id="主程序-findbigV-py-1"><a href="#主程序-findbigV-py-1" class="headerlink" title="主程序 findbigV.py"></a>主程序 findbigV.py</h3><p>第二步完成之后，主程序代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 设置OpenAI API密钥
+import os
+os.environ["OPENAI_API_KEY"] = 'Your OpenAI API Key'
+os.environ["SERPAPI_API_KEY"] = 'Your SerpAPI Key'
+
+# 导入所取的库
+import re
+from agents.weibo_agent import lookup_V
+from tools.general_tool import remove_non_chinese_fields
+from tools.scraping_tool import get_data
+
+if __name__ == "__main__":
+
+    # 拿到UID
+    response_UID = lookup_V(flower_type = "牡丹" )
+
+    # 抽取UID里面的数字
+    UID = re.findall(r'\d+', response_UID)[0]
+    print("这位鲜花大V的微博ID是", UID)
+
+    # 根据UID爬取大V信息
+    person_info = get_data(UID)
+    print(person_info)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从第一步到第二步，我们主要是完成了一次微博信息的爬取。</p>
+<h3 id="scraping-tool-py-中的-scrape-weibo-方法"><a href="#scraping-tool-py-中的-scrape-weibo-方法" class="headerlink" title="scraping_tool.py 中的 scrape_weibo 方法"></a>scraping_tool.py 中的 scrape_weibo 方法</h3><p>第二步中的关键逻辑是scraping_tool.py中的scrape_weibo方法，具体代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 导入所需的库
+import json
+import requests
+import time
+
+# 定义爬取微博用户信息的函数
+def scrape_weibo(url: str):
+    '''爬取相关鲜花服务商的资料'''
+    headers = &#123;
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36",
+        "Referer": "https://weibo.com"
+    &#125;
+    cookies = &#123;
+        "cookie": '''SINAGLOBAL=3762226753815.13.1696496172299; ALF=1699182321; SCF=AiOo8xtPwGonZcAbYyHXZbz9ixm97mWi0vHt_VvuOKB-u4-rcvlGtWCrE6MfMucpxiOy5bYpkIFNWTj7nYGcyp4.; _sc_token=v2%3A2qyeqD3cTZFNTl0sn3KAYe4fNqzMUEP-C7nxNsd_Q1r-vpYMlF2K3xc4vWNuLNBbp3RsohghkJdlSVN09cymVo5AKAm0V92004V8cSRe9O5v9B65jd4yiG_sATDeB06GnjiJulXUrEF_6XsHh1ozK6jvbTKEUIkF7v0_BlbX6IcWrPkwh6xL_WM_0YUV2v7CtNPwyxfbAjaWnG32TsxG_ftN3s5m7qfaRftU6iTOSnE%3D; XSRF-TOKEN=4o0E6jaUQ0BlN77az0sURTg3; PC_TOKEN=dcf0e7607f; login_sid_t=36ebf31f1b3694fb71e77e35d30f052f; cross_origin_proto=SSL; WBStorage=4d96c54e|undefined; _s_tentry=passport.weibo.com; UOR=www.google.com,weibo.com,login.sina.com.cn; Apache=7563213131783.361.1696667509205; ULV=1696667509207:2:2:2:7563213131783.361.1696667509205:1696496172302; wb_view_log=3440*14401; WBtopGlobal_register_version=2023100716; crossidccode=CODE-gz-1QP2Jh-13l47h-79FGqrAQgQbR8ccb7b504; SSOLoginState=1696667553; SUB=_2A25IJWfwDeThGeFJ6lsQ-SbNzjuIHXVr5gm4rDV8PUJbkNAbLUWtkW1NfJd_XHamKIzj5RlT_-RGMma6z3YQZUK3; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFDKvBlvg14YuHk_4c6MEH_5NHD95QNS024eK.ReK-NWs4DqcjZCJ8oIN.pSKzceBtt; WBPSESS=gyY2mn77F4p5VxWF2IB_yFR0phHVTNfaJAHAMprnW7MeUr-NHPZNyeeyKae3tHELlc_RbcI1XPSz-TjSJqWrIXs-yh1fwhxL4mSDrnpPZEogFt8ScF5NEwSqPGn7x2KMAgTHtWde-3MBm6orQ98PDA=='''
+    &#125;
+    response = requests.get(url, headers=headers, cookies=cookies)
+    time.sleep(3)   # 加上3s 的延时防止被反爬
+    return response.text
+
+# 根据UID构建URL爬取信息
+def get_data(id):
+    url = "https://weibo.com/ajax/profile/detail?uid=&#123;&#125;".format(id)
+    html = scrape_weibo(url)
+    response = json.loads(html)
+
+    return response
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我这段爬虫代码特别简洁，不需要过多的解释，唯一需要说明的部分是怎么找到你自己的Cookies。</p>
+<blockquote>
+<p>Cookie 是由服务器发送到用户浏览器的一小段数据，并可能在随后的请求中被回传。它的主要目的是让服务器知道用户的上下文信息或状态。在Web爬虫中，使用正确的Cookie可以模拟登录状态，从而获取到需要权限的网页内容。</p>
+</blockquote>
+<p>首先，我是用QQ ID登录的微博，我发现通过这样的方式找到的Cookie能用得比较久。</p>
+<p>然后，从我的浏览器中获取 Cookie，以下是简单步骤：</p>
+<ol>
+<li>使用浏览器（如 Chrome、Firefox）访问微博并登录。</li>
+<li>登录后，右键单击页面并选择“检查”（Inspect）。</li>
+<li>打开开发者工具，点击 Network 选项卡。</li>
+<li>在页面上进行一些操作（如刷新页面），然后在 Network 选项卡下查看请求列表。</li>
+<li>选择任一请求项，然后在右侧的 Headers 选项卡中查找 Request Headers 部分。</li>
+<li>在这部分中，你应该可以看到一个名为 Cookie 的字段，这就是你需要的 Cookie 值。</li>
+</ol>
+<p>将获取到的完整Cookie值复制（挺长的），并替换上述代码中的 <code>&quot;你的Cookie&quot;</code> 部分。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/92ea6832ea69c8a1342a62180b7da538.jpg"></p>
+<blockquote>
+<p>但请注意，微博的Cookie可能有过期时间，所以如果你发现一段时间后你的爬虫无法正常工作，你可能需要再次获取新的Cookie。同时，频繁地爬取或大量请求可能会导致你的账号被封禁，所以请谨慎使用爬虫。</p>
+</blockquote>
+<p>此时，运行 findbigV.py，就得到了下面的输出。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e696b6dae6332a486763e29e9f310594.jpg"></p>
+<h3 id="精简爬取输出"><a href="#精简爬取输出" class="headerlink" title="精简爬取输出"></a>精简爬取输出</h3><p>最后一个步骤，是精简上面的输出，因为类似 <code>&#39;word_color&#39;: &#39;#FFEA8011&#39;, &#39;background_color&#39;: &#39;#FF181818&#39;</code> 这样的内容会占据很多Token空间，而且对于LLM总结整理信息，也没啥作用。</p>
+<p>因此，我创建了一个额外的步骤，就是\tools\general_tool.py中的remove_non_chinese_fields函数。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">import re
+
+def contains_chinese(s):
+    return bool(re.search('[\u4e00-\u9fa5]', s))
+
+def remove_non_chinese_fields(d):
+    if isinstance(d, dict):
+        to_remove = [key for key, value in d.items() if isinstance(value, (str, int, float, bool)) and (not contains_chinese(str(value)))]
+        for key in to_remove:
+            del d[key]
+
+        for key, value in d.items():
+            if isinstance(value, (dict, list)):
+                remove_non_chinese_fields(value)
+    elif isinstance(d, list):
+        to_remove_indices = []
+        for i, item in enumerate(d):
+            if isinstance(item, (str, int, float, bool)) and (not contains_chinese(str(item))):
+                to_remove_indices.append(i)
+            else:
+                remove_non_chinese_fields(item)
+
+        for index in reversed(to_remove_indices):
+            d.pop(index)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在findbigV.py中，调用这个函数，对爬虫的输出结果进行了精简。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">    # 移除无用的信息
+    remove_non_chinese_fields(person_info)
+    print(person_info)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>重新运行findbigV.py，结果如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/16aaa4d952428bb1960ecfee9df6df10.jpg"></p>
+<p>此时，爬取的内容就只剩下了干货。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>这节课我们完成了前两步的工作。分别是，找到适合推广某种鲜花的大V的微博UID，并且爬取了大V的资料。这为我们后续生成文本、进一步链接大V打下了良好的基础。</p>
+<p>其中，我们用到了大量之前学习过的LangChain组件，具体包括：</p>
+<ol>
+<li>用提示模板告诉大模型我们要找到内容（UID）。</li>
+<li>调用LLM。</li>
+<li>使用Chain。</li>
+<li>使用Agent。</li>
+<li>在Agent中，我们使用了一个Customized Tool，因为LangChain内置的SerpAPI Tool不能完全满足我们的需要。这给了我们一个好机会创建自己的“私人定制” Tool。</li>
+</ol>
+<p>在下节课中，我们还要继续利用大模型的总结文本、生成文本的功能，来为我们撰写能够打动大V和咱易速鲜花合作的文案，我们还将利用Output Parser把文案解析成需要的格式，部署到网络服务器端。敬请期待！</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li>如果Agent不返回UID，而是返回URL，是不是也能够完成这个任务？你可以尝试重构提示模板以及后续逻辑，返回URL，然后手动从URL中解析出UID。</li>
+<li>研究一下SerpAPIWrapper类的_process_response中的代码，看看这个方法具体是怎么设计的，用来实现了什么功能？</li>
+</ol>
+<p>期待在留言区看到你的分享，如果觉得内容对你有帮助，也欢迎分享给有需要的朋友！</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#20%EF%BD%9C%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%AA%E9%B2%9C%E8%8A%B1%E7%BD%91%E7%BB%9C%E7%94%B5%E5%95%86%E7%9A%84%E4%BA%BA%E8%84%89%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">20｜部署一个鲜花网络电商的人脉工具（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E4%BA%BA%E8%84%89%E5%B7%A5%E5%85%B7%E2%80%9D%E9%A1%B9%E7%9B%AE%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">“人脉工具”项目说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-number">1.2.</span> <span class="toc-text">项目的技术实现细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%89%BE%E5%88%B0%E5%A4%A7-V"><span class="toc-number">1.3.</span> <span class="toc-text">第一步：找到大 V</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F-findbigV-py"><span class="toc-number">1.4.</span> <span class="toc-text">主程序 findbigV.py</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%8D%9A-Agent%EF%BC%9A%E6%9F%A5%E6%89%BE%E5%A4%A7-V-%E7%9A%84-ID"><span class="toc-number">1.4.1.</span> <span class="toc-text">微博 Agent：查找大 V 的 ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E7%9A%84-SerpAPI%EF%BC%9AgetUID"><span class="toc-number">1.4.2.</span> <span class="toc-text">定制的 SerpAPI：getUID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E7%88%AC%E5%8F%96%E5%A4%A7-V-%E8%B5%84%E6%96%99"><span class="toc-number">1.5.</span> <span class="toc-text">第二步：爬取大 V 资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F-findbigV-py-1"><span class="toc-number">1.5.1.</span> <span class="toc-text">主程序 findbigV.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scraping-tool-py-%E4%B8%AD%E7%9A%84-scrape-weibo-%E6%96%B9%E6%B3%95"><span class="toc-number">1.5.2.</span> <span class="toc-text">scraping_tool.py 中的 scrape_weibo 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%AE%80%E7%88%AC%E5%8F%96%E8%BE%93%E5%87%BA"><span class="toc-number">1.5.3.</span> <span class="toc-text">精简爬取输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.6.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
