@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>154 | Y Combinator：孵化器还是培训班？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="154 | Y Combinator：孵化器还是培训班？孵化器作为给创业公司提供帮助的组织模式，并非Y Combinator首创。很长一段时间里，“孵化器”的名声一度不好，主要是因为孵化器并不能真正给创业者带来好处，而且又在盘剥创业公司上很厉害。 Y Combinator的横空出世，很大程度上改写了孵化器的历史，今天无数创业者都想去Y Combinator或者类似的孵化器，和Y Combinato">
+<meta property="og:type" content="article">
+<meta property="og:title" content="154 | Y Combinator：孵化器还是培训班？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/752338702.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="154 | Y Combinator：孵化器还是培训班？孵化器作为给创业公司提供帮助的组织模式，并非Y Combinator首创。很长一段时间里，“孵化器”的名声一度不好，主要是因为孵化器并不能真正给创业者带来好处，而且又在盘剥创业公司上很厉害。 Y Combinator的横空出世，很大程度上改写了孵化器的历史，今天无数创业者都想去Y Combinator或者类似的孵化器，和Y Combinato">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.553Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/752338702"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '154 | Y Combinator：孵化器还是培训班？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">154 | Y Combinator：孵化器还是培训班？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="154-Y-Combinator：孵化器还是培训班？"><a href="#154-Y-Combinator：孵化器还是培训班？" class="headerlink" title="154 | Y Combinator：孵化器还是培训班？"></a>154 | Y Combinator：孵化器还是培训班？</h1><p>孵化器作为给创业公司提供帮助的组织模式，并非Y Combinator首创。很长一段时间里，“孵化器”的名声一度不好，主要是因为孵化器并不能真正给创业者带来好处，而且又在盘剥创业公司上很厉害。</p>
+<p>Y Combinator的横空出世，很大程度上改写了孵化器的历史，今天无数创业者都想去Y Combinator或者类似的孵化器，和Y Combinator创立前“孵化器”等同骗子的状况不可同日而语。作为硅谷最为成功的孵化器公司，Y Combinator以其独特的孵化模式，在全世界都享誉盛名。</p>
+<p>Y Combinator是保罗·格雷厄姆（Paul Graham）、杰西卡·利文斯通（Jessica Livingston）、特雷弗·布莱克威尔（Trevor Blackwell）和罗伯特·泰潘·莫里斯（Robert Tappan Morris）在2005年创立的，至今已有13年。它的特殊之处在于不是一个随时入驻的孵化器，要想加入Y Combinator，必须参加它一年两次的创业投资培训计划，每次三个月。而这个创业投资培训计划，是需要经过严格PK选取的。</p>
+<p>具体来说，创业团队向Y Combinator提出申请。Y Combinator邀请一部分候选团队来面试，经过严格的面试的小比例团队会被录取。当然，伴随着Y Combinator的名气越来越大，申请人越来越多，现在录取比例也是越来越低，甚至很多团队连被邀请参加面试也作为资历写在给投资人的材料里。</p>
+<p>千军万马披荆斩棘之后，被录取的团队会在湾区的Y Combinator办公场所待三个月，这段时间Y Combinator会和创业团队联合办公，而创业团队将得到包括创业和如何寻找投资的全方位辅导。</p>
+<p>此外，Y Combinator也会请在创业方面具有某些专长的人（主要是它之前孵化成功的学员们）来给创业团队做报告。这些报告质量非常高，有时Y Combinator孵化最为成功的独角兽Airbnb 的创始人，也会亲自来给“学弟学妹们”讲解自己当初的孵化经历。</p>
+<p>三个月期结束之前，每个团队还会有在世界各地大量优质投资人面前展示自己产品的机会，很多团队因此获得了下一轮的投资。</p>
+<p>作为入选福利的一部分，创业团队还会从Y Combinator获得底价5500美元的种子轮投资，而创业团队中的每个人还可额外获得5500美元。比如说，一个三人的创业团队可以获得5500+ 5500*3&#x3D;22000美元的种子资金。Y Combinator之所以把种子投资的钱和创业团队的人数联系起来，是因为相信一个多人团队相对于单人创业更可能获得成功。</p>
+<p>入选并非没有代价，对于每个入选的创业团队，Y Combinator会拿走7%的股权。和Y Combinator的投入相比，7%的股权到底是多是少，是一个不好估量的问题。如果说创业公司成长为独角兽了，10亿美元分走7%，Y Combinator付出的仅仅是几万美元的投资和3个月的培训，创业团队无疑是付出了巨大的代价。但是如果创业团队创业失败了，那7%的股权也就没有意义了。</p>
+<p>这些年来，因为Y Combinator早期的投资诞生了大量成功的企业，包括Dropbox和Airbnb这样的独角兽企业，在投资人看来，能被Y Combinator选中本身就是一件加分的事情。有了Y Combinator的人脉和品牌加持，创业团队一般至少可以拿到一轮到两轮的投资。而这到底是不是值7%的股权，就见仁见智了。但是，既然大部分创业者依旧趋之若鹜的想去Y Combinator参加集训，毫无疑问，他们觉得这个代价是值得的。</p>
+<p>讲到Y Combinator，肯定要提它投资成功的企业。而在它投资成功的企业里面，最著名的莫过于那个千里马遇到伯乐的故事，这个故事发生在Y Combinator和Airbnb之间。</p>
+<p>当年，Airbnb的两位创始人一直找不到投资人。投资人觉得，把自己家租给陌生人是一个很异想天开的想法，怎么可能成功？Airbnb也没有太多生意，结果耗尽了两位创始人的钱。于是为了活下去，两位艺术家出身的创始人在美国大选期间策划设计，并亲自上场销售带有奥巴马和麦凯恩形象的麦片盒子，赚钱来支持自己创业。</p>
+<p>当他们报名Y Combinator时，保罗·格雷厄姆也和其他投资人一样，不知道这个项目到底有没有成功的可能。但是当他听说两个创始人为了创业一无所有，却还在想办法赚钱继续支持创业的时候，毅然决定投资了。</p>
+<p>保罗·格雷厄姆说：“你们公司这个想法到底能不能成功我不知道，但是你们两个人一定能存活下来。因为你们这样坚定的信念和做事情的决心，我相信你们两个人。”这句话后来广为流传。</p>
+<p>随后，保罗·格雷厄姆不仅在Y Combinator的培训中，帮助他们找了一个程序员做联合创始人，还在Airbnb毕业以后给投资人写了言辞恳切的推荐信。看得出来，他为了给这两位创始人拉投资算得上尽心尽力。后来，Airbnb拿了红杉投资的第一笔钱，并且不负众望获得了成功。</p>
+<p>这个故事几乎成了Y Combinator的招牌和鸡汤。但凡是个创业者，无疑都会被这个千里马和伯乐的故事所感动。而有这么成功的故事背书，投资人再看这个孵化器加持的创业项目，一般来说也都会慷慨解囊。这可能是这些年来Y Combinator越来越成功很重要的一个原因。</p>
+<p>从Airbnb的故事我们可以看到， Y Combinator相对于看一个创业团队的项目到底好不好，更重视一个创业团队的人到底怎么样。 它相信那些为了创业可以不顾一切的人，最后一定会成功，哪怕在这个项目上失败了，也可能在另外一个项目上成功。所以，要想进Y Combinator，创业者是什么样的人，比创业者在做什么样的项目要重要得多。</p>
+<p>而进到Y Combinator以后，只要是正确的人，Y Combinator的理念是，他们丰富的经验，总是可以帮助创业者找到合适的项目和合适的人脉，最终获得成功。我想这个理念有它的道理，但是市面上也有不认同这个道理的人和机构存在。</p>
+<p>试想一下，是不是真的为了创业可以不顾一切，就一定能成功呢？这并不好回答。尤其是“不顾一切”到底代表着什么，是不是说可以以违法犯罪的方式来创业呢？Zenefits同样是Y Combinator投资的公司，创始人的确是做到了不顾一切，但不顾一切到了违反法律法规的地步。这家公司一开始也很成功，但是被揭穿以后，就一塌糊涂了。现在很多人和机构对Y Combinator的这个理念，批评之处多在于此。</p>
+<p>无论如何，大家对Y Combinator的看法还是褒多过贬，而且对Y Combinator的需求一直很强劲。这几年来，Y Combinator每批吸收的初创公司都比几年前扩大了好几倍。但是这并不妨碍很多人有这样一个看法，就是：Y Combinator能够接纳的创业团队和实际的市场需求，有很大的差距。</p>
+<p>亲爱的读者，如果你想创业的话，要不要去试试Y Combinator呢？</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#154-Y-Combinator%EF%BC%9A%E5%AD%B5%E5%8C%96%E5%99%A8%E8%BF%98%E6%98%AF%E5%9F%B9%E8%AE%AD%E7%8F%AD%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">154 | Y Combinator：孵化器还是培训班？</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

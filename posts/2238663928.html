@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>075 | IBM的大数据路之起早贪黑赶了晚集 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="075 | IBM的大数据路之起早贪黑赶了晚集IBM是一家曾经有过无比辉煌历史的计算机公司，如今却时过境迁，对计算机发展的影响力所剩无几。 进入大数据时代后，IBM的路走得格外辛苦。IBM踏上大数据道路的早期我正好在IBM实习，也因此接触到了很多外人不知道的内容。 那是2008年，Hadoop刚刚开始兴起，雅虎正投入大量人力物力进行Hadoop核心模块的开发。我实习的部门是IBM Almaden研">
+<meta property="og:type" content="article">
+<meta property="og:title" content="075 | IBM的大数据路之起早贪黑赶了晚集">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2238663928.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="075 | IBM的大数据路之起早贪黑赶了晚集IBM是一家曾经有过无比辉煌历史的计算机公司，如今却时过境迁，对计算机发展的影响力所剩无几。 进入大数据时代后，IBM的路走得格外辛苦。IBM踏上大数据道路的早期我正好在IBM实习，也因此接触到了很多外人不知道的内容。 那是2008年，Hadoop刚刚开始兴起，雅虎正投入大量人力物力进行Hadoop核心模块的开发。我实习的部门是IBM Almaden研">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.436Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2238663928"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '075 | IBM的大数据路之起早贪黑赶了晚集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">075 | IBM的大数据路之起早贪黑赶了晚集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="075-IBM的大数据路之起早贪黑赶了晚集"><a href="#075-IBM的大数据路之起早贪黑赶了晚集" class="headerlink" title="075 | IBM的大数据路之起早贪黑赶了晚集"></a>075 | IBM的大数据路之起早贪黑赶了晚集</h1><p>IBM是一家曾经有过无比辉煌历史的计算机公司，如今却时过境迁，对计算机发展的影响力所剩无几。</p>
+<p>进入大数据时代后，IBM的路走得格外辛苦。IBM踏上大数据道路的早期我正好在IBM实习，也因此接触到了很多外人不知道的内容。</p>
+<p>那是2008年，Hadoop刚刚开始兴起，雅虎正投入大量人力物力进行Hadoop核心模块的开发。我实习的部门是IBM Almaden研究院，这个研究院以研究数据库相关技术出名，历史上第一个关系数据库的原型系统System R就诞生于此。</p>
+<p>当时我们组需要在Hadoop上开发两个外围项目。其一是做一种高级查询语言JAQL（JSON Analytical Query Language），它以JSON作为数据模型，语法上更像是一个数据流语言。另外一个项目则是基于JSON做一个搜索引擎。</p>
+<p>2008年旧金山湾区有Hadoop聚会的时候，演讲内容一般针对的是Pig、Hive、JAQL，由此可见JAQL在当时也是颇有建树的。可以说，IBM很早就进入了Hadoop生态圈，而且有一个类似Pig或者Hive的查询语言的项目。从数据模型来看，JSON也是非常有特色，那为什么好好的一盘棋下着下着就输了呢？</p>
+<p><strong>在我看来，IBM的官僚作风是一个很重要的原因。</strong> 虽说下面有团队在做这件事，但是领导层的重视程度并不够。当时这个团队只有一个领导、两个兵，而且其他资源也是远远拼不过其他公司的。</p>
+<p><strong>第二个原因，是IBM对待开源自己项目的保守态度。</strong> Hadoop本身是个开源项目，但是想要IBM开源JAQL项目是一件非常不容易的事情。当时的团队负责人尤金 · 谢基塔（Eugene Shekita）为此付出了很多努力，但仍是进展缓慢。</p>
+<p>后来IBM终于把JAQL开源了，但并没有同意把它捐献给Apache软件基金会，JAQL也就没能成为Apache的顶级项目。这样一来，其他非IBM的人想要参与进来就很困难了。JAQL的用户数量也因此受到了影响，难免显现出一些衰败的迹象，最终直接影响了团队士气，团队成员纷纷跳槽，只留下了老板尤金孤掌难鸣。后来尤金跳槽去了谷歌，这个和大数据、和Hadoop相关的技术研发也就嘎然而止了。</p>
+<p>此后，IBM决定不再开源JAQL，而是把它整合到自己的产品中，并且不再允许其他公司使用，这种做法是以开源为主体的Hadoop体系完全无法接受的。慢慢地，JAQL系统就淡出了Hadoop的圈子，最终变得无足轻重了。</p>
+<p><strong>在大数据领域，IBM研究院另外一个重要项目是机器学习平台System ML，这个项目始于2010年，也是比较早的。</strong> 但是，这个项目同样也不是开源的，所以虽然大家从论文里面知道了这个项目，但是却不知道它是怎么做出来的，自然也就无法在这个项目上进行开发了。</p>
+<p>在大数据的道路上，IBM因为自产自销的原因越走越窄，后来不得不做出一项重大决策：采用哪种平台继续前进。这次IBM的决定是全面倒向Spark。</p>
+<p>Spark是加州伯克利大学AMP实验室研发的产品，后来又经过Databricks公司不断地产业化，在数据分析和处理引擎领域已经有一统天下的倾向。</p>
+<p>IBM决定全面倒向Spark以后，内部的各种分析工具也都要从原先的平台迁移到Spark上。</p>
+<p>从某种程度上来说，IBM早早地就开始了Hadoop相关技术的研究，但最终却决定放弃自己对底层开发的积累，使用一个别人开发的、比它还要晚的平台。对于“百年老店”IBM来说，或许这个选择在商业上可以理解，但不管怎样看，这都不是一个好兆头。</p>
+<p>倒向Spark后，整个System ML项目要基于Spark重新开发。作为支持Spark生态系统的一部分，在2015年的Spark Summit上，IBM宣布将System ML开源。这个决定自System ML项目开始已经过去5年了，而就外界所知道的System ML也已经经历了两大版本的变迁。</p>
+<p>经过一年多的孵化，System ML终于在2017年夏天成为了Apache的顶级项目，这也算是IBM主导的第一个Apache顶级开源项目。但在机器学习和深度学习大行其道的今天，System ML到底还能产生多大的影响，要打一个大大的问号。</p>
+<p><strong>作为一个老牌的计算机公司，IBM眼光向来都不错。</strong> 在Hadoop刚兴起时，就进行了相关的研究。而且，行动力一点也不比其他互联网企业和社交媒体来得差。</p>
+<p>但是，虽然IBM早早地就进场了，项目做得也不差，人员素质更是不低，一切却都架不住官僚体系的腐朽和不开源的偏见。IBM内部官僚主义太重，虽然有团队在做Hadoop的相关技术研发，但上层的重视程度不够。更重要的是，凡是涉及了开源的问题，IBM都毫不犹豫地选择了拒绝，这更让IBM失去了很多机会。</p>
+<p>可以说，那个曾经为计算机发展做出过卓越贡献、始终走在历史发展前列的计算机公司，“蓝色巨人”已经死了。在Hadoop市场和大数据领域的错失，究其原因还是这个企业早就是垂垂朽已了。对此，除了一声叹气，我又能说些什么呢。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#075-IBM%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%B7%AF%E4%B9%8B%E8%B5%B7%E6%97%A9%E8%B4%AA%E9%BB%91%E8%B5%B6%E4%BA%86%E6%99%9A%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">075 | IBM的大数据路之起早贪黑赶了晚集</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

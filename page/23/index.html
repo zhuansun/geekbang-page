@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/23/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/23/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-06 06:10:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2763675287.html" title="111 | 周鸿祎和BAT的沉浮录（上）">111 | 周鸿祎和BAT的沉浮录（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">111 | 周鸿祎和BAT的沉浮录（上）在过去的十余年间，中国互联网企业从之前的BAT，发展到现在的百度淡出，只剩AT。从某种角度来看，这其实就是一部BAT的浮沉史。这期间虽然有异军突起，但整个互联网行业发展中几家独大的基本局面并没有改变。
+然而在BAT发展的历程中，有一个人的身影却始终都在。这个人并不属于BAT中的任何一家公司，却和BAT都血拼战斗过。理解BAT浮沉的历史以及和这个人之间的故事，对于我们理解中国互联网的发展历程来说极为关键。
+那么，这个人是谁呢？他就是周鸿祎，现在360公司的CEO。从今天开始，我会用几篇文章来和你聊聊周鸿祎，聊聊我所看到和理解的这位“中国互联网教父”。
+周鸿祎战斗的第一个对象，正是百度，而这场战争中的主角，就是李彦宏的百度公司和周鸿祎的3721公司。这场血拼的故事，发生在2000年到2005年之间，是中国互联网发展历程中很重要的一段历史。
+3721公司成立于1998年，而百度则最早可以追溯到2000年。从这个角度上来讲，3721的诞生其实早于百度，所以并非是因为百度开始做搜索，3721进行了抄袭。就像任何一家有梦想、有理想的创业公司一样，3721最开始的故事同样很美丽。
+一直以来，外国人上网，只需要在浏览器里敲入实体名字，就可以直接访问网站了，而中国人却必须敲入一堆英文字符，因此非常不方便。倘若我们直接输入“新浪”就可以打开新浪网，直接输入“百 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2104409018.html" title="114 | 周鸿祎和BAT的沉浮录（后记）">114 | 周鸿祎和BAT的沉浮录（后记）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">114 | 周鸿祎和BAT的沉浮录（后记）中国互联网的发展史上，周鸿祎是一个永远都不可不提的人。他有着非常鲜明的个人特点，又有着非同寻常的经历。他和百度、阿里巴巴以及腾讯在不同的时期都战斗过，他贯穿了互联网发展史中的各个重要阶段。我狗尾续貂个后记来着重分析一下。
+首先从人来看，周鸿祎身上有着许多可贵的品质值得我们每个人去学习。
+周鸿祎是一个学习能力很强，学习速度又很快的人。在互联网企业里，从业人员能不能够迅速地学习，决定了这个人能够走多远。
+周鸿祎非常有战斗力，他经历了很多战斗，一般人可能是很难真的支撑下去的。而他可以，一场又一场的战斗都不是问题。很多时候，人生也好，事业也罢，一定程度上，就是一场又一场的战斗，坚持住不倒下不容易。
+周鸿祎又是一个非常有毅力和勇气的人，在遇到无可匹敌的对手时，人往往都会畏惧、害怕，无法坚持下去。我觉得周鸿祎在某些方面做到了勇气、坚持和韧性的结合，他的这些品质值得每个人学习。
+从另一方面来看，一个人的成就到底有多高，这又取决于很多因素。
+有的时候不仅仅是聪明、坚持、勇气、韧性就足够的。很多时候，人的见识决定了这个人的高度。所谓“行万里路，读万卷书”是非常有道理的。
+见多识广的李彦宏，与周鸿祎相比较来说，可能也只是多了几年美国留学的经验，但却可能就是这个原因，直接导致了百度今天如此大的体量，而3721却被轻易地卖掉了。
+这个差距，体现在两个人身上，也许“ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/297255759.html" title="115 | 互联网第一股雅虎的兴衰：霸主的诞生">115 | 互联网第一股雅虎的兴衰：霸主的诞生</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">115 | 互联网第一股雅虎的兴衰：霸主的诞生如果说在互联网的发展史上，哪些公司需要被载入史册，雅虎必定有它一席之地。很可惜的是，这个诞生于1994年，曾经的“互联网第一股”，伴随着2017年固定资产被Verizon完成收购，已经不复存在了。但是雅虎的故事，还是值得讲一讲的。
+1994年1月，美国的互联网向公众开放并不久，当时最容易接触到互联网的是美国各大高校。当时就读于斯坦福大学电气工程系的博士生杨致远（Jerry Yang）和大卫 · 费罗（David Filo），在系里创建了一个网站，名字叫作：Jerry and David’s Guide to the World Wide Web。
+简单一点来说，杨致远和费罗把当时互联网上的所有资源搜集了一下，然后整合成一个有目录层次结构的分类索引网站。这样一来，用户就可以通过这个索引网站去访问互联网了。在互联网的早期阶段，互联网上资源的发现是一个大问题，而杨致远和费罗的做法，则为这个问题提供了一个解决方案。
+当然我们可以看到，这个解决方案从侧面反映了当时互联网上资源的规模。毕竟，一个用人工整理的分类目录，就可以囊括整个互联网里大部分有价值的资源。两个月后，这个页面就被改名为“Yahoo！”，这个名字是个缩写（Yet Another Hierarchically Organized Oracle），中文翻译过来就是“又一个分类整理的先知” ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2583565117.html" title="113 | 周鸿祎和BAT的沉浮录（下）">113 | 周鸿祎和BAT的沉浮录（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">113 | 周鸿祎和BAT的沉浮录（下）如果说和百度的斗争是一场小事，和阿里巴巴的斗争牵扯到了雅虎中国的利益，那么我想周鸿祎从来都没有想过有一天，他还需要和BAT里面最后一个大鳄展开一场艰难的战斗。
+而这场战斗的主动权却在腾讯的手里。这就是后来的“3Q大战”，它对中国互联网的发展产生了非常巨大的影响。
+今天我们看“大企鹅”的时候，觉得它非常憨态可掬。而腾讯作为“鹅厂”，也一直享有中国最有良心的互联网企业的美名。但倒推几年，在2010年及之前，中国的互联网企业，尤其是那些创业者，对“大企鹅”的看法可能就不那么乐观了。有句话叫作“走别人的路，让别人无路可走”，这句话说的就是当时在互联网企业工作和正创业打拼的人，对这只“大企鹅”的看法。
+我们先扯远一点，看看当年一篇著名的文章。2010年7月的时候，当时知名的《计算机世界》报在封面头条打出了大幅的标题，并且配上了一只被插了三刀的大企鹅作为标志，对腾讯展开了猛烈的批评。作为老牌计算机刊物，《计算机世界》存在的历史可谓不短，而这样猛烈的抨击背后到底有没有幕后黑手，其实我们不得而知。
+从这篇文章的材料准备来看，《计算机世界》是精心策划、认真准备了的。那个时候的腾讯，尚未在移动互联网上推出微信这样今日一锤定音的扛鼎之作，而是四面出击什么都做，只要别人有的，腾讯就上。
+这篇文章在网上至今都能够搜到，文章里面引用的例子，包括对曾经中国最牛的棋 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1148917565.html" title="116 | 互联网第一股雅虎的兴衰：运气不敌技术">116 | 互联网第一股雅虎的兴衰：运气不敌技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">116 | 互联网第一股雅虎的兴衰：运气不敌技术伴随着互联网泡沫的破灭，雅虎的估值下降了90%，当时的雅虎CEO蒂姆 · 库格尔（Tim Koogle）被迫下台。新上任的CEO特里 · 塞梅尔（Terry Semel）来自时代华纳，这之前他在时代华纳工作了24年，一直做到了联合CEO。同时上任的还有新的CFO苏珊 · 德克尔（Susan Decker）。在未来的若干年里，CEO塞梅尔和CFO德克尔对雅虎的发展起到了至关重要的作用。
+2001年的雅虎，可谓一塌糊涂，各种业务都在亏钱。面对这种状况，刚上任的CFO首先要控制财务状况。德克尔在进入雅虎之前是在投行工作的，而对于投行的人来说，处理财务的方式，很大程度上就是止损止盈，把钱投向能够赚钱的地方，砍掉亏钱的窟窿。
+德克尔在雅虎的做法和投行的一贯做法没有什么区别。她上任以后就对公司的所有项目按照投入产出比排了个序，那些赚钱的就可以得到更多的投入，而不赚钱的，就限期盈利，如果实在不能赚钱，项目自然而然就因为没有投入而死掉了。
+这种做法是不是最好呢，这值得商榷，因为未来的金蛋可能需要很长时间的孵化才能赚钱。但是最起码的，这个做法让雅虎有效地控制了成本，降低了破产的危险。这是典型的一种节流的做法。
+既然有节流，那必然也得有开源。这个任务交给了时任CEO塞梅尔。塞梅尔之前一直在传统媒体时代华纳工作，本身并没有在高科技企业工作过的经历。当他被董 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/508752113.html" title="117 | 互联网第一股雅虎的兴衰：没有救世主">117 | 互联网第一股雅虎的兴衰：没有救世主</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">117 | 互联网第一股雅虎的兴衰：没有救世主杨致远从建立人工编辑的互联网分类索引，到创立雅虎，再到雅虎上市，用了不到两年的时间。之后他想出通过给厂商做显示广告的方式，让雅虎在第一次互联网泡沫破灭之前赚了很多钱，成了全球访问量最大的网站。
+是杨致远在互联网发展初期赶上了好时候，还是说他本就是个天才、很有本事，因而发现了这个机会呢？
+之后雅虎在发展，杨致远忙于在全球复制雅虎的成功，首先就是非常成功的雅虎日本，之后是依然成功的雅虎台湾。再后来，杨致远进入中国大陆，买下了周鸿祎的3721，成立了雅虎中国。一年后，他又以10亿美元和雅虎中国的资产与马云做了个交易，拿走了阿里巴巴40%的股份。
+如果时光可以穿越，不要说10亿美元，20亿美元换阿里巴巴40%的股份，我也干啊。
+然而，虽然杨致远的投资有声有色，雅虎美国却在特里 · 塞梅尔的带领下战斗失利。广告和搜索业务的失败，让雅虎股票急剧下跌，投资人倍感失望，用水深火热形容那时的雅虎绝不为过。于是，大家都指望着正在全球成功复制雅虎的杨致远来拯救，这位英雄此次却也注定让人失望。
+伴随着杨致远的上任，当时被谷歌全方位挑战的微软向雅虎抛出了一份收购要约，计划以每股31美元，总价446亿美元收购雅虎。微软抛出收购要约的当天，雅虎收盘价为19.18美元，溢价60%。
+从收购价格上看，微软还是很有诚意的。但是雅虎创始人杨致远显然不希望自己创立的公司被收购 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4176174626.html" title="118 | 成也杨致远，败也杨致远">118 | 成也杨致远，败也杨致远</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">118 | 成也杨致远，败也杨致远雅虎曾经是互联网上访问量最大的一个网站，雅虎公司也一度发展为让人艳羡的“互联网第一股”。但是后来雅虎公司的发展却每况愈下，最后被Verizon以非常低廉的价格收购了。
+在互联网发展史上，雅虎公司的故事注定是非常浓重的一笔。而雅虎的成败，和创始人之一的杨致远有着紧密的关联，今天我就来分析一下他和雅虎公司一路沉浮间的关系。
+雅虎成立之初是一个人工整理的分类网站，大致类似于一个商品目录。这种人工编辑的网站，在互联网资源非常匮乏又没有其他替代方法时是非常有效的。人们都非常喜欢使用这类网站，因为它们有两个很重要的特点：
+
+信息很齐全；
+信息很准确。
+
+杨致远创立雅虎并让雅虎在纳斯达克上市以后，很长一段时间里，他最主要的工作是在世界各地复制雅虎美国的成功，并先后创立了雅虎日本和雅虎台湾，这两个网站都很成功。成功到什么程度呢？曾经一度互联网前20访问量的网站，雅虎美国、雅虎日本和雅虎台湾都在列。
+但是这个模式有一个致命的缺点。随着互联网内容呈指数级增长，和互联网信息更新的速度越来越快，靠人工整理、以分类目录的方式展现出来的资源，既不能够做到囊括整个互联网里大部分的信息，也无法保证这些信息的准确性和时效性。
+什么才是这个问题的正确打开方式？今天我们这些知道历史怎么发展的“开挂”的人，其实都知道答案：搜索引擎。雅虎曾经尝试过用机器去自动聚合资源，来代替人工去建立索引 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/379526298.html" title="119 | 企业因人成事，领导人很重要">119 | 企业因人成事，领导人很重要</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">119 | 企业因人成事，领导人很重要有一句话叫作“兵熊熊一个，将熊熊一窝”，这句话还是很有道理的。一个企业发展得怎么样，很多时候需要看企业的那群领导人到底怎么样。透过企业的领导人去分析企业的前景，往往行之有效。
+纵观古今中外，我们所能够见到的伟大企业，都会和一个或者几个“伟大”的人联系在一起。而这个人的自传或者经历，又会告诉我们很多这样那样做人做事的道理和方式。
+我们从来没有真正见到过一个伟大的企业，不需要一个伟大的人，只需要大家按部就班在某个伟大制度的指引下执行就可以的。企业因人成事，却不会因事成人。
+所以我们看一个企业的时候，一个办法就是看这个企业是谁领导的，有哪些人在管理，又有谁出钱去投资了，投了多少钱。
+企业的运营模式和如何赚钱，也许不是我们每个人看得过来的，但是如果运营企业的人，或者投资企业做大股东的人是我们信任的，那么很多时候我们可以盲从说，这家企业是有前景的。当然，这是一个知易行难的过程。接下来我讲讲难点，以及应该怎么办。
+首先，常见的情况是，如果一家企业的领导人已经很有名很有建树，那么我们可能也不需要透过这个领导人对这个企业去分析什么了。比如说2017年贝佐斯领导下的亚马逊是非常成功了，这时候去分析贝佐斯，然后得出结论说亚马逊很牛，显然是个笑话。
+而1997年亚马逊刚成立的时候，如果有人透过分析贝佐斯，得出结论说20年后这个企业定会大放异彩，这个分析人一定很牛。所 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1318048471.html" title="120 | 彼得 · 蒂尔的投资人生">120 | 彼得 · 蒂尔的投资人生</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">120 | 彼得 · 蒂尔的投资人生2017年10月中旬，奥地利首都维也纳举行了一场低调的婚礼，婚礼的主角是彼得 · 蒂尔和他的同性男友。这场婚礼很低调，媒体知道也是很多天以后了。
+彼得 · 蒂尔1967年出生于德国法兰克福，至今拥有德国国籍。他在婴儿时期就随父母移民美国，之后经历过短暂的南非生活，但大部分时间都是在硅谷度过的，并最终成为了硅谷最为重要的投资人、企业家、政治活动家之一。他就是我今天要说的主角。
+彼得 · 蒂尔的投资哲学，按照他在自己的著作《从0到1》中的说法，总结起来就是：“ 作为创业者，应该去做一些很有价值而且很少人做的领域；作为投资人，应该去投资潜力很大而且没有被发现的领域。”
+在彼得 · 蒂尔的整个投资生涯里面，最为值得称道的经历有两段：第一段是创建了PayPal并作为CEO让PayPal上市了；第二段则是作为Facebook的第一个外部投资人，投资了Facebook的天使轮。
+在有限的篇幅里面尽述彼得 · 蒂尔的整个投资履历是一件不容易的事情，所以本文的重点就集中讲述这两段经历。
+彼得 · 蒂尔曾就读于斯坦福大学，获得了哲学学士和法学博士学位。在短暂的法律界工作后，因为投资的兴趣进入瑞士信贷集团做交易员，三年的交易员经历让他觉得应该离开那个职位做点不一样的。
+于是1996年的时候，彼得 · 蒂尔从亲朋好友那边筹集了100万美元，开始了他的投资生涯。
+当时正值 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4083705780.html" title="109 | 从巴顿的创业史看巴顿">109 | 从巴顿的创业史看巴顿</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">109 | 从巴顿的创业史看巴顿巴顿这个人在专栏里已经出现三次了，这三次分别和三个企业相关：Expedia、Zillow和Glassdoor。一个人成功创业一次已经很了不起，如果一个人创业三次，而三次都很成功呢？巴顿就是这样一个人，那么从他三次成功创业的轨迹里，我们或许可以发现些什么。
+巴顿创立第一个公司Expedia，始于他在微软工作期间。那时，微软需要在在线旅游方面有所建树，于是有了Expedia网站。虽然后来Expedia被拆分出来并成功上市，但严格意义上讲，巴顿只是这一项目的负责人，而不是独立的创业者。2003年Expedia公司已经上规模的时候，巴顿更是选择离开开始二次创业。
+如果说第一个公司的创业轨迹还够不明确，第二次创业时巴顿想要做的事情就清晰了很多，那就是：把数据和某个产业结合起来，从而能够发现痛点，弥补鸿沟，创造价值。
+Zillow是一个房地产数据平台，在其整个发展史中，无论是自身建设还是对其他企业的大肆收购，都围绕一个问题进行，即：更好地补充Zillow的数据平台。
+这个创业方式到了三次创业的Glassdoor这儿更加明确，即：通过搜集每个企业员工的薪酬信息和点评，掌握第一手企业数据，并利用这些数据去创造价值和盈利。这个方式和Zillow的主旨并无差别，只不过不同的公司，在数据的采集、整合，以及数据的变现上不一样。
+虽然我们不清楚从什么时候开始，巴顿意识到了数据 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/22/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/#content-inner">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/#content-inner">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/#content-inner">28</a><a class="extend next" rel="next" href="/page/24/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

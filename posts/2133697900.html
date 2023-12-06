@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>091 | Databricks之Spark的数据金砖王国 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="091 | Databricks之Spark的数据金砖王国说起大数据的创业公司，我们一定都会提到Databricks这公司，而这家公司知名的原因，一大部分来自于它的开源产品Spark。Spark是Hadoop生态圈里大红大紫的项目，事实上，它甚至已经取代了新一代的经典运行框架：Hadoop MapReduce。 所以，想要了解Databricks这家创业公司，我们就需要先了解Spark这个Apac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="091 | Databricks之Spark的数据金砖王国">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2133697900.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="091 | Databricks之Spark的数据金砖王国说起大数据的创业公司，我们一定都会提到Databricks这公司，而这家公司知名的原因，一大部分来自于它的开源产品Spark。Spark是Hadoop生态圈里大红大紫的项目，事实上，它甚至已经取代了新一代的经典运行框架：Hadoop MapReduce。 所以，想要了解Databricks这家创业公司，我们就需要先了解Spark这个Apac">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.460Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2133697900"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '091 | Databricks之Spark的数据金砖王国',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">091 | Databricks之Spark的数据金砖王国</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="091-Databricks之Spark的数据金砖王国"><a href="#091-Databricks之Spark的数据金砖王国" class="headerlink" title="091 | Databricks之Spark的数据金砖王国"></a>091 | Databricks之Spark的数据金砖王国</h1><p>说起大数据的创业公司，我们一定都会提到Databricks这公司，而这家公司知名的原因，一大部分来自于它的开源产品Spark。Spark是Hadoop生态圈里大红大紫的项目，事实上，它甚至已经取代了新一代的经典运行框架：Hadoop MapReduce。</p>
+<p>所以，想要了解Databricks这家创业公司，我们就需要先了解Spark这个Apache开源项目。Spark是一个大数据计算框架，它诞生于加州大学伯克利分校AMP实验室，是当时的博士生马泰·扎哈里亚（Matei Zaharia）的博士论文课题。</p>
+<p>2010年，Spark在BSD License下开源。经过几年发展以后，在2013年成立了Databricks，同年，它被Databricks捐献给Apache基金会，并将开源模式转向了Apache 2.0，从此，Spark正式成为Apache家族里顶级开源项目之一。</p>
+<p>Spark是目前整个Hadoop的生态系统里最为活跃的计算框架，它已经取代了Hadoop原来MapReduce框架的地位，目前，只有Flink的计算框架尚能与它平分秋色（有关Flink的情况，我们会在后面的文章里详细介绍）。</p>
+<p>Spark框架下支持SQL、机器学习、图计算、流计算等各种各样的计算模型，应用起来十分广泛。它不仅在开源社区里广受追捧，在大公司里也常常被拿来应用，IBM现在已经把自己的大数据计算引擎押宝在Spark上了。</p>
+<p>介绍完Spark，我们来看看它背后的Databricks公司，这家公司是由加州大学伯克利分校AMP实验室的原班人马组建的，它成立的目的主要是为了推广Spark和Spark的生态圈。</p>
+<p>Databricks的管理层可谓明星荟萃。CTO马泰·扎哈里亚是Apache Spark最初的创作者，同时也是斯坦福大学的教授。CEO是阿里·格霍西（Ali Ghodsi）是加州大学伯克利分校的兼职教授，执行总裁艾恩·斯塔卡（Ion Stoica）也是学校的全职教授，他还是CTO马泰·扎哈里亚的导师。另外一位联合创始人是华人雷诺·辛（Reynold Xin），他现在是首席架构师。</p>
+<p>Databricks的核心，主要是Spark。如果我们把Spark理解成为一个计算平台的话，那么围绕着Spark生态圈做的东西则是Databricks的核心价值。对Databricks来说，首先要做的事情，是把Spark的开源项目越做越大。</p>
+<p>作为做大Spark的一部分，Databricks对Spark发展方向的掌控在开源社区是出了名的强势。自从Databricks成立以来，对Spark技术的演进一直都是有自己的路线图的。</p>
+<p>近些年来，无论是SparkSQL、DataFrame的推出，还是基于Mini-batch的Spark Streaming的工作开展，都是Spark这个计算框架下面非常重要的项目。如果没有Databricks的推动和首肯，这些项目几乎不可能进到Spark的发行版里。</p>
+<p>因此，我们总结一下Databricks的商业模式：壮大Spark社区，掌控和引导Spark的技术走向。</p>
+<p>然而仅仅做大Spark开源项目，对Databricks来说还是不够的，这些不足以带给Databricks盈利；而一个公司是否成功，最终还是取决于这个公司的赚钱能力。从这个角度上来讲。壮大Spark是Databricks盈利的一个基础，但是却不是Databricks盈利的根本。</p>
+<p>那么说，Databricks是怎么盈利的呢？</p>
+<p><strong>Databricks的第一条盈利方式就是：选择在这些基石上面，开发附加产品来赚钱。</strong> 其中第一个产品，也是Databricks现阶段正在努力的方向，就是提供云上搭建的Spark计算平台。</p>
+<p>我们来看看这个产品具体是如何赚钱的。</p>
+<p>Spark团队在一开始设计Spark产品的时候，就遵循了一条原则：它和Hadoop整个体系保持松耦合，所有的相关服务都抽象成接口，再通过接口调用。</p>
+<p>这样做的好处在于，如果Spark哪一天决定和另外一套类似的系统对接，那么只要针对另外一套系统重新实现一下接口就好了，Spark自身的代码则完全不需要改动。</p>
+<p>这样，它一方面可以和Hadoop做到有效整合，借助业已壮大的Hadoop平台和生态圈推广自己。另外一方面，如果万一哪天Hadoop被别家取代了，或者Spark需要针对某些企业内部系统（比如对微软、谷歌内部大数据系统）进行整合的话，改动工作也会非常容易。</p>
+<p>果不其然，深谋远虑的Spark团队十分生财有道。他们在开源了支持Hadoop的社区版以外，还专门开发了直接对接云厂商的版本，比如亚马逊AWS版的Spark。</p>
+<p>这个版本的Spark按照Databricks公布的数据，针对AWS优化的Spark的效率比开源版高5倍以上，但是，这个版本却不是开源的。</p>
+<p>Databricks又把这个不开源的版本做成云服务卖给用户。由于这个版本的Spark比开源版的要更快，很多企业愿意付钱买，这也就成了目前Databricks最重要的盈利途径。</p>
+<p><strong>Databricks的第二条盈利方式是对建立在Apache Spark平台上的应用进行认证，并确保这些应用和Spark的兼容性。</strong> 这种认证当然不是免费的，由于Spark社区的成功，这方面的认证开展工作也是如火如荼。</p>
+<p><strong>Databricks的第三条盈利方式是：给使用了Spark技术的各大公司提供技术支持。</strong> 简单来说，Spark虽然开源，但是用好Spark的公司，不一定都有技术实力读、改源代码来适应自己的应用场景。这个时候买了Databricks的技术支持服务的话，Databricks就可以提供支持了。</p>
+<p>由于Databricks对Spark的源代码非常熟悉，Databricks的技术支持往往能够解决很多企业非常重要的紧急问题。而有些公司不缺钱，也愿意付钱给Databricks，这门生意对Databricks来说也是重要的赚钱途径。</p>
+<p>这三块服务是不是足够支撑Databricks呢？我想这个问题的答案有点复杂。</p>
+<p>第一块业务非常实际，这是可以大规模推广的赚钱方式。一部分开源，一部分不开源，通过开源来圈用户，通过提供更高性能的服务来赚钱。这个生意做得比较成功。</p>
+<p>这个生意里最大的问题是，Databricks自身并不拥有云平台，它的云平台主要运行在亚马逊的云服务上面，这就造成了亚马逊自己一旦也想做类似服务的话，Databricks就很难抵抗。所以多做几个云厂商上面的服务，这也许是一个好主意，起码可以不把全部筹码压在一个平台的身上。</p>
+<p>后面两块业务的市场取决于Spark到底有多重要，以及Databricks到底有多懂Spark。</p>
+<p>首先，我觉得Spark的重要性毋庸置疑，大企业比如SAP，IBM都在其产品里面用Spark和引入对Spark的支持。这证明了Spark的市场占有率是巨大的。</p>
+<p>其次，Databricks的几个创始人基本上奠定了Spark的架构。在很多情况下，某些特定的东西Spark为什么是这样设计的，也只有做架构的人才能回答了。所以恐怕市面上不存在一家比Databricks更懂Spark的商业机构。从这一点来看，Databricks的基本盘是很稳妥的，所以这两个业务也能赚到钱。</p>
+<p>但是，Databricks目前面临的一个大问题是机器学习，尤其是深度学习的潮流。Spark是用Scala写的，并在JVM上运行。这就意味着，基于Spark的机器学习平台并不能有效地利用GPU。这样一来，这个问题就大了。</p>
+<p>机器学习作为Spark最初也是最重要的应用之一，在Spark社区占有很重要的地位。Databricks是否能够有效解决这个问题，对自己的是否能成功和Spark将来会怎么发展，都非常的重要。Databricks的另外一个考验是需要应对Flink这个后起之秀的进攻。</p>
+<p>我想，Databricks的前途是光明的，但是也会充满竞争和曲折。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#091-Databricks%E4%B9%8BSpark%E7%9A%84%E6%95%B0%E6%8D%AE%E9%87%91%E7%A0%96%E7%8E%8B%E5%9B%BD"><span class="toc-number">1.</span> <span class="toc-text">091 | Databricks之Spark的数据金砖王国</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

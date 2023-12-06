@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>135 | 个人在线存储 Dropbox | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="135 | 个人在线存储 Dropbox上一回我讲了Box，一家以消费者在线存储和文件共享起家，但是后来迅速转型到以服务企业在线存储和文件共享为核心的公司。在线存储和文件共享领域显然并非只有Box一家企业，比如我今天要讲述的主角Dropbox。 Dropbox是目前网上最流行的消费者个人在线存储和文件共享的服务提供商，在全球有超过5亿的用户。 Dropbox成立于2007年，是由MIT的学生德鲁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="135 | 个人在线存储 Dropbox">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/585541615.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="135 | 个人在线存储 Dropbox上一回我讲了Box，一家以消费者在线存储和文件共享起家，但是后来迅速转型到以服务企业在线存储和文件共享为核心的公司。在线存储和文件共享领域显然并非只有Box一家企业，比如我今天要讲述的主角Dropbox。 Dropbox是目前网上最流行的消费者个人在线存储和文件共享的服务提供商，在全球有超过5亿的用户。 Dropbox成立于2007年，是由MIT的学生德鲁">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.526Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/585541615"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '135 | 个人在线存储 Dropbox',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">135 | 个人在线存储 Dropbox</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="135-个人在线存储-Dropbox"><a href="#135-个人在线存储-Dropbox" class="headerlink" title="135 | 个人在线存储 Dropbox"></a>135 | 个人在线存储 Dropbox</h1><p>上一回我讲了Box，一家以消费者在线存储和文件共享起家，但是后来迅速转型到以服务企业在线存储和文件共享为核心的公司。在线存储和文件共享领域显然并非只有Box一家企业，比如我今天要讲述的主角Dropbox。</p>
+<p>Dropbox是目前网上最流行的消费者个人在线存储和文件共享的服务提供商，在全球有超过5亿的用户。</p>
+<p>Dropbox成立于2007年，是由MIT的学生德鲁 · 休斯顿（Drew Houston）和阿拉什 · 费多斯基（Arash Ferdowsi）创立的。</p>
+<p>按照创始人德鲁的说法，当初创立Dropbox的想法非常简单。德鲁经常忘记带U盘，这样他就交不了作业或者程序。于是，他就写了一个为自己服务的网盘。后来他突然想到，作为学生的他会三天两头忘带U盘，其他学生肯定也好不到哪里去，所以这个网盘应该有很大的商业前景。</p>
+<p>于是，在2007年的时候，德鲁就决定开一个公司，专门经营Dropbox的生意。于此同时，另一位创始人阿拉什 · 费多斯基加盟进来，据说他是被这个产品惊艳到了，所以打算和德鲁一起干一番事业。</p>
+<p>同样都是提供在线存储和文件共享服务的公司，Dropbox与上一篇中的Box发展“轨迹”是不一样的。</p>
+<p>第一，依托形式不同。2005年Box开始开发的时候，亚马逊AWS的服务还没有发布。所以，Box的最初版本是以几个创始人自己搭服务器、并雇人看服务器的方式诞生的。但是Dropbox出来的时候已经是2007年了，而2006年AWS就“闪亮登场”。所以Dropbox诞生的第一天，后端用的就是AWS的S3存储系统。</p>
+<p>第二，投资境况不同。由于投资环境问题，Box起初一直都没有得到投资人的青睐。但Dropbox的第一笔投资就是从硅谷著名孵化器Y Combinator得来的。这一点来看，Dropbox的命运比Box好很多。</p>
+<p>Y Combinator是硅谷乃至全球最著名的孵化器（专栏后面会有专文详细介绍）。被Y Combinator选中的项目在投资人眼里是高回报、低风险的代表。但凡得到Y Combinator投钱的人，后期融资的时候，投资人往往趋之若鹜。</p>
+<p>当然，Y Combinator的投资并非毫无代价。其实代价相当的高。被选中的创业者，只能拿到为数不多的几万块钱的投资，却要付出7%的股权。如果将来公司估值过亿的话，这些股权也会非常值钱。然而鉴于Y Combinator的辉煌孵化经历，即使需要付出如此巨大的代价，被Y Combinator选中的创业公司，也从未有拒绝的先例。</p>
+<p>第三，服务对象不同。Box公司主要以服务企业用户为核心，而Dropbox的主要面向对象是消费者。Dropbox最初唯一的盈利模式是采用“免费试用+高级服务收费的Freemium模式”（也就是给免费用户提供有限的容量，额外的容量需要按月付费）。Dropbox在很长一段时间里，用户量增长非常迅速。但是这些用户里面愿意付费买额外空间的却少的可怜，所以通过这种方式盈利对于Dropbox来说一度不太现实。</p>
+<p>Dropbox的用户界面很友好。它首创了后来Google Drive和One Drive都采用的方式。在电脑里Dropbox会生成一个新的特殊目录，用户只需要按照正常的目录操作，把要保存到云端的文件拖进去就可以了。当然，用户也可以按照自己的意愿在目录里面建立子目录。这种方便、快捷的使用方式让Dropbox吸引了大量的用户。</p>
+<p>而在很长一段时间里，“用户量的增长”是湾区投资人关注的很重要，甚至可以说是最重要的指标。因此，Dropbox曾经是和Square、Pinterest并驾齐驱的湾区三大最火热创业公司。</p>
+<p>然而从2014年开始，投资人对于Dropbox的关注度明显下降了。这一方面是因为大家开始注意到用户量不一定能够转换成营收；另外一方面也是因为湾区出现了新的更加引人注目的创业公司Uber和Airbnb。</p>
+<p>Dropbox一度也试图在文件共享以外做一些别的东西，以便把自己手头掌握的大量文件的附加价值体现出来。</p>
+<p>2013年，Dropbox收购了创业公司Mailbox。众所周知，这家公司提供的email软件非常有名。</p>
+<p>2014年，Dropbox又推出了照片编辑和共享服务Carousel。这两者代表了Dropbox在文件平台上进行用户间合作的尝试。但是显然这两次尝试都不是很成功。2015年底，Dropbox关停了这两个服务。</p>
+<p>Dropbox在2015年的时候还发布了一项新的服务Dropbox Paper。这是一个人和人之间可以互相合作的文档编辑器。有点类似office 365或者Google Docs。它的主要目标是增强Dropbox的文档编辑和协作能力。</p>
+<p>从创新的角度来看，这个编辑器并没有什么特色。但是从弥补Dropbox不足的角度来看，这个编辑器弥补了Dropbox之前很重要的一块不足之处：当Dropbox的竞争对手都可以在线对存储云盘上的文件做简单编辑的时候，Dropbox却没办法做到这一点。这对于让用户继续留在Dropbox，防止用户投奔竞争对手，无疑是非常有意义的。</p>
+<p>在成立后的前8年里，Dropbox的文件都存在AWS上，自己并没有文件存储系统。但是从2014年到2016年，Dropbox内部开启了一场巨大的系统层面的重写。Dropbox自建数据中心，把用户存储的文件从AWS挪到自己的数据中心和自建的文件系统中来。</p>
+<p>这个做法的原因：一方面是Dropbox希望自己可以控制自己的存储内容，然后就可以自建网络，给用户提供更好、更快、更稳定的文件更新和下载服务；另外一方面也可能和成本有关。这是Dropbox成立以来底层架构最大的一次变革。</p>
+<p>Dropbox的工程师们还专门写文章讨论了Dropbox是怎样从无到有搭建自己的文件系统，并无缝从AWS过渡到自己的系统的。这些文章都从侧面反映了Dropbox后端工程师相当高超的软件架构和开发水平。</p>
+<p>Dropbox除了专注个人市场外，后期也进入了企业服务市场，成为比较重要的一个服务提供商。Dropbox Business就是这样一款给企业量身定做的服务。但到目前来看，Dropbox Business的功能相对企业的需求来说，依然还是单薄了一些。所以，Dropbox的企业版还有很长一段路要走。</p>
+<p>2018年，DropBox终于上市了。经过这么多年的融资，Dropbox的估值很高。上市当天就涨了50%。</p>
+<p>和它同期的Square为了上市，在2015年自砍估值一大半。但是Dropbox并没有做类似的事情，因为Dropbox的优势是现在的现金流是正的。从某种程度上讲，只要Dropbox不乱扩张、乱花钱，它就可以好好的活下去。</p>
+<p>虽然第一天DropBox的表现很好，但是从长远角度来说，任何一家企业都是要盈利的。Dropbox也不可能一直烧钱亏损。所以股价是否能够维持在高位，是判断Dropbox到底是不是成功的重要标志。这一点，我觉得不好评判和预测。</p>
+<p>亲爱的读者们，你看好Dropbox的前景吗？欢迎你留言，和我一起探讨。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#135-%E4%B8%AA%E4%BA%BA%E5%9C%A8%E7%BA%BF%E5%AD%98%E5%82%A8-Dropbox"><span class="toc-number">1.</span> <span class="toc-text">135 | 个人在线存储 Dropbox</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>083 | 阿里巴巴的大数据故事：流计算引擎发展史 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="083 | 阿里巴巴的大数据故事：流计算引擎发展史在阿里巴巴的发展过程中，流数据处理一直是业务中很重要的一部分。和数据分析平台不一样，阿里巴巴内部的流数据处理平台有很多套。 在阿里巴巴的流数据发展历程里，有两个著名的流引擎JStorm和Blink依然还在产生着深远的影响。这种影响并不仅仅在阿里巴巴集团的内部，并且扩散到了全球的开源世界。比起其他用于集团内部的流计算引擎，它们更被人所熟知，今天我们就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="083 | 阿里巴巴的大数据故事：流计算引擎发展史">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1381405620.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="083 | 阿里巴巴的大数据故事：流计算引擎发展史在阿里巴巴的发展过程中，流数据处理一直是业务中很重要的一部分。和数据分析平台不一样，阿里巴巴内部的流数据处理平台有很多套。 在阿里巴巴的流数据发展历程里，有两个著名的流引擎JStorm和Blink依然还在产生着深远的影响。这种影响并不仅仅在阿里巴巴集团的内部，并且扩散到了全球的开源世界。比起其他用于集团内部的流计算引擎，它们更被人所熟知，今天我们就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.448Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1381405620"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '083 | 阿里巴巴的大数据故事：流计算引擎发展史',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">083 | 阿里巴巴的大数据故事：流计算引擎发展史</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="083-阿里巴巴的大数据故事：流计算引擎发展史"><a href="#083-阿里巴巴的大数据故事：流计算引擎发展史" class="headerlink" title="083 | 阿里巴巴的大数据故事：流计算引擎发展史"></a>083 | 阿里巴巴的大数据故事：流计算引擎发展史</h1><p>在阿里巴巴的发展过程中，流数据处理一直是业务中很重要的一部分。和数据分析平台不一样，阿里巴巴内部的流数据处理平台有很多套。</p>
+<p>在阿里巴巴的流数据发展历程里，有两个著名的流引擎JStorm和Blink依然还在产生着深远的影响。这种影响并不仅仅在阿里巴巴集团的内部，并且扩散到了全球的开源世界。比起其他用于集团内部的流计算引擎，它们更被人所熟知，今天我们就来重点分析一下这两个流计算引擎的发展。</p>
+<p><strong>我们先来说说Storm和JStorm</strong></p>
+<p>Storm是被Twitter收购以后才开源出来的流计算引擎。阿里巴巴集团是在封仲淹带领的团队下才开始使用Storm的。</p>
+<p>我在之前讲Storm的时候说过，这种流计算引擎是用一种比较小众的函数式编程语言Clojure开发出来的。国内的Clojure专家屈指可数，因此阿里巴巴使用Storm时遇到了很多的问题。</p>
+<p>毕竟有些时候需要去增加或者改变一些功能，而这也就意味着需要对系统进行改进或者定制，但是Clojure语言十分小众，懂这种编程语言的人尚且不多，更不用说专业去修改了，所以，这些都决定了这种工作非常难以展开。</p>
+<p>鉴于Storm十分难以改进和定制，又是当时开源世界里最成熟的流计算引擎。于是，从2012年开始，阿里巴巴决定用Java对Storm进行重写，这就是JStorm项目的由来。</p>
+<p>按照封仲淹的观点来说，JStorm就是Storm二次开发的产物。它可以让用户无缝地从Storm迁移到JStorm。</p>
+<p>阿里巴巴选择用Java进行开发，这让开发进度明显加快。而且，源于阿里巴巴的应用规模、对数据实时性等种种要求，团队对JStorm也进行了很多的优化。可以这么说，JStorm的出现，解决了Storm存在的很多问题。</p>
+<p>2015年11月19日，阿里巴巴集团正式向Apache基金会捐赠了JStorm。JStorm成为了Apache Storm下面的一个子项目，并在Apache基金会里继续孵化。</p>
+<p>那段时间，JStorm的作者们对于开源表现出非常大的积极性。封仲淹那时也表示，整个社区的Storm 2.0会基于阿里巴巴的JStorm，用Java语言进行开发。</p>
+<p>然而世事无常，JStorm在Apache的孵化器里待了快两年，依然没有成为Apache基金会的顶级项目。而Storm2.0这个以阿里巴巴JStorm为主的开发项目更是连影子都没有见到。</p>
+<p>对于此事，我非常好奇，但并不真正知晓其答案。只是有次听到一个Apache圈内人士聊到过，说阿里巴巴和Storm社区之间似乎有了矛盾。</p>
+<p><strong>再来说说Flink和Blink</strong></p>
+<p>Flink是德国柏林工业大学设计的一个流计算引擎，现在是Apache的顶级开源项目。Flink这个引擎从模型的角度来看是非常先进的，但是在工程实现上却相对薄弱一些。</p>
+<p>Flink也被阿里巴巴集团用到了自己的生产环境中，项目的领导者是曾经在微软SQL Server组以及Facebook都待过的数据库专家蒋晓伟（花名“量仔”）。</p>
+<p>他在接受采访时表示，在Spark和Flink这两个引擎中，Flink的设计理念更为先进一些，也更符合阿里巴巴对流计算引擎的要求，这恰恰也是他的团队选择这个引擎的原因。</p>
+<p>当然，阿里巴巴集团并没有把Flink拿来直接使用，而是对Flink进行了大量的、全方位的改造，不仅提高了Flink的性能，而且改进了不少功能。这个项目在阿里巴巴内部叫作Blink，是阿里巴巴集团内部很多业务的流处理引擎，其重要地位可见一斑。</p>
+<p>Blink目前还未开源，但在与社区的合作上，Blink团队和Flink的开发者之间保持了更为友好的关系。Flink的开发团队多次在公开场合感谢Blink团队对Flink项目的贡献，Blink团队也把很多功能都反馈到了Flink的代码库里。</p>
+<p>为什么JStorm和Blink同为由阿里巴巴主导的，针对Apache已有项目改良的产物，却在和开源社区的互动以及对开源社区的影响方面有着不同的结果。我想，这其中大概有几方面的原因。</p>
+<p>首先，Flink是后起之秀，又来自德国，还是从学校里出来的。在Flink流进市场的时候，北美的主要互联网企业要么已经使用了自研的流计算引擎，要么已经基于开源的流计算引擎开展了业务，不太可能短期内更新流计算引擎到Flink，所以Flink本身就需要大客户的支撑，阿里巴巴的出现恰逢其时。</p>
+<p>其次是Flink团队和阿里巴巴团队的互补性比较强。前者理论基础好，但是没有工业界的开发经验，后者工业界开发经验却很足，这也就让双方的合作有了基础。</p>
+<p>最后，也可能是最重要的一点就是，这还是一个面子问题。JStorm的做法是把Storm的整个代码库用另外一个语言完全重写了一遍，这无疑是一种比较得罪人的做法。而Blink在贡献回自己的代码时，是在Flink原有代码基础上改的，并且改动时也和Flink的人做了仔细协商。我想，也许就是这两种不同的合作态度，决定了两个项目的不同结果。</p>
+<p>除了这两个流计算引擎以外，阿里巴巴内部还有其他一些流计算引擎（包括Max Compute组自己开发的，一个完全和开源社区无关的流计算引擎），但是这些引擎公开的消息很少，我就算是有心想研究它们，却也不知道从何下手了。</p>
+<p>不过最新消息称，经过多年不同引擎之间的内部PK，阿里巴巴在2018年终于确定了：未来Blink会是阿里巴巴集团统一的流计算引擎。</p>
+<p>JStorm和其他的流计算引擎上的业务都会慢慢迁移过来，最终整个公司的所有流计算引擎的开发和维护资源都会集中到Blink上。这也是阿里巴巴集团内部第一次有某种数据处理产品“一统江山”。</p>
+<p>两个流计算引擎和开源社区的交流的不同结局告诉我们，和开源社区打交道，仅仅是提供自认为更加厉害的代码给开源社区是远远不够的。尤其是贡献代码的同时却没有给予社区主要贡献者足够的尊重，往往会让事情往坏的方向发展。和社区的合作需要大量持续的互动和交流，以及对社区主要贡献者的尊重。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#083-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%95%85%E4%BA%8B%EF%BC%9A%E6%B5%81%E8%AE%A1%E7%AE%97%E5%BC%95%E6%93%8E%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">083 | 阿里巴巴的大数据故事：流计算引擎发展史</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

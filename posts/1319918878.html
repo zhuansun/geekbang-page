@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>139 | 微软的综合工程师改革 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="139 | 微软的综合工程师改革陆奇在就职于微软的那几年里，于微软内部进行了一次意义深远的综合工程师改革。这场改革，起始于陆奇领导的Online Service Division，经过若干年的努力后终于在全公司范围内实施，并对微软以后的发展产生了不可估量的影响。今天我就来聊聊这场改革。 改革背景微软功成名就的年代里，正是个人计算机的软件行业飞黄腾达的年代。 微软最初是以“软件帝国”而知名。那时互联">
+<meta property="og:type" content="article">
+<meta property="og:title" content="139 | 微软的综合工程师改革">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1319918878.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="139 | 微软的综合工程师改革陆奇在就职于微软的那几年里，于微软内部进行了一次意义深远的综合工程师改革。这场改革，起始于陆奇领导的Online Service Division，经过若干年的努力后终于在全公司范围内实施，并对微软以后的发展产生了不可估量的影响。今天我就来聊聊这场改革。 改革背景微软功成名就的年代里，正是个人计算机的软件行业飞黄腾达的年代。 微软最初是以“软件帝国”而知名。那时互联">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.532Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1319918878"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '139 | 微软的综合工程师改革',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">139 | 微软的综合工程师改革</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="139-微软的综合工程师改革"><a href="#139-微软的综合工程师改革" class="headerlink" title="139 | 微软的综合工程师改革"></a>139 | 微软的综合工程师改革</h1><p>陆奇在就职于微软的那几年里，于微软内部进行了一次意义深远的综合工程师改革。这场改革，起始于陆奇领导的Online Service Division，经过若干年的努力后终于在全公司范围内实施，并对微软以后的发展产生了不可估量的影响。今天我就来聊聊这场改革。</p>
+<h2 id="改革背景"><a href="#改革背景" class="headerlink" title="改革背景"></a>改革背景</h2><p>微软功成名就的年代里，正是个人计算机的软件行业飞黄腾达的年代。</p>
+<p>微软最初是以“软件帝国”而知名。那时互联网才刚刚开始，软件的分发形式一开始是主销软盘的，后来又以光盘为主，这种传播方式对软件开发提出了很多要求，而这些要求里面最重要的有两个。</p>
+<p>首先，软件发行不可能太频繁。微软的平均软件开发周期是三年。这也可以理解。如果发行太频繁了，用户肯定也不愿意买。</p>
+<p>其次，在软件不能发行太频繁的前提下，必须注重客户需求和软件质量。前者意味着每次大版本的升级，都需要顾及到很多客户进一步的需求。后者意味着软件在卖出去的时候，本身必须已经通过了严格的测试，不会有什么严重的Bug出现了。因为严重的Bug往往会导致不得不召回所有的软盘、光盘，这种代价是非常巨大的。</p>
+<p>为了应对上述要求，微软培养出了一套非常成功的、并且有自身特色的软件开发模式：人事上的三权分立。</p>
+<p>在微软里面，有三种不同的角色：开发、测试和项目经理。和其他公司不同的是，微软是真正意义上的三权分立。这三种角色在公司里面并行存在，级别一路可以到副总裁。最后三个副总裁再汇报给一个部门的总负责人，比如Online Service Division的陆奇。在微软内部，部门负责人数目是个位数。</p>
+<p>微软不仅有非常庞大的开发队伍，同时还有非常庞大的测试队伍和项目经理队伍。这三者构成了微软在“软件帝国”时代的软件研发模式，且各自都有着庞大的群体和诉求。在这个“软件帝国”里，办公室人际关系错综复杂，而微软的三权分立的架构，给这里的办公室政治带来了更为复杂的设定。比如说，项目经理、测试和开发这三组人出现分歧时，到底应该谁听谁的呢？</p>
+<h2 id="开发模式的弊端"><a href="#开发模式的弊端" class="headerlink" title="开发模式的弊端"></a>开发模式的弊端</h2><p>进入互联网发达的时代以后，这个开发模式的优势逐渐失去，不仅如此，其弊端还越发凸显出来。</p>
+<p>单纯从传统软件的开发来看，软件的发布不再需要每次都寄光盘了，因为互联网下载也是一个选项；软件的测试不需要那么仔细了，因为发布补丁让用户通过互联网下载安装这个事情也是可行的；软件的发布也不需要那么久了，很多功能完全可以一边开发、一边发布。</p>
+<p>相对于软件公司来说，互联网公司对测试的要求比较低。哪怕有什么问题没有测试出来，软件更新的成本也非常低。</p>
+<p>作为必应搜索引擎的开发部门，其运作方式是互联网公司的方式，对测试要求很低。而陆奇到来的时候，见到的却是一个三权分立的、测试人员很多的传统软件公司开发团队。这个团队效率低下，产品难产，一年才能发布一次。</p>
+<p>大量的测试人员在微软的其他机构，是软件品质保证所必须的。但是在这个互联网公司运作模式的必应开发部门，确是冗余人员和效率低的代名词。所以陆奇的改革势在必行。这些庞大的测试队伍必然首当其冲。</p>
+<h2 id="综合工程师改革"><a href="#综合工程师改革" class="headerlink" title="综合工程师改革"></a>综合工程师改革</h2><p>用一句话总结这次微软的综合工程师改革，那就是：把微软整个测试的部门和开发部门合并，只剩下开发和项目经理两个组织；而测试和开发人员合并以后，每个人就既要负责测试又要负责开发。</p>
+<p>这个做法当然是非常有难度的。因为测试组织在微软根深蒂固，是自从微软诞生以后就有了。而且不同于其他公司，微软的测试组织是完全独立的，并且里面的关系盘根错节，有无数既得利益者。</p>
+<p>陆奇选择在他的Online Service Division推广这个改革。因为必应搜索引擎如果只能半年一次小的发布、一年一次大的发布的话，那等到发布出来后“黄花菜都凉了”。为了让必应搜索引擎能够正常的发展，陆奇的这个改革势在必行。</p>
+<p>陆奇的做法是先选了他的地盘Online Service Division下面的一个铁杆部门开始试点。因为他知道这种试点的压力很大。在铁杆部门获得成功后，陆奇又陆陆续续推广到Online Service Division的其他部门去。最终用了两年时间，整个Online Service Division的测试和开发就完全合并了。</p>
+<p>在Online Service Division推广以后，陆奇又得到了整个微软高层的支持，把这个改革在整个微软推广开来了。这个改革虽然说静悄悄的，但是对微软的影响却是深远的。</p>
+<h2 id="改革的影响"><a href="#改革的影响" class="headerlink" title="改革的影响"></a>改革的影响</h2><p>此次改革最大的影响是：微软的开发再也不需要经过那么繁琐的测试历程，软件的发布迅速了很多。这对微软无疑是非常重要的一步。后面微软能够在云计算上迅速推进，就和微软的这次悄无声息的改革是有很大关系的。</p>
+<p>但此次改革带来的影响也不完全是积极的。</p>
+<p>改革的副作用之一是变相地大量裁撤了测试人员。这些测试人员是微软招进来专门给软件做测试的。其中很多人在微软20来年里，唯一会的技能是使用微软内部的工具和手动测试软件。</p>
+<p>作为测试人员，这些人是很高效的。但是当他们和开发人员合并以后，绩效考评自然而然就排在了末尾。很多人就因为连续两次绩效考核不合格，被微软开除了。我认识一个在微软工作了17年的测试人员，就是在这次改革中离开了微软。离开微软的他因为技能落后找不到软件开发工作，最后成为了一个卡车司机。</p>
+<p>而测试人员的裁撤也产生了另外一些副作用。一些基础软件，比如Windows和Visual Studio等等，其实是需要很认真测试的，尤其需要专职人员的测试。但是因为此次机构改革，测试人员的话语权也失去了。和过去的微软比起来，这些软件普遍都没有认真测试够。</p>
+<p>近两年来这些软件质量下降是有目共睹的。前段时间甚至还出现了微软发布的一个补丁导致机器蓝屏无法恢复只能格式化的“囧事”，若在早年，因为有充足的测试人员进行充分的测试，这种事情是不会发生的。</p>
+<p>总而言之，这场改革对微软的影响是深刻而深远的。微软轻装上阵，为新时代的到来做好了准备。但是同时你也可以看到，这个改革有点矫枉过正了，出现了“很多软件质量下降、Bug增多等”改革副作用。</p>
+<p>测试人员作为三权分立的机构之一正式退出了微软。整个事情的发展过程中，最叹惋的无疑是那些被改革所淘汰的测试人员。他们毕生都贡献给了微软，却被微软辞退，又因为技能单薄，找不到下一份工作。这些人最终落入这样的局面，是微软的锅，是这些人自己的问题，还是时代变迁必然的产物呢？</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#139-%E5%BE%AE%E8%BD%AF%E7%9A%84%E7%BB%BC%E5%90%88%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%94%B9%E9%9D%A9"><span class="toc-number">1.</span> <span class="toc-text">139 | 微软的综合工程师改革</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E9%9D%A9%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">改革背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">开发模式的弊端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%BC%E5%90%88%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%94%B9%E9%9D%A9"><span class="toc-number">1.3.</span> <span class="toc-text">综合工程师改革</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E9%9D%A9%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.4.</span> <span class="toc-text">改革的影响</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

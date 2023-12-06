@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink2014年，数据库领域的顶级会议VLDB在杭州召开。柏林理工大学的教授沃克尔·马尔科（Volker Markl）做了一场关于大数据计算平台的专题报告，这场报告讲的是一个叫做Flink的系统。 沃克尔和他的团队从事大数据研究已经很多年了，他们最初开始做的是一个叫做Stratosphere的项目。这个系统并不出名，既无Ha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3131115284.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink2014年，数据库领域的顶级会议VLDB在杭州召开。柏林理工大学的教授沃克尔·马尔科（Volker Markl）做了一场关于大数据计算平台的专题报告，这场报告讲的是一个叫做Flink的系统。 沃克尔和他的团队从事大数据研究已经很多年了，他们最初开始做的是一个叫做Stratosphere的项目。这个系统并不出名，既无Ha">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.461Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3131115284"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="092-Data-Artisans：浴火重生的新一代大数据计算引擎Flink"><a href="#092-Data-Artisans：浴火重生的新一代大数据计算引擎Flink" class="headerlink" title="092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink"></a>092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink</h1><p>2014年，数据库领域的顶级会议VLDB在杭州召开。柏林理工大学的教授沃克尔·马尔科（Volker Markl）做了一场关于大数据计算平台的专题报告，这场报告讲的是一个叫做Flink的系统。</p>
+<p>沃克尔和他的团队从事大数据研究已经很多年了，他们最初开始做的是一个叫做Stratosphere的项目。这个系统并不出名，既无Hadoop的声势浩大，也没有Spark的迅速扩张。</p>
+<p>后来，沃克尔吸取了早年Stratosphere系统的教训，并调研了市场上现存的系统不足，经过了重新设计，才制作出了这个叫Flink的新系统。</p>
+<p>Flink以非常先进的流计算引擎思想为基本，同时还结合了传统大数据和数据库的优点。于是，这个系统一进入Apache软件基金会以后，就迅速火爆了，甚至连Capital One和国内的阿里巴巴集团银行都开始相继使用。</p>
+<p>Flink从一出现就获得了很多的关注，这是自Spark项目出现以来，所有Apache项目里面最受关注的一个。最主要的原因就是Flink的理念非常先进，而且Flink是基于流模型的一个计算平台，它所使用的流计算模型，又是目前市面上所有开源项目里最为先进的。“先进”“实时”“流计算”，这些词语被放在一起，就给Flink带来了无限的光辉。</p>
+<p>Flink一时风头无两，网上很快出现了Spark是不是会被Flink取代的言论。在美版知乎Quora和程序员非常喜欢的Stack Overflow上面，这个问题屡次被提出来讨论。</p>
+<p>实际上这个问题却没有一个定论，业内大部分的人都觉得Spark和Flink的竞争中，前者很成熟，商业化也不错；后者的理念先进，也有一定的支持，究竟谁能胜出，还是要看后续的发展。</p>
+<p>介绍完了Flink的概况，我们再来聊聊它背后的公司。和加州大学伯克利学院对待Spark一样，柏林理工Flink的主要开发者们，也为Flink成立了一家大数据公司Data Artisans，它的总部位于欧洲柏林，在硅谷设有分公司。</p>
+<p>从某种程度上，Data Artisans和Databricks很像，区别只是前者的主打项目是Flink，后者是Spark而已。</p>
+<p>Data Artisans的运营模式和盈利模式和Databricks也很像，他们也提供一个基于Flink的云计算平台，叫做dA Platform。这个平台有开源的Flink，还有不开源的应用管理器，平台不开源的部分就是他们的增值服务。此外，公司同时提供了对Flink的培训和咨询服务。</p>
+<p>如果我们把Flink换成Spark，忽略主打项目的不同，那么我们几乎可以看到两家公司几乎一样的商业运营模式。而这两个公司唯一的区别是：Data Artisans目前不做认证服务。</p>
+<p>那么说，两个极其相似的产品之间，后来者Data Artisans是不是会有一些不利之处呢。</p>
+<p>首先，它的竞争对手Databricks已经运营很久了。何况Databricks的前身，加州大学伯克利分校的AMP实验室也已经和工业界有非常紧密的联系，更不要说，Spark在整个社区里已经建立非常强劲的生态环境。</p>
+<p>其次，Flink作为一个新产品，又出自一个远离湾区的德国柏林的公司，它的境遇自然就要差一些了。先不去谈时间上的短板，仅仅因为它是欧洲公司出品的产品，就可以令它在湾区的使用率被打一个折扣。所以对于Flink，很多公司一直都是站着看戏的态度。这让Flink在号称互联网中心的北美地区推广并不顺利。</p>
+<p>最后，虽然Flink的产品在理念上很先进，但是理念从来都不是一切，理念之外，还需要有这个产品的实现。这方面，后来的Data Artisans比起Databricks要差了不少，所以Flink实现起来，Bug会多一些，代码对于大规模的并行处理效率也要更低，有很多的瓶颈等等。</p>
+<p>不过，虽然Flink有诸多不利之处，但是它先进的流计算引擎思想，代表着比Spark更光明的未来。这不妨碍一些公司，尤其是自身学术能力不一定强，但是有着强大工程开发能力和开发资源的公司去支持Flink。</p>
+<p>Data Artisans的第一个强大的“后盾”就是阿里巴巴。阿里巴巴集团内部组建了一支自己的队伍，在数据库专家蒋晓伟的带领下，对Flink的代码进行了大量的改动，这些改动在工程实现上让Flink有了一个质的飞跃。这款克隆版的Flink就是我们在前面文章中讲到过的Blink。</p>
+<p>我们之前也讲到过，Flink社区和阿里巴巴的Blink团队的合作非常紧密。阿里巴巴把很多自己做的改动都重新贡献回Flink，这让Flink的发展迅速地走向了康庄大道。到今天为止，阿里巴巴是世界上对Flink贡献代码第二多的公司，仅次于Data Artisans。</p>
+<p>Data Artisans和阿里巴巴的结合，让我们对Flink的未来多了很多信心。</p>
+<p>另外，在北美也有一家公司在支持着Data Artisans，它就是Capital One公司。Capital One公司也是Flink目前在北美的最大使用者，它对Flink的表现还是相当满意的。</p>
+<p>此外，公开支持Flink的还有谷歌。支持Flink的原因是谷歌开源了它的数据流定义平台Apache Beam，而在开源这一平台的过程中，谷歌表示只有Flink这个引擎具备了Beam需要的所有特性，其他引擎，包括Spark在内，都还是差了那么一点。</p>
+<p>这些都让Flink赢得了一些关注，但是不管怎么样，Flink在北美的发展，总体上仍然举步维艰。</p>
+<p>我们常常说“成就都是站在巨人的肩膀上取得的”，我们还常常会说“失败是成功之母”。Flink在某种程度上是这两句话的完美体现。</p>
+<p>Flink很晚才被开发出来，所以一方面，它继承了一个失败项目的优点，并规避了缺点。另外一方面，它参考了市场上已有的引擎，学习它们的长处与不足。简而言之，Flink的起点很高。</p>
+<p>但是晚出来的产品也有坏处。如果之前有一个很好的产品基本上已经占据了市场，那么晚出的产品想要得到市场的认可，不但需要技术要非常强大，还需要看自身的运气。而它的前辈Spark，的确是一个非常厉害的产品。</p>
+<p>所以说，Flink能不能够抢占一整块市场，这一点不太好说。至于它能不能彻底把Spark取代了，那更是痴人说梦。只要Databricks自己不犯错，Data Artisans要想取得胜利，实在是一件不容易的事情。但是我想，市场那么大，Data Artisans应该也能分得自己的一块蛋糕。</p>
+<p>你又是怎么看待站在巨人的肩上这个问题呢？你可以给我留言，我们一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#092-Data-Artisans%EF%BC%9A%E6%B5%B4%E7%81%AB%E9%87%8D%E7%94%9F%E7%9A%84%E6%96%B0%E4%B8%80%E4%BB%A3%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E5%BC%95%E6%93%8EFlink"><span class="toc-number">1.</span> <span class="toc-text">092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

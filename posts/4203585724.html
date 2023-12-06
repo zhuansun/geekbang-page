@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>086 | Palantir：神秘的大数据独角兽 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="086 | Palantir：神秘的大数据独角兽在大数据领域，Palantir无疑是知名度非常高，却又带着强烈神秘色彩的公司。因为大家虽然都知道它是做大数据的，其产品在很长一段时间里却几乎没有办法从市面上看到。 为什么？因为它最初的服务对象都是美国国防部（DOD）、中央情报局（CIA）、联邦调查局（FBI）等非常敏感的政府机构。庆幸的是，自从它开始把业务拓展到金融领域之后，终于向世人揭开了一部分神">
+<meta property="og:type" content="article">
+<meta property="og:title" content="086 | Palantir：神秘的大数据独角兽">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4203585724.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="086 | Palantir：神秘的大数据独角兽在大数据领域，Palantir无疑是知名度非常高，却又带着强烈神秘色彩的公司。因为大家虽然都知道它是做大数据的，其产品在很长一段时间里却几乎没有办法从市面上看到。 为什么？因为它最初的服务对象都是美国国防部（DOD）、中央情报局（CIA）、联邦调查局（FBI）等非常敏感的政府机构。庆幸的是，自从它开始把业务拓展到金融领域之后，终于向世人揭开了一部分神">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.453Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4203585724"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '086 | Palantir：神秘的大数据独角兽',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">086 | Palantir：神秘的大数据独角兽</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="086-Palantir：神秘的大数据独角兽"><a href="#086-Palantir：神秘的大数据独角兽" class="headerlink" title="086 | Palantir：神秘的大数据独角兽"></a>086 | Palantir：神秘的大数据独角兽</h1><p>在大数据领域，Palantir无疑是知名度非常高，却又带着强烈神秘色彩的公司。因为大家虽然都知道它是做大数据的，其产品在很长一段时间里却几乎没有办法从市面上看到。</p>
+<p>为什么？因为它最初的服务对象都是美国国防部（DOD）、中央情报局（CIA）、联邦调查局（FBI）等非常敏感的政府机构。庆幸的是，自从它开始把业务拓展到金融领域之后，终于向世人揭开了一部分神秘面纱。</p>
+<p>Palantir的创始人彼得·蒂尔（Peter Thiel）是硅谷著名的企业家和投资人。他于1998年创建了 PayPal，该公司在上市后不久的2002年被 eBay 收购，他也因此获得了人生第一桶金。</p>
+<p>PayPal，从很大程度上来说，是彼得·蒂尔为理想而创建的公司，并非为了金钱。彼得·蒂尔在斯坦福读书时，就表达了自己保守主义的政治理念，在9·11事件以后更是觉得国家通过监控个人行为来阻止可能存在的破坏和犯罪活动是应该的，而之后成立Palantir就是为自己的这种理念提供技术支撑。</p>
+<p>Palantir注册于2003年，正式成立于2004年，那个时候彼得·蒂尔与几位工程师开发出了第一版的系统。同一年，他邀请了亚历克斯·卡普（Alex Karp）任公司CEO。说起亚历克斯，他和彼得·蒂尔曾经是斯坦福法学院的同学，毕业后去了德国读哲学博士，研究西方马克思主义哲学。总之，最后的结果就是：一个投资人为了理想成立了 Palantir，一个哲学博士则成了这个大数据公司的CEO。</p>
+<p>Palantir 成立之初，资金主要来自两部分：一部分是美国中央情报局下属的投资机构 In-Q-Tel 投资的200万美元，也正是 In-Q-Tel 这种资金来源渠道让Palantir一开始就和政府有着千丝万缕的联系；另一部分资金是彼得·蒂尔自己投入的3000万美元，这主要来自于他卖掉 PayPal 的所得。</p>
+<p>虽说 In-Q-Tel 投资的科技公司不少，比如我们耳熟能详的大数据公司 Cloudera 和数据库公司 MongoDB 都接受过 In-Q-Tel 的投资，但是相对来说，Palantir 是比较早期就拿了In-Q-Tel 投资的公司，并且 In-Q-Tel 对Palantir的期望也颇高。</p>
+<p>Palantir早年最重要的产品是Palantir Gotham，简单来说这是一款给政府部门用的大数据分析软件，这里的“政府部门”当然是指国防部、中央情报局、联邦调查局等机构。也因此，这款软件非常神秘，见过的人很少。网上虽偶尔有截图流传出来，但是没有人能够肯定说这就真的是Palantir Gotham 软件的截图。</p>
+<p>所以我们并不知道Palantir到底使用了什么样的技术，做了什么样的产品。但是有关Palantir的产品帮助美国政府发现攻击之类的故事却非常多，这些故事也在很大程度上增加了这个公司的神秘性。</p>
+<p>外界关于Palantir的小道消息很多，包括其软件如何被美国军方应用到多兵种联席作战指挥中，美国政府是如何在Palantir 软件的帮助下抓获本·拉登的，等等。事出有因，查无实据，倒似乎可以作为我们对Palantir Gotham的一个总结。</p>
+<p>时至今日，关于这款产品我能够知道的唯一信息就是：它确实存在。</p>
+<p>有传言称：Palantir公司内有一个办公室，所有玻璃都是防弹玻璃；这个办公室就是给CEO亚历克斯用的；亚历克斯日常就有政府高官才会配备的联邦保卫人员，出行必须穿防弹衣、配备一定级别的安保等等。这所有的传闻，都让公司显得异常神秘，也让它在外界眼中显得更有势力，和整个美国的权力部门有很深、很密切的联系。</p>
+<p>Palantir在给政府部门提供大数据分析支持的一段时间以后，又开始进军金融行业。正是这样，Palantir Metropolis 应运而生，它主要面向金融公司，比如高盛、摩根大通之类的投行。</p>
+<p>据说这款软件给予金融行业各种各样的能力，帮助金融企业发现了很多的欺诈问题，挽回了不少的损失。但是相较于Palantir Gotham，因为这款新软件服务的对象是金融机构，所以神秘性也就降低了不少。</p>
+<p>参与Palantir Gotham软件工作的人员是需要通过美国政府背景调查的，而Palantir Metropolis 因为主要面向商业软件，所以工作人员不需要走背景调查程序。</p>
+<p>我在2014年的时候参加过Palantir的面试，个人感觉其整个面试过程非常地压抑。进门之前要先过一道类似机场的安检门，然后拍照；进入公司以后，我还被要求只能在特定区域内待着，不能随便走动。当然，事先面试官就告诉我这个面试是面向Palantir Metropolis的，而不是Palantir Gotham。</p>
+<p>作为面试环节的一部分，Palantir的员工给我们演示了这个软件，当然拍照和摄像都是不被允许的。Palantir Metropolis当时给我的感觉就是：见面不如闻名。</p>
+<p>我来面试之前，对这款为金融行业服务的软件期望特别高，但是在演示中我并没有看到任何一点值得惊艳的地方，我个人感觉这个软件展示的功能非常对不起Palantir公司那种神秘的味道。</p>
+<p>大约是我“乘兴而来、败兴而归”的缘故吧，公司对我也不满意，所以双方等于是“互拒”了。</p>
+<p>Palantir这家公司除了神秘，还存在很多非议，比如：公司到底要不要上市？</p>
+<p>CEO亚历克斯曾经在某次接受采访时表示了公司不打算上市的观点。初创公司不上市，对员工来说或许不是什么好事儿，因为员工手里的股票就没有渠道轻松变现了。不过，对于Palantir这样的公司来说，不上市或许是好事儿，因为上市就需要披露很多信息，这对其和美国政府之间的合作并不友好。</p>
+<p>Palantir还有一点备受非议，就是招聘时对亚裔面试者的歧视。2016年，美国劳工部对Palantir提起诉讼，原因是Palantir公司在招聘过程中，长期一贯地终止亚裔面试者的录用资格，哪怕他是合格的。</p>
+<p>2017年4月，这场官司以Palantir赔偿170万美元的方式庭外和解。但是Palantir依然公开宣称，公司并无对亚裔的歧视。至于这话是否可信，我想大家心里都有公论吧。</p>
+<p>此外，2016年有文章说Palantir公司有大量员工离职，公司临近破产边缘。不过，这个事情随着彼得·蒂尔给特朗普（Trump）大量捐款，此后特朗普又顺利成为美国总统而慢慢销声匿迹，随后Palantir 还获得了政府的大量订单。我想彼得·蒂尔对特朗普的政治献金对于缓解公司窘境应该是起到了很大的作用。</p>
+<p>从Palantir这个公司我们可以看到，创业的时候我们需要考虑公司怎么做生意。和政府关系密切本身是做生意的一种办法，Palantir显然在互联网行业里把这种办法拔高到了一个一般公司无可企及的高度，这给Palantir的发展带来了大量便利。但是凡事有利有弊，和政府的紧密结合也为Palantir的公司发展带来了障碍，比如企业上市的问题。</p>
+<p>彼得·蒂尔是一个个性鲜明的人，Palantir这家企业的争议性也非常得大。个性鲜明和争议性本身并无对错，但是对于创业者和创立的企业来说，是不是每个都能在大的争议性中不倒并且还能发展，就不一定了。大部分创业者和企业，争议性小一点，也许更好。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#086-Palantir%EF%BC%9A%E7%A5%9E%E7%A7%98%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%8B%AC%E8%A7%92%E5%85%BD"><span class="toc-number">1.</span> <span class="toc-text">086 | Palantir：神秘的大数据独角兽</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>129 | Square：手机POS机和比特币交易 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="129 | Square：手机POS机和比特币交易2008年，Twitter的联合创始人兼CEO杰克 · 多西（Jack Dorsey）被公司开除出Twitter，他一度比较迷茫，不知道自己接下来要做什么。这个问题在不久之后的2009年得到了回答。 当杰克见到他在圣路易斯的时候就认识的伙伴吉姆 · 麦凯尔维（Jim McKelvey）的时候，得知对方想要卖他价值2000美元的玻璃水龙头和配套设备却">
+<meta property="og:type" content="article">
+<meta property="og:title" content="129 | Square：手机POS机和比特币交易">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3955351372.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="129 | Square：手机POS机和比特币交易2008年，Twitter的联合创始人兼CEO杰克 · 多西（Jack Dorsey）被公司开除出Twitter，他一度比较迷茫，不知道自己接下来要做什么。这个问题在不久之后的2009年得到了回答。 当杰克见到他在圣路易斯的时候就认识的伙伴吉姆 · 麦凯尔维（Jim McKelvey）的时候，得知对方想要卖他价值2000美元的玻璃水龙头和配套设备却">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.518Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3955351372"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '129 | Square：手机POS机和比特币交易',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">129 | Square：手机POS机和比特币交易</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="129-Square：手机POS机和比特币交易"><a href="#129-Square：手机POS机和比特币交易" class="headerlink" title="129 | Square：手机POS机和比特币交易"></a>129 | Square：手机POS机和比特币交易</h1><p>2008年，Twitter的联合创始人兼CEO杰克 · 多西（Jack Dorsey）被公司开除出Twitter，他一度比较迷茫，不知道自己接下来要做什么。这个问题在不久之后的2009年得到了回答。</p>
+<p>当杰克见到他在圣路易斯的时候就认识的伙伴吉姆 · 麦凯尔维（Jim McKelvey）的时候，得知对方想要卖他价值2000美元的玻璃水龙头和配套设备却无法成交。这是因为吉姆没有办法接受信用卡付账，这个时候，杰克立即想明白了自己预备创业的事情。</p>
+<p>杰克决定和他的伙伴吉姆解决个人接受信用卡支付的问题。他们的做法是做一个可以插在智能手机，比如iPhone上的信用卡读卡器。再通过特定的App，帮助用户解决信用卡支付的问题。</p>
+<p>这个读卡器的外形是白色的正方形，所以取名叫做Square。这也成了杰克公司的名字。</p>
+<p>当然，官方对于这个名字的解释也有另外一个说法，这来源于非常著名的谚语：Squaring up，翻译过来就是步步高升的意思。用到这个场景下，意思就是帮助小客户们享受到大客户才能有的待遇，特指接受信用卡支付。</p>
+<p>Square的第一款产品就是可以插在智能手机耳麦插孔里的读卡器，还有一个与读卡器配套的App。小客户比如出租车司机、个体餐车等等都可以通过这款App收钱。这款产品首先在湾区流行开来，我还记得Square刚成立的2009和2010年，湾区的很多出租车司机都开始用服务来接受信用卡付费。</p>
+<p>这款读卡器本身是免费送的，Square在这个过程中，只收取2.75%的手续费，除去给银行等各方面的费用以外，Square大致可以从每笔交易里面赚取1%的费用。</p>
+<p>这个时候，美国这几年的信用卡开始慢慢地从磁条读卡过渡到芯片卡，在2014年的时候，Square的读卡器也在与时俱进地在2014年夏天推出了支持芯片卡的读取。2015年，Square也与苹果合作，推出了支持Apple Pay的读卡器。</p>
+<p>除了读卡器以外，Square的第二款产品叫做Square Stand。这个产品是一个外接设备，可以把iPad变成为店里常见的收银台。设备需要配合Square的软件一起才能起到这种效果。与Square 读卡器比起来，Square Stand看起来更高大上，也适合店里使用。</p>
+<p>Square一度和星巴克谈下来使用Square的系统，主要是Square Stand和配套软件来帮助星巴克收钱。这个生意谈成的时候，一度作为Square的招牌到处宣传；然而不幸的是，这个生意到了2015年并没有续约。</p>
+<p>由此可见，Square和其他的专业的POS机比起来，固然在收费上要低廉很多，对大企业来说也有明显的缺陷。</p>
+<p>Square推出的第三款产品是一款自己设计的POS机，既不需要借助于智能手机也不需要借助于iPad，叫做Square Register。这款设备推出的时间很晚，是2017年10月。目前来看，尚不知道这个设备能给Square带来多少新的客户。</p>
+<p>除了这些服务以外，Square的服务囊括了整个支付相关的方方面面。Square Cash是Square推出的一款个人之间转账的App。这个软件在个人转账市场上有很高的占有率，最主要的原因是它用起来非常方便。</p>
+<p>Square Capital是2014年Square推出来的给小商家提供贷款的服务。这种贷款和传统贷款的区别在于，商家并不需要在固定的时间内还清贷款。还款的方式是商家每刷一笔单，其信用卡收入的一部分就会付给Square去还本金和利息。这个业务开展起来之后，颇受到小商家的欢迎。</p>
+<p>Square还在2014年8月收购了一个著名的送餐创业公司Caviar。Square在收购Caviar之前，自己做了一个叫做Square Order的App，允许用户付费之后在特定的时间内去取餐；但是公司后来发现取餐的业务既不流行也不赚钱，相反，送餐的业务却在赚钱，所以最后Square收购了Caviar并关闭了自己的取餐业务。</p>
+<p>Square在2015年的时候推出了两款服务小商家的软件。一款叫做Customer Engagement。可以理解为这是一款CRM工具集，包括可以给特定的客户发特定的促销Email的工具。商家可以通过数据分析，细分客户群体，决定如何针对不同的客户群体进行促销。</p>
+<p>另外一款软件是一个Payroll系统，主要是给小企业家们给他们的员工付工资。在美国付工资需要处理预扣税、税务处理等方方面面的问题。Square进入到这个Payroll领域来，也会面临着传统Payroll企业比如ADP和Workday的强烈竞争。</p>
+<p>Square的融资状况一度很好，前面几轮的融资也非常顺利。它甚至一度和Dropbox、Pinterest被誉为最红火的三家创业公司。在2014年夏天，Square估值达到了60亿，这是Square在上市前的顶峰了。</p>
+<p>作为一家风头无两的创业公司，Square的面试一度也搞得非常变态。和其他公司的5轮面试比起来，Square的面试多达8轮。一路面试下来，很多人甚至连体力都撑不住了。所以，从某种程度上来说，在2015年之前的Square员工是非常傲娇的，公司的名牌也同样十分光鲜亮丽。</p>
+<p>但是接下来的2015年，Square遇到了一些麻烦。新宠Uber和Airbnb的出现，让老一代三个公司的地位下降了。在新一代的公司里，只有Pinterest留下了，Dropbox和Square被Uber和Airbnb挤了下来。这个时候，Square的估值开始每况愈下了。</p>
+<p>烧钱厉害而又没有办法继续融资，杰克决定让Square IPO，试图通过IPO从公众市场筹集更多的钱来支撑公司的发展。</p>
+<p>只是在IPO的时候，按照60亿的估值显然不可能了，交易所和外界的环境都很糟糕，最后杰克决定把估值砍了一半到了29亿。这样就达到了IPO的标准。这种流血上市博发展的决心和魄力，还是非常值得我们每个人学习的。当然，单纯从IPO来看，这并不是一个划算的IPO。</p>
+<p>其实杰克的做法是很聪明的。如果那个时候不IPO，可能既筹不到足够的钱，上市也变得足够难，耽误了发展。比如说2014年齐名的三家公司Square，Dropbox和Pinterest，其他两家都没有上市。到今天再看这两家，上市就越发困难了。</p>
+<p>IPO以后，Square经历了一段时间的低迷，但是之后就变得越来越好了。Square十分与时俱进，开始涉足支付相关的方方面面的业务，最重要的一点，Square宣布它开始支持比特币支付。</p>
+<p>比特币是个好东西，前提条件是能够当作真钱花出去，但是究竟能不能花出去，大部分人都还是观望的阶段，但Square是敢于冒险的，决意在2017年刚开始热起来的时候推出比特币支付，给Square的股票行情带来了一波猛涨。</p>
+<p>Square的未来怎么样呢，从目前的发展来看，显然Square发展还是不错的，它的市值自上市以后已经翻了4倍多，达到了130亿之高，比起2014年顶峰时期的60亿还要翻了两倍不止。</p>
+<p>从这个角度来看，无论是当年的流血上市，还是上市以后的发展，Square都是当之无愧的成功者。更不要说与经营得一塌糊涂的Twitter相比了，那么Twitter和Square这两个企业的到底有什么区别呢，我们下一期再做深入的分析。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#129-Square%EF%BC%9A%E6%89%8B%E6%9C%BAPOS%E6%9C%BA%E5%92%8C%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93"><span class="toc-number">1.</span> <span class="toc-text">129 | Square：手机POS机和比特币交易</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

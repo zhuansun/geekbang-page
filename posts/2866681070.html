@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>148 | SQL Server发展史 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="148 | SQL Server发展史微软的SQL Server是整个数据库产业里面一个重要的产品。在2017年的时候，SQL Server超过了IBM的DB2成为仅次于Oracle的第二大数据库产品。 有关SQL Server的发展，一直有这样的一个传闻：微软从另外一个数据库厂商Sybase那儿买了一份源代码，然后微软就在这份源代码上改啊改。最后微软蒸蒸日上，Sybase却每况愈下。Sybase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="148 | SQL Server发展史">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2866681070.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="148 | SQL Server发展史微软的SQL Server是整个数据库产业里面一个重要的产品。在2017年的时候，SQL Server超过了IBM的DB2成为仅次于Oracle的第二大数据库产品。 有关SQL Server的发展，一直有这样的一个传闻：微软从另外一个数据库厂商Sybase那儿买了一份源代码，然后微软就在这份源代码上改啊改。最后微软蒸蒸日上，Sybase却每况愈下。Sybase">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.545Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2866681070"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '148 | SQL Server发展史',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">148 | SQL Server发展史</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="148-SQL-Server发展史"><a href="#148-SQL-Server发展史" class="headerlink" title="148 | SQL Server发展史"></a>148 | SQL Server发展史</h1><p>微软的SQL Server是整个数据库产业里面一个重要的产品。在2017年的时候，SQL Server超过了IBM的DB2成为仅次于Oracle的第二大数据库产品。</p>
+<p>有关SQL Server的发展，一直有这样的一个传闻：微软从另外一个数据库厂商Sybase那儿买了一份源代码，然后微软就在这份源代码上改啊改。最后微软蒸蒸日上，Sybase却每况愈下。Sybase做了历史上最亏本的生意。</p>
+<p>事实上真的是这样吗？当然不是。实际上微软SQL Server和Sybase之间的关系远比这个传闻复杂。今天我就来讲讲SQL Server的发展史。</p>
+<p>1987年，微软和Sybase签署了合作伙伴协议。这个协议的主要内容是：微软和Sybase一起合作开发一款基于Sybase已经开发但还没发布的数据库产品。Sybase拥有这款产品在Unix相关平台上的发布权，而微软则拥有对OS&#x2F;2以及任何微软开发的操作系统的发布权。</p>
+<p>那个时候整个个人计算机平台上占统治地位的数据库叫dBase，是由Ashton-Tate公司开发的（这个公司后来倒闭了，关于它的故事在我们专栏的后面会讲）。当时为了能够让新开发的数据库系统可以吸引大量dBase的开发者，微软和Sybase决定跟Ashton-Tate合作，为SQL Server提供dBase的接口。</p>
+<p>很不幸的是，1989年之于Ashton-Tate并不是个好年头。这一年它发布了dBase4。但是这个产品问题很多，Ashton-Tate从此陷入了泥潭，直到它被Borland收购。而微软和Sybase也跟Ashton-Tate结束了合作关系。但是微软和Sybase还是发布了SQL Server的1.0版，只是传说中的Ashton-Tate的接口被取消了。</p>
+<p>这个1.0版的合作关系大致是这样的：Sybase负责开发所有的源代码，而微软负责测试，偶尔也打打酱油修点Bug。最初的时候，微软对整个源代码只有只读权限，并没有写的权限。可以说在这个合作关系里, Sybase主导了这整个项目的开发进展。</p>
+<p>这种合作关系，到1992年才有所改变。因为Sybase忙于开发新版，微软拿到了Sybase 4.0的源代码，负责把这个代码移植到OS&#x2F;2上。这个产品最后以SQL Server 4.2发布了。</p>
+<p>OS&#x2F;2这个操作系统是微软和IBM合作的，但是微软和IBM合作的时候心猿意马，于此同时微软自己在做Windows。而微软和Sybase之间的合作，以微软继续给老版本增加功能，而Sybase开发新的版本的方式展开。</p>
+<p>随着时间的推移，对微软来说，Windows NT变得越来越重要。所以微软决定把在OS&#x2F;2上的4.2版本，移植到Windows NT上。但是因为NT这个操作系统和OS&#x2F;2很不一样，而微软内部对于如何移植4.2也有很不一样的观点。具体来说就是：到底是应该大量利用某个特定操作系统的特有的功能和特性，还是说数据库系统自己实现某些需要在操作系统层面来实现的功能？</p>
+<p>无论是Sybase，还是现在数据库主流产品Oracle的做法，都是后者。因为它们都希望数据库可以运行在不同的操作系统上。所以，利用操作系统里面最基本的功能，其他的东西都在数据库内部实现是一个数据库厂商常用的策略。</p>
+<p>但是微软的SQL Server组却决定偷个懒，让SQL Server充分利用Windows NT提供的新特性，这样一来，SQL Server的移植过程就简单很多。而且SQL Server在Windows NT上的运行效率也会高不少。但是同样的，SQL Server的代码也就变得不再是独立于操作系统的了，而是专门为Windows NT开发的。</p>
+<p>因为这个本质观念上的不同，微软对于继续和Sybase合作的兴趣也变得小起来。1994年微软和Sybase“和平分手”了。分手之后，微软决定只在Windows NT上继续开发自己的SQL Server。而除了原来在Unix操作系统上独立发布数据库产品的权限外，Sybase也第一次可以自由在微软开发的任何操作系统上发布数据库产品。在当时看，这好像是个双赢的结局。</p>
+<p>微软在接下来的18个月内，重写了大量的代码，并发布了SQL Server 6.0和6.5。这个时候，两个源代码看起来就很不一样了。</p>
+<p>微软在数据库上开始大量投入，到处挖人。很多业界知名的人士，比如吉姆·格雷（Jim Gray）、菲尔·伯恩斯坦（Phil Bernstein）、大卫·坎贝尔（David Campbell）、彼得·斯皮罗（Peter Spiro）等后来大名鼎鼎的人物，都是在这个时候被微软挖进来的。</p>
+<p>当时的微软可谓财大气粗，有些人被挖的时候，不愿意来西雅图，比尔·盖茨就专门为这些人在硅谷修个办公室。微软网罗了这些人才以后，有了充足的人才，就开始大刀阔斧地开始下一个版本的开发。</p>
+<p>这个后来以SQL Server 7.0命名的版本，把整个数据库几乎每个模块，从存储引擎到数据处理引擎全部重写了。不但如此，微软觉得自己应该构建出完整的数据处理产品。SQL Server 7.0还增加了数据仓库的支持。这个支持来自于微软收购的一个以色列的创业公司Panorama。这个产品后来的查询语言叫做MDX，最后成为了数据仓库业界的标准语言。另外，7.0还增加了对ETL的支持。</p>
+<p>SQL Server 7.0奠定了微软SQL Server的根基。</p>
+<p>之后微软发布了SQL Server 2000，这个版本增加了在多台机器上部署SQL Server的能力，还增加了对数据挖掘和XML的支持。接下来，SQL Server 2005又增加了SQLCLR的支持。这个支持让C#和.NET成为SQL Server支持用户定义类型、用户定义函数等的基础，以及很多其他的新功能。</p>
+<p>到这个时候，SQL Server已经把Sybase远远地甩在后面了。而微软的SQL部门可谓人才济济，无论是做学术的，还是做数据库开发的，微软都做了很多很有意思的尝试。Sybase却开始越来越举步维艰。</p>
+<p>可微软后面的事情，却多少有点“大跃进”的味道了。比尔·盖茨提出了要构建新的文件系统WinFS。这个文件系统底层基于数据库，可以提供很先进的数据存储和查询能力。这个想法一出，业界一片哗然。微软投入了无数的人力、物力去做这个系统，最后却败得一塌糊涂。其实主要原因还是愿景超出了技术的能力，即使是微软也开发不出来。</p>
+<p>很多人都觉得，微软之所以转向衰败，比尔·盖茨的WinFS需要负很大的责任。如果换成另外一个公司，浪费了如此多的人力、物力，能不能活下来就不知道了。更何况，微软还错过了很多其他比较好的机会。另外，SQL Server队伍里面大量人员卷入这个项目，对于SQL Server自身的发展也是一个束缚。</p>
+<p>作为产品，SQL Server最近几年又活跃起来，只是和2000年前后的那种状态还是有所差别的，终究是不可同日而语的。而微软里面曾经在SQL Server核心工作的很多员工也早离开微软去了亚马逊、谷歌、Facebook等新兴公司。这让SQL Server的研发力量大打折扣。但是不管怎么样，比较SQL Server和Sybase的命运，SQL Server还是好太多了。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#148-SQL-Server%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">148 | SQL Server发展史</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

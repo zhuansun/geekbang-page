@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/21/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/21/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-06 06:10:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2133697900.html" title="091 | Databricks之Spark的数据金砖王国">091 | Databricks之Spark的数据金砖王国</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">091 | Databricks之Spark的数据金砖王国说起大数据的创业公司，我们一定都会提到Databricks这公司，而这家公司知名的原因，一大部分来自于它的开源产品Spark。Spark是Hadoop生态圈里大红大紫的项目，事实上，它甚至已经取代了新一代的经典运行框架：Hadoop MapReduce。
+所以，想要了解Databricks这家创业公司，我们就需要先了解Spark这个Apache开源项目。Spark是一个大数据计算框架，它诞生于加州大学伯克利分校AMP实验室，是当时的博士生马泰·扎哈里亚（Matei Zaharia）的博士论文课题。
+2010年，Spark在BSD License下开源。经过几年发展以后，在2013年成立了Databricks，同年，它被Databricks捐献给Apache基金会，并将开源模式转向了Apache 2.0，从此，Spark正式成为Apache家族里顶级开源项目之一。
+Spark是目前整个Hadoop的生态系统里最为活跃的计算框架，它已经取代了Hadoop原来MapReduce框架的地位，目前，只有Flink的计算框架尚能与它平分秋色（有关Flink的情况，我们会在后面的文章里详细介绍）。
+Spark框架下支持SQL、机器学习、图计算、流计算等各种各样的计算模型，应用起来十分广泛。它不仅在开源社区里广受追捧，在大公司里也常常被拿来 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3131115284.html" title="092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink">092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">092 | Data Artisans：浴火重生的新一代大数据计算引擎Flink2014年，数据库领域的顶级会议VLDB在杭州召开。柏林理工大学的教授沃克尔·马尔科（Volker Markl）做了一场关于大数据计算平台的专题报告，这场报告讲的是一个叫做Flink的系统。
+沃克尔和他的团队从事大数据研究已经很多年了，他们最初开始做的是一个叫做Stratosphere的项目。这个系统并不出名，既无Hadoop的声势浩大，也没有Spark的迅速扩张。
+后来，沃克尔吸取了早年Stratosphere系统的教训，并调研了市场上现存的系统不足，经过了重新设计，才制作出了这个叫Flink的新系统。
+Flink以非常先进的流计算引擎思想为基本，同时还结合了传统大数据和数据库的优点。于是，这个系统一进入Apache软件基金会以后，就迅速火爆了，甚至连Capital One和国内的阿里巴巴集团银行都开始相继使用。
+Flink从一出现就获得了很多的关注，这是自Spark项目出现以来，所有Apache项目里面最受关注的一个。最主要的原因就是Flink的理念非常先进，而且Flink是基于流模型的一个计算平台，它所使用的流计算模型，又是目前市面上所有开源项目里最为先进的。“先进”“实时”“流计算”，这些词语被放在一起，就给Flink带来了无限的光辉。
+Flink一时风头无两，网上很快出现了Spark是不是会被 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1860932962.html" title="093 | Dremio:在Drill和Arrow上的大数据公司">093 | Dremio:在Drill和Arrow上的大数据公司</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">093 | Dremio:在Drill和Arrow上的大数据公司今天这篇文章，我们来讲讲一个非常年轻的公司Dremio的故事。这个故事涉及了两个Apache开源项目Drill和Arrow，和一家Hadoop发行商MapR。
+我们先从MapR公司开始讲起，MapR在2009年成立，发展一直不错，在CTO的带领下，公司出品了一个自己的文件系统，取代了HDFS，同时，它的Hadoop发行版也取得了不俗的成绩。
+托马尔 · 希兰（Tomer Shiran）和雅克 · 纳杜（Jacques Nadeau），这两位都是MapR公司的核心员工。让我们记住这两个人的名字，因为他们与我们接下来的故事息息相关。托马尔是MapR的第一位产品经理，负责整个产品线的开发。雅克则是Apache Drill项目和Apache Arrow项目的主要负责人。
+第一个项目：Apache Drill让我们把时间倒回到2013年。当时Hive已经存在，但是很慢很不好用。谷歌的Dremel刚出来没多久，就掀起了交互式查询的风潮，随之而来的是Cloudera开始了它的Impala引擎的计划；而MapR也决定做一款查询引擎，自己主导开源项目，这就是后来的Apache Drill。
+当时筹建这个项目的人，是托马尔，而具体负责干事情的人，是雅克。我之所以知道这件事情的详细情况，是因为2013年的时候，这两位打电话给我，希望我加盟这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/393893572.html" title="094 | Imply：基于Druid的大数据分析公司">094 | Imply：基于Druid的大数据分析公司</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">094 | Imply：基于Druid的大数据分析公司在今天的大数据创业领域，每个有相当数量受众的开源项目，它的背后都会有一个创业公司在支持。今天我们就来聊聊开源项目Druid，以及它背后的创业公司Imply。
+Druid起始于2011年。它最初的开发商叫做Metamarkets，是一个籍籍无名的广告公司。这个项目于2012年8月份基于GPL版权开源，这一点和Hadoop生态圈里基于Apache版权开源的项目都不太一样。
+Druid一开始并不是很有名，不过随着Airbnb的加入和推广，这个项目也逐渐在社区成名起来，但是GPL的开源方式始终不是社区开源的主体。
+于是，在2015年2月，项目的开源方式转向了Apache版权，正式投奔了Hadoop生态圈。这算得上是Druid发展历程里最为重要的一步。
+Druid的优与劣介绍完了Druid整个项目历程，接下来我就来聊聊这个项目的特点。
+在诸多数据分析开源项目里，Druid有两个独具特色的优点。具体来讲， Druid的第一个优点是：它的整个系统同时提供了对离线数据分析和在线实时数据分析的支持。
+它是通过冷热数据分离的方式做到这一点的。冷数据是已经写入到Druid存储的数据，这一类数据存在Druid的某个节点的硬盘上。
+热数据是等待写入的数据，这类数据在内存里。 Druid对冷数据和热数据分别进行查询分析，再把查询分析的结果结合起来作为最终结 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/758801063.html" title="097 | TiDB：一个国产新数据库的创业故事">097 | TiDB：一个国产新数据库的创业故事</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">097 | TiDB：一个国产新数据库的创业故事TiDB是一个位于北京的创业公司PingCAP的产品，它是一个新型的数据库。PingCAP成立于2015年。联合创始人是刘奇、黄东旭和崔秋。在2017年的时候，他们完成了1500万美元的融资。今天我们的故事主角就是这个国产数据库和它背后的公司。
+说起数据库产业，其中的经典是关系数据库。这一类要么是外国大公司的商业数据库，其代表是Oracle数据库，IBM的DB2，以及微软的SQL Server；要么就是开源的数据库，这类以MySQL和PostgreSQL为代表。
+进入新世纪后，随着大数据相关技术的出现，又有了一些NoSQL的产品。
+在数据库的发展上，关系数据库好用，但是扩展性差，对于大数据场景不好；NoSQL产品可以支持大量的数据和大规模的访问，但是可用性却非常差，对产品开发来说，使用时要注意的事情太多。
+那么说，有没有一种产品兼有关系型数据库和NoSQL的优点呢？进入到2012年以后，大数据技术奠基者谷歌发表了一系列新论文，主要讲述了它们新开发的一个叫做Spanner的数据库。这种数据库同时具备了关系数据库和NoSQL的优点。所以通常我们又把这个类型的数据库称为NewSQL。
+TiDB就是这样一款数据库，它的基本理念就是基于NewSQL的技术，这个项目的名字TiDB，也包含了一定的含义。引用联合创始人黄东旭的说法，Ti是金属元素钛， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1559072346.html" title="095 | Kyligence：阿帕奇麒麟背后的大数据公司">095 | Kyligence：阿帕奇麒麟背后的大数据公司</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">095 | Kyligence：阿帕奇麒麟背后的大数据公司几乎每一个成功的大数据开源项目背后都有一个公司。今天我们故事的主角就是Kyligence这家成立于2016年的公司。这个公司背后的项目就是阿帕奇麒麟。
+先来介绍一下阿帕奇麒麟，它的英文名是Apache Kylin，一般业内都简称它为麒麟，这是第一个由中国人主导的阿帕奇开源项目。
+麒麟项目由eBay中国公司开发，开发目的是为了解决在Hadoop生态圈里对数据仓库进行实时分析的问题。
+和我们提到的其他开源项目解决数据分析的方式不同，阿帕奇麒麟的做法使用的是数据立方（DataCube）模型。
+数据立方模型是数据仓库里很成熟的一个模型，它定义了查询可以在哪些维度哪些粒度上进行预计算。这个模型有许多商业化的产品，比如说微软的SQL Server Analysis Service就是这个模型的一个商业化实现。
+通常我们说起开源项目解决数据分析问题，做法都是直接在原始数据上进行查询。而数据立方模型则允许系统事先做预计算，并存储一部分预计算的结果，查询可以发生在预计算的数据上，这是一种典型用空间换时间的策略。
+这个模型最大的挑战在于，系统现实里到底选择了哪些维度与粒度进行预计算。如果系统对所有维度和所有粒度都进行预计算的话，那么所有查询都会加速，但是随之而来的是额外的存储空间将会非常巨大，远远超过原始数据的大小，这肯定是负担不起的。
+所以  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2867421981.html" title="096 | Snowflake:云端的弹性数据仓库">096 | Snowflake:云端的弹性数据仓库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">096 | Snowflake:云端的弹性数据仓库Snowflake是一个初创公司，也是一个完全基于云端构建的弹性数据仓库。它是大数据时代数据分析的一个重要的公司。今天我们来聊聊这个公司。
+Snowflake成立于2012年，总部设在加州下属的一个小城市圣马特奥。Snowflake的创始人是本纳特·达格维尔（Benoit Dageville）, 蒂里·克鲁安纳（Thierry Cruanes ）以及马尔辛·茹科夫斯基（Marcin Zukowski）。这三位都是欧洲人，不过，现在都在美国发展。
+本纳特早年在欧洲计算中心做研究，主要工作是并行数据库。后来，他来到了Oracle公司发展，并在Oracle待了16年。前6年是负责领导Oracle的并行执行引擎组，后面10年一直在做Oracle的架构师。
+在Oracle里，架构师是一个明确的级别，这个级别非常不容易达到，需要公司里所有架构师全部同意才能晋升。能够在Oracle里面做到这个位置的，自然是非常厉害的人。
+蒂里也是欧洲人，他在巴黎攻读完成数据库方向的博士，来到美国之后，先在IBM工作了四年，又在Oracle工作了12年，也是一位资深的数据库专家。
+马尔辛和这两位比起来就是年轻一辈了。他在阿莫斯特丹大学获得博士学位，博士期间做的内容是著名的Monet DB&#x2F;X100。毕业后，他创业成立了Vectorwise，后来公司被卖给 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4229267002.html" title="098 | 大数据创业公司的前景：红海创业多艰辛">098 | 大数据创业公司的前景：红海创业多艰辛</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">098 | 大数据创业公司的前景：红海创业多艰辛我们介绍了很多大数据创业公司，这些公司在大体上可以分成开源软件创业公司和闭源软件创业公司两类。
+开源软件创业公司是指，很多的大数据创业公司的背后是某一个或者几个开源项目的创始人，或者是项目的主要开发者。
+闭源软件创业公司是指创业公司有自己闭源的软件，这种又分为两类：一类是闭源的基础架构软件，一类是闭源的商业应用软件。
+我们通常用“红海”“蓝海”来形容创业的难易程度，基础架构类创业，无论开源还是闭源，很多时候就属于红海，毕竟相对于应用层面的创业，基础架构类的创业要艰难很多，这主要是因为应用层面的创业是直接和商业行为联系的。
+基础架构类的创业，其创业依赖于其他客户对其产品的使用和付费。比如说Hadoop生态圈里各种开源软件为基础的创业公司，如果没有人去用这个公司的产品，这个公司也就不容易赚到钱。
+不过，凡事都有两面，从好的方面来说，如果有大客户用了，那么可能会有持续稳定的收入。从坏的方面来说，一则很多客户不一定愿意去用不熟悉的开源产品，二则如果真的要用，大公司自己有技术实力去把开源的产品拿过来，自己二次开发，并且维护使用。但是无论如何，要想在基础架构类进行创业，都不是一件容易的事情。
+基础架构类里面最普遍的创业企业都和某个开源项目有联系。比如说Spark后面站的是Databricks，Kafka后面站的是Confluent，DataSta ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/658380819.html" title="099 | 如何通过企业技术积累去分析一家企业？">099 | 如何通过企业技术积累去分析一家企业？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">099 | 如何通过企业技术积累去分析一家企业？通过企业的技术积累去分析一家企业是一个行之有效的办法。一个企业如果想要成功，要么需要在商业上有所建树，要么需要在技术上有所建树，总之，一定需要有在某些方面和别人有明显的优势，才可以在激烈的竞争里面站稳脚跟。
+如果我们要对上述的话一一举例的话，我想，亚马逊的成功，背后应该是对商业深刻理解的成功。谷歌的成功，很大程度上是对技术的极致追求的成功。
+从2003年开始，谷歌发表了一系列论文，这促成了大数据时代的到来，之后谷歌又在人工智能领域发力，实现了“AlphaGo战胜人类最顶级围棋高手”这样历史性的突破。我们可以看到在谷歌踏足的每一个领域，很大程度上展现出来的技术水平都代表了这个领域人类突破性的进展。
+所以，谷歌对技术的极致追求可见一斑。也正是因为谷歌对技术的极致追求，它才能在互联网海量数据的搜索和广告领域占据无可取代的地位。其广告收入就像印钞机一般，24小时源源不断地提供巨额营收。
+那么我们应该如何通过企业技术积累去分析呢。首先有一个前提，一个人如果可以从技术积累去分析企业，那么对分析企业的人本身也提出了一些要求。
+如果分析企业的人本身对技术不够精通，不是某一个领域专家的话，那么透过技术去分析企业多少就有点镜花水月了，毕竟分析者自己也无法比其他人能够更早地判断在某个行业里，哪一家拥有独特技术的企业是否可以一飞冲天。
+所以，能够通过技术积累 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2675318335.html" title="100 | 仁科：被迫再创业的David Duffield">100 | 仁科：被迫再创业的David Duffield</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">100 | 仁科：被迫再创业的David DuffieldPeopleSoft，中文名是“仁科”，是一家非常著名的企业管理软件供应商，为企业提供全方位的管理软件。仁科成立于1987年，在2005年被Oracle恶意收购前，已成长为全球第二大应用软件公司。
+仁科的创始人是肯 · 莫里斯（Ken Morris）和大卫 · 杜菲尔德（David Duffield），其中杜菲尔德在此之前就已成立过两家大型机应用软件公司，而且为人随和，极富远见。
+在创建仁科之前，杜菲尔德于1982年创建了一家叫作Integral Systems的公司，并担任CEO至1984年。这家公司主要做大型机上的人力资源管理软件，后来公司成功IPO，杜菲尔德自己却为此丢了CEO一职，失去了对公司的控制权。这次失控让杜菲尔德铭记在心。
+一切源于杜菲尔德和董事会间的一次争执。当时大型机依然被广泛使用，因为提供在大型机上畅销的人力资源管理软件，公司一直过着好日子。但是杜菲尔德注意到这个世界正在发生变化，个人计算机，尤其是联网的个人计算机在未来将会侵蚀大型机的市场，乃至取而代之。他认为公司应该为这种技术转型做准备，研发基于个人计算机的人力资源管理软件。
+今天回头去看，杜菲尔德当时的眼光可谓惊人地准确，而董事会那些短视的人当然应该被扫地出门。但是资本的力量是无穷的，当时倒霉的是杜菲尔德。
+于是杜菲尔德决定辞职单干。不过在单干前， ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/20/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/#content-inner">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/#content-inner">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/#content-inner">28</a><a class="extend next" rel="next" href="/page/22/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

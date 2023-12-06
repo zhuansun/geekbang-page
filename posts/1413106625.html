@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>067 | Hadoop三国之吴国MapR | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="067 | Hadoop三国之吴国MapR今天我要介绍的这个Hadoop发行商是MapR。它算得上是一家特立独行的公司，它实力很强，但却比较少去参与争斗，所以我们把它称作“吴国”吧。 MapR成立于2009年，由CEO约翰 · 施罗德（John Schroeder）和CTO斯里瓦斯（M. C. Srivas）创立。到2016年的时候，施罗德卸任CEO，做了执行主席（Executive Chairm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="067 | Hadoop三国之吴国MapR">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1413106625.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="067 | Hadoop三国之吴国MapR今天我要介绍的这个Hadoop发行商是MapR。它算得上是一家特立独行的公司，它实力很强，但却比较少去参与争斗，所以我们把它称作“吴国”吧。 MapR成立于2009年，由CEO约翰 · 施罗德（John Schroeder）和CTO斯里瓦斯（M. C. Srivas）创立。到2016年的时候，施罗德卸任CEO，做了执行主席（Executive Chairm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.425Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1413106625"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '067 | Hadoop三国之吴国MapR',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">067 | Hadoop三国之吴国MapR</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="067-Hadoop三国之吴国MapR"><a href="#067-Hadoop三国之吴国MapR" class="headerlink" title="067 | Hadoop三国之吴国MapR"></a>067 | Hadoop三国之吴国MapR</h1><p>今天我要介绍的这个Hadoop发行商是MapR。它算得上是一家特立独行的公司，它实力很强，但却比较少去参与争斗，所以我们把它称作“吴国”吧。</p>
+<p>MapR成立于2009年，由CEO约翰 · 施罗德（John Schroeder）和CTO斯里瓦斯（M. C. Srivas）创立。到2016年的时候，施罗德卸任CEO，做了执行主席（Executive Chairman），斯里瓦斯则去了Uber。为什么CEO和CTO下台的下台，去Uber的去Uber，这是个有意思的问题；我留到文章最后来说。</p>
+<p>先从MapR这个名字聊起，它是MapReduce的缩写。在心理学上有这样一个说法：人们总是会在潜意识里面，流露出对自己不擅长的东西的关注。从这一点上来看，MapR这个公司拿了MapReduce来做商标，而事实上它擅长的也的确不是MapReduce。</p>
+<p><strong>MapR的Hadoop发行版和其他公司很不一样，它是一个挂着Hadoop外壳，但是夹杂着自己私货的版本。</strong></p>
+<p>MapR的联合创始人兼CTO曾经在谷歌的文件系统组做过经理，所以他很强烈地认为Hadoop的文件系统是个“渣子”。于是这个CTO用很低廉的薪资在印度雇用了一群程序员，重构了一个文件系统。这个文件系统据说有比Hadoop的文件系统优越无数倍的性能、稳定性、安全性，等等。</p>
+<p><strong>而MapR的Hadoop版本，简单一点来说，就是把Hadoop里面的文件系统替换成了自己的这个不开放源代码的文件系统，同时又做了很多工作，让这个文件系统和现有的Hadoop体系兼容</strong>。这种兼容性在我看来其实挺难做的，但是MapR号称是做到了。</p>
+<p>本着在文件系统道路上越走越远的想法，MapR踏出了第二步：瞄准了在Hadoop生态圈里非常重要的NoSQL产品HBase。</p>
+<p>HBase的大名可谓众人皆知，但是因为HBase受到了Hadoop文件系统本身的一些限制，以及设计与底层的存储分离得太厉害，其性能一直不是很好。</p>
+<p><strong>MapR的下一步做法是改变文件系统，在文件系统内实现对HBase的支持，并且提供HBase的接口给上层应用。这样用户其实不需要额外装HBase，就自然而然地拥有了HBase的功能。</strong></p>
+<p><strong>这还没完，MapR在自我改造的道路上越走越远。它们又瞄准了Kafka——这个在Hadoop系统里面做数据交换的重要服务。</strong> MapR的做法还是继续改改改，改它的文件系统，让文件系统又拥有了Kafka的功能。于是，用户们不需要安装，就可以使用Kafka了。</p>
+<p><strong>没错，就是这样。这个创业公司凭借一己之力，集聚了一群程序员，挑战了全世界，重新实现了这么多的功能，然后再包装进自己的发行版卖给客户。更重要的是这些重新实现的功能，据说性能上要好很多。</strong> 而开源的东西，按照MapR的说法，实在是只能凑合着用。怎么样也比不上MapR的高大上。</p>
+<p>MapR的说法是，这种做法不只实现了同样的东西，而且做得更好、更高效。“更快、更高、更强”是每个人追求的目标，如果后面再加个“更便宜”，那就太完美了。</p>
+<p><strong>只是MapR的这套系统本身以赚钱为目的，和“便宜”是没有什么关系了：MapR的系统卖得比其他人的系统都贵，因为他们觉得自己的系统更好。</strong></p>
+<p><strong>此外，但凡是存储相关的功能，MapR都重新实现了一遍，其他部分则选用开源的，这就导致了两个问题。</strong></p>
+<p>第一，那些开源的东西在这个文件系统下的兼容性需要仔细测试。所以很多时候你会发现，只有伴随着MapR的发行版一同发行的开源工具，才能在MapR的文件系统上很好地工作，而外部下载的就不能保证这一点了。</p>
+<p>第二，就是客户有顾虑。客户会想：你的系统是自己实现的，如果我上了你的“贼船”，再想回头去用Cloudera的，就不太可能了吧？因为你的数据存储，对别人来说就是不透明的，迁移起来会有障碍。为了避免被“绑”在MapR的战车上，还是不要买你家的东西吧？</p>
+<p>这其实很考验市场人的宣传功力。 当然MapR的宣传队伍不是吃素的，他们把自己的系统定义为“二进制代码无差别兼容”。简单一点来说就是，在其他的Hadoop发行版和MapR之间，可以互换模块随便运行。</p>
+<p>这个口号看上去很美好，但实际测试的时候往往就是另一番景象了。这个所谓的“二进制代码无差别兼容”，从来没有真正实现过。不过，倒是很多人在宣传的时候说“我们就是Hadoop，没有兼容性问题”。这个Hadoop发行版终究没能成功开疆拓土，在美国以外地区几乎没有什么人用。</p>
+<p><strong>相对于存储系统，MapR在系统的执行方面就显得没这么自信了。MapR有关执行的部分，比如说MapReduce，或者在MapReduce之上开发的各种查询语言——如HIVE、PIG等，都是直接用开源的。不过，MapR对开源社区的贡献是有目共睹得低。</strong></p>
+<p>MapR主导了一个开源项目Apache Drill的开发。大概在2013年的时候MapR的人来找过我，我和当时的Drill项目负责人聊过以后，感觉对方对很多问题都还没想清楚，所以没有去MapR工作。</p>
+<p>后来Drill的发展也并不顺利，再后来变更了主要负责人，项目也慢慢起来了，参与进来的公司越来越多。再后来，伴随着MapR创始人的下野，Drill的人也跑去开了个创业公司。我个人对于这个创业公司的前景不是特别看好，主要还是感觉Drill这个产品不是很出彩。</p>
+<p>Drill这个东西是开源的，但是MapR这个企业对于好东西，往往都不开源。因此，我们难免要仔细审视一下Drill。至于Drill发展至今又是个什么境况，我就不妄加评论了。</p>
+<p><strong>MapR的融资过程比较有意思，前后融了好几轮，最后一轮时，谷歌旗下的风险投资部门Google Venture投了钱。为什么说有意思呢？因为谷歌很少在Hadoop的相关领域撒很多钱，比如在Cloudera上投入就不多。</strong></p>
+<p>我想，可能谷歌从来都没有看好过Hadoop的文件系统，或者Hadoop整个生态圈。但是对于凭一己之力去重写文件系统的公司，并且其创始人还是从谷歌出来的，知道Hadoop内部是怎么做的，可能就刮目相看了。谷歌也许认为这样的公司有可能成功，所以才投入了很多钱。</p>
+<p><strong>MapR的生意很有意思。它真正的客户量很少，可能连Cloudera的10%都不到。但是很奇怪，MapR和Cloudera在营收上差不多。也就是说，MapR的每个客户，贡献给它的钱都要多很多。</strong> 这到底是什么原因导致的呢？因为客户上了MapR的“贼船”下不来，而不得不继续使用？还是这家公司的产品真的受有钱公司的欢迎？我无法去辨别。</p>
+<p><strong>MapR的CTO兼联合创始人，在2016年离开MapR成了Uber的首席数据架构师。</strong> 创始人下台或者离职，显然不是什么好事情。那么，这个印度人为什么放着自己好好的公司不做，非要跑去Uber呢？</p>
+<p><strong>我想不外乎两个可能性：一是自己做得没兴趣，不想做下去了，二是资本的力量进来了。</strong> 也许CTO觉得钱赚得不够多，不是上市的好时期，而资本没有这个耐心继续等下去，因此就只能把“拦路虎”清掉了。我想，第二个原因可能性更大。</p>
+<p>但是我们必须要提醒大家的是，MapR的这套发行版能够出来，这位CTO功不可没。离开了他，MapR是不是依然具备继续前进的能力呢？这就留给时间来检验吧。</p>
+<p>不知道MapR到底什么时候要上市，也不知道上市以后会采取什么举措，但这种创始人离职的现象，也许不是一个好的信号。我很难理解一个创始人需要在公司上市前夕，离开自己辛苦创业的公司这种情境。我只能说，要么是公司层面的问题，要么就是资本的力量太强大了。你认为，这对MapR又会有什么影响呢？</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#067-Hadoop%E4%B8%89%E5%9B%BD%E4%B9%8B%E5%90%B4%E5%9B%BDMapR"><span class="toc-number">1.</span> <span class="toc-text">067 | Hadoop三国之吴国MapR</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

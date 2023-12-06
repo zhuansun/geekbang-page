@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>065 | 直面MongoDB，谈微软的NoSQL战略 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="065 | 直面MongoDB，谈微软的NoSQL战略DocumentDB是微软于2014年推出的，基于Windows Azure的一个PaaS云产品。正如它的名字所示，这个产品是个文档数据库。它主要是冲着MongoDB的市场去的，它的数据模型和MongoDB很像。 2017年初，微软推出了和MongoDB兼容的DocumentDB的API。在2017年5月微软面向程序员的Build大会上，微软宣">
+<meta property="og:type" content="article">
+<meta property="og:title" content="065 | 直面MongoDB，谈微软的NoSQL战略">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2232278328.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="065 | 直面MongoDB，谈微软的NoSQL战略DocumentDB是微软于2014年推出的，基于Windows Azure的一个PaaS云产品。正如它的名字所示，这个产品是个文档数据库。它主要是冲着MongoDB的市场去的，它的数据模型和MongoDB很像。 2017年初，微软推出了和MongoDB兼容的DocumentDB的API。在2017年5月微软面向程序员的Build大会上，微软宣">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.422Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2232278328"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '065 | 直面MongoDB，谈微软的NoSQL战略',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">065 | 直面MongoDB，谈微软的NoSQL战略</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="065-直面MongoDB，谈微软的NoSQL战略"><a href="#065-直面MongoDB，谈微软的NoSQL战略" class="headerlink" title="065 | 直面MongoDB，谈微软的NoSQL战略"></a>065 | 直面MongoDB，谈微软的NoSQL战略</h1><p>DocumentDB是微软于2014年推出的，基于Windows Azure的一个PaaS云产品。正如它的名字所示，这个产品是个文档数据库。它主要是冲着MongoDB的市场去的，它的数据模型和MongoDB很像。</p>
+<p>2017年初，微软推出了和MongoDB兼容的DocumentDB的API。在2017年5月微软面向程序员的Build大会上，微软宣布DocumentDB升级为Cosmos DB。Cosmos DB包含多个数据模型，文档模型成为其子集。</p>
+<p><strong>今天，我就带你回顾下这个MongoDB竞品的发展历程。</strong></p>
+<p>让我们把时间线拉回2013年。那时候我还在微软，一个同事神神秘秘地宣布他要离开我们组，去投奔一个秘密项目了。和以往的各种离别不同，这个同事对于接下来转去做什么，一句话也不肯多说。事关公司机密，只是道听途说，这个秘密项目已经开发若干年，微软投入了若干人力物力。</p>
+<p>因为我所在的组做的是经典的大数据基础架构的东西，而我同事十余年如一日地在数据库引擎上做开发，换来换去的组都是数据库引擎开发这方面的。所以我只能大概猜测，他要去的这个组做的应该也是和数据库相关的事情。我实在猜不出来，到底是一款什么样的神秘的数据库产品。</p>
+<p>那时的数据库市场正如火如荼，大数据和NoSQL的风潮一浪高过一浪。MongoDB更是以简单易用、功能强大、服务周到，而成为很多创业者和初创企业的首选。像MongoDB这样的，基于文档而非传统关系模型的数据库，是如此受欢迎。</p>
+<p><strong>那个时候的我一直有个困惑：为什么这么美好而巨大的市场，就没有人觊觎呢</strong>？如果我是某家大公司的人，我一定会组个团队，开发一个和MongoDB一样容易卖钱的产品。</p>
+<p>上面这两件事情一直盘旋在我脑海之中，但很长一段时间里都只是彼此孤立地存在。</p>
+<p>然而，它们终究还是以很巧合的方式重合了。 <strong>2014年，微软正式公开了一个新的数据库——DocumentDB。</strong></p>
+<p>2014年公布的当然只是预览版，正式版于2015年才正式发布。那个时候，我已经离开微软，而我朋友的LinkedIn档案终于更新，改成了自己是做DocumentDB的。有一天，我偶然看到这个朋友的LinkedIn才恍然大悟， <strong>原来微软早就已经开始觊觎MongoDB的市场，并秘密研发大杀器了。</strong></p>
+<p>我们知道，MongoDB作为一个产品来说，其易用性达到了相当的高度。唯一不足的，是产品的稳定性。MongoDB充其量就是一个“杂牌军”，在系统是不是丢数据、能不能够有比较好的分布式处理能力、够不够安全方面，都有很多的问题。</p>
+<p><strong>而DocumentDB开始杀入市场的时候，面对强大的MongoDB，这场大战并不好打。面对当时的境况，DocumentDB最终选择了几个切入点。</strong></p>
+<ol>
+<li>和MongoDB不一样，DocumentDB最初的查询语言是一种SQL，它的类型系统和表达式则是JavaScript。使用这样一个组合，微软认为能够更好地实现对用户的支持。</li>
+<li>DocumentDB请来了图灵奖获得者莱斯利 · 兰伯特（Leslie Lamport）坐镇，系统对于事务处理的支持远远强于MongoDB，并且提供了可供选择的事务处理级别。相对而言，MongoDB对事务处理的支持是很脆弱的，有各种各样的丢数据的例子，微软觉得DocumentDB在这方面做得好很多。</li>
+<li>和MongoDB不同，DocumentDB会自动索引数据库里面的文档。这样一来，访问DocumentDB的时候速度要好很多。自动索引让用户也方便很多。</li>
+<li>DocumentDB被做成了在Windows Azure上的一个PaaS服务。这样一来，用户自己就不需要部署什么东西了。</li>
+</ol>
+<p>这个产品推出以后，在一定程度上证明了微软决策的正确性。微软这次的产品确实在易用性上有了本质的飞跃，也因此受到了很多人的欢迎。</p>
+<p>然而，使用SQL到底是利大于弊还是弊大于利，是一件说不清楚的事情。毕竟，有人喜欢SQL，也有人讨厌SQL。而MongoDB的API方式和对语言的支持，与SQL走的是完全不一样的道路。这种不同，导致程序员们非常喜欢使用MongoDB。当然，这也使得MongoDB失去了大量只会写SQL或者对SQL有明显偏好的人。</p>
+<p>那个对事务处理的支持和事务处理级别的选择的设计，确实让用户在精准服务和省钱之间必须做出选择。这种选择在MongoDB里没有，而且MongoDB在事务处理上也没有提供特别明确的语义支持。</p>
+<p>对于很多用户来说，事务处理是一个很重要的需求。没有事务处理的话，数据的写和读就会麻烦很多，应用程序的开发就不一定会顺利。所以对事务处理的支持，和事务处理级别的选择，是DocumentDB非常重要的一个功能。我觉得，这也是它比MongoDB更出彩的特征。</p>
+<p><strong>为什么微软决定把DocumentDB做成Windows Azure的一个服务，而不是作为一个单独的产品来卖呢</strong>？我想一方面固然是Windows Azure自动帮每个用户管理了很多东西，另外一个很重要的方面是微软觉得这个产品会很成功，所以能够借助产品让Windows Azure的订阅和使用数都上一个台阶。而且微软为了推广这个产品，在Windows Azure上的收费很低。可以说，为了让这个产品去推动Windows Azure的订阅，微软也是不遗余力。</p>
+<p>实际上，这个产品一开始算不上多么成功。的确是有不少人在用，但是这个比例和微软期望的，或者和MongoDB的使用率比起来，实在是低很多。而从已有的MongoDB迁移到DocumentDB上，又意味着程序的重新开发。很多人一点都不想重新开发一个新程序，所以即便DocumentDB有厉害的地方，也只有新的应用在用，而老的基于MongoDB的应用转化过来的比例并不高。</p>
+<p>为了彻底解决这个问题，让那些使用MongoDB作为数据库的应用可以顺利地迁移到DocumentDB上， <strong>2017年的时候，微软准备了一个大杀器: 为DocumentDB提供了一套和MongoDB完全一样的API。</strong></p>
+<p>这次微软终于决定不再玩SQL了，也不再矜持了。既然Mongo是标准，那么我们就在自己的系统里面把标准给兼容了。那样你们要是在MongoDB上跑的，就可以不用改程序直接跑到我的数据库上来。</p>
+<p>这种做法颇有点流氓做派。但是我们也知道，API不可能申请专利，加上MongoDB本身还是开源的，所以微软的这种做法也是情理之中的事。这样一来，但凡背后用了MongoDB的程序，都可以顺利地转化过来了。</p>
+<p><strong>MongoDB自己本身也并非没有问题，而这反过来给微软帮了很大的忙</strong>。在2017年1月的时候，黑客们大规模袭击了默认安装的MongoDB。这些MongoDB没有密码，可以被随意登录。黑客袭击MongoDB后，将数据删除或者转移到其他地方，并留言需要支付若干比特币才给恢复数据。造成这个问题的主要原因，还是MongoDB本身的默认安全设置不好。</p>
+<p>这的确是给微软提供了很多活动的空间。 <strong>在“更安全”的宣传下，又提供了MongoDB的API，DocumentDB终于开始迅猛发展，被越来越多的人使用</strong>。这又反过来促使微软对DocumentDB有了进一步的期望。</p>
+<p>2017年5月微软全球Build大会上，作为大会主讲内容的一部分，微软宣布DocumentDB升级成为Cosmos DB。Cosmos DB直译过来就是“宇宙数据库”。Cosmos DB是DocumentDB的一个超集，不仅包括DocumentDB的所有功能，而且增加了对图数据库在内的多种其他数据库的支持。</p>
+<p>Cosmos DB最初宣布的时候，很多人对这个命名表示了疑惑，因为这和微软内部大数据处理平台Cosmos的名字很像。也因此，很多时候不知情的人会以为，微软是把内部数据平台Cosmos开放给外面的人使用了。然而实际上，Cosmos DB和Cosmos并无半毛钱关系。</p>
+<p>但是，Cosmos DB的宣传如火如荼、声势浩大。再加上图灵奖获得者的现身说法，Cosmos DB的知名度被迅速打开，并且获得了很多人的信任。</p>
+<p><strong>于是从DocumentDB升级到Cosmos DB，微软不仅完成了在文档数据库上面的布局，看起来其能力更是远远超过了MongoDB</strong>。这个数据库自2017年5月以来，Windows Azure的用户都在使用。虽然效率如何还需要时间去检验，但是其易用性已经经过了考验。</p>
+<p>无论如何，作为MongoDB在市场上唯一的竞争对手，Cosmos DB的目标很宏大。如果微软能够顺利地让这个产品成长起来，那么在将来它很可能是Windows Azure云服务里面非常有特色的一个服务。当然，如果微软没能做好产品，用户又不愿意绑定到Windows Azure的战车上，未来就会堪忧了。</p>
+<p>在我个人来看，未来Cosmos DB的成败概率大致在一半一半，而这在很大程度上取决于MongoDB怎么解决自己的问题，以及其他的云计算厂商打算怎么玩转文档数据库这个游戏。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#065-%E7%9B%B4%E9%9D%A2MongoDB%EF%BC%8C%E8%B0%88%E5%BE%AE%E8%BD%AF%E7%9A%84NoSQL%E6%88%98%E7%95%A5"><span class="toc-number">1.</span> <span class="toc-text">065 | 直面MongoDB，谈微软的NoSQL战略</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

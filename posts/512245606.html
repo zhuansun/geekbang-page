@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>069 | Hadoop及其发行商的未来 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="069 | Hadoop及其发行商的未来Hadoop以及它的生态圈，从开始到现在也已经有差不多十年历史了。Hadoop从雅虎支持的一个开源项目，到由很多项目组成的Hadoop生态圈，以及依靠Hadoop发行版开展商业活动的三大公司Cloudera、Hortonworks以及MapR，其发展不可谓不迅猛。 我在前面重点介绍了Hadoop的三大发行商，希望通过对其历史、技术和商业模式等各方面的介绍，让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="069 | Hadoop及其发行商的未来">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/512245606.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="069 | Hadoop及其发行商的未来Hadoop以及它的生态圈，从开始到现在也已经有差不多十年历史了。Hadoop从雅虎支持的一个开源项目，到由很多项目组成的Hadoop生态圈，以及依靠Hadoop发行版开展商业活动的三大公司Cloudera、Hortonworks以及MapR，其发展不可谓不迅猛。 我在前面重点介绍了Hadoop的三大发行商，希望通过对其历史、技术和商业模式等各方面的介绍，让">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T06:09:50.428Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/512245606"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '069 | Hadoop及其发行商的未来',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 06:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">276</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">069 | Hadoop及其发行商的未来</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="069-Hadoop及其发行商的未来"><a href="#069-Hadoop及其发行商的未来" class="headerlink" title="069 | Hadoop及其发行商的未来"></a>069 | Hadoop及其发行商的未来</h1><p>Hadoop以及它的生态圈，从开始到现在也已经有差不多十年历史了。Hadoop从雅虎支持的一个开源项目，到由很多项目组成的Hadoop生态圈，以及依靠Hadoop发行版开展商业活动的三大公司Cloudera、Hortonworks以及MapR，其发展不可谓不迅猛。</p>
+<p>我在前面重点介绍了Hadoop的三大发行商，希望通过对其历史、技术和商业模式等各方面的介绍，让你对Hadoop当前的商业化状况有了一定的了解。</p>
+<p>那么十年之后，整个生态圈又发生了哪些变化，Hadoop发行商们的未来又会是怎样呢？本文就来探讨这方面的问题。</p>
+<p>Hadoop诞生的原因有很多，但是最重要的一条是除去谷歌，硅谷的其他互联网公司们每一个单拎出来，其研发能力都有限，不太可能构建出谷歌那样的大数据架构。而互联网业务的发展决定了这一套大数据架构是不可或缺的，所以这些“兄弟们”以雅虎和Facebook为首，开始抱团取暖，在Hadoop这个开源产品下，逐渐构建出了整个生态体系。</p>
+<p>因此，这个生态体系最初的服务对象也是这些互联网公司。互联网公司的研发能力都很强，可以自己定制系统，所以Hadoop生态圈的发展，在很长一段时间里都不够稳定。而传统的非IT企业，则不愿意使用Hadoop。</p>
+<p>这种情况随着Cloudera、MapR和Hortonworks的加入，有了很大的改善。这些Hadoop发行商提供的版本，不但是Hadoop的稳定版本，而且加入了很多帮助传统企业使用Hadoop的工具。这些厂商成了Hadoop生态圈里的另外一批受益者。</p>
+<p><strong>但是它们都算不上Hadoop生态圈里最大的受益者，从实际情况来看，亚马逊这个全球最大的云计算厂商才是</strong>。这里面有两方面原因。</p>
+<p>首先，亚马逊自己的研发能力也不足以开发出一套大数据分析生态系统，但是它同样需要类似Hadoop的大数据分析平台，所以亚马逊内部就需要使用Hadoop。这样一来，亚马逊就需要研究怎么在自己内部部署Hadoop系统。</p>
+<p>其次，亚马逊又是全球最大的云计算厂商，其所有云计算服务对内对外的接口完全一样，因此通过在亚马逊实现Hadoop的自动运行，除了服务亚马逊，更可以提供服务给外部使用，这就是Elastic MapReduce服务。这不仅让各大企业省去了购买机器集群和管理机器集群的负担，而且让亚马逊卖出了更多的云服务。这种“一鱼两吃”的做法，让亚马逊迅速做大了自己的圈子。</p>
+<p>与之相反，其他两个云厂商——微软和谷歌，一开始都不是Hadoop生态圈的，它们都研发了自己的大数据处理平台，供内部使用，因此对于让Hadoop在云端运行起来没有那么大兴趣。等到它们发现，原来亚马逊已经靠云卖Hadoop赚了很多钱，多少有些为时已晚。</p>
+<p><strong>亚马逊的Hadoop云端服务，同时摊薄了谷歌和微软这样的云厂商，以及Cloudera、MapR和Hortonworks这些Hadoop发行商的盈利空间。</strong></p>
+<p>Cloudera意识到了亚马逊模式的威胁，在2016年曾经试图和英特尔沟通，让其投资Cloudera做云上的Hadoop服务，以便和亚马逊竞争。</p>
+<p>然而，可能英特尔同时也是亚马逊的大主顾，亚马逊数据中心需要大量采购英特尔的硬件，又或者是英特尔自己并不想全面进入云计算这个领域，总之Cloudera没有获得足够的资金，这个计划就搁浅了。之后因为盈利不佳，融资不易，它只能自砍估值一半，流血上市。</p>
+<p><strong>在这次战争里，亚马逊笑到了最后，还有另外一个原因。亚马逊推出来的存储服务S3历史悠久，非常稳定，而Hadoop本身的文件系统HDFS则比较糟糕、效率很低</strong>。在亚马逊实现Elastic MapReduce的时候，对文件系统的处理，并非是基于HDFS的，而是把自己的S3作为存储系统，在上面实现了HDFS的接口而已。</p>
+<p>面对一个非常稳定的文件系统，有无数的大小企业又都把自己的数据存在这个文件系统上，Elastic MapReduce相比原生Hadoop系统表现出了更高的效率、更好的性能，自然更受欢迎。加上亚马逊出了名的控制成本、定价便宜，其他Hadoop厂商要想在亚马逊的进攻下赚到钱，就比较艰难了。</p>
+<p>微软的转型相对快一些。HDInsight就是微软的Hadoop云产品。它的文件系统也不再是简单的复用HDFS，而是在Windows Azure的存储上实现了HDFS的接口而已。</p>
+<p>经过十年的发展，Hadoop所有在云上的版本，基本上都只是实现了HDFS的接口，却不用HDFS的完整实现，这是目前很多人觉得HDFS已死的原因。</p>
+<p>另外，Hadoop早年实现的数据处理框架MapReduce，如今在整个生态圈里也被DataBricks主导的Spark打败，Spark已经成为通行的标准了。从这个角度来看，当年雅虎推出的那个Hadoop，经过这么多年的演变，很多东西都已经空心化，被新的技术取代了，留下来的只是接口。</p>
+<p><strong>数据处理框架的影响，从目前来看，比文件系统演变的影响要小</strong>。有一点很重要，就是亚马逊的Elastic MapReduce虽然取了这个名字，但其服务其实是提供了一个虚拟的Hadoop集群。既然是Hadoop集群，那么不跑MapReduce，而是跑Spark本身也不是问题。所以说名字可以欺骗人，但是数据处理框架的改变，一点都不影响亚马逊赚钱。</p>
+<p><strong>Hadoop三大发行商的空间，这些年里越来越被云厂商提供的Hadoop服务给占领了，所以它们的日子都不太好过。现在云厂商占领不了的那些，更多是不想上云，或者还没上云的传统企业</strong>。这些企业基于各种考虑，或者是数据安全的问题，或者是自身的IT能力比较弱，所以会选择三大发型商之一的版本。</p>
+<p>在这三个版本里，HDFS被重写的MapR版本其文件系统相对稳定，性能更好；而其他两家的版本则基于老的HDFS。整体上看，MapR的版本在存储层可以提供更多的企业级特性，但是要确保和Hadoop生态圈的其他产品兼容却不太容易；Cloudera家大业大，目前可能拥有了最优质的线下客户资源；而Hortonworks暂时看不到任何优势。</p>
+<p>在我看来，企业上云是必然趋势。但Cloudera和MapR需要新的盈利增长点，才能抵消企业上云带来的损失，否则长久来看，还是会逐渐走下坡路。而Hortonworks从技术和非技术的各方面表现来看，与竞争对手的差距很遥远，恐怕不出时日，日子就会不好过了。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#069-Hadoop%E5%8F%8A%E5%85%B6%E5%8F%91%E8%A1%8C%E5%95%86%E7%9A%84%E6%9C%AA%E6%9D%A5"><span class="toc-number">1.</span> <span class="toc-text">069 | Hadoop及其发行商的未来</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
