@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>16｜连接数据库：通过链和代理查询鲜花信息 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="16｜连接数据库：通过链和代理查询鲜花信息你好，我是黄佳，欢迎来到 LangChain 实战课！ 一直以来，在计算机编程和数据库管理领域，所有的操作都需要通过严格、专业且结构化的语法来完成。这就是结构化查询语言（SQL）。当你想从一个数据库中提取信息或进行某种操作时，你需要使用这种特定的语言明确地告诉计算机你的要求。这不仅需要我们深入了解正在使用的技术，还需要对所操作的数据有充分的了解。  你需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16｜连接数据库：通过链和代理查询鲜花信息">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3353709308.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="16｜连接数据库：通过链和代理查询鲜花信息你好，我是黄佳，欢迎来到 LangChain 实战课！ 一直以来，在计算机编程和数据库管理领域，所有的操作都需要通过严格、专业且结构化的语法来完成。这就是结构化查询语言（SQL）。当你想从一个数据库中提取信息或进行某种操作时，你需要使用这种特定的语言明确地告诉计算机你的要求。这不仅需要我们深入了解正在使用的技术，还需要对所操作的数据有充分的了解。  你需要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T03:49:11.462Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3353709308"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '16｜连接数据库：通过链和代理查询鲜花信息',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 03:49:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">16｜连接数据库：通过链和代理查询鲜花信息</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="16｜连接数据库：通过链和代理查询鲜花信息"><a href="#16｜连接数据库：通过链和代理查询鲜花信息" class="headerlink" title="16｜连接数据库：通过链和代理查询鲜花信息"></a>16｜连接数据库：通过链和代理查询鲜花信息</h1><p>你好，我是黄佳，欢迎来到 LangChain 实战课！</p>
+<p>一直以来，在计算机编程和数据库管理领域，所有的操作都需要通过严格、专业且结构化的语法来完成。这就是结构化查询语言（SQL）。当你想从一个数据库中提取信息或进行某种操作时，你需要使用这种特定的语言明确地告诉计算机你的要求。这不仅需要我们深入了解正在使用的技术，还需要对所操作的数据有充分的了解。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/829798a55a330518c7c95dcac948890d.png"></p>
+<p>你需要拥有一个程序员基本的技能和知识才能有效地与计算机交互。不过，随着人工智能的兴起和大语言模型的发展，情况开始发生变化。</p>
+<p>现在，我们正进入一个 <strong>全新的编程范式</strong>，其中机器学习和自然语言处理技术使得与计算机的交互变得更加自然。这意味着，我们可以用更加接近我们日常话语的自然语言来与计算机交流。例如，不用复杂的SQL语句查询数据库，我们可以简单地问：“请告诉我去年的销售额是多少？” 计算机能够理解这个问题，并给出相应的答案。</p>
+<p>这种转变不仅使得非技术人员更容易与计算机交互，还为开发者提供了更大的便利性。简而言之，我们从“ <strong>告诉计算机每一步怎么做</strong>”，转变为“ <strong>告诉计算机我们想要什么</strong>”，整个过程变得更加人性化和高效。</p>
+<h2 id="新的数据库查询范式"><a href="#新的数据库查询范式" class="headerlink" title="新的数据库查询范式"></a>新的数据库查询范式</h2><p>下面这个图，非常清晰地解释了这个以LLM为驱动引擎，从自然语言的（模糊）询问，到自然语言的查询结果输出的流程。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/60ffbcbe5a891ae74a12d3d5d24cf426.jpg"></p>
+<p>这种范式结合了自然语言处理和传统数据库查询的功能，为用户提供了一个更为直观和高效的交互方式。下面我来解释下这个过程。</p>
+<ol>
+<li>提出问题：用户用自然语言提出一个问题，例如“去年的总销售额是多少？”。</li>
+<li>LLM理解并转译：LLM首先会解析这个问题，理解其背后的意图和所需的信息。接着，模型会根据解析的内容，生成相应的SQL查询语句，例如 “SELECT SUM(sales) FROM sales_data WHERE year &#x3D; ‘last_year’;”。</li>
+<li>执行SQL查询：生成的SQL查询语句会被发送到相应的数据库进行执行。数据库处理这个查询，并返回所需的数据结果。</li>
+<li>LLM接收并解释结果：当数据库返回查询结果后，LLM会接收到这些数据。然后，LLM会开始解析这些数据，并将其转化为更容易被人类理解的答案格式。</li>
+<li>提供答案：最后，LLM将结果转化为自然语言答案，并返回给用户。例如“去年的总销售额为1,000,000元”。</li>
+</ol>
+<p>你看，用户不需要知道数据库的结构，也不需要具备编写SQL的技能。他们只需要用自然语言提问，然后就可以得到他们所需的答案。这大大简化了与数据库的交互过程，并为各种应用场景提供了巨大的潜力。</p>
+<h2 id="实战案例背景信息"><a href="#实战案例背景信息" class="headerlink" title="实战案例背景信息"></a>实战案例背景信息</h2><p>下面我们将通过LangChain实现这个新的数据库应用开发范式。</p>
+<p>在这个实战案例中，我们的所有业务数据都存储在数据库中，而目标则是通过自然语言来为销售的每一种鲜花数据创建各种查询。这样，无论是员工还是顾客，当他们想了解某种鲜花的价格时，都可以快速地生成适当的查询语句。</p>
+<p><strong>这就大大简化了查询过程和难度。</strong></p>
+<p>首先，这个应用可以被简单地用作一个查询工具，允许员工在存货或销售系统中快速查找价格。员工不再需要记住复杂的查询语句或进行手动搜索，只需选择鲜花种类，告诉系统他所想要的东西，系统就会为他们生成正确的查询。</p>
+<p>其次，这个模板也可以被整合到一个聊天机器人或客服机器人中。顾客可以直接向机器人询问：“红玫瑰的价格是多少？” 机器人会根据输入内容来调用LangChain和LLM，生成适当的查询，然后返回确切的价格给顾客。这样，不仅提高了服务效率，还增强了用户体验。</p>
+<p>了解完项目的背景信息，下面我们就开始行动吧！</p>
+<h2 id="创建数据库表"><a href="#创建数据库表" class="headerlink" title="创建数据库表"></a>创建数据库表</h2><p>首先，让我们创建一系列的数据库表，存储易速鲜花的业务数据。</p>
+<p>这里，我们使用SQLite作为我们的示例数据库。它提供了轻量级的磁盘文件数据库，并不需要单独的服务器进程或系统，应用程序可以直接与数据库文件交互。同时，它也不需要配置、安装或管理，非常适合桌面应用、嵌入式应用或初创企业的简单需求。</p>
+<p>SQLite支持ACID（原子性、一致性、隔离性、持久性），这意味着你的数据库操作即使在系统崩溃或电源失败的情况下也是安全的。虽然SQLite被认为是轻量级的，但它支持大多数SQL的标准特性，包括事务、触发器和视图。</p>
+<p>因此，它也特别适用于那些不需要大型数据库系统带来的全部功能，但仍然需要数据持久性的应用程序，如移动应用或小型Web应用。当然，也非常适合我们做Demo。</p>
+<p>sqlite3库，则是Python内置的轻量级SQLite数据库。通过sqlite3库，Python为开发者提供了一个简单、直接的方式来创建、查询和管理SQLite数据库。当你安装Python时，sqlite3模块已经包含在内，无需再进行额外的安装。</p>
+<p>基于这个sqlite3库，创建业务数据的代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 导入sqlite3库
+import sqlite3
+
+# 连接到数据库
+conn = sqlite3.connect('FlowerShop.db')
+cursor = conn.cursor()
+
+# 执行SQL命令来创建Flowers表
+cursor.execute('''
+        CREATE TABLE Flowers (
+            ID INTEGER PRIMARY KEY,
+            Name TEXT NOT NULL,
+            Type TEXT NOT NULL,
+            Source TEXT NOT NULL,
+            PurchasePrice REAL,
+            SalePrice REAL,
+            StockQuantity INTEGER,
+            SoldQuantity INTEGER,
+            ExpiryDate DATE,
+            Description TEXT,
+            EntryDate DATE DEFAULT CURRENT_DATE
+        );
+    ''')
+
+# 插入5种鲜花的数据
+flowers = [
+    ('Rose', 'Flower', 'France', 1.2, 2.5, 100, 10, '2023-12-31', 'A beautiful red rose'),
+    ('Tulip', 'Flower', 'Netherlands', 0.8, 2.0, 150, 25, '2023-12-31', 'A colorful tulip'),
+    ('Lily', 'Flower', 'China', 1.5, 3.0, 80, 5, '2023-12-31', 'An elegant white lily'),
+    ('Daisy', 'Flower', 'USA', 0.7, 1.8, 120, 15, '2023-12-31', 'A cheerful daisy flower'),
+    ('Orchid', 'Flower', 'Brazil', 2.0, 4.0, 50, 2, '2023-12-31', 'A delicate purple orchid')
+]
+
+for flower in flowers:
+    cursor.execute('''
+        INSERT INTO Flowers (Name, Type, Source, PurchasePrice, SalePrice, StockQuantity, SoldQuantity, ExpiryDate, Description)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    ''', flower)
+
+# 提交更改
+conn.commit()
+
+# 关闭数据库连接
+conn.close()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先，我们连接到FlowerShop.db数据库。然后，我们创建一个名为Flowers的新表，此表将存储与每种鲜花相关的各种数据。</p>
+<p>该表有以下字段：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d569yy552347e51ba9514a183yyef731.jpg"></p>
+<p>接着，我们创建了一个名为flowers的列表，其中包含5种鲜花的所有相关数据。使用for循环，我们遍历flowers列表，并将每种鲜花的数据插入到Flowers表中。然后提交这些更改，把它们保存到数据库中。最后，我们关闭与数据库的连接。</p>
+<h2 id="用-Chain-查询数据库"><a href="#用-Chain-查询数据库" class="headerlink" title="用 Chain 查询数据库"></a>用 Chain 查询数据库</h2><p>因为LangChain的数据库查询功能较新，目前还处于实验阶段，因此，需要先安装langchain-experimental包，这个包含有实验性的LangChain新功能。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">pip install langchain-experimental
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下面，我们就开始通过SQLDatabaseChain来查询数据库。代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 导入langchain的实用工具和相关的模块
+from langchain.utilities import SQLDatabase
+from langchain.llms import OpenAI
+from langchain_experimental.sql import SQLDatabaseChain
+
+# 连接到FlowerShop数据库（之前我们使用的是Chinook.db）
+db = SQLDatabase.from_uri("sqlite:///FlowerShop.db")
+
+# 创建OpenAI的低级语言模型（LLM）实例，这里我们设置温度为0，意味着模型输出会更加确定性
+llm = OpenAI(temperature=0, verbose=True)
+
+# 创建SQL数据库链实例，它允许我们使用LLM来查询SQL数据库
+db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True)
+
+# 运行与鲜花运营相关的问题
+response = db_chain.run("有多少种不同的鲜花？")
+print(response)
+
+response = db_chain.run("哪种鲜花的存货数量最少？")
+print(response)
+
+response = db_chain.run("平均销售价格是多少？")
+print(response)
+
+response = db_chain.run("从法国进口的鲜花有多少种？")
+print(response)
+
+response = db_chain.run("哪种鲜花的销售量最高？")
+print(response)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里，我们导入必要的LangChain模块，然后连接到FlowerShop数据库，初始化OpenAI的LLM实例。之后用SQLDatabaseChain来创建一个从LLM到数据库的链接。</p>
+<p>最后，用db_chain.run()方法来查询多个与鲜花运营相关的问题，Chain的内部会把这些自然语言转换为SQL语句，并查询数据库表，得到查询结果之后，又通过LLM把这个结果转换成自然语言。</p>
+<p>因此，Chain的输出结果是我们可以理解的，也是可以直接传递给Chatbot的人话。</p>
+<p>输出如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/04b4de7c9fd93a98cc58e6de2f8aaaaa.jpg"></p>
+<p>SQLDatabaseChain调用大语言模型，完美地完成了从自然语言（输入）到自然语言（输出）的新型SQL查询。</p>
+<h2 id="用-Agent-查询数据库"><a href="#用-Agent-查询数据库" class="headerlink" title="用 Agent 查询数据库"></a>用 Agent 查询数据库</h2><p>除了通过Chain完成数据库查询之外，LangChain 还可以通过SQL Agent来完成查询任务。相比SQLDatabaseChain，使用 SQL 代理有一些优点。</p>
+<ul>
+<li>它可以根据数据库的架构以及数据库的内容回答问题（例如它会检索特定表的描述）。</li>
+<li>它具有纠错能力，当执行生成的查询遇到错误时，它能够捕获该错误，然后正确地重新生成并执行新的查询。</li>
+</ul>
+<p>LangChain使用create_sql_agent函数来初始化代理，通过这个函数创建的SQL代理包含SQLDatabaseToolkit，这个工具箱中包含以下工具：</p>
+<ul>
+<li>创建并执行查询</li>
+<li>检查查询语法</li>
+<li>检索数据表的描述</li>
+</ul>
+<p>在这些工具的辅助之下，代理可以趋动LLM完成SQL查询任务。代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">from langchain.utilities import SQLDatabase
+from langchain.llms import OpenAI
+from langchain.agents import create_sql_agent
+from langchain.agents.agent_toolkits import SQLDatabaseToolkit
+from langchain.agents.agent_types import AgentType
+
+# 连接到FlowerShop数据库
+db = SQLDatabase.from_uri("sqlite:///FlowerShop.db")
+llm = OpenAI(temperature=0, verbose=True)
+
+# 创建SQL Agent
+agent_executor = create_sql_agent(
+    llm=llm,
+    toolkit=SQLDatabaseToolkit(db=db, llm=llm),
+    verbose=True,
+    agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+)
+
+# 使用Agent执行SQL查询
+
+questions = [
+    "哪种鲜花的存货数量最少？",
+    "平均销售价格是多少？",
+]
+
+for question in questions:
+    response = agent_executor.run(question)
+    print(response)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题1的输出如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/97bd63f7bf63eb90a33eb88829a3d118.jpg"></p>
+<p>问题2的输出如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/749ddf06803b961a16856494c33a163b.jpg"></p>
+<p>可以看到，和Chain直接生成SQL语句不同，代理会使用 ReAct 风格的提示。首先，它思考之后，将先确定第一个action是使用工具 sql_db_list_tables，然后观察该工具所返回的表格，思考后再确定下一个 action是sql_db_schema，也就是创建SQL语句，逐层前进，直到得到答案。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>今天的内容很容易理解，又很开脑洞。我最想强调的，仍然是从“告诉计算机要做什么”的编程范式向“告诉计算机我们想要什么”的范式的转变。</p>
+<p>这种转变具有深远的意义。</p>
+<ol>
+<li>更大的可达性：不再需要深入的技术知识或特定的编程背景。这意味着非技术人员，比如业务分析师、项目经理甚至是终端用户，都可以直接与数据交互。</li>
+<li>高效率与生产力：传统的编程方法需要大量的时间和努力，尤其是在复杂的数据操作中。自然语言处理和理解能够显著减少这种负担，使得复杂的数据操作变得更加直观。</li>
+<li>错误的减少：许多编程错误源于对特定语法或结构的误解，通过使用自然语言，这些源于误解的错误将大大减少。</li>
+<li>人与机器的紧密结合：在这种新范式下，机器更像是人类的合作伙伴，而不仅仅是一个工具。它们可以理解我们的需求，并为我们提供解决方案，而无需我们明确指导每一步。</li>
+</ol>
+<p>但这种转变也带来了挑战。</p>
+<ol>
+<li>模糊性的问题：自然语言本身是模糊的，机器必须能够准确地解释这种模糊性，并在必要时寻求澄清。</li>
+<li>对现有系统的依赖：虽然自然语言查询看起来很有吸引力，但许多现有系统可能不支持或不兼容这种新范式。</li>
+<li>过度依赖：如果过于依赖机器为我们做决策，那么我们可能会失去对数据的深入了解和对结果的质疑。</li>
+</ol>
+<p>我们正处于一个技术变革的时刻，自然语言与编程之间的界限正在消失。对于那些愿意接受和采纳这种新范式的人来说，未来充满了无限的可能性。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li>LangChain中用Chain和Agent来查询数据库，这两种方式有什么异同？</li>
+<li>你能否深入上面这两种方法的代码，看一看它们的底层实现。尤其是要看LangChain是如何做提示工程，指导模型生成 SQL 代码的。</li>
+</ol>
+<p>期待在留言区看到你的分享，如果你觉得内容对你有帮助，也欢迎分享给有需要的朋友！最后如果你学有余力，可以进一步学习下面的延伸阅读。</p>
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ol>
+<li>文档：LangChain中关于数据库接口的 <a target="_blank" rel="noopener" href="https://python.langchain.com/docs/modules/chains/popular/sqlite">官方文档</a></li>
+<li>工具：上面的文档中提到了 <a target="_blank" rel="noopener" href="https://docs.smith.langchain.com/">LangSmith</a> 工具，用于调试、测试和评估LangChain开发的LLM应用程序</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#16%EF%BD%9C%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A%E9%80%9A%E8%BF%87%E9%93%BE%E5%92%8C%E4%BB%A3%E7%90%86%E6%9F%A5%E8%AF%A2%E9%B2%9C%E8%8A%B1%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">16｜连接数据库：通过链和代理查询鲜花信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%8C%83%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">新的数据库查询范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%E8%83%8C%E6%99%AF%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.</span> <span class="toc-text">实战案例背景信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="toc-number">1.3.</span> <span class="toc-text">创建数据库表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-Chain-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">用 Chain 查询数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-Agent-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.</span> <span class="toc-text">用 Agent 查询数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.6.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="toc-number">1.8.</span> <span class="toc-text">延伸阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

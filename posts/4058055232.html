@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图你好，我是黄佳。欢迎来到LangChain实战课！ 上一节课中，我带着你学习了Chain的基本概念，还使用了LLMChain和SequencialChain，这一节课，我们再来看看其他类型的一些Chain的用法。 任务设定首先，还是先看一下今天要完成一个什么样的任务。 这里假设咱们的鲜花运营智能客服ChatBot通常会接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4058055232.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图你好，我是黄佳。欢迎来到LangChain实战课！ 上一节课中，我带着你学习了Chain的基本概念，还使用了LLMChain和SequencialChain，这一节课，我们再来看看其他类型的一些Chain的用法。 任务设定首先，还是先看一下今天要完成一个什么样的任务。 这里假设咱们的鲜花运营智能客服ChatBot通常会接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T03:49:11.441Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4058055232"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 03:49:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图"><a href="#09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图" class="headerlink" title="09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图"></a>09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图</h1><p>你好，我是黄佳。欢迎来到LangChain实战课！</p>
+<p>上一节课中，我带着你学习了Chain的基本概念，还使用了LLMChain和SequencialChain，这一节课，我们再来看看其他类型的一些Chain的用法。</p>
+<h2 id="任务设定"><a href="#任务设定" class="headerlink" title="任务设定"></a>任务设定</h2><p>首先，还是先看一下今天要完成一个什么样的任务。</p>
+<p>这里假设咱们的鲜花运营智能客服ChatBot通常会接到两大类问题。</p>
+<ol>
+<li><strong>鲜花养护</strong>（保持花的健康、如何浇水、施肥等）</li>
+<li><strong>鲜花装饰</strong>（如何搭配花、如何装饰场地等）</li>
+</ol>
+<p>你的需求是， <strong>如果接到的是第一类问题，你要给ChatBot A指示；如果接到第二类的问题，你要给ChatBot B指示</strong>。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d8491e696c03f49a331c94e31d20e559.jpg"></p>
+<p>我们可以根据这两个场景来构建两个不同的目标链。遇到不同类型的问题，LangChain会通过RouterChain来自动引导大语言模型选择不同的模板。</p>
+<p>当然我们的运营过程会遇到更多种类的问题，你只需要通过同样的方法扩充逻辑即可。</p>
+<h2 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h2><p>RouterChain，也叫路由链，能动态选择用于给定输入的下一个链。我们会根据用户的问题内容，首先使用路由器链确定问题更适合哪个处理模板，然后将问题发送到该处理模板进行回答。如果问题不适合任何已定义的处理模板，它会被发送到默认链。</p>
+<p>在这里，我们会用LLMRouterChain和MultiPromptChain（也是一种路由链）组合实现路由功能，该MultiPromptChain会调用LLMRouterChain选择与给定问题最相关的提示，然后使用该提示回答问题。</p>
+<p><strong>具体步骤如下：</strong></p>
+<ol>
+<li>构建处理模板：为鲜花护理和鲜花装饰分别定义两个字符串模板。</li>
+<li>提示信息：使用一个列表来组织和存储这两个处理模板的关键信息，如模板的键、描述和实际内容。</li>
+<li>初始化语言模型：导入并实例化语言模型。</li>
+<li>构建目标链：根据提示信息中的每个模板构建了对应的LLMChain，并存储在一个字典中。</li>
+<li>构建LLM路由链：这是决策的核心部分。首先，它根据提示信息构建了一个路由模板，然后使用这个模板创建了一个LLMRouterChain。</li>
+<li>构建默认链：如果输入不适合任何已定义的处理模板，这个默认链会被触发。</li>
+<li>构建多提示链：使用MultiPromptChain将LLM路由链、目标链和默认链组合在一起，形成一个完整的决策系统。</li>
+</ol>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>下面，就是用路由链自动选择处理模板的具体代码实现。</p>
+<h3 id="构建提示信息的模板"><a href="#构建提示信息的模板" class="headerlink" title="构建提示信息的模板"></a>构建提示信息的模板</h3><p>首先，我们针对两种场景，构建两个提示信息的模板。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 构建两个场景的模板
+flower_care_template = """你是一个经验丰富的园丁，擅长解答关于养花育花的问题。
+                        下面是需要你来回答的问题:
+                        &#123;input&#125;"""
+
+flower_deco_template = """你是一位网红插花大师，擅长解答关于鲜花装饰的问题。
+                        下面是需要你来回答的问题:
+                        &#123;input&#125;"""
+
+# 构建提示信息
+prompt_infos = [
+    &#123;
+        "key": "flower_care",
+        "description": "适合回答关于鲜花护理的问题",
+        "template": flower_care_template,
+    &#125;,
+    &#123;
+        "key": "flower_decoration",
+        "description": "适合回答关于鲜花装饰的问题",
+        "template": flower_deco_template,
+    &#125;]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="初始化语言模型"><a href="#初始化语言模型" class="headerlink" title="初始化语言模型"></a>初始化语言模型</h3><p>接下来，我们初始化语言模型。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 初始化语言模型
+from langchain.llms import OpenAI
+import os
+os.environ["OPENAI_API_KEY"] = '你的OpenAI Key'
+llm = OpenAI()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="构建目标链"><a href="#构建目标链" class="headerlink" title="构建目标链"></a>构建目标链</h3><p>下面，我们循环prompt_infos这个列表，构建出两个目标链，分别负责处理不同的问题。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 构建目标链
+from langchain.chains.llm import LLMChain
+from langchain.prompts import PromptTemplate
+chain_map = &#123;&#125;
+for info in prompt_infos:
+    prompt = PromptTemplate(template=info['template'],
+                            input_variables=["input"])
+    print("目标提示:\n",prompt)
+    chain = LLMChain(llm=llm, prompt=prompt,verbose=True)
+    chain_map[info["key"]] = chain
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里，目标链提示是这样的：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">目标提示:
+input_variables=['input']
+output_parser=None partial_variables=&#123;&#125;
+template='你是一个经验丰富的园丁，擅长解答关于养花育花的问题。\n                        下面是需要你来回答的问题:\n
+&#123;input&#125;' template_format='f-string'
+validate_template=True
+
+目标提示:
+input_variables=['input']
+output_parser=None partial_variables=&#123;&#125;
+template='你是一位网红插花大师，擅长解答关于鲜花装饰的问题。\n                        下面是需要你来回答的问题:\n
+&#123;input&#125;' template_format='f-string'
+validate_template=True
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于每个场景，我们创建一个 LLMChain（语言模型链）。每个链会根据其场景模板生成对应的提示，然后将这个提示送入语言模型获取答案。</p>
+<h3 id="构建路由链"><a href="#构建路由链" class="headerlink" title="构建路由链"></a>构建路由链</h3><p>下面，我们构建路由链，负责查看用户输入的问题，确定问题的类型。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 构建路由链
+from langchain.chains.router.llm_router import LLMRouterChain, RouterOutputParser
+from langchain.chains.router.multi_prompt_prompt import MULTI_PROMPT_ROUTER_TEMPLATE as RounterTemplate
+destinations = [f"&#123;p['key']&#125;: &#123;p['description']&#125;" for p in prompt_infos]
+router_template = RounterTemplate.format(destinations="\n".join(destinations))
+print("路由模板:\n",router_template)
+router_prompt = PromptTemplate(
+    template=router_template,
+    input_variables=["input"],
+    output_parser=RouterOutputParser(),)
+print("路由提示:\n",router_prompt)
+router_chain = LLMRouterChain.from_llm(llm,
+                                       router_prompt,
+                                       verbose=True)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出：</p>
+<pre class="line-numbers language-none"><code class="language-none">路由模板:
+ Given a raw text input to a language model select the model prompt best suited for the input. You will be given the names of the available prompts and a description of what the prompt is best suited for. You may also revise the original input if you think that revising it will ultimately lead to a better response from the language model.
+
+&lt;&lt; FORMATTING &gt;&gt;
+Return a markdown code snippet with a JSON object formatted to look like:
+&#96;&#96;&#96;json
+&#123;&#123;
+    &quot;destination&quot;: string \ name of the prompt to use or &quot;DEFAULT&quot;
+    &quot;next_inputs&quot;: string \ a potentially modified version of the original input
+&#125;&#125;
+&#96;&#96;&#96;
+
+REMEMBER: &quot;destination&quot; MUST be one of the candidate prompt names specified below OR it can be &quot;DEFAULT&quot; if the input is not well suited for any of the candidate prompts.
+REMEMBER: &quot;next_inputs&quot; can just be the original input if you don&#39;t think any modifications are needed.
+
+&lt;&lt; CANDIDATE PROMPTS &gt;&gt;
+flower_care: 适合回答关于鲜花护理的问题
+flower_decoration: 适合回答关于鲜花装饰的问题
+
+&lt;&lt; INPUT &gt;&gt;
+&#123;input&#125;
+
+&lt;&lt; OUTPUT &gt;&gt;
+
+路由提示:
+input_variables&#x3D;[&#39;input&#39;] output_parser&#x3D;RouterOutputParser(default_destination&#x3D;&#39;DEFAULT&#39;, next_inputs_type&#x3D;&lt;class &#39;str&#39;&gt;, next_inputs_inner_key&#x3D;&#39;input&#39;)
+partial_variables&#x3D;&#123;&#125;
+template&#x3D;&#39;Given a raw text input to a language model select the model prompt best suited for the input. You will be given the names of the available prompts and a description of what the prompt is best suited for. You may also revise the original input if you think that revising it will ultimately lead to a better response from the language model.\n\n
+&lt;&lt; FORMATTING &gt;&gt;\n
+Return a markdown code snippet with a JSON object formatted to look like:\n&#96;&#96;&#96;json\n&#123;&#123;\n &quot;destination&quot;: string \\ name of the prompt to use or &quot;DEFAULT&quot;\n    &quot;next_inputs&quot;: string \\ a potentially modified version of the original input\n&#125;&#125;\n&#96;&#96;&#96;\n\n
+REMEMBER: &quot;destination&quot; MUST be one of the candidate prompt names specified below OR it can be &quot;DEFAULT&quot; if the input is not well suited for any of the candidate prompts.\n
+REMEMBER: &quot;next_inputs&quot; can just be the original input if you don\&#39;t think any modifications are needed.\n\n&lt;&lt; CANDIDATE PROMPTS &gt;&gt;\n
+flower_care: 适合回答关于鲜花护理的问题\n
+flower_decoration: 适合回答关于鲜花装饰的问题\n\n
+&lt;&lt; INPUT &gt;&gt;\n&#123;input&#125;\n\n&lt;&lt; OUTPUT &gt;&gt;\n&#39;
+template_format&#x3D;&#39;f-string&#39;
+validate_template&#x3D;True
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里我说一下路由器链是如何构造提示信息，来引导大模型查看用户输入的问题并确定问题的类型的。</p>
+<p>先看路由模板部分，这段模板字符串是一个指导性的说明，目的是引导语言模型正确处理用户的输入，并将其定向到适当的模型提示。</p>
+<p><strong>1. 路由模板的解释</strong></p>
+<p>路由模板是路由功能得以实现的核心。我们来详细分解一下这个模板的每个部分。</p>
+<p><strong>引言</strong></p>
+<blockquote>
+<p>Given a raw text input to a language model select the model prompt best suited for the input.</p>
+</blockquote>
+<p>这是一个简单的引导语句，告诉模型你将给它一个输入，它需要根据这个输入选择最适合的模型提示。</p>
+<blockquote>
+<p>You will be given the names of the available prompts and a description of what the prompt is best suited for.</p>
+</blockquote>
+<p>这里进一步提醒模型，它将获得各种模型提示的名称和描述。</p>
+<blockquote>
+<p>You may also revise the original input if you think that revising it will ultimately lead to a better response from the language model.</p>
+</blockquote>
+<p>这是一个可选的步骤，告诉模型它可以更改原始输入以获得更好的响应。</p>
+<p><strong>格式说明(&lt;&lt; FORMATTING &gt;&gt;)</strong></p>
+<p>指导模型如何格式化其输出，使其以特定的方式返回结果。</p>
+<blockquote>
+<p>Return a markdown code snippet with a JSON object formatted to look like:</p>
+</blockquote>
+<p>表示模型的输出应该是一个 Markdown 代码片段，其中包含一个特定格式的 JSON 对象。</p>
+<p>下面的代码块显示了期望的 JSON 结构，其中 destination 是模型选择的提示名称（或“DEFAULT”），而 next_inputs 是可能被修订的原始输入。</p>
+<p><strong>额外的说明和要求</strong></p>
+<blockquote>
+<p>REMEMBER: “destination” MUST be one of the candidate prompt names specified below OR it can be “DEFAULT”…</p>
+</blockquote>
+<p>这是一个重要的指导，提醒模型 “destination” 字段的值必须是下面列出的提示之一或是 “DEFAULT”。</p>
+<blockquote>
+<p>REMEMBER: “next_inputs” can just be the original input if you don’t think any modifications are needed.</p>
+</blockquote>
+<p>这再次强调，除非模型认为有必要，否则原始输入不需要修改。</p>
+<p><strong>候选提示(&lt;&lt; CANDIDATE PROMPTS &gt;&gt;)</strong></p>
+<p>列出了两个示例模型提示及其描述：</p>
+<ul>
+<li>“flower_care: 适合回答关于鲜花护理的问题”，适合处理与花卉护理相关的问题。</li>
+<li>“flower_decoration: 适合回答关于鲜花装饰的问题”，适合处理与花卉装饰相关的问题。</li>
+</ul>
+<p><strong>输入&#x2F;输出部分</strong></p>
+<blockquote>
+<p>&lt;&lt; INPUT &gt;&gt;\n{input}\n\n&lt;&lt; OUTPUT &gt;&gt;\n：</p>
+</blockquote>
+<p>这部分为模型提供了一个格式化的框架，其中它将接收一个名为 {input} 的输入，并在此后的部分输出结果。</p>
+<p>总的来说，这个模板的目的是让模型知道如何处理用户的输入，并根据提供的提示列表选择一个最佳的模型提示来回应。</p>
+<p><strong>2. 路由提示的解释</strong></p>
+<p>路由提示 (router_prompt）则根据路由模板，生成了具体传递给LLM的路由提示信息。</p>
+<ul>
+<li>其中input_variables 指定模板接收的输入变量名，这里只有 <code>&quot;input&quot;</code>。</li>
+<li>output_parser 是一个用于解析模型输出的对象，它有一个默认的目的地和一个指向下一输入的键。</li>
+<li>template 是实际的路由模板，用于给模型提供指示。这就是刚才详细解释的模板内容。</li>
+<li>template_format 指定模板的格式，这里是 <code>&quot;f-string&quot;</code>。</li>
+<li>validate_template 是一个布尔值，如果为 True，则会在使用模板前验证其有效性。</li>
+</ul>
+<p>简而言之，这个构造允许你将用户的原始输入送入路由器，然后路由器会决定将该输入发送到哪个具体的模型提示，或者是否需要对输入进行修订以获得最佳的响应。</p>
+<h3 id="构建默认链"><a href="#构建默认链" class="headerlink" title="构建默认链"></a>构建默认链</h3><p>除了处理目标链和路由链之外，我们还需要准备一个默认链。如果路由链没有找到适合的链，那么，就以默认链进行处理。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 构建默认链
+from langchain.chains import ConversationChain
+default_chain = ConversationChain(llm=llm,
+                                  output_key="text",
+                                  verbose=True)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="构建多提示链"><a href="#构建多提示链" class="headerlink" title="构建多提示链"></a>构建多提示链</h3><p>最后，我们使用MultiPromptChain类把前几个链整合在一起，实现路由功能。这个MultiPromptChain类是一个多路选择链，它使用一个LLM路由器链在多个提示之间进行选择。</p>
+<p><strong>MultiPromptChain中有三个关键元素。</strong></p>
+<ul>
+<li>router_chain（类型RouterChain）：这是用于决定目标链和其输入的链。当给定某个输入时，这个router_chain决定哪一个destination_chain应该被选中，以及传给它的具体输入是什么。</li>
+<li>destination_chains（类型Mapping[str, LLMChain]）：这是一个映射，将名称映射到可以将输入路由到的候选链。例如，你可能有多种处理文本输入的方法（或“链”），每种方法针对特定类型的问题。destination_chains可以是这样一个字典： <code>&#123;&#39;weather&#39;: weather_chain, &#39;news&#39;: news_chain&#125;</code>。在这里，weather_chain可能专门处理与天气相关的问题，而news_chain处理与新闻相关的问题。</li>
+<li>default_chain（类型LLMChain）：当 router_chain 无法将输入映射到destination_chains中的任何一个链时，LLMChain 将使用此默认链。这是一个备选方案，确保即使路由器不能决定正确的链，也总有一个链可以处理输入。</li>
+</ul>
+<p><strong>它的工作流程如下：</strong></p>
+<ol>
+<li>输入首先传递给router_chain。</li>
+<li>router_chain根据某些标准或逻辑决定应该使用哪一个destination_chain。</li>
+<li>输入随后被路由到选定的destination_chain，该链进行处理并返回结果。</li>
+<li>如果router_chain不能决定正确的destination_chain，则输入会被传递给default_chain。</li>
+</ol>
+<p>这样，MultiPromptChain就为我们提供了一个在多个处理链之间动态路由输入的机制，以得到最相关或最优的输出。</p>
+<p>实现代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 构建多提示链
+from langchain.chains.router import MultiPromptChain
+chain = MultiPromptChain(
+    router_chain=router_chain,
+    destination_chains=chain_map,
+    default_chain=default_chain,
+    verbose=True)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="运行路由链"><a href="#运行路由链" class="headerlink" title="运行路由链"></a>运行路由链</h2><p>好了，至此我们的链路已经准备好了。现在开始提出各种问题，测试一下我们的链。</p>
+<p><strong>测试A：</strong></p>
+<p>print(chain.run(“如何为玫瑰浇水？”))</p>
+<p>输出：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/89d0bfac97b259b93240a10cf777d9a2.png"></p>
+<p><strong>测试B：</strong></p>
+<p>print(chain.run(“如何为婚礼场地装饰花朵？”))</p>
+<p>输出：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4f848ca6592476358a25bf91996aa0ed.png"></p>
+<p><strong>测试C：</strong></p>
+<p>print(chain.run(“如何考入哈佛大学？”))</p>
+<p>输出：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/acd4a69df2cef81b1f7bcf33f9b4bb12.png"></p>
+<p>这三个测试，分别被路由到了三个不同的目标链，其中两个是我们预设的“专家类型”目标链，而第三个问题：如何考入哈佛大学？被模型一眼看穿，并不属于任何鲜花运营业务场景，路由链把它抛入了一个 “default chain” —— ConversationChain 去解决。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>在这个示例中，我们看到了LLMRouterChain以及MultiPromptChain。其中，LLMRouterChain继承自RouterChain；而MultiPromptChain则继承自MultiRouteChain。</p>
+<p>整体上，我们通过MultiPromptChain把其他链组织起来，完成了路由功能。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">chain = MultiPromptChain(
+    router_chain=router_chain,
+    destination_chains=chain_map,
+    default_chain=default_chain,
+    verbose=True)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在LangChain的 chains -&gt; router -&gt; base.py 文件中，可以看到RouterChain和MultiRouteChain的代码实现。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li>通过verbose&#x3D;True这个选项的设定，在输出时显示了链的开始和结束日志，从而得到其相互调用流程。请你尝试把该选项设置为False，看一看输出结果有何不同。</li>
+<li>在这个例子中，我们使用了ConversationChain作为default_chain，这个Chain是LLMChain的子类，你能否把这个Chain替换为LLMChain？</li>
+</ol>
+<p>期待在留言区看到你的分享。如果你觉得内容对你有帮助，也欢迎分享给有需要的朋友！最后如果你学有余力，可以进一步学习下面的延伸阅读。</p>
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ol>
+<li>代码，RouterChain和MultiRouteChain的 <a target="_blank" rel="noopener" href="https://github.com/langchain-ai/langchain/blob/master/libs/langchain/langchain/chains/router/base.py">实现细节</a></li>
+<li>代码，MultiPromptChain的 <a target="_blank" rel="noopener" href="https://github.com/langchain-ai/langchain/blob/master/libs/langchain/langchain/chains/router/multi_prompt.py">实现细节</a></li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#09%EF%BD%9C%E9%93%BE%EF%BC%88%E4%B8%8B%EF%BC%89%EF%BC%9A%E6%83%B3%E5%AD%A6%E2%80%9C%E8%82%B2%E8%8A%B1%E2%80%9D%E8%BF%98%E6%98%AF%E2%80%9C%E6%8F%92%E8%8A%B1%E2%80%9D%EF%BC%9F%E7%94%A8RouterChain%E7%A1%AE%E5%AE%9A%E5%AE%A2%E6%88%B7%E6%84%8F%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E8%AE%BE%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">任务设定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="toc-number">1.2.</span> <span class="toc-text">整体框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.</span> <span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.3.1.</span> <span class="toc-text">构建提示信息的模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">初始化语言模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E7%9B%AE%E6%A0%87%E9%93%BE"><span class="toc-number">1.3.3.</span> <span class="toc-text">构建目标链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E8%B7%AF%E7%94%B1%E9%93%BE"><span class="toc-number">1.3.4.</span> <span class="toc-text">构建路由链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E9%BB%98%E8%AE%A4%E9%93%BE"><span class="toc-number">1.3.5.</span> <span class="toc-text">构建默认链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%A4%9A%E6%8F%90%E7%A4%BA%E9%93%BE"><span class="toc-number">1.3.6.</span> <span class="toc-text">构建多提示链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%B7%AF%E7%94%B1%E9%93%BE"><span class="toc-number">1.4.</span> <span class="toc-text">运行路由链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.5.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="toc-number">1.7.</span> <span class="toc-text">延伸阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统你好，我是黄佳，欢迎来到LangChain实战课！ 在深入讲解LangChain的每一个具体组件之前，我想带着你从头完成一个很实用、很有意义的实战项目。目的就是让你直观感受一下LangChain作为一个基于大语言模型的应用开发框架，功能到底有多么强大。好的，现在就开始！ 项目及实现框架我们先来整体了解一下这个项目。 项目名称">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1285040136.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统你好，我是黄佳，欢迎来到LangChain实战课！ 在深入讲解LangChain的每一个具体组件之前，我想带着你从头完成一个很实用、很有意义的实战项目。目的就是让你直观感受一下LangChain作为一个基于大语言模型的应用开发框架，功能到底有多么强大。好的，现在就开始！ 项目及实现框架我们先来整体了解一下这个项目。 项目名称">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T03:49:11.418Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1285040136"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 03:49:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">113</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统"><a href="#02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统" class="headerlink" title="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统"></a>02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</h1><p>你好，我是黄佳，欢迎来到LangChain实战课！</p>
+<p>在深入讲解LangChain的每一个具体组件之前，我想带着你从头完成一个很实用、很有意义的实战项目。目的就是让你直观感受一下LangChain作为一个基于大语言模型的应用开发框架，功能到底有多么强大。好的，现在就开始！</p>
+<h2 id="项目及实现框架"><a href="#项目及实现框架" class="headerlink" title="项目及实现框架"></a>项目及实现框架</h2><p>我们先来整体了解一下这个项目。</p>
+<p><strong>项目名称</strong>：“易速鲜花”内部员工知识库问答系统。</p>
+<p><strong>项目介绍</strong>：“易速鲜花”作为一个大型在线鲜花销售平台，有自己的业务流程和规范，也拥有针对员工的SOP手册。新员工入职培训时，会分享相关的信息。但是，这些信息分散于内部网和HR部门目录各处，有时不便查询；有时因为文档过于冗长，员工无法第一时间找到想要的内容；有时公司政策已更新，但是员工手头的文档还是旧版内容。</p>
+<p>基于上述需求，我们将开发一套基于各种内部知识手册的 “Doc-QA” 系统。这个系统将充分利用LangChain框架，处理从员工手册中产生的各种问题。这个问答系统能够理解员工的问题，并基于最新的员工手册，给出精准的答案。</p>
+<p><strong>开发框架</strong>：下面这张图片描述了通过LangChain框架实现一个知识库文档系统的整体框架。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/c66995f1bf8575fb8fyye6293200eabf.jpg"></p>
+<p>整个框架分为这样三个部分。</p>
+<ul>
+<li>数据源（Data Sources）：数据可以有很多种，包括PDF在内的非结构化的数据（Unstructured Data）、SQL在内的结构化的数据（Structured Data），以及Python、Java之类的代码（Code）。在这个示例中，我们聚焦于对非结构化数据的处理。</li>
+<li>大模型应用（Application，即LLM App）：以大模型为逻辑引擎，生成我们所需要的回答。</li>
+<li>用例（Use-Cases）：大模型生成的回答可以构建出QA&#x2F;聊天机器人等系统。</li>
+</ul>
+<p><strong>核心实现机制：</strong> 这个项目的核心实现机制是下图所示的数据处理管道（Pipeline）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/73a46eecd42038961db9067e75de3387.jpg"></p>
+<p>在这个管道的每一步中，LangChain都为我们提供了相关工具，让你轻松实现基于文档的问答功能。</p>
+<p>具体流程分为下面5步。</p>
+<ol>
+<li>Loading：文档加载器把Documents <strong>加载</strong> 为以LangChain能够读取的形式。</li>
+<li>Splitting：文本分割器把Documents <strong>切分</strong> 为指定大小的分割，我把它们称为“文档块”或者“文档片”。</li>
+<li>Storage：将上一步中分割好的“文档块”以“嵌入”（Embedding）的形式 <strong>存储</strong> 到向量数据库（Vector DB）中，形成一个个的“嵌入片”。</li>
+<li>Retrieval：应用程序从存储中 <strong>检索</strong> 分割后的文档（例如通过比较余弦相似度，找到与输入问题类似的嵌入片）。</li>
+<li>Output：把问题和相似的嵌入片传递给语言模型（LLM），使用包含问题和检索到的分割的提示 <strong>生成答案</strong>。</li>
+</ol>
+<p>上面5个环节的介绍都非常简单，有些概念（如嵌入、向量存储）是第一次出现，理解起来需要一些背景知识，别着急，我们接下来具体讲解这5步。</p>
+<h2 id="数据的准备和载入"><a href="#数据的准备和载入" class="headerlink" title="数据的准备和载入"></a>数据的准备和载入</h2><p>“易速鲜花”的内部资料包括 pdf、word 和 txt 格式的各种文件，我已经放在 <a target="_blank" rel="noopener" href="https://github.com/huangjia2019/langchain/tree/main/02_%E6%96%87%E6%A1%A3QA%E7%B3%BB%E7%BB%9F">这里</a> 供你下载。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b69956a706112266df404eee953459ff.jpg"></p>
+<p>其中一个文档的示例如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/931a55af4f0a3842a640d95c2c4bf224.jpg"></p>
+<p>我们首先用LangChain中的document_loaders来加载各种格式的文本文件。（这些文件我把它放在OneFlower这个目录中了，如果你创建自己的文件夹，就要调整一下代码中的目录。）</p>
+<p>在这一步中，我们从 pdf、word 和 txt 文件中加载文本，然后将这些文本存储在一个列表中。（注意：可能需要安装PyPDF、Docx2txt等库）</p>
+<p>代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">import os
+os.environ["OPENAI_API_KEY"] = '你的Open AI API Key'
+
+# 1.Load 导入Document Loaders
+from langchain.document_loaders import PyPDFLoader
+from langchain.document_loaders import Docx2txtLoader
+from langchain.document_loaders import TextLoader
+
+# 加载Documents
+base_dir = '.\OneFlower' # 文档的存放目录
+documents = []
+for file in os.listdir(base_dir):
+    # 构建完整的文件路径
+    file_path = os.path.join(base_dir, file)
+    if file.endswith('.pdf'):
+        loader = PyPDFLoader(file_path)
+        documents.extend(loader.load())
+    elif file.endswith('.docx'):
+        loader = Docx2txtLoader(file_path)
+        documents.extend(loader.load())
+    elif file.endswith('.txt'):
+        loader = TextLoader(file_path)
+        documents.extend(loader.load())
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里我们首先导入了OpenAI的API Key。因为后面我们需要利用Open AI的两种不同模型做以下两件事：</p>
+<ul>
+<li>用OpenAI的Embedding模型为文档做嵌入。</li>
+<li>调用OpenAI的GPT模型来生成问答系统中的回答。</li>
+</ul>
+<p>当然了，LangChain所支持的大模型绝不仅仅是Open AI而已，你完全可以遵循这个框架，把Embedding模型和负责生成回答的语言模型都替换为其他的开源模型。</p>
+<p>在运行上面的程序时，除了要导入正确的Open AI Key之外，还要注意的是工具包的安装。使用LangChain时，根据具体的任务，往往需要各种不同的工具包（比如上面的代码需要PyPDF和Docx2txt工具）。它们安装起来都非常简单，如果程序报错缺少某个包，只要通过 <code>pip install</code> 安装相关包即可。</p>
+<h2 id="文本的分割"><a href="#文本的分割" class="headerlink" title="文本的分割"></a>文本的分割</h2><p>接下来需要将加载的文本分割成更小的块，以便进行嵌入和向量存储。这个步骤中，我们使用 LangChain中的RecursiveCharacterTextSplitter 来分割文本。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 2.Split 将Documents切分成块以便后续进行嵌入和向量存储
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=10)
+chunked_documents = text_splitter.split_documents(documents)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在，我们的文档被切成了一个个200字符左右的文档块。这一步，是为把它们存储进下面的向量数据库做准备。</p>
+<h2 id="向量数据库存储"><a href="#向量数据库存储" class="headerlink" title="向量数据库存储"></a>向量数据库存储</h2><p>紧接着，我们将这些分割后的文本转换成嵌入的形式，并将其存储在一个向量数据库中。在这个例子中，我们使用了 OpenAIEmbeddings 来生成嵌入，然后使用 Qdrant 这个向量数据库来存储嵌入（这里需要pip install qdrant-client）。</p>
+<p>如果文本的“嵌入”这个概念对你来说有些陌生的话，你可以看一下下面的说明。</p>
+<blockquote>
+<p>词嵌入（Word Embedding）是自然语言处理和机器学习中的一个概念，它将文字或词语转换为一系列数字，通常是一个向量。简单地说，词嵌入就是一个为每个词分配的数字列表。这些数字不是随机的，而是捕获了这个词的含义和它在文本中的上下文。因此，语义上相似或相关的词在这个数字空间中会比较接近。</p>
+<p>举个例子，通过某种词嵌入技术，我们可能会得到：</p>
+<p>“国王” -&gt; [1.2, 0.5, 3.1, …]</p>
+<p>“皇帝” -&gt; [1.3, 0.6, 2.9, …]</p>
+<p>“苹果” -&gt; [0.9, -1.2, 0.3, …]</p>
+<p>从这些向量中，我们可以看到“国王”和“皇帝”这两个词的向量在某种程度上是相似的，而与“苹果”这个词相比，它们的向量则相差很大，因为这两个概念在语义上是不同的。</p>
+<p>词嵌入的优点是，它提供了一种将文本数据转化为计算机可以理解和处理的形式，同时保留了词语之间的语义关系。这在许多自然语言处理任务中都是非常有用的，比如文本分类、机器翻译和情感分析等。</p>
+</blockquote>
+<p>你也可以对照下面的讲解学习一下向量数据库这个概念，它最近因为大语言模型的流行变得非常火爆。</p>
+<blockquote>
+<p>向量数据库，也称为矢量数据库或者向量搜索引擎，是一种专门用于存储和搜索向量形式的数据的数据库。在众多的机器学习和人工智能应用中，尤其是自然语言处理和图像识别这类涉及大量非结构化数据的领域，将数据转化为高维度的向量是常见的处理方式。这些向量可能拥有数百甚至数千个维度，是对复杂的非结构化数据如文本、图像的一种数学表述，从而使这些数据能被机器理解和处理。然而，传统的关系型数据库在存储和查询如此高维度和复杂性的向量数据时，往往面临着效率和性能的问题。因此，向量数据库被设计出来以解决这一问题，它具备高效存储和处理高维向量数据的能力，从而更好地支持涉及非结构化数据处理的人工智能应用。</p>
+</blockquote>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e3c7e244b15f9527a4eb811e550a8f16.png"></p>
+<p>向量数据库有很多种，比如Pinecone、Chroma和Qdrant，有些是收费的，有些则是开源的。</p>
+<p>LangChain中支持很多向量数据库，这里我们选择的是开源向量数据库Qdrant。（注意，需要安装qdrant-client）</p>
+<p>具体实现代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 3.Store 将分割嵌入并存储在矢量数据库Qdrant中
+from langchain.vectorstores import Qdrant
+from langchain.embeddings import OpenAIEmbeddings
+vectorstore = Qdrant.from_documents(
+    documents=chunked_documents, # 以分块的文档
+    embedding=OpenAIEmbeddings(), # 用OpenAI的Embedding Model做嵌入
+    location=":memory:",  # in-memory 存储
+    collection_name="my_documents",) # 指定collection_name
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>目前，易速鲜花的所有内部文档，都以“文档块嵌入片”的格式被存储在向量数据库里面了。那么，我们只需要查询这个向量数据库，就可以找到大体上相关的信息了。</p>
+<h2 id="相关信息的获取"><a href="#相关信息的获取" class="headerlink" title="相关信息的获取"></a>相关信息的获取</h2><p>当内部文档存储到向量数据库之后，我们需要根据问题和任务来提取最相关的信息。此时，信息提取的基本方式就是把问题也转换为向量，然后去和向量数据库中的各个向量进行比较，提取最接近的信息。</p>
+<p>向量之间的比较通常基于向量的距离或者相似度。在高维空间中，常用的向量距离或相似度计算方法有欧氏距离和余弦相似度。</p>
+<ul>
+<li><strong>欧氏距离</strong>：这是最直接的距离度量方式，就像在二维平面上测量两点之间的直线距离那样。在高维空间中，两个向量的欧氏距离就是各个对应维度差的平方和的平方根。</li>
+<li><strong>余弦相似度</strong>：在很多情况下，我们更关心向量的方向而不是它的大小。例如在文本处理中，一个词的向量可能会因为文本长度的不同，而在大小上有很大的差距，但方向更能反映其语义。余弦相似度就是度量向量之间方向的相似性，它的值范围在-1到1之间，值越接近1，表示两个向量的方向越相似。</li>
+</ul>
+<p>这两种方法都被广泛应用于各种机器学习和人工智能任务中，选择哪一种方法取决于具体的应用场景。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/32db77431433da86d9f818037752bd7a.png"></p>
+<p>当然这里你肯定会问了，那么到底什么时候选择欧式距离，什么时候选择余弦相似度呢？</p>
+<p>简单来说，关心数量等大小差异时用欧氏距离，关心文本等语义差异时用余弦相似度。</p>
+<p>具体来说，欧氏距离度量的是绝对距离，它能很好地反映出向量的绝对差异。当我们关心数据的绝对大小，例如在物品推荐系统中，用户的购买量可能反映他们的偏好强度，此时可以考虑使用欧氏距离。同样，在数据集中各个向量的大小相似，且数据分布大致均匀时，使用欧氏距离也比较适合。</p>
+<p>余弦相似度度量的是方向的相似性，它更关心的是两个向量的角度差异，而不是它们的大小差异。在处理文本数据或者其他高维稀疏数据的时候，余弦相似度特别有用。比如在信息检索和文本分类等任务中，文本数据往往被表示为高维的词向量，词向量的方向更能反映其语义相似性，此时可以使用余弦相似度。</p>
+<p>在这里，我们正在处理的是文本数据，目标是建立一个问答系统，需要从语义上理解和比较问题可能的答案。因此，我建议使用余弦相似度作为度量标准。通过比较问题和答案向量在语义空间中的方向，可以找到与提出的问题最匹配的答案。</p>
+<p>在这一步的代码部分，我们会创建一个聊天模型。然后需要创建一个 RetrievalQA 链，它是一个检索式问答模型，用于生成问题的答案。</p>
+<p>在RetrievalQA 链中有下面两大重要组成部分。</p>
+<ul>
+<li>LLM是大模型，负责回答问题。</li>
+<li>retriever（vectorstore.as_retriever()）负责根据问题检索相关的文档，找到具体的“嵌入片”。这些“嵌入片”对应的“文档块”就会作为知识信息，和问题一起传递进入大模型。本地文档中检索而得的知识很重要，因为 <strong>从互联网信息中训练而来的大模型不可能拥有“易速鲜花”作为一个私营企业的内部知识</strong>。</li>
+</ul>
+<p>具体代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 4. Retrieval 准备模型和Retrieval链
+import logging # 导入Logging工具
+from langchain.chat_models import ChatOpenAI # ChatOpenAI模型
+from langchain.retrievers.multi_query import MultiQueryRetriever # MultiQueryRetriever工具
+from langchain.chains import RetrievalQA # RetrievalQA链
+
+# 设置Logging
+logging.basicConfig()
+logging.getLogger('langchain.retrievers.multi_query').setLevel(logging.INFO)
+
+# 实例化一个大模型工具 - OpenAI的GPT-3.5
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+
+# 实例化一个MultiQueryRetriever
+retriever_from_llm = MultiQueryRetriever.from_llm(retriever=vectorstore.as_retriever(), llm=llm)
+
+# 实例化一个RetrievalQA链
+qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在我们已经为后续的步骤做好了准备，下一步就是接收来自系统用户的具体问题，并根据问题检索信息，生成回答。</p>
+<h2 id="生成回答并展示"><a href="#生成回答并展示" class="headerlink" title="生成回答并展示"></a>生成回答并展示</h2><p>这一步是问答系统应用的主要UI交互部分，这里会创建一个 Flask 应用（需要安装Flask包）来接收用户的问题，并生成相应的答案，最后通过 index.html 对答案进行渲染和呈现。</p>
+<p>在这个步骤中，我们使用了之前创建的 RetrievalQA 链来获取相关的文档和生成答案。然后，将这些信息返回给用户，显示在网页上。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 5. Output 问答系统的UI实现
+from flask import Flask, request, render_template
+app = Flask(__name__) # Flask APP
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+
+        # 接收用户输入作为问题
+        question = request.form.get('question')
+
+        # RetrievalQA链 - 读入问题，生成答案
+        result = qa_chain(&#123;"query": question&#125;)
+
+        # 把大模型的回答结果返回网页进行渲染
+        return render_template('index.html', result=result)
+
+    return render_template('index.html')
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',debug=True,port=5000)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>相关HTML网页的关键代码如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">&lt;body>
+    &lt;div class="container">
+        &lt;div class="header">
+            &lt;h1>易速鲜花内部问答系统&lt;/h1>
+            &lt;img src="&#123;&#123; url_for('static', filename='flower.png') &#125;&#125;" alt="flower logo" width="200">
+        &lt;/div>
+        &lt;form method="POST">
+            &lt;label for="question">Enter your question:&lt;/label>&lt;br>
+            &lt;input type="text" id="question" name="question">&lt;br>
+            &lt;input type="submit" value="Submit">
+        &lt;/form>
+        &#123;% if result is defined %&#125;
+            &lt;h2>Answer&lt;/h2>
+            &lt;p>&#123;&#123; result.result &#125;&#125;&lt;/p>
+        &#123;% endif %&#125;
+    &lt;/div>
+&lt;/body>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个项目的目录结构如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2110cd73ddb8677f9b188d41c589c73e.png"></p>
+<p>运行程序之后，我们跑起一个网页 <a target="_blank" rel="noopener" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>。与网页进行互动时，可以发现，问答系统完美生成了专属于异速鲜花内部资料的回答。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/46b5b08c5f022f2c4c5975436b3e2d17.png"></p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>来回顾一下上面的流程。正如下图所示，我们先把本地知识切片后做Embedding，存储到向量数据库中，然后把用户的输入和从向量数据库中检索到的本地知识传递给大模型，最终生成所想要的回答。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/249c631211275e40f3e72d05dda976af.jpg"></p>
+<p>怎么样，你是不是觉得整个流程特别简单易懂？</p>
+<p>对了，LangChain+LLM的配置就是使原本复杂的东西变得特别简单，特别易于操作。而这个任务，在大模型和LangChain出现之前，要实现起来可不是这么简单的。</p>
+<p>如果这个示例让你了解到了LangChain的威力，那么这节课的目标也就完成了。除了流程图的回顾，我也为你准备了一个详细版的脑图，你可以对照着复习。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/78a4b0435639b4db8c4e024d830a2ac2.jpg"></p>
+<p>在后面几节课中，我们即将对LangChain的模型、链、内存、代理等组件进行详细拆解，我会带着你实现更多任务，开发出更奇妙的应用。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li>请你用自己的话简述一下这个基于文档的QA（问答）系统的实现流程？</li>
+<li>LangChain支持很多种向量数据库，你能否用另一种常用的向量数据库Chroma来实现这个任务？</li>
+<li>LangChain支持很多种大语言模型，你能否用HuggingFace网站提供的开源模型 <a target="_blank" rel="noopener" href="https://huggingface.co/google/flan-t5-xl">google&#x2F;flan-t5-x1</a> 代替GPT-3.5完成这个任务？</li>
+</ol>
+<p>题目较多，可以选择性尝试，期待在留言区看到你的分享。如果你觉得内容对你有帮助，也欢迎分享给有需要的朋友！最后如果你学有余力，可以进一步学习下面的延伸阅读。</p>
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ol>
+<li>LangChain官方文档对 <a target="_blank" rel="noopener" href="https://docs.langchain.com/docs/use-cases/qa-docs">Document QA 系统</a> 设计及实现的详细说明</li>
+<li>HuggingFace官网上的 <a target="_blank" rel="noopener" href="https://huggingface.co/tasks/document-question-answering">文档问答</a> 资源</li>
+<li>论文 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.10439">开放式表格与文本问题回答</a>，Chen, W., Chang, M.-W., Schlinger, E., Wang, W., &amp; Cohen, W. W. (2021). Open Question Answering over Tables and Text. ICLR 2021.</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#02%EF%BD%9C%E7%94%A8LangChain%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%9F%BA%E4%BA%8E%E2%80%9C%E6%98%93%E9%80%9F%E9%B2%9C%E8%8A%B1%E2%80%9D%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">项目及实现框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%86%E5%A4%87%E5%92%8C%E8%BD%BD%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text">数据的准备和载入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%9A%84%E5%88%86%E5%89%B2"><span class="toc-number">1.3.</span> <span class="toc-text">文本的分割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.</span> <span class="toc-text">向量数据库存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-number">1.5.</span> <span class="toc-text">相关信息的获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%9B%9E%E7%AD%94%E5%B9%B6%E5%B1%95%E7%A4%BA"><span class="toc-number">1.6.</span> <span class="toc-text">生成回答并展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.7.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.8.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="toc-number">1.9.</span> <span class="toc-text">延伸阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
