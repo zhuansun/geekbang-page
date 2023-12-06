@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-06 06:17:13'
+  postUpdate: '2023-12-06 06:20:13'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -183,7 +183,12 @@ Created /geekbang/time
 我从这个角度出发，在接下来的 2 节课中，我会分别从架构和代码实现的角度，以一个基本的分布式 KV 系统为例，具体说一说，如何基于 Raft 算法构建一个分布式 KV 系统。那么我希望你能课下多动手，自己写一遍，不给自己留下盲区。如果条件允许的话，你还可以按需开发实现需要的功能，并将这套系统作为自己的“配置中心”“名字路由”维护下去，不断在实战中加深自己对技术的理解。
 可能有同学会问：“老韩，为什么不以 Etcd 为例呢？它不是已经在生产环境中落地了吗？”
 我是这么考虑的，这个基本的分布式 KV 系统的代码比较少，相对纯粹聚焦在技术本身，涉及的 KV 业务层面的逻辑少，适合入门学习（比如你可以从零开始，动手编程实现），是一个很好的学习案例。
-另外，对一些有经验的开发者来说，这部分知识能够帮助你掌握  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1285040136.html" title="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统你好，我是黄佳，欢迎来到LangChain实战课！
+另外，对一些有经验的开发者来说，这部分知识能够帮助你掌握  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/343780227.html" title="01｜LangChain系统安装和快速入门">01｜LangChain系统安装和快速入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">01｜LangChain系统安装和快速入门你好，我是黄佳，欢迎来到LangChain实战课！
+在我们开始正式的学习之前，先做一些基本知识储备。虽然大语言模型的使用非常简单，但是如果我们通过API来进行应用开发，那么还是有些基础知识应该先了解了解，比如什么是大模型，怎么安装LangChain，OpenAI的API有哪些类型，以及常用的开源大模型从哪里下载等等。
+什么是大语言模型大语言模型是一种人工智能模型，通常使用深度学习技术，比如神经网络，来理解和生成人类语言。这些模型的“大”在于它们的参数数量非常多，可以达到数十亿甚至更多，这使得它们能够理解和生成高度复杂的语言模式。
+你可以 将大语言模型想象成一个巨大的预测机器，其训练过程主要基于“猜词”：给定一段文本的开头，它的任务就是预测下一个词是什么。模型会根据大量的训练数据（例如在互联网上爬取的文本），试图理解词语和词组在语言中的用法和含义，以及它们如何组合形成意义。它会通过不断地学习和调整参数，使得自己的预测越来越准确。
+
+比如我们给模型一个句子：“今天的天气真”，模型可能会预测出“好”作为下一个词，因为在它看过的大量训练数据中，“今天的天气真好”是一个常见的句子。这种预测并不只基于词语的统计关系，还包括对上下文的理解，甚至有时能体现出对世界常识的认知，比如它会理解到，人们通常会在天气好的时候进行户外活动。因此也就能够继续生成或者说推 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1285040136.html" title="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统你好，我是黄佳，欢迎来到LangChain实战课！
 在深入讲解LangChain的每一个具体组件之前，我想带着你从头完成一个很实用、很有意义的实战项目。目的就是让你直观感受一下LangChain作为一个基于大语言模型的应用开发框架，功能到底有多么强大。好的，现在就开始！
 项目及实现框架我们先来整体了解一下这个项目。
 项目名称：“易速鲜花”内部员工知识库问答系统。
@@ -193,12 +198,7 @@ Created /geekbang/time
 
 整个框架分为这样三个部分。
 
-数据源（Data Sources）：数据可以有很多种，包括PDF在内的非结构化的数据（Unstructure ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/343780227.html" title="01｜LangChain系统安装和快速入门">01｜LangChain系统安装和快速入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">01｜LangChain系统安装和快速入门你好，我是黄佳，欢迎来到LangChain实战课！
-在我们开始正式的学习之前，先做一些基本知识储备。虽然大语言模型的使用非常简单，但是如果我们通过API来进行应用开发，那么还是有些基础知识应该先了解了解，比如什么是大模型，怎么安装LangChain，OpenAI的API有哪些类型，以及常用的开源大模型从哪里下载等等。
-什么是大语言模型大语言模型是一种人工智能模型，通常使用深度学习技术，比如神经网络，来理解和生成人类语言。这些模型的“大”在于它们的参数数量非常多，可以达到数十亿甚至更多，这使得它们能够理解和生成高度复杂的语言模式。
-你可以 将大语言模型想象成一个巨大的预测机器，其训练过程主要基于“猜词”：给定一段文本的开头，它的任务就是预测下一个词是什么。模型会根据大量的训练数据（例如在互联网上爬取的文本），试图理解词语和词组在语言中的用法和含义，以及它们如何组合形成意义。它会通过不断地学习和调整参数，使得自己的预测越来越准确。
-
-比如我们给模型一个句子：“今天的天气真”，模型可能会预测出“好”作为下一个词，因为在它看过的大量训练数据中，“今天的天气真好”是一个常见的句子。这种预测并不只基于词语的统计关系，还包括对上下文的理解，甚至有时能体现出对世界常识的认知，比如它会理解到，人们通常会在天气好的时候进行户外活动。因此也就能够继续生成或者说推 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/327332409.html" title="05｜提示工程（下）：用思维链和思维树提升模型思考质量">05｜提示工程（下）：用思维链和思维树提升模型思考质量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">05｜提示工程（下）：用思维链和思维树提升模型思考质量你好，我是黄佳，欢迎来到LangChain实战课！
+数据源（Data Sources）：数据可以有很多种，包括PDF在内的非结构化的数据（Unstructure ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/327332409.html" title="05｜提示工程（下）：用思维链和思维树提升模型思考质量">05｜提示工程（下）：用思维链和思维树提升模型思考质量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">05｜提示工程（下）：用思维链和思维树提升模型思考质量你好，我是黄佳，欢迎来到LangChain实战课！
 我在 第4课 的结尾时说了，你可以尝试用思维链也就是CoT（Chain of Thought）的概念来引导模型的推理，让模型生成更详实、更完备的文案，今天我们就一起看一看CoT的使用。
 什么是 Chain of ThoughtCoT这个概念来源于学术界，是谷歌大脑的Jason Wei等人于2022年在论文《 Chain-of-Thought Prompting Elicits Reasoning in Large Language Models（自我一致性提升了语言模型中的思维链推理能力）》中提出来的概念。它提出，如果生成一系列的中间推理步骤，就能够显著提高大型语言模型进行复杂推理的能力。
 Few-Shot CoTFew-Shot CoT 简单的在提示中提供了一些链式思考示例（Chain-of-Thought Prompting），足够大的语言模型的推理能力就能够被增强。简单说，就是给出一两个示例，然后在示例中写清楚推导的过程。
