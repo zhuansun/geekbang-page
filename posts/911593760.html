@@ -1,0 +1,584 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>24｜Stable Diffusion：最热门的开源AI画图工具 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="24｜Stable Diffusion：最热门的开源AI画图工具你好，我是徐文浩。 上一讲，我们一起体验了CLIP这个多模态的模型。在这个模型里，我们已经能够把一段文本和对应的图片关联起来了。看到文本和图片的关联，想必你也能联想到过去半年非常火热的“文生图”（Text-To-Image）的应用浪潮了。相比于在大语言模型里OpenAI的一枝独秀。文生图领域就属于百花齐放了，OpenAI陆续发表了DA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24｜Stable Diffusion：最热门的开源AI画图工具">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/911593760.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="24｜Stable Diffusion：最热门的开源AI画图工具你好，我是徐文浩。 上一讲，我们一起体验了CLIP这个多模态的模型。在这个模型里，我们已经能够把一段文本和对应的图片关联起来了。看到文本和图片的关联，想必你也能联想到过去半年非常火热的“文生图”（Text-To-Image）的应用浪潮了。相比于在大语言模型里OpenAI的一枝独秀。文生图领域就属于百花齐放了，OpenAI陆续发表了DA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.429Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/911593760"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '24｜Stable Diffusion：最热门的开源AI画图工具',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">24｜Stable Diffusion：最热门的开源AI画图工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="24｜Stable-Diffusion：最热门的开源AI画图工具"><a href="#24｜Stable-Diffusion：最热门的开源AI画图工具" class="headerlink" title="24｜Stable Diffusion：最热门的开源AI画图工具"></a>24｜Stable Diffusion：最热门的开源AI画图工具</h1><p>你好，我是徐文浩。</p>
+<p><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/653489">上一讲</a>，我们一起体验了CLIP这个多模态的模型。在这个模型里，我们已经能够把一段文本和对应的图片关联起来了。看到文本和图片的关联，想必你也能联想到过去半年非常火热的“文生图”（Text-To-Image）的应用浪潮了。相比于在大语言模型里OpenAI的一枝独秀。文生图领域就属于百花齐放了，OpenAI陆续发表了DALL-E和 <a target="_blank" rel="noopener" href="https://labs.openai.com/">DALL-E 2</a>，Google也不甘示弱地发表了 <a target="_blank" rel="noopener" href="https://imagen.research.google/">Imagen</a>，而市场上实际被用得最多、反馈最好的用户端产品是 <a target="_blank" rel="noopener" href="https://midjourney.com/home/">Midjourney</a>。</p>
+<p>不过，在整个技术社区里，最流行的产品则是Stable Diffusion。因为它是一个完全开源的产品，我们不仅可以调用Stable Diffusion内置的模型来生成图片，还能够下载社区里其他人训练好的模型来生成图片。我们不仅可以通过文本来生成图片，还能通过图片来生成图片，通过文本来编辑图片。</p>
+<p>那么今天这一讲，我们就来看看如何使用Stable Diffusion，做到上面这些事情。</p>
+<h2 id="使用Stable-Diffusion生成图片"><a href="#使用Stable-Diffusion生成图片" class="headerlink" title="使用Stable Diffusion生成图片"></a>使用Stable Diffusion生成图片</h2><h3 id="文生图"><a href="#文生图" class="headerlink" title="文生图"></a>文生图</h3><p>可能你还没怎么体验过文生图的应用，那我们先用几行最简单的代码体验一下。在这一讲里，我建议一定要用Colab或者其他的GPU环境，因为用CPU来执行的话，速度会慢到让人无法接受。</p>
+<p>安装依赖包：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">%</span>pip install diffusers accelerate transformers
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> diffusers <span class="token keyword">import</span> DiffusionPipeline
+pipeline <span class="token operator">=</span> DiffusionPipeline<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"runwayml/stable-diffusion-v1-5"</span><span class="token punctuation">)</span>
+pipeline<span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">"cuda"</span><span class="token punctuation">)</span>
+image <span class="token operator">=</span> pipeline<span class="token punctuation">(</span><span class="token string">"a photograph of an astronaut riding a horse"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>images<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+image
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7217f995c7fd7143ef6807d8e0dfc057.png" alt="图片"></p>
+<p>代码非常简单，只有寥寥几行。这里，我们使用了Huggingface的Diffusers库，通过DiffusionPipeline加载了RunwayML的stable-diffusion-v1-5的模型。然后，指定了这个Pipeline使用CUDA也就是利用GPU来进行计算。最后向这个Pipeline输入了一段文本，通过这段文本我们就生成了一张图片。</p>
+<p>这里，我们画的是在Stable Diffusion里非常经典的一张“宇航员在太空骑马”的图片。之所以画这么一张图片，是为了证明我们并不是通过“搜索”的方式找到一张已经存在的图片。比如，上一讲里我们介绍过CLIP模型，其实就可以完成从文本到图片的搜索功能。而Stable Diffusion，是真的让AI“画”出来一张新的图片。毕竟，以前宇航员也从来没有在太空骑过马，也不可能有人拍下过这样的照片。</p>
+<h3 id="Stable-Diffusion的基本原理"><a href="#Stable-Diffusion的基本原理" class="headerlink" title="Stable Diffusion的基本原理"></a>Stable Diffusion的基本原理</h3><p>Stable Diffusion生成的图片效果的确不错，相信你也很好奇这个事情的原理是什么。其实，Stable Diffusion背后不是单独的一个模型，而是由多个模型组合而成的。整个Stable Diffusion文生图的过程是由这样三个核心模块组成的。</p>
+<ul>
+<li>第一个模块是一个Text-Encoder，把我们输入的文本变成一个向量。实际使用的就是我们上一讲介绍的CLIP模型。因为CLIP模型学习的是文本和图像之间的关系，所以得到的这个向量既理解了文本的含义，又能和图片的信息关联起来。</li>
+<li>第二个是Generation模块，顾名思义是一个图片信息生成模块。这里也有一个机器学习模型，叫做UNet，还有一个调度器（Scheduler），用来一步步地去除噪声。这个模块的工作流程是先往前面的用CLIP模型推理出来的向量里添加很多噪声，再通过UNet+Scheduler逐渐去除噪声，最后拿到了一个新的张量。这个张量可以认为是一个尺寸上缩小了的图片信息向量，里面隐含了我们要生成的图片信息。</li>
+<li>最后一个模块，则是Decoder或者叫做解码器。背后也是一个机器学习的模型，叫做VAE。它会根据第二步的返回结果把这个图像信息还原成最终的图片。</li>
+</ul>
+<p>这个过程，你可以结合Stable Diffusion相关论文里的一张模型架构图来看。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4ca19441686120b9c28c8d5ba11baacb.png" alt="图片"></p>
+<p>这样听起来可能有点太理论了，那我们还是看看具体的代码和图片生成的过程吧，这样就比较容易理解图片是怎么生成的了。</p>
+<p>我们先把DiffusionPipeline打印出来，看看它内部是由哪些部分组成的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pipeline
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">StableDiffusionPipeline <span class="token punctuation">&#123;</span>
+  <span class="token string">"_class_name"</span><span class="token punctuation">:</span> <span class="token string">"StableDiffusionPipeline"</span><span class="token punctuation">,</span>
+  <span class="token string">"_diffusers_version"</span><span class="token punctuation">:</span> <span class="token string">"0.15.1"</span><span class="token punctuation">,</span>
+  <span class="token string">"feature_extractor"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"transformers"</span><span class="token punctuation">,</span>
+    <span class="token string">"CLIPFeatureExtractor"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"requires_safety_checker"</span><span class="token punctuation">:</span> true<span class="token punctuation">,</span>
+  <span class="token string">"safety_checker"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"stable_diffusion"</span><span class="token punctuation">,</span>
+    <span class="token string">"StableDiffusionSafetyChecker"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"scheduler"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"diffusers"</span><span class="token punctuation">,</span>
+    <span class="token string">"PNDMScheduler"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"text_encoder"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"transformers"</span><span class="token punctuation">,</span>
+    <span class="token string">"CLIPTextModel"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"tokenizer"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"transformers"</span><span class="token punctuation">,</span>
+    <span class="token string">"CLIPTokenizer"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"unet"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"diffusers"</span><span class="token punctuation">,</span>
+    <span class="token string">"UNet2DConditionModel"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"vae"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"diffusers"</span><span class="token punctuation">,</span>
+    <span class="token string">"AutoencoderKL"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个对象里面有3部分。</p>
+<ol>
+<li>Tokenizer和Text_Encoder，就是我们上面说的把文本变成向量的Text Encoder。可以看到我们这里用的模型就是上一讲的CLIP模型。</li>
+<li>UNet和Scheduler，就是对文本向量以及输入的噪声进行噪声去除的组件，也就是Generation模块。这里用的是UNet2DConditionModel模型，还把PNDMScheduler用作了去除噪声的调度器。</li>
+<li>VAE，也就是解码器（Decoder），这里用的是AutoencoderKL，它会根据上面生成的图片信息最后还原出一张高分辨率的图片。</li>
+</ol>
+<p>剩下的feature_extractor，可以用来提取图像特征，如果我们不想文生图，想要图生图，它就会被用来把我们输入的图片的特征提取成为向量。而safety_checker则是用来检查生成内容，避免生成具有冒犯性的图片。</p>
+<p>接下来，我们就自己来组合一下这些模型，来把整个图片生成的过程给演示出来。首先，我们把上面Stable Diffusion 1.5需要的模型组件都加载出来。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> transformers <span class="token keyword">import</span> CLIPTextModel<span class="token punctuation">,</span> CLIPTokenizer
+<span class="token keyword">from</span> diffusers <span class="token keyword">import</span> AutoencoderKL<span class="token punctuation">,</span> UNet2DConditionModel<span class="token punctuation">,</span> PNDMScheduler
+
+vae <span class="token operator">=</span> AutoencoderKL<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"runwayml/stable-diffusion-v1-5"</span><span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"vae"</span><span class="token punctuation">)</span>
+tokenizer <span class="token operator">=</span> CLIPTokenizer<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-large-patch14"</span><span class="token punctuation">)</span>
+text_encoder <span class="token operator">=</span> CLIPTextModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-large-patch14"</span><span class="token punctuation">)</span>
+unet <span class="token operator">=</span> UNet2DConditionModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"runwayml/stable-diffusion-v1-5"</span><span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"unet"</span><span class="token punctuation">)</span>
+scheduler <span class="token operator">=</span> PNDMScheduler<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"runwayml/stable-diffusion-v1-5"</span><span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"scheduler"</span><span class="token punctuation">)</span>
+
+torch_device <span class="token operator">=</span> <span class="token string">"cuda"</span>
+vae<span class="token punctuation">.</span>to<span class="token punctuation">(</span>torch_device<span class="token punctuation">)</span>
+text_encoder<span class="token punctuation">.</span>to<span class="token punctuation">(</span>torch_device<span class="token punctuation">)</span>
+unet<span class="token punctuation">.</span>to<span class="token punctuation">(</span>torch_device<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>注意，对应的CLIPTokenizer和CLIPTextModel的名字并不是stable-diffusion-v1-5，如果使用Diffusers库的Pipeline的话，可以从模型里面对应模块的 <a target="_blank" rel="noopener" href="https://huggingface.co/runwayml/stable-diffusion-v1-5/blob/main/text_encoder/config.json">config.json</a> 读取到它们。</strong></p>
+<p>然后，我们把接下来生成图片的参数初始化一下，包括文本、对应的图片分辨率，以及一系列模型中需要使用的超参数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+
+prompt <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a photograph of an astronaut riding a horse"</span><span class="token punctuation">]</span>
+height <span class="token operator">=</span> <span class="token number">512</span>  <span class="token comment"># default height of Stable Diffusion</span>
+width <span class="token operator">=</span> <span class="token number">512</span>  <span class="token comment"># default width of Stable Diffusion</span>
+num_inference_steps <span class="token operator">=</span> <span class="token number">25</span>  <span class="token comment"># Number of denoising steps</span>
+guidance_scale <span class="token operator">=</span> <span class="token number">7.5</span>  <span class="token comment"># Scale for classifier-free guidance</span>
+generator <span class="token operator">=</span> torch<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>  <span class="token comment"># Seed generator to create the inital latent noise</span>
+batch_size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我们把对应的输入文本变成一个向量，然后再根据一个空字符串生成一个“无条件”的向量，最后把两个向量拼接在一起。我们实际生成图片的过程，就是逐渐从这个无条件的向量向输入文本表示的向量靠拢的过程。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">text_input <span class="token operator">=</span> tokenizer<span class="token punctuation">(</span>
+    prompt<span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">"max_length"</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span>tokenizer<span class="token punctuation">.</span>model_max_length<span class="token punctuation">,</span> truncation<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    text_embeddings <span class="token operator">=</span> text_encoder<span class="token punctuation">(</span>text_input<span class="token punctuation">.</span>input_ids<span class="token punctuation">.</span>to<span class="token punctuation">(</span>torch_device<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+max_length <span class="token operator">=</span> text_input<span class="token punctuation">.</span>input_ids<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+uncond_input <span class="token operator">=</span> tokenizer<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">""</span><span class="token punctuation">]</span> <span class="token operator">*</span> batch_size<span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">"max_length"</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span>max_length<span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">)</span>
+uncond_embeddings <span class="token operator">=</span> text_encoder<span class="token punctuation">(</span>uncond_input<span class="token punctuation">.</span>input_ids<span class="token punctuation">.</span>to<span class="token punctuation">(</span>torch_device<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+text_embeddings <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">[</span>uncond_embeddings<span class="token punctuation">,</span> text_embeddings<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我们可以先生成一系列随机噪声。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">latents <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>
+    <span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span> unet<span class="token punctuation">.</span>in_channels<span class="token punctuation">,</span> height <span class="token operator">//</span> <span class="token number">8</span><span class="token punctuation">,</span> width <span class="token operator">//</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    generator<span class="token operator">=</span>generator<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+latents <span class="token operator">=</span> latents<span class="token punctuation">.</span>to<span class="token punctuation">(</span>torch_device<span class="token punctuation">)</span>
+
+latents <span class="token operator">=</span> latents <span class="token operator">*</span> scheduler<span class="token punctuation">.</span>init_noise_sigma
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来就是生成图片的代码了，我们先定义两个函数，它们会分别显示Generation模块生成出来的图片信息，以及Decoder模块还原出来的最终图片。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> PIL
+<span class="token keyword">import</span> torch
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">from</span> IPython<span class="token punctuation">.</span>display <span class="token keyword">import</span> display
+
+<span class="token keyword">def</span> <span class="token function">display_denoised_sample</span><span class="token punctuation">(</span>sample<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    image_processed <span class="token operator">=</span> sample<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    image_processed <span class="token operator">=</span> <span class="token punctuation">(</span>image_processed <span class="token operator">+</span> <span class="token number">1.0</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">127.5</span>
+    image_processed <span class="token operator">=</span> image_processed<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
+
+    image_pil <span class="token operator">=</span> PIL<span class="token punctuation">.</span>Image<span class="token punctuation">.</span>fromarray<span class="token punctuation">(</span>image_processed<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    display<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Denoised Sample @ Step </span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    display<span class="token punctuation">(</span>image_pil<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> image_pil
+
+<span class="token keyword">def</span> <span class="token function">display_decoded_image</span><span class="token punctuation">(</span>latents<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token comment"># scale and decode the image latents with vae</span>
+  latents <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0.18215</span> <span class="token operator">*</span> latents
+  <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    image <span class="token operator">=</span> vae<span class="token punctuation">.</span>decode<span class="token punctuation">(</span>latents<span class="token punctuation">)</span><span class="token punctuation">.</span>sample
+    image <span class="token operator">=</span> <span class="token punctuation">(</span>image <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>clamp<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    image <span class="token operator">=</span> image<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    images <span class="token operator">=</span> <span class="token punctuation">(</span>image <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">round</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">"uint8"</span><span class="token punctuation">)</span>
+    pil_images <span class="token operator">=</span> <span class="token punctuation">[</span>Image<span class="token punctuation">.</span>fromarray<span class="token punctuation">(</span>image<span class="token punctuation">)</span> <span class="token keyword">for</span> image <span class="token keyword">in</span> images<span class="token punctuation">]</span>
+    display<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Decoded Image @ step </span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    display<span class="token punctuation">(</span>pil_images<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> pil_images<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后，我们通过Diffusion算法一步一步来生成图片就好了。我们根据前面指定的参数，循环了25步，每一步都通过Scheduler和UNet来进行图片去噪声的操作。并且每5步都把对应去噪后的图片信息，以及解码后还原的图片显示出来。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm<span class="token punctuation">.</span>auto <span class="token keyword">import</span> tqdm
+
+scheduler<span class="token punctuation">.</span>set_timesteps<span class="token punctuation">(</span>num_inference_steps<span class="token punctuation">)</span>
+
+denoised_images <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+decoded_images <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i<span class="token punctuation">,</span> t <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>tqdm<span class="token punctuation">(</span>scheduler<span class="token punctuation">.</span>timesteps<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># expand the latents if we are doing classifier-free guidance to avoid doing two forward passes.</span>
+    latent_model_input <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">[</span>latents<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+    latent_model_input <span class="token operator">=</span> scheduler<span class="token punctuation">.</span>scale_model_input<span class="token punctuation">(</span>latent_model_input<span class="token punctuation">,</span> timestep<span class="token operator">=</span>t<span class="token punctuation">)</span>
+
+    <span class="token comment"># predict the noise residual</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        noise_pred <span class="token operator">=</span> unet<span class="token punctuation">(</span>latent_model_input<span class="token punctuation">,</span> t<span class="token punctuation">,</span> encoder_hidden_states<span class="token operator">=</span>text_embeddings<span class="token punctuation">)</span><span class="token punctuation">.</span>sample
+
+    <span class="token comment"># perform guidance</span>
+    noise_pred_uncond<span class="token punctuation">,</span> noise_pred_text <span class="token operator">=</span> noise_pred<span class="token punctuation">.</span>chunk<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    noise_pred <span class="token operator">=</span> noise_pred_uncond <span class="token operator">+</span> guidance_scale <span class="token operator">*</span> <span class="token punctuation">(</span>noise_pred_text <span class="token operator">-</span> noise_pred_uncond<span class="token punctuation">)</span>
+
+    <span class="token comment"># compute the previous noisy sample x_t -> x_t-1</span>
+    latents <span class="token operator">=</span> scheduler<span class="token punctuation">.</span>step<span class="token punctuation">(</span>noise_pred<span class="token punctuation">,</span> t<span class="token punctuation">,</span> latents<span class="token punctuation">)</span><span class="token punctuation">.</span>prev_sample
+    <span class="token keyword">if</span> i <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+      denoised_image <span class="token operator">=</span> display_denoised_sample<span class="token punctuation">(</span>latents<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+      decoded_image <span class="token operator">=</span> display_decoded_image<span class="token punctuation">(</span>latents<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+      denoised_images<span class="token punctuation">.</span>append<span class="token punctuation">(</span>denoised_image<span class="token punctuation">)</span>
+      decoded_images<span class="token punctuation">.</span>append<span class="token punctuation">(</span>decoded_image<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Denoised Sample @ Step 0
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e8fa98c88172482a84f3dbfeb0ecdf77.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Decoded Image @ step 0
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e2ef3c2972d3b73a3c93976ce19a6fb9.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Denoised Sample @ Step 5
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7e385e61f741f470c490c39d41b0c3c1.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Decoded Image @ step 5
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b81cb29b003412c80519c7b9f01baedd.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Denoised Sample @ Step 10
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/fd262baafbb52271b0d906d00a167c06.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Decoded Image @ step 10
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a6be734e2813e80b8bd8b936c0741a22.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Denoised Sample @ Step 15
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/04e1da57c913da86b83a6e30ddc1338c.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Decoded Image @ step 15
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/888d083873245d5b08780f52d8990788.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Denoised Sample @ Step 20
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/8a8ee2751036cfe7yy6e2c0d70104bb3.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Decoded Image @ step 20
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/8f094d4deacec42876201388c2ab24f7.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Denoised Sample @ Step 25
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/6a4c08550f36f249ac495e4f966a90a3.png" alt="图片"></p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Decoded Image @ step 25
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e3de66377a02e3db266ced384de8b337.png" alt="图片"></p>
+<p>运行完程序，你就可以看到我们的图片是如何一步步从完全的噪点还原成一张图片的了。而且你仔细观察，还可以看到Generation生成的图像信息，类似于Decoder还原出来的图像信息的轮廓。这是因为U-Net其实是一个图片语义分割的模型。</p>
+<p>而如果我们打印一下生成的图片的维度，你也可以看到，Generation生成的图像信息分辨率只有64x64，而我们还原出来的图片分辨率是512x512。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">print(latents.shape)
+latents = 1 / 0.18215 * latents
+with torch.no_grad():
+    image = vae.decode(latents).sample
+    print(image.shape)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">torch.Size([1, 4, 64, 64])
+torch.Size([1, 3, 512, 512])
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="图生图"><a href="#图生图" class="headerlink" title="图生图"></a>图生图</h3><p>相信你已经理解了这个Stable Diffusion生成图片的过程，以及过程里每个模块的工作了。那你应该比较容易理解如何通过Stable Diffusion实现图生图了，我们下面就来具体看一看。</p>
+<p>当然，这一次我们就不用自己一步步调用各个模块来实现图生图了。我们可以直接使用Diffusers库里自带的Pipeline。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">import torch
+from PIL import Image
+from io import BytesIO
+
+from diffusers import StableDiffusionImg2ImgPipeline
+
+device = "cuda"
+model_id_or_path = "runwayml/stable-diffusion-v1-5"
+pipe = StableDiffusionImg2ImgPipeline.from_pretrained(model_id_or_path, torch_dtype=torch.float16)
+pipe = pipe.to(device)
+
+image_file = "./data/sketch-mountains-input.jpg"
+
+init_image = Image.open(image_file).convert("RGB")
+init_image = init_image.resize((768, 512))
+
+prompt = "A fantasy landscape, trending on artstation"
+
+images = pipe(prompt=prompt, image=init_image, strength=0.75, guidance_scale=7.5).images
+
+display(init_image)
+display(images[0])
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d262d17cb96yyd721eeca30c70e40c2c.png" alt="图片"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/712c084e85b258ceeb2ca64c8d043fe4.png" alt="图片"></p>
+<p>对应的代码也非常简单，我们把Pipeline换成了StableDiffusionImg2ImgPipeline，此外除了输入一段文本之外，我们还提供了一张草稿图。然后，你可以看到对应生成的图片的轮廓，就类似于我们提供的草稿图。而图片的内容风格，则是按照我们文本提示语的内容生成的。</p>
+<p>StableDiffusionImg2ImgPipeline的生成过程，其实和我们之前拆解的一步步生成图片的过程是相同的。 <strong>唯一的一个区别是，我们其实不是从一个完全随机的噪声开始的，而是把对应的草稿图，通过VAE的编码器，变成图像生成信息，又在上面加了随机的噪声。</strong> 所以，去除噪音的过程中，对应的草稿图的轮廓就会逐步出现了。而在一步步生成图片的过程中，内容又会向我们给出的提示语的内容来学习。</p>
+<p>而如果我们换一下提示语，就能更改生成的具体内容。比如我们想换成宫崎骏的风格，并且希望后面高耸的不是山，而是城堡，出现的图片还是相同的轮廓，但是用不同的内容。我在下面给出了一个代码示例，你可以自己看一看。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">prompt = "ghibli style, a fantasy landscape with castles"
+images = pipe(prompt=prompt, image=init_image, strength=0.75, guidance_scale=7.5).images
+
+display(init_image)
+display(images[0])
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bb7a09c91feda214ee71a57d3ab479ff.png" alt="图片"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b8c0054e8abc08a5657f8a6f9c6afede.png" alt="图片"></p>
+<h3 id="更多使用方法"><a href="#更多使用方法" class="headerlink" title="更多使用方法"></a>更多使用方法</h3><p>理解了Stable Diffusion的基本框架，你可以试一试更多相关的Pipeline的用法。比如，除了引导内容生成的提示语，我们还可以设置一个负面的提示语（negative prompt），也就是排除一些内容。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">prompt = "ghibli style, a fantasy landscape with castles"
+negative_prompt = "river"
+images = pipe(prompt=prompt, negative_prompt=negative_prompt, image=init_image, strength=0.75, guidance_scale=7.5).images
+
+display(images[0])
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2b9ce1b91e306d256fc29dc13d68d51c.png" alt="图片"></p>
+<p>可以看到，我们希望在图片里面尽量排除“River”。而新生成的图片，右边就没有了任何类似于河流的内容，而中间蓝色的部分也更像一个排水渠而不是自然的河流。负面提示语并不会改变模型的结构。它其实就是把原先的“无条件”向量，替换成了负面提示语的向量。这样，模型就尽可能从负面的提示语文本内容中向我们正面的提示语文本内容学习，也就是尽量远离负面提示语的内容。</p>
+<p>同样，我们还可以通过Stable Diffusion来提升图片的分辨率，只不过需要一个单独的模型。这个模型就是专门在一个高低分辨率的图片组合上训练出来的。对应的UNet和VAE的模型是和原始的Stable Diffusion不一样的。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">from diffusers import StableDiffusionUpscalePipeline
+
+# load model and scheduler
+model_id = "stabilityai/stable-diffusion-x4-upscaler"
+pipeline = StableDiffusionUpscalePipeline.from_pretrained(
+    model_id, revision="fp16", torch_dtype=torch.float16
+)
+pipeline = pipeline.to("cuda")
+
+# let's download an  image
+low_res_img_file = "./data/low_res_cat.png"
+low_res_img = Image.open(low_res_img_file).convert("RGB")
+low_res_img = low_res_img.resize((128, 128))
+
+prompt = "a white cat"
+
+upscaled_image = pipeline(prompt=prompt, image=low_res_img).images[0]
+
+low_res_img_resized = low_res_img.resize((512, 512))
+
+display(low_res_img_resized)
+display(upscaled_image)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f47e50c28203eb7a0d8f7667f69023c4.png" alt="图片"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2be70a657f415b11489afa86639faeb6.png" alt="图片"></p>
+<p>如果我们打印一下pipeline，对应的模型的组件还是相同的。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">pipeline
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">StableDiffusionUpscalePipeline &#123;
+  "_class_name": "StableDiffusionUpscalePipeline",
+  "_diffusers_version": "0.15.1",
+  "low_res_scheduler": [
+    "diffusers",
+    "DDPMScheduler"
+  ],
+  "max_noise_level": 350,
+  "scheduler": [
+    "diffusers",
+    "DDIMScheduler"
+  ],
+  "text_encoder": [
+    "transformers",
+    "CLIPTextModel"
+  ],
+  "tokenizer": [
+    "transformers",
+    "CLIPTokenizer"
+  ],
+  "unet": [
+    "diffusers",
+    "UNet2DConditionModel"
+  ],
+  "vae": [
+    "diffusers",
+    "AutoencoderKL"
+  ]
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是如果你去看对应模型的配置文件，可以看到 <a target="_blank" rel="noopener" href="https://huggingface.co/stabilityai/stable-diffusion-x4-upscaler/blob/main/vae/config.json">VAE</a> 和 <a target="_blank" rel="noopener" href="https://huggingface.co/stabilityai/stable-diffusion-x4-upscaler/blob/main/unet/config.json">UNet</a> 里使用的模型都是不一样的。</p>
+<h2 id="使用社区里的其他模型"><a href="#使用社区里的其他模型" class="headerlink" title="使用社区里的其他模型"></a>使用社区里的其他模型</h2><p>在这个过程中，你可以看到Stable Diffusion并不是指某一个特定的模型，而是指一类模型结构。因为Stable Diffusion是完全开源的，所以你大可以利用自己的数据去训练一个属于自己的模型。事实上，市面上开源训练出来的Stable Diffusion的模型非常多，也已经有了像 <a target="_blank" rel="noopener" href="https://civitai.com/">CIVITAI</a> 这样的分享Stable Diffusion模型的平台。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a119771cc79yyf74d283a195c663c04d.png" alt="图片"></p>
+<p>我们可以去CIVITAI的网站，找到我们喜欢的模型。比如我们专门找一个二次元的模型 <a target="_blank" rel="noopener" href="https://civitai.com/models/4468/counterfeit-v25">counterfeit-V2.5</a>。在对应的模型页面，我们可以看到它直接就包含了Huggingface里面的模型。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2cd2d729e7ac70e0f829c319d85a1715.png" alt="图片"></p>
+<p>所以我们就可以直接通过Diffuers库来调用这个模型。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">pipeline.to("cuda")
+
+prompt = "((masterpiece,best quality)),1girl, solo, animal ears, rabbit, barefoot, knees up, dress, sitting, rabbit ears, short sleeves, looking at viewer, grass, short hair, smile, white hair, puffy sleeves, outdoors, puffy short sleeves, bangs, on ground, full body, animal, white dress, sunlight, brown eyes, dappled sunlight, day, depth of field"
+negative_prompt = "EasyNegative, extra fingers,fewer fingers,"
+image = pipeline(prompt=prompt, negative_prompt=negative_prompt).images[0]
+image
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/03041115b93c8d53ed71fd2ff7fcf750.png" alt="图片"></p>
+<p>当然，不是所有CIVITAI里的模型都在Huggingface上提供了自己的模型版本。默认CIVITAI的模型，往往只是提供了一个模型权重文件。你可以使用现在最流行的 <a target="_blank" rel="noopener" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Stable-Diffusion-Web-UI 应用</a> 来使用这个模型权重文件。你可以把Web-UI在本地部署起来，它会提供一个图形界面让你不用写代码就可以直接调整各种参数来生成图片。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/616244d69ed59bb3e8935ec7fbfba91d.png" alt="图片"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/civitai/civitai/wiki">CIVITAI 的 Wiki</a> 里面也详细提供了在Stable-Diffusion-Web-UI里面使用模型的步骤，你可以照着这个步骤多拿几个模型试试看。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，这就是今天的主要内容，最后我们一起来回顾一下。</p>
+<p>这一讲，我带着你体验了一下Stable Diffusion这个图片生成的开源模型。我们不仅通过Diffusers这个封装好的Python库，体验了文生图、图生图、提升图片分辨率等一系列应用，也深入到Stable Diffusion的模型内部，理解了整个模型的结构，还看到我们是如何一步步从一张全是噪点的图片，逐渐去除噪声变成一张可用的图片的。</p>
+<p>在体验了基础的模型之后，我们也一起尝试了一下其他爱好者自己生成的模型。这也是下一讲我们要介绍的重点内容。我们会了解到如何通过 LoRa 这样的算法进行模型微调，以及如何通过ControlNet让我们生成的图片更加可控。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>最后，按照惯例还是给你留一道思考题。除了今天给你演示的这些应用之外，HuggingFace还提供了很多实战场景。比如，你就可以通过 <a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/using-diffusers/inpaint">StableDiffusionInpaintPipeline</a>，用一个遮照图片和一段提示语来修改图片画面中的某一部分元素。</p>
+<p>你可以照着 <a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/using-diffusers/inpaint">官方文档</a>，体验一下这个功能，研究一下源代码，想想这个功能是如何通过Stable Diffusion的模型结构实现的。欢迎你把你体验之后的感受以及思考后的结果分享在评论区，也欢迎你把这一讲分享给感兴趣的朋友，我们下一讲再见！</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>这一讲里，我们只是简单介绍了一下Stable Diffusion的模型结构。其实，无论是DALL-E 2还是Imagen，采用的图片生成方式都是和Stable Diffusion类似的。如果你想要深入了解一下这些模型的结构，可以去看一下B站里面“跟李沐学AI”里面对于 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17r4y1u77B/?spm_id_from=333.999.0.0">DALL-E 2 论文的讲解</a>。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#24%EF%BD%9CStable-Diffusion%EF%BC%9A%E6%9C%80%E7%83%AD%E9%97%A8%E7%9A%84%E5%BC%80%E6%BA%90AI%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">24｜Stable Diffusion：最热门的开源AI画图工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Stable-Diffusion%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87"><span class="toc-number">1.1.</span> <span class="toc-text">使用Stable Diffusion生成图片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%94%9F%E5%9B%BE"><span class="toc-number">1.1.1.</span> <span class="toc-text">文生图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stable-Diffusion%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">Stable Diffusion的基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%94%9F%E5%9B%BE"><span class="toc-number">1.1.3.</span> <span class="toc-text">图生图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.4.</span> <span class="toc-text">更多使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BE%E5%8C%BA%E9%87%8C%E7%9A%84%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">使用社区里的其他模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.5.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

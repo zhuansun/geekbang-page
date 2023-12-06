@@ -1,0 +1,607 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>11｜省下钱买显卡，如何利用开源模型节约成本？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="11｜省下钱买显卡，如何利用开源模型节约成本？你好，我是徐文浩。 不知道课程上到这里，你账户里免费的5美元的额度还剩下多少了？如果你尝试着完成我给的几个数据集里的思考题，相信这个额度应该是不太够用的。而ChatCompletion的接口，又需要传入大量的上下文信息，实际消耗的Token数量其实比我们感觉的要多。 而且，除了费用之外，还有一个问题是数据安全。因为每个国家的数据监管要求不同，并不是所有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11｜省下钱买显卡，如何利用开源模型节约成本？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3942764729.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="11｜省下钱买显卡，如何利用开源模型节约成本？你好，我是徐文浩。 不知道课程上到这里，你账户里免费的5美元的额度还剩下多少了？如果你尝试着完成我给的几个数据集里的思考题，相信这个额度应该是不太够用的。而ChatCompletion的接口，又需要传入大量的上下文信息，实际消耗的Token数量其实比我们感觉的要多。 而且，除了费用之外，还有一个问题是数据安全。因为每个国家的数据监管要求不同，并不是所有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.393Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3942764729"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '11｜省下钱买显卡，如何利用开源模型节约成本？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">11｜省下钱买显卡，如何利用开源模型节约成本？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="11｜省下钱买显卡，如何利用开源模型节约成本？"><a href="#11｜省下钱买显卡，如何利用开源模型节约成本？" class="headerlink" title="11｜省下钱买显卡，如何利用开源模型节约成本？"></a>11｜省下钱买显卡，如何利用开源模型节约成本？</h1><p>你好，我是徐文浩。</p>
+<p>不知道课程上到这里，你账户里免费的5美元的额度还剩下多少了？如果你尝试着完成我给的几个数据集里的思考题，相信这个额度应该是不太够用的。而ChatCompletion的接口，又需要传入大量的上下文信息，实际消耗的Token数量其实比我们感觉的要多。</p>
+<p>而且，除了费用之外，还有一个问题是数据安全。因为每个国家的数据监管要求不同，并不是所有的数据，都适合通过OpenAI的API来处理的。所以，从这两个角度出发，我们需要一个OpenAI以外的解决方案。那对于没有足够技术储备的中小型公司来说，最可行的一个思路就是利用好开源的大语言模型。</p>
+<h2 id="在Colab里使用GPU"><a href="#在Colab里使用GPU" class="headerlink" title="在Colab里使用GPU"></a>在Colab里使用GPU</h2><p>因为这一讲我们要使用一些开源模型，但不是所有人的电脑里都有一个强劲的NVidia GPU的。所以，我建议你通过Colab来运行对应的Notebook，并且注意，要把对应的运行环境设置成GPU。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/1c0791bd5c1e088eeb527f2acb81a021.png" alt="图片"></p>
+<ol>
+<li>你先选择菜单栏里的Runtime，然后点击Change runtime type。</li>
+</ol>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/502a4baceab267e949957c6477bc5823.png" alt="图片"></p>
+<ol>
+<li>然后在弹出的对话框里，把Hardware accelerator换成GPU，然后点击Save就可以了。</li>
+</ol>
+<p>只要用得不是太多，Colab的GPU是可以免费使用的。</p>
+<h2 id="HuggingfaceEmbedding，你的开源伙伴"><a href="#HuggingfaceEmbedding，你的开源伙伴" class="headerlink" title="HuggingfaceEmbedding，你的开源伙伴"></a>HuggingfaceEmbedding，你的开源伙伴</h2><p>其实我们之前在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/642224">第 4 讲</a> 对比零样本分类效果的时候，就已经使用过Google开源的模型T5了。那个模型的效果，虽然比OpenAI的API还是要差一些，但是其实90%的准确率也还算不错了。那么联想一下，上一讲我们使用的llama-index向量搜索部分，是不是可以用开源模型的Embedding给替换掉呢？</p>
+<p>当然是可以的，llama-index支持你自己直接定义一个定制化的Embedding，对应的代码我放在了下面。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conda install <span class="token operator">-</span>c conda<span class="token operator">-</span>forge sentence<span class="token operator">-</span>transformers
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注：我们需要先安装一下sentence-transformers这个库。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+<span class="token keyword">import</span> faiss
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> SimpleDirectoryReader<span class="token punctuation">,</span> LangchainEmbedding<span class="token punctuation">,</span> GPTFaissIndex<span class="token punctuation">,</span> ServiceContext
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>embeddings<span class="token punctuation">.</span>huggingface <span class="token keyword">import</span> HuggingFaceEmbeddings
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> CharacterTextSplitter
+<span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>node_parser <span class="token keyword">import</span> SimpleNodeParser
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> <span class="token string">""</span>
+
+text_splitter <span class="token operator">=</span> CharacterTextSplitter<span class="token punctuation">(</span>separator<span class="token operator">=</span><span class="token string">"\n\n"</span><span class="token punctuation">,</span> chunk_size<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> chunk_overlap<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
+parser <span class="token operator">=</span> SimpleNodeParser<span class="token punctuation">(</span>text_splitter<span class="token operator">=</span>text_splitter<span class="token punctuation">)</span>
+documents <span class="token operator">=</span> SimpleDirectoryReader<span class="token punctuation">(</span><span class="token string">'./data/faq/'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+nodes <span class="token operator">=</span> parser<span class="token punctuation">.</span>get_nodes_from_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span>
+
+embed_model <span class="token operator">=</span> LangchainEmbedding<span class="token punctuation">(</span>HuggingFaceEmbeddings<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"sentence-transformers/paraphrase-multilingual-mpnet-base-v2"</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+service_context <span class="token operator">=</span> ServiceContext<span class="token punctuation">.</span>from_defaults<span class="token punctuation">(</span>embed_model<span class="token operator">=</span>embed_model<span class="token punctuation">)</span>
+
+dimension <span class="token operator">=</span> <span class="token number">768</span>
+faiss_index <span class="token operator">=</span> faiss<span class="token punctuation">.</span>IndexFlatIP<span class="token punctuation">(</span>dimension<span class="token punctuation">)</span>
+index <span class="token operator">=</span> GPTFaissIndex<span class="token punctuation">(</span>nodes<span class="token operator">=</span>nodes<span class="token punctuation">,</span>faiss_index<span class="token operator">=</span>faiss_index<span class="token punctuation">,</span> service_context<span class="token operator">=</span>service_context<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">INFO<span class="token punctuation">:</span>sentence_transformers<span class="token punctuation">.</span>SentenceTransformer<span class="token punctuation">:</span>Load pretrained SentenceTransformer<span class="token punctuation">:</span> sentence<span class="token operator">-</span>transformers<span class="token operator">/</span>paraphrase<span class="token operator">-</span>multilingual<span class="token operator">-</span>mpnet<span class="token operator">-</span>base<span class="token operator">-</span>v2
+INFO<span class="token punctuation">:</span>sentence_transformers<span class="token punctuation">.</span>SentenceTransformer<span class="token punctuation">:</span>Use pytorch device<span class="token punctuation">:</span> cpu
+WARNING<span class="token punctuation">:</span>root<span class="token punctuation">:</span>Created a chunk of size <span class="token number">130</span><span class="token punctuation">,</span> which <span class="token keyword">is</span> longer than the specified <span class="token number">100</span>
+……
+INFO<span class="token punctuation">:</span>llama_index<span class="token punctuation">.</span>token_counter<span class="token punctuation">.</span>token_counter<span class="token punctuation">:</span><span class="token operator">></span> <span class="token punctuation">[</span>build_index_from_documents<span class="token punctuation">]</span> Total LLM token usage<span class="token punctuation">:</span> <span class="token number">0</span> tokens
+INFO<span class="token punctuation">:</span>llama_index<span class="token punctuation">.</span>token_counter<span class="token punctuation">.</span>token_counter<span class="token punctuation">:</span><span class="token operator">></span> <span class="token punctuation">[</span>build_index_from_documents<span class="token punctuation">]</span> Total embedding token usage<span class="token punctuation">:</span> <span class="token number">3198</span> tokens
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这个例子里面，我们使用了一个面向电商的FAQ的纯文本文件作为输入。里面是一系列预设好的FAQ问答对。为了确保我们没有使用OpenAI的API，我们先把openai.api_key给设成了一个空字符串。然后，我们定义了一个embeded_model，这个embeded_model里面，我们包装的是一个HuggingFaceEmbeddings的类。</p>
+<p>因为HuggingFace为基于transformers的模型定义了一个标准，所以大部分模型你只需要传入一个模型名称，HuggingFacebEmbedding这个类就会下载模型、加载模型，并通过模型来计算你输入的文本的Embedding。使用HuggingFace的好处是，你可以通过一套代码使用所有的transfomers类型的模型。</p>
+<p><a target="_blank" rel="noopener" href="https://sbert.net/">sentence-transformers</a> 是目前效果最好的语义搜索类的模型，它在BERT的基础上采用了对比学习的方式，来区分文本语义的相似度，它包括了一系列的预训练模型。我们在这里，选用的是 sentence-transformers下面的 paraphrase-multilingual-mpnet-base-v2 模型。顾名思义，这个是一个支持多语言（multilingual）并且能把语句和段落（paraphrase）变成向量的一个模型。因为我们给的示例都是中文，所以选取了这个模型。你可以根据你要解决的实际问题，来选取一个适合自己的模型。</p>
+<p>我们还是使用Faiss这个库来作为我们的向量索引库，所以需要指定一下向量的维度，paraphrase-multilingual-mpnet-base-v2 这个模型的维度是768，所以我们就把维度定义成768维。</p>
+<p>相应的对文档的切分，我们使用的是CharacterTextSplitter，并且在参数上我们做了一些调整。</p>
+<p>首先，我们把“\n\n”这样两个连续的换行符作为一段段文本的分隔符，因为我们的FAQ数据里，每一个问答对都有一个空行隔开，正好是连续两个换行。</p>
+<p>然后，我们把chunk_size设置得比较小，只有100。这是因为我们所使用的开源模型是个小模型，这样我们才能在单机加载起来。它能够支持的输入长度有限，只有128个Token，超出的部分会进行截断处理。如果我们不设置chunk_size，llama-index会自动合并多个chunk变成一个段落。</p>
+<p>其次，我们还增加了一个小小的参数，叫做chunk_overlap。这个参数代表我们自动合并小的文本片段的时候，可以接受多大程度的重叠。它的默认值是200，超过了单段文档的chunk_size，所以我们这里要把它设小一点，不然程序会报错。</p>
+<p>我们可以在对应的verbose日志里看到，这里的Embedding使用了3198个Token，不过这些Token都是我们通过sentence_transformers类型的开源模型计算的，不需要花钱。你的成本就节约下来了。</p>
+<p>在创建完整个索引之后，我们就可以拿一些常见的电商类型的FAQ问题试一试。</p>
+<p>问题1：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">from llama_index import QueryMode
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
+response = index.query(
+    "请问你们海南能发货吗？",
+    mode=QueryMode.EMBEDDING,
+    verbose=True,
+)
+print(response)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Got node text: Q: 支持哪些省份配送？
+A: 我们支持全国大部分省份的配送，包括北京、上海、天津、重庆、河北、山西、辽宁、吉林、黑龙江、江苏、浙江、安徽、福建、江西、山东、河南、湖北、湖南、广东、海南、四川、贵州、云南、陕西、甘肃、青海、台湾、内蒙古、广西、西藏、宁夏和新疆...
+
+INFO:llama_index.token_counter.token_counter:> [query] Total LLM token usage: 341 tokens
+INFO:llama_index.token_counter.token_counter:> [query] Total embedding token usage: 24 tokens
+
+是的，我们支持海南省的配送。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题2：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">response = index.query(
+    "你们用哪些快递公司送货？",
+    mode=QueryMode.EMBEDDING,
+    verbose=True,
+)
+print(response)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Got node text: Q: 提供哪些快递公司的服务？
+A: 我们与顺丰速运、圆通速递、申通快递、韵达快递、中通快递、百世快递等多家知名快递公司合作。...
+INFO:llama_index.token_counter.token_counter:> [query] Total LLM token usage: 281 tokens
+INFO:llama_index.token_counter.token_counter:> [query] Total embedding token usage: 27 tokens
+
+我们与顺丰速运、圆通速递、申通快递、韵达快递、中通快递、百世快递等多家知名快递公司合作，用他们的服务送货。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题3：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">response = index.query(
+    "你们的退货政策是怎么样的？",
+    mode=QueryMode.EMBEDDING,
+    verbose=True,
+)
+print(response)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Got node text: Q: 退货政策是什么？
+A: 自收到商品之日起7天内，如产品未使用、包装完好，您可以申请退货。某些特殊商品可能不支持退货，请在购买前查看商品详情页面的退货政策。...
+INFO:llama_index.token_counter.token_counter:> [query] Total LLM token usage: 393 tokens
+INFO:llama_index.token_counter.token_counter:> [query] Total embedding token usage: 27 tokens
+
+我们的退货政策是自收到商品之日起7天内，如产品未使用、包装完好，您可以申请退货。某些特殊商品可能不支持退货，请在购买前查看商品详情页面的退货政策。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们在问问题的时候，指定了query的mode是Embedding。通过三个常用的问题，我们可以看到，AI都给出了正确的回答，效果还是不错的。</p>
+<h2 id="使用ChatGLM提供对话效果"><a href="#使用ChatGLM提供对话效果" class="headerlink" title="使用ChatGLM提供对话效果"></a>使用ChatGLM提供对话效果</h2><p>通过上面的代码，我们已经把生成Embedding以及利用Embedding的相似度进行搜索搞定了。但是，我们在实际问答的过程中，使用的还是OpenAI的Completion API。那么这一部分我们有没有办法也替换掉呢？</p>
+<p>同样的，我们寻求开源模型的帮助。在这里，我们就不妨来试一下来自清华大学的ChatGLM语言模型，看看中文的开源语言模型，是不是也有基本的知识理解和推理能力。</p>
+<p>首先我们还是要安装一些依赖包，因为icetk我没有找到Conda的源，所以我们这里通过pip来安装，但是在Conda的包管理器里一样能够看到。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install icetk
+pip install cpm_kernels
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后，我们还是先通过transformers来加载模型。 <a target="_blank" rel="noopener" href="https://github.com/THUDM/GLM-130B">ChatGLM</a> 最大的一个模型有1300亿个参数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> transformers <span class="token keyword">import</span> AutoTokenizer<span class="token punctuation">,</span> AutoModel
+tokenizer <span class="token operator">=</span> AutoTokenizer<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"THUDM/chatglm-6b-int4"</span><span class="token punctuation">,</span> trust_remote_code<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> AutoModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"THUDM/chatglm-6b-int4"</span><span class="token punctuation">,</span> trust_remote_code<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">.</span>half<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> model<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Explicitly passing a `revision` <span class="token keyword">is</span> encouraged when loading a model <span class="token keyword">with</span> custom code to ensure no malicious code has been contributed <span class="token keyword">in</span> a newer revision<span class="token punctuation">.</span>
+Explicitly passing a `revision` <span class="token keyword">is</span> encouraged when loading a configuration <span class="token keyword">with</span> custom code to ensure no malicious code has been contributed <span class="token keyword">in</span> a newer revision<span class="token punctuation">.</span>
+Explicitly passing a `revision` <span class="token keyword">is</span> encouraged when loading a model <span class="token keyword">with</span> custom code to ensure no malicious code has been contributed <span class="token keyword">in</span> a newer revision<span class="token punctuation">.</span>
+No compiled kernel found<span class="token punctuation">.</span>
+Compiling kernels <span class="token punctuation">:</span> <span class="token operator">/</span>root<span class="token operator">/</span><span class="token punctuation">.</span>cache<span class="token operator">/</span>huggingface<span class="token operator">/</span>modules<span class="token operator">/</span>transformers_modules<span class="token operator">/</span>THUDM<span class="token operator">/</span>chatglm<span class="token operator">-</span>6b<span class="token operator">-</span>int4<span class="token operator">/</span>dac03c3ac833dab2845a569a9b7f6ac4e8c5dc9b<span class="token operator">/</span>quantization_kernels<span class="token punctuation">.</span>c
+Compiling gcc <span class="token operator">-</span>O3 <span class="token operator">-</span>fPIC <span class="token operator">-</span>std<span class="token operator">=</span>c99 <span class="token operator">/</span>root<span class="token operator">/</span><span class="token punctuation">.</span>cache<span class="token operator">/</span>huggingface<span class="token operator">/</span>modules<span class="token operator">/</span>transformers_modules<span class="token operator">/</span>THUDM<span class="token operator">/</span>chatglm<span class="token operator">-</span>6b<span class="token operator">-</span>int4<span class="token operator">/</span>dac03c3ac833dab2845a569a9b7f6ac4e8c5dc9b<span class="token operator">/</span>quantization_kernels<span class="token punctuation">.</span>c <span class="token operator">-</span>shared <span class="token operator">-</span>o <span class="token operator">/</span>root<span class="token operator">/</span><span class="token punctuation">.</span>cache<span class="token operator">/</span>huggingface<span class="token operator">/</span>modules<span class="token operator">/</span>transformers_modules<span class="token operator">/</span>THUDM<span class="token operator">/</span>chatglm<span class="token operator">-</span>6b<span class="token operator">-</span>int4<span class="token operator">/</span>dac03c3ac833dab2845a569a9b7f6ac4e8c5dc9b<span class="token operator">/</span>quantization_kernels<span class="token punctuation">.</span>so
+Kernels compiled <span class="token punctuation">:</span> <span class="token operator">/</span>root<span class="token operator">/</span><span class="token punctuation">.</span>cache<span class="token operator">/</span>huggingface<span class="token operator">/</span>modules<span class="token operator">/</span>transformers_modules<span class="token operator">/</span>THUDM<span class="token operator">/</span>chatglm<span class="token operator">-</span>6b<span class="token operator">-</span>int4<span class="token operator">/</span>dac03c3ac833dab2845a569a9b7f6ac4e8c5dc9b<span class="token operator">/</span>quantization_kernels<span class="token punctuation">.</span>so
+Load kernel <span class="token punctuation">:</span> <span class="token operator">/</span>root<span class="token operator">/</span><span class="token punctuation">.</span>cache<span class="token operator">/</span>huggingface<span class="token operator">/</span>modules<span class="token operator">/</span>transformers_modules<span class="token operator">/</span>THUDM<span class="token operator">/</span>chatglm<span class="token operator">-</span>6b<span class="token operator">-</span>int4<span class="token operator">/</span>dac03c3ac833dab2845a569a9b7f6ac4e8c5dc9b<span class="token operator">/</span>quantization_kernels<span class="token punctuation">.</span>so
+Using quantization cache
+Applying quantization to glm layers
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是这么大的模型，无论是你自己的电脑，还是Colab提供的GPU和TPU显然都放不了。所以我们只能选用一个裁剪后的60亿个参数的版本，并且我们还必须用int-4量化的方式，而不是用float16的浮点数。所以，这里我们的模型名字就叫做 chatglm-6b-int4，也就是 6B的参数量，通过int-4量化。然后，在这里，我们希望通过GPU进行模型的计算，所以加载模型的时候调用了.cuda()。</p>
+<p>这里加载模型的时候，我们还设置了一个 trust_remote_code &#x3D; true 的参数，这是因为ChatGLM的模型不是一个Huggingface官方发布的模型，而是由用户贡献的，所以需要你显式确认你信任这个模型的代码，它不会造成恶意的破坏。我们反正是在Colab里面运行这个代码，所以倒是不用太担心。</p>
+<p>如果你想要用CPU运行，可以把模型加载的代码换成下面这样。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">model <span class="token operator">=</span> AutoModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"THUDM/chatglm-6b-int4"</span><span class="token punctuation">,</span>trust_remote_code<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>不过，我不建议你这么做。你没有GPU的话，还是直接使用Colab的GPU就好了。因为CPU在运行对话的时候非常慢。</p>
+<p>在拿到模型之后我们就可以尝试着通过这个模型来进行问答了。</p>
+<p>问题1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+自收到商品之日起7天内，如产品未使用、包装完好，您可以申请退货。某些特殊商品可能不支持退货，请在购买前查看商品详情页面的退货政策。
+
+根据以上信息，请回答下面的问题：
+
+Q: 你们的退货政策是怎么样的？
+"""</span>
+response<span class="token punctuation">,</span> history <span class="token operator">=</span> model<span class="token punctuation">.</span>chat<span class="token punctuation">(</span>tokenizer<span class="token punctuation">,</span> question<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">我们的退货政策是在产品未使用、包装完好的情况下，自收到商品之日起<span class="token number">7</span>天内可以退货。请注意，某些特殊商品可能不支持退货，在购买前请查看商品详情页面的退货政策，以了解具体情况。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到，ChatGLM的回答，的确是按照我们提示语里面有的上下文给出的。我们可以试着去掉提供的FAQ的内容，看看它的回答是怎样的。</p>
+<p>问题2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+Q: 你们的退货政策是怎么样的？
+A:
+"""</span>
+response<span class="token punctuation">,</span> history <span class="token operator">=</span> model<span class="token punctuation">.</span>chat<span class="token punctuation">(</span>tokenizer<span class="token punctuation">,</span> question<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">我们公司的政策是，如果您在购买后的<span class="token number">7</span>天内发现我们的产品不符合您的期望，可以申请退货。退货条件如下：
+<span class="token number">1.</span> 符合退货政策要求的产品；
+<span class="token number">2.</span> 未使用或损坏的产品；
+<span class="token number">3.</span> 符合退货地点的要求，即退货地址与购买地址相同；
+<span class="token number">4.</span> 符合退货流程的要求，即您需要提供有效的退货单并完成退货流程。
+如果符合上述退货政策要求，我们将尽快处理您的退货申请，并为您退款。请注意，如果您已经使用了我们的产品，或者产品有损坏或变质等情况，我们将无法为您提供退货服务。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，在没有合适的上下文信息的时候，它编造出了一些原本没有的要求，比如“退货地址与购买地址相同”。</p>
+<p>我们再来看一个例子，看看它能不能拥有简单的推理能力。我们的上下文里只说了可以送到海南，没有说是否支持三亚这个城市，看看这个时候AI能不能回答对这个问题。</p>
+<p>问题3：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+我们支持全国大部分省份的配送，包括北京、上海、天津、重庆、河北、山西、辽宁、吉林、黑龙江、江苏、浙江、安徽、福建、江西、山东、河南、湖北、湖南、广东、海南、四川、贵州、云南、陕西、甘肃、青海、台湾、内蒙古、广西、西藏、宁夏和新疆.
+
+根据以上信息，请回答下面的问题：
+
+Q: 你们能配送到三亚吗？
+"""</span>
+response<span class="token punctuation">,</span> history <span class="token operator">=</span> model<span class="token punctuation">.</span>chat<span class="token punctuation">(</span>tokenizer<span class="token punctuation">,</span> question<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">是的，我们支持全国大部分省份的配送，包括三亚市。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到，ChatGLM知道是可以配送到三亚的。不过万一是巧合呢？我们再看看在上下文里面，去掉了东三省，然后问问它能不能送到哈尔滨。</p>
+<p>问题4：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+我们支持全国大部分省份的配送，包括北京、上海、天津、重庆、河北、山西、江苏、浙江、安徽、福建、江西、山东、河南、湖北、湖南、广东、海南、四川、贵州、云南、陕西、甘肃、青海、台湾、内蒙古、广西、西藏、宁夏和新疆.但是不能配送到东三省
+
+根据以上信息，请回答下面的问题：
+
+Q: 你们能配送到哈尔滨吗？
+"""</span>
+response<span class="token punctuation">,</span> history <span class="token operator">=</span> model<span class="token punctuation">.</span>chat<span class="token punctuation">(</span>tokenizer<span class="token punctuation">,</span> question<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>回答：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">很抱歉，我们目前不能配送到哈尔滨。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>结果也是正确的，这个时候，ChatGLM会回答我们是送不到哈尔滨的。既然ChatGLM能够正确回答这个问题，那我们的FAQ问答就可以用ChatGLM来搞定了。</p>
+<h2 id="将ChatGLM封装成LLM"><a href="#将ChatGLM封装成LLM" class="headerlink" title="将ChatGLM封装成LLM"></a>将ChatGLM封装成LLM</h2><p>不过上面的代码里面，我们用的还是原始的ChatGLM的模型代码，还不能直接通过query来访问llama-index直接得到答案。要做到这一点倒也不难，我们把它封装成一个LLM类，让我们的index使用这个指定的大语言模型就好了。对应的 <a target="_blank" rel="noopener" href="https://gpt-index.readthedocs.io/en/latest/how_to/customization/custom_llms.html">llama-index 的文档</a>，你也可以自己去看一下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+<span class="token keyword">import</span> faiss
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> SimpleDirectoryReader<span class="token punctuation">,</span> LangchainEmbedding<span class="token punctuation">,</span> GPTFaissIndex<span class="token punctuation">,</span> ServiceContext
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>embeddings<span class="token punctuation">.</span>huggingface <span class="token keyword">import</span> HuggingFaceEmbeddings
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> CharacterTextSplitter
+<span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>node_parser <span class="token keyword">import</span> SimpleNodeParser
+
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>llms<span class="token punctuation">.</span>base <span class="token keyword">import</span> LLM
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> LLMPredictor
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> Optional<span class="token punctuation">,</span> List<span class="token punctuation">,</span> Mapping<span class="token punctuation">,</span> Any
+
+<span class="token keyword">class</span> <span class="token class-name">CustomLLM</span><span class="token punctuation">(</span>LLM<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">_call</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prompt<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> stop<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+        response<span class="token punctuation">,</span> history <span class="token operator">=</span> model<span class="token punctuation">.</span>chat<span class="token punctuation">(</span>tokenizer<span class="token punctuation">,</span> prompt<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> response
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword">def</span> <span class="token function">_identifying_params</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Mapping<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">,</span> Any<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"name_of_model"</span><span class="token punctuation">:</span> <span class="token string">"chatglm-6b-int4"</span><span class="token punctuation">&#125;</span>
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword">def</span> <span class="token function">_llm_type</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"custom"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们把这个CustomLLM对象，传入index的构造函数里，重新运行一下我们的问题，看看效果是怎样的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> SpacyTextSplitter
+
+llm_predictor <span class="token operator">=</span> LLMPredictor<span class="token punctuation">(</span>llm<span class="token operator">=</span>CustomLLM<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+text_splitter <span class="token operator">=</span> CharacterTextSplitter<span class="token punctuation">(</span>separator<span class="token operator">=</span><span class="token string">"\n\n"</span><span class="token punctuation">,</span> chunk_size<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> chunk_overlap<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
+parser <span class="token operator">=</span> SimpleNodeParser<span class="token punctuation">(</span>text_splitter<span class="token operator">=</span>text_splitter<span class="token punctuation">)</span>
+documents <span class="token operator">=</span> SimpleDirectoryReader<span class="token punctuation">(</span><span class="token string">'./drive/MyDrive/colab_data/faq/'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+nodes <span class="token operator">=</span> parser<span class="token punctuation">.</span>get_nodes_from_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span>
+
+embed_model <span class="token operator">=</span> LangchainEmbedding<span class="token punctuation">(</span>HuggingFaceEmbeddings<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"sentence-transformers/paraphrase-multilingual-mpnet-base-v2"</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+service_context <span class="token operator">=</span> ServiceContext<span class="token punctuation">.</span>from_defaults<span class="token punctuation">(</span>embed_model<span class="token operator">=</span>embed_model<span class="token punctuation">,</span> llm_predictor<span class="token operator">=</span>llm_predictor<span class="token punctuation">)</span>
+
+dimension <span class="token operator">=</span> <span class="token number">768</span>
+faiss_index <span class="token operator">=</span> faiss<span class="token punctuation">.</span>IndexFlatIP<span class="token punctuation">(</span>dimension<span class="token punctuation">)</span>
+index <span class="token operator">=</span> GPTFaissIndex<span class="token punctuation">(</span>nodes<span class="token operator">=</span>nodes<span class="token punctuation">,</span> faiss_index<span class="token operator">=</span>faiss_index<span class="token punctuation">,</span> service_context<span class="token operator">=</span>service_context<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> llama_index <span class="token keyword">import</span> QuestionAnswerPrompt
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> QueryMode
+
+QA_PROMPT_TMPL <span class="token operator">=</span> <span class="token punctuation">(</span>
+    <span class="token string">"&#123;context_str&#125;"</span>
+    <span class="token string">"\n\n"</span>
+    <span class="token string">"根据以上信息，请回答下面的问题：\n"</span>
+    <span class="token string">"Q: &#123;query_str&#125;\n"</span>
+    <span class="token punctuation">)</span>
+QA_PROMPT <span class="token operator">=</span> QuestionAnswerPrompt<span class="token punctuation">(</span>QA_PROMPT_TMPL<span class="token punctuation">)</span>
+
+response <span class="token operator">=</span> index<span class="token punctuation">.</span>query<span class="token punctuation">(</span>
+    <span class="token string">"请问你们海南能发货吗？"</span><span class="token punctuation">,</span>
+    mode<span class="token operator">=</span>QueryMode<span class="token punctuation">.</span>EMBEDDING<span class="token punctuation">,</span>
+    text_qa_template<span class="token operator">=</span>QA_PROMPT<span class="token punctuation">,</span>
+    verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Got node text<span class="token punctuation">:</span> Q<span class="token punctuation">:</span> 支持哪些省份配送？
+A<span class="token punctuation">:</span> 我们支持全国大部分省份的配送，包括北京、上海、天津、重庆、河北、山西、辽宁、吉林、黑龙江、江苏、浙江、安徽、福建、江西、山东、河南、湖北、湖南、广东、海南、四川、贵州、云南、陕西、甘肃、青海、台湾、内蒙古、广西、西藏、宁夏和新疆<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+海南能发货。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，这样处理之后，我们就可以直接使用ChatGLM的模型，来进行我们的FAQ的问答了。</p>
+<p>现在，我们有了一个通过paraphrase-multilingual-mpnet-base-v2模型来计算Embeddding并进行语义搜索，然后通过chatglm-6b-int4的模型来进行问答的解决方案了。而且这两个模型，可以跑在一块家用级别的显卡上。是不是很厉害？</p>
+<h2 id="开源模型的不足之处"><a href="#开源模型的不足之处" class="headerlink" title="开源模型的不足之处"></a>开源模型的不足之处</h2><p>看起来，我们这个本机就能运行的小模型似乎已经完成了。数据安全，又不用担心花费。但显然，事情没有那么简单。因为刚才我们处理的电商FAQ问题比较简单，我们再拿一个稍微复杂一点的问题来看看效果。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">text_splitter <span class="token operator">=</span> SpacyTextSplitter<span class="token punctuation">(</span>pipeline<span class="token operator">=</span><span class="token string">"zh_core_web_sm"</span><span class="token punctuation">,</span> chunk_size <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">,</span> chunk_overlap<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+parser <span class="token operator">=</span> SimpleNodeParser<span class="token punctuation">(</span>text_splitter<span class="token operator">=</span>text_splitter<span class="token punctuation">)</span>
+documents <span class="token operator">=</span> SimpleDirectoryReader<span class="token punctuation">(</span><span class="token string">'./drive/MyDrive/colab_data/zhaohuaxishi/'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+nodes <span class="token operator">=</span> parser<span class="token punctuation">.</span>get_nodes_from_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span>
+
+embed_model <span class="token operator">=</span> LangchainEmbedding<span class="token punctuation">(</span>HuggingFaceEmbeddings<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"sentence-transformers/paraphrase-multilingual-mpnet-base-v2"</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+service_context <span class="token operator">=</span> ServiceContext<span class="token punctuation">.</span>from_defaults<span class="token punctuation">(</span>embed_model<span class="token operator">=</span>embed_model<span class="token punctuation">,</span> llm_predictor<span class="token operator">=</span>llm_predictor<span class="token punctuation">)</span>
+
+dimension <span class="token operator">=</span> <span class="token number">768</span>
+faiss_index <span class="token operator">=</span> faiss<span class="token punctuation">.</span>IndexFlatIP<span class="token punctuation">(</span>dimension<span class="token punctuation">)</span>
+index <span class="token operator">=</span> GPTFaissIndex<span class="token punctuation">(</span>nodes<span class="token operator">=</span>nodes<span class="token punctuation">,</span> faiss_index<span class="token operator">=</span>faiss_index<span class="token punctuation">,</span> service_context<span class="token operator">=</span>service_context<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">INFO<span class="token punctuation">:</span>sentence_transformers<span class="token punctuation">.</span>SentenceTransformer<span class="token punctuation">:</span>Load pretrained SentenceTransformer<span class="token punctuation">:</span> sentence<span class="token operator">-</span>transformers<span class="token operator">/</span>paraphrase<span class="token operator">-</span>multilingual<span class="token operator">-</span>mpnet<span class="token operator">-</span>base<span class="token operator">-</span>v2
+INFO<span class="token punctuation">:</span>sentence_transformers<span class="token punctuation">.</span>SentenceTransformer<span class="token punctuation">:</span>Use pytorch device<span class="token punctuation">:</span> cpu
+……
+INFO<span class="token punctuation">:</span>llama_index<span class="token punctuation">.</span>token_counter<span class="token punctuation">.</span>token_counter<span class="token punctuation">:</span><span class="token operator">></span> <span class="token punctuation">[</span>build_index_from_documents<span class="token punctuation">]</span> Total LLM token usage<span class="token punctuation">:</span> <span class="token number">0</span> tokens
+INFO<span class="token punctuation">:</span>llama_index<span class="token punctuation">.</span>token_counter<span class="token punctuation">.</span>token_counter<span class="token punctuation">:</span><span class="token operator">></span> <span class="token punctuation">[</span>build_index_from_documents<span class="token punctuation">]</span> Total embedding token usage<span class="token punctuation">:</span> <span class="token number">91882</span> tokens
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这一次，我们输入索引起来的数据，是鲁迅先生整套《朝花夕拾》的散文集。选用这个是因为对应作品的版权已经过了保护期。我们来看看，在这套文集的内容里面，使用我们上面的纯开源方案，效果会是怎样的。</p>
+<p>对应的模型和索引加载的代码基本一致，只有一个小小的区别，就是在文本分割的时候，我们用了上一讲介绍过的SpacyTextSplitter，因为这里都是散文的内容，而不是确定好格式的QA对。所以通过SpacyTextSplitter来分句，并在允许的时候合并小的片段是有意义的。</p>
+<p>然后，我们试着问一下上一讲我们问过的问题，看看效果怎么样。</p>
+<p>问题1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># query will use the same embed_model</span>
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> QueryMode
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> QuestionAnswerPrompt
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+
+QA_PROMPT_TMPL <span class="token operator">=</span> <span class="token punctuation">(</span>
+    <span class="token string">"下面的内容来自鲁迅先生的散文集《朝花夕拾》，很多内容是以第一人称写的 \n"</span>
+    <span class="token string">"---------------------\n"</span>
+    <span class="token string">"&#123;context_str&#125;"</span>
+    <span class="token string">"\n---------------------\n"</span>
+    <span class="token string">"根据这些信息，请回答问题: &#123;query_str&#125;\n"</span>
+    <span class="token string">"如果您不知道的话，请回答不知道\n"</span>
+<span class="token punctuation">)</span>
+QA_PROMPT <span class="token operator">=</span> QuestionAnswerPrompt<span class="token punctuation">(</span>QA_PROMPT_TMPL<span class="token punctuation">)</span>
+
+response <span class="token operator">=</span> index<span class="token punctuation">.</span>query<span class="token punctuation">(</span>
+    <span class="token string">"鲁迅先生在日本学习医学的老师是谁？"</span><span class="token punctuation">,</span>
+    mode<span class="token operator">=</span>QueryMode<span class="token punctuation">.</span>EMBEDDING<span class="token punctuation">,</span>
+    similarity_top_k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    text_qa_template<span class="token operator">=</span>QA_PROMPT<span class="token punctuation">,</span>
+    verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Got node text<span class="token punctuation">:</span> 一将书放在讲台上，便用了缓慢而很有顿挫的声调，向学生介绍自己道：——
+    “我就是叫作藤野严九郎的……。”
+
+
+后面有几个人笑起来了。
+他接着便讲述解剖学在日本发达的历史，那些大大小小的书，便是从最初到现今关于这一门学问的著作。<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+鲁迅先生在日本学习医学的老师是藤野严九郎。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">response <span class="token operator">=</span> index<span class="token punctuation">.</span>query<span class="token punctuation">(</span>
+    <span class="token string">"鲁迅先生是在日本的哪个城市学习医学的？"</span><span class="token punctuation">,</span>
+    mode<span class="token operator">=</span>QueryMode<span class="token punctuation">.</span>EMBEDDING<span class="token punctuation">,</span>
+    similarity_top_k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    text_qa_template<span class="token operator">=</span>QA_PROMPT<span class="token punctuation">,</span>
+    verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Got node text<span class="token punctuation">:</span> 有时我常常想：他的对于我的热心的希望，不倦的教诲，小而言之，是为中国，就是希望中国有新的医学；大而言之，是为学术，就是希望新的医学传到中国去。<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+根据这些信息，无法得出鲁迅先生是在日本的哪个城市学习医学的答案。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，有些问题在这个模式下，定位到的文本片段是正确的。但是有些问题，虽然定位的还算是一个相关的片段，但是的确无法得出答案。</p>
+<p>在这个过程中，我们可以观察到这样一个问题： 那就是单机的开源小模型能够承载的文本输入的长度问题。在我们使用OpenAI的gpt-3.5-turbo模型的时候，我们最长支持4096个Token，也就是一个文本片段可以放上上千字在里面。但是我们这里单机用的paraphrase-multilingual-mpnet-base-v2模型，只能支持128个Token的输入，虽然对应的Tokenizer不一样，但是就算一个字一个Token，也就100个字而已。这使得我们检索出来的内容的上下文太少了，很多时候没有足够的信息，让语言模型去回答。</p>
+<p>当然，这个问题并不是无法弥补的。我们可以通过把更大规模的模型，部署到云端来解决。这个内容，我们课程的第三部分专门有一讲会讲解。</p>
+<p>不过，有一个更难解决的问题，就是模型的推理能力问题。比如，我们可以再试试 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/641742">第 1 讲</a> 里给商品总结英文名称和卖点的例子。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token triple-quoted-string string">"""Consideration proudct : 工厂现货PVC充气青蛙夜市地摊热卖充气玩具发光蛙儿童水上玩具
+
+1. Compose human readale product title used on Amazon in english within 20 words.
+2. Write 5 selling points for the products in Amazon.
+3. Evaluate a price range for this product in U.S.
+
+Output the result in json format with three properties called title, selling_points and price_range"""</span>
+response<span class="token punctuation">,</span> history <span class="token operator">=</span> model<span class="token punctuation">.</span>chat<span class="token punctuation">(</span>tokenizer<span class="token punctuation">,</span> question<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> title<span class="token punctuation">:</span> 充气玩具青蛙夜市地摊卖
+<span class="token number">2.</span> selling_points<span class="token punctuation">:</span>
+    <span class="token operator">-</span> 工厂现货：保证产品质量
+    <span class="token operator">-</span> PVC充气：环保耐用
+    <span class="token operator">-</span> 夜市地摊：方便销售
+    <span class="token operator">-</span> 热卖：最受欢迎产品
+    <span class="token operator">-</span> 儿童水上玩具：适合各种年龄段儿童
+<span class="token number">3.</span> price_range<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token keyword">in</span> USD<span class="token punctuation">)</span>
+    <span class="token operator">-</span> low<span class="token punctuation">:</span>   $<span class="token number">1.99</span>
+    <span class="token operator">-</span> high<span class="token punctuation">:</span>   $<span class="token number">5.99</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，虽然这个结果不算太离谱，多少和问题还是有些关系的。但是无论是翻译成英文，还是使用JSON返回，模型都没有做到。给到的卖点也没有任何“推理出来”的性质，都是简单地对标题的重复描述。即使你部署一个更大版本的模型到云端，也好不到哪里去。</p>
+<p>这也是ChatGPT让人震撼的原因，的确目前它的效果还是要远远超出任何一个竞争对手和开源项目的。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，最后我们来回顾一下。这一讲里，我们一起尝试用开源模型来代替ChatGPT。我们通过sentence_transfomers类型的模型，生成了文本分片的Embedding，并且基于这个Embedding来进行语义检索。我们通过 ChatGLM 这个开源模型，实现了基于上下文提示语的问答。在简单的电商QA这样的场景里，效果也还是不错的。即使我们使用的都是单机小模型，它也能正确回答出来。这些方法，也能节约我们的成本。不用把钱都交给OpenAI，可以攒着买显卡来训练自己的模型。</p>
+<p>但是，当我们需要解决更加复杂的问题时，比如需要更长的上下文信息，或者需要模型本身更强的推理能力的时候，这样的小模型就远远不够用了。更长的上下文信息检索，我们还能够通过在云端部署更大规模的模型，解决部分问题。但是模型的推理能力，目前的确没有好的解决方案。</p>
+<p>所以不得不佩服，OpenAI的在AGI这个目标上耕耘多年后震惊世人的效果。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>最后，给你留一个思考题。ChatGLM并不是唯一的中文大语言模型，开源社区目前在快速推进，尝试用各种方式提供更好的开源大模型。比如基于斯坦福的Alpaca数据集进行微调的 <a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-LLaMA-Alpaca">Chinese-LLaMA-Alpaca</a>，链家科技开源的 <a target="_blank" rel="noopener" href="https://github.com/LianjiaTech/BELLE">BELLE</a>。你可以挑选一个模型试一试，看看它们的效果和ChatGLM比起来怎么样。欢迎你把你的评测结果分享出来，也欢迎你把这节课分享给需要的朋友，共同参谋，一起进步。我们下节课再见。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>基于开源模型来解决问题的思路并非我的原创，网上也有不少其他朋友用类似的方式解决了自己的问题。比如 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/iplUoK_JYeL_9EC7Ttt3tw">《让 LLM 回答问题更靠谱》这篇文章</a> 就组合了三个模型来完成了医学领域的语义搜索、语义匹配排序，以及最终的问答语句生成。你可以读一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#11%EF%BD%9C%E7%9C%81%E4%B8%8B%E9%92%B1%E4%B9%B0%E6%98%BE%E5%8D%A1%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B%E8%8A%82%E7%BA%A6%E6%88%90%E6%9C%AC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">11｜省下钱买显卡，如何利用开源模型节约成本？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Colab%E9%87%8C%E4%BD%BF%E7%94%A8GPU"><span class="toc-number">1.1.</span> <span class="toc-text">在Colab里使用GPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HuggingfaceEmbedding%EF%BC%8C%E4%BD%A0%E7%9A%84%E5%BC%80%E6%BA%90%E4%BC%99%E4%BC%B4"><span class="toc-number">1.2.</span> <span class="toc-text">HuggingfaceEmbedding，你的开源伙伴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ChatGLM%E6%8F%90%E4%BE%9B%E5%AF%B9%E8%AF%9D%E6%95%88%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">使用ChatGLM提供对话效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86ChatGLM%E5%B0%81%E8%A3%85%E6%88%90LLM"><span class="toc-number">1.4.</span> <span class="toc-text">将ChatGLM封装成LLM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84"><span class="toc-number">1.5.</span> <span class="toc-text">开源模型的不足之处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.8.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

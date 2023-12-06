@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/32/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/32/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-06 15:53:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/752338702.html" title="154 | Y Combinator：孵化器还是培训班？">154 | Y Combinator：孵化器还是培训班？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">154 | Y Combinator：孵化器还是培训班？孵化器作为给创业公司提供帮助的组织模式，并非Y Combinator首创。很长一段时间里，“孵化器”的名声一度不好，主要是因为孵化器并不能真正给创业者带来好处，而且又在盘剥创业公司上很厉害。
+Y Combinator的横空出世，很大程度上改写了孵化器的历史，今天无数创业者都想去Y Combinator或者类似的孵化器，和Y Combinator创立前“孵化器”等同骗子的状况不可同日而语。作为硅谷最为成功的孵化器公司，Y Combinator以其独特的孵化模式，在全世界都享誉盛名。
+Y Combinator是保罗·格雷厄姆（Paul Graham）、杰西卡·利文斯通（Jessica Livingston）、特雷弗·布莱克威尔（Trevor Blackwell）和罗伯特·泰潘·莫里斯（Robert Tappan Morris）在2005年创立的，至今已有13年。它的特殊之处在于不是一个随时入驻的孵化器，要想加入Y Combinator，必须参加它一年两次的创业投资培训计划，每次三个月。而这个创业投资培训计划，是需要经过严格PK选取的。
+具体来说，创业团队向Y Combinator提出申请。Y Combinator邀请一部分候选团队来面试，经过严格的面试的小比例团队会被录取。当然，伴随着Y Combinator的名气越来越大，申请人 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4065361822.html" title="157 | Zynga：发家从农场开始">157 | Zynga：发家从农场开始</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">157 | Zynga：发家从农场开始网络游戏市场一直都是非常热门的市场。早年在PC机时代就诞生了无数游戏企业，进入互联网时代，游戏企业更是风起云涌。今天我们的主角也是这样的一家游戏企业：Zynga。
+很多人都不知道Zynga是什么公司，但是在它的鼎盛时期，Zynga毫无疑问是一个闪耀的巨星，是很多人仰慕学习的对象。
+那么巨星是怎样起家的，又是怎样倒下的呢？今天我们就从Zynga的发家开始讲起。
+2007年4月的时候，马克 · 平克斯（Mark Pincus）、艾瑞克 ‧ 席尔迈尔（Eric Schiermeyer）、贾斯汀 ‧ 沃尔德伦（Justin Waldron）、麦可 ‧ 勒克斯顿（Michael Luxton）、史提夫 ‧ 舍特勒尔（Steve Schoettler）和安德鲁 ‧ 楚莱德（Andrew Trader）成立了一家名字叫做Presidio Media的公司。
+这个公司在同年7月改名为Zynga，改名的原因是创始人兼CEO的马克以前养过一只宠物狗，名字叫做 “Zinga”。所以Zynga的公司图标上面是一只狗。
+Zynga在2007年开发了一款叫做Zynga Poker的德州扑克游戏，在Facebook上发布。这是Zynga最早的一款游戏，这款游戏给Zynga带来了不少的名气，伴随着在Facebook上的游戏越来越吸引用户，Zynga到2009年4月第一次顺利拿 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/748636080.html" title="156 | Paul Graham：硅谷创业教父">156 | Paul Graham：硅谷创业教父</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">156 | Paul Graham：硅谷创业教父著名程序员、计算机编程语言Lisp专家、 创业者、投资人、作家，这些头衔每一个都金光闪闪。当把这些头衔都集中到一个人身上的时候，这个人就岂止金光闪闪，简直令人仰望了。然而世界上的确有这样的人，比如今天这篇文章的主角保罗·格雷厄姆（Paul Graham）。
+格雷厄姆如今最为著名的身份，是享誉全球的孵化器Y Combinator的创始人，但是他的身份和头衔，远不止这一个。今天我们就来全方位地看看他是怎样集众多头衔于一身的。
+早年出道的格雷厄姆，是众多互联网软件开发者中的一员。但是作为一个资深的程序员，他有一点和其他程序员不太一样，就是特别擅长计算机界一种诞生于20世纪60年代的函数式编程语言：LISP。
+有关LISP的故事我们可以大书特书。简单来说，这是一个很优秀很有历史的语言，但同时掌握起来也很有难度。即使是在LISP最辉煌的年代，也鲜有人是LISP的专家。而在格雷厄姆进入计算机行业的20世纪90年代，LISP早已经不是一种很常用的语言了。那个时候是结构化编程语言的天下，C和C++是主流，Java才诞生。
+但是格雷厄姆是少数几个钟爱LISP，并且研究得非常透彻的人。他曾经写过若干本LISP的书，比如 _ON LISP_、 ANSI COMMON LISP 等等。这些书到今天依然是这个领域的经典著作。
+他对LISP的钟爱，延续到了199 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3978238900.html" title="158 | 论Zynga的倒台">158 | 论Zynga的倒台</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">158 | 论Zynga的倒台2011年的Zynga有两件大事：Mafia War 2带来的首次惨败和IPO，然而Zynga的坏运气并没有终止，2012年Zynga耗费很大精力开发的另外一款游戏The Ville，再一次把Zynga带向了失败的边缘。
+The Ville的开发始于2010年，是一款模拟人生的社交游戏。它的开发过程一直不顺利。与此同时，Electronic Arts著名的模拟人生游戏 The Sims 在2011年的时候发布了自己的社交版 The Sims Social。这个游戏的发布让Zynga着急了，所以Zynga匆匆忙忙地发布了自己的虚拟人生社交游戏The Ville。
+很不幸的是，Zynga终究是没办法做得过模拟人生游戏的鼻祖和行家Electronic Arts。这款The Ville既不叫好也不卖座，几个月以后就彻底关门大吉了。The Ville创造了Zynga最短命游戏的历史记录，与此同时，Electronic Arts还起诉Zynga抄袭，一时间，Zynga的负面新闻不断。
+之后Zynga的游戏做得越发谨小慎微，仿佛几次的失败彻底束缚了自己的创造力，Zynga发布的游戏也变得越来越不成功。 这是因为，Zynga把太多的精力放在了关注自己的失败上，却忽略了智能手机的兴起，当整个游戏产业从个人计算机开始过渡到手机上时，Zynga开始变得不知所措。
+于是在这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4179957610.html" title="159 | 企业分析要求综合素质">159 | 企业分析要求综合素质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">159 | 企业分析要求综合素质在我的专栏里，方法论这部分是最难写的。因为我需要先去总结自己是怎么看待企业发展、怎么分析企业的，之后，再把总结的东西以每个人能够听懂的方式，通俗易懂地讲出来。
+这一点其实比我自己分析企业的时候要更难，不过，我也觉得这一部分很重要，毕竟“授之以渔”和“授之以鱼”的区别，我想你一定也懂。所以，作为结束专栏的最后一篇文章，我们再来谈一次方法论。
+今天，我想讲一个特别简单的道理。 我们如果想要去分析企业的话，需要掌握的东西是非常多的。所以，如果你只是把自己拘泥于开发工程师的世界里，只懂得用什么样的代码去实现什么功能，是不太容易做好企业分析的。
+对某一领域技术的深入理解，对于我们分析这个领域的企业是有好处的。最起码我们知道，一个企业在讨论自己的技术和产品的时候，是在胡说八道，还是真的有理有据；是行业领先，还是只是一个吃瓜的玩家。
+不过，对某个领域技术的深入理解，既不是分析企业的必要条件，也不是分析企业充分条件。
+我们如果想要分析企业，首先需要对经济学的基本原理有一些了解。对我来说，这得益于我在大学期间就看过很多杂书，包括曼昆的一系列经济学教程。
+为什么经济学很重要呢？一个企业不可能脱离大环境存在，理解大环境，才能理解企业在大环境下做出的决策，从而才能判断出这些决策是否合理。
+我们举一个例子吧。特朗普上台后推行了他的减税计划，这是美国自里根总统以来第一次大规模的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1961752808.html" title="开篇词 | 突破技术思维，站在商业的角度看问题">开篇词 | 突破技术思维，站在商业的角度看问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">开篇词 | 突破技术思维，站在商业的角度看问题2017年6月，InfoQ的编辑联系我说希望能在“极客时间”中开个全年的订阅专栏，我收到邮件之后大约一半是诚惶诚恐，一半又颇欣欣然的感觉。
+我从去年开始写公众号，最初只是把它当成梳理自己的知识和思维的一个方式。我陆陆续续写了很多方面的内容，从我最擅长和熟悉的大数据领域开始，写了大数据的发展史，到我不是那么熟悉的互联网行业的发展、职场就业、企业分析等多少都有涉及。
+收到专栏邀请后，有一个问题就摆在了我的面前：我的专栏到底应该讲什么。和公众号不同，我希望给自己的专栏做一个相对明确而统一的主题。我的PhD训练教会了我一个非常重要的道理：选择比努力更重要。
+屈指算来，我在互联网行业里摸爬滚打也差不多有二十年了。这些年里一半在求学，一半在工作。早年我非常希望自己可以成为一名教授，既能教书育人又可以做前沿的研究，后来阴差阳错进入了工业界，成了一名不折不扣的程序员。所谓时也命也，我做研究的时候主要研究数据库的基础架构问题，在工业界又赶上了大数据发展的早期，这让我比较早地进入了大数据这个领域。
+但我觉得自己并没有选好赛道，因为我既没有进入谷歌这样的先驱企业，也未能站队Hadoop的生态圈。相反的我进了微软，从无到有地搭了一个内部大数据处理平台。这段经历让我在后来很长的一段时间里都在思考一个问题：在大数据领域，谷歌微软这样的大企业是怎样被Hadoop生态 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2949251319.html" title="一键直达 | 系列解读文章回顾">一键直达 | 系列解读文章回顾</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">一键直达 | 系列解读文章回顾你好，很荣幸我们能够一起走过一年的时间，我是这个专栏的主编毛倩倩。
+在《技术与商业案例解读》这个全年专栏中，徐飞特别针对一些行业撰写了几大系列文章，希望让你对一个个行业内企业在技术与商业发展上的逻辑有更深刻的思考。
+这些系列文章虽有序却分散在全年的专栏目录中，专栏的最后，我特别整理了几大系列文章的直达目录，以方便你按行业领域来回顾。
+点击相应文章标题，直达你最需要回顾的那篇。
+1. 西雅图公司系列：（001）RealNetworks：一个帝国的兴衰（上）
+（002）RealNetworks：一个帝国的兴衰（下）
+（003）以RealNetworks为例，谈谈初创公司如何应对巨头碾压
+（004）可视化分析鼻祖Tableau
+（005）从Tableau上市，看学术界和工业界人士创业
+（006）在线旅游帝国Expedia崛起的背后
+（007）房产经纪的颠覆者Redfin：在“传统”与“现代”间徘徊
+（008）房产经纪的“协作者”Zillow：一个地产数据平台
+（009）颠覆还是协作，房地产市场上Redfin和Zillow的抉择
+（010）应用交付网络大厂F5：“一招鲜”之殇
+（011）在线差旅报销鼻祖Concur：在转型中获得发展
+（012）漫谈企业转型：在市场变迁中寻找生机
+（013）克雷公司沉浮录：行走在超级计算机市场
+（014）“单一化”的隐忧：从克雷 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2707275221.html" title="结束语 | 积跬步，而终至千里">结束语 | 积跬步，而终至千里</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">结束语 | 积跬步，而终至千里时光飞逝，不知不觉一年就过去了。
+回顾这一年，160篇的原创文章，40多万字的输出，自己都觉得有些难以置信。这一年的写作很是艰难辛苦。至今我还记得自己下班回家就不停加班看材料写东西到深夜，周末和节假日一天工作十多个小时的过往。曾经有段时间因为打字多了手腕疼得厉害，我还专门找到了可以语音输入的讯飞输入法。
+但是一切都是值得的，感谢极客时间这个平台给了我这个机会，更要感谢每一个订阅了专栏的“你”，虽然从未谋面，但正是因为你，让我更感这段经历弥足珍贵。
+在这个专栏里，我用最大的篇幅写了诸多企业的发展历程，既有如今的商业大鳄，也有曾经辉煌的明日黄花，我还从大数据一路写到办公软件再写到企业应用领域，并从游戏写到了新硬件领域，不一而足。回头来看，这恰似互联网领域横跨数十年的一幅企业画卷。而我在专栏内写作的几大系列文章，相信会让你对一个个行业内企业在技术与商业发展上的逻辑有更深刻的思考。
+我还专门介绍了很多企业家和投资者的故事，带你看他们的抉择与人生经验。同时，我还专门介绍了一些我个人分析企业和人的一些方法论，希望授人以渔，丰富你看企业和看人的途径与方式。
+陪君一年，终有一别。希望我的专栏故事，让每一个“你”都有一份不同的收获。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3240930736.html" title="新书首发丨《大数据浪潮之巅》">新书首发丨《大数据浪潮之巅》</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">新书首发丨《大数据浪潮之巅》你好，我是徐飞。
+今天要分享一个好消息，我的新书《大数据浪潮之巅》已经正式出版，并在极客时间商城独家首发。 戳此查看&gt;&gt;&gt;
+为什么更新完专栏之后要出书呢？图书不同于专栏，专栏里我有160篇文章，解读了很多不同公司的案例，而这本书中我聚焦对大数据的宏观发展进行了讲述。
+本书描绘了大数据从无到有，从起步到兴盛，从兴盛到不断迭代的波澜壮阔的整个发展史，在这个过程中，我介绍了大公司和创业公司在大数据发展浪潮中跌宕起伏的，众多广为流传和不为人知的故事。据我所知，这是全球唯一一本全面系统讲述大数据发展史的书，你可以到图书详情页查看目录进行了解。 戳此查看&gt;&gt;&gt;
+在讲述大数据发展浪潮的同时，我也在技术之上，从宏观、大环境的层面来分析大公司和创业公司的大数据技术与商业融合创新的历程。
+本书既讲述了谷歌“三驾马车”的问世，也讲述了Hadoop生态圈的建立，更讲到Spark取代Hadoop原来的MapReduce框架的地位，还描述了Flink是如何异军突起的。书中既包括耳熟能详的Hadoop发行商们，也包括神秘的大数据公司Palantir，更讲述了国产新数据库TiDB的创业故事。
+《大数据浪潮之巅》这本书的目的是通过讲述大数据波澜壮阔的发展史，用这些技术与商业融合的案例，来引发读者的深度思考。 可以说这是一本大数据技术的发展史，也是一本商 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3956901070.html" title="127 | Twitter：蓝色小鸟还能飞多久（下）">127 | Twitter：蓝色小鸟还能飞多久（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">127 | Twitter：蓝色小鸟还能飞多久（下）上一篇我们谈到了Twitter的这场变动，对于杰克 · 多西（Jack Dorsey）来说，“被卸任”这件事实在是有些令人震惊，虽然Twitter最后还是给杰克保留了一个职位，但是基本形同虚设。
+关于这件事，有一个说法是，Facebook的创始人马克 · 扎克伯格（Mark Zuckerberg）一直想邀请杰克去他的公司担任高管。所以，为了留住杰克，虽然公司董事会把他撵下了Twitter的CEO的职位，还是给他保留了一个虚职。
+杰克在离开Twitter以后的一段时间里，开始穿梭于各地，寻找自己的下一个目标。很快，他就找到了这个目标，也就是后来的上市公司Square。
+于是，Twitter正式进入了埃文 · 威廉姆斯（Evan Williams）的时代。而埃文面临的现状，一方面是公司的软件体系架构非常地不稳定，用户体验不好，造成了用户增长放缓。另外一方面是Twitter一直都无法赚钱。前者是无法和用户交代，后者是无法向董事会交代。
+埃文的上任很好地解决了第一个问题，并且迅速和员工们打成了一片。但是他显然并没有很好地解决第二个问题。与此同时，Facebook的马克在埃文的任期中，前后两次发起了对Twitter的收购。当然，这两次收购中埃文都没有把公司卖掉。
+伴随埃文成长的Twitter依旧无法盈利。这让董事会对埃文的忍受度越来越低。与 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/31/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/#content-inner">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/#content-inner">33</a><a class="extend next" rel="next" href="/page/33/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">58</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">17</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

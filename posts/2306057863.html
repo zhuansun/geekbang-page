@@ -1,0 +1,499 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>08｜文本改写和内容审核，别让你的机器人说错话 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="08｜文本改写和内容审核，别让你的机器人说错话你好，我是徐文浩。 前面，我们已经把OpenAI最主要的接口介绍完了。这一讲也是我们基础知识篇里面的最后一讲，我们会覆盖完OpenAI的GPT系列模型剩下的一些接口。也许有些接口你不一定会频繁使用，但是了解一下没有什么坏处，说不定你有什么需求就能用得上它。 在这一讲里，我们会一起来看看OpenAI为文本改写和内容审核提供的功能有哪些。以及OpenAI的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="08｜文本改写和内容审核，别让你的机器人说错话">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2306057863.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="08｜文本改写和内容审核，别让你的机器人说错话你好，我是徐文浩。 前面，我们已经把OpenAI最主要的接口介绍完了。这一讲也是我们基础知识篇里面的最后一讲，我们会覆盖完OpenAI的GPT系列模型剩下的一些接口。也许有些接口你不一定会频繁使用，但是了解一下没有什么坏处，说不定你有什么需求就能用得上它。 在这一讲里，我们会一起来看看OpenAI为文本改写和内容审核提供的功能有哪些。以及OpenAI的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.384Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2306057863"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '08｜文本改写和内容审核，别让你的机器人说错话',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">08｜文本改写和内容审核，别让你的机器人说错话</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="08｜文本改写和内容审核，别让你的机器人说错话"><a href="#08｜文本改写和内容审核，别让你的机器人说错话" class="headerlink" title="08｜文本改写和内容审核，别让你的机器人说错话"></a>08｜文本改写和内容审核，别让你的机器人说错话</h1><p>你好，我是徐文浩。</p>
+<p>前面，我们已经把OpenAI最主要的接口介绍完了。这一讲也是我们基础知识篇里面的最后一讲，我们会覆盖完OpenAI的GPT系列模型剩下的一些接口。也许有些接口你不一定会频繁使用，但是了解一下没有什么坏处，说不定你有什么需求就能用得上它。</p>
+<p>在这一讲里，我们会一起来看看OpenAI为文本改写和内容审核提供的功能有哪些。以及OpenAI的GPT系列有哪些模型，这些模型有哪些区别，什么情况下我们应该用什么模型。</p>
+<h2 id="文本改写，从使用提示语开始"><a href="#文本改写，从使用提示语开始" class="headerlink" title="文本改写，从使用提示语开始"></a>文本改写，从使用提示语开始</h2><p>我猜课程学到这里，你应该已经用过不少基于AI大语言模型的产品了。很常见的一类应用，就是写作助手。比如Notion AI就能帮助你，在已经写好的文章里面选取一段内容，你可以让AI帮你修改。这个修改可以是让文本短一点或者长一点，也可以是让文本改一下自己的语气。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f3df3181e7f0a44f50e5f870a2256ae0.png" alt="图片"></p>
+<p>不过，OpenAI的GPT的系列模型是一个生成式的模型，也就是它的用法是你给它一段文字，然后它补全后面的文字。按理来说，你是没法让它修改一段内容的。当然，在看了那么多不同的“提示语”之后，相信你自然想到可以通过一段提示语来解决这个问题。比如，下面这段代码就是这样的，我们通过上一讲介绍的ChatGPT的模型来实现了这个功能。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">make_text_short</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"你是一个用来将文本改写得短的AI助手，用户输入一段文本，你给出一段意思相同，但是短小精悍的结果"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> text<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+        messages<span class="token operator">=</span>messages<span class="token punctuation">,</span>
+        temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+        max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>
+        presence_penalty<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>
+        frequency_penalty<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>
+        n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response
+
+long_text <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+在这个快节奏的现代社会中，我们每个人都面临着各种各样的挑战和困难。
+在这些挑战和困难中，有些是由外部因素引起的，例如经济萧条、全球变暖和自然灾害等。
+还有一些是由内部因素引起的，例如情感问题、健康问题和自我怀疑等。
+面对这些挑战和困难，我们需要采取积极的态度和行动来克服它们。
+这意味着我们必须具备坚韧不拔的意志和创造性思维，以及寻求外部支持的能力。
+只有这样，我们才能真正地实现自己的潜力并取得成功。
+"""</span>
+short_version <span class="token operator">=</span> make_text_short<span class="token punctuation">(</span>long_text<span class="token punctuation">)</span>
+
+index <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">for</span> choice <span class="token keyword">in</span> short_version<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"version </span><span class="token interpolation"><span class="token punctuation">&#123;</span>index<span class="token punctuation">&#125;</span></span><span class="token string">: "</span></span> <span class="token operator">+</span> choice<span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    index <span class="token operator">+=</span> <span class="token number">1</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">version <span class="token number">1</span><span class="token punctuation">:</span> 现代社会中，我们面临外部和内部的挑战。要克服它们，需要积极态度、创造性思维和寻求支持能力。这样才能实现自己潜力并成功。
+version <span class="token number">2</span><span class="token punctuation">:</span> 现代社会中，我们面临各种挑战和困难。有些是外部因素引起的，如经济萧条、全球变暖等；还有些是内部因素引起的，如情感问题、健康问题等。为了克服这些困难，我们需要积极应对，并具备坚韧不拔的意志和创造性思维能力，并寻求外部支持。只有这样才能实现自己潜力并取得成功。
+version <span class="token number">3</span><span class="token punctuation">:</span> 现代社会中，我们面临各种挑战和困难。有些源于外部因素（如经济萧条、全球变暖），而另一些则来自内部（如情感问题、健康问题）。为了克服这些困难，我们需要积极应对并展现坚韧的意志和创造性思维，并寻求外界支持。只有这样，我们才能实现潜力并获得成功。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>使用ChatGPT的模型接口，是因为它的价格比较低廉。而我们使用的参数也有以下几个调整。</p>
+<ol>
+<li>首先是我们使用了 n&#x3D;3 这个参数，也就是让AI给我们返回3个答案供我们选择。在文本改写类的应用里面，我们通常不只是直接给出答案，而是会给用户几个选项来选择。</li>
+<li>其次是我们引入了两个参数 presence_penalty&#x3D;0 以及 frequency_penalty&#x3D;2。这两个参数我们之前没有介绍过，它们和temperature参数类似，都是来控制你输出的内容的。<ol>
+<li>presence_penalty，顾名思义就是如果一个Token在前面的内容已经出现过了，那么在后面生成的时候给它的概率一定的惩罚。这样，AI就会倾向于聊新的话题和内容。在这里，我们把它设置成了默认值0。</li>
+<li>frequency_penalty，指的是对于重复出现的Token进行概率惩罚。这样，AI就会尽量使用不同的表述。在这里我们设成了最大的2，你也可以设置成最小的-2。但是那样的话，它就更容易说车轱辘话了。</li>
+</ol>
+</li>
+</ol>
+<h2 id="通过logit-bias参数精确控制内容"><a href="#通过logit-bias参数精确控制内容" class="headerlink" title="通过logit_bias参数精确控制内容"></a>通过logit_bias参数精确控制内容</h2><p>不过，无论是temperature还是presence_penalty和frequency_penalty，都是一个参数，我们没有办法精确控制哪些词我们不想出现。不过，对于这一点，OpenAI还是提供了解决方案，比如，我们想要在上面生成的内容里面，不允许出现灾害两个字，就可以这么做。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tiktoken
+encoding <span class="token operator">=</span> tiktoken<span class="token punctuation">.</span>get_encoding<span class="token punctuation">(</span><span class="token string">'p50k_base'</span><span class="token punctuation">)</span>
+token_ids <span class="token operator">=</span> encoding<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"灾害"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>token_ids<span class="token punctuation">)</span>
+
+bias_map <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">for</span> token_id <span class="token keyword">in</span> token_ids<span class="token punctuation">:</span>
+    bias_map<span class="token punctuation">[</span>token_id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100</span>
+
+<span class="token keyword">def</span> <span class="token function">make_text_short</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"你是一个用来将文本改写得短的AI助手，用户输入一段文本，你给出一段意思相同，但是短小精悍的结果"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> text<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span> messages<span class="token operator">=</span>messages<span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span> max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>
+        n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> presence_penalty<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> frequency_penalty<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>
+        logit_bias <span class="token operator">=</span> bias_map<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response
+
+short_version <span class="token operator">=</span> make_text_short<span class="token punctuation">(</span>long_text<span class="token punctuation">)</span>
+
+index <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">for</span> choice <span class="token keyword">in</span> short_version<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"version </span><span class="token interpolation"><span class="token punctuation">&#123;</span>index<span class="token punctuation">&#125;</span></span><span class="token string">: "</span></span> <span class="token operator">+</span> choice<span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    index <span class="token operator">+=</span> <span class="token number">1</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span><span class="token number">163</span><span class="token punctuation">,</span> <span class="token number">223</span><span class="token punctuation">,</span> <span class="token number">122</span><span class="token punctuation">,</span> <span class="token number">22522</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">]</span>
+version <span class="token number">1</span><span class="token punctuation">:</span> 现代社会中，我们面对各种挑战和困障。有些是外部原因引起的，如经济萧条、全球变暖和自然災宣等；还有一些是内心问题，如情感、健康和自我怀念等。为克服这些困障我们需要积枝正面态度并采取行动，并具备坚韧不拔的意志与创造性思维能力以及寻求外部支持的技巧。只要这样做了<span class="token punctuation">,</span> 我们就可以真正实现潜力并获得成功<span class="token punctuation">.</span>
+version <span class="token number">2</span><span class="token punctuation">:</span> 现代社会中，我们面对外部和内部的挑战。为了克服这些困难示意，需要积架主动态度和行动，并具备坚韧不拔的意志、创造性思维以及寻求支持能力。只有这样才能实现潜力并取得成功。
+version <span class="token number">3</span><span class="token punctuation">:</span> 现代社会中，我们面临各种挑战和困障。有外部因素如经济萧条、全球变暖等，也有内部因素如情感问题、健康问题等。为克服这些困境，需要积架态度和行动，并具备坚韧意志、创造性思维及外部支持能力。只有这样才能实现自我潜力并取得成功。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码里面，我们是这样做的。</p>
+<ol>
+<li>我们通过之前使用过的Tiktoken库，把我们不希望出现的“灾害”这个词儿，找到它对应的Token，然后给它们都赋了一个-100的bias。</li>
+<li>然后把整个的bias_map作为参数，传给了Completion的logit_bias参数。</li>
+</ol>
+<p>在生成结果里面，你可以看到，三个回复都没有“灾害”这两个字了。即使是之前出现的第一个回复里原来是有“灾害”这两个字的。现在一个被强行改成了繁体的“災”字，另一个干脆是给了个错别字“宣”。</p>
+<p>对于 logit_bias 参数里面的取值范围，是在-100到100之间。不过，一般情况下，设置在1到-1之间就足够了。我自己的体会是，设置成100，你一定要某些字出现，那么整个生成会慢到无法忍受。</p>
+<h2 id="使用英文来减少Token的使用"><a href="#使用英文来减少Token的使用" class="headerlink" title="使用英文来减少Token的使用"></a>使用英文来减少Token的使用</h2><p>不知道你有没有注意到，虽然灾害只有两个中文汉字，但是我们通过Tiktoken去处理的时候，我们打印了对应的Token的id是什么，实际上有5个Token。这里其实和我们之前看到的英文一样，并不是一个字或者一个单词是一个Token。事实上，同样含义的中文，目前消耗的Token数量是比英文多的。比如，我们把上面的一句话翻译成英文，然后数一下对应同样内容的中英文的Token数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">translate</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"你是一个翻译，把用户的话翻译成英文"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> text<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span> messages<span class="token operator">=</span>messages<span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span> max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>        n<span class="token operator">=</span><span class="token number">1</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span>
+
+chinese <span class="token operator">=</span> long_text
+english <span class="token operator">=</span> translate<span class="token punctuation">(</span>chinese<span class="token punctuation">)</span>
+
+num_of_tokens_in_chinese <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>encoding<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>chinese<span class="token punctuation">)</span><span class="token punctuation">)</span>
+num_of_tokens_in_english <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>encoding<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>english<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>english<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"chinese: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>num_of_tokens_in_chinese<span class="token punctuation">&#125;</span></span><span class="token string"> tokens"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"english: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>num_of_tokens_in_english<span class="token punctuation">&#125;</span></span><span class="token string"> tokens"</span></span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">In this fast<span class="token operator">-</span>paced modern society<span class="token punctuation">,</span> each of us faces various challenges <span class="token keyword">and</span> difficulties<span class="token punctuation">.</span> Some of these challenges <span class="token keyword">and</span> difficulties are caused by external factors<span class="token punctuation">,</span> such <span class="token keyword">as</span> economic recession<span class="token punctuation">,</span> <span class="token keyword">global</span> warming<span class="token punctuation">,</span> <span class="token keyword">and</span> natural disasters<span class="token punctuation">.</span> There are also some caused by internal factors<span class="token punctuation">,</span> such <span class="token keyword">as</span> emotional issues<span class="token punctuation">,</span> health problems<span class="token punctuation">,</span> <span class="token keyword">and</span> self<span class="token operator">-</span>doubt<span class="token punctuation">.</span> To overcome these challenges <span class="token keyword">and</span> difficulties<span class="token punctuation">,</span> we need to adopt a positive attitude <span class="token keyword">and</span> take action<span class="token punctuation">.</span> This means we must possess a strong will <span class="token keyword">and</span> creative thinking<span class="token punctuation">,</span> <span class="token keyword">as</span> well <span class="token keyword">as</span> the ability to seek external support<span class="token punctuation">.</span> Only <span class="token keyword">in</span> this way can we truly realize our potential <span class="token keyword">and</span> achieve success<span class="token punctuation">.</span>
+chinese<span class="token punctuation">:</span> <span class="token number">432</span> tokens
+english<span class="token punctuation">:</span> <span class="token number">115</span> tokens
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，同样的内容，中文消耗的Token数量超过400，而英文的Token数量只有100出头。如果你在生产环境中使用OpenAI的接口，最好还是使用英文的提示语，最多在输出结果的时候，告诉它 “generate Chinese” 之类的，可以极大地节约成本。不过，我们后面课程的演示，还是会尽量使用中文，方便你理解。</p>
+<h2 id="看看OpenAI给了我们哪些模型"><a href="#看看OpenAI给了我们哪些模型" class="headerlink" title="看看OpenAI给了我们哪些模型"></a>看看OpenAI给了我们哪些模型</h2><p>有些同学可能看过文档会说，改写文本不是OpenAI单独提供了一个Edit的接口吗？的确，曾经，OpenAI单独给过一个Edit接口，也单独提供了文本编辑的模型。目前，你在OpenAI的官网上还能看到相关的 <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/api-reference/edits">文档</a>。但是根据我的测试，这个接口和模型目前是不能使用的，不知道是因为是Alpha版本还是已经被下线了。</p>
+<p>因为目前OpenAI的产品更新非常快，所以很可能会出现一个问题，我告诉你应该使用某个模型，但是这个模型已经不是效果最好或者最新的了。所以，最好的办法，还是通过它提供的接口看看它到底有哪些模型。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token comment"># list all open ai models</span>
+engines <span class="token operator">=</span> openai<span class="token punctuation">.</span>Engine<span class="token punctuation">.</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+pd <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>openai<span class="token punctuation">.</span>Engine<span class="token punctuation">.</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+display<span class="token punctuation">(</span>pd<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'owner'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">	<span class="token builtin">id</span>	owner
+<span class="token number">0</span>	babbage	openai
+<span class="token number">1</span>	davinci	openai
+<span class="token number">2</span>	babbage<span class="token operator">-</span>code<span class="token operator">-</span>search<span class="token operator">-</span>code	openai<span class="token operator">-</span>dev
+<span class="token number">3</span>	text<span class="token operator">-</span>similarity<span class="token operator">-</span>babbage<span class="token operator">-</span><span class="token number">001</span>	openai<span class="token operator">-</span>dev
+<span class="token number">4</span>	text<span class="token operator">-</span>davinci<span class="token operator">-</span><span class="token number">001</span>	openai
+……
+<span class="token number">14</span>	text<span class="token operator">-</span>embedding<span class="token operator">-</span>ada<span class="token operator">-</span><span class="token number">002</span>	openai<span class="token operator">-</span>internal
+……
+<span class="token number">30</span>	gpt<span class="token operator">-</span><span class="token number">3.5</span><span class="token operator">-</span>turbo<span class="token operator">-</span><span class="token number">0301</span>	openai
+……
+<span class="token number">41</span>	gpt<span class="token operator">-</span><span class="token number">4</span>	openai
+<span class="token number">42</span>	text<span class="token operator">-</span>search<span class="token operator">-</span>davinci<span class="token operator">-</span>doc<span class="token operator">-</span><span class="token number">001</span>	openai<span class="token operator">-</span>dev
+<span class="token number">43</span>	gpt<span class="token operator">-</span><span class="token number">4</span><span class="token operator">-</span><span class="token number">0314</span>	openai
+……
+<span class="token number">47</span>	text<span class="token operator">-</span>similarity<span class="token operator">-</span>davinci<span class="token operator">-</span><span class="token number">001</span>	openai<span class="token operator">-</span>dev
+<span class="token number">48</span>	text<span class="token operator">-</span>davinci<span class="token operator">-</span><span class="token number">002</span>	openai
+<span class="token number">49</span>	davinci<span class="token operator">-</span>similarity	openai<span class="token operator">-</span>dev
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在我写下这节课的时候，输出结果里有49个模型。其实顾名思义，你就能够知道这些模型是用来干啥的。比如 text-similarity-babbage-001 肯定就是用来进行相似度匹配的，就会比较适合用在我们 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/642179">02 讲</a> 介绍的零样本分类。而 text-search-davinci-doc-001 肯定就更适合用来搜索文档。</p>
+<p>尽管有些模型的名字标注了 openai-dev 或者 openai-internal，但是这些模型都是可以使用的。比如，我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/642179">02 讲</a> 里面调用get_embedding方法拿到向量，背后用的就是 text-similarity-davinci-001 模型，也是一个openai-dev的模型。</p>
+<p>不过，里面的很多模型都已经老旧了，实际上主要用的模型就是这几类。</p>
+<ol>
+<li>GPT-4家族的模型，包括 gpt-4 和 gpt-4-0314。使用的方式和ChatGPT的模型一样，其中带日期的模型表示是一个模型快照。也就是模型不会随着时间迁移不断更新。GPT-4的模型现在还很昂贵，输入1000个Token需要0.03美分，生成1000个Token则需要0.06美分。一般呢，我都是拿它帮我写代码，准确率会比较高。</li>
+<li>GPT-3.5家族的模型，包括ChatGPT所使用的gpt-3.5-turbo或者gpt-3.5-turbo-0301，以及 text-davinci-003 和 text-davinci-002 这两个模型。前者专门针对对话的形式进行了微调，并且价格便宜，无论输入输出，1000个Token都只需要0.002美分。后两个里，003的模型有一个特殊的功能，就是支持“插入文本”这个功能，我们稍后就讲。003也是基于强化学习微调的，而002则是做了监督学习下的微调。text-davinci-003和002模型比3.5-turbo要贵10倍，但是输出更稳定。你可以根据自己的需要来决定。</li>
+<li>剩下的，则是 Ada、Babbage、Curie以及Davinci这四个基础模型。只适合用于下达单轮的指令，不适合考虑复杂的上下文和进行逻辑推理。这四个模型按照首字母排序，价格越来越贵，效果越来越好。而且我们如果要微调一个属于自己的模型，也需要基于这四个基础模型。</li>
+<li>最后则是 text-embedding-ada-002、text-similarity-ada-001 这些专门用途模型。一般来说，我们通过这个模型来获取Embedding，再用在其他的机器学习模型的训练，或者语义相似度的比较上。</li>
+</ol>
+<p>所有模型的名字都来自科学史上的名人。Ada来自人类史上第一位程序员Ada，她也是著名诗人拜伦的女儿。而Babadge则是设计了分析机的巴贝奇，巴贝奇分析机也被认为是现代计算机的前身。Curie则是指居里夫人，Davinci是指达芬奇。</p>
+<p>我们可以挑几个模型，试一下它们Embedding的维度数量，你就知道模型的尺寸本身就是不一样的了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> openai<span class="token punctuation">.</span>embeddings_utils <span class="token keyword">import</span> get_embedding
+
+text <span class="token operator">=</span> <span class="token string">"让我们来算算Embedding"</span>
+
+embedding_ada <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>text<span class="token punctuation">,</span> engine<span class="token operator">=</span><span class="token string">"text-embedding-ada-002"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"embedding-ada: "</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>embedding_ada<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+similarity_ada <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>text<span class="token punctuation">,</span> engine<span class="token operator">=</span><span class="token string">"text-similarity-ada-001"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"similarity-ada: "</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>similarity_ada<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+babbage_similarity <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>text<span class="token punctuation">,</span> engine<span class="token operator">=</span><span class="token string">"babbage-similarity"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"babbage-similarity: "</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>babbage_similarity<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+babbage_search_query <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>text<span class="token punctuation">,</span> engine<span class="token operator">=</span><span class="token string">"text-search-babbage-query-001"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"search-babbage-query: "</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>babbage_search_query<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+curie <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>text<span class="token punctuation">,</span> engine<span class="token operator">=</span><span class="token string">"curie-similarity"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"curie-similarity: "</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>curie<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+davinci <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>text<span class="token punctuation">,</span> engine<span class="token operator">=</span><span class="token string">"text-similarity-davinci-001"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"davinci-similarity: "</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>davinci<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">embedding<span class="token operator">-</span>ada<span class="token punctuation">:</span>  <span class="token number">1536</span>
+similarity<span class="token operator">-</span>ada<span class="token punctuation">:</span>  <span class="token number">1024</span>
+babbage<span class="token operator">-</span>similarity<span class="token punctuation">:</span>  <span class="token number">2048</span>
+search<span class="token operator">-</span>babbage<span class="token operator">-</span>query<span class="token punctuation">:</span>  <span class="token number">2048</span>
+curie<span class="token operator">-</span>similarity<span class="token punctuation">:</span>  <span class="token number">4096</span>
+davinci<span class="token operator">-</span>similarity<span class="token punctuation">:</span>  <span class="token number">12288</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，最小的ada-similarity只有1024维，而最大的davinci-similarity则有12288维，所以它们的效果和价格不同也是可以理解的了。</p>
+<h2 id="插入内容，GPT也可以像BERT"><a href="#插入内容，GPT也可以像BERT" class="headerlink" title="插入内容，GPT也可以像BERT"></a>插入内容，GPT也可以像BERT</h2><p>我们前面介绍的时候说过，text-davinci-003 这个模型有个特殊的功能，就是“插入文本”（Inserting Text）。某种意义上来说，你也可以通过这个功能来做文本改写。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">prefix <span class="token operator">=</span> <span class="token triple-quoted-string string">"""在这个快节奏的现代社会中，我们每个人都面临着各种各样的挑战和困难。
+在这些挑战和困难中，有些是由外部因素引起的，例如经济萧条、全球变暖和自然灾害等。\n"""</span>
+<span class="token comment"># 还有一些是由内部因素引起的，例如情感问题、健康问题和自我怀疑等。</span>
+suffix <span class="token operator">=</span> <span class="token triple-quoted-string string">"""\n面对这些挑战和困难，我们需要采取积极的态度和行动来克服它们。
+这意味着我们必须具备坚韧不拔的意志和创造性思维，以及寻求外部支持的能力。
+只有这样，我们才能真正地实现自己的潜力并取得成功。"""</span>
+
+<span class="token keyword">def</span> <span class="token function">insert_text</span><span class="token punctuation">(</span>prefix<span class="token punctuation">,</span> suffix<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>Completion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        model<span class="token operator">=</span><span class="token string">"text-davinci-003"</span><span class="token punctuation">,</span>
+        prompt<span class="token operator">=</span>prefix<span class="token punctuation">,</span>
+        suffix<span class="token operator">=</span>suffix<span class="token punctuation">,</span>
+        max_tokens<span class="token operator">=</span><span class="token number">1024</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response
+
+response <span class="token operator">=</span> insert_text<span class="token punctuation">(</span>prefix<span class="token punctuation">,</span> suffix<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">另一些是内部因素，例如事业难以发展、无法解决的个人和家庭矛盾等。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到，这个接口的使用，和普通的Completion接口基本一致，只有一个区别就是除了前缀的prompt参数之外，还需要一个后缀的suffix参数。</p>
+<p>不过，对于插入内容，我们同样需要注意提示语。如果我们把上面的内容稍微改一改，比如去掉Suffix一开始的换行符号，插入的文本内容有些就会在我们的预期之外。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">prefix <span class="token operator">=</span> <span class="token triple-quoted-string string">"""在这个快节奏的现代社会中，我们每个人都面临着各种各样的挑战和困难。
+在这些挑战和困难中，有些是由外部因素引起的，例如经济萧条、全球变暖和自然灾害等。\n"""</span>
+<span class="token comment"># 还有一些是由内部因素引起的，例如情感问题、健康问题和自我怀疑等。</span>
+suffix <span class="token operator">=</span> <span class="token triple-quoted-string string">"""面对这些挑战和困难，我们需要采取积极的态度和行动来克服它们。
+这意味着我们必须具备坚韧不拔的意志和创造性思维，以及寻求外部支持的能力。
+只有这样，我们才能真正地实现自己的潜力并取得成功。"""</span>
+
+response <span class="token operator">=</span> insert_text<span class="token punctuation">(</span>prefix<span class="token punctuation">,</span> suffix<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">例如，因应全球变暖，政府和人民在做出更加清晰的计划时就面临着巨大的压力，以减少大气污染和减少碳排放。
+更重要的是，每个人必须为自己所做的付出努力，以防止这些外部环境变化的不利影响。
+此外，也存在一些由内部因素引起的挑战和困难，比如心理问题，贫穷和学习困难。
+例如，一些人因为焦虑或抑郁症而无法集中精力，他们的学习能力受到了影响，从而影响了他们的学业成绩。
+再者，贫穷也是另一个棘手的话题，它影响了一个人的生活质量，从而阻碍了他们发展个人潜能的能力。
+因此，
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，AI一下子啰嗦了很多，并且最后一句不是个完整的句子，而是下句话开头的内容。所以，在使用这个INSERT接口的时候，考虑好文本之间需要使用什么样的分隔符，是非常重要的。</p>
+<h2 id="不要乱问乱说，做个“正直”的AI"><a href="#不要乱问乱说，做个“正直”的AI" class="headerlink" title="不要乱问乱说，做个“正直”的AI"></a>不要乱问乱说，做个“正直”的AI</h2><p>接下来，我们介绍一下OpenAI对于自然语言处理提供的最后一个接口，也是唯一一个免费的接口——Moderate。因为OpenAI可以接受任何自然语言的输入，所有的回复也是通过模型自动生成的。一旦我们的产品依赖于它对外开放，免不了我们总会遇到一些用户输入一些奇怪的内容，比如色情、暴力等等。所以，OpenAI专门提供了一个moderate接口，可以让你对输入以及返回的内容做个检查。如果出现了这样的内容，你也可以屏蔽这些用户的访问，也可以人工审核一下用户的问题。</p>
+<p>下面我们就来看个例子，这个接口怎么用。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">chatgpt</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"You are a useful AI assistant"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> text<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+        messages<span class="token operator">=</span>messages<span class="token punctuation">,</span>
+        temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+        max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>
+        top_p<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    message <span class="token operator">=</span> response<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> message
+
+threaten <span class="token operator">=</span> <span class="token string">"你不听我的我就拿刀砍死你"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>chatgpt<span class="token punctuation">(</span>threaten<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">很抱歉，我是一台人工智能助手，没有实体存在，也不会对任何人或事物造成伤害。同时，我也不会对任何不适当或暴力的言语做出回应。请尊重彼此，保持良好的沟通和交流方式。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们先对AI提了一句暴力威胁，可以看到，如果我们简单调用ChatGPT的API，它的返回并不是一个日常的对话，而是告知用户，不会回应暴力言论。</p>
+<p>那我们接着把这句话发送到moderate的接口看看。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">threaten <span class="token operator">=</span> <span class="token string">"你不听我的我就拿刀砍死你"</span>
+
+<span class="token keyword">def</span> <span class="token function">moderation</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>Moderation<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        <span class="token builtin">input</span><span class="token operator">=</span>text
+    <span class="token punctuation">)</span>
+    output <span class="token operator">=</span> response<span class="token punctuation">[</span><span class="token string">"results"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> output
+<span class="token keyword">print</span><span class="token punctuation">(</span>moderation<span class="token punctuation">(</span>threaten<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">&#123;</span>
+  <span class="token string">"categories"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"hate"</span><span class="token punctuation">:</span> false<span class="token punctuation">,</span>
+    <span class="token string">"hate/threatening"</span><span class="token punctuation">:</span> false<span class="token punctuation">,</span>
+    <span class="token string">"self-harm"</span><span class="token punctuation">:</span> false<span class="token punctuation">,</span>
+    <span class="token string">"sexual"</span><span class="token punctuation">:</span> false<span class="token punctuation">,</span>
+    <span class="token string">"sexual/minors"</span><span class="token punctuation">:</span> false<span class="token punctuation">,</span>
+    <span class="token string">"violence"</span><span class="token punctuation">:</span> true<span class="token punctuation">,</span>
+    <span class="token string">"violence/graphic"</span><span class="token punctuation">:</span> false
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token string">"category_scores"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"hate"</span><span class="token punctuation">:</span> <span class="token number">0.030033664777874947</span><span class="token punctuation">,</span>
+    <span class="token string">"hate/threatening"</span><span class="token punctuation">:</span> <span class="token number">0.0002820899826474488</span><span class="token punctuation">,</span>
+    <span class="token string">"self-harm"</span><span class="token punctuation">:</span> <span class="token number">0.004850226454436779</span><span class="token punctuation">,</span>
+    <span class="token string">"sexual"</span><span class="token punctuation">:</span> <span class="token number">2.2907377569936216e-05</span><span class="token punctuation">,</span>
+    <span class="token string">"sexual/minors"</span><span class="token punctuation">:</span> <span class="token number">6.477687275463495e-09</span><span class="token punctuation">,</span>
+    <span class="token string">"violence"</span><span class="token punctuation">:</span> <span class="token number">0.9996402263641357</span><span class="token punctuation">,</span>
+    <span class="token string">"violence/graphic"</span><span class="token punctuation">:</span> <span class="token number">4.35576839663554e-05</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token string">"flagged"</span><span class="token punctuation">:</span> true
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，moderate的接口返回的是一个JSON，里面包含是否应该对输入的内容进行标记的flag字段，也包括具体是什么类型的问题的categories字段，以及对应每个categories的分数的category_scores字段。我们举的这个例子就被标记成了violence，也就是暴力。</p>
+<p>因为这个接口是免费的，所以你对所有的内容无论是输入还是输出，都可以去调用一下这个接口。而且，即使你不使用ChatGPT的AI功能，只是经营一个在线网站，你也可以把用户发送的内容拿给这个接口看一看，过滤掉那些不合适的内容。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这节课我们对ChatGPT的API的基础功能做了一个收尾。我们一起来看了如何通过合适的提示语，进行文本改写。并且，深入了解了Completion接口里面的一些新参数，特别是其中的 logit_bias 参数，可以帮助我们在生成的内容里面，精确避免出现我们不希望出现的Token。我们也看到了，相同的内容，目前中文消耗的Token数量要远高于英文，所以除了最后的输出，其他的提示语在生产环境下我会建议你使用英文。</p>
+<p>接着，我们一起来看了OpenAI到底提供了哪些模型，以及不同的模型适合拿来干什么。最后，我们体验了两个特殊的接口，一个是只有 text-davinci-003 模型支持的文本插入功能；另一个，则是帮助我们对色情、暴力等内容进行审核过滤的moderate接口。</p>
+<p>到这里，课程的第一部分也就学习完了。我们已经过了一遍OpenAI的GPT模型的所有基本接口，以及如何利用这些接口完成最简单的功能。包括简单的文本处理的任务、聊天机器人、机器学习里的分类和聚类，以及文本改写和内容审核。有了这些基础知识，我们马上就要进入第二部分，就是怎么利用这些能力，开发属于自己的应用，特别是怎么和自己的专有数据结合起来。这也是这门课程中更精彩的一部分。</p>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><p>你能尝试使用 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/643915">06 讲</a> 里的Gradio和这一讲介绍的内容，尝试做一个文本改写的应用吗？另外，你可以试着直接把你的问题拆解一下，扔给ChatGPT看看它能否写出对应的代码。</p>
+<p>期待能在评论区看到你的分享，也欢迎你把这节课分享给感兴趣的朋友，我们下一讲再见。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#08%EF%BD%9C%E6%96%87%E6%9C%AC%E6%94%B9%E5%86%99%E5%92%8C%E5%86%85%E5%AE%B9%E5%AE%A1%E6%A0%B8%EF%BC%8C%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%AF%B4%E9%94%99%E8%AF%9D"><span class="toc-number">1.</span> <span class="toc-text">08｜文本改写和内容审核，别让你的机器人说错话</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%94%B9%E5%86%99%EF%BC%8C%E4%BB%8E%E4%BD%BF%E7%94%A8%E6%8F%90%E7%A4%BA%E8%AF%AD%E5%BC%80%E5%A7%8B"><span class="toc-number">1.1.</span> <span class="toc-text">文本改写，从使用提示语开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87logit-bias%E5%8F%82%E6%95%B0%E7%B2%BE%E7%A1%AE%E6%8E%A7%E5%88%B6%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.</span> <span class="toc-text">通过logit_bias参数精确控制内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%8B%B1%E6%96%87%E6%9D%A5%E5%87%8F%E5%B0%91Token%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">使用英文来减少Token的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%8B%E7%9C%8BOpenAI%E7%BB%99%E4%BA%86%E6%88%91%E4%BB%AC%E5%93%AA%E4%BA%9B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">看看OpenAI给了我们哪些模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%86%85%E5%AE%B9%EF%BC%8CGPT%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%83%8FBERT"><span class="toc-number">1.5.</span> <span class="toc-text">插入内容，GPT也可以像BERT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E4%B9%B1%E9%97%AE%E4%B9%B1%E8%AF%B4%EF%BC%8C%E5%81%9A%E4%B8%AA%E2%80%9C%E6%AD%A3%E7%9B%B4%E2%80%9D%E7%9A%84AI"><span class="toc-number">1.6.</span> <span class="toc-text">不要乱问乱说，做个“正直”的AI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0"><span class="toc-number">1.8.</span> <span class="toc-text">课后练习</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

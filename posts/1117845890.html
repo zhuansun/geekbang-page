@@ -1,0 +1,499 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>06｜ChatGPT来了，让我们快速做个AI应用 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="06｜ChatGPT来了，让我们快速做个AI应用你好，我是徐文浩。 过去的两讲，我带着你通过OpenAI提供的Embedding接口，完成了文本分类的功能。那么，这一讲里，我们重新回到Completion接口。而且这一讲里，我们还会快速搭建出一个有界面的聊天机器人来给你用。在这个过程里，你也会第一次使用 HuggingFace 这个平台。 HuggingFace 是现在最流行的深度模型的社区，你可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06｜ChatGPT来了，让我们快速做个AI应用">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1117845890.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="06｜ChatGPT来了，让我们快速做个AI应用你好，我是徐文浩。 过去的两讲，我带着你通过OpenAI提供的Embedding接口，完成了文本分类的功能。那么，这一讲里，我们重新回到Completion接口。而且这一讲里，我们还会快速搭建出一个有界面的聊天机器人来给你用。在这个过程里，你也会第一次使用 HuggingFace 这个平台。 HuggingFace 是现在最流行的深度模型的社区，你可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.376Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1117845890"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '06｜ChatGPT来了，让我们快速做个AI应用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">06｜ChatGPT来了，让我们快速做个AI应用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="06｜ChatGPT来了，让我们快速做个AI应用"><a href="#06｜ChatGPT来了，让我们快速做个AI应用" class="headerlink" title="06｜ChatGPT来了，让我们快速做个AI应用"></a>06｜ChatGPT来了，让我们快速做个AI应用</h1><p>你好，我是徐文浩。</p>
+<p>过去的两讲，我带着你通过OpenAI提供的Embedding接口，完成了文本分类的功能。那么，这一讲里，我们重新回到Completion接口。而且这一讲里，我们还会快速搭建出一个有界面的聊天机器人来给你用。在这个过程里，你也会第一次使用 HuggingFace 这个平台。</p>
+<p>HuggingFace 是现在最流行的深度模型的社区，你可以在里面下载到最新开源的模型，以及看到别人提供的示例代码。</p>
+<h2 id="ChatGPT来了，更快的速度更低的价格"><a href="#ChatGPT来了，更快的速度更低的价格" class="headerlink" title="ChatGPT来了，更快的速度更低的价格"></a>ChatGPT来了，更快的速度更低的价格</h2><p>我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/642197">第03讲</a> 里，已经给你看了如何通过Completion的接口，实现一个聊天机器人的功能。在那个时候，我们采用的是自己将整个对话拼接起来，将整个上下文都发送给OpenAI的Completion API的方式。不过，在3月2日，因为ChatGPT的火热，OpenAI放出了一个直接可以进行对话聊天的接口。这个接口叫做 <strong>ChatCompletion</strong>，对应的模型叫做gpt-3.5-turbo，不但用起来更容易了，速度还快，而且价格也是我们之前使用的 text-davinci-003 的十分之一，可谓是物美价廉了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai
+openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+  model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+  messages<span class="token operator">=</span><span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"You are a helpful assistant."</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"Who won the world series in 2020?"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"assistant"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"The Los Angeles Dodgers won the World Series in 2020."</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"Where was it played?"</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：点击在这个 <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/chat">链接</a> 你可以看到接口调用示例。</p>
+<p>在OpenAI的官方文档里，可以看到这个接口也非常简单。你需要传入的参数，从一段Prompt变成了一个数组，数组的每个元素都有role和content两个字段。</p>
+<ol>
+<li>role这个字段一共有三个角色可以选择，其中 system 代表系统，user代表用户，而assistant则代表AI的回答。</li>
+<li>当role是system的时候，content里面的内容代表我们给AI的一个指令，也就是告诉AI应该怎么回答用户的问题。比如我们希望AI都通过中文回答，我们就可以在content里面写“你是一个只会用中文回答问题的助理”，这样即使用户问的问题都是英文的，AI的回复也都会是中文的。</li>
+<li>而当role是user或者assistant的时候，content里面的内容就代表用户和AI对话的内容。和我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/642197">第03讲</a> 里做的聊天机器人一样，你需要把历史上的对话一起发送给OpenAI的接口，它才能有理解整个对话的上下文的能力。</li>
+</ol>
+<p>有了这个接口，我们就很容易去封装一个聊天机器人了，我把代码放在了下面，我们一起来看一看。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai
+<span class="token keyword">import</span> os
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Conversation</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prompt<span class="token punctuation">,</span> num_of_round<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>prompt <span class="token operator">=</span> prompt
+        self<span class="token punctuation">.</span>num_of_round <span class="token operator">=</span> num_of_round
+        self<span class="token punctuation">.</span>messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>prompt<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">ask</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> question<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> question<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+                model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+                messages<span class="token operator">=</span>self<span class="token punctuation">.</span>messages<span class="token punctuation">,</span>
+                temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+                max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>
+                top_p<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span>
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> e
+
+        message <span class="token operator">=</span> response<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"assistant"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> message<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>messages<span class="token punctuation">)</span> <span class="token operator">></span> self<span class="token punctuation">.</span>num_of_round<span class="token operator">*</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">del</span> self<span class="token punctuation">.</span>messages<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">//</span>Remove the first <span class="token builtin">round</span> conversation left<span class="token punctuation">.</span>
+        <span class="token keyword">return</span> message
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>我们封装了一个Conversation类，它的构造函数 <strong>init</strong> 会接受两个参数，prompt 作为 system的content，代表我们对这个聊天机器人的指令，num_of_round 代表每次向ChatGPT发起请求的时候，保留过去几轮会话。</li>
+<li>Conversation类本身只有一个ask函数，输入是一个string类型的question，返回结果也是string类型的一条message。</li>
+<li>每次调用ask函数，都会向ChatGPT发起一个请求。在这个请求里，我们都会把最新的问题拼接到整个对话数组的最后，而在得到ChatGPT的回答之后也会把回答拼接上去。如果回答完之后，发现会话的轮数超过我们设置的num_of_round，我们就去掉最前面的一轮会话。</li>
+</ol>
+<p>下面，我们就来试一试这个Conversation类好不好使。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""你是一个中国厨师，用中文回答做菜的问题。你的回答需要满足以下要求:
+1. 你的回答必须是中文
+2. 回答限制在100个字以内"""</span>
+conv1 <span class="token operator">=</span> Conversation<span class="token punctuation">(</span>prompt<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+question1 <span class="token operator">=</span> <span class="token string">"你是谁？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"User : %s"</span> <span class="token operator">%</span> question1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Assistant : %s\n"</span> <span class="token operator">%</span> conv1<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+question2 <span class="token operator">=</span> <span class="token string">"请问鱼香肉丝怎么做？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"User : %s"</span> <span class="token operator">%</span> question2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Assistant : %s\n"</span> <span class="token operator">%</span> conv1<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+question3 <span class="token operator">=</span> <span class="token string">"那蚝油牛肉呢？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"User : %s"</span> <span class="token operator">%</span> question3<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Assistant : %s\n"</span> <span class="token operator">%</span> conv1<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question3<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>我们给到了ChatGPT一个指令，告诉它它是一个中国厨子，用中文回答问题，而且回答在100个字以内，并且我们设定了AI只记住过去3轮的对话。</li>
+<li>然后，我们按照顺序问了他，“你是谁”，“鱼香肉丝怎么做”以及“那蚝油牛肉呢”这三个问题。</li>
+<li>可以看到，在回答里它说自己可以回答做菜的问题，而且回答都在100个字以内。</li>
+<li>并且，我们问他“那蚝油牛肉呢”的时候，它也的确记住了上下文，知道我们问的是菜的做法，而不是价格或者其他信息。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">User <span class="token punctuation">:</span> 你是谁？
+Assistant <span class="token punctuation">:</span> 我是一个AI语言模型，可以回答你的做菜问题。
+User <span class="token punctuation">:</span> 请问鱼香肉丝怎么做？
+Assistant <span class="token punctuation">:</span> 鱼香肉丝的做法：
+<span class="token number">1.</span> 瘦猪肉切丝，用盐、淀粉、料酒腌制；
+<span class="token number">2.</span> 香葱、姜、蒜切末备用；
+<span class="token number">3.</span> 青红椒切丝备用；
+<span class="token number">4.</span> 热锅凉油，放入肉丝煸炒至变色；
+<span class="token number">5.</span> 放入葱姜蒜末和青红椒丝煸炒；
+<span class="token number">6.</span> 加入适量盐、糖、醋、酱油、料酒、水淀粉翻炒均匀；
+<span class="token number">7.</span> 淋上少许香油即可。
+User <span class="token punctuation">:</span> 那蚝油牛肉呢？
+Assistant <span class="token punctuation">:</span> 蚝油牛肉的做法：
+<span class="token number">1.</span> 牛肉切薄片，加入盐、生抽、淀粉腌制<span class="token number">20</span>分钟；
+<span class="token number">2.</span> 青红椒切丝，姜蒜切末备用；
+<span class="token number">3.</span> 热锅冷油，下姜蒜末煸炒出香味；
+<span class="token number">4.</span> 加入牛肉片快速翻炒至变色；
+<span class="token number">5.</span> 加入青红椒丝翻炒均匀；
+<span class="token number">6.</span> 倒入蚝油、生抽、糖、水淀粉调味；
+<span class="token number">7.</span> 翻炒均匀，收汁后淋上香油即可。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在问完了3个问题之后，我们又问了它第四个问题，也就是我们问它的第一个问题是什么。这个时候，它因为记录了过去第1-3轮的对话，所以还能正确地回答出来，我们问的是“你是谁”。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question4 <span class="token operator">=</span> <span class="token string">"我问你的第一个问题是什么？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"User : %s"</span> <span class="token operator">%</span> question4<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Assistant : %s\n"</span> <span class="token operator">%</span> conv1<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question4<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">User <span class="token punctuation">:</span> 我问你的第一个问题是什么？
+Assistant <span class="token punctuation">:</span> 你问我：“你是谁？”
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>而这个时候，如果我们重新再问一遍“我问你的第一个问题是什么”，你会发现回答变了。因为啊，上一轮已经是第四轮了，而我们设置记住的num_of_round是3。在上一轮的问题回答完了之后，第一轮的关于“你是谁”的问答，被我们从ChatGPT的对话历史里去掉了。所以这个时候，它会告诉我们，第一个问题是“鱼香肉丝怎么做”。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question5 <span class="token operator">=</span> <span class="token string">"我问你的第一个问题是什么？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"User : %s"</span> <span class="token operator">%</span> question5<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Assistant : %s\n"</span> <span class="token operator">%</span> conv1<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question5<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">User <span class="token punctuation">:</span> 我问你的第一个问题是什么？
+Assistant <span class="token punctuation">:</span> 你问我：“请问鱼香肉丝怎么做？”
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="计算聊天机器人的成本"><a href="#计算聊天机器人的成本" class="headerlink" title="计算聊天机器人的成本"></a>计算聊天机器人的成本</h2><p>无论是在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/642197">第03讲</a> 里，还是这一讲里，我们每次都要发送一大段之前的聊天记录给到OpenAI。这是由OpenAI的GPT-3系列的大语言模型的原理所决定的。GPT-3系列的模型能够实现的功能非常简单，它就是根据你给他的一大段文字去续写后面的内容。而为了能够方便地为所有人提供服务，OpenAI也没有在服务器端维护整个对话过程自己去拼接，所以就不得不由你来拼接了。</p>
+<p>即使ChatGPT的接口是把对话分成了一个数组，但是实际上， <strong>最终发送给模型的还是拼接到一起的字符串</strong>。OpenAI在它的Python库里面提供了一个叫做 <a target="_blank" rel="noopener" href="https://github.com/openai/openai-python/blob/main/chatml.md">ChatML</a> 的格式，其实就是ChatGPT的API的底层实现。OpenAI实际做的，就是根据一个定义好特定分隔符的格式，将你提供的多轮对话的内容拼接在一起，提交给 gpt-3.5-turbo 这个模型。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&lt;</span><span class="token operator">|</span>im_start<span class="token operator">|</span><span class="token operator">></span>system
+You are ChatGPT<span class="token punctuation">,</span> a large language model trained by OpenAI<span class="token punctuation">.</span> Answer <span class="token keyword">as</span> concisely <span class="token keyword">as</span> possible<span class="token punctuation">.</span>
+Knowledge cutoff<span class="token punctuation">:</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">01</span>
+Current date<span class="token punctuation">:</span> <span class="token number">2023</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">&lt;</span><span class="token operator">|</span>im_end<span class="token operator">|</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">|</span>im_start<span class="token operator">|</span><span class="token operator">></span>user
+How are you<span class="token operator">&lt;</span><span class="token operator">|</span>im_end<span class="token operator">|</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">|</span>im_start<span class="token operator">|</span><span class="token operator">></span>assistant
+I am doing well!<span class="token operator">&lt;</span><span class="token operator">|</span>im_end<span class="token operator">|</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">|</span>im_start<span class="token operator">|</span><span class="token operator">></span>user
+How are you now?<span class="token operator">&lt;</span><span class="token operator">|</span>im_end<span class="token operator">|</span><span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：chatml的文档里，你可以看到你的对话，就是通过 &lt;|im_start|&gt;system|user|assistant、&lt;|im_end|&gt; 这些分隔符分割拼装的字符串。底层仍然是一个内容续写的大语言模型。</p>
+<p>ChatGPT的对话模型用起来很方便，但是也有一点需要注意。就是在这个需要传送大量上下文的情况下，这个费用会比你想象的高。OpenAI是通过模型处理的Token数量来收费的，但是要注意，这个收费是“双向收费”。它是按照你发送给它的上下文，加上它返回给你的内容的总Token数来计算花费的Token数量的。</p>
+<p>这个从模型的原理上是合理的，因为每一个Token，无论是你发给它的，还是它返回给你的，都需要通过GPU或者CPU运算。所以你发的上下文越长，它消耗的资源也越多。但是在使用中，你可能觉得我来了10轮对话，一共1000个Token，就只会收1000个Token的费用。而实际上，第一轮对话是只消耗了100个Token，但是第二轮因为要把前面的上下文都发送出去，所以需要200个，这样10轮下来，是需要花费5500个Token，比前面说的1000个可多了不少。</p>
+<p>所以，如果做了应用要计算花费的成本，你就需要学会计算Token数。下面，我给了你一段示例代码，看看在ChatGPT的对话模型下，怎么计算Token数量。</p>
+<h3 id="通过API计算Token数量"><a href="#通过API计算Token数量" class="headerlink" title="通过API计算Token数量"></a>通过API计算Token数量</h3><p>第一种计算Token数量的方式，是从API返回的结果里面获取。我们修改一下刚才的Conversation类，重新创建一个Conversation2类。和之前只有一个不同，ask函数除了返回回复的消息之外，还会返回这次请求消耗的Token数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Conversation2</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prompt<span class="token punctuation">,</span> num_of_round<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>prompt <span class="token operator">=</span> prompt
+        self<span class="token punctuation">.</span>num_of_round <span class="token operator">=</span> num_of_round
+        self<span class="token punctuation">.</span>messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>prompt<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">ask</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> question<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span> <span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> question<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+            response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+                model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+                messages<span class="token operator">=</span>self<span class="token punctuation">.</span>messages<span class="token punctuation">,</span>
+                temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+                max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>
+                top_p<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span>
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> e
+
+        message <span class="token operator">=</span> response<span class="token punctuation">[</span><span class="token string">"choices"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span>
+        num_of_tokens <span class="token operator">=</span> response<span class="token punctuation">[</span><span class="token string">'usage'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'total_tokens'</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>messages<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"assistant"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> message<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>messages<span class="token punctuation">)</span> <span class="token operator">></span> self<span class="token punctuation">.</span>num_of_round<span class="token operator">*</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">del</span> self<span class="token punctuation">.</span>messages<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> message<span class="token punctuation">,</span> num_of_tokens
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后我们还是问一遍之前的问题，看看每一轮问答消耗的Token数量。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conv2 <span class="token operator">=</span> Conversation2<span class="token punctuation">(</span>prompt<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+questions <span class="token operator">=</span> <span class="token punctuation">[</span>question1<span class="token punctuation">,</span> question2<span class="token punctuation">,</span> question3<span class="token punctuation">,</span> question4<span class="token punctuation">,</span> question5<span class="token punctuation">]</span>
+<span class="token keyword">for</span> question <span class="token keyword">in</span> questions<span class="token punctuation">:</span>
+    answer<span class="token punctuation">,</span> num_of_tokens <span class="token operator">=</span> conv2<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"询问 &#123;%s&#125; 消耗的token数量是 : %d"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>question<span class="token punctuation">,</span> num_of_tokens<span class="token punctuation">)</span><span class="token punctuation">)</span>输出结果：
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">询问 <span class="token punctuation">&#123;</span>你是谁？<span class="token punctuation">&#125;</span> 消耗的token数量是 <span class="token punctuation">:</span> <span class="token number">108</span>
+询问 <span class="token punctuation">&#123;</span>请问鱼香肉丝怎么做？<span class="token punctuation">&#125;</span> 消耗的token数量是 <span class="token punctuation">:</span> <span class="token number">410</span>
+询问 <span class="token punctuation">&#123;</span>那蚝油牛肉呢？<span class="token punctuation">&#125;</span> 消耗的token数量是 <span class="token punctuation">:</span> <span class="token number">733</span>
+询问 <span class="token punctuation">&#123;</span>我问你的第一个问题是什么？<span class="token punctuation">&#125;</span> 消耗的token数量是 <span class="token punctuation">:</span> <span class="token number">767</span>
+询问 <span class="token punctuation">&#123;</span>我问你的第一个问题是什么？<span class="token punctuation">&#125;</span> 消耗的token数量是 <span class="token punctuation">:</span> <span class="token number">774</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，前几轮的Token消耗数量在逐渐增多，但是最后3轮是一样的。这是因为我们代码里只使用过去3轮的对话内容向ChatGPT发起请求。</p>
+<h3 id="通过Tiktoken库计算Token数量"><a href="#通过Tiktoken库计算Token数量" class="headerlink" title="通过Tiktoken库计算Token数量"></a>通过Tiktoken库计算Token数量</h3><p>第二种方式，我们在上一讲用过，就是使用Tiktoken这个Python库，将文本分词，然后数一数Token的数量。</p>
+<p>需要注意，使用不同的GPT模型，对应着不同的Tiktoken的编码器模型。对应的文档，可以查询这个链接： <a target="_blank" rel="noopener" href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb</a></p>
+<p>我们使用的ChatGPT，采用的是cl100k_base的编码，我们也可以试着用它计算一下第一轮对话使用的Token数量。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tiktoken
+encoding <span class="token operator">=</span> tiktoken<span class="token punctuation">.</span>get_encoding<span class="token punctuation">(</span><span class="token string">"cl100k_base"</span><span class="token punctuation">)</span>
+
+conv2 <span class="token operator">=</span> Conversation2<span class="token punctuation">(</span>prompt<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+question1 <span class="token operator">=</span> <span class="token string">"你是谁？"</span>
+answer1<span class="token punctuation">,</span> num_of_tokens <span class="token operator">=</span> conv2<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"总共消耗的token数量是 : %d"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>num_of_tokens<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+prompt_count <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>encoding<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+question1_count <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>encoding<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>question1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+answer1_count <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>encoding<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>answer1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+total_count <span class="token operator">=</span> prompt_count <span class="token operator">+</span> question1_count <span class="token operator">+</span> answer1_count
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Prompt消耗 %d Token, 问题消耗 %d Token，回答消耗 %d Token，总共消耗 %d Token"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>prompt_count<span class="token punctuation">,</span> question1_count<span class="token punctuation">,</span> answer1_count<span class="token punctuation">,</span> total_count<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">总共消耗的token数量是 <span class="token punctuation">:</span> <span class="token number">104</span>
+Prompt消耗 <span class="token number">65</span> Token<span class="token punctuation">,</span> 问题消耗 <span class="token number">5</span> Token，回答消耗 <span class="token number">20</span> Token，总共消耗 <span class="token number">90</span> Token
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>我们通过API获得了消耗的Token数，然后又通过Tiktoken分别计算了System的指示内容、用户的问题和AI生成的回答，发现了两者还有小小的差异。这个是因为，我们没有计算OpenAI去拼接它们内部需要的格式的Token数量。很多时候，我们都需要通过Tiktoken预先计算一下Token数量，避免提交的内容太多，导致API返回报错。</p>
+<h2 id="Gradio帮你快速搭建一个聊天界面"><a href="#Gradio帮你快速搭建一个聊天界面" class="headerlink" title="Gradio帮你快速搭建一个聊天界面"></a>Gradio帮你快速搭建一个聊天界面</h2><p>我们已经有了一个封装好的聊天机器人了。但是，现在这个机器人，我们只能自己在Python Notebook里面玩，每次问点问题还要调用代码。那么，接下来我们就给我们封装好的Convesation接口开发一个界面。</p>
+<p>我们直接选用Gradio这个Python库来开发这个聊天机器人的界面，因为它有这样几个好处。</p>
+<ol>
+<li>我们现有的代码都是用Python实现的，你不需要再去学习JavaScript、TypeScript以及相关的前端框架了。</li>
+<li>Gradio渲染出来的界面可以直接在Jupyter Notebook里面显示出来，对于不了解技术的同学，也不再需要解决其他环境搭建的问题。</li>
+<li>Gradio这个公司，已经被目前最大的开源机器学习模型社区HuggingFace收购了。你可以免费把Gradio的应用部署到HuggingFace上。我等一下就教你怎么部署，你可以把你自己做出来的聊天机器人部署上去给你的朋友们用。</li>
+<li>在后面的课程里，有些时候我们也会使用一些开源的模型，这些模型往往也托管在HuggingFace上。所以使用HuggingFace+Gradio的部署方式，特别方便我们演示给其他人看。</li>
+</ol>
+<p>注：Gradio官方也有用其他开源预训练模型创建Chatbot的教程 <a target="_blank" rel="noopener" href="https://gradio.app/creating-a-chatbot/">https://gradio.app/creating-a-chatbot/</a></p>
+<p>在实际开发之前，还是按照惯例我们先安装一下Python的Gradio的包。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conda install <span class="token operator">-</span>c conda<span class="token operator">-</span>forge gradio
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Gradio应用的代码我也列在了下面，对应的逻辑也非常简单。</p>
+<ol>
+<li>首先，我们定义好了system这个系统角色的提示语，创建了一个Conversation对象。</li>
+<li>然后，我们定义了一个answer方法，简单封装了一下Conversation的ask方法。主要是通过history维护了整个会话的历史记录。并且通过responses，将用户和AI的对话分组。然后将它们两个作为函数的返回值。这个函数的签名是为了符合Gradio里Chatbot组件的函数签名的需求。</li>
+<li>最后，我们通过一段with代码，创建了对应的聊天界面。Gradio提供了一个现成的Chatbot组件，我们只需要调用它，然后提供一个文本输入框就好了。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gradio <span class="token keyword">as</span> gr
+prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""你是一个中国厨师，用中文回答做菜的问题。你的回答需要满足以下要求:
+1. 你的回答必须是中文
+2. 回答限制在100个字以内"""</span>
+
+conv <span class="token operator">=</span> Conversation<span class="token punctuation">(</span>prompt<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">answer</span><span class="token punctuation">(</span>question<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+    response <span class="token operator">=</span> conv<span class="token punctuation">.</span>ask<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> responses<span class="token punctuation">,</span> history
+
+<span class="token keyword">with</span> gr<span class="token punctuation">.</span>Blocks<span class="token punctuation">(</span>css<span class="token operator">=</span><span class="token string">"#chatbot&#123;height:300px&#125; .overflow-y-auto&#123;height:500px&#125;"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> demo<span class="token punctuation">:</span>
+    chatbot <span class="token operator">=</span> gr<span class="token punctuation">.</span>Chatbot<span class="token punctuation">(</span>elem_id<span class="token operator">=</span><span class="token string">"chatbot"</span><span class="token punctuation">)</span>
+    state <span class="token operator">=</span> gr<span class="token punctuation">.</span>State<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        txt <span class="token operator">=</span> gr<span class="token punctuation">.</span>Textbox<span class="token punctuation">(</span>show_label<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span><span class="token string">"Enter text and press enter"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">(</span>container<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    txt<span class="token punctuation">.</span>submit<span class="token punctuation">(</span>answer<span class="token punctuation">,</span> <span class="token punctuation">[</span>txt<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+demo<span class="token punctuation">.</span>launch<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>你直接在Colab或者你本地的Jupyter Notebook里面，执行一下这一讲到目前的所有代码，就得到了一个可以和ChatGPT聊天的机器人了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a57a0f1197de3b8b8e625d9cfe506502.png" alt="图片"></p>
+<h2 id="把机器人部署到HuggingFace上去"><a href="#把机器人部署到HuggingFace上去" class="headerlink" title="把机器人部署到HuggingFace上去"></a>把机器人部署到HuggingFace上去</h2><p>有了一个可以聊天的机器人，相信你已经迫不及待地想让你的朋友也能用上它了。那么我们就把它部署到 <a target="_blank" rel="noopener" href="https://huggingface.co/">HuggingFace</a> 上去。</p>
+<ol>
+<li>首先你需要注册一个HuggingFace的账号，点击左上角的头像，然后点击 “+New Space” 创建一个新的项目空间。</li>
+</ol>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/5073d7572f5d62ab8cd3bd708bba33b1.png"></p>
+<ol>
+<li>在接下来的界面里，给你的Space取一个名字，然后在Select the Space SDK里面，选择第二个Gradio。硬件我们在这里就选择免费的，项目我们在这里选择public，让其他人也能够看到。不过要注意，public的space，是连你后面上传的代码也能够看到的。</li>
+</ol>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a8a502a4a6b6d6a6fc4aebbee7ayy7c5.png"></p>
+<ol>
+<li>创建成功后，会跳转到HuggingFace的App界面。里面给了你如何Clone当前的space，然后提交代码部署App的方式。我们只需要通过Git把当前space下载下来，然后提交两个文件就可以了，分别是：</li>
+</ol>
+<ul>
+<li>app.py 包含了我们的Gradio应用；</li>
+<li>requirements.txt 包含了这个应用依赖的Python包，这里我们只依赖OpenAI这一个包。</li>
+</ul>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e24d1f90f9a67a61182dbb4e20899852.png"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/30c7739844201fee8da9e86752ea4ec6.png"></p>
+<p>代码提交之后，HuggingFace的页面会自动刷新，你可以直接看到对应的日志和Chatbot的应用。不过这个时候，我们还差一步工作。</p>
+<ol>
+<li>因为我们的代码里是通过环境变量获取OpenAI的API Key的，所以我们还要在这个HuggingFace的Space里设置一下这个环境变量。</li>
+</ol>
+<ul>
+<li><p>你可以点击界面里面的Settings，然后往下找到Repository secret。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7576e32270d02302c4397254d9deb5d9.png"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4165279b0c1580da31e5fd152f23d875.png" alt="图片"></p>
+</li>
+</ul>
+<p>在Name这里输入 OPENAI_API_KEY，然后在Secret value里面填入你的OpenAI的密钥。</p>
+<ul>
+<li>设置完成之后，你还需要点击一下Restart this space确保这个应用重新加载一遍，以获取到新设置的环境变量。</li>
+</ul>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/c29226b9bf2490a7cb7dc0b84eccdbfc.png" alt="图片"></p>
+<p>好啦，这个时候，你可以重新点击App这个Tab页面，试试你的聊天机器人是否可以正常工作了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/46d4b47402e78d54718a5738f005700a.png"></p>
+<p>我把今天给你看到的Chatbot应用放到了HuggingFace上，你可以直接复制下来试一试。</p>
+<p>地址： <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/xuwenhao83/simple_chatbot">https://huggingface.co/spaces/xuwenhao83/simple_chatbot</a></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>希望通过这一讲，你已经学会了怎么使用ChatGPT的接口来实现一个聊天机器人了。我们分别实现了只保留固定轮数的对话，并且体验了它的效果。我们也明白了为什么我们总是需要把所有的上下文都发送给OpenAI的接口。然后我们通过Gradio这个库开发了一个聊天机器人界面。最后，我们将这个简单的聊天机器人部署到了HuggingFace上，让你可以分享给自己的朋友使用。希望你玩得高兴！</p>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><p>在这一讲里，我们的Chatbot只能维护过去N轮的对话。这意味着如果对话很长的话，我们一开始对话的信息就被丢掉了。有一种方式是我们不设定轮数，只限制传入的上下文的Token数量。</p>
+<ol>
+<li>你能根据这一讲学到的内容，修改一下代码，让这个聊天机器人不限制轮数，只在Token数量要超标的时候再删减最开始的对话么？</li>
+<li>除了“忘记”开始的几轮，你还能想到什么办法让AI尽可能多地记住上下文吗？</li>
+</ol>
+<p>期待能在评论区看到你的思考，也欢迎你把这节课分享给感兴趣的朋友，我们下一讲再见。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#06%EF%BD%9CChatGPT%E6%9D%A5%E4%BA%86%EF%BC%8C%E8%AE%A9%E6%88%91%E4%BB%AC%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%AAAI%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">06｜ChatGPT来了，让我们快速做个AI应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ChatGPT%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%9B%B4%E5%BF%AB%E7%9A%84%E9%80%9F%E5%BA%A6%E6%9B%B4%E4%BD%8E%E7%9A%84%E4%BB%B7%E6%A0%BC"><span class="toc-number">1.1.</span> <span class="toc-text">ChatGPT来了，更快的速度更低的价格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%88%90%E6%9C%AC"><span class="toc-number">1.2.</span> <span class="toc-text">计算聊天机器人的成本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87API%E8%AE%A1%E7%AE%97Token%E6%95%B0%E9%87%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">通过API计算Token数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87Tiktoken%E5%BA%93%E8%AE%A1%E7%AE%97Token%E6%95%B0%E9%87%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过Tiktoken库计算Token数量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gradio%E5%B8%AE%E4%BD%A0%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">Gradio帮你快速搭建一个聊天界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%83%A8%E7%BD%B2%E5%88%B0HuggingFace%E4%B8%8A%E5%8E%BB"><span class="toc-number">1.4.</span> <span class="toc-text">把机器人部署到HuggingFace上去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0"><span class="toc-number">1.6.</span> <span class="toc-text">课后练习</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

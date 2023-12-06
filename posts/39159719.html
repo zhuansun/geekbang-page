@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>15｜数据分析：数据洞察和可视化，0开发基础也能打 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="15｜数据分析：数据洞察和可视化，0开发基础也能打你好，我是键盘，我们继续驯服 GPT。 普通人想要做数据分析，没有专业的技术和知识是很难拿出成果的。你需要掌握基础的函数运算，了解适用的图表和分析方法，最后再整合有效的数据洞察。 数据分析有哪些常见的场景呢？统计账单，获悉钱是怎么被大风刮来（或者刮走）的；分析投放活动的点击率，调整方法和预算；观察舆情指数，抓运营热点；组建量化投资策略，让资金增值…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15｜数据分析：数据洞察和可视化，0开发基础也能打">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/39159719.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="15｜数据分析：数据洞察和可视化，0开发基础也能打你好，我是键盘，我们继续驯服 GPT。 普通人想要做数据分析，没有专业的技术和知识是很难拿出成果的。你需要掌握基础的函数运算，了解适用的图表和分析方法，最后再整合有效的数据洞察。 数据分析有哪些常见的场景呢？统计账单，获悉钱是怎么被大风刮来（或者刮走）的；分析投放活动的点击率，调整方法和预算；观察舆情指数，抓运营热点；组建量化投资策略，让资金增值…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:28.136Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/39159719"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '15｜数据分析：数据洞察和可视化，0开发基础也能打',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">15｜数据分析：数据洞察和可视化，0开发基础也能打</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/">零基础GPT应用入门课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="15｜数据分析：数据洞察和可视化，0开发基础也能打"><a href="#15｜数据分析：数据洞察和可视化，0开发基础也能打" class="headerlink" title="15｜数据分析：数据洞察和可视化，0开发基础也能打"></a>15｜数据分析：数据洞察和可视化，0开发基础也能打</h1><p>你好，我是键盘，我们继续驯服 GPT。</p>
+<p>普通人想要做数据分析，没有专业的技术和知识是很难拿出成果的。你需要掌握基础的函数运算，了解适用的图表和分析方法，最后再整合有效的数据洞察。</p>
+<p>数据分析有哪些常见的场景呢？统计账单，获悉钱是怎么被大风刮来（或者刮走）的；分析投放活动的点击率，调整方法和预算；观察舆情指数，抓运营热点；组建量化投资策略，让资金增值……</p>
+<p>应用场景这么多，想想都很激动呢！但是有四座大山无情地拦在了小白面前。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3422047f92e2d3d2620690eb87fbba04.png" alt="图片"></p>
+<ul>
+<li>手里没数据，要不就是拿不到数据，难道要分析空气吗？</li>
+<li>有了数据，分析却无从下手。</li>
+<li>运算麻烦。没有技术基础，虽然想到Python的可能性，却倒在安装环境这一步。</li>
+<li>没有方便的综合解决方案，学习用 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%95%86%E4%B8%9A%E6%99%BA%E8%83%BD/406141?fromtitle=BI&fromid=4579902&fr=aladdin">BI</a>（一种数据分析技术）吧，BI是啥？还得学？</li>
+</ul>
+<p>那有没有一条平凡之路，可以跨越山和大海呢？有，GPT让很多不可能的事情成为了可能。</p>
+<p>这节课，我会给你分享一个人人能用的数据可视化分析方案，带你实现人民币汇率和上证指数的相关性分析，并通过可视化分析寻找决策建议。如果你对金融领域不感兴趣，只要聚焦于数据获取、智能运算、数据导出、可视化、智能分析和建议、发布报告这一整套流程即可。</p>
+<p><strong>假如你是ChatGPT Plus会员，用GPT-4联动Noteable插件的效果是最好的</strong>。普通ChatGPT用户可以使用 <a target="_blank" rel="noopener" href="https://noteable.io/">Noteable网页服务</a>，搭配newBing来做平替。newBing可以给你时效性数据和Noteable的代码参考。 <strong>放心，不用自己编程。</strong></p>
+<h2 id="智能分析中各角色的核心价值"><a href="#智能分析中各角色的核心价值" class="headerlink" title="智能分析中各角色的核心价值"></a><strong>智能分析中各角色的核心价值</strong></h2><p>先来了解一下这组联动方案里面的4个角色，GPT、Noteable、Akshare和指挥官。指挥官就是我们自己，主要负责在一旁打字活派，拍拍手拿结果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d9da9b861e76f674632fe3a8d6513fed.png" alt="图片"></p>
+<p>我们按照从获取数据到处理数据的顺序讲解其他3个角色。</p>
+<h3 id="Akshare：获取海量数据"><a href="#Akshare：获取海量数据" class="headerlink" title="Akshare：获取海量数据"></a><strong>Akshare：获取海量数据</strong></h3><p><a target="_blank" rel="noopener" href="https://akshare.akfamily.xyz/tutorial.html">Akshare</a> 是一个开源财经数据接口库，可以实现对股票、期货、期权、基金、债券、外汇等金融数据的采集、清洗和下载。用它来捞数据非常方便。</p>
+<p>打开接口库，比如我想找“消费者信心指数”，搜索发现对应的函数是 <code>macro_china_xfzxx</code> 。我们到 <a target="_blank" rel="noopener" href="https://noteable.io/">Noteable.io</a> 中运行接口示例代码，图稿中的 <code>print( )</code> 就会按照官方设计好的参数和规格，将目标数据输出。（任何支持Python的工具都可以运行）</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/324c76b2eee353fc46b3aef5300a975d.png" alt="图片"></p>
+<h3 id="GPT：数据洞察"><a href="#GPT：数据洞察" class="headerlink" title="GPT：数据洞察"></a><strong>GPT：数据洞察</strong></h3><p>知道怎么调用数据之后，我们还要针对获取的数据做计算、输出可视化和分析。用于计算的编码工作可以交给GPT。编程只是基础操作，提供数据洞察才是GPT最核心的价值。</p>
+<p>另外补充一点， <strong>GPT最擅长的是给建议而不是计算</strong>，“建议”对应SII框架中的数据洞察（Insight）和决策参考（Impact）。我不建议在GPT窗口中执行数据运算，而是联动工具来做这件事情，这个工具就是Noteable。这样的搭配更快、更有效。</p>
+<h3 id="Noteable：整合报告"><a href="#Noteable：整合报告" class="headerlink" title="Noteable：整合报告"></a>Noteable：整合报告</h3><p>网页端的 <a target="_blank" rel="noopener" href="https://noteable.io/">Noteable.io</a> 是一个类似Google Colab的协作数据笔记本，可以结合Python、SQL等代码和交互式可视化功能进行数据的分析和转换，打开即用。插件端则可以联动GPT-4自动将代码写进网页项目中。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f115812787ce3e2c1738448066758yyb.png" alt="图片"></p>
+<p><strong>具体怎么实现GPT和Noteable的协作呢？关键在于交出项目权限。</strong> 我们先新建一个项目（Project）中的笔记（Notebook），点击Create提交确认。然后点击Share，将项目权限设置为Public，再选择Contributor，让你的老伙计GPT可以编辑和分享。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/dd09ce0182d5e7cccce42f2a631324ec.png" alt="图片"></p>
+<p><strong>交出权限时候，一定要确保GPT要么开着Noteable插件，要么开了联网插件，比如WebPilot。</strong></p>
+<p>最后，炸裂的全自动流程就搭建好了。Noteable插件作为GPT-4内部自动编程和纠错的桥梁，而Noteable网页端会自动运行GPT-4写入的代码，运行结果包括显示数据、导出数据、提供可视化图表，还有最终的分析结论。这一切在GPT窗口中就能完成整合。</p>
+<p><strong>假如你有本地数据想放进来分析或者作为补充，也很简单</strong>，点击项目中的Add files，拖入就好。注意，如果原始数据为Excel默认格式，先在Excel里导出为CSV再上传，这样才不会乱码。</p>
+<p>这里我们还需要新建一个目录（Folder）来接收后续代码输出的数据文件。比如下图中的“CSVS”就是后面导出的上证指数数据的存放目录。</p>
+<p>本地数据上传之后， <strong>数据的权限也要交给GPT，否则GPT看不到里面具体的字段和数据。</strong> 参考前面说的协作席位操作，我们提前复制好项目和数据的协作地址，备用。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/ea8fcc01b7b70a91c1dcd05b13f12933.png" alt="图片"></p>
+<p>来看一个具体的例子。我上传了一份newBing提供的“2023年0101到0628期间的人民币汇率中间价历史数据”。这里可以看到 <strong>系统提供的0代码可视化入口</strong>，点击界面右上角的Visualize按钮，就能根据数据绘制出图表。这份数据最适用的是K线图，在图表类型里下拉，切换、选择自己认为更合适的形式就好。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/226feb5200e1d4de432e6f2c867c84ed.png" alt="图片"></p>
+<p>不过，这个0代码可视化作为数据表的另一种直观查看方式就好，后面我们会让GPT自动写出更高级的可交互图表，不需要手动去切换。</p>
+<h2 id="先让GPT给参考"><a href="#先让GPT给参考" class="headerlink" title="先让GPT给参考"></a><strong>先让GPT给参考</strong></h2><p>那现在开始派活了吗？不是的。获取数据、Noteable数据分析及可视化，这两件事我们都没做过，怎么办？别急，先让GPT给参考，让你明白具体可以怎么做。</p>
+<p>数据分析通常是有时效性的，对于没有联网插件的朋友，newBing就是最佳平替。这里有2个核心的联动应用场景，获取数据和实例参考。</p>
+<ul>
+<li><strong>场景一，NewBing获取数据</strong></li>
+</ul>
+<p>先不谈数据接口，离普通人最近的就是搜索获取。比如图稿中我想获取人民币汇率数据，哪亮点哪就可以。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/63756e07d9cb5e738eb81022e3661908.png" alt="图片"></p>
+<ul>
+<li><strong>场景二，提供一个Noteable数据分析实例</strong></li>
+</ul>
+<p>让newBing创建一个可视化实例参考，了解实现的流程和效果是怎么样的。有的同学可能会被输出的代码吓到，不过别忘了，只要是自带“复制”按钮的结果，粘贴大法总能解决问题。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/87e279237900084e346141dyy9286f9e.png" alt="图片"></p>
+<p>自带的可交互图表也足够惊艳，我挨个测试了一轮，2D、3D和动画应有尽有。怎么用呢？你动口，让GPT动手。比如 <code>用饼图来……</code>。</p>
+<p>💻 智能画大饼</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/23253e79231f6474610355173f71d8a6.gif" alt="图片"></p>
+<h2 id="梦幻联动：GPT-x-Noteable-x-Akshare"><a href="#梦幻联动：GPT-x-Noteable-x-Akshare" class="headerlink" title="梦幻联动：GPT x Noteable x Akshare"></a>梦幻联动：GPT x Noteable x Akshare</h2><p>下面进入可视化分析流程，具体实现有自动化和newBing（newBing的内核是GPT-4）辅助两种方式。</p>
+<h3 id="✦-首选：GPT-4-x-Noteable插件自动化组合"><a href="#✦-首选：GPT-4-x-Noteable插件自动化组合" class="headerlink" title="✦ 首选：GPT-4 x Noteable插件自动化组合"></a><strong>✦ 首选：GPT-4 x Noteable插件自动化组合</strong></h3><p>💬 Prompt套路</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">https<span class="token punctuation">:</span><span class="token operator">//</span>app<span class="token punctuation">.</span>noteable<span class="token punctuation">.</span>io<span class="token operator">/</span>f<span class="token operator">/</span>xxx<span class="token operator">/</span>xxx<span class="token punctuation">.</span>ipynb <span class="token comment">#你的项目地址</span>
+做什么
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这是最梦幻的组合了，把项目地址和权限交给GPT-4，Noteable插件就会自动把代码写到Noteable网页端的项目中并运行。假如运行出错，Bug会被自动修正，输出的数据和图表也会自动同步。初次体验的时候，这些功能给我秀得一愣一愣的。</p>
+<h3 id="✦-平替：Noteable项目主场，newBing辅助"><a href="#✦-平替：Noteable项目主场，newBing辅助" class="headerlink" title="✦ 平替：Noteable项目主场，newBing辅助"></a><strong>✦ 平替：Noteable项目主场，newBing辅助</strong></h3><p>平替组合适合没有插件的朋友，我们把主战场转移到Noteable.io的项目空间。人民币汇率数据已经有了，想分析汇率和上证指数的相关性，还要拿到上证指数的数据。到这一步，Akshare可以上场了。</p>
+<p>首先用 <code>!pip install</code> 命令安装Akshare，这是一次性操作，点击代码块（Cell）中的 “▸” 按钮运行即可。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">!pip install akshare
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<p>💻 Noteable 运行结果</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e526aa48114aef52a33ef3ce2637f8d4.png" alt="图片"></p>
+<p>下面会看到 “Successfully” 提示，可以开始调用接口来干活了。</p>
+<p>接下来 <strong>调用数据有2种方便的做法。</strong> 要么到 <a target="_blank" rel="noopener" href="https://akshare.akfamily.xyz/data/stock/stock.html#">Akshare文档中</a> 复制范例，要么让newBing写。后者的prompt套路如下。</p>
+<p>💬 Prompt</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">如何在Noteable<span class="token punctuation">.</span>io中用Akshare调用xxx数据，我想做一个xxx分析。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>获取上证指数全数据，运行的Notebook代码如下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> akshare <span class="token keyword">as</span> ak
+stock_zh_index_daily_df <span class="token operator">=</span> ak<span class="token punctuation">.</span>stock_zh_index_daily<span class="token punctuation">(</span>symbol<span class="token operator">=</span><span class="token string">"sh000001"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>stock_zh_index_daily_df<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>激荡33年的数据，转眼到手。</strong> Noteable用带序号的表格输出了从1990-12-10至今上证指数的开盘价（open）、日内最高价（high）、日内最低价（low）还有日交易量（volume）所有这些数据。</p>
+<p>💻 Noteable 运行结果</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d58fbea3b9701dcac5a89f7322c1533a.png" alt="图片"></p>
+<p>获取成功了，就可以收敛数据。精确指定支持的参数，获取上证指数指定日期区间的数据，Notebook代码如下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> akshare <span class="token keyword">as</span> ak
+currency_hist_df <span class="token operator">=</span> ak<span class="token punctuation">.</span>currency_hist<span class="token punctuation">(</span>symbol<span class="token operator">=</span><span class="token string">"usd-cny"</span><span class="token punctuation">,</span> period<span class="token operator">=</span><span class="token string">"每日"</span><span class="token punctuation">,</span> start_date<span class="token operator">=</span><span class="token string">"20230101"</span><span class="token punctuation">,</span> end_date<span class="token operator">=</span><span class="token string">"20230628"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>currency_hist_df<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这里 <code>symbol</code> 、 <code>period</code> 等后面带着 <code>&quot;数值&quot;</code> 的就是所谓的参数，照抄Akshare文档就好。</p>
+<p>数据获取成功了，可是官方范例并没有提供 <strong>将获取的数据导出的方法</strong>，怎么办？问newBing。得到的通用方案是 <strong>前排导入pandas库，最后使用df.to_csv(“路径&#x2F;文件名”)来保存。</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#Noteable早就看穿了一切，帮我们准备了pandas，直接导入即可</span>
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token comment">#保存到同级目录：'文件名'，保存到子目录：'路径/文件名'，单双引号都可以</span>
+df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">"路径/文件名"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不想自己写也很简单，交给GPT就好。这里可以看到 <strong>df前缀是要和前面定义的函数变量</strong> <code>stock_zh_index_daily_df</code> <strong>一致的</strong>，详见下方图稿。</p>
+<p>💻 Noteable 运行结果</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/38d71efc3c66b993b0818514deaa0941.png" alt="图片"></p>
+<h3 id="✦-分析更多的数据？SO-EASY"><a href="#✦-分析更多的数据？SO-EASY" class="headerlink" title="✦ 分析更多的数据？SO EASY"></a>✦ 分析更多的数据？SO EASY</h3><p>你可以 <a target="_blank" rel="noopener" href="https://akshare.akfamily.xyz/tutorial.html">调用、提取官方提供的任何数据</a>，来看实例。我们替换目标数据对应的函数。比如“房价指数”：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">ak.macro_china_new_house_price() # 新房价指数
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<p>💻 Noteable 运行结果</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/655debc87e989645709a63e43b1ab9e2.png" alt="图片"></p>
+<h2 id="自动数据可视化"><a href="#自动数据可视化" class="headerlink" title="自动数据可视化"></a>自动数据可视化</h2><p>数据的上传、调用、导出都跑通了，接下来我们解决 <strong>自动可视化</strong> 的问题。我会带你实现两份数据的整合分析，按照一步一步思考的惯例，先搞定其中一份。</p>
+<p>首先，让GPT调用上面保存的上证指数的数据来做自动可视化，将数据用合适的图表类型渲染出来， <strong>全程prompt就好，GPT-4和Noteable会自动协作同步。</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/9d200fbf27568b0809787b3b9c15eee6.png" alt="图片"></p>
+<p>自动可视化方案首选的技术支持是内置的、支持交互和图片导出的Plotly， <a target="_blank" rel="noopener" href="https://plotly.com/python/">官方图表库里</a> 可以找到一切的用法指引。实际prompt可以是 <code>……用Plotly输出xx图</code> 。</p>
+<p>这里会发现GPT提供的代码引用的是 <code>plotly.graph_object</code> ，和官方图表库里的 <code>plotly.express</code> 并不一致。没关系， <strong>先解决“能用”问题，再提升精度，</strong> 只要问GPT就能解决。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4f15eeff894e0191f7fd2c1f76b8e2eb.png" alt="图片"></p>
+<p>OK，一份数据搞定，再来 <strong>加入第二份数据</strong>。因为汇率数据的时间区间是20230101-20230628，所以接下来就来取重合的时间区间，把两份数据合并，再输出可视化方案。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d5563f1b15bf0b5d451c6dfd2010a418.png" alt="图片"></p>
+<p><strong>GPT在Noteable的加持下会化身AutoGPT，自动奔向目标，直到需求解决。</strong> 最后我们就能得到一份拼合的上证指数蜡烛图和汇率走势图。</p>
+<p>可以看到，两者的走势是有一定的负相关性的，那 <strong>“一定的”是多少？这就是数据分析要解决的量化问题。</strong> 这里我们通过搜索或者提问，可以得到“相关性分析”和“线性回归”等建议，它们会有相应的计算和系数，但有GPT在，这些并不需要我们操心。 <strong>只要找到“相关性分析”这种概念，用起来再说就行。</strong></p>
+<p>我们让GPT分析2份数据之间的规律。现在有权限的GPT可以“看穿”整个Noteable项目，我们直接说需求就好。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/75c3ea558f070f19775b3acc35ec64ab.png" alt="图片"></p>
+<p>第一次跑机得到了精确的相关性系数（-0.2319269300615737），收盘价和人民币汇率两个变量的关系被映射到一个散点图上，从结果视觉来看确实也“解释了”弱相关性。但是我想继续深入探索一下，加上时间维度的考虑，会是怎样？</p>
+<p>可以看到，考虑时间的影响之后，虽然动态相关性上蹿下跳，大部分情况却是在-0.4以下。0表示没有关系，-1表示强烈的负相关，所以大部分情况下还是中等负相关的。</p>
+<p>那如果将动态时间窗口再拖长呢？看看30天和60天的颗粒度。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/6bb8851d338cc55879683d571604cdd8.png" alt="图片"></p>
+<p>动态相关性曲线从5月份开始一路往-0.8下潜，负相关性越发强烈。要知道，股市跌起来没有底，但是人民币贬值却是不可持续的。历史上的USDCNY（美元兑换人民币），大周期要么是双顶背离——第二波上涨速度变慢，然后转向，要么是第二波冲顶失败，直接力竭掉头。评估汇率的走势，我们就可以预判上证会在什么情况下有转机，顺便投一点资金进去。如果你有大额外汇购买需求，等汇率回落再去操作，也会划算很多。反过来，近期把美元或者港币置换成人民币，就是不错的窗口。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2bc4d14620a464d9c7775d15a42fcae5.jpeg"></p>
+<h2 id="智能分析和建议"><a href="#智能分析和建议" class="headerlink" title="智能分析和建议"></a>智能分析和建议</h2><p>现在我们让GPT来给出智能分析参考，套路就是 <strong>“GPT请看图说话”</strong>。有插件联动的情况，不需要复制粘贴各种数据。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0a85fbd2661e226bb3fa108ecca35ed5.png" alt="图片"></p>
+<p>Noteable其实还悄悄藏了好东西，那就是Markdown的支持。这样的话，只要把智能结论也自动排版写好，不就是一份完整数据可视化分析报告了？要的就是这个效果！</p>
+<p><strong>数据导入 + 数据获取 + 数据处理 + 数据可视化 + 智能结论</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/02191430b67a55504554ec906c74dea1.png" alt="图片"></p>
+<p>要求新建一个Markdown Cell并自动同步结论，报告完整了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/6f1f3eb53f420bf740844aa2b4f2c930.png" alt="图片"></p>
+<p>接下来，点击项目上方的Publish按钮，将合适的信息块（Cell）添加到报告中，这里面有4大类：代码（一般不会加进去）、数据、可交互图表和自动整合的智能分析结论。确认好报告的完整度就可以发布了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/347ded7884a5f968cc520a4680a025a1.png" alt="图片"></p>
+<p>这份报告是可交互、可随时更新的。到这个份上了，还要PPT做什么？而且回顾整套方案，要说写代码的地方，整个方案也只有1行，就是安装Akshare用的 !pip install。相较于本地折腾Python的方案，已经非常诱人了。</p>
+<p>注意，以上方案仅作为完整的数据可视化分析流程的自动化思路分享，因为缺少更多维度数据的系统评估，并不够严谨， <strong>请不要根据以上单一的结论参考做出投资相关的决策，以免遭受不必要的损失。</strong></p>
+<h2 id="可视化图表小彩蛋"><a href="#可视化图表小彩蛋" class="headerlink" title="可视化图表小彩蛋"></a>可视化图表小彩蛋</h2><p>只要涉及图片的输出，Markdown永不缺席。我提供另一个在ChatGPT窗口中直接实现的兼容方案。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d5e40447a62a097afd82ac2e5ed23dff.png" alt="图片"></p>
+<p>这个方案会用到 <a target="_blank" rel="noopener" href="https://quickchart.io/">Quickchart接口</a>，我跟你说下具体的实现流程。</p>
+<ol>
+<li>手动粘贴数据给ChatGPT。</li>
+<li>让ChatGPT将数据输出为一个JSON格式的图表配置。</li>
+<li>手动将这个JSON配置 <a target="_blank" rel="noopener" href="https://www.urlencoder.org/">转换为URL编码的字符串</a>（urlEncodedConfig）。</li>
+<li>让ChatGPT用以下格式显示： <code>![Chart](images/672291/chart)</code>。</li>
+</ol>
+<p>优势是通过Markdown就能显示，美中不足是需要转码，因为这个链接写入了你提供的所有数据，假如数据量很大，你会面临漫长的等待和超出输入限制的问题。</p>
+<p>有兴趣的朋友请自行到Quickchart官方了解，建议亲自实践一番，寻找合适的辅助解决方案。</p>
+<p>最后，为了更专业和深入的分析，你还需要学习如何选取合适的分析算法，比如常用的频数统计、描述性统计分析和方差分析等等，这些靠之前分享的“智学三件套”就可以很快学习并在实践中内化。有了GPT，做什么都如有神助，Just prompt it。</p>
+<h2 id="小黑板"><a href="#小黑板" class="headerlink" title="小黑板"></a>小黑板</h2><p>这节课从跨越小白面前四座大山的想法出发，给你分享一个智能数据可视化分析方案。我带你走完了从到数据获取到运算、导出、可视化，再到最后的智能结论、发布报告这一整套流程，展示了人民币汇率和上证指数的相关性分析全过程。</p>
+<p>我们明确了智能分析中4个角色的核心价值。你作为指挥官，调用自己的知识来派活，劳心为上；Akshare用来获取数据；GPT提供数据洞察；主战场在Noteable这个打开即用的智能分析空间。</p>
+<p>你可能也会感受到， <strong>只要是涉及GPT的读取和流程的自动化，权限和各种接口都举足轻重。</strong> 而对于联网的需求，更多是因为数据的时效性。</p>
+<p>通过案例，我们了解了2个方便的数据分析方案。</p>
+<ol>
+<li>没有插件就创造条件，让newBing提供参考，在Noteable网页端解决问题。</li>
+<li>高贵的Plus会员，当然要用顶配的GPT-4联动Noteable插件，实现自动化高效分析，最后的报告都可以整合到Notebook的报告中。</li>
+</ol>
+<p>最后强调几个可复用的方法，你可以根据几个关键词想一想具体步骤。</p>
+<ol>
+<li>0开发基础也能用的、方便的数据获取。</li>
+<li>自动将获取的数据导出为CSV。</li>
+<li>智能数据合并和纠错。</li>
+<li>智能数据解读和可视化。</li>
+<li>指挥GPT，设计能打、颜值又高的可视化报告。</li>
+</ol>
+<p><strong>可视化模块主要把握3个重点。</strong> 首先是逐个击破，合并分析的情况不用贪多，Noteable的代码块（Cell）是可以分开运行的。其次是一定要对结果量化，这样才能用客观的数据来支撑分析参考。最后，拿到权限的GPT已经“看穿”了一切，聚焦提需求即可，数据和代码不需要我们操心。</p>
+<p>最后分享一下这套方案最打动人心的地方。ChatGPT出来之前我是怎么做数据分析呢？花一个月写2万多字的BI算法手册，花一季度设计整个BI产品的UI设计稿，再花一季度打磨细节，用最终的产品来导入数据，执行计算和分析，整体的体验和还原效果我也并不满意。而现在1个GPT就可以毫不费力地把事情做得更漂亮了，一个人就是一个团队。</p>
+<p>要点：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/13b2e561bebfae6yy30404da037726d9.png"></p>
+<h2 id="踏浪扬帆"><a href="#踏浪扬帆" class="headerlink" title="踏浪扬帆"></a>踏浪扬帆</h2><p>到Akshare官方文档中寻找一类感兴趣的数据，契合自身的分析需求，尝试做一份完整的数据可视化分析报告。有插件的小伙伴，一定要感受自动化联动的魅力。小彩蛋也记得亲自体验啦。</p>
+<p>期待在评论区看到你的思考或感受分享，也欢迎你将这节课分享给感兴趣的朋友们，戳此加入 <a target="_blank" rel="noopener" href="http://jinshuju.net/f/oI1KKM">课程交流群</a>，我们下节课再会。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#15%EF%BD%9C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%B4%9E%E5%AF%9F%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96%EF%BC%8C0%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E4%B9%9F%E8%83%BD%E6%89%93"><span class="toc-number">1.</span> <span class="toc-text">15｜数据分析：数据洞察和可视化，0开发基础也能打</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%88%86%E6%9E%90%E4%B8%AD%E5%90%84%E8%A7%92%E8%89%B2%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-number">1.1.</span> <span class="toc-text">智能分析中各角色的核心价值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Akshare%EF%BC%9A%E8%8E%B7%E5%8F%96%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">Akshare：获取海量数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPT%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%B4%9E%E5%AF%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">GPT：数据洞察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Noteable%EF%BC%9A%E6%95%B4%E5%90%88%E6%8A%A5%E5%91%8A"><span class="toc-number">1.1.3.</span> <span class="toc-text">Noteable：整合报告</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E8%AE%A9GPT%E7%BB%99%E5%8F%82%E8%80%83"><span class="toc-number">1.2.</span> <span class="toc-text">先让GPT给参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%A6%E5%B9%BB%E8%81%94%E5%8A%A8%EF%BC%9AGPT-x-Noteable-x-Akshare"><span class="toc-number">1.3.</span> <span class="toc-text">梦幻联动：GPT x Noteable x Akshare</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%A6-%E9%A6%96%E9%80%89%EF%BC%9AGPT-4-x-Noteable%E6%8F%92%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E7%BB%84%E5%90%88"><span class="toc-number">1.3.1.</span> <span class="toc-text">✦ 首选：GPT-4 x Noteable插件自动化组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%A6-%E5%B9%B3%E6%9B%BF%EF%BC%9ANoteable%E9%A1%B9%E7%9B%AE%E4%B8%BB%E5%9C%BA%EF%BC%8CnewBing%E8%BE%85%E5%8A%A9"><span class="toc-number">1.3.2.</span> <span class="toc-text">✦ 平替：Noteable项目主场，newBing辅助</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%A6-%E5%88%86%E6%9E%90%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%9FSO-EASY"><span class="toc-number">1.3.3.</span> <span class="toc-text">✦ 分析更多的数据？SO EASY</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">自动数据可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%88%86%E6%9E%90%E5%92%8C%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.5.</span> <span class="toc-text">智能分析和建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8%E5%B0%8F%E5%BD%A9%E8%9B%8B"><span class="toc-number">1.6.</span> <span class="toc-text">可视化图表小彩蛋</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%BB%91%E6%9D%BF"><span class="toc-number">1.7.</span> <span class="toc-text">小黑板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%8F%E6%B5%AA%E6%89%AC%E5%B8%86"><span class="toc-number">1.8.</span> <span class="toc-text">踏浪扬帆</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

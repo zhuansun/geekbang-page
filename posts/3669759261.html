@@ -1,0 +1,772 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>17 ｜ 让AI做决策，LangChain里的“中介”和“特工” | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="17 ｜ 让AI做决策，LangChain里的“中介”和“特工”你好，我是徐文浩。 在 第 11 讲 里，我为你讲解了如何把各种资料的内容向量化，然后通过llama-index建立对应的索引，实现对我们自己的文本资料的问答。而在过去的3讲里面，我们又深入了解了如何使用Langchain。Langchain能够便于我们把AI对语言的理解和组织能力、外部各种资料或者SaaS的API，以及你自己撰写的代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17 ｜ 让AI做决策，LangChain里的“中介”和“特工”">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3669759261.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="17 ｜ 让AI做决策，LangChain里的“中介”和“特工”你好，我是徐文浩。 在 第 11 讲 里，我为你讲解了如何把各种资料的内容向量化，然后通过llama-index建立对应的索引，实现对我们自己的文本资料的问答。而在过去的3讲里面，我们又深入了解了如何使用Langchain。Langchain能够便于我们把AI对语言的理解和组织能力、外部各种资料或者SaaS的API，以及你自己撰写的代">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.409Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3669759261"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '17 ｜ 让AI做决策，LangChain里的“中介”和“特工”',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">17 ｜ 让AI做决策，LangChain里的“中介”和“特工”</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="17-｜-让AI做决策，LangChain里的“中介”和“特工”"><a href="#17-｜-让AI做决策，LangChain里的“中介”和“特工”" class="headerlink" title="17 ｜ 让AI做决策，LangChain里的“中介”和“特工”"></a>17 ｜ 让AI做决策，LangChain里的“中介”和“特工”</h1><p>你好，我是徐文浩。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/646363">第 11 讲</a> 里，我为你讲解了如何把各种资料的内容向量化，然后通过llama-index建立对应的索引，实现对我们自己的文本资料的问答。而在过去的3讲里面，我们又深入了解了如何使用Langchain。Langchain能够便于我们把AI对语言的理解和组织能力、外部各种资料或者SaaS的API，以及你自己撰写的代码整合到一起来。通过对这些能力的整合，我们就可以通过自然语言完成更加复杂的任务了，而不仅仅只是能闲聊。</p>
+<p>不过，到目前为止。我们所有基于ChatGPT的应用，基本都是“单项技能”，比如前面关于“藤野先生”的问题，或者 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/648167">上一讲</a> 里查询最新的天气或者通过Python算算术。本质上都是限制AI只针对我们预先索引的数据，或者实时搜索的数据进行回答。</p>
+<h2 id="支持多种单项能力，让AI做个选择题"><a href="#支持多种单项能力，让AI做个选择题" class="headerlink" title="支持多种单项能力，让AI做个选择题"></a>支持多种单项能力，让AI做个选择题</h2><p>但是，如果我们真的想要做一个能跑在生产环境上的AI聊天机器人，我们需要的不只一个单项技能。它应该针对你自己的数据有很多个不同的“单项技能”，就拿我比较熟悉的电商领域来说，我们至少需要这样三个技能。</p>
+<ol>
+<li>我们需要一个“导购咨询”的单项技能，能够查询自己商品库里的商品信息为用户做导购和推荐。</li>
+<li>然后需要一个“售中咨询”的单项技能，能够查询订单的物流轨迹，对买了东西还没有收到货的用户给出安抚和回复。</li>
+<li>最后还需要一个“FAQ”的单项技能，能够把整个电商网站的FAQ索引起来，当用户问到退货政策、运费、支付方式等问题的时候，我们可以从FAQ里面拿到对应的答案，回复给用户。</li>
+</ol>
+<p>同时，对于这三个单项技能，AI要能够自己判断什么时候该用什么样的技能。而不是需要人工介入，或者写一堆if…else的代码。</p>
+<p>在学习了这么多讲的内容之后，你可以先想想，你有没有什么办法可以通过ChatGPT做到这些呢？直接一次性提供三个“单项技能”，还要在三个单项技能之间选择合适的技能，的确不是靠简单的几行代码或者LLMChain能够解决的。</p>
+<p>但是我们可以采用一个在写大型系统的时候常用的思路，就是“分而治之”。对于每一个单项技能，我们都可以通过之前几讲学习的内容，把它们变成一个LLMChain。然后，对于用户问的问题，我们不妨先问问AI，让它告诉我们应该选用哪一个LLMChain来回答问题好了。</p>
+<p>我们在下面就写了这样一段代码，通过提示语让AI做一个选择题。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>prompts <span class="token keyword">import</span> PromptTemplate
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>llms <span class="token keyword">import</span> OpenAIChat
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chains <span class="token keyword">import</span> LLMChain
+
+llm <span class="token operator">=</span> OpenAIChat<span class="token punctuation">(</span>max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+multiple_choice <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+请针对 >>> 和 &lt;&lt;&lt; 中间的用户问题，选择一个合适的工具去回答她的问题。只要用A、B、C的选项字母告诉我答案。
+如果你觉得都不合适，就选D。
+
+>>>&#123;question&#125;&lt;&lt;&lt;
+
+我们有的工具包括：
+A. 一个能够查询商品信息，为用户进行商品导购的工具
+B. 一个能够查询订单信息，获得最新的订单情况的工具
+C. 一个能够搜索商家的退换货政策、运费、物流时长、支付渠道、覆盖国家的工具
+D. 都不合适
+"""</span>
+multiple_choice_prompt <span class="token operator">=</span> PromptTemplate<span class="token punctuation">(</span>template<span class="token operator">=</span>multiple_choice<span class="token punctuation">,</span> input_variables<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"question"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+choice_chain <span class="token operator">=</span> LLMChain<span class="token punctuation">(</span>llm<span class="token operator">=</span>llm<span class="token punctuation">,</span> prompt<span class="token operator">=</span>multiple_choice_prompt<span class="token punctuation">,</span> output_key<span class="token operator">=</span><span class="token string">"answer"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对应的，我们可以试试问不同的问题，看看它能不能选择一个正确的工具。</p>
+<p>问题1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"我想买一件衣服，但是不知道哪个款式好看，你能帮我推荐一下吗？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>choice_chain<span class="token punctuation">(</span>question<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">&#123;'question': '我想买一件衣服，但是不知道哪个款式好看，你能帮我推荐一下吗？', 'answer': '\n\nA. 一个能够查询商品信息，为用户进行商品导购的工具。'&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>问题2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"我有一张订单，订单号是 2022ABCDE，一直没有收到，能麻烦帮我查一下吗？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>choice_chain<span class="token punctuation">(</span>question<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">&#123;'question': '我有一张订单，订单号是 2022ABCDE，一直没有收到，能麻烦帮我查一下吗？', 'answer': '\n\nB. 一个能够查询订单信息，获得最新的订单情况的工具。'&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>问题3：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"请问你们的货，能送到三亚吗？大概需要几天？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>choice_chain<span class="token punctuation">(</span>question<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">&#123;'question': '请问你们的货，能送到三亚吗？大概需要几天？', 'answer': '\n\nC. 一个能够搜索商家的退换货政策、运费、物流时长、支付渠道、覆盖国家的工具。'&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>问题4：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"今天天气怎么样？"</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>choice_chain<span class="token punctuation">(</span>question<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">&#123;'question': '今天天气怎么样？', 'answer': '\n\nD. 都不合适，因为这个问题需要的是天气预报信息，我们需要提供一个天气预报查询工具或者引导用户去查看天气预报网站或应用程序。'&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到，我们试了四个问题，ChatGPT都给出了正确的答案。在拿到答案之后，你可以直接再通过一个TransformChain，去匹配返回结果的前缀，看看是A、B、C、D中的哪一个，再来决定后面可以去调用哪个LLMChain。</p>
+<h2 id="Langchain里面的中介与特工：Agent"><a href="#Langchain里面的中介与特工：Agent" class="headerlink" title="Langchain里面的中介与特工：Agent"></a>Langchain里面的中介与特工：Agent</h2><p>这样一个“分治法”的思路，你在真实的业务场景中一定会遇到的。无论是哪行哪业的客服聊天机器人，其实都会有能够直接通过资料库就回答的用户问题，也会有和用户自己或者公司产品相关的信息，需要通过检索的方式来提供。所以，这样一个“先做一个选择题”的思路，Langchain就把它发扬光大了，建立起了Agent这个抽象概念。</p>
+<p>Agent翻译成中文，有两个意思。一个叫做代理人，比如在美国你买房子、租房子，都要通过Real Estate Agent，也就是“房产代理”，其实就是我们这里说的“中介”。另一个意思，叫做“特工”，这是指Agent是有自主行动能力的，它可以根据你提出的要求，直接使用提供的工具采取行动。它不只是做完选择题就完事儿了，而是直接拿起选中的工具进行下一步的行动。Langchain的Agent其实这两个意思都包含，可以说名字取得是非常得当了。</p>
+<p>下面我们来看看上面这个例子，我们怎么通过Langchain提供的Agent直接采取行动来解决问题。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>agents <span class="token keyword">import</span> initialize_agent<span class="token punctuation">,</span> Tool
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>llms <span class="token keyword">import</span> OpenAI
+
+llm <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span>temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">search_order</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"订单状态：已发货；发货日期：2023-01-01；预计送达时间：2023-01-10"</span>
+
+<span class="token keyword">def</span> <span class="token function">recommend_product</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"红色连衣裙"</span>
+
+<span class="token keyword">def</span> <span class="token function">faq</span><span class="token punctuation">(</span>intput<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"7天无理由退货"</span>
+
+tools <span class="token operator">=</span> <span class="token punctuation">[</span>
+    Tool<span class="token punctuation">(</span>
+        name <span class="token operator">=</span> <span class="token string">"Search Order"</span><span class="token punctuation">,</span>func<span class="token operator">=</span>search_order<span class="token punctuation">,</span>
+        description<span class="token operator">=</span><span class="token string">"useful for when you need to answer questions about customers orders"</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Tool<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"Recommend Product"</span><span class="token punctuation">,</span> func<span class="token operator">=</span>recommend_product<span class="token punctuation">,</span>
+         description<span class="token operator">=</span><span class="token string">"useful for when you need to answer questions about product recommendations"</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Tool<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"FAQ"</span><span class="token punctuation">,</span> func<span class="token operator">=</span>faq<span class="token punctuation">,</span>
+         description<span class="token operator">=</span><span class="token string">"useful for when you need to answer questions about shopping policies, like return policy, shipping policy, etc."</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">]</span>
+
+agent <span class="token operator">=</span> initialize_agent<span class="token punctuation">(</span>tools<span class="token punctuation">,</span> llm<span class="token punctuation">,</span> agent<span class="token operator">=</span><span class="token string">"zero-shot-react-description"</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码由三个部分组成。</p>
+<ol>
+<li>首先，我们定义了三个函数，分别叫做search_order、recommend_product 以及 faq。它们的输入都是一个字符串，输出是我们写好的对于问题的回答。</li>
+<li>然后，我们针对这三个函数，创建了一个Tool对象的数组，把这三个函数分别封装在了三个Tool对象里面。每一个Tool的对象，在函数之外，还定义了一个名字，并且定义了Tool的description。这个description就是告诉AI，这个Tool是干什么用的。就像这一讲一开始的那个例子一样，AI会根据问题以及这些描述来做选择题。</li>
+<li>最后，我们创建了一个agent对象，指定它会用哪些Tools、LLM对象以及agent的类型。在agent的类型这里，我们选择了zero-shot-react-description。这里的zero-shot就是指我们在课程一开始就讲过的“零样本分类”，也就是不给AI任何例子，直接让它根据自己的推理能力来做决策。而react description，指的是根据你对于Tool的描述（description）进行推理（Reasoning）并采取行动（Action）。</li>
+</ol>
+<p>这里的这个ReAct，并不是来自Facebook的前端框架的名字，而是来自一篇Google Brain的论文 <a target="_blank" rel="noopener" href="https://ai.googleblog.com/2022/11/react-synergizing-reasoning-and-acting.html">ReAct: Synergizing Reasoning and Acting in Language Models</a>。有兴趣的话，你可以去阅读一下，了解具体的原理和思路。</p>
+<p>在有了这个agent之后，我们不妨尝试一下，直接对着这个Agent，来重新问一遍刚才的三个问题。</p>
+<p>问题1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"我想买一件衣服，但是不知道哪个款式好看，你能帮我推荐一下吗？"</span>
+result <span class="token operator">=</span> agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Entering new AgentExecutor chain...
+ I need to recommend a product.
+Action: Recommend Product
+Action Input: Clothes
+Observation: 红色连衣裙
+Thought: I now know the final answer.
+Final Answer: 我推荐红色连衣裙。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题2：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">question = "我有一张订单，订单号是 2022ABCDE，一直没有收到，能麻烦帮我查一下吗？"
+result = agent.run(question)
+print(result)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Entering new AgentExecutor chain...
+ I need to find out the status of the order
+Action: Search Order
+Action Input: 2022ABCDE
+Observation: 订单状态：已发货；发货日期：2023-01-01；预计送达时间：2023-01-10
+Thought: I now know the final answer
+Final Answer: 您的订单 2022ABCDE 已发货，预计将于2023-01-10送达。
+> Finished chain.
+您的订单 2022ABCDE 已发货，预计将于2023-01-10送达。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题3:</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">question = "请问你们的货，能送到三亚吗？大概需要几天？"
+result = agent.run(question)
+print(result)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">
+<span class="token operator">></span> Entering new AgentExecutor chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ I need to find out the shipping policy <span class="token keyword">and</span> delivery time
+Action<span class="token punctuation">:</span> FAQ
+Action Input<span class="token punctuation">:</span> Shipping policy <span class="token keyword">and</span> delivery time
+Observation<span class="token punctuation">:</span> <span class="token number">7</span>天无理由退货
+Thought<span class="token punctuation">:</span> I need to find out the delivery time
+Action<span class="token punctuation">:</span> FAQ
+Action Input<span class="token punctuation">:</span> Delivery time
+Observation<span class="token punctuation">:</span> <span class="token number">7</span>天无理由退货
+Thought<span class="token punctuation">:</span> I need to find out <span class="token keyword">if</span> we can deliver to Sanya
+Action<span class="token punctuation">:</span> FAQ
+Action Input<span class="token punctuation">:</span> Delivery to Sanya
+Observation<span class="token punctuation">:</span> <span class="token number">7</span>天无理由退货
+Thought<span class="token punctuation">:</span> I now know the final answer
+Final Answer<span class="token punctuation">:</span> 我们可以把货送到三亚，大概需要<span class="token number">7</span>天。
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+我们可以把货送到三亚，大概需要<span class="token number">7</span>天。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>因为在代码里面，我们把Agent的Verbose模式打开了，所以在输出结果里面，你可以直接看到Agent整个思考的日志。从这里，你会发现几个有意思的现象。</p>
+<p>第一个，是Agent每一步的操作，可以分成5个步骤，分别是Action、Action Input、Observation、Thought，最后输出一个Final Answer。</p>
+<ol>
+<li>Action，就是根据用户的输入，选择应该选取哪一个Tool，然后行动。</li>
+<li>Action Input，就是根据需要使用的Tool，从用户的输入里提取出相关的内容，可以输入到Tool里面。</li>
+<li>Oberservation，就是观察通过使用Tool得到的一个输出结果。</li>
+<li>Thought，就是再看一眼用户的输入，判断一下该怎么做。</li>
+<li>Final Answer，就是Thought在看到Obersavation之后，给出的最终输出。</li>
+</ol>
+<p>第二个，就是我们最后那个“货需要几天送到三亚”的问题，没有遵循上面的5个步骤，而是在第4步Thought之后，重新回到了Action。并且在这样反复三次之后，才不得已强行回答了问题。但是给出的答案，其实并不一定准确，因为我们的回答里面并没有说能不能送到三亚。</p>
+<p>这一整个过程，其实也是通过一段Prompt来实现的，你可以去看一下Langchain源码里， <a target="_blank" rel="noopener" href="https://github.com/hwchase17/langchain/blob/master/langchain/agents/mrkl/prompt.py">mrkl 对应的 Prompt 的源代码</a>。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># flake8: noqa</span>
+PREFIX <span class="token operator">=</span> <span class="token triple-quoted-string string">"""Answer the following questions as best you can. You have access to the following tools:"""</span>
+FORMAT_INSTRUCTIONS <span class="token operator">=</span> <span class="token triple-quoted-string string">"""Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [&#123;tool_names&#125;]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question"""</span>
+SUFFIX <span class="token operator">=</span> <span class="token triple-quoted-string string">"""Begin!
+
+Question: &#123;input&#125;
+Thought:&#123;agent_scratchpad&#125;"""</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其实它就是把一系列的工具名称和对应的描述交给了OpenAI，让它根据用户输入的需求，选取对应的工具，然后提取用户输入中和用户相关的信息。本质上，只是我们上面让AI做选择题的一种扩展而已。</p>
+<h3 id="通过max-iterations限制重试次数"><a href="#通过max-iterations限制重试次数" class="headerlink" title="通过max_iterations限制重试次数"></a>通过max_iterations限制重试次数</h3><p>前面这个反复思考3次，其实是Agent本身的功能。因为实际很多逻辑处理，现在都是通过AI的大语言模型这个黑盒子自动进行的，有时候也不一定准。所以AI会在Thought的时候，看一下回答得是否靠谱，如果不靠谱的话，它会想一个办法重试。如果你希望AI不要不断重试，也不要强行回答，在觉得不靠谱的时候，试个一两次就停下来。那么，你在创建Agent的时候，设置 max_iterations 这个参数就好了。下面我们就把参数设置成2，看看效果会是怎么样的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">agent <span class="token operator">=</span> initialize_agent<span class="token punctuation">(</span>tools<span class="token punctuation">,</span> llm<span class="token punctuation">,</span> agent<span class="token operator">=</span><span class="token string">"zero-shot-react-description"</span><span class="token punctuation">,</span> max_iterations <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+question <span class="token operator">=</span> <span class="token string">"请问你们的货，能送到三亚吗？大概需要几天？"</span>
+result <span class="token operator">=</span> agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"==="</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"==="</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Entering new AgentExecutor chain...
+ I need to find out the shipping policy
+Action: FAQ
+Action Input: Shipping policy
+Observation: 7天无理由退货
+Thought: I need to find out the shipping time
+Action: FAQ
+Action Input: Shipping time
+Observation: 7天无理由退货
+Thought:
+> Finished chain.
+===
+Agent stopped due to max iterations.
+===
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，这个时候，AI重试了两次就不再重试。并且，也没有强行给出一个回答，而是告诉你，Agent因为max iterations的设置而中止了。这样，你可以把AI回答不上来的问题，切换给人工客服回答。</p>
+<h3 id="通过VectorDBQA让Tool支持问答"><a href="#通过VectorDBQA让Tool支持问答" class="headerlink" title="通过VectorDBQA让Tool支持问答"></a>通过VectorDBQA让Tool支持问答</h3><p>当然，这么简单的问题我们完全可以让AI答上来。现在答不上来的原因是无论我们问什么问题，FQA这个工具的回答都是7天无理由退货。而正确的方式其实也有，我们可以直接使用 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/647827">第 15 讲</a> 介绍的VectorDBQA这个LLMChain，把它也封装成一个Tool。</p>
+<p>我们先把 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/647827">第 15 讲</a> 对应的代码搬运过来。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>embeddings<span class="token punctuation">.</span>openai <span class="token keyword">import</span> OpenAIEmbeddings
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>vectorstores <span class="token keyword">import</span> FAISS
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> SpacyTextSplitter
+<span class="token keyword">from</span> langchain <span class="token keyword">import</span> OpenAI<span class="token punctuation">,</span> VectorDBQA
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> TextLoader
+
+llm <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span>temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+loader <span class="token operator">=</span> TextLoader<span class="token punctuation">(</span><span class="token string">'./data/ecommerce_faq.txt'</span><span class="token punctuation">)</span>
+documents <span class="token operator">=</span> loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span>
+text_splitter <span class="token operator">=</span> SpacyTextSplitter<span class="token punctuation">(</span>chunk_size<span class="token operator">=</span><span class="token number">256</span><span class="token punctuation">,</span> pipeline<span class="token operator">=</span><span class="token string">"zh_core_web_sm"</span><span class="token punctuation">)</span>
+texts <span class="token operator">=</span> text_splitter<span class="token punctuation">.</span>split_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span>
+
+embeddings <span class="token operator">=</span> OpenAIEmbeddings<span class="token punctuation">(</span><span class="token punctuation">)</span>
+docsearch <span class="token operator">=</span> FAISS<span class="token punctuation">.</span>from_documents<span class="token punctuation">(</span>texts<span class="token punctuation">,</span> embeddings<span class="token punctuation">)</span>
+
+faq_chain <span class="token operator">=</span> VectorDBQA<span class="token punctuation">.</span>from_chain_type<span class="token punctuation">(</span>llm<span class="token operator">=</span>llm<span class="token punctuation">,</span> vectorstore<span class="token operator">=</span>docsearch<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，把这LLMChain的run方法包装到一个Tool里面。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>agents <span class="token keyword">import</span> tool
+
+<span class="token decorator annotation punctuation">@tool</span><span class="token punctuation">(</span><span class="token string">"FAQ"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">faq</span><span class="token punctuation">(</span>intput<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""""useful for when you need to answer questions about shopping policies, like return policy, shipping policy, etc."""</span>
+    <span class="token keyword">return</span> faq_chain<span class="token punctuation">.</span>run<span class="token punctuation">(</span>intput<span class="token punctuation">)</span>
+
+tools <span class="token operator">=</span> <span class="token punctuation">[</span>
+    Tool<span class="token punctuation">(</span>
+        name <span class="token operator">=</span> <span class="token string">"Search Order"</span><span class="token punctuation">,</span>func<span class="token operator">=</span>search_order<span class="token punctuation">,</span>
+        description<span class="token operator">=</span><span class="token string">"useful for when you need to answer questions about customers orders"</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Tool<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"Recommend Product"</span><span class="token punctuation">,</span> func<span class="token operator">=</span>recommend_product<span class="token punctuation">,</span>
+         description<span class="token operator">=</span><span class="token string">"useful for when you need to answer questions about product recommendations"</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    faq
+<span class="token punctuation">]</span>
+
+agent <span class="token operator">=</span> initialize_agent<span class="token punctuation">(</span>tools<span class="token punctuation">,</span> llm<span class="token punctuation">,</span> agent<span class="token operator">=</span><span class="token string">"zero-shot-react-description"</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里，我们对Tool的写法做了一些小小的改变，使得代码更加容易维护了。我们通过@tool 这个Python的decorator功能，将FAQ这个函数直接变成了Tool对象，这可以减少我们每次创建 Tools的时候都要指定name和description的工作。</p>
+<p>接着，我们再通过Agent来运行一下刚才的问题，一样能够得到正确的答案。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"请问你们的货，能送到三亚吗？大概需要几天？"</span>
+result <span class="token operator">=</span> agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Entering new AgentExecutor chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ I need to find out the shipping policy <span class="token keyword">and</span> delivery time<span class="token punctuation">.</span>
+Action<span class="token punctuation">:</span> FAQ
+Action Input<span class="token punctuation">:</span> shipping policy <span class="token keyword">and</span> delivery time
+<span class="token operator">></span> Entering new VectorDBQA chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+Observation<span class="token punctuation">:</span>  一般情况下，大部分城市的订单在<span class="token number">2</span><span class="token operator">-</span><span class="token number">3</span>个工作日内送达，偏远地区可能需要<span class="token number">5</span><span class="token operator">-</span><span class="token number">7</span>个工作日。具体送货时间可能因订单商品、配送地址和物流公司而异。
+Thought<span class="token punctuation">:</span> I now know the final answer<span class="token punctuation">.</span>
+Final Answer<span class="token punctuation">:</span> 一般情况下，大部分城市的订单在<span class="token number">2</span><span class="token operator">-</span><span class="token number">3</span>个工作日内送达，偏远地区可能需要<span class="token number">5</span><span class="token operator">-</span><span class="token number">7</span>个工作日。具体送货时间可能因订单商品、配送地址和物流公司而异。
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+一般情况下，大部分城市的订单在<span class="token number">2</span><span class="token operator">-</span><span class="token number">3</span>个工作日内送达，偏远地区可能需要<span class="token number">5</span><span class="token operator">-</span><span class="token number">7</span>个工作日。具体送货时间可能因订单商品、配送地址和物流公司而异。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于商品的推荐，我们可以如法炮制，也把对应的商品信息，存到VectorStore里，然后通过 <strong>先搜索后问答</strong> 的方式来解决。对应的数据同样由ChatGPT出品，代码和上面的FAQ基本类似，我就不再一一重复了。</p>
+<p>重新构建Agent：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> CharacterTextSplitter
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> CSVLoader
+
+product_loader <span class="token operator">=</span> CSVLoader<span class="token punctuation">(</span><span class="token string">'./data/ecommerce_products.csv'</span><span class="token punctuation">)</span>
+product_documents <span class="token operator">=</span> product_loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span>
+product_text_splitter <span class="token operator">=</span> CharacterTextSplitter<span class="token punctuation">(</span>chunk_size<span class="token operator">=</span><span class="token number">1024</span><span class="token punctuation">,</span> separator<span class="token operator">=</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+product_texts <span class="token operator">=</span> product_text_splitter<span class="token punctuation">.</span>split_documents<span class="token punctuation">(</span>product_documents<span class="token punctuation">)</span>
+product_search <span class="token operator">=</span> FAISS<span class="token punctuation">.</span>from_documents<span class="token punctuation">(</span>product_texts<span class="token punctuation">,</span> OpenAIEmbeddings<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+product_chain <span class="token operator">=</span> VectorDBQA<span class="token punctuation">.</span>from_chain_type<span class="token punctuation">(</span>llm<span class="token operator">=</span>llm<span class="token punctuation">,</span> vectorstore<span class="token operator">=</span>product_search<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@tool</span><span class="token punctuation">(</span><span class="token string">"FAQ"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">faq</span><span class="token punctuation">(</span>intput<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""""useful for when you need to answer questions about shopping policies, like return policy, shipping policy, etc."""</span>
+    <span class="token keyword">return</span> faq_chain<span class="token punctuation">.</span>run<span class="token punctuation">(</span>intput<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@tool</span><span class="token punctuation">(</span><span class="token string">"Recommend Product"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">recommend_product</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""""useful for when you need to search and recommend products and recommend it to the user"""</span>
+    <span class="token keyword">return</span> product_chain<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+
+tools <span class="token operator">=</span> <span class="token punctuation">[</span>
+    Tool<span class="token punctuation">(</span>
+        name <span class="token operator">=</span> <span class="token string">"Search Order"</span><span class="token punctuation">,</span>func<span class="token operator">=</span>search_order<span class="token punctuation">,</span>
+        description<span class="token operator">=</span><span class="token string">"useful for when you need to answer questions about customers orders"</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    recommend_product<span class="token punctuation">,</span> faq<span class="token punctuation">]</span>
+
+agent <span class="token operator">=</span> initialize_agent<span class="token punctuation">(</span>tools<span class="token punctuation">,</span> llm<span class="token punctuation">,</span> agent<span class="token operator">=</span><span class="token string">"zero-shot-react-description"</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>询问Agent问题：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"我想买一件衣服，想要在春天去公园穿，但是不知道哪个款式好看，你能帮我推荐一下吗？"</span>
+answer <span class="token operator">=</span> agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>answer<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Entering new AgentExecutor chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ I need to recommend a product to the user<span class="token punctuation">.</span>
+Action<span class="token punctuation">:</span> Recommend Product
+Action Input<span class="token punctuation">:</span> Clothing <span class="token keyword">for</span> park <span class="token keyword">in</span> spring
+<span class="token operator">></span> Entering new VectorDBQA chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+Observation<span class="token punctuation">:</span>  休闲、简约风格的长款风衣，休闲、运动风格的长款卫衣，清新、甜美风格的长袖连衣裙都可以在春天去公园穿着。
+Thought<span class="token punctuation">:</span> I now know the final answer<span class="token punctuation">.</span>
+Final Answer<span class="token punctuation">:</span> 休闲、简约风格的长款风衣，休闲、运动风格的长款卫衣，清新、甜美风格的长袖连衣裙都可以在春天去公园穿着。
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+休闲、简约风格的长款风衣，休闲、运动风格的长款卫衣，清新、甜美风格的长袖连衣裙都可以在春天去公园穿着。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="优化Prompt，让AI不要胡思乱想"><a href="#优化Prompt，让AI不要胡思乱想" class="headerlink" title="优化Prompt，让AI不要胡思乱想"></a>优化Prompt，让AI不要胡思乱想</h3><p>对于订单查询，使用向量检索就不太合适了，我们直接拿着订单号去数据库里查就好了。不过我们不是一个Python编程课，我就不为你演示怎么用Python写SQL了。我们偷个懒，就在对应的函数里造几条数据，根据用户输入的订单号不同，就返回不同的订单状态，找不到的话，就告诉用户找不到订单就好。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> json
+
+ORDER_1 <span class="token operator">=</span> <span class="token string">"20230101ABC"</span>
+ORDER_2 <span class="token operator">=</span> <span class="token string">"20230101EFG"</span>
+
+ORDER_1_DETAIL <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"order_number"</span><span class="token punctuation">:</span> ORDER_1<span class="token punctuation">,</span>
+    <span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"已发货"</span><span class="token punctuation">,</span>
+    <span class="token string">"shipping_date"</span> <span class="token punctuation">:</span> <span class="token string">"2023-01-03"</span><span class="token punctuation">,</span>
+    <span class="token string">"estimated_delivered_date"</span><span class="token punctuation">:</span> <span class="token string">"2023-01-05"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+ORDER_2_DETAIL <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"order_number"</span><span class="token punctuation">:</span> ORDER_2<span class="token punctuation">,</span>
+    <span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"未发货"</span><span class="token punctuation">,</span>
+    <span class="token string">"shipping_date"</span> <span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span>
+    <span class="token string">"estimated_delivered_date"</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">import</span> re
+
+<span class="token decorator annotation punctuation">@tool</span><span class="token punctuation">(</span><span class="token string">"Search Order"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">search_order</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">:</span><span class="token builtin">str</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""useful for when you need to answer questions about customers orders"""</span>
+    <span class="token keyword">if</span> <span class="token builtin">input</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> ORDER_1<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>ORDER_1_DETAIL<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> <span class="token builtin">input</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> ORDER_2<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>ORDER_2_DETAIL<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f"对不起，根据</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">input</span><span class="token punctuation">&#125;</span></span><span class="token string">没有找到您的订单"</span></span>
+
+tools <span class="token operator">=</span> <span class="token punctuation">[</span>search_order<span class="token punctuation">,</span>recommend_product<span class="token punctuation">,</span> faq<span class="token punctuation">]</span>
+agent <span class="token operator">=</span> initialize_agent<span class="token punctuation">(</span>tools<span class="token punctuation">,</span> llm<span class="token operator">=</span>OpenAI<span class="token punctuation">(</span>temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> agent<span class="token operator">=</span><span class="token string">"zero-shot-react-description"</span><span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我们就可以试着来让Agent帮我们查一下订单号。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question <span class="token operator">=</span> <span class="token string">"我有一张订单，订单号是 2022ABCDE，一直没有收到，能麻烦帮我查一下吗？"</span>
+answer <span class="token operator">=</span> agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>answer<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">
+> Entering new AgentExecutor chain...
+ I need to find out the status of the order.
+Action: Search Order
+Action Input: 2022ABCDE
+Observation: 对不起，根据2022ABCDE没有找到您的订单
+Thought: I need to find out more information about the order.
+Action: Search Order
+Action Input: 2022ABCDE
+Observation: 对不起，根据2022ABCDE没有找到您的订单
+Thought: I need to contact customer service for more information.
+Action: FAQ
+Action Input: 订单查询
+> Entering new VectorDBQA chain...
+> Finished chain.
+Observation: 要查询订单，请登录您的帐户，然后点击“我的订单”页面。在此页面上，您可以查看所有订单及其当前状态。如果您没有帐户，请使用订单确认电子邮件中的链接创建一个帐户。如果您有任何问题，请联系客服。
+Thought: I now know the final answer.
+Final Answer: 要查询订单，请登录您的帐户，然后点击“我的订单”页面。在此页面上，您可以查看所有订单及其当前状态。如果您没有帐户，请使用订单确认电子邮件中的链接创建一个帐户。如果您有任何问题，请联系客服。
+> Finished chain.
+要查询订单，请登录您的帐户，然后点击“我的订单”页面。在此页面上，您可以查看所有订单及其当前状态。如果您没有帐户，请使用订单确认电子邮件中的链接创建一个帐户。如果您有任何问题，请联系客服。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结果稍稍让人有些意外，我们输入了一个不存在的订单号，我们原本期望，AI能够告诉我们订单号找不到。但是，它却是在发现回复是找不到订单的时候，重复调用OpenAI的思考策略，并最终尝试从FAQ里拿一个查询订单的问题来敷衍用户。这并不是我们想要的，这也是以前很多“人工智障”类型的智能客服常常会遇到的问题，所以我们还是想个办法解决它。</p>
+<p>解决的方法也不复杂，我们只需要调整一下search_order这个Tool的提示语。通过这个提示语，Agent会知道，这个工具就应该在找不到订单的时候，告诉用户找不到订单或者请它再次确认。这个时候，它就会根据这个答案去回复用户。下面是对应修改运行后的结果。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">import re
+
+@tool("Search Order")
+def search_order(input:str)->str:
+    """一个帮助用户查询最新订单状态的工具，并且能处理以下情况：
+    1. 在用户没有输入订单号的时候，会询问用户订单号
+    2. 在用户输入的订单号查询不到的时候，会让用户二次确认订单号是否正确"""
+    pattern = r"\d+[A-Z]+"
+    match = re.search(pattern, input)
+
+    order_number = input
+    if match:
+        order_number = match.group(0)
+    else:
+        return "请问您的订单号是多少？"
+    if order_number == ORDER_1:
+        return json.dumps(ORDER_1_DETAIL)
+    elif order_number == ORDER_2:
+        return json.dumps(ORDER_2_DETAIL)
+    else:
+        return f"对不起，根据&#123;input&#125;没有找到您的订单"
+
+tools = [search_order,recommend_product, faq]
+agent = initialize_agent(tools, llm=OpenAI(temperature=0), agent="zero-shot-react-description", verbose=True)
+
+question = "我有一张订单，订单号是 2022ABCDE，一直没有收到，能麻烦帮我查一下吗？"
+answer = agent.run(question)
+print(answer)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">> Entering new AgentExecutor chain...
+ 我需要查询订单状态
+Action: Search Order
+Action Input: 2022ABCDE
+Observation: 对不起，根据2022ABCDE没有找到您的订单
+Thought: 我需要再次确认订单号是否正确
+Action: Search Order
+Action Input: 2022ABCDE
+Observation: 对不起，根据2022ABCDE没有找到您的订单
+Thought: 我现在知道最终答案
+Final Answer: 对不起，根据您输入的订单号2022ABCDE没有找到您的订单，请您再次确认订单号是否正确。
+> Finished chain.
+对不起，根据您输入的订单号2022ABCDE没有找到您的订单，请您再次确认订单号是否正确。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="通过多轮对话实现订单查询"><a href="#通过多轮对话实现订单查询" class="headerlink" title="通过多轮对话实现订单查询"></a>通过多轮对话实现订单查询</h3><p>看起来，我们的客服聊天机器人已经搞定了。但是，其实我们还有几个可以优化的空间。</p>
+<ol>
+<li>我们应该支持多轮聊天。因为用户不一定是在第一轮提问的时候，就给出了自己的订单号。</li>
+<li>我们其实可以直接让Search Order这个Tool，回答用户的问题，没有必要再让Agent思考一遍。</li>
+</ol>
+<p>那我们就把代码再改造一下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> re
+
+answer_order_info <span class="token operator">=</span> PromptTemplate<span class="token punctuation">(</span>
+    template<span class="token operator">=</span><span class="token string">"请把下面的订单信息回复给用户： \n\n &#123;order&#125;?"</span><span class="token punctuation">,</span> input_variables<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"order"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+answer_order_llm <span class="token operator">=</span> LLMChain<span class="token punctuation">(</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span>temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  prompt<span class="token operator">=</span>answer_order_info<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@tool</span><span class="token punctuation">(</span><span class="token string">"Search Order"</span><span class="token punctuation">,</span> return_direct<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">search_order</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">:</span><span class="token builtin">str</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""useful for when you need to answer questions about customers orders"""</span>
+    pattern <span class="token operator">=</span> <span class="token string">r"\d+[A-Z]+"</span>
+    <span class="token keyword">match</span> <span class="token operator">=</span> re<span class="token punctuation">.</span>search<span class="token punctuation">(</span>pattern<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">)</span>
+
+    order_number <span class="token operator">=</span> <span class="token builtin">input</span>
+    <span class="token keyword">if</span> <span class="token keyword">match</span><span class="token punctuation">:</span>
+        order_number <span class="token operator">=</span> <span class="token keyword">match</span><span class="token punctuation">.</span>group<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"请问您的订单号是多少？"</span>
+    <span class="token keyword">if</span> order_number <span class="token operator">==</span> ORDER_1<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> answer_order_llm<span class="token punctuation">.</span>run<span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>ORDER_1_DETAIL<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> order_number <span class="token operator">==</span> ORDER_2<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> answer_order_llm<span class="token punctuation">.</span>run<span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>ORDER_2_DETAIL<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f"对不起，根据</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">input</span><span class="token punctuation">&#125;</span></span><span class="token string">没有找到您的订单"</span></span>
+
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>memory <span class="token keyword">import</span> ConversationBufferMemory
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI
+
+tools <span class="token operator">=</span> <span class="token punctuation">[</span>search_order<span class="token punctuation">,</span>recommend_product<span class="token punctuation">,</span> faq<span class="token punctuation">]</span>
+chatllm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span>temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+memory <span class="token operator">=</span> ConversationBufferMemory<span class="token punctuation">(</span>memory_key<span class="token operator">=</span><span class="token string">"chat_history"</span><span class="token punctuation">,</span> return_messages<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+conversation_agent <span class="token operator">=</span> initialize_agent<span class="token punctuation">(</span>tools<span class="token punctuation">,</span> chatllm<span class="token punctuation">,</span>
+                                      agent<span class="token operator">=</span><span class="token string">"conversational-react-description"</span><span class="token punctuation">,</span>
+                                      memory<span class="token operator">=</span>memory<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第一个改造还是在Search Order这个工具上的。首先，我们给这个Tool设置了一个参数，叫做 return_direct &#x3D; True，这个参数是告诉AI，在拿到这个工具的回复之后，不要再经过Thought那一步思考，直接把我们的回答给到用户就好了。设了这个参数之后，你就会发现AI不会在没有得到一个订单号的时候继续去反复思考，尝试使用工具，而是会直接去询问用户的订单号。</p>
+<p>伴随着这个修改，对于查询到的订单号，我们就不能直接返回一个JSON字符串了，而是通过answer_order_llm这个工具来组织语言文字。</p>
+<p>第二个改造是我们使用的Agent，我们把Agent换成了converstional-react-description。这样我们就支持多轮对话了，同时我们也把对应的LLM换成了ChatOpenAI，这样成本更低。并且，我们还需要为这个Agent设置一下memory。</p>
+<p>改造好之后，我们不妨来看看，这个AI现在是不是终于智能一点了。</p>
+<p>问题1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question1 <span class="token operator">=</span> <span class="token string">"我有一张订单，一直没有收到，能麻烦帮我查一下吗？"</span>
+answer1 <span class="token operator">=</span> conversation_agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>answer1<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>回答1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Entering new AgentExecutor chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Thought<span class="token punctuation">:</span> Do I need to use a tool? Yes
+Action<span class="token punctuation">:</span> Search Order
+Action Input<span class="token punctuation">:</span> 我有一张订单，一直没有收到，能麻烦帮我查一下吗？
+Observation<span class="token punctuation">:</span> 请问您的订单号是多少？
+
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+请问您的订单号是多少？
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question2 <span class="token operator">=</span> <span class="token string">"我的订单号是20230101ABC"</span>
+answer2 <span class="token operator">=</span> conversation_agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>answer2<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>回答2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Entering new AgentExecutor chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Thought<span class="token punctuation">:</span> Do I need to use a tool? Yes
+Action<span class="token punctuation">:</span> Search Order
+Action Input<span class="token punctuation">:</span> 20230101ABC
+Observation<span class="token punctuation">:</span>
+尊敬的用户，您的订单信息如下：
+订单号：20230101ABC
+订单状态：已发货
+发货日期：<span class="token number">2023</span>年<span class="token number">1</span>月<span class="token number">3</span>日
+预计送达日期：<span class="token number">2023</span>年<span class="token number">1</span>月<span class="token number">5</span>日
+如有任何疑问，请随时联系我们。感谢您的购买！
+
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+
+尊敬的用户，您的订单信息如下：
+订单号：20230101ABC
+订单状态：已发货
+发货日期：<span class="token number">2023</span>年<span class="token number">1</span>月<span class="token number">3</span>日
+预计送达日期：<span class="token number">2023</span>年<span class="token number">1</span>月<span class="token number">5</span>日
+如有任何疑问，请随时联系我们。感谢您的购买！
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>问题3:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">question3 <span class="token operator">=</span> <span class="token string">"你们的退货政策是怎么样的？"</span>
+answer3 <span class="token operator">=</span> conversation_agent<span class="token punctuation">.</span>run<span class="token punctuation">(</span>question3<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>answer3<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>回答3:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">></span> Entering new AgentExecutor chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Thought<span class="token punctuation">:</span> Do I need to use a tool? Yes
+Action<span class="token punctuation">:</span> FAQ
+Action Input<span class="token punctuation">:</span> 退货政策
+<span class="token operator">></span> Entering new VectorDBQA chain<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+Observation<span class="token punctuation">:</span> 自收到商品之日起<span class="token number">7</span>天内，如产品未使用、包装完好，您可以申请退货。某些特殊商品可能不支持退货，请在购买前查看商品详情页面的退货政策。
+Thought<span class="token punctuation">:</span>Do I need to use a tool? No
+AI<span class="token punctuation">:</span> Our <span class="token keyword">return</span> policy allows <span class="token keyword">for</span> returns within <span class="token number">7</span> days of receiving the product<span class="token punctuation">,</span> <span class="token keyword">as</span> <span class="token builtin">long</span> <span class="token keyword">as</span> the product <span class="token keyword">is</span> unused <span class="token keyword">and</span> <span class="token keyword">in</span> its original packaging<span class="token punctuation">.</span> Some special products may <span class="token keyword">not</span> be eligible <span class="token keyword">for</span> returns<span class="token punctuation">,</span> so please check the product details page before purchasing<span class="token punctuation">.</span>
+<span class="token operator">></span> Finished chain<span class="token punctuation">.</span>
+Our <span class="token keyword">return</span> policy allows <span class="token keyword">for</span> returns within <span class="token number">7</span> days of receiving the product<span class="token punctuation">,</span> <span class="token keyword">as</span> <span class="token builtin">long</span> <span class="token keyword">as</span> the product <span class="token keyword">is</span> unused <span class="token keyword">and</span> <span class="token keyword">in</span> its original packaging<span class="token punctuation">.</span> Some special products may <span class="token keyword">not</span> be eligible <span class="token keyword">for</span> returns<span class="token punctuation">,</span> so please check the product details page before purchasing<span class="token punctuation">.</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到AI能够在多轮对话里面，明白用户的意思，给出合理的答案。不过，最后一个问题它是用英文回答的，那怎么让它用中文来回答呢？这个问题就作为这一节课的思考题留给你啦！</p>
+<p>好了，现在你已经有了一个有基本功能的电商客服聊天机器人了。你只需要在现有的这个代码上做一些改造，将自己的数据源导入进去，就可以拿真实的用户问题去试一试，看看效果怎么样了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天，我为你介绍了Langchain的Agent的基本功能。通过“先让AI做个选择题”的方式，Langchain让AI自动为我们选择合适的Tool去调用。 <strong>我们可以把回答不同类型问题的LLMChain封装成不同的Tool，也可以直接让Tool去调用内部查询订单状态的功能</strong>。我也为你实际演示了将Agent、Memory、VectorStore、LLMChain组合在一起的过程，创建了一个有完整电商客服功能的聊天机器人。</p>
+<p>我们对于Langchain的介绍也就告一段落了。作为大语言模型领域目前最火的一个开源项目，Langchain有非常丰富的功能。我这里介绍的也只是它的核心功能，它支持丰富的Tool、不同类型的VectorStore和内置的其他LLMChain，都等待你自己去 <a target="_blank" rel="noopener" href="https://langchain.readthedocs.io/en/latest/">它的文档</a> 里发掘了。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li>在这一讲的最后，我们的例子里，AI用英文回答了中文的FAQ问题，你能够尝试修改一下现在的代码，让AI用中文回复吗？</li>
+<li>上一讲里，我们介绍了EntityMemory，但是在这一讲里我们并没有通过EntityMemory获取并查询订单信息。你能研究一下 Langchain 的文档，思考一下如果我们想要使用EntityMemory的话，应该怎么做吗？</li>
+</ol>
+<p>欢迎你把思考后的结果分享到评论区，也欢迎你把这一讲分享给感兴趣的朋友，我们下一讲再见！</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>Langchain里面的zero-shot-react-description这个想法，来自一个知名的AI创业公司AI21 Labs的 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2205.00445.pdf">论文 MRKL Systems</a>。你有兴趣的话，可以去阅读一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#17-%EF%BD%9C-%E8%AE%A9AI%E5%81%9A%E5%86%B3%E7%AD%96%EF%BC%8CLangChain%E9%87%8C%E7%9A%84%E2%80%9C%E4%B8%AD%E4%BB%8B%E2%80%9D%E5%92%8C%E2%80%9C%E7%89%B9%E5%B7%A5%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">17 ｜ 让AI做决策，LangChain里的“中介”和“特工”</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%A4%9A%E7%A7%8D%E5%8D%95%E9%A1%B9%E8%83%BD%E5%8A%9B%EF%BC%8C%E8%AE%A9AI%E5%81%9A%E4%B8%AA%E9%80%89%E6%8B%A9%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">支持多种单项能力，让AI做个选择题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Langchain%E9%87%8C%E9%9D%A2%E7%9A%84%E4%B8%AD%E4%BB%8B%E4%B8%8E%E7%89%B9%E5%B7%A5%EF%BC%9AAgent"><span class="toc-number">1.2.</span> <span class="toc-text">Langchain里面的中介与特工：Agent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87max-iterations%E9%99%90%E5%88%B6%E9%87%8D%E8%AF%95%E6%AC%A1%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">通过max_iterations限制重试次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87VectorDBQA%E8%AE%A9Tool%E6%94%AF%E6%8C%81%E9%97%AE%E7%AD%94"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过VectorDBQA让Tool支持问答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96Prompt%EF%BC%8C%E8%AE%A9AI%E4%B8%8D%E8%A6%81%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3"><span class="toc-number">1.2.3.</span> <span class="toc-text">优化Prompt，让AI不要胡思乱想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%A4%9A%E8%BD%AE%E5%AF%B9%E8%AF%9D%E5%AE%9E%E7%8E%B0%E8%AE%A2%E5%8D%95%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.4.</span> <span class="toc-text">通过多轮对话实现订单查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.5.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

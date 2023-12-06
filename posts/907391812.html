@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>01｜重新出发，让我们学会和AI说话 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="01｜重新出发，让我们学会和AI说话你好，我是徐文浩。 欢迎你打开 AI 世界的大门。我猜你是被这段时间大火的ChatGPT吸引过来的吧？既然你是带着这样的目的打开了这门课程，那么我也一定会给你想要的。我们的课程会先从ChatGPT的主题开始，在接下来的几讲里，我会为你介绍如何使用OpenAI的API来和AI应用沟通。这些API背后，其实和ChatGPT一样，使用的是OpenAI的GPT-3.5系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01｜重新出发，让我们学会和AI说话">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/907391812.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="01｜重新出发，让我们学会和AI说话你好，我是徐文浩。 欢迎你打开 AI 世界的大门。我猜你是被这段时间大火的ChatGPT吸引过来的吧？既然你是带着这样的目的打开了这门课程，那么我也一定会给你想要的。我们的课程会先从ChatGPT的主题开始，在接下来的几讲里，我会为你介绍如何使用OpenAI的API来和AI应用沟通。这些API背后，其实和ChatGPT一样，使用的是OpenAI的GPT-3.5系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.362Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/907391812"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '01｜重新出发，让我们学会和AI说话',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">01｜重新出发，让我们学会和AI说话</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="01｜重新出发，让我们学会和AI说话"><a href="#01｜重新出发，让我们学会和AI说话" class="headerlink" title="01｜重新出发，让我们学会和AI说话"></a>01｜重新出发，让我们学会和AI说话</h1><p>你好，我是徐文浩。</p>
+<p>欢迎你打开 AI 世界的大门。我猜你是被这段时间大火的ChatGPT吸引过来的吧？既然你是带着这样的目的打开了这门课程，那么我也一定会给你想要的。我们的课程会先从ChatGPT的主题开始，在接下来的几讲里，我会为你介绍如何使用OpenAI的API来和AI应用沟通。这些API背后，其实和ChatGPT一样，使用的是OpenAI的GPT-3.5系列的大语言模型。</p>
+<p>整个课程，我们都会使用真实的数据、代码来演示如何利用好大语言模型。所以这一讲，我会先带你做好一系列准备工作。不过不用担心，去运行这些程序并不需要你专门去买一块昂贵的显卡。事实上，如果你不是一个程序员，而是一个产品经理，或者只是对AI感兴趣的非技术人，那么你可以使用浏览器就能访问的免费开发环境，来试验这些问题。</p>
+<p>OpenAI的API能做到哪些神奇的事情？号称离“通用人工智能（AGI）”已经不远的产品长什么样子？GPT-3这样的模型和之前基于深度学习的自然语言处理解决方案又有什么不同？这些吊人胃口的问题，我会在课程里一一揭晓。</p>
+<p>下面我们就先来做一些准备工作，注册账号并搭建开发环境。</p>
+<h2 id="创建-OpenAI-的-API-Key"><a href="#创建-OpenAI-的-API-Key" class="headerlink" title="创建 OpenAI 的 API Key"></a>创建 OpenAI 的 API Key</h2><p>为了学习这门课程，你需要先去注册一个可以使用OpenAI的API的账号，这是账号注册的 <a target="_blank" rel="noopener" href="https://openai.com/api/">入口</a>。目前，OpenAI还没有向中国大陆和香港地区开放，所以账号的注册需要你自己想想办法了，如果你有好办法，也欢迎你分享在评论区。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/6ce40aa3ae34ceac1d467a284340f377.png" alt="图片"></p>
+<p>账号注册完成之后，你点击右上角的账号，然后点击 “View API Keys”，就会进入一个管理API Keys的页面。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/1f590de3bd1d7406c07a873bd1d7f2c2.png" alt="图片"></p>
+<p>你点击下面的 “+Create new secret key” 可以创建一个新的API Key。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/c6205158ab5d3a4d0ffd121ab9140f44.png" alt="图片"></p>
+<p>对应的API Key你需要把它存储在一个安全的地方，后面我们调用OpenAI的接口都需要使用这个API Key。</p>
+<p>现在OpenAI为所有免费注册的用户都提供了5美元（最早是18美元）的免费使用API的额度，这个额度用来体验API的功能，以及学习这个课程已经够用了。如果你想要进一步将这个API用在实际的产品上，就需要考虑把这个账号升级成付费账号了。</p>
+<h2 id="搭建本地的Jupyter-Labs开发环境"><a href="#搭建本地的Jupyter-Labs开发环境" class="headerlink" title="搭建本地的Jupyter Labs开发环境"></a>搭建本地的Jupyter Labs开发环境</h2><p>有了API Key之后，我们还需要搭建一个开发环境。这门课，我主要通过 <strong>Python</strong> 来讲解和演示如何使用好AI。如果你是一个程序员，你可以自己去 <a target="_blank" rel="noopener" href="https://www.python.org/downloads/">Python语言的官网</a> 下载并安装对应的开发环境。</p>
+<p>一般来说，你还需要一个Python的包管理和环境管理工具，我自己比较习惯使用 <a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Conda</a>。</p>
+<p>最后，还需要通过包管理工具，配置一个独立的Python 3.10的环境，并安装好JupyterLab、OpenAI以及后面要用到的一系列开发包。我把对应的Conda命令也列在了下面，供你参考。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conda create <span class="token operator">-</span><span class="token operator">-</span>name py310 python<span class="token operator">=</span><span class="token number">3.10</span>
+conda activate py310
+conda install <span class="token operator">-</span>c conda<span class="token operator">-</span>forge jupyterlab
+conda install <span class="token operator">-</span>c conda<span class="token operator">-</span>forge ipywidgets
+conda install <span class="token operator">-</span>c conda<span class="token operator">-</span>forge openai
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>后续，随着我们课程的进展，你可能还需要通过Conda或者pip来安装更多Python包。</p>
+<p>安装完JupyterLab之后，你只需要把刚才我们获取到的API Key设置到环境变量里，然后启动JupyterLab。你可以从浏览器里，通过Jupyter Notebook交互式地运行这个课程后面的代码，体验OpenAI的大语言模型神奇的效果。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OPENAI_API_KEY</span><span class="token operator">=</span>在这里写你获取到的ApiKey
+jupyter-lab <span class="token builtin class-name">.</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>你可以选择新建Python 3的Notebook，来体验交互式地运行Python代码调用OpenAI的API。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/dd2a812ed18581bab0dd51cda83d0d48.png" alt="图片"></p>
+<h2 id="通过Colab使用JupyterLab"><a href="#通过Colab使用JupyterLab" class="headerlink" title="通过Colab使用JupyterLab"></a><strong>通过Colab使用JupyterLab</strong></h2><p>如果你不是一个程序员，或者你懒得在本地搭建一个开发环境。还有一个选择，就是使用Google提供的叫做 <a target="_blank" rel="noopener" href="https://colab.research.google.com/">Colab</a> 的线上Python Notebook环境。</p>
+<p>即使你已经有了本地的开发环境，我也建议你注册一个账号。因为Colab可以让你免费使用一些GPU的资源，在你需要使用GPU尝试训练一些深度学习模型，而又没有一张比较好的显卡的时候，就可以直接使用它。另一方面，Colab便于你在网络上把自己撰写的Python代码分享给其他人。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/962ec24b77388a2e89635f294e4a079a.png" alt="图片"></p>
+<p>Colab已经是一个Python Notebook的环境了。所以我们不需要再去安装Python和JupyterLab了。不过我们还是需要安装OpenAI的库，以及设定我们的API Key。你只需要在Notebook开始的时候，执行下面这样一小段代码就可以做到这一点。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">!</span>pip <span class="token function">install</span> openai
+%env <span class="token assign-left variable">OPENAI_API_KEY</span><span class="token operator">=</span>在这里写你获取到的ApiKey
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>不过需要注意，如果你需要将Notebook分享出去，记得把其中OpenAI的API key删除掉，免得别人的调用，花费都算在了你头上。</p>
+<h2 id="体验并测试OpenAI的API"><a href="#体验并测试OpenAI的API" class="headerlink" title="体验并测试OpenAI的API"></a>体验并测试OpenAI的API</h2><p>好了，现在环境已经搭建好了。无论你是使用本地的JupyterLab环境，还是使用Google免费提供的Colab环境，我都迫不及待地想要和你一起来体验一下OpenAI了。我在这里放了一段代码，你可以把它贴到你的Notebook里面，直接运行一下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai
+<span class="token keyword">import</span> os
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+COMPLETION_MODEL <span class="token operator">=</span> <span class="token string">"text-davinci-003"</span>
+
+prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+Consideration product : 工厂现货PVC充气青蛙夜市地摊热卖充气玩具发光蛙儿童水上玩具
+
+1. Compose human readable product title used on Amazon in english within 20 words.
+2. Write 5 selling points for the products in Amazon.
+3. Evaluate a price range for this product in U.S.
+
+Output the result in json format with three properties called title, selling_points and price_range
+"""</span>
+
+<span class="token keyword">def</span> <span class="token function">get_response</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    completions <span class="token operator">=</span> openai<span class="token punctuation">.</span>Completion<span class="token punctuation">.</span>create <span class="token punctuation">(</span>
+        engine<span class="token operator">=</span>COMPLETION_MODEL<span class="token punctuation">,</span>
+        prompt<span class="token operator">=</span>prompt<span class="token punctuation">,</span>
+        max_tokens<span class="token operator">=</span><span class="token number">512</span><span class="token punctuation">,</span>
+        n<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+        stop<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>
+        temperature<span class="token operator">=</span><span class="token number">0.0</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    message <span class="token operator">=</span> completions<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text
+    <span class="token keyword">return</span> message
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>get_response<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们来看看返回结果。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">&#123;</span>
+    <span class="token string">"title"</span><span class="token punctuation">:</span> <span class="token string">"Glow-in-the-Dark Inflatable PVC Frog Night Market Hot Selling Water Toy for Kids"</span><span class="token punctuation">,</span>
+    <span class="token string">"selling_points"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"Made of durable PVC material"</span><span class="token punctuation">,</span>
+        <span class="token string">"Glow-in-the-dark design for night play"</span><span class="token punctuation">,</span>
+        <span class="token string">"Inflatable design for easy storage and transport"</span><span class="token punctuation">,</span>
+        <span class="token string">"Perfect for water play and outdoor activities"</span><span class="token punctuation">,</span>
+        <span class="token string">"Great gift for kids"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"price_range"</span><span class="token punctuation">:</span> <span class="token string">"$10 - $20"</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个商品名称不是我构造的，而是直接找了1688里一个真实存在的商品。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0661253a8d1afc669cd7d2a0788d3dec.png" alt="图片"></p>
+<p>这段代码里面，我们调用了OpenAI的Completion接口，然后向它提了一个需求，也就是为一个我在1688上找到的中文商品名称做三件事情。</p>
+<ol>
+<li>为这个商品写一个适合在亚马逊上使用的英文标题。</li>
+<li>给这个商品写5个卖点。</li>
+<li>估计一下，这个商品在美国卖多少钱比较合适。</li>
+</ol>
+<p>同时，我们告诉OpenAI，我们希望返回的结果是JSON格式的，并且上面的三个事情用title、selling_points 和 price_range 三个字段返回。</p>
+<p>神奇的是，OpenAI真的理解了我们的需求，返回了一个符合我们要求的JSON字符串给我们。在这个过程中，它完成了好几件不同的事情。</p>
+<p>第一个是 <strong>翻译</strong>，我们给的商品名称是中文的，返回的内容是英文的。</p>
+<p>第二个是 <strong>理解你的语义去生成文本</strong>，我们这里希望它写一个在亚马逊电商平台上适合人读的标题，所以在返回的英文结果里面，AI没有保留原文里有的“工厂现货”的含义，因为那个明显不适合在亚马逊这样的平台上作为标题。下面5条描述也没有包含“工厂现货”这样的信息。而且，其中的第三条卖点 “Inflatable design for easy storage and transport”，也就是作为一个充气的产品易于存放和运输，这一点其实是从“充气”这个信息AI推理出来的，原来的中文标题里并没有这样的信息。</p>
+<p>第三个是 <strong>利用AI自己有的知识给商品定价</strong>，这里它为这个商品定的价格是在10～20美元之间。而我用 “Glow-in-the-Dark frog” 在亚马逊里搜索，搜索结果的第一行里，就有一个16美元发光的青蛙。</p>
+<p>最后是 <strong>根据我们的要求把我们想要的结果，通过一个 JSON 结构化地返回给我们</strong>。而且，尽管我们没有提出要求，但是AI还是很贴心地把5个卖点放在了一个数组里，方便你后续只选取其中的几个来用。返回的结果是JSON，这样方便了我们进一步利用返回结果。比如，我们就可以把这个结果解析之后存储到数据库里，然后展现给商品运营人员。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2eff6eaa3cee933dacaa20e3fcc55a7c.png" alt="图片"></p>
+<p>好了，如果看到这个结果你有些激动的话，请你先平复一下，我们马上来看一个新例子。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+Man Utd must win trophies, says Ten Hag ahead of League Cup final
+
+请将上面这句话的人名提取出来，并用json的方式展示出来
+"""</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>get_response<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">&#123;</span>
+  <span class="token string">"names"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"Ten Hag"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>我们给了它一个英文的体育新闻的标题，然后让AI把其中的人名提取出来。可以看到，返回的结果也准确地把新闻里面唯一出现的人名——曼联队的主教练滕哈格的名字提取了出来。</p>
+<p>和之前的例子不同，这个例子里，我们希望AI处理的内容是英文，给出的指令则是中文。不过AI都处理得很好，而且我们的输入完全是自然的中英文混合在一起，并没有使用特定的标识符或者分隔符。</p>
+<p>注：第一个例子，我们希望AI处理的内容是中文，给出的指令是英文。</p>
+<p>我们这里的两个例子，其实对应着很多不同的问题，其中就包括 <strong>机器翻译、文本生成、知识推理、命名实体识别</strong> 等等。在传统的机器学习领域，对于其中任何一个问题，都可能需要一个独立的机器学习模型。就算把这些模型都免费提供给你，把这些独立的机器学习模型组合到一起实现上面的效果，还需要海量的工程研发工作。没有一个数十人的团队，工作量根本看不到头。</p>
+<p>然而，OpenAI通过一个包含1750亿参数的大语言模型，就能理解自然的语言输入，直接完成各种不同的问题。而这个让人惊艳的表现，也是让很多人惊呼“通用人工智能（AGI）要来了”的原因。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，希望到这里，你对OpenAI提供的大语言模型能干什么有了一个最直观的认识。同时，你也应该已经注册好了对应的账号，生成了调用大语言模型的API Key。无论是在本地搭建了开发环境，还是通过Colab这样免费在线的开发环境，你都应该已经尝试着调用过OpenAI的API拿到一些返回结果了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/209d4b0285a845cc5594f6cb0b63fb8a.jpg" alt="图片"></p>
+<p>OpenAI提供的GPT-3.5系列的大语言模型，可以让你使用一个模型来解决所有的自然语言处理问题。原先我们需要一个个地单独训练模型，或者至少需要微调模型的场景，在大语言模型之下都消失了。这大大降低了我们利用AI解决问题的门槛，无论之前我们通过各种开源工具将机器学习变得多么便捷，想要做好自然语言处理，还是需要一些自然语言处理的专家。而且，往往我们还需要组合好多个模型，进行大量的工程开发工作。</p>
+<p>而在大语言模型时代，我们只需要有会向AI提问的应用开发工程师，就能开发AI应用了。这也是我设计这门课程的目的，希望能让你体会到当前开发AI工具的便利性。</p>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><ol>
+<li>请将今天课程中提供的示例代码，在你搭建的开发环境中运行一下。</li>
+<li>你可以去看一下 OpenAI 提供的 <a target="_blank" rel="noopener" href="https://platform.openai.com/examples/">示例</a>，找几个你感兴趣的用途，在上面的开发环境里运行体验一下，你也可以脑洞大开，尝试一些你想用AI解决的问题，看看AI能不能给出你想要的结果。</li>
+</ol>
+<p>欢迎你把你体验的提示语和结果分享在评论区，看看都能有什么样的好创意。也欢迎你把这节课分享给感兴趣的朋友，我们下一讲再见。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>如果你想知道GPT系列大模型到底是怎么回事儿，我推荐你去看一下李沐老师讲解GPT系列论文的视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1AF411b7xQ/">GPT、GPT-2、GPT-3 论文精读</a>，这个视频深入浅出，能够让你理解为什么现在GPT那么火热。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#01%EF%BD%9C%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AE%A9%E6%88%91%E4%BB%AC%E5%AD%A6%E4%BC%9A%E5%92%8CAI%E8%AF%B4%E8%AF%9D"><span class="toc-number">1.</span> <span class="toc-text">01｜重新出发，让我们学会和AI说话</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-OpenAI-%E7%9A%84-API-Key"><span class="toc-number">1.1.</span> <span class="toc-text">创建 OpenAI 的 API Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84Jupyter-Labs%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">搭建本地的Jupyter Labs开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87Colab%E4%BD%BF%E7%94%A8JupyterLab"><span class="toc-number">1.3.</span> <span class="toc-text">通过Colab使用JupyterLab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E9%AA%8C%E5%B9%B6%E6%B5%8B%E8%AF%95OpenAI%E7%9A%84API"><span class="toc-number">1.4.</span> <span class="toc-text">体验并测试OpenAI的API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0"><span class="toc-number">1.6.</span> <span class="toc-text">课后练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.7.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

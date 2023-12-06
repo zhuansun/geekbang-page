@@ -1,0 +1,743 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>21｜DID和PaddleGAN：表情生动的数字人播报员 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="21｜DID和PaddleGAN：表情生动的数字人播报员你好，我是徐文浩。 上一讲里，我们已经学会了通过AI来进行语音合成。有了语音识别、ChatGPT，再加上这个语音合成，我们就可以做一个能和我们语音聊天的机器人了。不过光有声音还不够，我们还希望这个声音可以是某一个特定的人的声音。就好像在电影《Her》里面那样，AI因为用了影星斯嘉丽·约翰逊的配音，也吸引到不少观众。最后，光有声音还不够，我们还">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21｜DID和PaddleGAN：表情生动的数字人播报员">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1138924586.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="21｜DID和PaddleGAN：表情生动的数字人播报员你好，我是徐文浩。 上一讲里，我们已经学会了通过AI来进行语音合成。有了语音识别、ChatGPT，再加上这个语音合成，我们就可以做一个能和我们语音聊天的机器人了。不过光有声音还不够，我们还希望这个声音可以是某一个特定的人的声音。就好像在电影《Her》里面那样，AI因为用了影星斯嘉丽·约翰逊的配音，也吸引到不少观众。最后，光有声音还不够，我们还">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.421Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1138924586"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '21｜DID和PaddleGAN：表情生动的数字人播报员',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">21｜DID和PaddleGAN：表情生动的数字人播报员</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="21｜DID和PaddleGAN：表情生动的数字人播报员"><a href="#21｜DID和PaddleGAN：表情生动的数字人播报员" class="headerlink" title="21｜DID和PaddleGAN：表情生动的数字人播报员"></a>21｜DID和PaddleGAN：表情生动的数字人播报员</h1><p>你好，我是徐文浩。</p>
+<p>上一讲里，我们已经学会了通过AI来进行语音合成。有了语音识别、ChatGPT，再加上这个语音合成，我们就可以做一个能和我们语音聊天的机器人了。不过光有声音还不够，我们还希望这个声音可以是某一个特定的人的声音。就好像在电影《Her》里面那样，AI因为用了影星斯嘉丽·约翰逊的配音，也吸引到不少观众。最后，光有声音还不够，我们还希望能够有视觉上的效果，最好能够模拟自己真的在镜头面前侃侃而谈的样子。</p>
+<p>这些需求结合在一起，就是最近市面上很火的“数字人”，也是我们这一讲要学习的内容。当然，在这么短的时间里，我们做出来的数字人的效果肯定比不上商业公司的方案。不过作为概念演示也完全够用了。</p>
+<h2 id="制作一个语音聊天机器人"><a href="#制作一个语音聊天机器人" class="headerlink" title="制作一个语音聊天机器人"></a>制作一个语音聊天机器人</h2><h3 id="从文本ChatBot起步"><a href="#从文本ChatBot起步" class="headerlink" title="从文本ChatBot起步"></a>从文本ChatBot起步</h3><p>我们先从最简单的文本ChatBot起步，先来做一个和 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/643915">第 6 讲</a> 一样的文本聊天机器人。对应的代码逻辑和第6讲的ChatGPT应用基本一样，整个的UI界面也还是使用Gradio来创建。</p>
+<p>唯一的区别在于，我们把原先自己封装的Conversation类换成了Langchain的ConversationChain来实现，并且使用了SummaryBufferMemory。这样，我们就不需要强行设定只保留过去几轮对话了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+<span class="token keyword">import</span> gradio <span class="token keyword">as</span> gr
+<span class="token keyword">from</span> langchain <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chains <span class="token keyword">import</span> ConversationChain
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>memory <span class="token keyword">import</span> ConversationSummaryBufferMemory
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">]</span>
+
+memory <span class="token operator">=</span> ConversationSummaryBufferMemory<span class="token punctuation">(</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> max_token_limit<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">)</span>
+conversation <span class="token operator">=</span> ConversationChain<span class="token punctuation">(</span>
+    llm<span class="token operator">=</span>OpenAI<span class="token punctuation">(</span>max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    memory<span class="token operator">=</span>memory<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> conversation<span class="token punctuation">.</span>predict<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> responses<span class="token punctuation">,</span> history
+
+<span class="token keyword">with</span> gr<span class="token punctuation">.</span>Blocks<span class="token punctuation">(</span>css<span class="token operator">=</span><span class="token string">"#chatbot&#123;height:800px&#125; .overflow-y-auto&#123;height:800px&#125;"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> demo<span class="token punctuation">:</span>
+    chatbot <span class="token operator">=</span> gr<span class="token punctuation">.</span>Chatbot<span class="token punctuation">(</span>elem_id<span class="token operator">=</span><span class="token string">"chatbot"</span><span class="token punctuation">)</span>
+    state <span class="token operator">=</span> gr<span class="token punctuation">.</span>State<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        txt <span class="token operator">=</span> gr<span class="token punctuation">.</span>Textbox<span class="token punctuation">(</span>show_label<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span><span class="token string">"Enter text and press enter"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">(</span>container<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    txt<span class="token punctuation">.</span>submit<span class="token punctuation">(</span>predict<span class="token punctuation">,</span> <span class="token punctuation">[</span>txt<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+demo<span class="token punctuation">.</span>launch<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对应界面：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f7d911de018acd1959efa040c8658d00.png" alt="图片"></p>
+<h3 id="增加语音输入功能"><a href="#增加语音输入功能" class="headerlink" title="增加语音输入功能"></a>增加语音输入功能</h3><p>接着，我们来给这个聊天机器人加上语音输入的功能，Gradio自带Audio模块，所以要做到这一点也不难。</p>
+<ol>
+<li>首先，我们在Gradio的界面代码里面增加一个Audio组件。这个组件可以录制你的麦克风的声音。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    txt <span class="token operator">=</span> gr<span class="token punctuation">.</span>Textbox<span class="token punctuation">(</span>show_label<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span><span class="token string">"Enter text and press enter"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">(</span>container<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ol>
+<li>然后，我们封装了一个transcribe方法，通过调用OpenAI的Whisper API就能够完成语音识别。这里有一点需要注意，OpenAI的Whisper API有点笨，它是根据文件名的后缀来判断是否是它支持的文件格式的。而Gradio的Audio组件录制出来的WAV文件没有后缀，所以我们要在这里做个文件重命名的工作。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">transcribe</span><span class="token punctuation">(</span>audio<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>audio<span class="token punctuation">,</span> audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">)</span>
+    audio_file <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+    transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>接着，我们就要把麦克风录好的声音自动发送给语音识别，然后再提交给原先基于文本聊天的机器人就好了。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">audio<span class="token punctuation">.</span>change<span class="token punctuation">(</span>process_audio<span class="token punctuation">,</span> <span class="token punctuation">[</span>audio<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们先在Audio的change事件里，定义了触发process_audio的函数。这样，一旦麦克风的声音录制下来，就会直接触发聊天对话，不需要再单独手工提交一次内容。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">process_audio</span><span class="token punctuation">(</span>audio<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    text <span class="token operator">=</span> transcribe<span class="token punctuation">(</span>audio<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> predict<span class="token punctuation">(</span>text<span class="token punctuation">,</span> history<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>然后在process_audio函数里，我们先是转录对应的文本，再调用文本聊天机器人的predict函数，触发对话。</p>
+<p>修改后的完整代码在下面，你可以在本地运行，体验一下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+<span class="token keyword">import</span> gradio <span class="token keyword">as</span> gr
+<span class="token keyword">import</span> azure<span class="token punctuation">.</span>cognitiveservices<span class="token punctuation">.</span>speech <span class="token keyword">as</span> speechsdk
+<span class="token keyword">from</span> langchain <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chains <span class="token keyword">import</span> ConversationChain
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>memory <span class="token keyword">import</span> ConversationSummaryBufferMemory
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">]</span>
+
+memory <span class="token operator">=</span> ConversationSummaryBufferMemory<span class="token punctuation">(</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> max_token_limit<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">)</span>
+conversation <span class="token operator">=</span> ConversationChain<span class="token punctuation">(</span>
+    llm<span class="token operator">=</span>OpenAI<span class="token punctuation">(</span>max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    memory<span class="token operator">=</span>memory<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> conversation<span class="token punctuation">.</span>predict<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> responses<span class="token punctuation">,</span> history
+
+<span class="token keyword">def</span> <span class="token function">transcribe</span><span class="token punctuation">(</span>audio<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>audio<span class="token punctuation">,</span> audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">)</span>
+    audio_file <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+    transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">process_audio</span><span class="token punctuation">(</span>audio<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    text <span class="token operator">=</span> transcribe<span class="token punctuation">(</span>audio<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> predict<span class="token punctuation">(</span>text<span class="token punctuation">,</span> history<span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> gr<span class="token punctuation">.</span>Blocks<span class="token punctuation">(</span>css<span class="token operator">=</span><span class="token string">"#chatbot&#123;height:350px&#125; .overflow-y-auto&#123;height:500px&#125;"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> demo<span class="token punctuation">:</span>
+    chatbot <span class="token operator">=</span> gr<span class="token punctuation">.</span>Chatbot<span class="token punctuation">(</span>elem_id<span class="token operator">=</span><span class="token string">"chatbot"</span><span class="token punctuation">)</span>
+    state <span class="token operator">=</span> gr<span class="token punctuation">.</span>State<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        txt <span class="token operator">=</span> gr<span class="token punctuation">.</span>Textbox<span class="token punctuation">(</span>show_label<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span><span class="token string">"Enter text and press enter"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">(</span>container<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        audio <span class="token operator">=</span> gr<span class="token punctuation">.</span>Audio<span class="token punctuation">(</span>source<span class="token operator">=</span><span class="token string">"microphone"</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token string">"filepath"</span><span class="token punctuation">)</span>
+
+    txt<span class="token punctuation">.</span>submit<span class="token punctuation">(</span>predict<span class="token punctuation">,</span> <span class="token punctuation">[</span>txt<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    audio<span class="token punctuation">.</span>change<span class="token punctuation">(</span>process_audio<span class="token punctuation">,</span> <span class="token punctuation">[</span>audio<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+demo<span class="token punctuation">.</span>launch<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对应界面：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/954c7e642beca777016922f180444873.png" alt="图片"></p>
+<h3 id="增加语音回复功能"><a href="#增加语音回复功能" class="headerlink" title="增加语音回复功能"></a>增加语音回复功能</h3><p>在能够接收语音输入之后，我们要做的就是让AI也能够用语音来回答我们的问题。而这个功能，通过 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/650449">上一讲</a> 我们介绍过的Azure的语音合成功能就能实现。我们只需要封装一个函数，来实现语音合成与播放的功能，然后在predict函数里面，拿到ChatGPT返回的回答之后调用一下这个函数就好了。</p>
+<ol>
+<li>封装一个函数进行语音合成与播放。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">
+speech_config <span class="token operator">=</span> speechsdk<span class="token punctuation">.</span>SpeechConfig<span class="token punctuation">(</span>subscription<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'AZURE_SPEECH_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> region<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'AZURE_SPEECH_REGION'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+audio_config <span class="token operator">=</span> speechsdk<span class="token punctuation">.</span>audio<span class="token punctuation">.</span>AudioOutputConfig<span class="token punctuation">(</span>use_default_speaker<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># The language of the voice that speaks.</span>
+speech_config<span class="token punctuation">.</span>speech_synthesis_language<span class="token operator">=</span><span class="token string">'zh-CN'</span>
+speech_config<span class="token punctuation">.</span>speech_synthesis_voice_name<span class="token operator">=</span><span class="token string">'zh-CN-XiaohanNeural'</span>
+
+speech_synthesizer <span class="token operator">=</span> speechsdk<span class="token punctuation">.</span>SpeechSynthesizer<span class="token punctuation">(</span>speech_config<span class="token operator">=</span>speech_config<span class="token punctuation">,</span> audio_config<span class="token operator">=</span>audio_config<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">play_voice</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    speech_synthesizer<span class="token punctuation">.</span>speak_text_async<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>在拿到ChatGPT的返回结果之后调用一下这个函数。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> conversation<span class="token punctuation">.</span>predict<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    play_voice<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> responses<span class="token punctuation">,</span> history
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>完整的语音对话的Demo代码我一并放在了下面，你可以像 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/643915">第 6 讲</a> 里我们介绍过的那样，直接部署到Gradio里面体验一下分享出去。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+<span class="token keyword">import</span> gradio <span class="token keyword">as</span> gr
+<span class="token keyword">import</span> azure<span class="token punctuation">.</span>cognitiveservices<span class="token punctuation">.</span>speech <span class="token keyword">as</span> speechsdk
+<span class="token keyword">from</span> langchain <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chains <span class="token keyword">import</span> ConversationChain
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>memory <span class="token keyword">import</span> ConversationSummaryBufferMemory
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">]</span>
+
+memory <span class="token operator">=</span> ConversationSummaryBufferMemory<span class="token punctuation">(</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> max_token_limit<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">)</span>
+conversation <span class="token operator">=</span> ConversationChain<span class="token punctuation">(</span>
+    llm<span class="token operator">=</span>OpenAI<span class="token punctuation">(</span>max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    memory<span class="token operator">=</span>memory<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+speech_config <span class="token operator">=</span> speechsdk<span class="token punctuation">.</span>SpeechConfig<span class="token punctuation">(</span>subscription<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'AZURE_SPEECH_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> region<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'AZURE_SPEECH_REGION'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+audio_config <span class="token operator">=</span> speechsdk<span class="token punctuation">.</span>audio<span class="token punctuation">.</span>AudioOutputConfig<span class="token punctuation">(</span>use_default_speaker<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token comment"># The language of the voice that speaks.</span>
+speech_config<span class="token punctuation">.</span>speech_synthesis_language<span class="token operator">=</span><span class="token string">'zh-CN'</span>
+speech_config<span class="token punctuation">.</span>speech_synthesis_voice_name<span class="token operator">=</span><span class="token string">'zh-CN-XiaohanNeural'</span>
+
+speech_synthesizer <span class="token operator">=</span> speechsdk<span class="token punctuation">.</span>SpeechSynthesizer<span class="token punctuation">(</span>speech_config<span class="token operator">=</span>speech_config<span class="token punctuation">,</span> audio_config<span class="token operator">=</span>audio_config<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">play_voice</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    speech_synthesizer<span class="token punctuation">.</span>speak_text_async<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    response <span class="token operator">=</span> conversation<span class="token punctuation">.</span>predict<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+    history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    play_voice<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> responses<span class="token punctuation">,</span> history
+
+<span class="token keyword">def</span> <span class="token function">transcribe</span><span class="token punctuation">(</span>audio<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>audio<span class="token punctuation">,</span> audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">)</span>
+    audio_file <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+    transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">process_audio</span><span class="token punctuation">(</span>audio<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    text <span class="token operator">=</span> transcribe<span class="token punctuation">(</span>audio<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> predict<span class="token punctuation">(</span>text<span class="token punctuation">,</span> history<span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> gr<span class="token punctuation">.</span>Blocks<span class="token punctuation">(</span>css<span class="token operator">=</span><span class="token string">"#chatbot&#123;height:800px&#125; .overflow-y-auto&#123;height:800px&#125;"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> demo<span class="token punctuation">:</span>
+    chatbot <span class="token operator">=</span> gr<span class="token punctuation">.</span>Chatbot<span class="token punctuation">(</span>elem_id<span class="token operator">=</span><span class="token string">"chatbot"</span><span class="token punctuation">)</span>
+    state <span class="token operator">=</span> gr<span class="token punctuation">.</span>State<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        txt <span class="token operator">=</span> gr<span class="token punctuation">.</span>Textbox<span class="token punctuation">(</span>show_label<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span><span class="token string">"Enter text and press enter"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">(</span>container<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        audio <span class="token operator">=</span> gr<span class="token punctuation">.</span>Audio<span class="token punctuation">(</span>source<span class="token operator">=</span><span class="token string">"microphone"</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token string">"filepath"</span><span class="token punctuation">)</span>
+
+    txt<span class="token punctuation">.</span>submit<span class="token punctuation">(</span>predict<span class="token punctuation">,</span> <span class="token punctuation">[</span>txt<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    audio<span class="token punctuation">.</span>change<span class="token punctuation">(</span>process_audio<span class="token punctuation">,</span> <span class="token punctuation">[</span>audio<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+demo<span class="token punctuation">.</span>launch<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="用D-ID给语音对口型"><a href="#用D-ID给语音对口型" class="headerlink" title="用D-ID给语音对口型"></a>用D-ID给语音对口型</h2><p>这里我们设计的聊天机器人不仅能够完全听懂我们说的话，还能通过语音来对话，这的确是一件很酷的事情。而且这里我们算上空行，也只用了60行代码。不过，我们并不会止步于此。接下来，我们还要为这个聊天机器人配上视频画面和口型。</p>
+<p>现在，国内外已经有一些公司开始提供基于AI生成能对上口型的“数字人”的业务了。这里，我们就来试试目前用户比较多的 <a target="_blank" rel="noopener" href="https://www.d-id.com/">D-ID</a> 提供的API，毕竟它直接为所有开发者提供了开放平台，并且还有5分钟的免费额度。</p>
+<h3 id="通过D-ID生成视频"><a href="#通过D-ID生成视频" class="headerlink" title="通过D-ID生成视频"></a>通过D-ID生成视频</h3><p>首先，你要去d-id.com注册一个账号。别紧张，d-id.com 有邮箱就能注册账号，不像ChatGPT那么麻烦，并且D-ID送给注册用户20次调用API的机会，我们可以好好利用这些免费额度。</p>
+<p>注册好账号以后，你就可以去访问自己的 <a target="_blank" rel="noopener" href="https://studio.d-id.com/account-settings">Account Setting</a> 页面生成一个API_KEY了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/40219e8ff1ea0fcea51263163b7ded3a.png" alt="图片"></p>
+<p>之后，你可以查看一下D-ID的文档，里面不仅有API的使用说明，还有一个类似Playground的界面，你可以设置参数，并且可以测试调用API。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7b5afe6c026e6cffd62824247985ef6c.png" alt="图片"></p>
+<p>我们设置一下对应的API KEY并且确保安装了requests这个专门用来写HTTP请求的Python包，就可以测试一下这个代码的效果了。</p>
+<p>安装requests包：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install requests
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>设置DID_API_KEY的环境变量：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">export DID_API_KEY<span class="token operator">=</span>YOUR_DID_API_KEY
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们可以先调用D-ID的 <strong>Create A Talk</strong> 接口，来创建一段小视频。只需要输入两个东西：一个是我们希望这个视频念出来的文本信息input，另一个就是一个清晰的正面头像照片。</p>
+<p>在下面的代码里面可以看到，这其实就是一个简单的HTTP请求，并且文本转换成语音的过程，其实调用的也是Azure的语音合成功能。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> os
+
+<span class="token keyword">def</span> <span class="token function">generate_talk</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> avatar_url<span class="token punctuation">,</span>
+                  voice_type <span class="token operator">=</span> <span class="token string">"microsoft"</span><span class="token punctuation">,</span>
+                  voice_id <span class="token operator">=</span> <span class="token string">"zh-CN-XiaomoNeural"</span><span class="token punctuation">,</span>
+                  api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'DID_API_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> <span class="token string">"https://api.d-id.com/talks"</span>
+    payload <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"script"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"text"</span><span class="token punctuation">,</span>
+            <span class="token string">"provider"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+                <span class="token string">"type"</span><span class="token punctuation">:</span> voice_type<span class="token punctuation">,</span>
+                <span class="token string">"voice_id"</span><span class="token punctuation">:</span> voice_id
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token string">"ssml"</span><span class="token punctuation">:</span> <span class="token string">"false"</span><span class="token punctuation">,</span>
+            <span class="token string">"input"</span><span class="token punctuation">:</span> <span class="token builtin">input</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token string">"config"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"fluent"</span><span class="token punctuation">:</span> <span class="token string">"false"</span><span class="token punctuation">,</span>
+            <span class="token string">"pad_audio"</span><span class="token punctuation">:</span> <span class="token string">"0.0"</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token string">"source_url"</span><span class="token punctuation">:</span> avatar_url
+    <span class="token punctuation">&#125;</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"accept"</span><span class="token punctuation">:</span> <span class="token string">"application/json"</span><span class="token punctuation">,</span>
+        <span class="token string">"content-type"</span><span class="token punctuation">:</span> <span class="token string">"application/json"</span><span class="token punctuation">,</span>
+        <span class="token string">"authorization"</span><span class="token punctuation">:</span> <span class="token string">"Basic "</span> <span class="token operator">+</span> api_key
+    <span class="token punctuation">&#125;</span>
+
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> json<span class="token operator">=</span>payload<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+avatar_url <span class="token operator">=</span> <span class="token string">"https://cdn.discordapp.com/attachments/1065596492796153856/1095617463112187984/John_Carmack_Potrait_668a7a8d-1bb0-427d-8655-d32517f6583d.png"</span>
+text <span class="token operator">=</span> <span class="token string">"今天天气真不错呀。"</span>
+
+response <span class="token operator">=</span> generate_talk<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span>text<span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">&#123;</span><span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token string">'tlk_Nk9OfTGu_ZvLztD3HHC4b'</span><span class="token punctuation">,</span> <span class="token string">'created_at'</span><span class="token punctuation">:</span> <span class="token string">'2023-04-12T03:07:38.593Z'</span><span class="token punctuation">,</span> <span class="token string">'created_by'</span><span class="token punctuation">:</span> <span class="token string">'google-oauth2|103752135956955592319'</span><span class="token punctuation">,</span> <span class="token string">'status'</span><span class="token punctuation">:</span> <span class="token string">'created'</span><span class="token punctuation">,</span> <span class="token string">'object'</span><span class="token punctuation">:</span> <span class="token string">'talk'</span><span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这段代码运行成功之后，返回的结果是一个JSON。JSON里面有一个对应视频的id，我们可以通过这个id用Get A Talk的API拿到我们刚刚生成的口播视频，然后在Notebook里面播放。</p>
+<p>获取生成的Talk视频：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_a_talk</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">,</span> api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'DID_API_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> <span class="token string">"https://api.d-id.com/talks/"</span> <span class="token operator">+</span> <span class="token builtin">id</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"accept"</span><span class="token punctuation">:</span> <span class="token string">"application/json"</span><span class="token punctuation">,</span>
+        <span class="token string">"authorization"</span><span class="token punctuation">:</span> <span class="token string">"Basic "</span><span class="token operator">+</span>api_key
+    <span class="token punctuation">&#125;</span>
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+talk <span class="token operator">=</span> get_a_talk<span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>talk<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">&#123;</span><span class="token string">'metadata'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'driver_url'</span><span class="token punctuation">:</span> <span class="token string">'bank://lively/driver-03/original'</span><span class="token punctuation">,</span> <span class="token string">'mouth_open'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token string">'num_faces'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'num_frames'</span><span class="token punctuation">:</span> <span class="token number">48</span><span class="token punctuation">,</span> <span class="token string">'processing_fps'</span><span class="token punctuation">:</span> <span class="token number">22.996171137505605</span><span class="token punctuation">,</span> <span class="token string">'resolution'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'size_kib'</span><span class="token punctuation">:</span> <span class="token number">386.990234375</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">'audio_url'</span><span class="token punctuation">:</span> <span class="token string">'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C103752135956955592319/tlk_Nk9OfTGu_ZvLztD3HHC4b/microsoft.wav?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&amp;Expires=1681355260&amp;Signature=2RluUIQyg%2FnIz54O2xEIr%2FqjaXA%3D'</span><span class="token punctuation">,</span> <span class="token string">'created_at'</span><span class="token punctuation">:</span> <span class="token string">'2023-04-12T03:07:38.593Z'</span><span class="token punctuation">,</span> <span class="token string">'face'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'mask_confidence'</span><span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'detection'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">205</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">504</span><span class="token punctuation">,</span> <span class="token number">552</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'overlap'</span><span class="token punctuation">:</span> <span class="token string">'no'</span><span class="token punctuation">,</span> <span class="token string">'size'</span><span class="token punctuation">:</span> <span class="token number">618</span><span class="token punctuation">,</span> <span class="token string">'top_left'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'face_id'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'detect_confidence'</span><span class="token punctuation">:</span> <span class="token number">0.9987131357192993</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">'config'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'stitch'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token string">'pad_audio'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'align_driver'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token string">'sharpen'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token string">'auto_match'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token string">'normalization_factor'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'logo'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'url'</span><span class="token punctuation">:</span> <span class="token string">'d-id-logo'</span><span class="token punctuation">,</span> <span class="token string">'position'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">'motion_factor'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'result_format'</span><span class="token punctuation">:</span> <span class="token string">'.mp4'</span><span class="token punctuation">,</span> <span class="token string">'fluent'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token string">'align_expand_factor'</span><span class="token punctuation">:</span> <span class="token number">0.3</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">'source_url'</span><span class="token punctuation">:</span> <span class="token string">'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C103752135956955592319/tlk_Nk9OfTGu_ZvLztD3HHC4b/source/noelle.jpeg?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&amp;Expires=1681355260&amp;Signature=LNSFBaEUWtPYUo469qzmUGeHzec%3D'</span><span class="token punctuation">,</span> <span class="token string">'created_by'</span><span class="token punctuation">:</span> <span class="token string">'google-oauth2|103752135956955592319'</span><span class="token punctuation">,</span> <span class="token string">'status'</span><span class="token punctuation">:</span> <span class="token string">'done'</span><span class="token punctuation">,</span> <span class="token string">'driver_url'</span><span class="token punctuation">:</span> <span class="token string">'bank://lively/'</span><span class="token punctuation">,</span> <span class="token string">'modified_at'</span><span class="token punctuation">:</span> <span class="token string">'2023-04-12T03:07:42.570Z'</span><span class="token punctuation">,</span> <span class="token string">'user_id'</span><span class="token punctuation">:</span> <span class="token string">'google-oauth2|103752135956955592319'</span><span class="token punctuation">,</span> <span class="token string">'result_url'</span><span class="token punctuation">:</span> <span class="token string">'https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C103752135956955592319/tlk_Nk9OfTGu_ZvLztD3HHC4b/noelle.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&amp;Expires=1681355262&amp;Signature=slWpvS1eEqcw4N%2FqVWN6K0zewuU%3D'</span><span class="token punctuation">,</span> <span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token string">'tlk_Nk9OfTGu_ZvLztD3HHC4b'</span><span class="token punctuation">,</span> <span class="token string">'duration'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'started_at'</span><span class="token punctuation">:</span> <span class="token string">'2023-04-12T03:07:40.402'</span><span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>将对应的视频展示播放出来：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> IPython<span class="token punctuation">.</span>display <span class="token keyword">import</span> display<span class="token punctuation">,</span> HTML
+<span class="token keyword">def</span> <span class="token function">play_mp4_video</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    video_tag <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"""
+    &lt;video width="640" height="480" controls>
+        &lt;source src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>url<span class="token punctuation">&#125;</span></span><span class="token string">" type="video/mp4">
+    Your browser does not support the video tag.
+    &lt;/video>
+    """</span></span>
+    <span class="token keyword">return</span> HTML<span class="token punctuation">(</span>video_tag<span class="token punctuation">)</span>
+result_url <span class="token operator">=</span> talk<span class="token punctuation">[</span><span class="token string">'result_url'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+play_mp4_video<span class="token punctuation">(</span>result_url<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出展示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/754e0357c3dd475b3b7f42c7c9beff7b.png" alt="图片"></p>
+<p>在这里，我用Midjourney生成了一张ID Software的创始人——大神约翰卡马克的头像。然后让D-ID给这个头像生成对应的对口型的视频，看到心目中的技术偶像开口说话还是非常让人震撼的。</p>
+<h3 id="将视频嵌入到Gradio应用中"><a href="#将视频嵌入到Gradio应用中" class="headerlink" title="将视频嵌入到Gradio应用中"></a>将视频嵌入到Gradio应用中</h3><p>有了这样可以对口型播放的视频，我们就可以再改造一下刚才通过Gradio创建的应用，不要光让机器人用语音了，直接用视频来开口说话吧。</p>
+<p>我们在前面语音聊天界面的基础上，又做了几处改造。</p>
+<ol>
+<li>我们在原有的Gradio界面中，又增加了一个HTML组件，显示头像图片，并用来播放对好口型的视频。默认一开始，显示的是一张图片。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">……
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        video <span class="token operator">=</span> gr<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'&lt;img src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>avatar_url<span class="token punctuation">&#125;</span></span><span class="token string">" width="320" height="240" alt="John Carmack">'</span></span><span class="token punctuation">,</span> live<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>注：这里增加了一个用来播放视频的HTML组件。</p>
+<ol>
+<li>在录音转录后触发Predict函数的时候，我们不再通过Azure的语音合成技术来生成语音，而是直接使用 D-ID 的API来生成基于头像的且口型同步的视频动画。并且视频动画在生成之后，将前面HTML组件的内容替换成新生成的视频，并自动播放。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token builtin">input</span> <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        history<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+        response <span class="token operator">=</span> conversation<span class="token punctuation">.</span>predict<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+        video_url <span class="token operator">=</span> get_mp4_video<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span>response<span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span>
+        video_html <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"""&lt;video width="320" height="240" controls autoplay>&lt;source src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>video_url<span class="token punctuation">&#125;</span></span><span class="token string">" type="video/mp4">&lt;/video>"""</span></span>
+        history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+        responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> responses<span class="token punctuation">,</span> video_html<span class="token punctuation">,</span> history
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        video_html <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f'&lt;img src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>avatar_url<span class="token punctuation">&#125;</span></span><span class="token string">" width="320" height="240" alt="John Carmack">'</span></span>
+        responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> responses<span class="token punctuation">,</span> video_html<span class="token punctuation">,</span> history
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：通过ChatGPT获取回答，然后将回答和头像一起生成一个视频文件自动播放。</p>
+<ol>
+<li>在获取视频的时候需要注意一点，就是我们需要等待视频在D-ID的服务器生成完毕，才能拿到对应的result_url。其实更合理的做法是注册一个webhook，等待d-id通过webhook通知我们视频生成完毕了，再播放视频。不过考虑到演示的简便和代码数量，我们就没有再启用一个HTTP服务来接收webhook，而是采用sleep 1秒然后重试的方式，来实现获取视频的效果。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_mp4_video</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    response <span class="token operator">=</span> generate_talk<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span>
+    talk <span class="token operator">=</span> get_a_talk<span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    video_url <span class="token operator">=</span> <span class="token string">""</span>
+    index <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> index <span class="token operator">&lt;</span> <span class="token number">30</span><span class="token punctuation">:</span>
+        index <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> <span class="token string">'result_url'</span> <span class="token keyword">in</span> talk<span class="token punctuation">:</span>
+            video_url <span class="token operator">=</span> talk<span class="token punctuation">[</span><span class="token string">'result_url'</span><span class="token punctuation">]</span>
+            <span class="token keyword">return</span> video_url
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            talk <span class="token operator">=</span> get_a_talk<span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> video_url
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：result_url字段会在服务器端把整个视频生成完成之后才出现，所以我们需要循环等待。</p>
+<p>改造完整体代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os<span class="token punctuation">,</span> time<span class="token punctuation">,</span> requests
+<span class="token keyword">import</span> gradio <span class="token keyword">as</span> gr
+<span class="token keyword">from</span> gradio <span class="token keyword">import</span> HTML
+<span class="token keyword">from</span> langchain <span class="token keyword">import</span> OpenAI
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chains <span class="token keyword">import</span> ConversationChain
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>memory <span class="token keyword">import</span> ConversationSummaryBufferMemory
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">]</span>
+
+memory <span class="token operator">=</span> ConversationSummaryBufferMemory<span class="token punctuation">(</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> max_token_limit<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">)</span>
+conversation <span class="token operator">=</span> ConversationChain<span class="token punctuation">(</span>
+    llm<span class="token operator">=</span>OpenAI<span class="token punctuation">(</span>max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    memory<span class="token operator">=</span>memory<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+avatar_url <span class="token operator">=</span> <span class="token string">"https://cdn.discordapp.com/attachments/1065596492796153856/1095617463112187984/John_Carmack_Potrait_668a7a8d-1bb0-427d-8655-d32517f6583d.png"</span>
+
+<span class="token keyword">def</span> <span class="token function">generate_talk</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> avatar_url<span class="token punctuation">,</span>
+                  voice_type <span class="token operator">=</span> <span class="token string">"microsoft"</span><span class="token punctuation">,</span>
+                  voice_id <span class="token operator">=</span> <span class="token string">"zh-CN-YunyeNeural"</span><span class="token punctuation">,</span>
+                  api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'DID_API_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> <span class="token string">"https://api.d-id.com/talks"</span>
+    payload <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"script"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"text"</span><span class="token punctuation">,</span>
+            <span class="token string">"provider"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+                <span class="token string">"type"</span><span class="token punctuation">:</span> voice_type<span class="token punctuation">,</span>
+                <span class="token string">"voice_id"</span><span class="token punctuation">:</span> voice_id
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token string">"ssml"</span><span class="token punctuation">:</span> <span class="token string">"false"</span><span class="token punctuation">,</span>
+            <span class="token string">"input"</span><span class="token punctuation">:</span> <span class="token builtin">input</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token string">"config"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"fluent"</span><span class="token punctuation">:</span> <span class="token string">"false"</span><span class="token punctuation">,</span>
+            <span class="token string">"pad_audio"</span><span class="token punctuation">:</span> <span class="token string">"0.0"</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token string">"source_url"</span><span class="token punctuation">:</span> avatar_url
+    <span class="token punctuation">&#125;</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"accept"</span><span class="token punctuation">:</span> <span class="token string">"application/json"</span><span class="token punctuation">,</span>
+        <span class="token string">"content-type"</span><span class="token punctuation">:</span> <span class="token string">"application/json"</span><span class="token punctuation">,</span>
+        <span class="token string">"authorization"</span><span class="token punctuation">:</span> <span class="token string">"Basic "</span> <span class="token operator">+</span> api_key
+    <span class="token punctuation">&#125;</span>
+
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> json<span class="token operator">=</span>payload<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_a_talk</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">,</span> api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'DID_API_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> <span class="token string">"https://api.d-id.com/talks/"</span> <span class="token operator">+</span> <span class="token builtin">id</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"accept"</span><span class="token punctuation">:</span> <span class="token string">"application/json"</span><span class="token punctuation">,</span>
+        <span class="token string">"authorization"</span><span class="token punctuation">:</span> <span class="token string">"Basic "</span><span class="token operator">+</span>api_key
+    <span class="token punctuation">&#125;</span>
+    response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_mp4_video</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    response <span class="token operator">=</span> generate_talk<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span>
+    talk <span class="token operator">=</span> get_a_talk<span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    video_url <span class="token operator">=</span> <span class="token string">""</span>
+    index <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> index <span class="token operator">&lt;</span> <span class="token number">30</span><span class="token punctuation">:</span>
+        index <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> <span class="token string">'result_url'</span> <span class="token keyword">in</span> talk<span class="token punctuation">:</span>
+            video_url <span class="token operator">=</span> talk<span class="token punctuation">[</span><span class="token string">'result_url'</span><span class="token punctuation">]</span>
+            <span class="token keyword">return</span> video_url
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            talk <span class="token operator">=</span> get_a_talk<span class="token punctuation">(</span>response<span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> video_url
+
+<span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token builtin">input</span> <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        history<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+        response <span class="token operator">=</span> conversation<span class="token punctuation">.</span>predict<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+        video_url <span class="token operator">=</span> get_mp4_video<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token operator">=</span>response<span class="token punctuation">,</span> avatar_url<span class="token operator">=</span>avatar_url<span class="token punctuation">)</span>
+        video_html <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"""&lt;video width="320" height="240" controls autoplay>&lt;source src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>video_url<span class="token punctuation">&#125;</span></span><span class="token string">" type="video/mp4">&lt;/video>"""</span></span>
+        history<span class="token punctuation">.</span>append<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+        responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> responses<span class="token punctuation">,</span> video_html<span class="token punctuation">,</span> history
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        video_html <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f'&lt;img src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>avatar_url<span class="token punctuation">&#125;</span></span><span class="token string">" width="320" height="240" alt="John Carmack">'</span></span>
+        responses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token keyword">for</span> u<span class="token punctuation">,</span>b <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>history<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> history<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> responses<span class="token punctuation">,</span> video_html<span class="token punctuation">,</span> history
+
+<span class="token keyword">def</span> <span class="token function">transcribe</span><span class="token punctuation">(</span>audio<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>audio<span class="token punctuation">,</span> audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">)</span>
+    audio_file <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>audio <span class="token operator">+</span> <span class="token string">'.wav'</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+    transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span> prompt<span class="token operator">=</span><span class="token string">"这是一段简体中文的问题。"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">process_audio</span><span class="token punctuation">(</span>audio<span class="token punctuation">,</span> history<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> audio <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        text <span class="token operator">=</span> transcribe<span class="token punctuation">(</span>audio<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> predict<span class="token punctuation">(</span>text<span class="token punctuation">,</span> history<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        text <span class="token operator">=</span> <span class="token boolean">None</span>
+        <span class="token keyword">return</span> predict<span class="token punctuation">(</span>text<span class="token punctuation">,</span> history<span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> gr<span class="token punctuation">.</span>Blocks<span class="token punctuation">(</span>css<span class="token operator">=</span><span class="token string">"#chatbot&#123;height:500px&#125; .overflow-y-auto&#123;height:500px&#125;"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> demo<span class="token punctuation">:</span>
+    chatbot <span class="token operator">=</span> gr<span class="token punctuation">.</span>Chatbot<span class="token punctuation">(</span>elem_id<span class="token operator">=</span><span class="token string">"chatbot"</span><span class="token punctuation">)</span>
+    state <span class="token operator">=</span> gr<span class="token punctuation">.</span>State<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        txt <span class="token operator">=</span> gr<span class="token punctuation">.</span>Textbox<span class="token punctuation">(</span>show_label<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span><span class="token string">"Enter text and press enter"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">(</span>container<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        audio <span class="token operator">=</span> gr<span class="token punctuation">.</span>Audio<span class="token punctuation">(</span>source<span class="token operator">=</span><span class="token string">"microphone"</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token string">"filepath"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> gr<span class="token punctuation">.</span>Row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        video <span class="token operator">=</span> gr<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'&lt;img src="</span><span class="token interpolation"><span class="token punctuation">&#123;</span>avatar_url<span class="token punctuation">&#125;</span></span><span class="token string">" width="320" height="240" alt="John Carmack">'</span></span><span class="token punctuation">,</span> live<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    txt<span class="token punctuation">.</span>submit<span class="token punctuation">(</span>predict<span class="token punctuation">,</span> <span class="token punctuation">[</span>txt<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> video<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    audio<span class="token punctuation">.</span>change<span class="token punctuation">(</span>process_audio<span class="token punctuation">,</span> <span class="token punctuation">[</span>audio<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>chatbot<span class="token punctuation">,</span> video<span class="token punctuation">,</span> state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+demo<span class="token punctuation">.</span>launch<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/6531d11d7e54114bd4cd43fe8603622e.png" alt="图片"></p>
+<p>改造完整个应用，你可以试着运行一下。你的问题会由ID大神卡马克“亲口”+“当面”回答，是不是非常酷炫？</p>
+<h2 id="体验PaddleGAN开源模型下的数字主播"><a href="#体验PaddleGAN开源模型下的数字主播" class="headerlink" title="体验PaddleGAN开源模型下的数字主播"></a>体验PaddleGAN开源模型下的数字主播</h2><p>不过，使用D-ID的价格也不便宜，而前面的各个模块，我其实都给你看过对应的开源解决方案。比如ChatGPT我们可以用ChatGLM来代替，语音识别我们可以使用本地的Whisper模型，语音合成也可以通过PaddleSpeech里的fastspeech2的开源模型来完成。那么，我们这里也来尝试一下通过开源模型来合成这样的口播视频。</p>
+<p>目前比较容易找到的解决方案，是百度PaddlePaddle下的 <a target="_blank" rel="noopener" href="https://github.com/JiehangXie/PaddleBoBo">PaddleBobo</a> 开源项目。它背后使用的是PaddleGAN的对抗生成网络算法，来实现唇形和表情的匹配。不过PaddleGAN很久没有更新了，对于最新的Python3.10的支持和依赖有些问题。我们也只能在这里做一个简单的演示。</p>
+<p>这里的代码你不一定需要运行，因为这个程序对于GPU的显存要求比较高，而且对于Python以及Cuda的版本都有要求。而如果你使用CPU的话，对应的视频合成需要很长时间。你体验一下最后合成的视频效果就好了。</p>
+<p>首先我们需要配置一个Python3.8的环境，并且安装对应的依赖包。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conda create <span class="token operator">-</span>n py38 python<span class="token operator">=</span><span class="token number">3.8</span>
+conda activate py38
+
+<span class="token comment">#pip install paddlepaddle</span>
+<span class="token comment">#安装使用GPU的PaddlePaddle</span>
+pip install paddlepaddle<span class="token operator">-</span>gpu
+pip install ppgan
+pip install isort
+pip install typing<span class="token operator">-</span>extensions
+pip install lazy<span class="token operator">-</span><span class="token builtin">object</span><span class="token operator">-</span>proxy
+pip install wrapt
+pip install yacs
+pip install paddlespeech
+pip install <span class="token string">"numpy&lt;1.24.0"</span>
+
+brew install ffmpeg
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我们将PaddleBobo的代码通过Git下载到本地，并进入对应的目录。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">git clone https<span class="token punctuation">:</span><span class="token operator">//</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>JiehangXie<span class="token operator">/</span>PaddleBoBo
+cd PaddleBobo
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>我们将约翰卡马克的头像文件命名成johncarmack.png，复制到PaddleBobo的file&#x2F;input目录下，然后修改对应的default.yml的配置，让我们的视频都基于约翰卡马克的头像来生成。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">GANDRIVING<span class="token punctuation">:</span>
+  FOM_INPUT_IMAGE<span class="token punctuation">:</span> <span class="token string">'./file/input/johncarmack.png'</span>
+  FOM_DRIVING_VIDEO<span class="token punctuation">:</span> <span class="token string">'./file/input/zimeng.mp4'</span>
+  FOM_OUTPUT_VIDEO<span class="token punctuation">:</span> <span class="token string">'./file/input/johncarmack.mp4'</span>
+
+TTS<span class="token punctuation">:</span>
+  SPEED<span class="token punctuation">:</span> <span class="token number">1.0</span>
+  PITCH<span class="token punctuation">:</span> <span class="token number">1.0</span>
+  ENERGY<span class="token punctuation">:</span> <span class="token number">1.0</span>
+
+SAVEPATH<span class="token punctuation">:</span>
+  VIDEO_SAVE_PATH<span class="token punctuation">:</span> <span class="token string">'./file/output/video/'</span>
+  AUDIO_SAVE_PATH<span class="token punctuation">:</span> <span class="token string">'./file/output/audio/'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：修改GanDriving的相关配置。</p>
+<p>接着我们按照PaddleBobo的文档，通过create_virtual_human先生成一个能够动起来的人脸视频。如果你使用的是CPU的话，这个过程会很长，需要一两个小时。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">python create_virtual_human<span class="token punctuation">.</span>py <span class="token operator">-</span><span class="token operator">-</span>config default<span class="token punctuation">.</span>yaml
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>因为PaddleBobo这个项目有一段时间没有维护了，对于最新版本的PaddleSpeech有一些小小的兼容问题，所以你还需要调整一下 PaddleTools 里面的TTS.py文件，修改import MODEL_HOME包的名称。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> paddlespeech<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>env <span class="token keyword">import</span> MODEL_HOME
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后，我们再通过generate_demo输入我们希望这个视频口播的文字是什么。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">python general_demo<span class="token punctuation">.</span>py \
+    <span class="token operator">-</span><span class="token operator">-</span>human <span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">file</span><span class="token operator">/</span><span class="token builtin">input</span><span class="token operator">/</span>johncarmack<span class="token punctuation">.</span>mp4 \
+    <span class="token operator">-</span><span class="token operator">-</span>output johncarmack_output<span class="token punctuation">.</span>mp4 \
+    <span class="token operator">-</span><span class="token operator">-</span>text <span class="token string">"我是约翰卡马克，很高兴认识大家"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后生成的视频文件，我也放到我们的 <a target="_blank" rel="noopener" href="https://github.com/xuwenhao/geektime-ai-course/tree/main/data">代码库的 data 目录</a> 里了，你可以下载下来体验一下效果是怎么样的。目前来说，通过GAN生成影像的方式，需要花费的时间还是比较长的，未来的技术发展也可能更偏向于Diffuser类型的算法，因此今天我们更多地是提供一种新的体验，让你感受一下人工智能带来的影像方面的创新。</p>
+<p>这些命令行对应的Python程序其实也很简单，不超过50行代码，你有兴趣的话，可以读一下源代码看看它具体是调用哪些模型来实现的。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，这一节课，到这里就结束了。</p>
+<p>今天我们整合前两讲学习的知识，打造了一个可以通过语音来交互的聊天机器人。进一步地，我们通过D-ID.com这个SaaS，提供了一个能够对上口型、有表情的数字人来回复问题。当然，D-ID.com的价格比较昂贵，尤其是对于API调用的次数和生成视频的数量都有一定的限制。所以我们进一步尝试使用开源的PaddleBobo项目，来根据文本生成带口型的口播视频。而如果我们把语音识别从云换成本地的Whisper模型，把ChatGPT换成之前测试过的开源的ChatGLM，我们就有了一个完全开源的数字人解决方案。</p>
+<p>当然，今天我为你演示的数字人，从效果上来看还很一般。不过，要知道我们并没有使用任何数据对模型进行微调，而是完全使用预训练好的开源模型。我写对应的演示代码也就只用了一两天晚上的时间而已。如果想要进一步优化效果，我们完全可以基于这些开源模型进一步去改造微调。</p>
+<p>今天，大部分开源的深度学习技术已经进入了一个重大的拐点，任何人都可以通过云服务的API和开源模型搭建一个AI产品出来了。希望这一讲能让你拥有充足的知识和足够的创意去做出一个与众不同的产品来。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>语音相关的AI产品市场上还有很多，但目前很多好的产品还都是闭源收费的。比如 <a target="_blank" rel="noopener" href="https://beta.elevenlabs.io/speech-synthesis">elevenlabs</a> 就可以模仿人的语音语调。它也支持中文，而且预设的“老外”语音说出来的中文还真有点儿老外说中文的腔调，你可以试着去体验一下。我们上一讲介绍过的PaddleSpeech，百度官方也给出了对应的 <a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/4573549?sUid=2470186&shared=1&ts=1663753541400">小样本合成和小数据微调</a> 的示例，你也可以看一下。</p>
+<p>基于这些SaaS或者开源项目，你是否可以尝试一下，把对应的数字人的声音替换成你自己的？欢迎你大胆尝试并且把你的体会分享到留言区，也欢迎你把这一讲的内容分享给感兴趣的朋友，我们下一讲再见。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>关于数字人，有很多开源方案，比如 <a target="_blank" rel="noopener" href="https://github.com/zhangchenxu528/FACIAL">FACIAL</a> 就是由多个院校和三星研究院合作的解决方案。你也可以基于它们提供的代码来训练一个。感兴趣的话，可以去读一读它们的源码和论文。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#21%EF%BD%9CDID%E5%92%8CPaddleGAN%EF%BC%9A%E8%A1%A8%E6%83%85%E7%94%9F%E5%8A%A8%E7%9A%84%E6%95%B0%E5%AD%97%E4%BA%BA%E6%92%AD%E6%8A%A5%E5%91%98"><span class="toc-number">1.</span> <span class="toc-text">21｜DID和PaddleGAN：表情生动的数字人播报员</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E8%AF%AD%E9%9F%B3%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="toc-number">1.1.</span> <span class="toc-text">制作一个语音聊天机器人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%96%87%E6%9C%ACChatBot%E8%B5%B7%E6%AD%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">从文本ChatBot起步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E8%AF%AD%E9%9F%B3%E8%BE%93%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.2.</span> <span class="toc-text">增加语音输入功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E8%AF%AD%E9%9F%B3%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.3.</span> <span class="toc-text">增加语音回复功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8D-ID%E7%BB%99%E8%AF%AD%E9%9F%B3%E5%AF%B9%E5%8F%A3%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">用D-ID给语音对口型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87D-ID%E7%94%9F%E6%88%90%E8%A7%86%E9%A2%91"><span class="toc-number">1.2.1.</span> <span class="toc-text">通过D-ID生成视频</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E8%A7%86%E9%A2%91%E5%B5%8C%E5%85%A5%E5%88%B0Gradio%E5%BA%94%E7%94%A8%E4%B8%AD"><span class="toc-number">1.2.2.</span> <span class="toc-text">将视频嵌入到Gradio应用中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E9%AA%8CPaddleGAN%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E6%95%B0%E5%AD%97%E4%B8%BB%E6%92%AD"><span class="toc-number">1.3.</span> <span class="toc-text">体验PaddleGAN开源模型下的数字主播</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.6.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

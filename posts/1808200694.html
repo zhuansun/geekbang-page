@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>19｜Whisper+ChatGPT：请AI代你听播客 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="19｜Whisper+ChatGPT：请AI代你听播客你好，我是徐文浩。 今天，我们的课程开始进入一个新的主题了，那就是语音识别。过去几周我们介绍的ChatGPT虽然很强大，但是只能接受文本的输入。而在现实生活中，很多时候我们并不方便停下来打字。很多内容比如像播客也没有文字版，所以这个时候，我们就需要一个能够将语音内容转换成文本的能力。 作为目前AI界的领导者，OpenAI自然也不会放过这个需求。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19｜Whisper+ChatGPT：请AI代你听播客">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1808200694.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="19｜Whisper+ChatGPT：请AI代你听播客你好，我是徐文浩。 今天，我们的课程开始进入一个新的主题了，那就是语音识别。过去几周我们介绍的ChatGPT虽然很强大，但是只能接受文本的输入。而在现实生活中，很多时候我们并不方便停下来打字。很多内容比如像播客也没有文字版，所以这个时候，我们就需要一个能够将语音内容转换成文本的能力。 作为目前AI界的领导者，OpenAI自然也不会放过这个需求。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.415Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1808200694"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '19｜Whisper+ChatGPT：请AI代你听播客',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">19｜Whisper+ChatGPT：请AI代你听播客</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="19｜Whisper-ChatGPT：请AI代你听播客"><a href="#19｜Whisper-ChatGPT：请AI代你听播客" class="headerlink" title="19｜Whisper+ChatGPT：请AI代你听播客"></a>19｜Whisper+ChatGPT：请AI代你听播客</h1><p>你好，我是徐文浩。</p>
+<p>今天，我们的课程开始进入一个新的主题了，那就是语音识别。过去几周我们介绍的ChatGPT虽然很强大，但是只能接受文本的输入。而在现实生活中，很多时候我们并不方便停下来打字。很多内容比如像播客也没有文字版，所以这个时候，我们就需要一个能够将语音内容转换成文本的能力。</p>
+<p>作为目前AI界的领导者，OpenAI自然也不会放过这个需求。他们不仅发表了一个通用的语音识别模型 Whisper，还把对应的代码开源了。在今年的1月份，他们也在API里提供了对应的语音识别服务。那么今天，我们就一起来看看Whisper这个语音识别的模型可以怎么用。</p>
+<h2 id="Whisper-API-101"><a href="#Whisper-API-101" class="headerlink" title="Whisper API 101"></a>Whisper API 101</h2><p>我自己经常会在差旅的过程中听播客。不过，筛选听什么播客的时候，有一个问题，就是光看标题和简介其实不是特别好判断里面的内容我是不是真的感兴趣。所以，在看到Whisper和ChatGPT这两个产品之后，我自然就想到了可以通过组合这两个API，让AI来代我听播客。 <strong>我想通过Whisper把想要听的播客转录成文字稿，再通过ChatGPT做个小结，看看AI总结的小结内容是不是我想要听的。</strong></p>
+<p>我前一阵刚听过一个 <a target="_blank" rel="noopener" href="https://www.listennotes.com/podcasts/onboard/ep-26-10pmK95wovN/">关于 ChatGPT 的播客</a>，我们不妨就从这个开始。我们可以通过 <a target="_blank" rel="noopener" href="https://www.listennotes.com/">listennotes</a> 这个网站来搜索播客，还能够下载到播客的源文件。而且，这个网站还有一个很有用的功能，就是可以直接切出播客中的一段内容，创建出一个切片（clip）。</p>
+<p>我们先拿一个小的切片来试试Whisper的API，对应的切片的 <a target="_blank" rel="noopener" href="https://www.listennotes.com/podcast-clips/ep-26-chatgpt%E4%B8%8E%E7%94%9F%E6%88%90%E5%BC%8Fai%E7%9A%84%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B%E4%B8%8E%E5%95%86%E4%B8%9A%E6%9C%AA%E6%9D%A5%E5%AF%B9%E8%AF%9Dgoogle-P9dfstDKIV6/">链接</a> 我也放在这里了。课程Github的data目录里也有已经下载好的MP3文件。</p>
+<p>OpenAI提供的Whisper的API非常简单，你只要调用一下transcribe函数，就能将音频文件转录成文字。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+
+audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data/podcast_clip.mp3"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">欢迎来到 Onboard 真实的一线经验 走新的投资思考 我是 Monica 我是高宁 我们一起聊聊软件如何改变世界 大家好 欢迎来到 Onboard 我是 Monica 自从OpenAI发布的ChatGBT 掀起了席卷世界的AI热潮 不到三个月就积累了 超过一亿的越货用户 超过<span class="token number">1300</span>万的日货用户 真的是展现了AI让人惊讶的 也让很多人直呼 这就是下一个互联网的未来 有不少观众都说 希望我们再做一期AI的讨论 于是这次硬核讨论就来了 这次我们请来了 Google Brain的研究员雪芝 她是Google大语言模型PALM Pathway Language Model的作者之一 要知道这个模型的参数量 是GPT<span class="token operator">-</span><span class="token number">3</span>的三倍还多 另外还有两位AI产品大牛 一位来自著名的StableDM 背后的商业公司Stability AI 另一位来自某硅谷科技大厂 也曾在吴恩达教授的Landing AI中 担任产品负责人 此外 莫妮凯还邀请到一位 一直关注AI的投资人朋友Bill 当做我的特邀共同主持嘉宾 我们主要讨论几个话题 一方面从研究的视角 最前沿的研究者在关注什么 现在技术的天花板 和未来大的变量可能会在哪里 第二个问题是 未来大的变量可能会在哪里 从产品和商业的角度 什么是一个好的AI产品 整个生态可能随着技术 有怎样的演变 更重要的 我们又能从上一波 AI的创业热潮中学到什么 最后 莫妮凯和Bill还会从投资人的视角 做一个回顾 总结和畅想 这里还有一个小的update 在本集发布的时候 Google也对爆发式增长的 Chad GPT做出了回应 正在测试一个基于Lambda 模型的聊天机器人 ApprenticeBot 正式发布后会有怎样的惊喜 我们都拭目以待 AI无疑是未来几年 最令人兴奋的变量之一 莫妮凯也希望未来能邀请到更多 一线从业者 从不同角度讨论这个话题 不论是想要做创业 研究 产品 还是投资的同学 希望这些对话 对于大家了解这些技术演进 商业的可能 甚至未来对于我们每个人 每个社会意味着什么 都能引发一些思考 提供一些启发 这次的讨论有些技术硬核 需要各位对生成式AI 大模型都有一些基础了解 讨论中涉及到的论文和重要概念 也会总结在本集的简介中 供大家复习参考 几位嘉宾在北美工作生活多年 夹杂英文在所难免 也请大家体谅了 欢迎来到未来 希望大家enjoy
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>从转录的结果来看，有一个好消息和一个坏消息。好消息是，语音识别的转录效果非常好。我们看到尽管播客里面混杂着中英文，但是Whisper还是很好地识别出来了。坏消息是，转录出来的内容只有空格的分隔符，没有标点符号。</p>
+<p>不过，这个问题也并不难解决。我们只要在前面的代码里面，增加一个Prompt参数就好了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data/podcast_clip.mp3"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span>
+                                     prompt<span class="token operator">=</span><span class="token string">"这是一段中文播客内容。"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">欢迎来到 Onboard<span class="token punctuation">,</span>真实的一线经验<span class="token punctuation">,</span>走新的投资思考。 我是 Monica。 我是高宁。我们一起聊聊软件如何改变世界。 大家好<span class="token punctuation">,</span>欢迎来到 Onboard<span class="token punctuation">,</span>我是 Monica。 自从 OpenAI 发布的 ChatGBT 掀起了席卷世界的 AI 热潮<span class="token punctuation">,</span> 不到三个月就积累了超过一亿的越活用户<span class="token punctuation">,</span>超过一千三百万的日活用户。 真的是展现了 AI 让人惊叹的能力<span class="token punctuation">,</span> 也让很多人直呼这就是下一个互联网的未来。 有不少观众都说希望我们再做一期 AI 的讨论<span class="token punctuation">,</span> 于是这次硬核讨论就来了。 这次我们请来了 Google Brain 的研究员雪芝<span class="token punctuation">,</span> 她是 Google 大语言模型 PAMP<span class="token punctuation">,</span>Pathway Language Model 的作者之一。 要知道<span class="token punctuation">,</span>这个模型的参数量是 GPT<span class="token operator">-</span><span class="token number">3</span> 的三倍还多。 另外还有两位 AI 产品大牛<span class="token punctuation">,</span>一位来自著名的 Stable Diffusion 背后的商业公司 Stability AI<span class="token punctuation">,</span> 另一位来自某硅谷科技大厂<span class="token punctuation">,</span>也曾在吴恩达教授的 Landing AI 中担任产品负责人。 此外<span class="token punctuation">,</span>Monica 还邀请到一位一直关注 AI 的投资人朋友 Bill 当作我的特邀共同主持嘉宾。 我们主要讨论几个话题<span class="token punctuation">,</span>一方面从研究的视角<span class="token punctuation">,</span>最前沿的研究者在关注什么? 现在技术的天花板和未来大的变量可能会在哪里? 从产品和商业的角度<span class="token punctuation">,</span>什么是一个好的 AI 产品? 整个生态可能随着技术有怎样的演变? 更重要的<span class="token punctuation">,</span>我们又能从上一波 AI 的创业热潮中学到什么? 最后<span class="token punctuation">,</span>Monica 和 Bill 还会从投资人的视角做一个回顾、总结和畅想。 这里还有一个小的 update<span class="token punctuation">,</span>在本集发布的时候<span class="token punctuation">,</span> Google 也对爆发式增长的ChatGPT 做出了回应<span class="token punctuation">,</span> 正在测试一个基于 Lambda 模型的聊天机器人 ApprenticeBot。 正式发布后会有怎样的惊喜?我们都拭目以待。 AI 无疑是未来几年最令人兴奋的变量之一<span class="token punctuation">,</span> Monica 也希望未来能邀请到更多一线从业者从不同角度讨论这个话题。 不论是想要做创业、研究、产品还是投资的同学<span class="token punctuation">,</span> 希望这些对话对于大家了解这些技术演进、商业的可能<span class="token punctuation">,</span> 甚至未来对于我们每个人、每个社会意味着什么<span class="token punctuation">,</span> 都能引发一些思考<span class="token punctuation">,</span>提供一些启发。 这次的讨论有些技术硬核<span class="token punctuation">,</span>需要各位对生成式 AI 大模型都有一些基础了解。 讨论中涉及到的论文和重要概念<span class="token punctuation">,</span>也会总结在本集的简介中<span class="token punctuation">,</span>供大家复习参考。 几位嘉宾在北美工作生活多年<span class="token punctuation">,</span>夹杂英文在所难免<span class="token punctuation">,</span>也请大家体谅了。 欢迎来到未来<span class="token punctuation">,</span>大家 enjoy!
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们在transcribe函数被调用的时候，传入了一个Prompt参数。里面是一句引导Whisper模型的提示语。在这里，我们的Prompt里用了一句中文介绍，并且带上了标点符号。你就会发现，transcribe函数转录出来的内容也就带上了正确的标点符号。</p>
+<p>不过，转录出来的内容还有一点小小的瑕疵。那就是中英文混排的内容里面，英文前后会多出一些空格。那我们就再修改一下Prompt，在提示语里面也使用中英文混排并且不留空格。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data/podcast_clip.mp3"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span>
+                                     prompt<span class="token operator">=</span><span class="token string">"这是一段Onboard播客的内容。"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">欢迎来到Onboard<span class="token punctuation">,</span>真实的一线经验<span class="token punctuation">,</span>走新的投资思考。 我是Monica<span class="token punctuation">,</span>我是高宁<span class="token punctuation">,</span>我们一起聊聊软件如何改变世界。 大家好<span class="token punctuation">,</span>欢迎来到Onboard<span class="token punctuation">,</span>我是Monica。 自从OpenAI发布的ChatGBT掀起了席卷世界的AI热潮<span class="token punctuation">,</span> 不到三个月就积累了超过一亿的越活用户<span class="token punctuation">,</span>超过<span class="token number">1300</span>万的日活用户。 真的是展现了AI让人惊叹的能力<span class="token punctuation">,</span>也让很多人直呼这就是下一个互联网的未来。 有不少观众都说希望我们再做一期AI的讨论<span class="token punctuation">,</span>于是这次硬核讨论就来了。 这次我们请来了Google Brain的研究员雪芝<span class="token punctuation">,</span> 她是Google大语言模型POM<span class="token punctuation">,</span>Pathway Language Model的作者之一。 要知道这个模型的参数量是GPT<span class="token operator">-</span><span class="token number">3</span>的三倍还多。 另外还有两位AI产品大牛<span class="token punctuation">,</span>一位来自著名的Stable Diffusion背后的商业公司Stability AI<span class="token punctuation">,</span> 另一位来自某硅谷科技大厂<span class="token punctuation">,</span>也曾在吴恩达教授的Landing AI中担任产品负责人。 此外<span class="token punctuation">,</span>Monica还邀请到一位一直关注AI的投资人朋友Bill<span class="token punctuation">,</span>当做我的特邀共同主持嘉宾。 我们主要讨论几个话题<span class="token punctuation">,</span>一方面从研究的视角<span class="token punctuation">,</span>最前沿的研究者在关注什么? 现在的技术的天花板和未来大的变量可能会在哪里? 从产品和商业的角度<span class="token punctuation">,</span>什么是一个好的AI产品? 整个生态可能随着技术有怎样的演变? 更重要的<span class="token punctuation">,</span>我们又能从上一波AI的创业热潮中学到什么? 最后<span class="token punctuation">,</span>Monica和Bill还会从投资人的视角做一个回顾、总结和畅想。 这里还有一个小的update<span class="token punctuation">,</span>在本集发布的时候<span class="token punctuation">,</span> Google也对爆发式增长的ChatGPT做出了回应<span class="token punctuation">,</span> 正在测试一个基于Lambda模型的聊天机器人ApprenticeBot。 正式发布后会有怎样的惊喜?我们都拭目以待。 AI无疑是未来几年最令人兴奋的变量之一<span class="token punctuation">,</span> Monica也希望未来能邀请到更多一线从业者从不同角度讨论这个话题。 不论是想要做创业、研究、产品还是投资的同学<span class="token punctuation">,</span> 希望这些对话对于大家了解这些技术演进、商业的可能<span class="token punctuation">,</span> 甚至未来对于我们每个人、每个社会意味着什么<span class="token punctuation">,</span> 都能引发一些思考<span class="token punctuation">,</span>提供一些启发。 这次的讨论有些技术硬核<span class="token punctuation">,</span>需要各位对生成式AI、大模型都有一些基础了解。 讨论中涉及到的论文和重要概念<span class="token punctuation">,</span>也会总结在本集的简介中<span class="token punctuation">,</span>供大家复习参考。 几位嘉宾在北美工作生活多年<span class="token punctuation">,</span>夹杂英文在所难免<span class="token punctuation">,</span>也请大家体谅了。 欢迎来到未来<span class="token punctuation">,</span>大家enjoy!
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到，输出结果的英文前后也就没有空格了。 <strong>能够在音频内容的转录之前提供一段Prompt，来引导模型更好地做语音识别，是Whisper模型的一大亮点。</strong> 如果你觉得音频里面会有很多专有名词，模型容易识别错，你就可以在Prompt里加上对应的专有名词。比如，在上面的内容转录里面，模型就把ChatGPT也听错了，变成了ChatGBT。Google的PALM模型也给听错了，听成了POM。对应的全称Pathways Language Model也少了一个s。而针对这些错漏，我们只要再修改一下Prompt，它就能够转录正确了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data/podcast_clip.mp3"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span>
+                                     prompt<span class="token operator">=</span><span class="token string">"这是一段Onboard播客，里面会聊到ChatGPT以及PALM这个大语言模型。这个模型也叫做Pathways Language Model。"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">欢迎来到Onboard<span class="token punctuation">,</span>真实的一线经验<span class="token punctuation">,</span>走新的投资思考。我是Monica。 我是高宁。我们一起聊聊软件如何改变世界。 大家好<span class="token punctuation">,</span>欢迎来到Onboard<span class="token punctuation">,</span>我是Monica。 自从OpenAI发布的ChatGPT掀起了席卷世界的AI热潮<span class="token punctuation">,</span>不到三个月就积累了超过一亿的越活用户<span class="token punctuation">,</span>超过<span class="token number">1300</span>万的日活用户。 真的是展现了AI让人惊叹的能力<span class="token punctuation">,</span>也让很多人直呼这就是下一个互联网的未来。 有不少观众都说希望我们再做一期AI的讨论<span class="token punctuation">,</span>于是这次硬核讨论就来了。 这次我们请来了Google Brain的研究员雪芝<span class="token punctuation">,</span>她是Google大语言模型PALM Pathways Language Model的作者之一。 要知道<span class="token punctuation">,</span>这个模型的参数量是GPT<span class="token operator">-</span><span class="token number">3</span>的三倍还多。 另外还有两位AI产品大牛<span class="token punctuation">,</span>一位来自著名的Stable Diffusion背后的商业公司Stability AI<span class="token punctuation">,</span> 另一位来自某硅谷科技大厂<span class="token punctuation">,</span>也曾在吴恩达教授的Landing AI中担任产品负责人。 此外<span class="token punctuation">,</span>Monica还邀请到一位一直关注AI的投资人朋友Bill当作我的特邀共同主持嘉宾。 我们主要讨论几个话题<span class="token punctuation">,</span>一方面从研究的视角<span class="token punctuation">,</span>最前沿的研究者在关注什么? 现在的技术的天花板和未来大的变量可能会在哪里? 从产品和商业的角度<span class="token punctuation">,</span>什么是一个好的AI产品? 整个生态可能随着技术有怎样的演变? 更重要的<span class="token punctuation">,</span>我们又能从上一波AI的创业热潮中学到什么? 最后<span class="token punctuation">,</span>Monica和Bill还会从投资人的视角做一个回顾、总结和畅想。 这里还有一个小的update<span class="token punctuation">,</span>在本集发布的时候<span class="token punctuation">,</span>Google也对爆发式增长的Chat GPT做出了回应。 正在测试一个基于Lambda模型的聊天机器人ApprenticeBot。 证实发布后会有怎样的惊喜<span class="token punctuation">,</span>我们都拭目以待。 AI无疑是未来几年最令人兴奋的变量之一。 Monica也希望未来能邀请到更多一线从业者从不同角度讨论这个话题。 不论是想要做创业、研究、产品还是投资的同学<span class="token punctuation">,</span> 希望这些对话对于大家了解这些技术演进、商业的可能<span class="token punctuation">,</span>甚至未来对于我们每个人、每个社会意味着什么都能引发一些思考<span class="token punctuation">,</span>提供一些启发。 这次的讨论有些技术硬核<span class="token punctuation">,</span>需要各位对生成式AI大模型都有一些基础了解。 讨论中涉及到的论文和重要概念也会总结在本集的简介中<span class="token punctuation">,</span>供大家复习参考。 几位嘉宾在北美工作生活多年<span class="token punctuation">,</span>夹杂英文在所难免<span class="token punctuation">,</span>也请大家体谅了。 欢迎来到未来<span class="token punctuation">,</span>大家enjoy!
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>出现这个现象的原因，主要和Whisper的模型原理相关，它也是一个和GPT类似的模型，会用前面转录出来的文本去预测下一帧音频的内容。通过在最前面加上文本Prompt，就会影响后面识别出来的内容的概率，也就是能够起到给专有名词“纠错”的作用。</p>
+<p>除了模型名称、音频文件和Prompt之外，transcribe接口还支持这样三个参数。</p>
+<ol>
+<li>response_format，也就是返回的文件格式，我们这里是默认值，也就是JSON。实际你还可以选择TEXT这样的纯文本，或者SRT和VTT这样的音频字幕格式。这两个格式里面，除了文本内容，还会有对应的时间信息，方便你给视频和音频做字幕。你可以直接试着运行一下看看效果。</li>
+<li>temperature，这个和我们之前在ChatGPT类型模型里的参数含义类似，就是采样下一帧的时候，如何调整概率分布。这里的参数范围是0-1之间。</li>
+<li>language，就是音频的语言。提前给模型指定音频的语言，有助于提升模型识别的准确率和速度。</li>
+</ol>
+<p>这些参数你都可以自己试着改一下，看看效果。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data/podcast_clip.mp3"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span> response_format<span class="token operator">=</span><span class="token string">"srt"</span><span class="token punctuation">,</span>
+                                     prompt<span class="token operator">=</span><span class="token string">"这是一段Onboard播客，里面会聊到PALM这个大语言模型。这个模型也叫做Pathways Language Model。"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transcript<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token number">1</span>
+<span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">01</span><span class="token punctuation">,</span><span class="token number">000</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">07</span><span class="token punctuation">,</span><span class="token number">000</span>
+欢迎来到Onboard<span class="token punctuation">,</span>真实的一线经验<span class="token punctuation">,</span>走新的投资思考。我是Monica。
+<span class="token number">2</span>
+<span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">07</span><span class="token punctuation">,</span><span class="token number">000</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">000</span>
+我是高宁。我们一起聊聊软件如何改变世界。
+<span class="token number">3</span>
+<span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">000</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">000</span>
+大家好<span class="token punctuation">,</span>欢迎来到Onboard<span class="token punctuation">,</span>我是Monica。
+<span class="token number">4</span>
+<span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">000</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">28</span><span class="token punctuation">,</span><span class="token number">000</span>
+自从OpenAI发布的ChatGBT掀起了席卷世界的AI热潮<span class="token punctuation">,</span>不到三个月就积累了超过一亿的越活用户<span class="token punctuation">,</span>超过<span class="token number">1300</span>万的日活用户。
+<span class="token number">5</span>
+<span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">28</span><span class="token punctuation">,</span><span class="token number">000</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">34</span><span class="token punctuation">,</span><span class="token number">000</span>
+真的是展现了AI让人惊叹的能力<span class="token punctuation">,</span>也让很多人直呼这就是下一个互联网的未来。
+<span class="token number">6</span>
+<span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">34</span><span class="token punctuation">,</span><span class="token number">000</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">41</span><span class="token punctuation">,</span><span class="token number">000</span>
+有不少观众都说希望我们再做一期AI的讨论<span class="token punctuation">,</span>于是这次硬核讨论就来了。
+<span class="token number">7</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+欢迎来到未来<span class="token punctuation">,</span>大家enjoy!
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="转录的时候顺便翻译一下"><a href="#转录的时候顺便翻译一下" class="headerlink" title="转录的时候顺便翻译一下"></a>转录的时候顺便翻译一下</h2><p>除了基本的音频转录功能，Whisper的API还额外提供了一个叫做translation的接口。这个接口可以在转录音频的时候直接把语音翻译成英文，我们不妨来试一下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data/podcast_clip.mp3"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+translated_prompt<span class="token operator">=</span><span class="token triple-quoted-string string">"""This is a podcast discussing ChatGPT and PaLM model.
+The full name of PaLM is Pathways Language Model."""</span>
+transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>translate<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span>
+                                    prompt<span class="token operator">=</span>translated_prompt<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Welcome to Onboard<span class="token punctuation">.</span> Real first<span class="token operator">-</span>line experience<span class="token punctuation">.</span> New investment thinking<span class="token punctuation">.</span> I am Monica<span class="token punctuation">.</span> I am Gao Ning<span class="token punctuation">.</span> Let<span class="token string">'s talk about how software can change the world. Hello everyone, welcome to Onboard. I am Monica. Since the release of ChatGPT by OpenAI, the world'</span>s AI has been <span class="token keyword">in</span> a frenzy<span class="token punctuation">.</span> In less than three months<span class="token punctuation">,</span> it has accumulated more than <span class="token number">100</span> million active users<span class="token punctuation">,</span> <span class="token keyword">and</span> more than <span class="token number">13</span> million active users<span class="token punctuation">.</span> It really shows the amazing ability of AI<span class="token punctuation">.</span> It also makes many people say that this <span class="token keyword">is</span> the future of the <span class="token builtin">next</span> Internet<span class="token punctuation">.</span> Many viewers said that they wanted us to do another AI discussion<span class="token punctuation">.</span> So this discussion came<span class="token punctuation">.</span> This time we invited a researcher <span class="token keyword">from</span> Google Brain<span class="token punctuation">,</span> Xue Zhi<span class="token punctuation">.</span> He <span class="token keyword">is</span> one of the authors of Google<span class="token string">'s large-scale model PaLM, Pathways Language Model. You should know that the number of parameters of this model is three times more than ChatGPT-3. In addition, there are two AI product big cows. One is from the famous company behind Stable Diffusion, Stability AI. The other is from a Silicon Valley technology factory. He was also the product manager in Professor Wu Wenda'</span>s Landing AI<span class="token punctuation">.</span> In addition<span class="token punctuation">,</span> Monica also invited a friend of AI who has been paying attention to AI<span class="token punctuation">,</span> Bill<span class="token punctuation">,</span> <span class="token keyword">as</span> my special guest host<span class="token punctuation">.</span> We mainly discuss several topics<span class="token punctuation">.</span> On the one hand<span class="token punctuation">,</span> <span class="token keyword">from</span> the perspective of research<span class="token punctuation">,</span> what are the most cutting<span class="token operator">-</span>edge researchers paying attention to? Where are the cutting<span class="token operator">-</span>edge technologies <span class="token keyword">and</span> the large variables of the future? From the perspective of products <span class="token keyword">and</span> business<span class="token punctuation">,</span> what <span class="token keyword">is</span> a good AI product? What kind of evolution may the whole state follow? More importantly<span class="token punctuation">,</span> what can we learn <span class="token keyword">from</span> the previous wave of AI entrepreneurship? Finally<span class="token punctuation">,</span> Monica <span class="token keyword">and</span> Bill will also make a review<span class="token punctuation">,</span> summary <span class="token keyword">and</span> reflection <span class="token keyword">from</span> the perspective of investors<span class="token punctuation">.</span> Here <span class="token keyword">is</span> a small update<span class="token punctuation">.</span> When this issue was released<span class="token punctuation">,</span> Google also responded to the explosive growth of ChatGPT<span class="token punctuation">.</span> We are testing an Apprentice Bot based on Lambda model<span class="token punctuation">.</span> What kind of surprises will be released? We are looking forward to it<span class="token punctuation">.</span> AI <span class="token keyword">is</span> undoubtedly one of the most exciting variables <span class="token keyword">in</span> the coming years<span class="token punctuation">.</span> Monica also hopes to invite more first<span class="token operator">-</span>line entrepreneurs to discuss this topic <span class="token keyword">from</span> different angles<span class="token punctuation">.</span> Whether you want to do entrepreneurship<span class="token punctuation">,</span> research<span class="token punctuation">,</span> product <span class="token keyword">or</span> investment<span class="token punctuation">,</span> I hope these conversations will <span class="token builtin">help</span> you understand the possibilities of these technical horizons <span class="token keyword">and</span> business<span class="token punctuation">.</span> Even <span class="token keyword">in</span> the future<span class="token punctuation">,</span> it can cause some thoughts <span class="token keyword">and</span> inspire us to think about what it means to each person <span class="token keyword">and</span> each society<span class="token punctuation">.</span> This discussion <span class="token keyword">is</span> a bit technical<span class="token punctuation">,</span> <span class="token keyword">and</span> requires you to have some basic understanding of the biometric AI model<span class="token punctuation">.</span> The papers <span class="token keyword">and</span> important concepts involved <span class="token keyword">in</span> the discussion will also be summarized <span class="token keyword">in</span> this episode's summary<span class="token punctuation">,</span> which <span class="token keyword">is</span> <span class="token keyword">for</span> your reference<span class="token punctuation">.</span> You have worked <span class="token keyword">in</span> North America <span class="token keyword">for</span> many years<span class="token punctuation">,</span> <span class="token keyword">and</span> you may have some English mistakes<span class="token punctuation">.</span> Please understand<span class="token punctuation">.</span> Welcome to the future<span class="token punctuation">.</span> Enjoy<span class="token punctuation">.</span> Let me give you a brief introduction<span class="token punctuation">.</span> Some of your past experiences<span class="token punctuation">.</span> A fun fact<span class="token punctuation">.</span> Using an AI to represent the world <span class="token keyword">is</span> now palped<span class="token punctuation">.</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个接口只能把内容翻译成英文，不能变成其他语言。所以对应的，Prompt也必须换成英文。只能翻译成英文对我们来说稍微有些可惜了。如果能够指定翻译的语言，很多英文播客，我们就可以直接转录成中文来读了。现在我们要做到这一点，就不得不再花一份钱，让ChatGPT来帮我们翻译。</p>
+<h2 id="通过分割音频来处理大文件"><a href="#通过分割音频来处理大文件" class="headerlink" title="通过分割音频来处理大文件"></a>通过分割音频来处理大文件</h2><p>刚才我们只是尝试转录了一个3分钟的音频片段，那接下来我们就来转录一下整个音频。不过，我们没法把整个150分钟的播客一次性转录出来，因为OpenAI限制Whisper一次只能转录25MB大小的文件。所以我们要先把大的播客文件分割成一个个小的片段，转录完之后再把它们拼起来。我们可以选用OpenAI在官方文档里面提供的 <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/speech-to-text/longer-inputs">PyDub 的库</a> 来分割文件。</p>
+<p>不过，在分割之前，我们先要通过FFmpeg把从listennotes下载的MP4文件转换成MP3格式。你不了解FFmpeg或者没有安装也没有关系，对应的命令我是让ChatGPT写的。转换后的文件我也放到了 <a target="_blank" rel="noopener" href="https://github.com/xuwenhao/geektime-ai-course">课程 Github 库</a> 里的网盘地址了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ffmpeg <span class="token operator">-</span>i <span class="token punctuation">.</span><span class="token operator">/</span>data<span class="token operator">/</span>podcast_long<span class="token punctuation">.</span>mp4 <span class="token operator">-</span>vn <span class="token operator">-</span>c<span class="token punctuation">:</span>a libmp3lame <span class="token operator">-</span>q<span class="token punctuation">:</span>a <span class="token number">4</span> <span class="token punctuation">.</span><span class="token operator">/</span>data<span class="token operator">/</span>podcast_long<span class="token punctuation">.</span>mp3
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>分割MP3文件的代码也很简单，我们按照15分钟一个片段的方式，把音频切分一下就好了。通过PyDub的AudioSegment包，我们可以把整个长的MP3文件加载到内存里面来变成一个数组。里面每1毫秒的音频数据就是数组里的一个元素，我们可以很容易地将数组按照时间切分成每15分钟一个片段的新的MP3文件。</p>
+<p>先确保我们安装了PyDub包。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">%</span>pip install <span class="token operator">-</span>U pydub
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pydub <span class="token keyword">import</span> AudioSegment
+
+podcast <span class="token operator">=</span> AudioSegment<span class="token punctuation">.</span>from_mp3<span class="token punctuation">(</span><span class="token string">"./data/podcast_long.mp3"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># PyDub handles time in milliseconds</span>
+ten_minutes <span class="token operator">=</span> <span class="token number">15</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1000</span>
+
+total_length <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>podcast<span class="token punctuation">)</span>
+
+start <span class="token operator">=</span> <span class="token number">0</span>
+index <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> start <span class="token operator">&lt;</span> total_length<span class="token punctuation">:</span>
+    end <span class="token operator">=</span> start <span class="token operator">+</span> ten_minutes
+    <span class="token keyword">if</span> end <span class="token operator">&lt;</span> total_length<span class="token punctuation">:</span>
+        chunk <span class="token operator">=</span> podcast<span class="token punctuation">[</span>start<span class="token punctuation">:</span>end<span class="token punctuation">]</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        chunk <span class="token operator">=</span> podcast<span class="token punctuation">[</span>start<span class="token punctuation">:</span><span class="token punctuation">]</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"./data/podcast_clip_</span><span class="token interpolation"><span class="token punctuation">&#123;</span>index<span class="token punctuation">&#125;</span></span><span class="token string">.mp3"</span></span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        chunk<span class="token punctuation">.</span>export<span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token builtin">format</span><span class="token operator">=</span><span class="token string">"mp3"</span><span class="token punctuation">)</span>
+    start <span class="token operator">=</span> end
+    index <span class="token operator">+=</span> <span class="token number">1</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在切分完成之后，我们就一个个地来转录对应的音频文件，对应的代码就在下面。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">prompt <span class="token operator">=</span> <span class="token string">"这是一段Onboard播客，里面会聊到ChatGPT以及PALM这个大语言模型。这个模型也叫做Pathways Language Model。"</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    clip <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"./data/podcast_clip_</span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">.mp3"</span></span>
+    audio_file<span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>clip<span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span>
+    transcript <span class="token operator">=</span> openai<span class="token punctuation">.</span>Audio<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span><span class="token string">"whisper-1"</span><span class="token punctuation">,</span> audio_file<span class="token punctuation">,</span>
+                                     prompt<span class="token operator">=</span>prompt<span class="token punctuation">)</span>
+    <span class="token comment"># mkdir ./data/transcripts if not exists</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">"./data/transcripts"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span><span class="token string">"./data/transcripts"</span><span class="token punctuation">)</span>
+    <span class="token comment"># write to file</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"./data/transcripts/podcast_clip_</span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">.txt"</span></span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment"># get last sentence of the transcript</span>
+    sentences <span class="token operator">=</span> transcript<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"。"</span><span class="token punctuation">)</span>
+    prompt <span class="token operator">=</span> sentences<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在这里，我们对每次进行转录的Prompt做了一个小小的特殊处理。我们把前一个片段转录结果的最后一句话，变成了下一个转录片段的提示语。这样，我们可以让后面的片段在进行语音识别的时候，知道前面最后说了什么。这样做，可以减少错别字的出现。</p>
+<h2 id="通过开源模型直接在本地转录"><a href="#通过开源模型直接在本地转录" class="headerlink" title="通过开源模型直接在本地转录"></a>通过开源模型直接在本地转录</h2><p>通过OpenAI的Whisper API来转录音频是有成本的，目前的定价是 0.006 美元&#x2F;分钟。比如我们上面的150分钟的音频文件，只需要不到1美元，其实已经很便宜了。不过，如果你不想把对应的数据发送给OpenAI，避免任何数据泄露的风险，你还有另外一个选择，那就是直接使用OpenAI开源出来的模型就好了。</p>
+<p>不过使用开源模型你还是需要一块GPU，如果没有的话，你仍然可以使用免费的Colab的Notebook环境。</p>
+<p>先安装openai-whisper的相关的依赖包。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">%</span>pip install openai<span class="token operator">-</span>whisper
+<span class="token operator">%</span>pip install setuptools<span class="token operator">-</span>rust
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>代码本身很简单，我们只是把原先调用OpenAI的API的地方，换成了加载Whisper的模型，然后在transcribe的参数上，有一些小小的差异。其他部分的代码和前面我们调用OpenAI的Whisper API的代码基本上是一致的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> whisper
+
+model <span class="token operator">=</span> whisper<span class="token punctuation">.</span>load_model<span class="token punctuation">(</span><span class="token string">"large"</span><span class="token punctuation">)</span>
+index <span class="token operator">=</span> <span class="token number">11</span> <span class="token comment"># number of fi</span>
+
+<span class="token keyword">def</span> <span class="token function">transcript</span><span class="token punctuation">(</span>clip<span class="token punctuation">,</span> prompt<span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> model<span class="token punctuation">.</span>transcribe<span class="token punctuation">(</span>clip<span class="token punctuation">,</span> initial_prompt<span class="token operator">=</span>prompt<span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>result<span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Transcripted: "</span><span class="token punctuation">,</span> clip<span class="token punctuation">)</span>
+
+original_prompt <span class="token operator">=</span> <span class="token string">"这是一段Onboard播客，里面会聊到ChatGPT以及PALM这个大语言模型。这个模型也叫做Pathways Language Model。\n\n"</span>
+prompt <span class="token operator">=</span> original_prompt
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    clip <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"./drive/MyDrive/colab_data/podcast/podcast_clip_</span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">.mp3"</span></span>
+    output <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"./drive/MyDrive/colab_data/podcast/transcripts/local_podcast_clip_</span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">.txt"</span></span>
+    transcript<span class="token punctuation">(</span>clip<span class="token punctuation">,</span> prompt<span class="token punctuation">,</span> output<span class="token punctuation">)</span>
+    <span class="token comment"># get last sentence of the transcript</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        transcript <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sentences <span class="token operator">=</span> transcript<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"。"</span><span class="token punctuation">)</span>
+    prompt <span class="token operator">=</span> original_prompt <span class="token operator">+</span> sentences<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>有一个点你可以注意一下，Whisper的模型和我们之前看过的其他开源模型一样，有好几种不同尺寸。你可以通过 load_model 里面的参数来决定加载什么模型。这里我们选用的是最大的 large 模型，它大约需要10GB的显存。因为Colab提供的GPU是英伟达的T4，有16G显存，所以是完全够用的。</p>
+<p>如果你是使用自己电脑上的显卡，显存没有那么大，你可以选用小一些的模型，比如small或者base。如果你要转录的内容都是英语的，还可以直接使用small.en这样仅限于英语的模型。这种小的或者限制语言的模型，速度还更快。不过，如果是像我们这样转录中文为主，混杂了英文的内容，那么尽可能选取大一些的模型，转录的准确率才会比较高。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7a36faf9bb3f023714dea7e24a86653d.png"></p>
+<p>Whisper项目： <a target="_blank" rel="noopener" href="https://github.com/openai/whisper">https://github.com/openai/whisper</a></p>
+<h2 id="结合ChatGPT做内容小结"><a href="#结合ChatGPT做内容小结" class="headerlink" title="结合ChatGPT做内容小结"></a>结合ChatGPT做内容小结</h2><p>无论是使用API还是通过本地的GPU进行文本转录，我们都会获得转录之后的文本。要给这些文本做个小结，其实我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/645305">第 10 讲</a> 讲解llama-index的时候就给过示例了。我们把那个代码稍微改写一下，就能得到对应播客的小结。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> SpacyTextSplitter
+<span class="token keyword">from</span> llama_index <span class="token keyword">import</span> GPTListIndex<span class="token punctuation">,</span> LLMPredictor<span class="token punctuation">,</span> ServiceContext<span class="token punctuation">,</span> SimpleDirectoryReader
+<span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>node_parser <span class="token keyword">import</span> SimpleNodeParser
+
+<span class="token comment"># define LLM</span>
+llm_predictor <span class="token operator">=</span> LLMPredictor<span class="token punctuation">(</span>llm<span class="token operator">=</span>ChatOpenAI<span class="token punctuation">(</span>temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> model_name<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span> max_tokens<span class="token operator">=</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+text_splitter <span class="token operator">=</span> SpacyTextSplitter<span class="token punctuation">(</span>pipeline<span class="token operator">=</span><span class="token string">"zh_core_web_sm"</span><span class="token punctuation">,</span> chunk_size <span class="token operator">=</span> <span class="token number">2048</span><span class="token punctuation">)</span>
+parser <span class="token operator">=</span> SimpleNodeParser<span class="token punctuation">(</span>text_splitter<span class="token operator">=</span>text_splitter<span class="token punctuation">)</span>
+documents <span class="token operator">=</span> SimpleDirectoryReader<span class="token punctuation">(</span><span class="token string">'./data/transcripts'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+nodes <span class="token operator">=</span> parser<span class="token punctuation">.</span>get_nodes_from_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span>
+
+service_context <span class="token operator">=</span> ServiceContext<span class="token punctuation">.</span>from_defaults<span class="token punctuation">(</span>llm_predictor<span class="token operator">=</span>llm_predictor<span class="token punctuation">)</span>
+
+list_index <span class="token operator">=</span> GPTListIndex<span class="token punctuation">(</span>nodes<span class="token operator">=</span>nodes<span class="token punctuation">,</span> service_context<span class="token operator">=</span>service_context<span class="token punctuation">)</span>
+response <span class="token operator">=</span> list_index<span class="token punctuation">.</span>query<span class="token punctuation">(</span><span class="token string">"请你用中文总结一下我们的播客内容:"</span><span class="token punctuation">,</span> response_mode<span class="token operator">=</span><span class="token string">"tree_summarize"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">这个播客讨论了人工智能和深度学习领域的高级技术和最新发展，包括稳定性人工智能、语言模型的预训练方法、图像生成模型的训练和优化，以及各种机器学习模型的比较和应用场景。同时，我们探讨了开源社区的作用和趋势，以及开源商业化的优缺点及如何应对。我们还讨论了人工智能在各个领域的应用和未来发展趋势，并强调了找到实际应用场景和解决实际问题的重要性。最后，我们提醒说，未来值得期待的AI应用将是能够真正跟人交互的产品，对于创业公司来说，需要从用户实际的痛点出发去考虑如何更好地应用AI技术。
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>基于这里的代码，你完全可以开发一个自动抓取并小结你订阅的播客内容的小应用。一般的播客也就是40-50分钟一期，转录并小结一期的成本也就在5块人民币上下。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，这一讲到这里也就结束了。</p>
+<p>OpenAI的Whisper模型，使用起来非常简单方便。无论是通过API还是使用开源的模型，只要一行代码调用一个transcribe函数，就能把一个音频文件转录成对应的文本。而且即使对于多语言混杂的内容，它也能转录得很好。而通过传入一个Prompt，它不仅能够在整个文本里，加上合适的标点符号，还能够根据Prompt里面的专有名词，减少转录中这些内容的错漏。虽然OpenAI的API接口限制了单个转录文件的大小，但是我们可以很方便地通过PyDub这样的Python包，把音频文件切分成多个小的片段来解决问题。</p>
+<p>对于转录后的结果，我们可以很容易地使用之前学习过的ChatGPT和llama-index来进行相应的文本小结。通过组合Whisper和ChatGPT，我们就可以快速地让机器自动帮助我们将播客、Youtube访谈，变成一段文本小结，能够让我们快速浏览并判定是否有必要深入去听一下原始的内容。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>我们在将长音频分片进行转录的过程里，是完全按照精确的时间去切割音频文件的。但是实际上音频的断句其实并不在那一毫秒。所以转录的时候，效果也不一定好，特别是在录音的开头和结尾部分，很有可能不是一个完整的句子，也容易出现一些错漏的情况。你能想想有什么好办法可以解决这个问题吗？我们是否可以利用SRT或VTT文件里面文本对应的时间标注信息？</p>
+<p>欢迎你把你思考的结果分享到留言区，也欢迎你把这一讲分享给需要的朋友，我们下一讲再见！</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>李沐老师在他的论文精读系列视频里面，有专门讲解过 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VG4y1t74x/">OpenAI Whisper 的相关论文</a>。他还专门基于Whisper的开源代码做了一个用来剪辑视频的小工具 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Pe4y1t7de/?spm_id_from=333.788.recommend_more_video.2&vd_source=dd7dfb298255b22a34220853aab4f816">AutoCut</a>。你有兴趣的话，可以去看一看。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#19%EF%BD%9CWhisper-ChatGPT%EF%BC%9A%E8%AF%B7AI%E4%BB%A3%E4%BD%A0%E5%90%AC%E6%92%AD%E5%AE%A2"><span class="toc-number">1.</span> <span class="toc-text">19｜Whisper+ChatGPT：请AI代你听播客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Whisper-API-101"><span class="toc-number">1.1.</span> <span class="toc-text">Whisper API 101</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E5%BD%95%E7%9A%84%E6%97%B6%E5%80%99%E9%A1%BA%E4%BE%BF%E7%BF%BB%E8%AF%91%E4%B8%80%E4%B8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">转录的时候顺便翻译一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%88%86%E5%89%B2%E9%9F%B3%E9%A2%91%E6%9D%A5%E5%A4%84%E7%90%86%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">通过分割音频来处理大文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BD%AC%E5%BD%95"><span class="toc-number">1.4.</span> <span class="toc-text">通过开源模型直接在本地转录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%90%88ChatGPT%E5%81%9A%E5%86%85%E5%AE%B9%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">结合ChatGPT做内容小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.8.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

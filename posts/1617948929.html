@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>23｜OpenClip：让我们搞清楚图片说了些什么 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="23｜OpenClip：让我们搞清楚图片说了些什么你好，我是徐文浩。 前面我们已经学完了文本和音频的部分。接下来，我们就要进入课程的最后一部分，也就是图像模块了。 与视觉和语音一样，Transformer架构的模型在过去几年里也逐渐成为了图像领域的一个主流研究方向。自然，发表了GPT和Whisper的OpenAI也不会落后。一贯相信“大力出奇迹”的OpenAI，就拿4亿张互联网上找到的图片，以及图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23｜OpenClip：让我们搞清楚图片说了些什么">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1617948929.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="23｜OpenClip：让我们搞清楚图片说了些什么你好，我是徐文浩。 前面我们已经学完了文本和音频的部分。接下来，我们就要进入课程的最后一部分，也就是图像模块了。 与视觉和语音一样，Transformer架构的模型在过去几年里也逐渐成为了图像领域的一个主流研究方向。自然，发表了GPT和Whisper的OpenAI也不会落后。一贯相信“大力出奇迹”的OpenAI，就拿4亿张互联网上找到的图片，以及图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.426Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1617948929"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '23｜OpenClip：让我们搞清楚图片说了些什么',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">23｜OpenClip：让我们搞清楚图片说了些什么</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="23｜OpenClip：让我们搞清楚图片说了些什么"><a href="#23｜OpenClip：让我们搞清楚图片说了些什么" class="headerlink" title="23｜OpenClip：让我们搞清楚图片说了些什么"></a>23｜OpenClip：让我们搞清楚图片说了些什么</h1><p>你好，我是徐文浩。</p>
+<p>前面我们已经学完了文本和音频的部分。接下来，我们就要进入课程的最后一部分，也就是图像模块了。</p>
+<p>与视觉和语音一样，Transformer架构的模型在过去几年里也逐渐成为了图像领域的一个主流研究方向。自然，发表了GPT和Whisper的OpenAI也不会落后。一贯相信“大力出奇迹”的OpenAI，就拿4亿张互联网上找到的图片，以及图片对应的ALT文字训练了一个叫做CLIP的多模态模型。今天，我们就看看在实际的应用里怎么使用这个模型。在学习的过程中你会发现， <strong>我们不仅可以把它拿来做常见的图片分类、目标检测，也能够用来优化业务场景里面的商品搜索和内容推荐。</strong></p>
+<h2 id="多模态的CLIP模型"><a href="#多模态的CLIP模型" class="headerlink" title="多模态的CLIP模型"></a>多模态的CLIP模型</h2><p>相信你最近已经听到过很多次“多模态”这个词儿了，无论是在OpenAI对GPT-4的介绍里，还是我们在之前介绍llama-index的时候，这个名词都已经出现过了。</p>
+<p><strong>所谓“多模态”，就是多种媒体形式的内容。</strong> 我们看到很多评测里面都拿GPT模型来做数学试题，那么如果我们遇到一个平面几何题的话，光有题目的文字信息是不够的，还需要把对应的图形一并提供给AI才可以。而这也是我们通往通用人工智能的必经之路，因为真实世界就是多模态的。我们每天除了处理文本信息，还会看视频、图片以及和人说话。</p>
+<p>而CLIP这个模型，就是一个多模态模型。一如即往，OpenAI仍然是通过海量数据来训练一个大模型。整个模型使用了互联网上的4亿张图片，它不仅能够分别理解图片和文本，还通过对比学习建立了图片和文本之间的关系。这个也是未来我们能够通过写几个提示词就能用AI画图的一个起点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/263f5f9386b6787564bcdc6b6e8f1343.png" alt="图片"></p>
+<p>CLIP的思路其实不复杂，就是互联网上已有的大量公开的图片数据。而且其中有很多已经通过HTML标签里面的title或者alt字段，提供了对图片的文本描述。那我们只要训练一个模型，将文本转换成一个向量，也将图片转换成一个向量。图片向量应该和自己的文本描述向量的距离尽量近，和其他的文本向量要尽量远。那么这个模型，就能够把图片和文本映射到同一个空间里。我们就能够通过向量同时理解图片和文本了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"img_girl.jpg"</span> alt<span class="token operator">=</span><span class="token string">"Girl in a jacket"</span> width<span class="token operator">=</span><span class="token string">"500"</span> height<span class="token operator">=</span><span class="token string">"600"</span><span class="token operator">></span>
+
+<span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"/img/html/vangogh.jpg"</span>
+     title<span class="token operator">=</span><span class="token string">"Van Gogh, Self-portrait."</span><span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：img标签里的alt和title字段，提供了对图片的文本描述。</p>
+<h2 id="图片的零样本分类"><a href="#图片的零样本分类" class="headerlink" title="图片的零样本分类"></a>图片的零样本分类</h2><p>理解了CLIP模型的基本思路，那么我们不妨来试一试这个模型怎么能够把文本和图片关联起来。我们刚刚介绍过的Transformers可以说是当今大模型领域事实上的标准，那我就还是用Transformers库来给你举个例子好了，你可以看一下对应的代码。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">from</span> IPython<span class="token punctuation">.</span>display <span class="token keyword">import</span> display
+<span class="token keyword">from</span> IPython<span class="token punctuation">.</span>display <span class="token keyword">import</span> Image <span class="token keyword">as</span> IPyImage
+<span class="token keyword">from</span> transformers <span class="token keyword">import</span> CLIPProcessor<span class="token punctuation">,</span> CLIPModel
+
+model <span class="token operator">=</span> CLIPModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-base-patch32"</span><span class="token punctuation">)</span>
+processor <span class="token operator">=</span> CLIPProcessor<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-base-patch32"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_image_feature</span><span class="token punctuation">(</span>filename<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    image <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">"RGB"</span><span class="token punctuation">)</span>
+    processed <span class="token operator">=</span> processor<span class="token punctuation">(</span>images<span class="token operator">=</span>image<span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> truncation<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        image_features <span class="token operator">=</span> model<span class="token punctuation">.</span>get_image_features<span class="token punctuation">(</span>pixel_values<span class="token operator">=</span>processed<span class="token punctuation">[</span><span class="token string">"pixel_values"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> image_features
+
+<span class="token keyword">def</span> <span class="token function">get_text_feature</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    processed <span class="token operator">=</span> processor<span class="token punctuation">(</span>text<span class="token operator">=</span>text<span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> truncation<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        text_features <span class="token operator">=</span> model<span class="token punctuation">.</span>get_text_features<span class="token punctuation">(</span>processed<span class="token punctuation">[</span><span class="token string">'input_ids'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> text_features
+
+<span class="token keyword">def</span> <span class="token function">cosine_similarity</span><span class="token punctuation">(</span>tensor1<span class="token punctuation">,</span> tensor2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tensor1_normalized <span class="token operator">=</span> tensor1 <span class="token operator">/</span> tensor1<span class="token punctuation">.</span>norm<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> keepdim<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    tensor2_normalized <span class="token operator">=</span> tensor2 <span class="token operator">/</span> tensor2<span class="token punctuation">.</span>norm<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> keepdim<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>tensor1_normalized <span class="token operator">*</span> tensor2_normalized<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+image_tensor <span class="token operator">=</span> get_image_feature<span class="token punctuation">(</span><span class="token string">"./data/cat.jpg"</span><span class="token punctuation">)</span>
+
+cat_text <span class="token operator">=</span> <span class="token string">"This is a cat."</span>
+cat_text_tensor <span class="token operator">=</span> get_text_feature<span class="token punctuation">(</span>cat_text<span class="token punctuation">)</span>
+
+dog_text <span class="token operator">=</span> <span class="token string">"This is a dog."</span>
+dog_text_tensor <span class="token operator">=</span> get_text_feature<span class="token punctuation">(</span>dog_text<span class="token punctuation">)</span>
+
+display<span class="token punctuation">(</span>IPyImage<span class="token punctuation">(</span>filename<span class="token operator">=</span><span class="token string">'./data/cat.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with cat : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> cat_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with dog : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> dog_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4173ec2a86bcf5173d73b4beceaaacdb.jpg" alt="图片"></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Similarity <span class="token keyword">with</span> cat <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.2482</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+Similarity <span class="token keyword">with</span> dog <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.2080</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这个代码并不复杂，分成了这样几个步骤。</p>
+<ol>
+<li>我们先是通过Transformers库的CLIPModel和CLIPProcessor，加载了clip-vit-base-patch32这个模型，用来处理我们的图片和文本信息。</li>
+<li>在get_image_features方法里，我们做了两件事情。</li>
+</ol>
+<ul>
+<li>首先，我们通过刚才拿到的CLIPProcessor对图片做预处理，变成一系列的数值特征表示的向量。这个预处理的过程，其实就是把原始的图片，变成一个个像素的RGB值；然后统一图片的尺寸，以及对于不规则的图片截取中间正方形的部分，最后做一下数值的归一化。具体的操作步骤，已经封装在CLIPProcessor里了，你可以不用关心。</li>
+<li>然后，我们再通过CLIPModel，把上面的数值向量，推断成一个表达了图片含义的张量（Tensor）。这里，你就把它当成是一个向量就好了。</li>
+</ul>
+<ol>
+<li>同样的，get_text_features也是类似的，先把对应的文本通过CLIPProcessor转换成Token，然后再通过模型推断出表示文本的张量。</li>
+<li>然后，我们定义了一个cosine_similarity函数，用来计算两个张量之间的余弦相似度。</li>
+<li>最后，我们就可以利用上面的这些函数，来计算图片和文本之间的相似度了。我们拿了一张程序员们最喜欢的猫咪照片，和“This is a cat.” 以及 “This is a dog.” 的文本做比较。可以看到，结果的确是猫咪照片和“This is a cat.” 的相似度要更高一些。</li>
+</ol>
+<p>我们可以再多拿一些文本来进行比较。图片里面，实际是2只猫咪在沙发上，那么我们分别试试”There are two cats.”、”This is a couch.”以及一个完全不相关的“This is a truck.”，看看效果怎么样。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">two_cats_text <span class="token operator">=</span> <span class="token string">"There are two cats."</span>
+two_cats_text_tensor <span class="token operator">=</span> get_text_feature<span class="token punctuation">(</span>two_cats_text<span class="token punctuation">)</span>
+
+truck_text <span class="token operator">=</span> <span class="token string">"This is a truck."</span>
+truck_text_tensor <span class="token operator">=</span> get_text_feature<span class="token punctuation">(</span>truck_text<span class="token punctuation">)</span>
+
+couch_text <span class="token operator">=</span> <span class="token string">"This is a couch."</span>
+couch_text_tensor <span class="token operator">=</span> get_text_feature<span class="token punctuation">(</span>couch_text<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with cat : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> cat_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with dog : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> dog_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with two cats : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> two_cats_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with truck : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> truck_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Similarity with couch : "</span><span class="token punctuation">,</span> cosine_similarity<span class="token punctuation">(</span>image_tensor<span class="token punctuation">,</span> couch_text_tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Similarity <span class="token keyword">with</span> cat <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.2482</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+Similarity <span class="token keyword">with</span> dog <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.2080</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+Similarity <span class="token keyword">with</span> two cats <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.2723</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+Similarity <span class="token keyword">with</span> truck <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.1814</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+Similarity <span class="token keyword">with</span> couch <span class="token punctuation">:</span>  tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.2376</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，“There are two cats.” 的相似度最高，因为图里有沙发，所以“This is a couch.”的相似度也要高于“This is a dog.”。而Dog好歹和Cat同属于宠物，相似度也比完全不相关的Truck要高一些。可以看到，CLIP模型对图片和文本的语义理解是非常到位的。</p>
+<p>看到这里，你有没有觉得这和我们课程一开始的文本零样本分类很像？的确，CLIP模型的一个非常重要的用途就是零样本分类。在CLIP这样的模型出现之前，图像识别已经是一个准确率非常高的领域了。通过RESNET架构的卷积神经网络，在ImageNet这样的大数据集上，已经能够做到90%以上的准确率了。</p>
+<p>但是这些模型都有一个缺陷，就是它们都是基于监督学习的方式来进行分类的。这意味着两点，一个是 <strong>所有的分类需要预先定义好</strong>，比如ImageNet就是预先定义好了1000个分类。另一个是 <strong>数据必须标注</strong>，我们在训练模型之前，要给用来训练的图片标注好属于什么类。</p>
+<p>这带来一个问题，就是如果我们需要增加一个分类，就要重新训练一个模型。比如我们发现数据里面没有标注“沙发”，为了能够识别出沙发，就得标注一堆数据，同时需要重新训练模型来调整模型参数的权重，需要花费很多时间。</p>
+<p>但是，在CLIP这样的模型里，并不需要这样做。因为对应的文本信息，是从海量图片自带的文本信息里来的。并且因为在学习的过程中，模型也学习到了文本之间的关联，所以如果要对一张图片在多个类别中进行分类，只需要简单地列出分类的文本名称，然后每一个都和图片算一下向量表示之间的乘积，再通过Softmax算法做一下多分类的判别就好了。</p>
+<p>下面就是这样一段示例代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+
+<span class="token keyword">from</span> transformers <span class="token keyword">import</span> CLIPProcessor<span class="token punctuation">,</span> CLIPModel
+
+model <span class="token operator">=</span> CLIPModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-base-patch32"</span><span class="token punctuation">)</span>
+processor <span class="token operator">=</span> CLIPProcessor<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-base-patch32"</span><span class="token punctuation">)</span>
+
+image_file <span class="token operator">=</span> <span class="token string">"./data/cat.jpg"</span>
+image <span class="token operator">=</span>  Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>image_file<span class="token punctuation">)</span>
+
+categories <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token string">"dog"</span><span class="token punctuation">,</span> <span class="token string">"truck"</span><span class="token punctuation">,</span> <span class="token string">"couch"</span><span class="token punctuation">]</span>
+categories_text <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"a photo of a </span><span class="token interpolation"><span class="token punctuation">&#123;</span>x<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">,</span> categories<span class="token punctuation">)</span><span class="token punctuation">)</span>
+inputs <span class="token operator">=</span> processor<span class="token punctuation">(</span>text<span class="token operator">=</span>categories_text<span class="token punctuation">,</span> images<span class="token operator">=</span>image<span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+outputs <span class="token operator">=</span> model<span class="token punctuation">(</span><span class="token operator">**</span>inputs<span class="token punctuation">)</span>
+logits_per_image <span class="token operator">=</span> outputs<span class="token punctuation">.</span>logits_per_image
+probs <span class="token operator">=</span> logits_per_image<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>categories<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">&#123;</span>categories<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">\t</span><span class="token interpolation"><span class="token punctuation">&#123;</span>probs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token format-spec">.2%</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cat	<span class="token number">74.51</span><span class="token operator">%</span>
+dog	<span class="token number">0.39</span><span class="token operator">%</span>
+truck	<span class="token number">0.04</span><span class="token operator">%</span>
+couch	<span class="token number">25.07</span><span class="token operator">%</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>代码非常简单，我们还是先加载model和processor。不过这一次，我们不再是通过计算余弦相似度来进行分类了。而是直接通过一个分类的名称，用softmax算法来计算图片应该分类到具体某一个类的名称的概率。在这里，我们给所有名称都加上了一个“a photo of a ”的前缀。这是为了让文本数据更接近CLIP模型拿来训练的输入数据，因为大部分采集到的图片相关的alt和title信息都不大可能会是一个单词，而是一句完整的描述。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/308bf699e76871a5f4c59fe6d26cc6e6.png" alt="图片"></p>
+<p>我们把图片和文本都传入到Processor，它会进行数据预处理。然后直接把这个inputs塞给Model，就可以拿到输出结果了。输出结果的logits_per_image字段就是每一段文本和我们要分类的图片在计算完内积之后的结果。我们只要再把这个结果通过Softmax计算一下，就能得到图片属于各个分类的概率。</p>
+<p>从我们上面运行的结果可以看到，结果还是非常准确的，模型判断有75%的概率是一只猫，25%的概率是沙发。这的确也是图片中实际有的元素，而且从图片来看，猫才是图片里的主角。</p>
+<p>你可以自己找一些的图片，定义一些自己的分类，来看看分类效果如何。不过需要注意，CLIP是用英文文本进行预训练的，分类的名字你也需要用英文。</p>
+<h2 id="通过CLIP进行目标检测"><a href="#通过CLIP进行目标检测" class="headerlink" title="通过CLIP进行目标检测"></a>通过CLIP进行目标检测</h2><p>除了能够实现零样本的图像分类之外，我们也可以将它应用到零样本下的目标检测中。目标检测其实就是是在图像中框出特定区域，然后对这个区域内的图像内容进行分类。因此，我们同样可以用CLIP来实现目标检测任务。</p>
+<p>事实上，Google就基于CLIP，开发了OWL-ViT这个模型来做零样本的目标检测，我们可以直接使用 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/652734">上一讲</a> 学过的Pipeline来试一试它是怎么帮助我们做目标检测的。</p>
+<p>目标检测：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> transformers <span class="token keyword">import</span> pipeline
+
+detector <span class="token operator">=</span> pipeline<span class="token punctuation">(</span>model<span class="token operator">=</span><span class="token string">"google/owlvit-base-patch32"</span><span class="token punctuation">,</span> task<span class="token operator">=</span><span class="token string">"zero-shot-object-detection"</span><span class="token punctuation">)</span>
+detected <span class="token operator">=</span> detector<span class="token punctuation">(</span>
+    <span class="token string">"./data/cat.jpg"</span><span class="token punctuation">,</span>
+    candidate_labels<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token string">"dog"</span><span class="token punctuation">,</span> <span class="token string">"truck"</span><span class="token punctuation">,</span> <span class="token string">"couch"</span><span class="token punctuation">,</span> <span class="token string">"remote"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>detected<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">'score'</span><span class="token punctuation">:</span> <span class="token number">0.2868116796016693</span><span class="token punctuation">,</span> <span class="token string">'label'</span><span class="token punctuation">:</span> <span class="token string">'cat'</span><span class="token punctuation">,</span> <span class="token string">'box'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'xmin'</span><span class="token punctuation">:</span> <span class="token number">324</span><span class="token punctuation">,</span> <span class="token string">'ymin'</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'xmax'</span><span class="token punctuation">:</span> <span class="token number">640</span><span class="token punctuation">,</span> <span class="token string">'ymax'</span><span class="token punctuation">:</span> <span class="token number">373</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'score'</span><span class="token punctuation">:</span> <span class="token number">0.2770090401172638</span><span class="token punctuation">,</span> <span class="token string">'label'</span><span class="token punctuation">:</span> <span class="token string">'remote'</span><span class="token punctuation">,</span> <span class="token string">'box'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'xmin'</span><span class="token punctuation">:</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token string">'ymin'</span><span class="token punctuation">:</span> <span class="token number">72</span><span class="token punctuation">,</span> <span class="token string">'xmax'</span><span class="token punctuation">:</span> <span class="token number">177</span><span class="token punctuation">,</span> <span class="token string">'ymax'</span><span class="token punctuation">:</span> <span class="token number">115</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'score'</span><span class="token punctuation">:</span> <span class="token number">0.2537277638912201</span><span class="token punctuation">,</span> <span class="token string">'label'</span><span class="token punctuation">:</span> <span class="token string">'cat'</span><span class="token punctuation">,</span> <span class="token string">'box'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'xmin'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'ymin'</span><span class="token punctuation">:</span> <span class="token number">55</span><span class="token punctuation">,</span> <span class="token string">'xmax'</span><span class="token punctuation">:</span> <span class="token number">315</span><span class="token punctuation">,</span> <span class="token string">'ymax'</span><span class="token punctuation">:</span> <span class="token number">472</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'score'</span><span class="token punctuation">:</span> <span class="token number">0.14742951095104218</span><span class="token punctuation">,</span> <span class="token string">'label'</span><span class="token punctuation">:</span> <span class="token string">'remote'</span><span class="token punctuation">,</span> <span class="token string">'box'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'xmin'</span><span class="token punctuation">:</span> <span class="token number">335</span><span class="token punctuation">,</span> <span class="token string">'ymin'</span><span class="token punctuation">:</span> <span class="token number">74</span><span class="token punctuation">,</span> <span class="token string">'xmax'</span><span class="token punctuation">:</span> <span class="token number">371</span><span class="token punctuation">,</span> <span class="token string">'ymax'</span><span class="token punctuation">:</span> <span class="token number">187</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'score'</span><span class="token punctuation">:</span> <span class="token number">0.12083035707473755</span><span class="token punctuation">,</span> <span class="token string">'label'</span><span class="token punctuation">:</span> <span class="token string">'couch'</span><span class="token punctuation">,</span> <span class="token string">'box'</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">'xmin'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'ymin'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'xmax'</span><span class="token punctuation">:</span> <span class="token number">642</span><span class="token punctuation">,</span> <span class="token string">'ymax'</span><span class="token punctuation">:</span> <span class="token number">476</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到一旦用上Pipeline，代码就变得特别简单了。我们先定义了一下model和task，然后输入了我们用来检测的图片，以及提供的类别就完事了。从打印出来的结果中可以看到，里面包含了模型检测出来的所有物品的边框位置。这一次，我们还特地增加了一个remote，也就是遥控器的类别，看看这样的小物体模型是不是也能识别出来。</p>
+<p>接下来，我们就把边框标注到图片上，看看检测的结果是否准确。</p>
+<p>首先，我们需要安装一下OpenCV。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install opencv<span class="token operator">-</span>python
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>后面的代码也很简单，就是遍历一下上面检测拿到的结果，然后通过OpenCV把边框绘制到图片上就好了。</p>
+<p>输出目标检测结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
+<span class="token keyword">from</span> matplotlib <span class="token keyword">import</span> pyplot <span class="token keyword">as</span> plt
+
+<span class="token comment"># Read the image</span>
+image_path <span class="token operator">=</span> <span class="token string">"./data/cat.jpg"</span>
+image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>image_path<span class="token punctuation">)</span>
+
+<span class="token comment"># Convert the image from BGR to RGB format</span>
+image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>image<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2RGB<span class="token punctuation">)</span>
+
+<span class="token comment"># Draw the bounding box and label for each detected object</span>
+<span class="token keyword">for</span> detection <span class="token keyword">in</span> detected<span class="token punctuation">:</span>
+    box <span class="token operator">=</span> detection<span class="token punctuation">[</span><span class="token string">'box'</span><span class="token punctuation">]</span>
+    label <span class="token operator">=</span> detection<span class="token punctuation">[</span><span class="token string">'label'</span><span class="token punctuation">]</span>
+    score <span class="token operator">=</span> detection<span class="token punctuation">[</span><span class="token string">'score'</span><span class="token punctuation">]</span>
+
+    <span class="token comment"># Draw the bounding box and label on the image</span>
+    xmin<span class="token punctuation">,</span> ymin<span class="token punctuation">,</span> xmax<span class="token punctuation">,</span> ymax <span class="token operator">=</span> box<span class="token punctuation">[</span><span class="token string">'xmin'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> box<span class="token punctuation">[</span><span class="token string">'ymin'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> box<span class="token punctuation">[</span><span class="token string">'xmax'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> box<span class="token punctuation">[</span><span class="token string">'ymax'</span><span class="token punctuation">]</span>
+    cv2<span class="token punctuation">.</span>rectangle<span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token punctuation">(</span>xmin<span class="token punctuation">,</span> ymin<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>xmax<span class="token punctuation">,</span> ymax<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    cv2<span class="token punctuation">.</span>putText<span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">&#123;</span>label<span class="token punctuation">&#125;</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>score<span class="token punctuation">:</span><span class="token format-spec">.2f</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">,</span> <span class="token punctuation">(</span>xmin<span class="token punctuation">,</span> ymin <span class="token operator">-</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>FONT_HERSHEY_SIMPLEX<span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Display the image in Jupyter Notebook</span>
+plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>image<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4c42b82ffd8286b225739bbf778f673b.png" alt="图片"></p>
+<p>从最后的输出结果来看，无论是猫咪、遥控器还是沙发，都被准确地框选出来了。</p>
+<h2 id="商品搜索与以图搜图"><a href="#商品搜索与以图搜图" class="headerlink" title="商品搜索与以图搜图"></a>商品搜索与以图搜图</h2><p>CLIP模型能把文本和图片都变成同一个空间里面的向量。而且，文本和图片之间还有关联，这就让我们想到了 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/644795">第 9 讲</a> 学过的内容。我们是不是可以利用这个向量来进行语义检索，实现搜索图片的功能？答案当然是可以的，其实这也是CLIP的一个常用功能。我们接下来就要通过代码来演示这个搜索的用法。</p>
+<p>要演示商品搜索功能，我们要先找到一个数据集。这一次，我们需要的数据是图片，这我们就没办法直接通过ChatGPT来造了。不过，正好我们可以学习HuggingFace提供的 <a target="_blank" rel="noopener" href="https://huggingface.co/datasets">Dataset模块</a>。</p>
+<p>所有的机器学习问题都需要有一套数据，我们需要通过数据来训练、验证和测试模型。所以作为最大的开源机器学习社区，HuggingFace就提供了这样一个模块，让开发人员可以把他们的数据集分享出来。并且这些数据集，都可以通过 datasets 库的 load_dataset 方法加载到内存里面来。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/25bd82c324cff8ee8ff375ac0e19b49e.png" alt="图片"></p>
+<p>我们想要找一些商品图片，那么就可以在HuggingFace的搜索栏里输入 product image。然后点击Datasets下找到的数据集，进入数据集的详情页。可以看到，这个叫做 <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/rajuptvs/ecommerce_products_clip">ecommece_products_clip 的数据集里</a>，的确每一条记录都有商品图片，那拿来做我们的图片搜索演示再合适不过了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0eaa63e4e4611e5484a809f6504d34a8.png" alt="图片"></p>
+<p>加载数据集非常简单，我们只需要调用一下 load_dataset 方法，并且把数据集的名字作为参数就可以了。对于拿到的数据集，你可以看到里面一共有1913条数据，并且列出了所有feature的名字。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> datasets <span class="token keyword">import</span> load_dataset
+
+dataset <span class="token operator">=</span> load_dataset<span class="token punctuation">(</span><span class="token string">"rajuptvs/ecommerce_products_clip"</span><span class="token punctuation">)</span>
+dataset
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">DatasetDict<span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    train<span class="token punctuation">:</span> Dataset<span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        features<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">,</span> <span class="token string">'Product_name'</span><span class="token punctuation">,</span> <span class="token string">'Price'</span><span class="token punctuation">,</span> <span class="token string">'colors'</span><span class="token punctuation">,</span> <span class="token string">'Pattern'</span><span class="token punctuation">,</span> <span class="token string">'Description'</span><span class="token punctuation">,</span> <span class="token string">'Other Details'</span><span class="token punctuation">,</span> <span class="token string">'Clipinfo'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        num_rows<span class="token punctuation">:</span> <span class="token number">1913</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>数据集一般都会预先分片，分成 <strong>训练集（train）、验证集（validation）和测试集（test）</strong> 三种。我们这里不是做机器学习训练，而是演示一下通过CLIP模型做搜索，所以我们选用了数据最多的train这个数据分片。我们通过Matplotlib这个库，显示了一下前10个商品的图片，确认数据和我们想的是一样的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+training_split <span class="token operator">=</span> dataset<span class="token punctuation">[</span><span class="token string">"train"</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">display_images</span><span class="token punctuation">(</span>images<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fig<span class="token punctuation">,</span> axes <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    axes <span class="token operator">=</span> axes<span class="token punctuation">.</span>ravel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> idx<span class="token punctuation">,</span> img <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>images<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        axes<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        axes<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+
+    plt<span class="token punctuation">.</span>subplots_adjust<span class="token punctuation">(</span>wspace<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">,</span> hspace<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+images <span class="token operator">=</span> <span class="token punctuation">[</span>example<span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span> <span class="token keyword">for</span> example <span class="token keyword">in</span> training_split<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+display_images<span class="token punctuation">(</span>images<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/678702faf0b9969098523749e8b12a89.png" alt="图片"></p>
+<p>有了数据集，我们要做的第一件事情，就是通过CLIP模型把所有的图片都转换成向量并且记录下来。获取图片向量的方法和我们上面做零样本分类类似，我们加载了CLIPModel和CLIPProcessor，通过get_image_features函数拿到向量，再通过add_image_feature函数把这些向量加入到features特征里面。</p>
+<p>我们一条记录一条记录地来处理训练集里面的图片特征，并且把处理完成的特征也加入到数据集的features属性里面去。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>transforms <span class="token keyword">as</span> transforms
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">from</span> datasets <span class="token keyword">import</span> load_dataset
+<span class="token keyword">from</span> transformers <span class="token keyword">import</span> CLIPProcessor<span class="token punctuation">,</span> CLIPModel
+
+device <span class="token operator">=</span> <span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span>
+model <span class="token operator">=</span> CLIPModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-base-patch32"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+processor <span class="token operator">=</span> CLIPProcessor<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"openai/clip-vit-base-patch32"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_image_features</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        inputs <span class="token operator">=</span> processor<span class="token punctuation">(</span>images<span class="token operator">=</span><span class="token punctuation">[</span>image<span class="token punctuation">]</span><span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+        inputs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        features <span class="token operator">=</span> model<span class="token punctuation">.</span>get_image_features<span class="token punctuation">(</span><span class="token operator">**</span>inputs<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> features<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">add_image_features</span><span class="token punctuation">(</span>example<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    example<span class="token punctuation">[</span><span class="token string">"features"</span><span class="token punctuation">]</span> <span class="token operator">=</span> get_image_features<span class="token punctuation">(</span>example<span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> example
+
+<span class="token comment"># Apply the function to the training_split</span>
+training_split <span class="token operator">=</span> training_split<span class="token punctuation">.</span><span class="token builtin">map</span><span class="token punctuation">(</span>add_image_features<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>有了处理好的向量，问题就好办了。我们可以仿照 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/644795">第 9 讲</a> 的办法，把这些向量都放到Faiss的索引里面去。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> faiss
+
+features <span class="token operator">=</span> <span class="token punctuation">[</span>example<span class="token punctuation">[</span><span class="token string">"features"</span><span class="token punctuation">]</span> <span class="token keyword">for</span> example <span class="token keyword">in</span> training_split<span class="token punctuation">]</span>
+features_matrix <span class="token operator">=</span> np<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span>features<span class="token punctuation">)</span>
+
+dimension <span class="token operator">=</span> features_matrix<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+index <span class="token operator">=</span> faiss<span class="token punctuation">.</span>IndexFlatL2<span class="token punctuation">(</span>dimension<span class="token punctuation">)</span>
+index<span class="token punctuation">.</span>add<span class="token punctuation">(</span>features_matrix<span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'float32'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>有了这个索引，我们就可以通过余弦相似度来搜索图片了。我们通过下面四个步骤来完成这个用文字搜索图片的功能。</p>
+<ol>
+<li>首先 get_text_features 这个函数会通过CLIPModel和CLIPProcessor拿到一段文本输入的向量。</li>
+<li>其次是 search 函数。它接收一段搜索文本，然后将文本通过 get_text_features 转换成向量，去Faiss里面搜索对应的向量索引。然后通过这个索引重新从training_split里面找到对应的图片，加入到返回结果里面去。</li>
+<li>然后我们就以A red dress作为搜索词，调用search函数拿到搜索结果。</li>
+<li>最后，我们通过 display_search_results 这个函数，将搜索到的图片以及在Faiss索引中的距离展示出来。</li>
+</ol>
+<p>上面这四个步骤，其实在之前的课程中都我们都讲过。我们通过这些方法的组合，就实现了一个通过关键词搜索商品图片的功能。而从搜索结果中可以看到，排名靠前的的确都是红色的裙子。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_text_features</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        inputs <span class="token operator">=</span> processor<span class="token punctuation">(</span>text<span class="token operator">=</span><span class="token punctuation">[</span>text<span class="token punctuation">]</span><span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+        inputs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        features <span class="token operator">=</span> model<span class="token punctuation">.</span>get_text_features<span class="token punctuation">(</span><span class="token operator">**</span>inputs<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> features<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>query_text<span class="token punctuation">,</span> top_k<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Get the text feature vector for the input query</span>
+    text_features <span class="token operator">=</span> get_text_features<span class="token punctuation">(</span>query_text<span class="token punctuation">)</span>
+
+    <span class="token comment"># Perform a search using the FAISS index</span>
+    distances<span class="token punctuation">,</span> indices <span class="token operator">=</span> index<span class="token punctuation">.</span>search<span class="token punctuation">(</span>text_features<span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">"float32"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> top_k<span class="token punctuation">)</span>
+
+    <span class="token comment"># Get the corresponding images and distances</span>
+    results <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"image"</span><span class="token punctuation">:</span> training_split<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"distance"</span><span class="token punctuation">:</span> distances<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> j<span class="token punctuation">,</span> i <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>indices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+
+    <span class="token keyword">return</span> results
+
+query_text <span class="token operator">=</span> <span class="token string">"A red dress"</span>
+results <span class="token operator">=</span> search<span class="token punctuation">(</span>query_text<span class="token punctuation">)</span>
+
+<span class="token comment"># Display the search results</span>
+<span class="token keyword">def</span> <span class="token function">display_search_results</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fig<span class="token punctuation">,</span> axes <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">,</span> figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    axes <span class="token operator">=</span> axes<span class="token punctuation">.</span>ravel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> idx<span class="token punctuation">,</span> result <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        axes<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>result<span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        axes<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>set_title<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Distance: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>result<span class="token punctuation">[</span><span class="token string">'distance'</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token format-spec">.2f</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        axes<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+
+    plt<span class="token punctuation">.</span>subplots_adjust<span class="token punctuation">(</span>wspace<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">,</span> hspace<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+display_search_results<span class="token punctuation">(</span>results<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/277ca44840ff7efa314c46ccf6221b8d.png" alt="图片"></p>
+<p>有了通过文本搜索商品，相信你也知道如何以图搜图了。我们只需要把 get_text_features 换成一个 get_image_features 就能做到这一点。我也把对应的代码放在下面。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_image_features</span><span class="token punctuation">(</span>image_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Load the image from the file</span>
+    image <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>image_path<span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">"RGB"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        inputs <span class="token operator">=</span> processor<span class="token punctuation">(</span>images<span class="token operator">=</span><span class="token punctuation">[</span>image<span class="token punctuation">]</span><span class="token punctuation">,</span> return_tensors<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+        inputs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        features <span class="token operator">=</span> model<span class="token punctuation">.</span>get_image_features<span class="token punctuation">(</span><span class="token operator">**</span>inputs<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> features<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>image_path<span class="token punctuation">,</span> top_k<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Get the image feature vector for the input image</span>
+    image_features <span class="token operator">=</span> get_image_features<span class="token punctuation">(</span>image_path<span class="token punctuation">)</span>
+
+    <span class="token comment"># Perform a search using the FAISS index</span>
+    distances<span class="token punctuation">,</span> indices <span class="token operator">=</span> index<span class="token punctuation">.</span>search<span class="token punctuation">(</span>image_features<span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">"float32"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> top_k<span class="token punctuation">)</span>
+
+    <span class="token comment"># Get the corresponding images and distances</span>
+    results <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"image"</span><span class="token punctuation">:</span> training_split<span class="token punctuation">[</span>i<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"distance"</span><span class="token punctuation">:</span> distances<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">&#125;</span>
+        <span class="token keyword">for</span> j<span class="token punctuation">,</span> i <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>indices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+
+    <span class="token keyword">return</span> results
+
+image_path <span class="token operator">=</span> <span class="token string">"./data/shirt.png"</span>
+results <span class="token operator">=</span> search<span class="token punctuation">(</span>image_path<span class="token punctuation">)</span>
+
+display<span class="token punctuation">(</span>IPyImage<span class="token punctuation">(</span>filename<span class="token operator">=</span>image_path<span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">300</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+display_search_results<span class="token punctuation">(</span>results<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/32f22ed545be30abe43a8f39cf5b8369.png" alt="图片"></p>
+<p>输出结果：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/48e900a88c63d7253dbc7e9e4aa0bcd3.png" alt="图片"></p>
+<p>从搜索结果可以看到，尽管用来搜索的衬衫图片的视角和风格与商品库里面的图片完全不同，但是搜索到的图片也都是有蓝色元素的衬衫，由此可见，CLIP模型对于语义的捕捉还是非常准确的。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，这一讲到这里就结束了，最后我们一起来总结复习一下。</p>
+<p>这一讲，我为你介绍了OpenAI开源的CLIP模型。这个模型是通过互联网上的海量图片数据，以及图片对应的img标签里面的alt和title字段信息训练出来的。这个模型无需额外的标注，就能将图片和文本映射到同一个向量空间，让我们能把文本和图片关联起来。</p>
+<p>通过CLIP模型，我们可以对任意物品名称进行零样本分类。进一步地，我们还能进行零样本的目标检测。而文本和图片在同一个向量空间的这个特性，也能够让我们直接利用这个模型进一步优化我们的商品搜索功能。我们可以拿文本的向量，通过找到余弦距离最近的商品图片来优化搜索的召回过程。我们也能直接拿图片向量，实现以图搜图这样的功能。</p>
+<p>CLIP这样的多模态模型，进一步拓展了我们AI的能力。我们现在写几个提示语，就能让AI拥有绘画的能力，这一点也可以认为是发端于此的。而在接下来的几讲里面，我们就要看看应该怎么使用AI来画画了。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你能试一试，通过Pipeline来实现我们今天介绍的图片零样本分类吗？进行零样本分类的时候，你选取了哪一个模型呢？欢迎你在评论区和我交流讨论，也欢迎你把这一讲分享给需要的朋友，我们下一讲再见！</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>如果你想要对计算机视觉的深度学习有一个快速地了解，那么Pinecone提供的这份 <a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/image-search/">Embedding Methods for Image Search</a> 是一份很好的教程。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#23%EF%BD%9COpenClip%EF%BC%9A%E8%AE%A9%E6%88%91%E4%BB%AC%E6%90%9E%E6%B8%85%E6%A5%9A%E5%9B%BE%E7%89%87%E8%AF%B4%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">23｜OpenClip：让我们搞清楚图片说了些什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E7%9A%84CLIP%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">多模态的CLIP模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E9%9B%B6%E6%A0%B7%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">图片的零样本分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87CLIP%E8%BF%9B%E8%A1%8C%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="toc-number">1.3.</span> <span class="toc-text">通过CLIP进行目标检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2%E4%B8%8E%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE"><span class="toc-number">1.4.</span> <span class="toc-text">商品搜索与以图搜图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.7.</span> <span class="toc-text">推荐阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

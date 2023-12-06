@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>09｜语义检索，利用Embedding优化你的搜索功能 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="09｜语义检索，利用Embedding优化你的搜索功能你好，我是徐文浩。 在过去的8讲里面，相信你已经对Embedding和Completion接口非常熟悉了。Embedding向量适合作为一个中间结果，用于传统的机器学习场景，比如分类、聚类。而Completion接口，一方面可以直接拿来作为一个聊天机器人，另一方面，你只要善用提示词，就能完成合理的文案撰写、文本摘要、机器翻译等一系列的工作。 不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09｜语义检索，利用Embedding优化你的搜索功能">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3755627929.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="09｜语义检索，利用Embedding优化你的搜索功能你好，我是徐文浩。 在过去的8讲里面，相信你已经对Embedding和Completion接口非常熟悉了。Embedding向量适合作为一个中间结果，用于传统的机器学习场景，比如分类、聚类。而Completion接口，一方面可以直接拿来作为一个聊天机器人，另一方面，你只要善用提示词，就能完成合理的文案撰写、文本摘要、机器翻译等一系列的工作。 不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-06T15:53:27.387Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3755627929"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '09｜语义检索，利用Embedding优化你的搜索功能',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-06 15:53:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">324</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">09｜语义检索，利用Embedding优化你的搜索功能</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="09｜语义检索，利用Embedding优化你的搜索功能"><a href="#09｜语义检索，利用Embedding优化你的搜索功能" class="headerlink" title="09｜语义检索，利用Embedding优化你的搜索功能"></a>09｜语义检索，利用Embedding优化你的搜索功能</h1><p>你好，我是徐文浩。</p>
+<p>在过去的8讲里面，相信你已经对Embedding和Completion接口非常熟悉了。Embedding向量适合作为一个中间结果，用于传统的机器学习场景，比如分类、聚类。而Completion接口，一方面可以直接拿来作为一个聊天机器人，另一方面，你只要善用提示词，就能完成合理的文案撰写、文本摘要、机器翻译等一系列的工作。</p>
+<p>不过，很多同学可能会说，这个和我的日常工作又没有什么关系。的确，日常我们的需求里面，最常使用自然语言处理（NLP）技术的，是搜索、广告、推荐这样的业务。那么，今天我们就来看看，怎么利用OpenAI提供的接口来为这些需求提供些帮助。</p>
+<h2 id="让AI生成实验数据"><a href="#让AI生成实验数据" class="headerlink" title="让AI生成实验数据"></a>让AI生成实验数据</h2><p>在实际演示代码之前，我们需要一些可以拿来实验的数据。之前，我们都是在网上找一些数据集，或者直接使用一些机器学习软件包里面自带的数据集。但是，并不是所有时候我们都能很快找到合适的数据集。这个时候，我们也可以利用AI，我们直接让AI帮我们生成一些数据不就好了吗？</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai<span class="token punctuation">,</span> os
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+COMPLETION_MODEL <span class="token operator">=</span> <span class="token string">"text-davinci-003"</span>
+
+<span class="token keyword">def</span> <span class="token function">generate_data_by_prompt</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>Completion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        engine<span class="token operator">=</span>COMPLETION_MODEL<span class="token punctuation">,</span>
+        prompt<span class="token operator">=</span>prompt<span class="token punctuation">,</span>
+        temperature<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+        max_tokens<span class="token operator">=</span><span class="token number">2048</span><span class="token punctuation">,</span>
+        top_p<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text
+
+prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""请你生成50条淘宝网里的商品的标题，每条在30个字左右，品类是3C数码产品，标题里往往也会有一些促销类的信息，每行一条。"""</span>
+data <span class="token operator">=</span> generate_data_by_prompt<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为了让数据和真实情况更加接近一点，我们可以好好设计一下我们的提示语。比如，我这里就指明了是淘宝的商品，品类是3C，并且标题里要包含一些促销信息。</p>
+<p>我们把拿到的返回结果，按行分割，加载到一个DataFrame里面，看看结果会是怎么样的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+product_names <span class="token operator">=</span> data<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">'product_name'</span><span class="token punctuation">:</span> product_names<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">    product_name
+<span class="token number">0</span>	<span class="token number">1.</span> 【限时特惠】Apple<span class="token operator">/</span>苹果 iPhone <span class="token number">11</span> Pro Max 手机
+<span class="token number">1</span>	<span class="token number">2.</span> 【超值折扣】Huawei<span class="token operator">/</span>华为 P30 Pro 智能手机
+<span class="token number">2</span>	<span class="token number">3.</span> 【热销爆款】OPPO Reno 10X Zoom 全网通手机
+<span class="token number">3</span>	<span class="token number">4.</span> 【限量特价】Xiaomi<span class="token operator">/</span>小米 <span class="token number">9</span> Pro 5G 手机
+<span class="token number">4</span>	<span class="token number">5.</span> 【限时促销】Apple<span class="token operator">/</span>苹果 iPad Pro <span class="token number">11</span>寸 平板
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，AI为我们生成了50条商品信息，并且每一个都带上了一些促销相关的标签。不过，在返回的结果里面，每一行都带上了一个标号，所以我们需要简单处理一下，去掉这个标号拿到一些干净的数据。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">df<span class="token punctuation">.</span>product_name <span class="token operator">=</span> df<span class="token punctuation">.</span>product_name<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">     product_name
+<span class="token number">0</span>	【限时特惠】Apple<span class="token operator">/</span>苹果 iPhone <span class="token number">11</span> Pro Max 手机
+<span class="token number">1</span>	【超值折扣】Huawei<span class="token operator">/</span>华为 P30 Pro 智能手机
+<span class="token number">2</span>	【热销爆款】OPPO Reno 10X Zoom 全网通手机
+<span class="token number">3</span>	【限量特价】Xiaomi<span class="token operator">/</span>小米 <span class="token number">9</span> Pro 5G 手机
+<span class="token number">4</span>	【限时促销】Apple<span class="token operator">/</span>苹果 iPad Pro <span class="token number">11</span>寸 平板
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以如法炮制，再生成一些女装的商品名称，覆盖不同的品类，这样后面我们演示搜索效果的时候就会方便一点。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">clothes_prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""请你生成50条淘宝网里的商品的标题，每条在30个字左右，品类是女性的服饰箱包等等，标题里往往也会有一些促销类的信息，每行一条。"""</span>
+clothes_data <span class="token operator">=</span> generate_data_by_prompt<span class="token punctuation">(</span>clothes_prompt<span class="token punctuation">)</span>
+clothes_product_names <span class="token operator">=</span> clothes_data<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+clothes_df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">'product_name'</span><span class="token punctuation">:</span> clothes_product_names<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+clothes_df<span class="token punctuation">.</span>product_name <span class="token operator">=</span> clothes_df<span class="token punctuation">.</span>product_name<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+clothes_df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">    product_name
+<span class="token number">0</span>	【新款】时尚百搭羊绒毛衣，暖洋洋温暖你的冬天
+<span class="token number">1</span>	【热卖】复古气质翻领毛衣，穿出时尚感
+<span class="token number">2</span>	【特价】轻薄百搭棉衣，舒适温暖，冬季必备
+<span class="token number">3</span>	【限时】经典百搭牛仔外套，轻松搭配，时尚范
+<span class="token number">4</span>	【全新】简约大气羊绒连衣裙，温柔优雅
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后我们把这两个DataFrame拼接在一起，就是我们接下来用于做搜索实验的数据。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>df<span class="token punctuation">,</span> clothes_df<span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+df <span class="token operator">=</span> df<span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span>drop<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+display<span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">	product_name
+<span class="token number">0</span>	【新款】Apple<span class="token operator">/</span>苹果 iPhone <span class="token number">11</span> Pro Max 智能手机
+<span class="token number">1</span>	【特惠】华为P30 Pro 8GB<span class="token operator">+</span>256GB 全网通版
+<span class="token number">2</span>	【限量】OnePlus 7T Pro 8GB<span class="token operator">+</span>256GB 全网通
+<span class="token number">3</span>	【新品】小米CC9 Pro 8GB<span class="token operator">+</span>256GB 全网通版
+<span class="token number">4</span>	【热销】三星Galaxy Note10<span class="token operator">+</span> 8GB<span class="token operator">+</span>256GB 全网通
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token number">92</span>	【优惠】气质小清新拼接百搭双肩斜挎包
+<span class="token number">93</span>	【热卖】活力色彩精致小巧百搭女士单肩斜挎包
+<span class="token number">94</span>	【特价】简约可爱原宿风时尚双肩斜挎包
+<span class="token number">95</span>	【折扣】潮流小清新拼接百搭女士单肩斜挎包
+<span class="token number">96</span>	【特惠】百搭潮流活力色彩拼色双肩斜挎
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不过如果你多试几次，你会发现AI有时候返回的条数没有50条，不过没有关系，这个基本不影响我们使用这个数据源。你完全可以多运行几次，获得足够你需要的数据。</p>
+<h2 id="通过Embedding进行语义搜索"><a href="#通过Embedding进行语义搜索" class="headerlink" title="通过Embedding进行语义搜索"></a>通过Embedding进行语义搜索</h2><p>那对于搜索问题，我们可以用GPT模型干些什么呢？像百度、阿里这样的巨头公司自然有很多内部复杂的策略和模型，但是对于大部分中小公司，特别是刚开始提供搜索功能的时候，往往是使用Elasticsearch这个开源项目。而Elasticsearch背后的搜索原理，则是先分词，然后再使用倒排索引。</p>
+<p>简单来说，就是把上面的“气质小清新拼接百搭双肩斜挎包”这样的商品名称，拆分成“气质”“小清新”“拼接”“百搭”“双肩”“斜挎包”。每个标题都是这样切分。然后，建立一个索引，比如“气质”这个词，出现过的标题的编号，都按编号顺序跟在气质后面。其他的词也类似。</p>
+<p>然后，当用户搜索的时候，比如用户搜索“气质背包”，也会拆分成“气质”和“背包”两个词。然后就根据这两个词，找到包含这些词的标题，根据出现的词的数量、权重等等找出一些商品。</p>
+<p>但是，这个策略有一个缺点，就是如果我们有同义词，那么这么简单地去搜索是搜不到的。比如，我们如果搜“自然淡雅背包”，虽然语义上很接近，但是因为“自然”“淡雅”“背包”这三个词在这个商品标题里都没有出现，所以就没有办法匹配上了。为了提升搜索效果，你就得做更多的工程研发工作，比如找一个同义词表，把标题里出现的同义词也算上等等。</p>
+<p>不过，有了OpenAI的Embedding接口，我们就可以把一段文本的语义表示成一段向量。而向量之间是可以计算距离的，这个我们在之前的情感分析的零样本分类里就演示过了。那如果我们把用户的搜索，也通过Embedding接口变成向量。然后把它和所有的商品的标题计算一下余弦距离，找出离我们搜索词最近的几个向量。那最近的几个向量，其实就是语义和这个商品相似的，而并不一定需要相同的关键词。</p>
+<p>那根据这个思路，我们不妨用代码来试一试。</p>
+<p>首先，我们还是要把随机生成出来的所有商品标题，都计算出来它们的Embedding，然后存下来。这里的代码，基本和之前通过Embedding进行分类和聚类一致，就不再详细讲解了。我们还是利用backoff和batch处理，让代码能够容错，并且快速处理完这些商品标题。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> openai<span class="token punctuation">.</span>embeddings_utils <span class="token keyword">import</span> get_embeddings
+<span class="token keyword">import</span> openai<span class="token punctuation">,</span> os<span class="token punctuation">,</span> backoff
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+embedding_model <span class="token operator">=</span> <span class="token string">"text-embedding-ada-002"</span>
+
+batch_size <span class="token operator">=</span> <span class="token number">100</span>
+
+<span class="token decorator annotation punctuation">@backoff<span class="token punctuation">.</span>on_exception</span><span class="token punctuation">(</span>backoff<span class="token punctuation">.</span>expo<span class="token punctuation">,</span> openai<span class="token punctuation">.</span>error<span class="token punctuation">.</span>RateLimitError<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">get_embeddings_with_backoff</span><span class="token punctuation">(</span>prompts<span class="token punctuation">,</span> engine<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    embeddings <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>prompts<span class="token punctuation">)</span><span class="token punctuation">,</span> batch_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        batch <span class="token operator">=</span> prompts<span class="token punctuation">[</span>i<span class="token punctuation">:</span>i<span class="token operator">+</span>batch_size<span class="token punctuation">]</span>
+        embeddings <span class="token operator">+=</span> get_embeddings<span class="token punctuation">(</span>list_of_text<span class="token operator">=</span>batch<span class="token punctuation">,</span> engine<span class="token operator">=</span>engine<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> embeddings
+
+prompts <span class="token operator">=</span> df<span class="token punctuation">.</span>product_name<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span>
+prompt_batches <span class="token operator">=</span> <span class="token punctuation">[</span>prompts<span class="token punctuation">[</span>i<span class="token punctuation">:</span>i<span class="token operator">+</span>batch_size<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>prompts<span class="token punctuation">)</span><span class="token punctuation">,</span> batch_size<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+embeddings <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> batch <span class="token keyword">in</span> prompt_batches<span class="token punctuation">:</span>
+    batch_embeddings <span class="token operator">=</span> get_embeddings_with_backoff<span class="token punctuation">(</span>prompts<span class="token operator">=</span>batch<span class="token punctuation">,</span> engine<span class="token operator">=</span>embedding_model<span class="token punctuation">)</span>
+    embeddings <span class="token operator">+=</span> batch_embeddings
+
+df<span class="token punctuation">[</span><span class="token string">"embedding"</span><span class="token punctuation">]</span> <span class="token operator">=</span> embeddings
+df<span class="token punctuation">.</span>to_parquet<span class="token punctuation">(</span><span class="token string">"data/taobao_product_title.parquet"</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我们就可以定义一个search_product的搜索函数，接受三个参数，一个df代表用于搜索的数据源，一个query代表用于搜索的搜索词，然后一个n代表搜索返回多少条记录。而这个函数就干了这样三件事情。</p>
+<ol>
+<li>调用OpenAI的API将搜索词也转换成Embedding。</li>
+<li>将这个Embedding和DataFrame里的每一个Embedding都计算一下余弦距离。</li>
+<li>根据余弦相似度去排序，返回距离最近的n个标题。</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> openai<span class="token punctuation">.</span>embeddings_utils <span class="token keyword">import</span> get_embedding<span class="token punctuation">,</span> cosine_similarity
+
+<span class="token comment"># search through the reviews for a specific product</span>
+<span class="token keyword">def</span> <span class="token function">search_product</span><span class="token punctuation">(</span>df<span class="token punctuation">,</span> query<span class="token punctuation">,</span> n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> pprint<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    product_embedding <span class="token operator">=</span> get_embedding<span class="token punctuation">(</span>
+        query<span class="token punctuation">,</span>
+        engine<span class="token operator">=</span>embedding_model
+    <span class="token punctuation">)</span>
+    df<span class="token punctuation">[</span><span class="token string">"similarity"</span><span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">.</span>embedding<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> cosine_similarity<span class="token punctuation">(</span>x<span class="token punctuation">,</span> product_embedding<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    results <span class="token operator">=</span> <span class="token punctuation">(</span>
+        df<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token string">"similarity"</span><span class="token punctuation">,</span> ascending<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>head<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>product_name
+    <span class="token punctuation">)</span>
+    <span class="token keyword">if</span> pprint<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> r <span class="token keyword">in</span> results<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> results
+
+results <span class="token operator">=</span> search_product<span class="token punctuation">(</span>df<span class="token punctuation">,</span> <span class="token string">"自然淡雅背包"</span><span class="token punctuation">,</span> n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们就拿刚才举的那个例子，使用“自然淡雅背包”作为搜索词，调用这个search_product函数，然后拿前3个返回结果。可以看到，尽管在关键词上完全不同，但是返回的结果里，的确包含了“小清新百搭拼色女士单肩斜挎包”这个商品。</p>
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">【新品】潮流简约可爱时尚双肩斜挎包
+【优惠】精致小巧可爱双肩斜挎包
+【新品】小清新百搭拼色女士单肩斜挎包
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>注意，因为我们的商品标题都是随机生成的，所以你得到的数据集和搜索结果可能都和我不一样，你根据实际情况测试你想要的搜索词即可。</p>
+<h2 id="利用Embedding信息进行商品推荐的冷启动"><a href="#利用Embedding信息进行商品推荐的冷启动" class="headerlink" title="利用Embedding信息进行商品推荐的冷启动"></a>利用Embedding信息进行商品推荐的冷启动</h2><p>Embedding的向量距离，不仅可以用于搜索，也可以用于 <strong>商品推荐里的冷启动</strong>。主流的推荐算法，主要是依托于用户“看了又看”这样的行为信息。也就是如果有很多用户看了OPPO的手机，又去看了vivo的手机，那么在用户看OPPO手机的时候，我们就可以向他推荐vivo手机。但是，往往一个新的商品，或者新的平台，没有那么多相关的行为数据。这个时候，我们同样可以根据商品名称在语义上的相似度，来进行商品推荐。</p>
+<p>我们这里的代码实现和上面的搜索例子基本一致，唯一的差别就是商品名称的Embedding是根据输入的商品名称，从DataFrame里找到的，而不是通过调用OpenAI的Embedding API获取。因为这个Embedding我们之前已经计算过一遍了，没有必要浪费成本再请求一次。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">recommend_product</span><span class="token punctuation">(</span>df<span class="token punctuation">,</span> product_name<span class="token punctuation">,</span> n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> pprint<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    product_embedding <span class="token operator">=</span> df<span class="token punctuation">[</span>df<span class="token punctuation">[</span><span class="token string">'product_name'</span><span class="token punctuation">]</span> <span class="token operator">==</span> product_name<span class="token punctuation">]</span><span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>embedding
+    df<span class="token punctuation">[</span><span class="token string">"similarity"</span><span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">.</span>embedding<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> cosine_similarity<span class="token punctuation">(</span>x<span class="token punctuation">,</span> product_embedding<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    results <span class="token operator">=</span> <span class="token punctuation">(</span>
+        df<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token string">"similarity"</span><span class="token punctuation">,</span> ascending<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>head<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>product_name
+    <span class="token punctuation">)</span>
+    <span class="token keyword">if</span> pprint<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> r <span class="token keyword">in</span> results<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> results
+
+results <span class="token operator">=</span> recommend_product<span class="token punctuation">(</span>df<span class="token punctuation">,</span> <span class="token string">"【限量】OnePlus 7T Pro 8GB+256GB 全网通"</span><span class="token punctuation">,</span> n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">【限量】OnePlus 7T Pro 8GB<span class="token operator">+</span>256GB 全网通
+【新品】OnePlus 7T Pro 8GB<span class="token operator">+</span>256GB 全网通
+【限量】荣耀V30 Pro 8GB<span class="token operator">+</span>256GB 全网通版
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="通过FAISS加速搜索过程"><a href="#通过FAISS加速搜索过程" class="headerlink" title="通过FAISS加速搜索过程"></a>通过FAISS加速搜索过程</h2><p>不过，上面的示例代码里面，还有一个问题。那就是每次我们进行搜索或者推荐的时候，我们都要把输入的Embedding和我们要检索的数据的所有Embedding都计算一次余弦相似度。例子里，我们检索的数据只有100条，但是在实际的应用中，即使不是百度、谷歌那样的搜索引擎，搜索对应的内容条数在几百万上千万的情况也不在少数。如果每次搜索都要计算几百万次余弦距离，那速度肯定慢得不行。</p>
+<p>这个问题也有解决办法。我们可以利用一些向量数据库，或者能够快速搜索相似性的软件包就好了。比如，我比较推荐你使用Facebook开源的Faiss这个Python包，它的全称就是Facebook AI Similarity Search，也就是快速进行高维向量的相似性搜索。</p>
+<p>我们把上面的代码改写一下，先把DataFrame里面计算好的Embedding向量都加载到Faiss的索引里，然后让Faiss帮我们快速找到最相似的向量，来看看效果怎么样。</p>
+<p>当然，按照惯例我们还是需要先安装Faiss这个Python库。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conda install <span class="token operator">-</span>c conda<span class="token operator">-</span>forge faiss
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>把索引加载到Faiss里面非常容易，我们直接把整个的Embedding变成一个二维矩阵，整个加载到Faiss里面就好了。在加载之前，我们先要定义好Faiss索引的维度数，也就是我们Embedding向量的维度数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> faiss
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+<span class="token keyword">def</span> <span class="token function">load_embeddings_to_faiss</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    embeddings <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'embedding'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'float32'</span><span class="token punctuation">)</span>
+    index <span class="token operator">=</span> faiss<span class="token punctuation">.</span>IndexFlatL2<span class="token punctuation">(</span>embeddings<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    index<span class="token punctuation">.</span>add<span class="token punctuation">(</span>embeddings<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> index
+
+index <span class="token operator">=</span> load_embeddings_to_faiss<span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>而搜索Faiss也非常容易，我们把查询变成Embedding，然后再把Embedding转换成一个numpy的array向量，然后直接对刚才生成的索引 index 调用 search 方法，并且指定返回的结果数量就可以了。</p>
+<p>返回拿到的，只有索引的index，也就是加载在Faiss里面的第几个索引。我们还是要根据这个，在DataFrame里面，反查到对应的是DataFrame里面的第几行，以及这一行商品的标题是什么，就能获得搜索的结果。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">search_index</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> df<span class="token punctuation">,</span> query<span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    query_vector <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>get_embedding<span class="token punctuation">(</span>query<span class="token punctuation">,</span> engine<span class="token operator">=</span>embedding_model<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'float32'</span><span class="token punctuation">)</span>
+    distances<span class="token punctuation">,</span> indexes <span class="token operator">=</span> index<span class="token punctuation">.</span>search<span class="token punctuation">(</span>query_vector<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+
+    results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>indexes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        product_names <span class="token operator">=</span> df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span>indexes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'product_name'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>values<span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        results<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>distances<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> product_names<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> results
+
+products <span class="token operator">=</span> search_index<span class="token punctuation">(</span>index<span class="token punctuation">,</span> df<span class="token punctuation">,</span> <span class="token string">"自然淡雅背包"</span><span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> distances<span class="token punctuation">,</span> product_names <span class="token keyword">in</span> products<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>distances<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>product_names<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> distances<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">【新品】潮流简约可爱时尚双肩斜挎包 <span class="token number">0.22473168</span>
+【优惠】精致小巧可爱双肩斜挎包 <span class="token number">0.22881898</span>
+【新品】小清新百搭拼色女士单肩斜挎包 <span class="token number">0.22901852</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>我们同样用“自然淡雅背包”这个搜索词，可以看到搜索结果和之前我们自己计算余弦距离排序的结果是一样的。</p>
+<p>Faiss的原理，是通过ANN这样的近似最近邻的算法，快速实现相似性的搜索。如果你想进一步了解Faiss的原理，你也可以去问问ChatGPT。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bac528488936d4d2b5d6e22d983d6yy2.png" alt="图片"></p>
+<p>Faiss这个库能够加载的数据量，受限于我们的内存大小。如果你的数据量进一步增长，就需要选用一些向量数据库来进行搜索。比如OpenAI就推荐了 <a target="_blank" rel="noopener" href="https://www.pinecone.io/">Pinecone</a> 和 <a target="_blank" rel="noopener" href="https://weaviate.io/">Weaviate</a>，周围也有不少团队使用的是 <a target="_blank" rel="noopener" href="https://milvus.io/">Milvus</a> 这个国人开源的产品。</p>
+<p>当然，无论是搜索还是推荐，使用Embedding的相似度都只是一种快速启动的方式。需要真正做到更好的效果，一定也需要投入更复杂的策略。比如根据用户行为的反馈，更好地排序搜索和推荐结果。但是，对于提供一个简单的搜索或者推荐功能来说，通过文本的Embedding的相似度，是一个很好的快速启动的方式。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，相信经过这一讲，你已经有了快速优化你们现有业务里的推荐和搜索功能的思路了。这一讲里，我主要想教会你三件事情。</p>
+<p>第一，是在没有合适的测试数据的时候，我们完全可以让AI给我们生成一些数据。既节约了在网上找数据的时间，也能根据自己的要求生成特定特征的数据。比如，我们就可以要求在商品标题里面有些促销相关的信息。</p>
+<p>第二，是如何利用Embedding之间的余弦相似度作为语义上的相似度，优化搜索。通过Embedding的相似度，我们不要求搜索词和查询的内容之间有完全相同的关键字，而只要它们的语义信息接近就好了。</p>
+<p>第三，是如何通过Faiss这样的Python库，或者其他的向量数据库来快速进行向量之间的检索。而不是必须每一次搜索都和整个数据库计算一遍余弦相似度。</p>
+<p>通过对于我们自己的数据计算Embedding，然后索引起来，我们可以将外部的知识和信息引入到使用GPT模型的应用里来。后面，我们还会进一步学习如何利用这些外部知识，开发更加复杂的AI应用。</p>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><p>搜索里面经常会遇到这样一个问题，同样的关键词有歧义。比如，我们搜索“小米手机”，返回结果里也许应该有“荣耀V30 Pro”，但是不应该返回“黑龙江优质小米”。你可以试一试用Embedding进行语义搜索，看看还会不会遇上这样的问题？</p>
+<p>期待能在评论区看到你的分享，也欢迎你把这节课分享给感兴趣的朋友，我们下一讲再见。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#09%EF%BD%9C%E8%AF%AD%E4%B9%89%E6%A3%80%E7%B4%A2%EF%BC%8C%E5%88%A9%E7%94%A8Embedding%E4%BC%98%E5%8C%96%E4%BD%A0%E7%9A%84%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">09｜语义检索，利用Embedding优化你的搜索功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9AI%E7%94%9F%E6%88%90%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.</span> <span class="toc-text">让AI生成实验数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87Embedding%E8%BF%9B%E8%A1%8C%E8%AF%AD%E4%B9%89%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.</span> <span class="toc-text">通过Embedding进行语义搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8Embedding%E4%BF%A1%E6%81%AF%E8%BF%9B%E8%A1%8C%E5%95%86%E5%93%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">利用Embedding信息进行商品推荐的冷启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87FAISS%E5%8A%A0%E9%80%9F%E6%90%9C%E7%B4%A2%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">通过FAISS加速搜索过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E7%BB%83%E4%B9%A0"><span class="toc-number">1.6.</span> <span class="toc-text">课后练习</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
