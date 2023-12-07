@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>095 | 广告投放如何选择受众？如何扩展受众群？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="095 | 广告投放如何选择受众？如何扩展受众群？从上一期的分享开始，我们来讨论计算广告相关的一些高级话题。作为机器学习在计算广告的应用，这些话题往往偏冷，但在现实中又有很大的实用价值。我们首先聊了归因模型，介绍了几种经验方法和一些基于模型的归因方法，这种模型在计算广告业中举足轻重，不过也常常被人忽视。 今天，我们来看另外一个重要的话题，那就是如何帮助广告商扩大受众群，我们也把这种技术称为受众扩展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="095 | 广告投放如何选择受众？如何扩展受众群？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2766931641.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="095 | 广告投放如何选择受众？如何扩展受众群？从上一期的分享开始，我们来讨论计算广告相关的一些高级话题。作为机器学习在计算广告的应用，这些话题往往偏冷，但在现实中又有很大的实用价值。我们首先聊了归因模型，介绍了几种经验方法和一些基于模型的归因方法，这种模型在计算广告业中举足轻重，不过也常常被人忽视。 今天，我们来看另外一个重要的话题，那就是如何帮助广告商扩大受众群，我们也把这种技术称为受众扩展">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.143Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2766931641"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '095 | 广告投放如何选择受众？如何扩展受众群？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">095 | 广告投放如何选择受众？如何扩展受众群？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="095-广告投放如何选择受众？如何扩展受众群？"><a href="#095-广告投放如何选择受众？如何扩展受众群？" class="headerlink" title="095 | 广告投放如何选择受众？如何扩展受众群？"></a>095 | 广告投放如何选择受众？如何扩展受众群？</h1><p>从上一期的分享开始，我们来讨论计算广告相关的一些高级话题。作为机器学习在计算广告的应用，这些话题往往偏冷，但在现实中又有很大的实用价值。我们首先聊了归因模型，介绍了几种经验方法和一些基于模型的归因方法，这种模型在计算广告业中举足轻重，不过也常常被人忽视。</p>
+<p>今天，我们来看另外一个重要的话题，那就是如何帮助广告商扩大受众群，我们也把这种技术称为受众扩展（Audience Expansion）技术。</p>
+<h2 id="什么是受众"><a href="#什么是受众" class="headerlink" title="什么是受众"></a>什么是受众</h2><p>广告商在投放广告时有一个最根本的需求，就是希望通过广告平台接触到更多有可能被转化的受众群。所以，对于绝大多数的广告平台而言，满足广告商的这个需求就成为了一个非常重要的功能。</p>
+<p>为了让广告商来选择受众，不少广告平台提供两种最基本的功能。</p>
+<p>第一种方式是 <strong>搜索广告的模式</strong>，也就是广告商可以选择 <strong>通过某个关键词或者一系列关键词</strong> 来接触到希望投放的受众。这里面其实有一个假设，那就是受众的兴趣或者意图是和关键词联系在一起的，而如果投放的广告内容和受众的兴趣以及意图相符，那么对于广告商来说，就可以假设这种情况下受众的转化率是最高的。</p>
+<p>第二种就是 <strong>通过某种选择受众群的方式来让广告商自由地选择广告投放的对象</strong>。这里，最基本的方式是通过受众的“人口”（Demographic）信息来进行投放。典型的人口信息包括年龄、性别和地域。</p>
+<p>不管是采用关键词还是人口信息来进行受众选择，这些方法看似简单直观，但其实也给广告商带来了不小的挑战。</p>
+<p>首先，我们来看关于搜索关键词的难点。作为一个广告商，你怎么知道所有的跟你产品或者服务相关的关键词呢？理论上说，可能会有无穷无尽的关键词可供投放。但是关键词的投放数量也和成本有着密切的关系。所以，从现实的角度来讲，肯定是无法投放所有的关键词的。</p>
+<p>其次，利用人口信息来选择受众，那如何来找到比较合适的人口信息呢？这里面就有很大的挑战了。广告商可以利用一些研究结果来找到对应的人口信息从而增强广告投放的效果。然而针对很多中小广告商来说，花费很大的精力和时间去研究这些不同的人口信息和广告效果之间的关系显然是不可能的。</p>
+<p>除了我们刚才所说的这两种广告商选择受众的方式以外，现在也有不少的广告平台并不需要广告商进行“显式”的受众选择。这些服务其实就是看到了这种选择带给广告商的复杂性，与其让广告商来选择，还不如让广告平台来优化。于是，有很多广告平台提供的就是“ <strong>傻瓜式</strong>”的广告服务，广告商仅需要设置预算信息，对于人群的投放则完全由广告平台来负责。</p>
+<h2 id="受众扩展"><a href="#受众扩展" class="headerlink" title="受众扩展"></a>受众扩展</h2><p>了解了受众的选择以后，一个很现实的问题就摆在了广告平台商的面前，如何帮助广告商来扩展已经选择了的受众群体，从而能够实现受众转化的最大化呢？</p>
+<p>来自LinkedIn的几位作者就探讨了在社交媒体广告中受众扩展的这个问题[1]。在LinkedIn平台上，广告商，也就是雇主，可以针对不同的群体限制条件，也就是我们所说的受众，来投放广告，以吸引潜在的雇员和候选人。广告商在投放广告的时候，可以按照雇员的职业技能（比如是否会Java，是否会机器学习等）以及一些其他的信息（例如来自哪个公司、地理位置）来选择投放的受众。这和我们之前介绍的场景一样，很明显，即便是广告商精心选择一个看似比较有效的受众，在这种情况下，其实依然有很多种其他选择的可能性。</p>
+<p>在这篇文章里，作者们介绍了这么几种受众扩展的思路。</p>
+<p>第一种思路是和某一个广告推广计划（Campaign）无关的。这里主要是 <strong>通过一种“类似”算法而找到类似的公司、类似的技能等等</strong>。这种扩展的好处是可以对任何广告推广进行扩展而无需积累数据。</p>
+<p>第二种思路是广告推广相关的扩展。这里其实还是利用了“类似”算法，但是在扩展的时候是根据广告商 <strong>对当前这个广告推广所选择的条件来进行选择</strong>，这样的选择自然就会和当前的广告推广更加相关。</p>
+<p>在实际操作中，LinkedIn采用了这两种思路结合的方法。先利用于推广无关的扩展方法来获取最初的一些扩展用户，尽管这部分用户可能质量不高。然后，当广告推广已经运行了一段时间以后，再针对这个广告推广的选择进行扩展，就可以找到更加高质量的扩展用户群体。</p>
+<p>我们看到这些扩展方法都依赖于“ <strong>类似</strong>”算法，这里我简单说一下这个算法的核心思想。</p>
+<p>总体来说，这个算法是针对某一个实体（可以是公司、人名、地域、技能等），通过搜索的方法来返回最相关的K个其他实体。作者们把这个问题看成了一个 <strong>监督学习的问题</strong>。其核心就是利用了一个 <strong>对数几率模型</strong>，对相似的正例和负例进行学习。</p>
+<p>那么，哪些实体是正例，哪些是负例呢？作者们把用户频繁选择放在一起投放的实体当做了正例，而把其他的实体当做负例。对于特性来说，这里广泛采用了 <strong>文本特性</strong>，包括文本的词包表达、以及N元语法（N-gram）组成的特性。同时，这里还利用了 <strong>图相关度</strong> 来推算，比如两个公司在社交关系上的相关程度。然后，两个实体之间的 <strong>余弦相关度</strong> 也作为一种特性被包含在了模型中。</p>
+<p>在线上实验的结果中，所有受众扩展的效果都比不用扩展有显著的提升。特别是在混合扩展的模式下，展示机会、点击率和总的收益都提升了10%以上。这个实验结果可以用来说明受众扩展的重要性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了在线计算广告的另外一个高级话题：受众扩展。</p>
+<p>一起来回顾下要点：第一，广告商可以通过关键词或者人口信息等方式来选择受众，不过受众选择也并不容易，有很大的挑战性；第二，我们介绍了和推广计划有关的与无关的两种受众扩展思路，以及将两种思路结合的方法，并简单介绍了两种思路都依赖的“类似”算法。</p>
+<p>最后，给你留一个思考题，在什么情况下受众扩展可能会出现问题，如何来衡量这些问题？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<ol>
+<li>Haishan Liu, David Pardoe, Kun Liu, Manoj Thakur, Frank Cao, and Chongzhe Li. <strong>Audience Expansion for Online Social Network Advertising</strong>. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD ‘16). ACM, New York, NY, USA, 165-174, 2016.</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#095-%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%8F%97%E4%BC%97%EF%BC%9F%E5%A6%82%E4%BD%95%E6%89%A9%E5%B1%95%E5%8F%97%E4%BC%97%E7%BE%A4%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">095 | 广告投放如何选择受众？如何扩展受众群？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%97%E4%BC%97"><span class="toc-number">1.1.</span> <span class="toc-text">什么是受众</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%97%E4%BC%97%E6%89%A9%E5%B1%95"><span class="toc-number">1.2.</span> <span class="toc-text">受众扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

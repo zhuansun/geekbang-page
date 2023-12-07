@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>004 | 精读2017年EMNLP最佳长论文之一 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="004 | 精读2017年EMNLP最佳长论文之一自然语言处理实证方法会议 EMNLP（Conference on Empirical Methods in Natural Language Processing），是由国际计算语言学协会 ACL（Association for Computational Linguistics）的专委会 SIGDAT（Special Interest Group">
+<meta property="og:type" content="article">
+<meta property="og:title" content="004 | 精读2017年EMNLP最佳长论文之一">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2347901749.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="004 | 精读2017年EMNLP最佳长论文之一自然语言处理实证方法会议 EMNLP（Conference on Empirical Methods in Natural Language Processing），是由国际计算语言学协会 ACL（Association for Computational Linguistics）的专委会 SIGDAT（Special Interest Group">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.002Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2347901749"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '004 | 精读2017年EMNLP最佳长论文之一',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">004 | 精读2017年EMNLP最佳长论文之一</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="004-精读2017年EMNLP最佳长论文之一"><a href="#004-精读2017年EMNLP最佳长论文之一" class="headerlink" title="004 | 精读2017年EMNLP最佳长论文之一"></a>004 | 精读2017年EMNLP最佳长论文之一</h1><p>自然语言处理实证方法会议 <strong>EMNLP</strong>（Conference on Empirical Methods in Natural Language Processing），是由国际计算语言学协会 <strong>ACL</strong>（Association for Computational Linguistics）的专委会 <strong>SIGDAT</strong>（Special Interest Group on Linguistic Data and Corpus-based Approaches to NLP）主办，每年召开一次，颇具影响力和规模，是自然语言处理类的顶级国际会议。从1996年开始举办，已经有20多年的历史。2017年的EMNLP大会于9月7日到11日在丹麦的哥本哈根举行。</p>
+<p>每年大会都会在众多的学术论文中挑选出两篇最具价值的论文作为最佳长论文（Best Long Paper Award）。 今天，我就带你认真剖析一下EMNLP今年的最佳长论文，题目是《男性也喜欢购物：使用语料库级别的约束条件减少性别偏见的放大程度》（Men Also Like Shopping: Reducing Gender Bias Amplification using Corpus-level Constraints） 。这篇文章也是很应景，近期学术圈对于数据和机器学习算法有可能带来的“ <strong>偏见</strong>”（Bias）感到关切，有不少学者都在研究如何能对这些偏见进行评估、检测，进而可以改进甚至消除。</p>
+<h2 id="作者群信息介绍"><a href="#作者群信息介绍" class="headerlink" title="作者群信息介绍"></a>作者群信息介绍</h2><p>第一作者赵洁玉（Jieyu Zhao），论文发表的时候在弗吉尼亚大学计算机系攻读博士学位，目前，已转学到加州大学洛杉矶分校，从事如何从机器学习算法中探测和消除偏见的研究。之前她从北京航空航天大学获得学士和硕士学位，曾于2016年在滴滴研究院实习。</p>
+<p>第二作者王天露（Tianlu Wang）也是来自弗吉尼亚大学计算机系的博士生，之前在浙江大学获得计算机学士学位。第三作者马克·雅茨卡尔（Mark Yatskar）是来自华盛顿大学的计算机系博士生，已在自然语言处理以及图像处理领域发表过多篇高质量论文。</p>
+<p>第四作者文森特（Vicente Ordóñez）目前在弗吉尼亚大学计算机系任助理教授。他的研究方向是自然语言处理以及计算机视觉的交叉学科。他于2015年从北卡罗来纳大学教堂山分校计算机系博士毕业。博士期间，他在微软研究院、eBay研究院以及谷歌都有过实习经历。他是第二作者王天露的博士导师。</p>
+<p>文章最后一位作者是Kai-Wei Chang，也是第一作者赵洁玉的导师。他目前在加州大学洛杉矶分校任助理教授，之前在弗吉尼亚大学任职。他于2015年从伊利诺伊大学香槟分校博士毕业，师从著名教授丹·罗斯（Dan Roth）。在之前的研究生涯中，曾先后3次在微软研究院实习，也在谷歌研究院实习过。在他研究的早期，曾参与了LibLinear这个著名支持向量机软件的研发工作。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>机器学习的一个重要任务就是通过数据来学习某些具体事项。最近机器学习的研究人员发现，数据中可能蕴含着一些社会赋予的偏见，而机器学习算法很有可能会放大这些偏见。这种情况在自然语言处理的相关任务中可能更为明显。比如，在一些数据集里，“做饭”这个词和“女性”这个词一起出现的比例可能要比和“男性”一起出现的比例高30%，经过机器学习算法在这个数据集训练之后，这个比例在测试数据集上可能就高达68%了。因此，虽然在数据集里，社会偏见已经有所呈现，但是这种偏见被机器学习算法放大了。</p>
+<p>因此， <strong>这篇文章的核心思想就是，如何设计出算法能够消除这种放大的偏见，使得机器学习算法能够更加“公平”</strong>。注意，这里说的是消除放大的偏见，而不是追求绝对的平衡。比如，我们刚才提到的数据集，训练集里已经表现出“女性”和“做饭”一起出现的频率要高于“男性”和“做饭”一起出现的频率。那么，算法需要做的是使这个频率不会进一步在测试集里升高，也就是说，保持之前的30%的差距，而不把这个差距扩大。这篇文章并不是追求把这个差距人为地调整到相同的状态。</p>
+<p>文章提出了一个 <strong>限制优化（Constrained Optimization）算法</strong>，为测试数据建立限制条件，使机器学习算法的结果在测试集上能够得到和训练集上相似的偏见比例。注意，这是对已有测试结果的一个调整（Calibration），因此可以应用在多种不同的算法上。</p>
+<p>作者们使用提出的算法在两个数据集上做了实验，得到的结果是，新的测试结果不但能够大幅度（高达30%至40%）地减小偏见，还能基本保持原来的测试准确度。可见，提出的算法效果显著。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>那么，作者们提出的究竟是一种什么方法呢？</p>
+<p>首先，引入了一个叫“ <strong>偏见值</strong>”（Bias Score）的概念。这个值检测某一个变量和目标变量之间的比例关系。例如，“男性”这个词和某个动词（比如之前我们举了“做饭”）一起出现的比例关系以及“女性”这个词和同一个动词一起出现的比例关系。</p>
+<p>注意，因为“男性”和“女性”都是“性别”的可选项，因此，这两个词对于同一个动词的比例关系的和一定是1。偏见值在训练集上和测试集上的差别，构成了衡量偏见是否被放大的依据。在之前的例子中，“女性”和“做饭”一起出现的的偏见值在训练集上是0.66，而到了测试集则变成了0.84，这个偏见被算法放大。</p>
+<p>有了偏见值这个概念以后，作者们开始 <strong>为测试集的结果定义限制条件</strong>（Constraint）。这里的一个基本思想就是，要对测试集的预测标签进行重新选择，使测试标签的预测结果和我们期待的分布相近。用刚才的例子就是说，我们要让“女性”在“做饭”这个场景下出现的可能性从0.84回归到0.66附近。能够这么做是因为这个算法需要对测试结果直接进行调整。</p>
+<p>对所有的限制条件建模其实就变成了一个经典的限制优化问题。这个问题需要对整个测试数据的预测值进行优化，那么，这个优化就取决于测试数据集的大小，往往是非常困难的。于是，作者们在这里采用了 <strong>拉格朗日简化法</strong>（Lagrangian Relaxation）来对原来的优化问题进行简化。</p>
+<p>也就是说，原来的限制优化问题经过拉格朗日简化法后，变成了非限制优化问题，原来的算法就可以成为一个动态更新的过程。针对每一个测试用例，都得到当前最优的标签更改方案，然后又进一步更新拉格朗日参数，这样对整个测试数据集遍历一次后算法就中止了。</p>
+<h2 id="方法的实验效果"><a href="#方法的实验效果" class="headerlink" title="方法的实验效果"></a>方法的实验效果</h2><p>作者们使用了两个实验数据。一个是 <strong>imSitu</strong>，一个是 <strong>MS-COCO</strong>。imSitu是一个视觉语义角色识别（Visual Semantic Role Labeling）的任务，里面有多达12万张图片和这些图片的文字语义信息。比如一些图片是关于做饭场景的，里面的角色就是男性或者是女性。作者们整理出了212个动词用作实验。MS-COCO是一个多标签图片分类问题（Multi-label Classification），需要对80类物品进行标签预测。</p>
+<p>对于这两个任务，作者们都选择了 <strong>条件随机场</strong>（Conditional Random Field）来作为基础模型。条件随机场往往是解决往往是解决这类问题方法的方法的第一选择。对于特征，作者们采用了数据集提供的基于深度学习的各种特征。在条件随机场的基础上，对测试集采用了提出的偏见调整算法。</p>
+<p>值得指出的是，虽然算法本身需要使用测试数据，但并不需要知道测试数据的真实标签。标签信息仅仅是从训练集中得到。这一点也是作者们反复强调的。</p>
+<p>从两个数据集的结果来看，效果都不错。原本的预测准确度并没有很大的降低，但是性别偏见值则在测试集的调整结果后大幅度降低，最大的结果可以降低40%以上。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了EMNLP 2017年的年度最佳长论文，这篇论文针对数据集可能带来的社会偏见以及机器学习算法可能进一步扩大这种偏见的问题，提出了一个对测试数据集的预测结果进行调整的算法。这个算法的核心是减小这种偏见，使偏见值在测试数据集中和训练数据集中的水平相当。</p>
+<p>一起来回顾下要点：第一，简要介绍了这篇文章的作者群信息。第二，详细介绍了这篇文章要解决的问题以及贡献 。第三，介绍了文章提出方法的的核心内容 。</p>
+<p>最后，给你留一个思考题，为什么机器学习算法可能扩大训练集上已有的偏见呢？这跟某些具体的算法有什么关系呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p>拓展阅读： <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1707.09457">Men Also Like Shopping: Reducing Gender Bias Amplification using Corpus-level Constraints</a></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#004-%E7%B2%BE%E8%AF%BB2017%E5%B9%B4EMNLP%E6%9C%80%E4%BD%B3%E9%95%BF%E8%AE%BA%E6%96%87%E4%B9%8B%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text">004 | 精读2017年EMNLP最佳长论文之一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%BE%A4%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">作者群信息介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.2.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">方法的实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

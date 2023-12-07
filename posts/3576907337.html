@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>046 | 大型搜索框架宏观视角：发展、特点及趋势 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="046 | 大型搜索框架宏观视角：发展、特点及趋势我们在前几周的专栏里讲解了一系列最经典的信息检索（Information Retrieval）技术以及基于机器学习的排序学习算法（Learning to Rank）。然后我们花了一定的时间讨论了两个关键搜索组件的核心技术要点，包括查询关键字理解（Query Understanding）和文档理解（Document Understanding）。除此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="046 | 大型搜索框架宏观视角：发展、特点及趋势">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3576907337.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="046 | 大型搜索框架宏观视角：发展、特点及趋势我们在前几周的专栏里讲解了一系列最经典的信息检索（Information Retrieval）技术以及基于机器学习的排序学习算法（Learning to Rank）。然后我们花了一定的时间讨论了两个关键搜索组件的核心技术要点，包括查询关键字理解（Query Understanding）和文档理解（Document Understanding）。除此">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.063Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3576907337"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '046 | 大型搜索框架宏观视角：发展、特点及趋势',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">046 | 大型搜索框架宏观视角：发展、特点及趋势</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="046-大型搜索框架宏观视角：发展、特点及趋势"><a href="#046-大型搜索框架宏观视角：发展、特点及趋势" class="headerlink" title="046 | 大型搜索框架宏观视角：发展、特点及趋势"></a>046 | 大型搜索框架宏观视角：发展、特点及趋势</h1><p>我们在前几周的专栏里讲解了一系列最经典的信息检索（Information Retrieval）技术以及基于机器学习的排序学习算法（Learning to Rank）。然后我们花了一定的时间讨论了两个关键搜索组件的核心技术要点，包括查询关键字理解（Query Understanding）和文档理解（Document Understanding）。除此之外，我们还详细讨论了如何从线上和线下两个层面来评价一个搜索系统。相信你已经对搜索系统的各个基本组成部分有了一个比较基础的把握。</p>
+<p>那么，今天我们就第一次从整体上来看看大型搜索系统框架的演变和历史发展，给你一个宏观的认识。相信有了之前的基础知识铺垫，我们今天的分享会让你感觉到水到渠成。</p>
+<h2 id="基于文本匹配的信息检索系统"><a href="#基于文本匹配的信息检索系统" class="headerlink" title="基于文本匹配的信息检索系统"></a>基于文本匹配的信息检索系统</h2><p>我们在介绍TF-IDF和BM25这些经典信息检索系统的时候，其实就已经介绍了不少基于文本匹配的基本的信息检索系统的核心概念。</p>
+<p>实际上， <strong>从20世纪50年代有信息检索系统开始一直到2000年前后，这种纯粹基于文本匹配的搜索系统一直都是主流搜索系统的基础所在</strong>。甚至当前的很多开源搜索框架也都是基于这种最基本的信息检索系统的。</p>
+<p>总结一下，这种信息检索系统有这么几个特点。</p>
+<p><strong>首先，文本匹配系统的基础是一个倒排索引</strong>（Inverted Index）。索引中的“字段”是某一个查询关键字。而每个字段所对应的则是包含这个查询关键字的文档列表。这个文档列表大多按照某种重要的顺序排列。</p>
+<p>比如，某个文档整体和查询关键字的相关度大，那么就会排列到这个列表的前面。当然，也并不一定所有包含这个查询关键字的文档都会包含到这个列表中。另外，之所以叫做“索引”，也是因为这个列表中并不实际存储整个文档，往往只是存储文档的编号。</p>
+<p>从这个基本的索引结构其实衍生出了很多值得研究而且在实际应用中也很有必要考虑的问题。</p>
+<p>比如如何进一步优化构建这个索引。特别是当列表中的文档数目过多的时候，或者当查询关键字也很多的时候，采用某种编码的模式来压缩索引就变得很关键。</p>
+<p>同时，索引过大也会带来很多性能上的问题。比如，当索引过大的时候，某一部分索引或者很大部分就无法存放在内存中，这个时候，整个搜索系统的性能就受到了很大的威胁。因为在对查询关键字进行处理的时候，就需要反复在内存和硬盘上切换内容。因此，对于索引进行创新，使得索引能够在内存中使用并且快速查询是一个非常重要的课题。</p>
+<p><strong>文本匹配系统的另外一个特点就是对传统的检索方法，例如TF-IDF或BM25以及它们变种的依赖</strong>。这些方法在查询关键字和索引之间架起一座桥梁，使得搜索引擎能够针对每一个查询关键字文档对赋予一个数值。然后我们可以利用这个数值进行排序。</p>
+<p>然而，这些方法本质上的最大问题就是，他们都不是基于机器学习的方法。也就是说，这些方法本身都是基于一些研究人员的假设和经验，往往无法针对现有的数据进行适应。也正是因为如此，这种方法的研发工作往往让人感到缺乏理论基础。</p>
+<p><strong>最后，传统的文本匹配系统还存在一个问题，那就是很难比较自然地处理多模数据</strong>。也就是我们之前说过的，如果数据中有文字、图像、图（Graph）信息等综合数据信息，文本匹配的方法在这方面并没有提供什么理论指导。</p>
+<p><strong>那么，文本匹配系统有哪些优势呢？</strong> 其实，即便是在今天， <strong>文本匹配系统的最大劣势也是其最大优势：不依靠机器学习</strong>。也就是说，如果你要构建一个新的搜索系统或者是某个App中有搜索功能，最开始的版本最容易依靠文本匹配系统，因为这时候并不需要依靠任何数据，并且文本匹配系统不需要太多调优就能上线。但是，文本匹配系统的这一优势今天往往被很多人忽视。</p>
+<h2 id="基于机器学习的信息检索系统"><a href="#基于机器学习的信息检索系统" class="headerlink" title="基于机器学习的信息检索系统"></a>基于机器学习的信息检索系统</h2><p><strong>从2000年开始，基于机器学习的信息检索系统思潮逐渐变成了构建搜索系统的主流</strong>。在这种框架下的信息检索系统主要有以下这些特点。</p>
+<p><strong>第一，基于机器学习的系统开始有了一整套的理论支持</strong>。比如我们之前讲过的单点法（Pointwise）排序、配对法（Pairwise）排序和列表法（Listwise）排序等方法，都明确地使用通用的机器学习语言来描述搜索问题。</p>
+<p><strong>什么叫做通用的机器学习语言？</strong> 那就是，有一个明确的目标函数，有明确特性（Feature），有明确的算法来求解在这些框架下的机器学习问题。同时，机器学习的一系列基本的方法论，比如训练数据、测试数据、评测方法等等都可以应用到信息检索的场景中来。这对于搜索系统的性能以及整体搜索系统的研发都有了非常重要的指导意义。</p>
+<p>同时，这也开启了一个非常便利的提高搜索系统效果的大门。那就是任何机器学习领域内部的发展，很多都可以被借鉴到搜索系统中。比如，最近几年深度学习的大力发展，就可以在已经铺就的基于机器学习的搜索系统框架下很容易地进行尝试。</p>
+<p><strong>第二，基于机器学习的搜索系统能够很容易地利用多模数据</strong>。对于机器学习而言，多模数据，或者说是多种类型的数据的融合，可以很自然地通过特性以及不同类型的特性来表达。因此，对于多模数据，机器学习有天然的优势。 <strong>通过学习这些特性之间的联系从而预测相关度，是机器学习的强项</strong>。</p>
+<p>因此，理解搜索系统各个部分的数据并把这些信息用在排序算法中，这样的方式就如雨后春笋般大量地出现了。比如，我们之前提到过的查询关键字理解中的查询关键字分类和查询关键字解析，以及文档理解中的文档分类所产生的特性，很难想象这些内容在传统的文本匹配系统中得以应用。但在基于机器学习的搜索系统中，这些信息则往往成为提高相关度建模的重要工具。</p>
+<p>同时，我们也在之前的分享中介绍了，针对多模数据，机器学习中专门有相关的研究，思考如何把不同类型的数据能够更好地融合在一起来建模。这类研究在传统的文本匹配搜索系统中根本不存在。</p>
+<p><strong>基于机器学习的搜索系统也不是完美无瑕</strong>。实际上，如果没有各种保证，机器学习并不一定能在实际中获得满意的效果，因为基于机器学习的搜索系统对整个系统而言有了较高的要求。</p>
+<p>机器学习往往需要大量的数据，而在一个现实的软件产品中，如何能够构建可靠并且干净的数据就是一个不简单的任务。如果没有可靠的数据，对于一般的机器学习算法而言，就是“垃圾进入，垃圾出来”，实际效果往往比不使用机器学习还要糟糕。</p>
+<p>同时，机器学习系统可能会有特性异常、模型异常、数据异常等等其他软件系统所不具备的各种问题。如果在生产系统中对这些情况没有一个估计和处理，机器学习搜索系统往往也会不尽人意。</p>
+<h2 id="更加智能的搜索系统"><a href="#更加智能的搜索系统" class="headerlink" title="更加智能的搜索系统"></a>更加智能的搜索系统</h2><p>很明显，搜索系统不会仅仅停留在应用普通的机器学习算法。近几年，搜索系统的发展有两个方面。</p>
+<p><strong>一方面，当然就是依靠深度学习发展的春风，不少学者和研究人员都在思考，如何能够利用深度学习技术让搜索系统更上一层楼</strong>。在这方面的研发中，不仅仅是针对普通的深度学习算法，而是看如何应用深度学习所特有的一些模式，比如 <strong>深度强化学习</strong> 等方式来重新思考搜索问题。</p>
+<p><strong>另一方面，就是从用户的角度来说，研究更加有意义的评测方式</strong>。也就是说，如何能够真正抓住用户对这个系统的偏好，并且能够进一步地去优化这个系统的性能。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了现代搜索技术框架的发展，并简单提及了搜索系统目前发展的趋势 。 一起来回顾下要点：第一，我们讲了基于文本匹配的经典搜索系统的特点；第二，我们讲了基于机器学习的搜索系统的特点。</p>
+<p>最后，给你留一个思考题，在机器学习和深度学习的思潮中，传统搜索系统的核心，也就是我们说过的索引，能否依靠机器学习来生成呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#046-%E5%A4%A7%E5%9E%8B%E6%90%9C%E7%B4%A2%E6%A1%86%E6%9E%B6%E5%AE%8F%E8%A7%82%E8%A7%86%E8%A7%92%EF%BC%9A%E5%8F%91%E5%B1%95%E3%80%81%E7%89%B9%E7%82%B9%E5%8F%8A%E8%B6%8B%E5%8A%BF"><span class="toc-number">1.</span> <span class="toc-text">046 | 大型搜索框架宏观视角：发展、特点及趋势</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%96%87%E6%9C%AC%E5%8C%B9%E9%85%8D%E7%9A%84%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">基于文本匹配的信息检索系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text">基于机器学习的信息检索系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%8A%A0%E6%99%BA%E8%83%BD%E7%9A%84%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text">更加智能的搜索系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

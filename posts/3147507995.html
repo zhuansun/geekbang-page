@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>008 | 精读2017年ICCV最佳学生论文 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="008 | 精读2017年ICCV最佳学生论文周一我们认真剖析了ICCV 2017年的最佳研究论文“Mask R-CNN”。今天我们来分享ICCV 2017的最佳学生论文《焦点损失用于密集物体检测》（ Focal Loss for Dense Object Detection）。 可以说，这篇文章是我们周一分享的最佳论文的孪生兄弟。首先，这篇论文的作者群也基本是Facebook人工智能研究院的班底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="008 | 精读2017年ICCV最佳学生论文">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3147507995.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="008 | 精读2017年ICCV最佳学生论文周一我们认真剖析了ICCV 2017年的最佳研究论文“Mask R-CNN”。今天我们来分享ICCV 2017的最佳学生论文《焦点损失用于密集物体检测》（ Focal Loss for Dense Object Detection）。 可以说，这篇文章是我们周一分享的最佳论文的孪生兄弟。首先，这篇论文的作者群也基本是Facebook人工智能研究院的班底">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.008Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3147507995"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '008 | 精读2017年ICCV最佳学生论文',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">008 | 精读2017年ICCV最佳学生论文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="008-精读2017年ICCV最佳学生论文"><a href="#008-精读2017年ICCV最佳学生论文" class="headerlink" title="008 | 精读2017年ICCV最佳学生论文"></a>008 | 精读2017年ICCV最佳学生论文</h1><p>周一我们认真剖析了ICCV 2017年的最佳研究论文“Mask R-CNN”。今天我们来分享ICCV 2017的最佳学生论文《焦点损失用于密集物体检测》（ <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1708.02002.pdf">Focal Loss for Dense Object Detection</a>）。</p>
+<p>可以说，这篇文章是我们周一分享的最佳论文的孪生兄弟。首先，这篇论文的作者群也基本是Facebook人工智能研究院的班底。其次，这篇文章解决的问题也很类似，也是物体识别和语义分割，只是不解决数据点分割的问题。</p>
+<h2 id="作者群信息介绍"><a href="#作者群信息介绍" class="headerlink" title="作者群信息介绍"></a>作者群信息介绍</h2><p>除第一作者外，这篇论文的作者都来自Facebook的人工智能研究院。</p>
+<p>第一作者林仓义（Tsung-Yi Lin），目前在谷歌大脑（Google Brain）团队工作，发表论文的时候在Facebook人工智能研究院实习。林仓义在台湾国立大学获得本科学位，在加州大学圣地亚哥分校获得硕士学位，2017年刚从康奈尔大学博士毕业。博士期间，他师从计算机视觉专家塞尔盖⋅比隆基（Serge Belongie），发表了多篇高质量的计算机视觉论文。</p>
+<p>第二作者皮里亚⋅高耶（Priya Goyal）是Facebook人工智能研究院的一名研究工程师。在加入Facebook之前，皮里亚从印度理工大学获得了学士和硕士学位。</p>
+<p>第三作者罗斯⋅吉尔什克（Ross Girshick），第四作者何恺明，还有最后一个作者皮奥特⋅多拉（Piotr Dollár），这三位作者也是周一的最佳研究论文的作者，我们已经介绍过了，你可以回去再了解一下。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>我们首先来看一下这篇文章的主要贡献。</p>
+<p>刚才我们已经简单地谈到了， <strong>这篇文章要解决的问题，就是对输入图像进行物体识别和语义分割这两个任务</strong>。对于这个问题有两种主要的思路，这两个思路都在不断地发展。</p>
+<p>第一种思路，那就是直接从输入图像入手，希望能够从输入图像中提取相应的特征，从而能够直接从这些特征中判断当前的图像区域是否属于某个物体，然后也能够一次性地找到矩形框的位置用于定位这个物体。</p>
+<p>这种思路虽然直观，但有一个致命的问题，那就是对于一个输入图像来说，大量的区域其实并不包含目标物体，因此也就可以被认为是学习过程中的“负例”（Negative Instance）。如何有效地学习这么一个“不均衡”（Imbalanced）的数据集是这种思路需要考虑的问题。</p>
+<p>因为这个因素，研究者们就开始思考另外一种思路，那就是先学习一个神经网络用于找到一些候选区域，然后在第二个阶段根据候选区域再去最终确定物体的类别和矩形框的位置。</p>
+<p>在最近几年的实际评测中，基于 <strong>两个阶段</strong>（Two-stage）的模型，包括我们在上一篇分享中提到的Faster R-CNN以及其他变种一般都有比较好的表现。而基于 <strong>一个阶段</strong>（One-stage）的模型，在这篇文章发布之前还不能达到两个阶段模型的水平。</p>
+<p><strong>本篇文章提出了一个新的目标函数，叫作“焦点损失”（Focal Loss），用于取代传统的“交叉熵”（Cross Entropy）的目标函数</strong>。这个新目标函数的主要目的就是让一个阶段模型能够在正负例比例非常不协调的情况下，依然能够训练出较好的模型，从而使得一个阶段模型在效果上能够和两个阶段模型媲美。同时，文章还提出了一种比较简单易用的深度网络结构，可以简单地训练出整个模型。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>在这一节，我们来讲一讲“焦点损失”的含义。因为这是一个新的目标函数，建议你还是阅读原文来理解这个目标函数的数学性质。这里，我们针对这个新的目标函数进行一个高度概括性的解释。</p>
+<p>我们从普通的二分分类问题中常用的交叉熵，我们简称为CE目标函数说起。首先，我们认为模型预测类别是正例的概率是P。CE目标函数基本上可以认为是这个概率的对数的负数，也就是在机器学习中经常使用的“ <strong>负对数似然</strong>”（Negative Log Likelihood）。模型的目的是最小化“负对数似然”，从而学习模型参数。</p>
+<p>作者们观测到这么一个现象，那就是CE目标函数在P是一个比较大的数值时，比如大于0.5的时候，依然会有一个“损失”（Loss）。什么意思呢？就是说，某一个数值点，我们现在已经知道它可能是正例的可能性大于0.5了，也就是我们其实已经大体知道这个结果了，但是目标函数依然认为学习算法需要去对这个数据点进行作用，从而减少这个“损失”。</p>
+<p>这其实也就是整个问题的核心，那就是传统的CE目标函数，并没有指导机器学习算法用在“应该使劲”的地方，而是分散到了一些原本已经不需要再去关注的数据点上。当然，这也就造成了学习困难的局面。</p>
+<p>这篇文章提出的“焦点损失”对CE进行了一个看上去很小的改动，那就是在CE目标函数的“负对数似然”之前乘以一个“相反概率”的 <strong>系数</strong>，并且这个系数有一个指数参数去调节这个系数的作用。如果你对这个内容感兴趣，建议你参考原论文查看细节。如果对细节不感兴趣，那重点理解这个目标函数的作用就可以了。</p>
+<p><strong>“焦点损失”有两个性质</strong>。第一，当一个数据点被分错类的时候，并且这个数据点的真实概率很小，那么，损失依然和CE类似。当一个数据点的真实概率趋近1，也就是原本算法就可以比较自信的时候，损失会相对于CE变小。第二，刚才所说的系数起到了一个调节作用，决定究竟需要对哪些“容易分类的数据点”降低损失到什么程度。</p>
+<p><strong>文章在新的“焦点损失”的基础上提出了一个新的网络结构叫RetinaNet，使用一个阶段的思路来解决物体检测和语义分割的任务</strong>。这里我简要概括一下RetinaNet的一些特点。</p>
+<p>第一，RetinaNet使用了ResNet来从原始的输入图像中抽取基本的图像特性。</p>
+<p>第二，文章采用了一种叫FPN（Feature Pyramid Net）的网络架构来对图像的不同分辨率或者不同大小的情况进行特性抽取。</p>
+<p>第三，和Faster R-CNN相似的，RetinaNet也是用了Anchor的思想，也就是说从小的一个移动窗口中去寻找一个比较大的矩形框的可能性。</p>
+<p>最后，RetinaNet把从FPN抽取出来的特性用于两个平行的网络结构，一个用于物体分类，一个用于矩形框的定位。这一点很类似两个阶段模型的做法。</p>
+<h2 id="方法的实验效果"><a href="#方法的实验效果" class="headerlink" title="方法的实验效果"></a>方法的实验效果</h2><p>作者们使用RetinaNet在目前流行的图像物体检测任务数据集COCO上做了检测。首先，RetinaNet的“平均精度” （Average Precision）要好于之前的所有一个阶段模型，初步验证了提出的目标函数和网络架构的优越性。并且，在实验中，作者们分别使用了不同的“焦点损失”指数参数来展示这个参数对于结果的重要性。同时，作者们还展示了，RetinaNet能够比Faster R-CNN这种经典的两阶段模型，以及一些变种在实验结果上至少持平甚至要更好。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了2017年ICCV的最佳学生论文，这篇文章介绍了目前在图像物体识别中的最新目标函数“焦点损失”的大概内容。</p>
+<p>一起来回顾下要点：第一，我们简要介绍了这篇文章的作者群信息。第二，我们分析了这篇文章要解决的问题和主要贡献 。第三，我们详细介绍了文章提出方法的核心内容 。</p>
+<p>最后，给你留一个思考题，除了这篇文章介绍的更改目标函数的方法，针对不平衡的数据集，你觉得还有哪些通常使用的方法？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#008-%E7%B2%BE%E8%AF%BB2017%E5%B9%B4ICCV%E6%9C%80%E4%BD%B3%E5%AD%A6%E7%94%9F%E8%AE%BA%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">008 | 精读2017年ICCV最佳学生论文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%BE%A4%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">作者群信息介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.2.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">方法的实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

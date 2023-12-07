@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>083 | Facebook的广告点击率预估模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="083 | Facebook的广告点击率预估模型上一篇文章我们讲了整个计算广告领域最核心的一个问题：广告回馈预估。广告回馈预估，就是预测“用户与广告的交互以及达成交易这种行为”的概率，也就是点击率预估和转化率预估。广告回馈预估存在着数据稀疏等难点和挑战，目前在这个领域比较流行的模型有对数几率回归和数模型等。 今天，我们就来看一个广告回馈预估的实例： Facebook的广告点击率预估。我们会结合20">
+<meta property="og:type" content="article">
+<meta property="og:title" content="083 | Facebook的广告点击率预估模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/405836494.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="083 | Facebook的广告点击率预估模型上一篇文章我们讲了整个计算广告领域最核心的一个问题：广告回馈预估。广告回馈预估，就是预测“用户与广告的交互以及达成交易这种行为”的概率，也就是点击率预估和转化率预估。广告回馈预估存在着数据稀疏等难点和挑战，目前在这个领域比较流行的模型有对数几率回归和数模型等。 今天，我们就来看一个广告回馈预估的实例： Facebook的广告点击率预估。我们会结合20">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.126Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/405836494"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '083 | Facebook的广告点击率预估模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">083 | Facebook的广告点击率预估模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="083-Facebook的广告点击率预估模型"><a href="#083-Facebook的广告点击率预估模型" class="headerlink" title="083 | Facebook的广告点击率预估模型"></a>083 | Facebook的广告点击率预估模型</h1><p>上一篇文章我们讲了整个计算广告领域最核心的一个问题：广告回馈预估。广告回馈预估，就是预测“用户与广告的交互以及达成交易这种行为”的概率，也就是点击率预估和转化率预估。广告回馈预估存在着数据稀疏等难点和挑战，目前在这个领域比较流行的模型有对数几率回归和数模型等。</p>
+<p>今天，我们就来看一个广告回馈预估的实例： <strong>Facebook的广告点击率预估</strong>。我们会结合2014年发表的一篇论文《Facebook的广告点击率预估实践经验》（Practical Lessons from Predicting Clicks on Ads at Facebook）来进行分析[1]。</p>
+<h2 id="Facebook广告预估"><a href="#Facebook广告预估" class="headerlink" title="Facebook广告预估"></a>Facebook广告预估</h2><p>Facebook的广告不是我们之前介绍过的搜索广告或者展示广告的简单应用，而是 <strong>社交广告</strong>。可以说，社交广告是最近10年慢慢崛起的一种新的广告类型。在论文发表的时候，也就是2014年，Facebook有7.5亿“日活跃用户”（Daily Active Users）和超过1百万的广告商，这个数字在当时是相当惊人的。而今天，在Facebook上活跃的大约有14.5亿用户和5百万广告商。因此，广告系统所需要应对的规模是成倍增加的。</p>
+<p>我们说Facebook的广告是社交广告，也就是说，这些广告不依赖于用户输入的搜索关键词。从Facebook的角度来说，广告商在其平台上投放广告的巨大优势，在于能够精准地根据用户的地理位置、年龄、性别等重要信息进行有针对性的投放，因此这些信息能够帮助平台选择什么样的广告适合什么样的人群。那这里的难点就是，对于某一个人群来说，可能符合的广告数量是巨大的，这对广告的回馈预估以及整个系统都是一个不小的挑战。</p>
+<h2 id="广告点击率的评估"><a href="#广告点击率的评估" class="headerlink" title="广告点击率的评估"></a>广告点击率的评估</h2><p>在我们详细解释Facebook点击率系统的一些核心组件之前，我们首先来看一看Facebook的研究人员是怎么评测他们的系统的。</p>
+<p>我们之前提到过，广告系统中的一个巨大挑战就是数据的不均衡。负例，也就是用户没有点击过的广告非常多；而正例，也就是点击过的广告相对比较少。这个比例，根据不同的广告系统会不太一样，但是大体说来，负例与正例的比大概是10:1、100:1甚至1000:1。</p>
+<p>在这样的情况下，如果把点击率预估当做是一个分类问题，按照一般分类问题的评价标准，例如准确率，我们只要预测绝大多数，甚至是全部的实例为负例，那么就可以取得很高的准确率。因此，单独看准确率并不是一个很好的评测标准。</p>
+<p>这个时候，一个比较通行的评测不均衡数据分类问题的指标是“ <strong>曲线下面积</strong>”，或者简称为 <strong>AUC</strong>，这个评测办法可以算是一种替代方法。简单来说，AUC就是看我们是不是能够把正例给排序到负例上面。也就是说，如果每一个正例和负例都有一个预测数值，那么我们按照这个数值排序，去数每一个正例下面有多少负例，然后对所有正例所对应的数取平均。 <strong>AUC的数值高，则代表我们可以把绝大多数正例排序到负例前面</strong>。</p>
+<p>当然，AUC也不是万能的。AUC的一个最大问题就是它并不在乎所有实例的绝对预测数值，而只在乎它们的相对位置。这在广告系统中可以说是一个非常大的缺陷。我们之前也提过，有很多广告系统组件依赖于对于广告点击率的精确预估，比如收费系统，流量预测等。因此，仅有一个相对位置的正确是不够的。</p>
+<p>在这篇论文中，Facebook团队提到了一个概念叫“ <strong>归一化的交叉熵</strong>”，简称 <strong>NE</strong>，用于衡量广告系统的好坏。NE实际上是一个比值，比值的分母是数据中观测到的实际的点击率的数值，也可以叫作数据的“背景估计”（Background Estimation）；而分子是某一个模型对点击率的估计。这样做的归一化，目的就是来看，在去除了背景估计的情况下，对点击率的估计是否依然好或者坏。</p>
+<h2 id="层次化的点击率预估模型"><a href="#层次化的点击率预估模型" class="headerlink" title="层次化的点击率预估模型"></a>层次化的点击率预估模型</h2><p>Facebook的研究人员在这篇论文中提出的点击率预估模型分为两个层次。也就是说，从最初的模型特性输入，需要经过两个不同的模型才对点击率做出最终的预测。这个两层架构对后来的很多点击率预估模型有巨大的影响。</p>
+<p>我们首先来看第一层模型，这里的输入是最初的特性，其中连续数值的特性已经被转换成了 <strong>离散的数值</strong>。然后，这些离散的数值经过了一个 <strong>GBDT树</strong> 来进行特性转换。这里为什么会用GBDT呢？主要有两层意义。</p>
+<p>第一，GBDT可以对特性进行非线性组合。也就是说，GBDT的输出一定是之前特性的非线性的转换，这是由树模型原本的性质所带来的，这个性质对于线性模型来说会有巨大的优势。</p>
+<p>第二，经过GBDT转换之后，树模型其实选择出了对目标有用的特性，因此这里还起到一个“特性筛选”（Feature Selection）的作用。也就是说，经过GBDT的模型，最后剩下的特性肯定是要远小于最初的输入特性的，毕竟有作用的特性是少数的。</p>
+<p>在经过了GBDT之后，Facebook的研究者用树模型最后的叶节点当做新的特性，然后再学习了一个 <strong>线性的分类模型</strong>。这里的思想其实和后来流行的深度学习的想法很类似，也就是先对输入特性进行非线性转换，然后再经过一个线性分类器来进行最后的预测。这个第二层的线性分类器可以用类似SGD的方法进行“在线学习”（Online Learning）。因此，学习到这样一个模型就相对比较容易。</p>
+<p>在论文的实验中，作者们不仅展示了两层模型的优势，并且还讨论了很多选取特性方面的经验以及训练模型的经验，比如广告过去的历史信息非常重要，而绝大多数重要的特性都和历史信息有关。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了Facebook的广告点击率预估的核心算法。一起来回顾下要点：第一，Facebook的广告是社交广告，有其自身的特点和难点；第二，Facebook对广告进行评测的指标主要有AUC和NE；第三，Facebook提出了两层模型的架构，其主要思想是先经过GBDT来进行特性转化，再经过一个线性分类器进行最后的预测。</p>
+<p>最后，给你留一个思考题，对于两层架构来说，除了模型性能上的优势以外，在训练的方便程度上，这样的架构还没有什么优势或者劣势呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<p>1. Xinran He, Junfeng Pan, Ou Jin, Tianbing Xu, Bo Liu, Tao Xu, Yanxin Shi, Antoine Atallah, Ralf Herbrich, Stuart Bowers, and Joaquin Quiñonero Candela. Practical Lessons from Predicting Clicks on Ads at Facebook. Proceedings of the Eighth International Workshop on Data Mining for Online Advertising (ADKDD’14). ACM, New York, NY, USA, , Article 5 , 9 pages, 2014.</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#083-Facebook%E7%9A%84%E5%B9%BF%E5%91%8A%E7%82%B9%E5%87%BB%E7%8E%87%E9%A2%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">083 | Facebook的广告点击率预估模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Facebook%E5%B9%BF%E5%91%8A%E9%A2%84%E4%BC%B0"><span class="toc-number">1.1.</span> <span class="toc-text">Facebook广告预估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E5%91%8A%E7%82%B9%E5%87%BB%E7%8E%87%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-number">1.2.</span> <span class="toc-text">广告点击率的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E7%9A%84%E7%82%B9%E5%87%BB%E7%8E%87%E9%A2%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">层次化的点击率预估模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

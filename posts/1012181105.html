@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>117 | 计算机视觉中的特征提取难在哪里？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="117 | 计算机视觉中的特征提取难在哪里？在上一次的分享中，我们聊了计算机视觉的一些最基础的操作和任务，包括像素表达和过滤器这两个视觉问题。我们还简单介绍了边界探测这个任务，了解如何从计算机视觉的角度来对这个任务进行建模。 今天，我们来看计算机视觉基础问题中的另一个核心任务，那就是特征（Feature）提取。 特征提取的目的在深入讨论特征提取之前，我们先来了解一下特征提取的目的，或者说是研究特征">
+<meta property="og:type" content="article">
+<meta property="og:title" content="117 | 计算机视觉中的特征提取难在哪里？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1012181105.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="117 | 计算机视觉中的特征提取难在哪里？在上一次的分享中，我们聊了计算机视觉的一些最基础的操作和任务，包括像素表达和过滤器这两个视觉问题。我们还简单介绍了边界探测这个任务，了解如何从计算机视觉的角度来对这个任务进行建模。 今天，我们来看计算机视觉基础问题中的另一个核心任务，那就是特征（Feature）提取。 特征提取的目的在深入讨论特征提取之前，我们先来了解一下特征提取的目的，或者说是研究特征">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.181Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1012181105"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '117 | 计算机视觉中的特征提取难在哪里？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">117 | 计算机视觉中的特征提取难在哪里？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="117-计算机视觉中的特征提取难在哪里？"><a href="#117-计算机视觉中的特征提取难在哪里？" class="headerlink" title="117 | 计算机视觉中的特征提取难在哪里？"></a>117 | 计算机视觉中的特征提取难在哪里？</h1><p>在上一次的分享中，我们聊了计算机视觉的一些最基础的操作和任务，包括像素表达和过滤器这两个视觉问题。我们还简单介绍了边界探测这个任务，了解如何从计算机视觉的角度来对这个任务进行建模。</p>
+<p>今天，我们来看计算机视觉基础问题中的另一个核心任务，那就是特征（Feature）提取。</p>
+<h2 id="特征提取的目的"><a href="#特征提取的目的" class="headerlink" title="特征提取的目的"></a>特征提取的目的</h2><p>在深入讨论特征提取之前，我们先来了解一下特征提取的目的，或者说是研究特征提取的必要性。</p>
+<p>从大的方面来说，计算机视觉的一部分任务是实现对图像的智能理解。那么，理解图像的语义就是其中一个非常重要的任务。</p>
+<p>我们提到的边界检测或者是颜色检测，虽然都是理解图像的任务，但是这些任务并不理解图像中具体的物体，比如哪里是一只动物、哪里是行人等。那么，怎样才能理解图像中具体的物体呢？或者更进一步，整个图像表达了怎样的社会关系或者说是场景关系？例如一张会议室的图像，我们不仅关心里面的陈设和人物，还关心会议室的整体气氛，以及这样的气氛是不是传递出了更复杂的人物之间的社会关系。</p>
+<p>那么，如何实现这种更高维度的语义理解呢？这往往需要我们 <strong>对底层的一些图像先进行抽象，然后再在抽象出来的特征基础上，进一步来建模</strong>。</p>
+<p>除了我们这里提到的对图像本身的理解以外，在很多任务中，我们还需要对图像和其他信息结合起来进行理解和分析。一种常见的形式是图像和一段文字结合起来，对某一个物品或者某一个事件进行描述。例如电商网站的商品信息，一般都有精美的图片和详细的介绍，这些信息组合起来完整地描述了整个商品的信息。</p>
+<p>这个时候，我们就要同时理解图像和文字信息。很明显，在这样的任务中，一种比较容易想到的模式是先从图像和文字中分别抽取一定的抽象特征，有了高度概括的图像特征和文字特征之后，我们再在这个基础上进行建模。</p>
+<p>从比较小的计算机视觉的任务来说，很多时候，一个任务会涉及到 <strong>两个步骤</strong>：把任务抽象为提取特征，然后转换为一个普通的机器学习任务。这个流程的第二步可以是一个监督学习任务，例如回归或者分类；也可以是一个非监督学习任务。需要注意的是，我们这里提到的两个步骤，并不一定是绝对地把建模过程当作两个完全独立的步骤，而是从逻辑上对这两个步骤进行区分。事实上， <strong>在现代的深度学习架构中，这两个步骤往往都在统一的一个架构下进行训练，从而能够得到更好的效果</strong>。</p>
+<p>今天，我们就从传统的计算机视觉的角度，来看看特征提取有哪些难点和经典方法。</p>
+<h2 id="特征提取的难点及基本思路"><a href="#特征提取的难点及基本思路" class="headerlink" title="特征提取的难点及基本思路"></a>特征提取的难点及基本思路</h2><p>图像数据的特征提取为什么有难度呢？原因在于图像信息本身的复杂性。</p>
+<p>试想我们有两张人民大会堂的建筑物照片，一张是从地面拍摄的，一张是从空中拍摄的。虽然这两张照片可能在角度、色彩、位置等方面有很多的不同，但是因为这两张照片本身所描述的对象是一致的，都是人民大会堂，因此我们希望从这两个图片中提取的特征有一些相似性。也就是说，我们需要 <strong>找到在诸多变化因素中不变的成分</strong>。</p>
+<p>一个经典的思路是从 <strong>局部信息</strong>（Local Information）入手，从图像中提取相应的特征。从实际的效果来看，局部特征（Local Feature）比全局特征更加稳固。</p>
+<p>回到上面的例子，如何构造一个能够匹配两个图片的普遍的局部特征呢？过程如下：第一，找到一组关键的点或者是像素；第二，在关键点周围定义一个区域；第三，抽取并且归一化这个区域；第四，从归一化后的区域提取“ <strong>局部描述子</strong>”（Local Descriptor）。得到局部描述子之后，我们就可以利用它来进行匹配了。</p>
+<p>从上面这个流程来看，整体的思路其实就是希望 <strong>从局部找到具有代表性的特征，然后把所有因为各种因素造成的特征变化归一化掉</strong>。</p>
+<p>当然，这个简单的流程是有一些问题的。比如，如果我们针对两幅不同的图像分别进行上述的流程，那么很有可能最后得到的关键点和局部描述子都不一样。所以我们需要一种更具普适性的方法。</p>
+<p>其实从70年代开始，就有一大部分的计算机视觉工作是在研究 <strong>如何构建局部特征描述子</strong>。在这30多年的发展历程中，很多研究工作者提出了不少既有理论基础又有实用价值的特征提取方法。甚至是最近的深度学习热潮，从某种程度上来说也是一个重要的特征提取成果。</p>
+<p>在这些研究成果中，比较有代表性的局部描述子包括 <strong>SIFT（Scale-invariant feature transform）描述子</strong> 和 <strong>HOG（Histogram of oriented gradient）描述子</strong>。关于这两个描述子，我在这里不展开介绍它们的细节，因为在深度学习浪潮中，大部分利用描述子来对特征进行提取的方法都被淘汰了，但是这些方法的思路，我们在很多类似的工作中依然可以借鉴。所以，如果你有兴趣继续了解，可以阅读我在文末提供的两个参考文献。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了计算机视觉中的又一个核心任务：特征提取。帮助你对计算机视觉的一些基本特征提取有一个了解。</p>
+<p>一起来回顾下要点：第一，在图像理解任务中，高维度的语义理解，以及理解图像和其他信息的组合形式，都需要特征提取这个关键步骤；第二，特征提取的难点在于图像信息本身的复杂性，一个经典的思路是从局部信息入手，提取局部特征。</p>
+<p>最后，给你留一个思考题，除了图像数据以外，还有没有其他形式的数据，也需要我们先对数据的不同形态（例如图像中的颜色、方位、角度等）进行处理，从而识别出相同的物体或者数据个体？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<p>1. David G. Lowe, “Distinctive image features from scale-invariant keypoints,” International Journal of Computer Vision, 60, 2 (2004), pp. 91-110.</p>
+<p>2. N. Dalal and B. Triggs. Histograms of Oriented Gradients for Human Detection. In CVPR, pages 886-893, 2005.</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#117-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E7%9A%84%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E9%9A%BE%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">117 | 计算机视觉中的特征提取难在哪里？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text">特征提取的目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E7%9A%84%E9%9A%BE%E7%82%B9%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">特征提取的难点及基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

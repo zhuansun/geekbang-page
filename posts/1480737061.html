@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>73 | 程序员练级攻略：编程语言 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="73 | 程序员练级攻略：编程语言你好，我是陈皓，网名左耳朵耗子。 为了进入专业的编程领域，我们需要认真学习以下三方面的知识。 编程语言。你需要学习C、C++和Java这三个工业级的编程语言。为什么说它们是工业级的呢？主要是，C和C++语言规范都由ISO标准化过，而且都有工业界厂商组成的标准化委员会来制定工业标准。次要原因是，它们已经在业界应用于许多重要的生产环境中。  C语言不用多说，现今这个世">
+<meta property="og:type" content="article">
+<meta property="og:title" content="73 | 程序员练级攻略：编程语言">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1480737061.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="73 | 程序员练级攻略：编程语言你好，我是陈皓，网名左耳朵耗子。 为了进入专业的编程领域，我们需要认真学习以下三方面的知识。 编程语言。你需要学习C、C++和Java这三个工业级的编程语言。为什么说它们是工业级的呢？主要是，C和C++语言规范都由ISO标准化过，而且都有工业界厂商组成的标准化委员会来制定工业标准。次要原因是，它们已经在业界应用于许多重要的生产环境中。  C语言不用多说，现今这个世">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.540Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1480737061"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '73 | 程序员练级攻略：编程语言',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">73 | 程序员练级攻略：编程语言</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="73-程序员练级攻略：编程语言"><a href="#73-程序员练级攻略：编程语言" class="headerlink" title="73 | 程序员练级攻略：编程语言"></a>73 | 程序员练级攻略：编程语言</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>为了进入专业的编程领域，我们需要认真学习以下三方面的知识。</p>
+<p><strong>编程语言</strong>。你需要学习C、C++和Java这三个工业级的编程语言。为什么说它们是工业级的呢？主要是，C和C++语言规范都由ISO标准化过，而且都有工业界厂商组成的标准化委员会来制定工业标准。次要原因是，它们已经在业界应用于许多重要的生产环境中。</p>
+<ul>
+<li><p>C语言不用多说，现今这个世界上几乎所有重要的软件都跟C有直接和间接的关系，操作系统、网络、硬件驱动等等。说得霸气一点儿，这个世界就是在C语言之上运行的。</p>
+</li>
+<li><p>而对于C++来说，现在主流的浏览器、数据库、Microsoft Office、主流的图形界面、著名的游戏引擎等都是用C++编写的。而且，很多公司都用C++开发核心架构，如Google、腾讯、百度、阿里云等。</p>
+</li>
+<li><p>而金融电商公司则广泛地使用Java语言，因为Java的好处太多了，代码稳定性超过C和C++，生产力远超C和C++。有JVM在，可以轻松地跨平台，做代码优化，做AOP和IoC这样的高级技术。以Spring为首的由庞大的社区开发的高质量的各种轮子让你只需关注业务，是能够快速搭建企业级应用的不二之选。</p>
+</li>
+</ul>
+<p>此外，我推荐学习Go语言。一方面，Go语言现在很受关注，它是取代C和C++的另一门有潜力的语言。C语言太原始了，C++太复杂了，Java太高级了，所以Go语言就在这个夹缝中出现了。这门语言已经10多年了，其已成为云计算领域事实上的标准语言，尤其是在Docker&#x2F;Kubernetes等项目中。Go语言社区正在不断地从Java社区移植各种Java的轮子过来，Go社区现在也很不错。</p>
+<p>如果你要写一些PaaS层的应用，Go语言会比C和C++更好，目前和Java有一拼。而且，Go语言在国内外一些知名公司中有了一定的应用和实践，所以，是可以学习的（参看：《 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/18190.html">Go语言、Docker 和新技术</a>》一文）。此外，Go语言语法特别简单，你有了C和C++的基础，学习Go的学习成本基本为零。</p>
+<p><strong>理论学科</strong>。你需要学习像算法、数据结构、网络模型、计算机原理等计算机科学专业需要学习的知识。为什么要学好这些理论上的知识呢？</p>
+<ul>
+<li><p>其一，这些理论知识可以说是计算机科学这门学科最精华的知识了。说得大一点，这些是人类智慧的精华。你只要想成为高手，这些东西是你必需要掌握和学习的。</p>
+</li>
+<li><p>其二，当你在解决一些很复杂或是很难的问题时，这些基础理论知识可以帮到你很多。我过去这20年从这些基础理论知识中受益匪浅。</p>
+</li>
+<li><p>其三，这些理论知识的思维方式可以让你有触类旁通，一通百通的感觉。虽然知识比较难啃，但啃过以后，你将获益终生。</p>
+</li>
+</ul>
+<p>另外，你千万不要觉得在你的日常工作或是生活当中根本用不上，学了也白学，这样的思维方式千万不要有，因为这是平庸的思维方式。如果你想等我用到了再学也不晚，那么你有必要看一下这篇文章《 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/4235.html">程序员的荒谬之言还是至理名言？</a>》。</p>
+<p><strong>系统知识</strong>。系统知识是理论知识的工程实践，这里面有很多很多的细节。比如像Unix&#x2F;Linux、TCP&#x2F;IP、C10K挑战等这样专业的系统知识。这些知识是你能不能把理论应用到实际项目当中，能不能搞定实际问题的重要知识。</p>
+<p>当你在编程的时候，如何和系统进行交互或是获取操作系统的资源，如何进行通讯，当系统出了性能问题，当系统出了故障等，你有大量需要落地的事需要处理和解决。这个时候，这些系统知识就会变得尤为关键和重要了。</p>
+<p>这些东西，你可以认为是计算机世界的物理世界，上层无论怎么玩，无论是Java NIO，还是Nginx，还是Node.js，它们都逃脱不掉最下层的限制。所以，你要好好学习这方面的知识。</p>
+<h1 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h1><h2 id="Java语言"><a href="#Java语言" class="headerlink" title="Java语言"></a>Java语言</h2><p>学习Java语言有以下 <strong>入门级的书</strong>（注意：下面一些书在入门篇中有所提及，但为了完整性，还是要在这里提一下，因为可能有朋友是跳着看的）。</p>
+<ul>
+<li><p>《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/26880667/">Java核心技术：卷1基础知识</a>》，这本书本来是Sun公司的官方用书，是一本Java的入门参考书。对于Java初学者来说，是一本非常不错的值得时常翻阅的技术手册。书中有较多地方进行Java与C++的比较，因为当时Java面世的时候，又被叫作”C++ Killer”。而我在看这本书的时候，发现书中有很多C++的东西，于是又去学习了C++。学习C++的时候，发现有很多C的东西不懂，又顺着去学习了C。然后，C -&gt; C++ -&gt; Java整条线融汇贯通，这对我未来的技术成长有非常大的帮助。</p>
+</li>
+<li><p>有了上述的入门后，Java的Spring框架是你玩Java所无法回避的东西，所以接下来是两本Spring相关的书，《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/26767354/">Spring实战</a>》和《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/26857423/">Spring Boot实战</a>》。前者是传统的Spring，后者是新式的微服务的Spring。如果你只想看一本的话，那么就看后者吧。</p>
+</li>
+</ul>
+<p>前面推荐的几本书可以帮你成功入门Java，但想要进一步成长，就要看下面我推荐的几本进阶级别的书了。</p>
+<ul>
+<li><p>接下来，你需要了解了一下如何编写高效的代码，于是必需看一下《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/27047716/">Effective Java</a>》（注意，这里我给的引用是第三版的，也是2017年末出版的书），这本书是模仿Scott Meyers的经典图书《Effective C++》的。Effective这种书基本上都是各种经验之谈，所以，这是一本非常不错的书，你一定要读。这里需要推荐一下 <a target="_blank" rel="noopener" href="https://github.com/google/guava">Google Guava 库</a> ，这个库不但是JDK的升级库，其中有如：集合（collections）、缓存（caching）、原生类型支持（primitives support）、并发库（concurrency libraries）、通用注解（common annotations）、字符串处理（string processing）、I&#x2F;O 等库，其还是Effective Java这本书中的那些经验的实践代表。</p>
+</li>
+<li><p>《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/10484692/">Java并发编程实战</a>》，是一本完美的Java并发参考手册。书中从并发性和线程安全性的基本概念出发，介绍了如何使用类库提供的基本并发构建块，用于避免并发危险、构造线程安全的类及验证线程安全的规则，如何将小的线程安全类组合成更大的线程安全类，如何利用线程来提高并发应用程序的吞吐量，如何识别可并行执行的任务，如何提高单线程子系统的响应性，如何确保并发程序执行预期任务，如何提高并发代码的性能和可伸缩性等内容。最后介绍了一些高级主题，如显式锁、原子变量、非阻塞算法以及如何开发自定义的同步工具类。</p>
+</li>
+<li><p>了解如何编写出并发的程序，你还需要了解一下如何优化Java的性能。我推荐《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/26740520/">Java性能权威指南</a>》。通过学习这本书，你可以比较大程度地提升性能测试的效果。其中包括：使用JDK中自带的工具收集Java应用的性能数据，理解JIT编译器的优缺点，调优JVM垃圾收集器以减少对程序的影响，学习管理堆内存和JVM原生内存的方法，了解如何最大程度地优化Java线程及同步的性能，等等。看完这本书后，如果你还有余力，想了解更多的底层细节，那么，你有必要去读一下《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/24722612/">深入理解Java虚拟机</a>》。</p>
+</li>
+<li><p>《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/2130190/">Java编程思想</a>》，真是一本透着编程思想的书。上面的书让你从微观角度了解Java，而这本书则可以让你从一个宏观角度了解Java。这本书和Java核心技术的厚度差不多，但这本书的信息密度比较大。所以，读起来是非常耗大脑的，因为它会让你不断地思考。对于想学好Java的程序员来说，这是一本必读的书。</p>
+</li>
+<li><p>《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/26952826/">精通Spring 4.x</a>》，也是一本很不错的书，就是有点厚，一共有800多页，都是干货。我认为其中最不错的是在分析原理，尤其是针对前面提到的Spring技术，应用与原理都讲得很透彻，IOC和AOP也分析得很棒，娓娓道来。其对任何一个技术都分析得很细致和全面，不足之处就是内容太多了，所以导致很厚，但这并不影响它是一本不错的工具书。</p>
+</li>
+</ul>
+<p>当然，学Java你一定要学面向对象的设计模式，这里就只有一本经典的书《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/1052241/">设计模式</a>》。如果你觉得有点儿难度了，那么可以看一下《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/2243615/">Head First设计模式</a>》。学习面向对象的设计模式时，你不要迷失在那23个设计模式中，你一定要明白这两个原则：</p>
+<ul>
+<li><strong>Program to an ‘interface’, not an ‘implementation’</strong><ul>
+<li>使用者不需要知道数据类型、结构、算法的细节。</li>
+<li>使用者不需要知道实现细节，只需要知道提供的接口。</li>
+<li>利于抽象、封装，动态绑定，多态。符合面向对象的特质和理念。</li>
+</ul>
+</li>
+<li><strong>Favor ‘object composition’ over ‘class inheritance’</strong><ul>
+<li>继承需要给子类暴露一些父类的设计和实现细节。</li>
+<li>父类实现的改变会造成子类也需要改变。</li>
+<li>我们以为继承主要是为了代码重用，但实际上在子类中需要重新实现很多父类的方法。</li>
+<li>继承更多的应该是为了多态。</li>
+</ul>
+</li>
+</ul>
+<p>至此，如果你把上面的这些知识都融汇贯通的话，那么，你已是一个高级的Java程序员了，我保证你已经超过了绝大多数程序员了。基本上来说，你在技术方面是可以进入到一线公司的，而且还不是一般的岗位，至少是高级程序员或是初级架构师的级别了。</p>
+<h2 id="C-C-语言"><a href="#C-C-语言" class="headerlink" title="C&#x2F;C++语言"></a>C&#x2F;C++语言</h2><p>不像我出道那个时候，几乎所有的软件都要用C语言来写。现在，可能不会有多少人学习C语言了，因为一方面有Java、Python这样的高级语言为你屏蔽了很多的底层细节，另一方面也有像Go语言这样的新兴语言可以让你更容易地写出来也是高性能的软件。但是，我还是想说，C语言是你必须学习的语言，因为这个世界上绝大多数编程语言都是C-like的语言，也是在不同的方面来解决C语言的各种问题。 <strong>这里，我想放个比较武断话——如果你不学C语言，你根本没有资格说你是一个合格的程序员！</strong></p>
+<ul>
+<li><p>这里尤其推荐，已故的C语言之父Dennis M. Ritchie和著名科学家Brian W. Kernighan合作的圣经级的教科书《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/1139336/">C程序设计语言</a>》。注意，这本书是C语言原作者写的，其C语言的标准不是我们平时常说的ANSI标准，而是原作者的标准，又被叫作K&amp;R C。但是这本书很轻薄，也简洁，不枯燥，是一本你可以拿着躺在床上看还不会看着看着睡着的书。</p>
+</li>
+<li><p>然后，还有一本非常经典的C语言的书《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/2280547/">C语言程序设计现代方法</a>》。有人说，这本书配合之前的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a> 那本书简真是无敌。我想说，这本书更实用，也够厚，完整覆盖了C99标准，习题的质量和水准也比较高。更好的是，探讨了现代编译器的实现，以及和C++的兼容，还揭穿了各种古老的C语言的神话和信条……是相当相当干的一本学习C语言的书。</p>
+</li>
+</ul>
+<p><strong>对了，千万不要看谭浩强的C语言的书。各种误导，我大学时就是用这本书学的C，后来工作时被坑得不行</strong>。</p>
+<p>在学习C语言的过程中，你一定会感到，C语言这么底层，而且代码经常性地崩溃，经过一段时间的挣扎，你才开始觉得你从这个烂泥坑里快要爬出来了。但你还需要看看《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/2778632/">C陷阱与缺陷</a>》这本书，你会发现，这里面的坑不是一般大。</p>
+<p>此时，如果你看过我的《编程范式游记》那个系列文章，你可能会发现C语言在泛型编程上的各种问题，这个时候我推荐你学习一下C++语言。可能会有很多人觉得我说的C++是个大坑。是的，这是世界目前来说最复杂也是最难的编程语言了。但是， <strong>C++是目前世界上范式最多的语言了，其做得最好的范式就是”泛型编程”，这在静态语言中，是绝对地划时代的一个事</strong>。</p>
+<p>所以，你有必要学习一下C++，看看C++是如何解决C语言中的各种问题的。你可以先看看我的这篇文章 “ <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/7992.html">C++的坑真的多吗？</a>” ，有个基本认识。下面推荐几本C++的书。</p>
+<ul>
+<li><p>《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/25708312/">C++ Primer中文版</a>》，这本书是久负盛名的C++经典教程。书是有点厚，前面1&#x2F;3讲C语言，后面讲C++。C++的知识点实在是太多了，而且又有点晦涩。但是你主要就看几个点，一个是面向对象的多态，一个是模板和重载操作符，以及一些STL的东西。看看C++是怎么玩泛型和函数式编程的。</p>
+</li>
+<li><p>如果你想继续研究，你需要看另外两本更为经典的书《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/5387403/">Effective C++</a>》和《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/5908727/">More Effective C++</a>》。 这两本书不厚，但是我读了10多年，每过一段时间再读一下，就会发现有更多的收获。这两本书的内容会随着你经历的丰富而变得丰富，这也是对我影响最大的两本书，其中影响最大的不是书中的那些C++的东西，而是作者的思维方式和不断求真的精神，这真是太赞了。</p>
+</li>
+<li><p>学习C&#x2F;C++都是需要好好了解一下编译器到底干了什么事的。就像Java需要了解JVM一样，所以，这里还有一本非常非常难啃的书你可以挑战一下《 <a target="_blank" rel="noopener" href="https://book.douban.com/subject/10427315/">深度探索C++对象模型</a>》。这本书是非常之经典的，看完后，C++对你来说就再也没有什么秘密可言。我以前写过的《 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/12165.html">C++虚函数表解析</a>》，还有《 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/12176.html">C++对象内存布局</a>》属于这个范畴。</p>
+</li>
+<li><p>还有C++的作者 Bjarne Stroustrup 写的 <a target="_blank" rel="noopener" href="http://www.stroustrup.com/bs_faq.html">C++ FAQ</a> （ <a target="_blank" rel="noopener" href="http://www.stroustrup.com/bsfaqcn.html">中文版</a>），也是非常值得一读的。</p>
+</li>
+</ul>
+<h2 id="学习Go语言"><a href="#学习Go语言" class="headerlink" title="学习Go语言"></a>学习Go语言</h2><p>C语言太原始了，C++太复杂了，Go语言是不二之选。有了C&#x2F;C++的功底，学习Go语言非常简单。</p>
+<p>首推 <a target="_blank" rel="noopener" href="https://gobyexample.com/">Go by Example</a> 作为你的入门教程。然后， <a target="_blank" rel="noopener" href="https://go101.org/article/101.html">Go 101</a> 也是一个很不错的在线电子书。如果你想看纸书的话， <a target="_blank" rel="noopener" href="https://book.douban.com/subject/26337545/">The Go Programming Language</a> 一书在豆瓣上有9.2分，但是国内没有卖的。（当然，我以前也写过两篇入门的供你参考 “ <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/8460.html">GO 语言简介（上）- 语法</a>” 和 “ <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/8489.html">GO 语言简介（下）- 特性</a>”）。</p>
+<p>另外，Go语言官方的 <a target="_blank" rel="noopener" href="https://golang.org/doc/effective_go.html">Effective Go</a> 是必读的，这篇文章告诉你如何更好地使用Go语言，以及Go语言中的一些原理。</p>
+<p>Go 语言最突出之处是并发编程，Unix老牌黑客罗勃·派克（Rob Pike）在 Google I&#x2F;O上的两个分享，可以让你学习到一些并发编程的模式。</p>
+<ul>
+<li>Go Concurrency Patterns（ <a target="_blank" rel="noopener" href="https://talks.golang.org/2012/concurrency.slide">幻灯片</a> 和 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=f6kdp27TYZs">演讲视频</a>）。</li>
+<li>Advanced Go Concurrency Patterns（ <a target="_blank" rel="noopener" href="https://talks.golang.org/2013/advconc.slide">幻灯片</a>、 <a target="_blank" rel="noopener" href="https://youtu.be/QDDwwePbDtw">演讲视频</a>）。</li>
+</ul>
+<p>然后，Go在 GitHub的wiki上有好多不错的学习资源，你可以从中学习到多。比如：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang/go/wiki/Articles">Go精华文章列表</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang/go/wiki/Blogs">Go相关博客列表</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang/go/wiki/GoTalks">Go Talks</a>。</li>
+</ul>
+<p>此外，还有个内容丰富的Go资源列表 <a target="_blank" rel="noopener" href="https://github.com/avelino/awesome-go">Awesome Go</a>，推荐看看。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>好了，最后我们来总结一些今天分享的内容。在编程语言方面，我推荐学习C、C++、Java和Go四门语言，并分别阐释了推荐的原因。</p>
+<ul>
+<li><p>我认为，C语言是必须学习的语言，因为这个世界上绝大多数编程语言都是C-like的语言，也是在不同的方面来解决C语言的各种问题。</p>
+</li>
+<li><p>而C++虽然复杂难学，但它几乎是目前世界上范式最多的语言了，其做得最好的范式就是”泛型编程”，这在静态语言中，是绝对地划时代的一个事。尤其要看看C++是如何解决C语言中的各种问题的。</p>
+</li>
+<li><p>Java是我认为综合能力最强的语言。其实我是先学了Java，然后又去学了C++，之后去学了C语言的。C -&gt; C++ -&gt; Java整条线融汇贯通，这对我未来的技术成长有非常大的帮助。</p>
+</li>
+<li><p>在文章最末，我推荐了Go语言，并给出了相关的学习资料。</p>
+</li>
+</ul>
+<p>我认为，一个合格的程序员应该掌握几门语言。一方面，这会让你对不同的语言进行比较，让你有更多的思考。另一方面，这也是一种学习能力的培养，会让你对于未来的新技术学习得更快。</p>
+<p>下篇文章中，我们将分享每个程序员都需要掌握的理论知识。敬请期待。</p>
+<p>下面是《程序员练级攻略》系列文章的目录。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8136">开篇词</a></li>
+<li>入门篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8216">零基础启蒙</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8217">正式入门</a></li>
+</ul>
+</li>
+<li>修养篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8700">程序员修养</a></li>
+</ul>
+</li>
+<li>专业基础篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8701">编程语言</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8887">理论学科</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/8888">系统知识</a></li>
+</ul>
+</li>
+<li>软件设计篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/9369">软件设计</a></li>
+</ul>
+</li>
+<li>高手成长篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/9759">Linux系统、内存和网络（系统底层知识）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/9851">异步I&#x2F;O模型和Lock-Free编程（系统底层知识）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/10216">Java底层知识</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/10301">数据库</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/10603">分布式架构入门（分布式架构）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/10604">分布式架构经典图书和论文（分布式架构）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/11232">分布式架构工程设计(分布式架构)</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/11116">微服务</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/11665">容器化和自动化运维</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/11669">机器学习和人工智能</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/12271">前端基础和底层原理（前端方向）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/12389">前端性能优化和框架（前端方向）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/12486">UI&#x2F;UX设计（前端方向）</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/12561">技术资源集散地</a></li>
+</ul>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#73-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%BB%83%E7%BA%A7%E6%94%BB%E7%95%A5%EF%BC%9A%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">73 | 程序员练级攻略：编程语言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">编程语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E8%AF%AD%E8%A8%80"><span class="toc-number">2.1.</span> <span class="toc-text">Java语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-C-%E8%AF%AD%E8%A8%80"><span class="toc-number">2.2.</span> <span class="toc-text">C&#x2F;C++语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0Go%E8%AF%AD%E8%A8%80"><span class="toc-number">2.3.</span> <span class="toc-text">学习Go语言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

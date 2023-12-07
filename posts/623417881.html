@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>009 | 如何将“深度强化学习”应用到视觉问答系统？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="009 | 如何将“深度强化学习”应用到视觉问答系统？本周我们一起来剖析ICCV 2017的论文，周一和周三分别讲了最佳研究论文和最佳学生论文。今天，我们来分享一篇完全不同的文章，题目是《使用深度强化学习研究协作性视觉对话机器人》（Learning Cooperative Visual Dialog Agents with Deep Reinforcement Learning），讲的是如何通过“">
+<meta property="og:type" content="article">
+<meta property="og:title" content="009 | 如何将“深度强化学习”应用到视觉问答系统？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/623417881.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="009 | 如何将“深度强化学习”应用到视觉问答系统？本周我们一起来剖析ICCV 2017的论文，周一和周三分别讲了最佳研究论文和最佳学生论文。今天，我们来分享一篇完全不同的文章，题目是《使用深度强化学习研究协作性视觉对话机器人》（Learning Cooperative Visual Dialog Agents with Deep Reinforcement Learning），讲的是如何通过“">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.010Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/623417881"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '009 | 如何将“深度强化学习”应用到视觉问答系统？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">009 | 如何将“深度强化学习”应用到视觉问答系统？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="009-如何将“深度强化学习”应用到视觉问答系统？"><a href="#009-如何将“深度强化学习”应用到视觉问答系统？" class="headerlink" title="009 | 如何将“深度强化学习”应用到视觉问答系统？"></a>009 | 如何将“深度强化学习”应用到视觉问答系统？</h1><p>本周我们一起来剖析ICCV 2017的论文，周一和周三分别讲了最佳研究论文和最佳学生论文。今天，我们来分享一篇完全不同的文章，题目是《使用深度强化学习研究协作性视觉对话机器人》（Learning Cooperative Visual Dialog Agents with Deep Reinforcement Learning），讲的是如何通过“深度强化学习”来解决视觉问答系统。</p>
+<h2 id="作者群信息介绍"><a href="#作者群信息介绍" class="headerlink" title="作者群信息介绍"></a>作者群信息介绍</h2><p>第一作者阿布谢克·达斯（Abhishek Das）是一名来自佐治亚理工大学的在读博士生。他于2017年和2018年在Facebook人工智能研究院实习，已经获得了Adobe的研究奖学金和Snapchat的研究奖学金，可以说是一名非常卓越的博士生。之前在智能系统，特别是在利用强化学习研究智能机器人会话系统的领域已经发表了多篇论文。</p>
+<p>共同第一作者萨特维克·库托儿（Satwik Kottur）来自卡内基梅隆大学，博士第四年，研究领域为计算机视觉、自然语言和机器学习。2016年暑假他在Snapchat的研究团队实习，研究对话系统中的个性化问题。2017年暑假在Facebook研究院实习，研究视觉对话系统。近两年，萨特维克已在多个国际顶级会议如ICCV 2017、ICML 2017、IJCAI 2017、CVPR 2017、NIPS 2017以及EMNLP 2017发表了多篇高质量研究论文，可以说是一颗冉冉升起的学术新星。</p>
+<p>第三作者何塞·毛拉（José M. F. Moura）是萨特维克在卡内基梅隆大学的导师。何塞是美国工程院院士和IEEE院士，长期从事信号处理以及大数据、数据科学的研究工作。他当选2018年IEEE总裁，负责IEEE下一个阶段的发展。</p>
+<p>第四作者斯特凡·李（Stefan Lee）是来自乔治亚理工大学的研究科学家，之前在弗吉尼亚理工大学任职，长期从事计算机视觉、自然语言处理等多方面的研究。斯特凡2016年博士毕业于印第安纳大学计算机系。</p>
+<p>第五作者德鲁·巴塔（Dhruv Batra）目前是Facebook研究院的科学家，也是乔治亚理工大学的助理教授。德鲁2010年博士毕业于卡内基梅隆大学；2010年到2012年在位于芝加哥的丰田理工大学担任研究助理教授；2013年到2016年在弗吉尼亚大学任教。德鲁长期从事人工智能特别是视觉系统以及人机交互系统的研究工作。文章的第四作者斯特凡是德鲁长期的研究合作者，他们一起已经发表了包括本文在内的多篇高质量论文。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>我们首先来看一下这篇文章的主要贡献，理解这篇文章主要解决了什么场景下的问题。</p>
+<p>这篇论文是建立在这么一个虚拟“游戏”（Game）的基础上的。</p>
+<p>首先，我们有两个“机器人”（Agent），一个叫“Q机器人”（Q-Bot），一个叫“A机器人”（A-Bot）。这个游戏的规则是这样的。一开始，A机器人得到一张图片I，Q机器人一开始得到I的一个文字描述c，而并不知道图片本身。然后，Q机器人开始问A机器人关于图片的各种问题，A机器人听到问题之后进行作答，帮助Q机器人更进一步理解图片。Q机器人最终的目的是能够把这个图片“猜到”，也就是说能够把图片从一个数据库中“提取”（Retrieve）出来。当然在实际的操作中，这一步可以是去衡量Q机器人对于图像的理解，也就是“描述图像的向量”和“真实图像的描述向量”的差距，差距越小说明越成功。</p>
+<p>那么，你可以看到，这其实是一个很难的问题。Q机器人必须从A机器人提供的图像文字描述中寻找线索，并且能够提出有意义的问题。而A机器人必须了解Q机器人到目前为止究竟理解什么信息，才能帮助Q机器人成功。</p>
+<p>整个游戏，或者叫任务，常常被称作是“协作性的视觉对话系统”（Cooperative Visual Dialog System）。 <strong>这篇文章的主要贡献就是第一个利用深度加强学习来对这样一个系统进行建模，并且，与之前的非加强学习模型相比，提出的解决方案极大地提高了准确度</strong>。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>那么，既然要把整个问题使用深度强化学习来建模，我们肯定就需要定义强化学习的一些构件。</p>
+<p>第一，我们来看看模型的 <strong>“动作”（Action）</strong>。两个机器人的动作空间就是自然语言的词汇表。因为，在这个游戏或者说在强化学习的每一轮中，两个机器人都是需要根据现在的状态，来进行下一步的动作，也就是问问题的语句。这是一个离散的动作空间。除此以外，Q机器人还需要在每一轮之后对自己理解的图像向量进行更新。那么，这是一个连续的动作空间。</p>
+<p>第二，我们来看看模型的 <strong>“状态”（State）</strong>。对于Q机器人来说，每一轮的状态，是一个这些信息的集合，包括最初的A机器人提供的图像的描述，以及到目前为止所有轮问答的每一句话。而A机器人的状态空间，则包括最初的图像本身，图像的描述，以及到目前为止所有轮的对话。</p>
+<p>第三，我们来看看模型的 <strong>“策略”（Policy）</strong>。对A机器人和Q机器人来说，都是要根据现在的状态，来评估下面的语句的可能性。这里，评估的机制其实分别用两个神经网络来学习A机器人和Q机器人的策略。同时，Q机器人还需要有一个神经网络来根据现有的A机器人的回答，来更新对图像的一个认识。</p>
+<p>第四，我们来看一看模型的 <strong>“环境”（Environment）和“回馈”（Reward）</strong>。在这个游戏里，两个机器人都会得到一样的回馈，而这个回馈的根据是Q机器人对图像的认识所表达的向量和图像的真实表达向量的一个距离，或者更加准确地说是距离的变化量。</p>
+<p>以上就是整个模型的设置。</p>
+<p>那么，我们来看两个模型策略神经网络的一些细节。首先，对于Q机器人来说，有这么四个重要的部件。第一，Q机器人把当前轮自己问的问题和A给的回答，当做一个组合，用LSTM进行编码产生一个中间变量F。第二，当前步骤的F和以前的所有F都结合起来，再经过一个LSTM，产生一个中间变量S。然后第三步，我们根据这个S来产生下一步的语句，以及当前对图像的一个重新的认识。也就是说， <strong>F其实就是一个对历史所有状态的描述，而S则是一个压缩了的当前描述信息，并且我们使用S来作为下一步的一个跳板</strong>。A机器人的策略神经网络的架构非常类似，这里就不赘述了，区别在于不需要去产生图像的理解。</p>
+<p>整个模型采用了目前深度强化学习流行的 <strong>REINFORCE算法</strong> 来对模型的参数进行估计。</p>
+<p>这篇文章其实有不少技术细节，我们在今天的分享里只能从比较高的维度帮助你进行总结，如果有兴趣一定要去阅读原文。</p>
+<h2 id="方法的实验效果"><a href="#方法的实验效果" class="headerlink" title="方法的实验效果"></a>方法的实验效果</h2><p>作者们在一个叫VisDial的数据集上做了实验。这个数据集有6万8千幅图像，是从我们之前提到过的COCO数据集里抽取出来的，并且提供了超过68万对问答。可以说这个数据集还是比较大型的。</p>
+<p>文章比较了利用普通的监督学习以及“课程学习”（Curriculum Learning）的方法。从效果来看，强化学习的效果还是很明显的。 <strong>最直接的效果是，强化学习能够产生和真实对话相近的对话效果</strong>，而其他的办法，比如监督学习，则基本上只能产生“死循环”的对话，效果不理想。不过从图像提取的角度来讲，强化学习虽然比监督学习的效果好，但是差距并不是特别明显，基本上可以认为目前的差距依然是在误差范围内的。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了ICCV 2017的一篇有意思的文章。这篇文章介绍了如何利用深度强化学习来搭建一个模型去理解两个机器人的对话并能够理解图像信息。</p>
+<p>一起来回顾下要点：第一，我们简要介绍了这篇文章的作者群信息。第二，我们详细介绍了这篇文章要解决的问题以及贡献 。第三，我们重点介绍了的文章提出方法核心内容 。</p>
+<p>最后，给你留一个思考题，你认为把强化学习用在这样的对话场景中，难点是什么？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#009-%E5%A6%82%E4%BD%95%E5%B0%86%E2%80%9C%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E2%80%9D%E5%BA%94%E7%94%A8%E5%88%B0%E8%A7%86%E8%A7%89%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">009 | 如何将“深度强化学习”应用到视觉问答系统？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%BE%A4%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">作者群信息介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.2.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">方法的实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

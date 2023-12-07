@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>36 | 编程范式：基于原型的编程范式 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="36 | 编程范式：基于原型的编程范式你好，我是陈皓，网名左耳朵耗子。 基于原型（Prototype）的编程其实也是面向对象编程的一种方式。没有class化的，直接使用对象。又叫，基于实例的编程。其主流的语言就是JavaScript，与传统的面向对象编程的比较如下：  在基于类的编程当中，对象总共有两种类型。类定义了对象的基本布局和函数特性，而接口是“可以使用的”对象，它基于特定类的样式。在此模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="36 | 编程范式：基于原型的编程范式">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3045258930.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="36 | 编程范式：基于原型的编程范式你好，我是陈皓，网名左耳朵耗子。 基于原型（Prototype）的编程其实也是面向对象编程的一种方式。没有class化的，直接使用对象。又叫，基于实例的编程。其主流的语言就是JavaScript，与传统的面向对象编程的比较如下：  在基于类的编程当中，对象总共有两种类型。类定义了对象的基本布局和函数特性，而接口是“可以使用的”对象，它基于特定类的样式。在此模型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.484Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3045258930"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '36 | 编程范式：基于原型的编程范式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">36 | 编程范式：基于原型的编程范式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="36-编程范式：基于原型的编程范式"><a href="#36-编程范式：基于原型的编程范式" class="headerlink" title="36 | 编程范式：基于原型的编程范式"></a>36 | 编程范式：基于原型的编程范式</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>基于原型（Prototype）的编程其实也是面向对象编程的一种方式。没有class化的，直接使用对象。又叫，基于实例的编程。其主流的语言就是JavaScript，与传统的面向对象编程的比较如下：</p>
+<ul>
+<li><p>在基于类的编程当中，对象总共有两种类型。类定义了对象的基本布局和函数特性，而接口是“可以使用的”对象，它基于特定类的样式。在此模型中，类表现为行为和结构的集合，对所有接口来说这些类的行为和结构都是相同的。因而，区分规则首先是基于行为和结构，而后才是状态。</p>
+</li>
+<li><p>原型编程的主张者经常争论说，基于类的语言提倡使用一个关注分类和类之间关系的开发模型。与此相对，原型编程看起来提倡程序员关注一系列对象实例的行为，而之后才关心如何将这些对象划分到最近的使用方式相似的原型对象，而不是分成类。</p>
+</li>
+</ul>
+<p>因为如此，很多基于原型的系统提倡运行时进行原型的修改，而只有极少数基于类的面向对象系统（比如第一个动态面向对象的系统Smalltalk）允许类在程序运行时被修改。</p>
+<ul>
+<li><p>在基于类的语言中，一个新的实例通过类构造器和构造器可选的参数来构造，结果实例由类选定的行为和布局创建模型。</p>
+</li>
+<li><p>在基于原型的系统中构造对象有两种方法，通过复制已有的对象或者通过扩展空对象创建。很多基于原型的系统提倡运行时进行原型的修改，而基于类的面向对象系统只有动态语言允许类在运行时被修改（Common Lisp、Dylan、Objective-C、Perl、Python、Ruby和Smalltalk）。</p>
+</li>
+</ul>
+<h1 id="JavaScript的原型概念"><a href="#JavaScript的原型概念" class="headerlink" title="JavaScript的原型概念"></a>JavaScript的原型概念</h1><p>这里，我们主要以JavaScript举例，面向对象里面要有个Class。但是JavaScript觉得不是这样的，它就是要基于原型编程，就不要Class，就直接在对象上改就行了，基于编程的修改，直接对类型进行修改。</p>
+<p>我们先来看一个示例。</p>
+<pre class="line-numbers language-none"><code class="language-none">var foo &#x3D; &#123;name: &quot;foo&quot;, one: 1, two: 2&#125;;
+
+var bar &#x3D; &#123;three: 3&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>每个对象都有一个 <code>__proto__</code> 的属性，这个就是“原型”。对于上面的两个对象，如果我们把 <code>foo</code> 赋值给 <code>bar.__proto__</code>，那就意味着， <code>bar</code> 的原型就成了 <code>foo</code> 的。</p>
+<pre class="line-numbers language-none"><code class="language-none">bar.__proto__ &#x3D; foo; &#x2F;&#x2F; foo is now the prototype of bar.
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>于是，我们就可以在 <code>bar</code> 里面访问 <code>foo</code> 的属性了。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; If we try to access foo&#39;s properties from bar
+&#x2F;&#x2F; from now on, we&#39;ll succeed.
+bar.one &#x2F;&#x2F; Resolves to 1.
+
+&#x2F;&#x2F; The child object&#39;s properties are also accessible.
+bar.three &#x2F;&#x2F; Resolves to 3.
+
+&#x2F;&#x2F; Own properties shadow prototype properties
+bar.name &#x3D; &quot;bar&quot;;
+foo.name; &#x2F;&#x2F; unaffected, resolves to &quot;foo&quot;
+bar.name; &#x2F;&#x2F; Resolves to &quot;bar&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>需要解释一下JavaScript的两个东西，一个是 <code>__proto__</code>，另一个是 <code>prototype</code>，这两个东西很容易混淆。这里说明一下：</p>
+<ul>
+<li><p><strong><code>__proto__</code></strong> 主要是安放在一个实际的对象中，用它来产生一个链接，一个原型链，用于寻找方法名或属性，等等。</p>
+</li>
+<li><p><strong><code>prototype</code></strong> 是用 <code>new</code> 来创建一个对象时构造 <code>__proto__</code> 用的。它是构造函数的一个属性。</p>
+</li>
+</ul>
+<p>在JavaScript中，对象有两种表现形式， 一种是 <code>Object</code> ( <a target="_blank" rel="noopener" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2">ES5关于Object的文档</a>)，一种是 <code>Function</code> （ <a target="_blank" rel="noopener" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2">ES5关于Function的文档</a>）。</p>
+<p>我们可以简单地认为， <code>__proto__</code> 是所有对象用于链接原型的一个指针，而 <code>prototype</code> 则是 Function 对象的属性，其主要是用来当需要 <code>new</code> 一个对象时让 <code>__proto__</code> 指针所指向的地方。 对于超级对象 <code>Function</code> 而言， <code>Function.__proto__</code> 就是 <code>Function.prototype</code>。</p>
+<p>比如我们有如下的代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">var a &#x3D; &#123;
+  x: 10,
+  calculate: function (z) &#123;
+    return this.x + this.y + z;
+  &#125;
+&#125;;
+
+var b &#x3D; &#123;
+  y: 20,
+  __proto__: a
+&#125;;
+
+var c &#x3D; &#123;
+  y: 30,
+  __proto__: a
+&#125;;
+
+&#x2F;&#x2F; call the inherited method
+b.calculate(30); &#x2F;&#x2F; 60
+c.calculate(40); &#x2F;&#x2F; 80
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中的“原型链”如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a67686c883e8077da6779ae956efdcec.png"></p>
+<p>注意：ES5 中，规定原型继承需要使用 <code>Object.create()</code> 函数。如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">var b &#x3D; Object.create(a, &#123;y: &#123;value: 20&#125;&#125;);
+var c &#x3D; Object.create(a, &#123;y: &#123;value: 30&#125;&#125;);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>好了，我们再来看一段代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 一种构造函数写法
+function Foo(y) &#123;
+  this.y &#x3D; y;
+&#125;
+
+&#x2F;&#x2F; 修改 Foo 的 prototype，加入一个成员变量 x
+Foo.prototype.x &#x3D; 10;
+
+&#x2F;&#x2F; 修改 Foo 的 prototype，加入一个成员函数 calculate
+Foo.prototype.calculate &#x3D; function (z) &#123;
+  return this.x + this.y + z;
+&#125;;
+
+&#x2F;&#x2F; 现在，我们用 Foo 这个原型来创建 b 和 c
+var b &#x3D; new Foo(20);
+var c &#x3D; new Foo(30);
+
+&#x2F;&#x2F; 调用原型中的方法，可以得到正确的值
+b.calculate(30); &#x2F;&#x2F; 60
+c.calculate(40); &#x2F;&#x2F; 80
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>那么，在内存中的布局是怎么样的呢？大概是下面这个样子。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/6ca465981ae68f4a055f9ca4f16fdffa.png"></p>
+<p>这个图应该可以让你很好地看明白 <code>__proto__</code> 和 <code>prototype</code> 的差别了。</p>
+<p>我们可以测试一下：</p>
+<pre class="line-numbers language-none"><code class="language-none">b.__proto__ &#x3D;&#x3D;&#x3D; Foo.prototype, &#x2F;&#x2F; true
+c.__proto__ &#x3D;&#x3D;&#x3D; Foo.prototype, &#x2F;&#x2F; true
+
+b.constructor &#x3D;&#x3D;&#x3D; Foo, &#x2F;&#x2F; true
+c.constructor &#x3D;&#x3D;&#x3D; Foo, &#x2F;&#x2F; true
+Foo.prototype.constructor &#x3D;&#x3D;&#x3D; Foo, &#x2F;&#x2F; true
+
+b.calculate &#x3D;&#x3D;&#x3D; b.__proto__.calculate, &#x2F;&#x2F; true
+b.__proto__.calculate &#x3D;&#x3D;&#x3D; Foo.prototype.calculate &#x2F;&#x2F; true
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里需要说明的是：</p>
+<p><strong><code>Foo.prototype</code> 自动创建了一个属性 <code>constructor</code>，这是一个指向函数自己的一个reference。这样一来，对于实例 <code>b</code> 或 <code>c</code> 来说，就能访问到这个继承的 <code>constructor</code> 了。</strong></p>
+<p>有了这些基本概念，我们就可以讲一下JavaScript的面向对象编程了。</p>
+<blockquote>
+<p>注： 上面示例和图示来源于 <a target="_blank" rel="noopener" href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/">JavaScript, The Core</a> 一文。</p>
+</blockquote>
+<h1 id="JavaScript原型编程的面向对象"><a href="#JavaScript原型编程的面向对象" class="headerlink" title="JavaScript原型编程的面向对象"></a>JavaScript原型编程的面向对象</h1><p>我们再来重温一下上面讲述的内容：</p>
+<pre class="line-numbers language-none"><code class="language-none">function Person()&#123;&#125;
+var p &#x3D; new Person();
+
+Person.prototype.name &#x3D; &quot;Hao Chen&quot;;
+Person.prototype.sayHello &#x3D; function()&#123;
+    console.log(&quot;Hi, I am &quot; + this.name);
+&#125;
+
+console.log(p.name); &#x2F;&#x2F; &quot;Hao Chen&quot;
+p.sayHello(); &#x2F;&#x2F; &quot;Hi, I am Hao Chen&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在上面这个例子中：</p>
+<ul>
+<li>我们先生成了一个空的函数对象 <code>Person()</code>；</li>
+<li>然后将这个空的函数对象 <code>new</code> 出另一个对象，存在 <code>p</code> 中；</li>
+<li>这时再改变 <code>Person.prototype</code>，让其有一个 <code>name</code> 的属性和一个 <code>sayHello()</code> 的方法；</li>
+<li>我们发现，另外那个 <code>p</code> 的对象也跟着一起改变了。</li>
+</ul>
+<p>注意一下：</p>
+<ul>
+<li>当创建 <code>function Person()&#123;&#125;</code> 时， <code>Person.__proto__</code> 指向 <code>Function.prototype</code>;</li>
+<li>当创建 <code>var p = new Person()</code> 时， <code>p.__proto__</code> 指向 <code>Person.prototype</code>;</li>
+<li>当修改了 <code>Person.prototype</code> 的内容后， <code>p.__proto__</code> 的内容也就被改变了。</li>
+</ul>
+<p>好了，我们再来看一下“原型编程”中面向对象的编程玩法。</p>
+<p>首先，我们定义一个 <code>Person</code> 类。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;Define human class
+var Person &#x3D; function (fullName, email) &#123;
+  this.fullName &#x3D; fullName;
+  this.email &#x3D; email;
+
+  this.speak &#x3D; function()&#123;
+    console.log(&quot;I speak English!&quot;);
+  &#125;;
+  this.introduction &#x3D; function()&#123;
+    console.log(&quot;Hi, I am &quot; + this.fullName);
+  &#125;;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面这个对象中，包含了：</p>
+<ul>
+<li>属性： <code>fullName</code> 和 <code>email</code>；</li>
+<li>方法： <code>speak()</code> 和 <code>introduction()</code>。</li>
+</ul>
+<p>其实，所谓的方法也是属性。</p>
+<p>然后，我们可以定义一个 <code>Student</code> 对象。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;Define Student class
+var Student &#x3D; function(fullName, email, school, courses) &#123;
+
+  Person.call(this, fullName, email);
+
+  &#x2F;&#x2F; Initialize our Student properties
+  this.school &#x3D; school;
+  this.courses &#x3D; courses;
+
+  &#x2F;&#x2F; override the &quot;introduction&quot; method
+  this.introduction&#x3D; function()&#123;
+	console.log(&quot;Hi, I am &quot; + this.fullName +
+				&quot;. I am a student of &quot; + this.school +
+				&quot;, I study &quot;+ this.courses +&quot;.&quot;);
+  &#125;;
+
+  &#x2F;&#x2F; Add a &quot;exams&quot; method
+  this.takeExams &#x3D; function()&#123;
+    console.log(&quot;This is my exams time!&quot;);
+  &#125;;
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在上面的代码中：</p>
+<ul>
+<li><p>使用了 <code>Person.call(this, fullName, email)</code>， <code>call()</code> 或 <code>apply()</code> 都是为了动态改变 <code>this</code> 所指向的对象的内容而出现的。这里的 <code>this</code> 就是 <code>Student</code>。</p>
+</li>
+<li><p>上面的例子中，我们重载了 <code>introduction()</code> 方法，并新增加了一个 <code>takeExams()</code> 的方法。</p>
+</li>
+</ul>
+<p>虽然，我们这样定义了 <code>Student</code>，但是它还没有和 <code>Person</code> 发生继承关系。为了要让它们发生关系，我们就需要修改 <code>Student</code> 的原型。</p>
+<p>我们可以简单粗暴地做赋值： <code>Student.__proto__ = Person.prototype</code> ，但是，这太粗暴了。</p>
+<p>我们还是使用比较规范的方式：</p>
+<ul>
+<li><p>先用 <code>Object.create()</code> 来将 <code>Person.prototype</code> 和 <code>Student.prototype</code> 关联上。</p>
+</li>
+<li><p>然后，修改一下构造函数 <code>Student.prototype.constructor = Student;</code>。</p>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; Create a Student.prototype object that inherits
+&#x2F;&#x2F; from Person.prototype.
+Student.prototype &#x3D; Object.create(Person.prototype);
+
+&#x2F;&#x2F; Set the &quot;constructor&quot; property to refer to Student
+Student.prototype.constructor &#x3D; Student;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样，我们就可以这样使用了。</p>
+<pre class="line-numbers language-none"><code class="language-none">var student &#x3D; new Student(&quot;Hao Chen&quot;,
+						  &quot;haoel@hotmail.com&quot;,
+						  &quot;XYZ University&quot;,
+						  &quot;Computer Science&quot;);
+student.introduction();
+student.speak();
+student.takeExams();
+
+&#x2F;&#x2F; Check that instanceof works correctly
+console.log(student instanceof Person);  &#x2F;&#x2F; true
+console.log(student instanceof Student); &#x2F;&#x2F; true
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上述就是基于原型的面向对象编程的玩法了。</p>
+<blockquote>
+<p>注：在ECMAScript标准的第四版开始寻求使JavaScript提供基于类的构造，且ECMAScript第六版有提供”class”(类)作为原有的原型架构之上的语法糖，提供构建对象与处理继承时的另一种语法。</p>
+</blockquote>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>我们可以看到，这种玩法就是一种委托的方式。在使用委托的基于原型的语言中，运行时语言可以“仅仅通过序列的指针找到匹配”这样的方式来定位属性或者寻找正确的数据。所有这些创建行为、共享的行为需要的是委托指针。</p>
+<p>不像是基于类的面向对象语言中类和接口的关系，原型和它的分支之间的关系并不要求子对象有相似的内存结构，因为如此，子对象可以继续修改而无需像基于类的系统那样整理结构。还有一个要提到的地方是，不仅仅是数据，方法也能被修改。因为这个原因，大多数基于原型的语言把数据和方法提作“slots”。</p>
+<p>这种在对象里面直接修改的玩法，虽然这个特性可以带来运行时的灵活性，我们可以在运行时修改一个prototype，给它增加甚至删除属性和方法。但是其带来了执行的不确定性，也有安全性的问题，而代码还变得不可预测，这有点黑科技的味道了。因为这些不像静态类型系统，没有一个不可变的契约对代码的确定性有保证，所以，需要使用者来自己保证。</p>
+<p>以下是《编程范式游记》系列文章的目录，方便你了解这一系列内容的全貌。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/301">01 | 编程范式游记：起源</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/303">02 | 编程范式游记：泛型编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2017">03 | 编程范式游记：类型系统和泛型的本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2711">04 | 编程范式游记：函数式编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2723">05 | 编程范式游记：修饰器模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2729">06 | 编程范式游记：面向对象编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2741">07 | 编程范式游记：基于原型的编程范式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2748">08 | 编程范式游记：Go 语言的委托模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2751">09 | 编程范式游记：编程的本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2752">10 | 编程范式游记：逻辑编程范式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2754">11 | 编程范式游记：程序世界里的编程范式</a></li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#36-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">36 | 编程范式：基于原型的编程范式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">JavaScript的原型概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E5%8E%9F%E5%9E%8B%E7%BC%96%E7%A8%8B%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text">JavaScript原型编程的面向对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

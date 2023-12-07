@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>65 | 区块链技术细节：加密和挖矿 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="65 |  区块链技术细节：加密和挖矿你好，我是陈皓，网名左耳朵耗子。 前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。 那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。 比特币的加密方法密钥对&#x2F;签名&amp;#x2F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="65 | 区块链技术细节：加密和挖矿">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2663218069.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="65 |  区块链技术细节：加密和挖矿你好，我是陈皓，网名左耳朵耗子。 前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。 那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。 比特币的加密方法密钥对&#x2F;签名&amp;#x2F">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.527Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2663218069"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '65 | 区块链技术细节：加密和挖矿',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">65 | 区块链技术细节：加密和挖矿</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="65-区块链技术细节：加密和挖矿"><a href="#65-区块链技术细节：加密和挖矿" class="headerlink" title="65 |  区块链技术细节：加密和挖矿"></a>65 |  区块链技术细节：加密和挖矿</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。</p>
+<p>那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。</p>
+<h1 id="比特币的加密方法"><a href="#比特币的加密方法" class="headerlink" title="比特币的加密方法"></a>比特币的加密方法</h1><h2 id="密钥对-签名-证书"><a href="#密钥对-签名-证书" class="headerlink" title="密钥对&#x2F;签名&#x2F;证书"></a>密钥对&#x2F;签名&#x2F;证书</h2><p>所谓密钥对，也就是一种非对称加密技术。这种技术，在对信息进行加密和解密时，使用两个不同的密钥。这样一来，我们就可以把其中一个密钥公布出去，称之为公钥，另一个密钥私密地保管好，称之为私钥。</p>
+<p>现实社会中，有人使用公钥加密，私钥解密，也有反过来用私钥加密，公钥解密，这得看具体的场景。（比特币使用了非对称加密的技术，其使用了 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a> 密钥对比技术。）</p>
+<p>比如，我把我加密的密钥发布给所有人，然后大家都用这个公钥加密信息，但其他人没有私钥，所以他们解不了密文，只有我能解密文，也只有我能看得懂别人用我的公钥加密后发给我的密文。如下图所示。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/ee63472f10b0c179a5c3c58d47d9f271.png"></p>
+<p>但是，这会有个问题，那就是每个人都有我的公钥，别人可以截获Mike发给我的信息，然后自己用我的公钥加密一个别的信息，伪装成Mike发给我， 这样我就被黑了。于是，我们需要对Mike的身份进行验证，此时就需要用到“数字签名”的概念了。</p>
+<p>Mike也有一对密钥对，一个公钥给了我，私钥自己保留。</p>
+<ul>
+<li><p>Mike发自己想要的信息，做个SHA或MD5的hash，得到一个hash串，又叫Digest。</p>
+</li>
+<li><p>Mike用自己的私钥，把Digest加密，得到一段Digest的密文。我们把这个事叫数字签名，Signature。</p>
+</li>
+<li><p>然后，Mike把他想发给我的信息用我的公钥加密后，连同他的数字签名一同发给我。</p>
+</li>
+<li><p>我用我的私钥解密Mike发给我的密文，然后用Mike的公钥解密其数字签名得到Digest。然后，我用SHA或MD5对解开的密文做Hash。如果结果和Digest一致，就说明，这个信息是Mike发给我的，没有人更改过。</p>
+</li>
+</ul>
+<p>这个过程如下图所示。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/5a44ceb1af5a27cc0873cbe4e2571028.png"></p>
+<p>但是问题还没完。假设有个黑客偷偷地把Jack电脑上的Mike的公钥给换了，换成自己的，然后截获Mike发出来的信息，用自己的密钥加密一段自己的信息，以及自己的数字签名。</p>
+<p>于是，对于Jack来看，因为他用了黑客的公钥，而不是Mike的，那么对他来说，他就以为信息来自Mike，于是黑客可以用自己的私钥伪装成Mike给Jack通信。反之亦然，于是黑客就可以在中间伪装成Jack或Mike来通信，这就是中间人攻击。如下图所示。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/876f36ed6a0a617f6356603798f7d700.png"></p>
+<p>这个时候就比较麻烦了。Mike看到有人在伪造他的公钥，想了想，他只能和Jack找了个大家都相信的永不作恶的权威的可信机构来认证他的公钥。这个权威机构，用自己的私钥把Mike的公钥和其相关信息一起加密，生成一个证书。</p>
+<p>此时，Jack就可以放心地使用这个权威机构的证书了。Mike只需要在发布其信息的时候放上这个权威机构发的数字证书，然后Jack用这个权威机构的公钥解密这个证书，得到Mike的公钥，再用Mike的公钥来验证Mike的数字签名。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bb3a47bf0b8c84a6c85d864c88739357.png"></p>
+<p>上面就是整个密钥对、签名和证书的全部基础细节。比特币也用了这样的基础技术来认证用户的身份的。下面，我们来看看比特币的一些细节。</p>
+<h2 id="比特币的加密"><a href="#比特币的加密" class="headerlink" title="比特币的加密"></a>比特币的加密</h2><p>在比特币的世界里，每一笔交易的From和To都是每个用户的公钥（Public Key）。也就是说，使用用户的公钥来做交易的账户。于是，这个过程很简单。</p>
+<ul>
+<li><p>交易的发起方只能是支付方，支付方需要用自己的私钥来加密交易信息并制作相关的交易签名。</p>
+</li>
+<li><p>网络上其他人会用你的公钥（也就是交易的支出方）来做解密来验证。</p>
+</li>
+</ul>
+<p>为什么不需要那个证书机构呢？不怕中间人攻击吗？这是因为，如果黑客想要伪造一笔别人的交易，那么他需要换掉半数以上结点上的被攻击者的公钥，这不太现实。与其这样做，还不如去偷被攻击者的私钥，可能还简单一些。</p>
+<p>下面是一个交易链的图示。这个交易链的钱从A -&gt; B -&gt; C -&gt; D，一共3笔交易。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/feaaa557eab454dd1678415da7f554a8.png"></p>
+<p>图片来源： <a target="_blank" rel="noopener" href="http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html">Ken Shirriff Blog</a></p>
+<ul>
+<li><p><strong>发起交易</strong>。我们从第一笔交易可以看到，A用自己的私钥为交易信息和自己的地址生成了交易的签名，然后把交易信息、自己的地址、交易签名和自己的公钥放出去，这样方便别人来验证的确是A发起的。</p>
+</li>
+<li><p><strong>验证交易</strong>。在验证时，使用A的公钥解密交易签名，得到交易的hash值。把交易信息和自己的地址做hash，看看是不是和签名解密后的hash值一致。</p>
+</li>
+</ul>
+<p>这里需要注意一个细节，比特币的地址是由我们的公钥生成的，生成规则比较复杂，可以参看Bitcoin的Wiki页 - <a target="_blank" rel="noopener" href="https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses">Technical background of version 1 Bitcoin addresses</a>。</p>
+<h1 id="比特币的挖矿"><a href="#比特币的挖矿" class="headerlink" title="比特币的挖矿"></a>比特币的挖矿</h1><p>前面说到，在比特币的区块hash算法中，要确保下面这个公式成立：</p>
+<pre class="line-numbers language-none"><code class="language-none">SHA-256(SHA-256 (Block Header)) &lt; Target
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>而在区块头中，可以完全自由修改的只有一个字段，就是Nonce，其他的Timestamp可以在特定范围内修改，Merkle Root和你需要记录的交易信息有关系（所有的矿工可以自由地从待确认交易列表中挑选自己想要的交易打包）。</p>
+<p>所以，基本上来说，你要找到某个数字，让整个hash值小于Target。这个Target是一个数， <strong>其决定了，我们计算出来的hash值的字符串最前面有几个零</strong>。我们知道，hash值本身就是一串相对比较随机的字符串。但是要让这个随机的字符串有规律，是一件很困难的事，除了使用暴力破解，没有其他办法。在计算机世界里，我们把这个事叫”哈希碰撞”(hash collision)，碰撞前几个位都是0的哈希值。</p>
+<p>下面是一个示例。我想找到一个数，其和”ChenHao”加起来被hash后的值前面有5个零。</p>
+<p>测试程序如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">import hashlib
+
+data&#x3D;&quot;ChenHao&quot;
+
+n&#x3D;1
+while n &lt; 2**32:
+    str &#x3D; data + &#96;n&#96;
+    hash &#x3D; hashlib.sha256(str).hexdigest()
+    hash &#x3D; hashlib.sha256(hash).hexdigest()
+    if hash.startswith(&#39;00000&#39;):
+        print  str, hash
+        break
+    n &#x3D; n + 1
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这是一个暴力破解的算法。这个程序在我的MacBook Pro上基本要10秒钟才跑得出来结果。</p>
+<p>找到1192481时，找到了第一个解，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">ChenHao1192481
+00000669e0eeb33ee5dbb672d3bd2deb0c32ef9879ef260f0debbdcb80121160
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>那么，控制前面有多个0的那个Target又是怎么来的呢？是由Bits这个字段控制的，也就是难度系数，前面需要的0越多，难度也就越大。其中的算法你可以看一下Bitcoin的Wiki上的 <a target="_blank" rel="noopener" href="https://en.bitcoin.it/wiki/Difficulty">Difficulty词条</a>，这里我就不多说了。</p>
+<p>**这个难度系数，会在每出2016个区块后就调整一次。现在，这个难度是要在前面找到有18个零。如下所示(一个真实的区块链的Hash值)**：</p>
+<p><a target="_blank" rel="noopener" href="https://blockchain.info/block/000000000000000000424118cc80622cb26c07b69fbe2bdafe57fea7d5f59d68">000000000000000000424118cc80622cb26c07b69fbe2bdafe57fea7d5f59d68</a></p>
+<p>**一个SHA-256算法算出来的哈希值有 $2^{256}$ 种可能性，而前面有18个零意味着前面有72个bits是零。于是，满足条件的哈希值是有$2^{184}$种可能性，概率是$\frac{1}{2^{72}}$ **。</p>
+<p>是的，很有可能你穷举完Nonce后还找不到，那就只能调整Timestamp和Merkle Root（调整不同的记账交易）了。</p>
+<p>所以，一般的挖矿流程如下。</p>
+<ul>
+<li><p>从网络上取得之前的区块信息。</p>
+</li>
+<li><p>从”待记账区”中获取一组交易数据（有优先级，比如成长时间、矿工小费等）。</p>
+</li>
+<li><p>形成区块头（计算Merkle Root并设计记账时间Timestamp等）。</p>
+</li>
+<li><p>开始穷举Nonce，来计算区块头的hash值。如果前面有18个零（小于Target），那么记账成功。如果没有，则从第一步重新开始。</p>
+</li>
+<li><p>一旦某矿工成功打包一个区块，他就会告诉其他矿工。收到消息的矿工会停下手上的工作，开始验证，验证通过后，广播给其他矿工。</p>
+</li>
+</ul>
+<p>所以，满足条件的这个难度系数成为了挖矿的关键。设置这个难度系数就是为了让全网产生的区域名平均在10分钟一块。而根据比特币无中心服务器的架构，也就是其挖矿的机器数量是想来就来想走就走的，计算力可能会不一样。因此，为了保证每10分钟产生一个区块，当算力不足的时候，难度下降，当算力充足的时候，难度提高。</p>
+<p>今天的这18个零，基本上来说，一般的电脑和服务器就不用想了，必须要算力非常非常高的机器才能搞定。所以，在今天，挖矿这个事，已经不是一般老百姓能玩的了。</p>
+<p>下图展示了整个比特币的难度历史。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4d7e09ee0c03a807c1c5326d0d5c2e14.png"></p>
+<p>（图片来源： <a target="_blank" rel="noopener" href="http://bitcoin.sipa.be/">http://bitcoin.sipa.be</a> ）</p>
+<p>上面这个图只是算力的表现，可能并不直观。我们还是用其耗电量来说可能会更好一些。根据”Bitcoin Energy Consumption Index”统计，截至 2017年11 月 20 日，比特币过去一年挖矿的电力总消耗已累计达 29.51 TWh（1TWh &#x3D; $10^{12}$ Wh），约占全球总电力消耗的 0.13%。该数字甚至已经超过近 160 个国家或地区一年的电力消耗，包含冰岛和尼日利亚。若全球的比特币矿工自成一国，该国的电力消耗排名可排到全球第 61 名。</p>
+<p>看到这里，你一定要问，为什么要挖矿呢，不就是记个账呗。为了系统地说明这个问题，我们下节课来看看去中心化的共识机制。</p>
+<p>文末给出了《区块链技术》系列文章的目录，希望这一系列内容对你有启发，有帮助。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5197">区块链的革命性及技术概要</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5363">区块链技术细节：哈希算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5438">区块链技术细节：加密和挖矿</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5612">去中心化的共识机制</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5623">智能合约</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5636">传统金融和虚拟货币</a></li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#65-%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%EF%BC%9A%E5%8A%A0%E5%AF%86%E5%92%8C%E6%8C%96%E7%9F%BF"><span class="toc-number">1.</span> <span class="toc-text">65 |  区块链技术细节：加密和挖矿</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E5%8A%A0%E5%AF%86%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">比特币的加密方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E5%AF%B9-%E7%AD%BE%E5%90%8D-%E8%AF%81%E4%B9%A6"><span class="toc-number">2.1.</span> <span class="toc-text">密钥对&#x2F;签名&#x2F;证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E5%8A%A0%E5%AF%86"><span class="toc-number">2.2.</span> <span class="toc-text">比特币的加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E6%8C%96%E7%9F%BF"><span class="toc-number">3.</span> <span class="toc-text">比特币的挖矿</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

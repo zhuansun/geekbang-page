@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化在上一讲的分享里，我们聊了应用到图像上的一些最基本的深度学习模型，主要讨论了前馈神经网络和卷积神经网络的定义，以及它们在图像处理上的应用。 今天，我们从 优化 的角度来讨论，如何对深度学习模型进行训练。可以说，模型优化是成功利用深度学习模型的关键步骤。 一般机器学习模型的优化要想了解深度学习模型的优化，我们首先得来看一看一般机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3763294374.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化在上一讲的分享里，我们聊了应用到图像上的一些最基本的深度学习模型，主要讨论了前馈神经网络和卷积神经网络的定义，以及它们在图像处理上的应用。 今天，我们从 优化 的角度来讨论，如何对深度学习模型进行训练。可以说，模型优化是成功利用深度学习模型的关键步骤。 一般机器学习模型的优化要想了解深度学习模型的优化，我们首先得来看一看一般机器学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.185Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3763294374"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="120-基于深度学习的计算机视觉技术（三）：深度学习模型的优化"><a href="#120-基于深度学习的计算机视觉技术（三）：深度学习模型的优化" class="headerlink" title="120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化"></a>120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化</h1><p>在上一讲的分享里，我们聊了应用到图像上的一些最基本的深度学习模型，主要讨论了前馈神经网络和卷积神经网络的定义，以及它们在图像处理上的应用。</p>
+<p>今天，我们从 <strong>优化</strong> 的角度来讨论，如何对深度学习模型进行训练。可以说，模型优化是成功利用深度学习模型的关键步骤。</p>
+<h2 id="一般机器学习模型的优化"><a href="#一般机器学习模型的优化" class="headerlink" title="一般机器学习模型的优化"></a>一般机器学习模型的优化</h2><p>要想了解深度学习模型的优化，我们首先得来看一看一般机器学习模型的优化。先了解一些基本的步骤，我们在讨论深度学习模型优化的时候就能更容易地看清事物的本质。</p>
+<p>在开始说模型优化之前，要说一点需要注意的问题，我觉得这一点对于初学者来说尤为重要，那就是 <strong>要区分开模型、目标函数和优化过程</strong>。这三个实体相互关联而且相互影响，我们需要对每一个实体都有一个清晰的理解。</p>
+<p>我们以线性模型作为例子，来感受下这三个实体的关系。</p>
+<p>我们说一个模型是线性 <strong>模型</strong>，是指我们期望利用一组特征（Feature）来对一个输出反馈进行线性预测。这里的线性其实主要是指参数针对于反馈变量而言是线性的。</p>
+<p>需要注意的是，线性模型是一个数学模型。线性模型的设置本身并没有限定这个模型的参数（也就是模型的系数）是如何得来的，也就是数学模型本身的设置和得到参数的过程往往是互相独立的。我们把得到参数的过程叫作 <strong>模型训练</strong> 或者简称为 <strong>模型优化过程</strong>。</p>
+<p>对于线性模型而言，我们常常利用最小二乘法来构造参数学习的 <strong>目标函数</strong>。在最小二乘法的目标函数下，一般情况下，我们既可以得到一个“解析解”（Closed Form Solution），也能通过例如梯度下降的方法来进行数值优化。</p>
+<p>对模型、目标函数和优化过程这几个概念有了清晰的认识后，那具体的模型优化过程是怎样的呢？</p>
+<p>这里，我们就总结一下一般机器学习模型，主要是简单模型的优化过程。</p>
+<p><strong>模型优化的第一步就是选择目标函数</strong>。总的来说，简单的机器学习模型主要有两类目的，回归和分类。对于回归而言，我们选择 <strong>最小二乘法</strong>，也就是“ <strong>平方损失</strong>”（Squared Loss）作为目标函数；对于分类而言，我们选择“ <strong>对数几率损失</strong>”（Logistic Loss）。这两种损失和模型是否是线性并没有直接的关系。当然，对于简单模型来说，模型往往是线性的。那么，当模型是线性的，而目标函数又是我们刚才所说的这两类，这种情况下，我们找到的其实就是 <strong>线性回归</strong> 和 <strong>对数几率回归</strong> 这两大基本模型。</p>
+<p>当我们选择好了目标函数之后，下面一个步骤一般是尝试 <strong>根据目标函数寻找参数的最优解</strong>。这一个步骤我们往往需要根据参数 <strong>尝试写出参数的梯度</strong>。对于简单的线性模型来说，这一步往往相对比较容易。但是有一些模型，包括深度学习模型，梯度并不是那么直观就能够得到的。这也就直接导致下面的步骤变得更加复杂。</p>
+<p>得到梯度以后，一般来说，我们首先 <strong>尝试有没有可能得到一个解析解</strong>。</p>
+<p>有解析解，往往就意味着我们并不需要通过迭代的方法来得到一个数值优化的解。解析解往往也不是近似解，而是一个确切的答案。当然，在真实的数据中，一些理论上的解析解因为数值稳定性的因素依然无法得到。对于解析解来说，我们需要写出参数的梯度，然后尝试把等式置零，然后看是否能够解出参数的表达式。这个过程并不一定对于每一个模型都适用。</p>
+<p>如果我们没法得到解析解，就需要另外一个方法了，那就是利用数值计算来取得一个近似解。在有了梯度信息以后，一种最普遍的数值计算方法就是 <strong>梯度下降法</strong>。从原则上来说，梯度下降是求一个函数最小值的数值流程。如果你需要求一个函数最大值的流程，那就需要 <strong>梯度上升</strong>。</p>
+<p>怎样才能保证梯度下降一定能够得到最优解呢？一般来说，梯度下降并不能保证找到函数参数的最优解，往往只能找到一个局部最优解。对于 <strong>凸问题</strong>（Convex Problem）而言，局部最优也就是全局最优。因此， <strong>从理论上说，梯度下降能够找到凸问题的全局最优解</strong>。当然，到底多快能够找到这个最优解，也就是算法的收敛速度是怎样的，就又是另外一个问题了。</p>
+<p>但是对于 <strong>非凸</strong>（Non Convex Problem）问题而言，梯度下降仅仅能够收敛到一个局部最优解，这个解是否能够被接受，还有待考证。</p>
+<h2 id="深度学习模型的优化"><a href="#深度学习模型的优化" class="headerlink" title="深度学习模型的优化"></a>深度学习模型的优化</h2><p>在这里，我们从普通的模型衍生出来，看一看深度学习模型的优化问题。</p>
+<p>和普通模型一样， <strong>深度学习模型也需要一个目标函数来对参数进行有效学习</strong>。我们前面在介绍深度学习模型的时候提到过，很多时候，深度模型都充当了更加复杂的 <strong>特征提取器</strong> 的角色。而在最后一层的表达中，我们可以认为是在复杂特征后的线性模型。因此，我们依然可以使用回归（或者说平方损失），抑或分类（或者说是对数几率损失），来对不同的问题进行建模。</p>
+<p>遗憾的是，深度模型的特点就是多层。而进行优化的流程中，第一个步骤就是梯度的计算，这一步因为模型的多层变得复杂起来。从概念上来说，我们需要得到在当前迭代下，针对模型参数的 <strong>梯度</strong>，这些梯度包括每一个隐含层的参数。我们之所以能够计算深度模型，第一个重要发展就是能够计算这些梯度。</p>
+<p>在深度学习的语境中，计算梯度的方法叫作“ <strong>反向传播</strong>”（Back Propagation）。关于如何计算反向传播，网络上有很多教程，我们在这里就不赘述了。你需要记住的是， <strong>反向传播是为了有效快速地计算梯度</strong>。</p>
+<p>那么，有了梯度之后，我们是不是就能够得到深度模型参数的解析解呢？</p>
+<p>很可惜，我们无法得到一个解析解。原因是 <strong>深度模型的复杂性</strong> 以及其 <strong>高度的非凸性</strong>。我们不仅无法得到一个解析解，也没有办法轻易得到一个全局最优解。能够采用的一种办法就是使用 <strong>梯度下降</strong> 来对问题进行 <strong>近似求解</strong>。而如何利用梯度下降的办法来对深度模型有效求解，一直都是深度学习研究领域的一个重心。</p>
+<p>在过去将近10年的研究中，大家发现，一个 <strong>好的初始值</strong> 往往能够让优化过程变得容易一些。而在梯度下降的过程中，有一些下降方法也要好于其他的方法。一些小技巧，比如Dropout，批量归一化（Batch Normalization）等，已经变成了深度模型优化的标准流程之一，目的就是能够有效地计算梯度，而且有较好的数值稳定性。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了机器学习模型，包括传统模型和深度学习模型的优化流程。</p>
+<p>一起来回顾下要点：第一，我们聊了什么是模型、目标函数和优化过程这三个概念，清晰理解这三个概念之间的关系非常重要；第二，我们从一般机器学习模型的优化过程入手，讲了深度模型的优化。</p>
+<p>最后，给你留一个思考题，有哪些因素造成了深度模型优化的困难？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#120-%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">120 | 基于深度学习的计算机视觉技术（三）：深度学习模型的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">一般机器学习模型的优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">深度学习模型的优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

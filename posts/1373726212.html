@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？今天，我们继续来精读SIGIR 2018（国际信息检索研究与发展大会）的论文，今天分享的是本次大会的最佳短论文，标题是《使用对抗学习实现神经排序模型的跨领域正则化》（ Cross Domain Regularization for Neural Ranking Models using Adversarial Lea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1373726212.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？今天，我们继续来精读SIGIR 2018（国际信息检索研究与发展大会）的论文，今天分享的是本次大会的最佳短论文，标题是《使用对抗学习实现神经排序模型的跨领域正则化》（ Cross Domain Regularization for Neural Ranking Models using Adversarial Lea">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.026Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1373726212"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="020-SIGIR-2018论文精读：如何利用对抗学习来增强排序模型的普适性？"><a href="#020-SIGIR-2018论文精读：如何利用对抗学习来增强排序模型的普适性？" class="headerlink" title="020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？"></a>020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？</h1><p>今天，我们继续来精读SIGIR 2018（国际信息检索研究与发展大会）的论文，今天分享的是本次大会的最佳短论文，标题是《使用对抗学习实现神经排序模型的跨领域正则化》（ <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.03403.pdf">Cross Domain Regularization for Neural Ranking Models using Adversarial Learning</a>）。</p>
+<p>非常有必要先简单介绍一下这篇文章的作者群，可以说这是一个“明星阵容”。</p>
+<p>第一作者丹尼尔·科恩（Daniel Cohen）来自马萨诸塞大学阿默斯特分校（University of Massachusetts Amherst），是计算机科学系的博士生。2017年曾经在微软研究院剑桥分部实习。这篇获奖论文就是实习项目的总结。在深度学习模型在信息检索的应用这个方向上，科恩已经发表了多篇论文。</p>
+<p>第二作者巴斯卡·米特拉（Bhaskar Mitra）是微软研究院剑桥分部的主任级科学家。近些年米特拉在信息检索领域很活跃，并且极力推动深度学习在这个领域的发展，他在这个领域发表了很多篇论文，在过去几年的很多学术会议上，也主持了多个关于深度学习和信息检索相结合的讲座。</p>
+<p>第三作者卡特娜·霍夫曼（Katja Hofmann）也是来自微软研究院剑桥分部的科学家。霍夫曼在信息检索领域的主要贡献是研究在线排序学习。</p>
+<p>论文的最后一位作者，布鲁斯·克罗夫特（W. Bruce Croft）是信息检索领域的学术权威，也是科恩的博士导师。他是美国ACM院士，还是信息检索领域最高学术荣誉奖杰拉德·索尔顿（Gerard Salton）奖的获得者。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>这篇论文主要涉及了这么两个重要概念的结合。第一个概念是“ <strong>跨领域</strong>”（Cross Domain）信息检索，第二个概念就是“ <strong>对抗学习</strong>”（Adversarial Learning）。</p>
+<p>跨领域信息检索主要是指我们需要对一个以上的领域进行搜索。这里所说的领域主要是指不太相同，或者非常不同的文档集合。例如，如果我们要针对体育新闻、金融新闻等进行搜索，这里的“体育”和“金融”就是不同的领域。</p>
+<p>跨领域信息检索的核心挑战是我们如何针对不同的领域都能进行有效搜索。比如，如果我们的排序算法本身或者其特性依赖于某个特定领域的信息，例如关于体育方面的搜索，需要依赖体育运动员的名字，那这种信息肯定会很少甚至完全不出现在另外一个领域。因此， <strong>依靠某些领域特有的信息很难做到真正的跨领域信息检索</strong>。</p>
+<p>这篇文章的贡献是作者们认为，想要对跨领域的信息进行较好地检索，就 <strong>需要训练这样的排序模型：不容易被某一个特定的领域所主导，同时也尽量不偏好某一个特定领域的具体信息</strong>。</p>
+<p>如何实现这个目的呢？作者们使用了一种叫做“ <strong>对抗学习</strong>”的技术。这也是这篇论文能够获奖的重要原因。</p>
+<p>我在这里简单介绍一下对抗学习的原理。对抗学习最初的思想来自于利用深度产生模型解决计算机视觉中的一系列问题。最基本的对抗学习的模式主要是用于产生数据，而且是比较复杂的数据，例如图像。</p>
+<p><strong>对抗学习有两个模块，一个模块叫产生器，一个模块叫判别器</strong>。产生器的作用就是产生数据。判别器的作用是判断产生的数据是不是“真实数据”。产生器的最终目的是产生能够以假乱真的数据来扰乱判别器的判断能力。判别器的最终目的是不断提高判断能力从而能够分辨出数据的真假。</p>
+<p>当然，最初的时候，产生器产生数据来源于随机噪声，因此判别器可以很容易地判断数据的真假。但是慢慢的，产生器产生的数据就会越来越接近真实数据，而判别器也很快在这个过程中得到优化，从而能够判别数据的真假。当然，这是一个动态的过程，最终，判别器和产生器的状态会稳定下来。</p>
+<p>对抗学习这种思想最初被提出来的时候，主要是应用在计算机视觉领域中，用来产生以假乱真的图片。之后，这种技术被广泛应用到人工智能的各个领域。</p>
+<p>这篇论文最大的一个贡献，就是 <strong>利用了对抗学习的理念来增强学习到的排序模型的普适性</strong>，从而尽量避免学习到仅仅对一个领域有用的信息。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>具体来说，这篇文章提出了这样一种方法。首先，我们有两套模型，一套是用于学习查询关键词和文档之间的相关关系的；一套是对抗学习的模型。然后，这两套模型的首要任务是更加精准地针对相关的文档和不相关的文档进行建模。这是整个框架里最主要的目标函数。</p>
+<p>文章提出框架中新的模块是 <strong>利用对抗学习来分别产生相关的和不相关的文档</strong>。具体来说，某一种类型的文档就像我们刚才提到的图片一样，我们希望能够利用产生器来进行产生这类数据。当然，我们依然需要判别器来引导产生器的工作。</p>
+<p>在这篇文章中，相关的概念主要是看一个文档是不是某一个领域的。也就是说，我们希望对抗学习能够帮助识别某一个文档是不是来自于一个领域。当对抗学习模型被训练好的时候，对于查询关键词和文档的相关模型，我们就会利用一种叫做“ <strong>梯度反转</strong>”的技术，强行偏离模型希望去拟合某一个领域的倾向。</p>
+<p>从网络结构上看文章提出的模型，查询关键词和文档都需要经过 <strong>卷积层</strong>、 <strong>提取层等变换</strong>，然后进行俗称的“ <strong>哈达马积</strong>”（Hadamard product），其实就是 <strong>对应项乘积</strong>。这样，文档和查询关键词所提取出来的隐含特征就结合在一起。这个结果之后又经过一系列 <strong>稠密层的变换</strong>，最终预测一个相关度的标签。对于对抗学习模型来说，对抗中的判别器从刚才所说的架构中提取一些中间层作为输入，然后判断这个文档是不是出现在某个领域中。</p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>在一个雅虎的搜索数据集以及另外两个数据集上，作者们对论文所提出的模型进行了实验。实验主要是看如果我们在某一个领域上训练出的模型，会不会在另外一个领域上表现优异。</p>
+<p>一个不令人意外的结果是，如果我们在全部领域上进行训练数据，自然在所有的领域上效果都不错。当然，文章展示了，如果利用文章提出的方法，针对某一个领域，比如运动类文档，在训练的时候完全移除所有的文档，在测试集上依然有不错的表现。实验的结果比不进行对抗训练的效果要好5%以上。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了今年SIGIR上的最佳短论文。</p>
+<p>一起来回顾下要点：第一，这篇论文主要涉及了两个概念，分别是跨领域信息检索和对抗学习，我们详细介绍了这篇文章的主要贡献，就是利用对抗学习的理念来增强所学排序模型的普适性；第二，我们简要地介绍了文章提出的方法核心内容，训练两套模型，利用对抗学习来分别产生相关的和不相关的文档；第三，我们简单介绍了论文的实验结果，进行对抗训练会有更好的效果。</p>
+<p>最后，给你留一个思考题，除了使用对抗训练，你还能想到什么方法，能够比较好地学习到不属于某一个特定领域信息的排序模型？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#020-SIGIR-2018%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%EF%BC%9A%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E5%AF%B9%E6%8A%97%E5%AD%A6%E4%B9%A0%E6%9D%A5%E5%A2%9E%E5%BC%BA%E6%8E%92%E5%BA%8F%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%99%AE%E9%80%82%E6%80%A7%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">020 | SIGIR 2018论文精读：如何利用对抗学习来增强排序模型的普适性？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.1.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

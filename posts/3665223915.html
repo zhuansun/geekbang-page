@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>006 | 精读2017年EMNLP最佳短论文 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="006 | 精读2017年EMNLP最佳短论文在今年的EMNLP大会上，有两类研究论文得到发表，一类是8页的长研究论文，主要是比较完整的研究结果；另一类是4页的短研究论文，主要是比较新的有待进一步推敲的研究结果。大会从长研究论文中选出两篇最佳论文，从短论文中选出一篇最佳论文。 前面我们分别讨论了两篇最佳长论文，今天，我就带你认真剖析一下EMNLP 2017年的最佳短论文《多智能体对话中，自然语言并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="006 | 精读2017年EMNLP最佳短论文">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3665223915.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="006 | 精读2017年EMNLP最佳短论文在今年的EMNLP大会上，有两类研究论文得到发表，一类是8页的长研究论文，主要是比较完整的研究结果；另一类是4页的短研究论文，主要是比较新的有待进一步推敲的研究结果。大会从长研究论文中选出两篇最佳论文，从短论文中选出一篇最佳论文。 前面我们分别讨论了两篇最佳长论文，今天，我就带你认真剖析一下EMNLP 2017年的最佳短论文《多智能体对话中，自然语言并">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.005Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3665223915"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '006 | 精读2017年EMNLP最佳短论文',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">006 | 精读2017年EMNLP最佳短论文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="006-精读2017年EMNLP最佳短论文"><a href="#006-精读2017年EMNLP最佳短论文" class="headerlink" title="006 | 精读2017年EMNLP最佳短论文"></a>006 | 精读2017年EMNLP最佳短论文</h1><p>在今年的EMNLP大会上，有两类研究论文得到发表，一类是8页的长研究论文，主要是比较完整的研究结果；另一类是4页的短研究论文，主要是比较新的有待进一步推敲的研究结果。大会从长研究论文中选出两篇最佳论文，从短论文中选出一篇最佳论文。</p>
+<p>前面我们分别讨论了两篇最佳长论文，今天，我就带你认真剖析一下EMNLP 2017年的最佳短论文《多智能体对话中，自然语言并非“自然”出现》（Natural Language Does Not Merge ‘Naturally’ in Multi-Agent Dialog）。我们今天讲的论文虽然是最佳短论文，但是作者们已经在arXiv发表了较长的文章版本，因此我今天的讲解将基于arXiv的长版本。</p>
+<p>这篇文章研究的一个主要命题就是，多个“机器人”（Agent）对话中如何才能避免产生“非自然”（Unnatural）的对话。以前很多机器人对话的研究都关注准确率的高低，但实际上机器人产生的对话是不自然的，人类交流不会用这样的方式。这篇文章希望探讨的就是这样非自然的对话是如何产生的，有没有什么方式避免这样的结果。</p>
+<h2 id="作者群信息介绍"><a href="#作者群信息介绍" class="headerlink" title="作者群信息介绍"></a>作者群信息介绍</h2><p>第一作者萨特维克·库托儿（Satwik Kottur）来自卡内基梅隆大学，博士第四年，研究领域为计算机视觉、自然语言和机器学习。2016年暑假他在Snapchat的研究团队实习，研究对话系统中的个性化问题。2017年暑假在Facebook研究院实习，做视觉对话系统（Visual Dialog System）的研究。近两年，萨特维克已在多个国际顶级会议如ICML 2017、IJCAI 2017、CVPR 2017、ICCV 2017以及NIPS 2017发表了多篇高质量研究论文，包括这篇EMNLP 2017的最佳短论文，可以说是一颗冉冉升起的学术新星。</p>
+<p>第二作者何塞·毛拉（José M. F. Moura）是萨特维克在卡内基梅隆大学的导师。何塞是NAE（美国国家工程院）院士和IEEE（电气电子工程师学会）院士，长期从事信号处理以及大数据、数据科学的研究工作。他当选2018年IEEE总裁，负责IEEE下一个阶段的发展。</p>
+<p>第三作者斯特凡·李（Stefan Lee）是来自乔治亚理工大学的研究科学家，之前在弗吉尼亚理工大学任职，长期从事计算机视觉、自然语言处理等多方面的研究。斯特凡2016年博士毕业于印第安纳大学计算机系。</p>
+<p>第四作者德鲁·巴塔（Dhruv Batra）目前是Facebook研究院的科学家，也是乔治亚理工大学的助理教授。德鲁2010年博士毕业于卡内基梅隆大学；2010年到2012年在位于芝加哥的丰田理工大学担任研究助理教授；2013年到2016年在弗吉尼亚大学任教。德鲁长期从事人工智能特别是视觉系统以及人机交互系统的研究工作。文章的第三作者斯特凡是德鲁长期的研究合作者，他们一起已经发表了包括本文在内的多篇高质量论文。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>我们先来看看这篇文章主要解决了一个什么场景下的问题。</p>
+<p>人工智能的一个核心场景，或者说想要实现的一个目标，就是能够建立一个目标导向（Goal-Driven）的自动对话系统（Dialog System）。具体来说，在这样的系统中，机器人能够感知它们的环境（包括视觉、听觉以及其他感官），然后能和人或者其他机器人利用自然语言进行对话，从而实现某种目的。</p>
+<p>目前对目标导向的自动对话系统的研究主要有两种思路。</p>
+<p>一种思路是把整个问题看做静态的监督学习任务（Supervised Learning），希望利用大量的数据，通过神经对话模型（Neural Dialog Models）来对对话系统进行建模。这个模式虽然在近些年的研究中取得了一些成绩，但是仍然很难解决一个大问题，那就是产生的“对话”其实不像真人对话，不具备真实语言的很多特性。</p>
+<p>另外一种思路则把学习对话系统的任务看做一个连续的过程，然后用强化学习（Reinforcement Learning）的模式来对整个对话系统建模。</p>
+<p>这篇文章尝试探讨，在什么样的情况下能够让机器人学习到类似人的语言。文章的一个核心发现就是，自然语言并不是自然出现的。在目前的研究状态下， <strong>自然语言的出现还是一个没有确定答案的开放问题</strong>。可以说，这就是这篇最佳短论文的主要贡献。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>整篇文章其实是建立在一个虚拟的机器人交互场景里，也就是有两个机器人互相对话的一个环境。这个环境里有非常有限的物件（Object），每个物件包括三种属性（颜色、形状和样式），每一个属性包括四种可能取值，这样，在这个虚拟的环境中一共就有64个物件。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4d90d38df883967df26166748c9346b9.png"></p>
+<p>交互任务其实是两个机器人进行“猜谜”。为了区分，我们把两个机器人分为Q机器人和A机器人。猜谜一开始的时候，A机器人得到一个物件，也就是三种属性的某种实现组合，Q机器人并不知道这个物件。这个时候，Q机器人拿到两个属性的名字，需要通过对话最终猜出A拿到的这个物件所对应属性的取值。</p>
+<p>在这个“游戏”的过程中，A是不知道Q手上的两个属性究竟是什么的，而Q也不知道A所拿的物件以及物件所对应属性的取值。因此，对话就是Q能够取得成功的关键因素。</p>
+<p>在这篇文章里，Q和A的这个游戏 <strong>通过强化学习进行建模</strong>。Q保持一组参数用于记录当前的状态。这组状态有最开始需要猜的属性，以及后面到当前状态为止所有Q的回答以及A的问题。类似地，A也保持这么一组状态，用于记录到目前位置的信息。这个强化学习最终的回馈是，当最后的预测值完全正确时，会有一个正1的反馈，而错误的话就是负10的反馈。</p>
+<p>Q和A的模型都有三个模块：听、说和预测。以Q来举例，“听”模块是从要猜的属性这个任务开始，往后每一个步骤接受A的语句，从而更新自己的内部状态。“说”模块是根据当前的内部状态，决定下一步需要说的语句。最后“预测”模块则是根据所有的状态预测最后的属性值。</p>
+<p>A机器人的结构是对称的。每一个模块本身都是一个 <strong>LSTM</strong> （Long Short-Term Memory，长短期记忆）模型。当然，所有这些LSTM模型的参数是不一样的。整个模型采用了 <strong>REINFORCE算法</strong>（也被称作“vanilla” policy gradient，“基本”策略梯度）来学习参数，而具体的实现则采用了PyTorch软件包。</p>
+<h2 id="方法的实验效果"><a href="#方法的实验效果" class="headerlink" title="方法的实验效果"></a>方法的实验效果</h2><p>在提出的方法上，作者们展示了Q均能很快地以比较高的准确度做出预测，并且在和A的互动中产生了“语言”。不过遗憾的是，通过观察，作者们发现这样的“语言”往往并不自然。最直观的一种情况就是，A可以忽视掉Q的各种反应，而直接把A的内部信息通过某种编码直接“暴露”给Q，从而Q可以很快赢得游戏，取得几乎完美的预测结果。这显然不是想要的结果。</p>
+<p>作者们发现，在词汇量（Vocabulary）非常大的情况下，这种情况尤其容易发生，那就是A把自己的整个状态都暴露给Q。于是，作者们假定 <strong>要想出现比较有意义的交流，词汇数目一定不能过大</strong>。</p>
+<p>于是，作者们采用了限制词汇数目的方式，让词汇数目与属性的可能值和属性数目相等，这样就限制了在完美情况下交流的复杂度，使得A没办法过度交流。然而，这样的策略可以很好地对一个属性做出判断，但是无法对属性的叠加（因为Q最终是要猜两个属性）做出判断。</p>
+<p>文章给出的一个解决方案是，让A机器人忘记过去的状态，强行让A机器人学习使用相同的一组状态来表达相同的意思，而不是有可能使用新的状态。 <strong>在这样的限制条件以及无记忆两种约束下，A和Q的对话呈现出显著的自然语言的叠加性特征，而且在没有出现过的属性上表现出了接近两倍的准确率</strong>，这是之前的方法所不能达到的效果。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了EMNLP 2017年的最佳短论文，这篇文章介绍了在一个机器人对话系统中，如何能让机器人的对话更贴近人之间的行为。</p>
+<p>这篇文章也是 <strong>第一篇从谈话的自然程度</strong>，而不是从预测准确度去分析对话系统的论文。文章的一个核心观点是，如果想让对话自然，就必须避免机器人简单地把答案泄露给对方，或者说要避免有过大的词汇库。</p>
+<p>一起来回顾下要点：第一，我简要介绍了这篇文章的作者群信息，文章作者在相关领域均发表过多篇高质量研究成果论文。第二，这篇文章论证了多智能体对话中自然语言的出现并不自然。第三，论文提出在词汇量限制条件和无记忆约束下，机器人对话可以呈现出一定的自然语言特征。</p>
+<p>最后，给你留一个思考题，文章讲的是一个比较简单的对话场景，有一个局限的词汇库，如果是真实的人与人或者机器与机器的对话，我们如何来确定需要多大的词汇量呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>名词解释</strong>：</p>
+<p><strong>ICML 2017</strong>，International Conference on Machine Learning ，国际机器学习大会。</p>
+<p><strong>IJCAI 2017</strong>， International Joint Conference on Artificial Intelligence，人工智能国际联合大会。</p>
+<p><strong>CVPR 2017</strong>，Conference on Computer Vision and Pattern Recognition，国际计算机视觉与模式识别会议。</p>
+<p><strong>ICCV 2017</strong>，International Conference on Computer Vision，国际计算机视觉大会。</p>
+<p><strong>NIPS 2017</strong>，Annual Conference on Neural Information Processing Systems，神经信息处理系统大会。</p>
+<p>拓展阅读： <a target="_blank" rel="noopener" href="http://aclweb.org/anthology/D17-1320">Natural Language Does Not Merge ‘Naturally’ in Multi-Agent Dialog</a></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#006-%E7%B2%BE%E8%AF%BB2017%E5%B9%B4EMNLP%E6%9C%80%E4%BD%B3%E7%9F%AD%E8%AE%BA%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">006 | 精读2017年EMNLP最佳短论文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%BE%A4%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">作者群信息介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.2.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">方法的实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>108 | RNN在自然语言处理中有哪些应用场景？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="108 | RNN在自然语言处理中有哪些应用场景？周一我们进一步展开了RNN这个基本框架，讨论了几个流行的RNN模型实现，从最简单的RNN模型到为什么需要“门机制”，再到流行的LSTM和GRU框架的核心思想。 今天，我们就来看一看RNN究竟在自然语言处理的哪些任务和场景中有所应用。 简单分类场景我们首先来聊一种 简单的分类场景。在这种场景下，RNN输入一个序列的文字，然后根据所有这些文字，做一个决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="108 | RNN在自然语言处理中有哪些应用场景？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3986094655.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="108 | RNN在自然语言处理中有哪些应用场景？周一我们进一步展开了RNN这个基本框架，讨论了几个流行的RNN模型实现，从最简单的RNN模型到为什么需要“门机制”，再到流行的LSTM和GRU框架的核心思想。 今天，我们就来看一看RNN究竟在自然语言处理的哪些任务和场景中有所应用。 简单分类场景我们首先来聊一种 简单的分类场景。在这种场景下，RNN输入一个序列的文字，然后根据所有这些文字，做一个决">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.165Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3986094655"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '108 | RNN在自然语言处理中有哪些应用场景？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">108 | RNN在自然语言处理中有哪些应用场景？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="108-RNN在自然语言处理中有哪些应用场景？"><a href="#108-RNN在自然语言处理中有哪些应用场景？" class="headerlink" title="108 | RNN在自然语言处理中有哪些应用场景？"></a>108 | RNN在自然语言处理中有哪些应用场景？</h1><p>周一我们进一步展开了RNN这个基本框架，讨论了几个流行的RNN模型实现，从最简单的RNN模型到为什么需要“门机制”，再到流行的LSTM和GRU框架的核心思想。</p>
+<p>今天，我们就来看一看RNN究竟在自然语言处理的哪些任务和场景中有所应用。</p>
+<h2 id="简单分类场景"><a href="#简单分类场景" class="headerlink" title="简单分类场景"></a>简单分类场景</h2><p>我们首先来聊一种 <strong>简单的分类场景</strong>。在这种场景下，RNN输入一个序列的文字，然后根据所有这些文字，做一个决策，或者叫作输出一个符号。这类应用是文本挖掘和分析中最基本的一个场景。</p>
+<p>在绝大多数的“简单分类”任务中，传统的文字表达，例如“ <strong>词包</strong>”（Bag of Word）或者“ <strong>N元语法</strong>”（Ngram），经常都能有不错的表现。也就是说，在很多这类任务中，文字的顺序其实并不是很重要，或者说词序并没有携带更多的语义信息。</p>
+<p>然而，实践者们发现，在一些场景中，如果利用RNN来对文字序列进行建模，会获得额外的效果提升。比如有一类任务叫作“ <strong>句子级别的情感分类</strong>”（Sentence-Level Sentiment Classification），这类任务常常出现在分析商品的评论文本（Review）这个场景。这时候，我们需要对每一个句子输出至少两种感情色彩的判断，褒义或者贬义，正面或者负面。比如，我们在分析电影评价的时候，就希望知道用户在某一个句子中是否表达了对电影“喜爱”或者“不喜爱”的情绪。</p>
+<p>面对这样句子级别的情感分析，一种比较通行的利用RNN建模的方式是： <strong>把每一个单词作为一个输入单元，然后把一个句子当作一个序列输入到一个RNN中去，RNN来维持一个隐含的状态</strong>。</p>
+<p>对于这类应用，不是每一个隐含状态都有一个输出，而是在句子结束的时候，利用最后的隐含状态来产生输出。对于这类任务而言，输出的状态就是一个二元判断，那么我们需要利用最后的隐含状态来实现这个目的。一般来说，在深度模型的架构中，这个步骤是利用最后的隐含状态，然后经过多层感知网络，最后进行一个二元或者多元的分类。这其实是一个标准的分类问题的构建。</p>
+<p>在有的应用中，研究者们发现可以 <strong>利用两个RNN建立起来的链条</strong>，从而能够更进一步地提升最后的分类效果。在我们刚才描述的建模步骤里，RNN把一个句子从头到尾按照正常顺序进行了输入并归纳。另外一种建模方式是利用RNN去建模 <strong>句子的逆序</strong>，也就是把整个句子倒过来，学习到一个逆序的隐含状态。接下来，我们把顺序的最后隐含状态和逆序的最后隐含状态串联起来，成为最终放入分类器需要学习的特性。这种架构有时候被称作“ <strong>双向模型</strong>”。</p>
+<p>当我们从句子这个层级到文档这个层级时，比如希望对文档进行情感分类，仅仅利用我们刚才讲的RNN的结构就会显得有点“捉襟见肘”了。一个重要的阻碍就是RNN很难针对特别长的序列直接建模。这个时候，就需要我们把整个文档 <strong>拆分</strong> 成比较小的单元，然后针对小的单元利用RNN进行建模，再把这些小单元的RNN结果当作新的输入串联起来。</p>
+<p>在实际拆分的时候，我们可以把文章分成一个一个的句子，然后每个句子可以用刚才我们在句子层级的建模方式进行建模；在句子的层级下，还可能再把句子拆分成比如短语这样的单元。这种把一个比较大的文档进行拆分，并且通过RNN对不同级别的数据进行建模的形式就叫作 <strong>“层次式”（Hierarchical）RNN建模</strong>。</p>
+<h2 id="特性提取器"><a href="#特性提取器" class="headerlink" title="特性提取器"></a>特性提取器</h2><p>在更多的场景中，RNN其实已经扮演了 <strong>文本信息特性提取器</strong> 的角色，特别是在很多监督学习任务中，隐含状态常常被用来当作特性处理。尤其要说明的是，如果你的任务对文字的顺序有一定要求，RNN往往就能成为这方面任务的利器，我们这里举几个例子。</p>
+<p>首先可以想到的一个任务就是，在自然语言处理中很常见的“ <strong>词类标注</strong>”（Part-Of-Speech Tagging），或者简称 <strong>POS标注</strong>。简单来说，POS标注就是针对某一个输入句子，把句子里的词性进行分析和标注，让大家知道哪些是动词，哪些是名词，哪些是形容词等等。我们可以很容易地想到，在这样的标注任务中，一个词到底是名词还是动词，在很多的语言场景中，是需要对整个句子的语境进行分析的，也就是说，整个句子的顺序和词序是有意义的。</p>
+<p>针对POS标注这类任务，一种已经尝试过的架构，就是利用我们刚才介绍过的 <strong>双向RNN</strong> 来对句子进行建模。双向RNN的好处是，我们可以构建的隐含信息是包含上下文的，这样就更加有助于我们来分析每个词的词性。</p>
+<p>和句子分类的任务类似的是，利用双向RNN对句子进行扫描之后，我们依然需要建立 <strong>分类器</strong>，对每一个位置上的词语进行分类。这个时候，依然是同样的思路，我们把当前的隐含状态当作是特性，利用多层感知网络，构建多类分类器，从而对当前位置的词性进行决策。</p>
+<p>除了POS标注这样的任务以外，针对 <strong>普通的文档分类</strong>，RNN也有一定的效果。这里我们所说的文档分类，一般是指类似把文档分为“艺术”、“体育”或“时政”等主题类别。人们从实践中发现，在这样的通用文档分类任务中，RNN和另外一类重要的深度模型，“ <strong>卷积神经网络</strong>”（CNN）结合起来使用效果最好。我们这里不展开对CNN的原理进行讲解，只是从大的逻辑上为你讲一下这种分类方法的核心思路。</p>
+<p>在计算机视觉中，通常认为CNN可以抓住图像的“位置”特征。也就是说，CNN非常善于挖掘一个二维数据结构中局部的很多变化特征，从而能够有效形成对这些数据点的总结。那么，如果我们把文档的文字排列也看作是某种情况下的一种图案，CNN就可以发挥其作用来对文字的上下文进行信息提取。然后当CNN对文字的局部信息进行提取之后，我们再把这些局部信息当作输入放入RNN中，这样就能更好地利用RNN去对文章的高维度的特征进行建模。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了文本序列建模利器RNN的几个应用场景。</p>
+<p>一起来回顾下要点：第一，我们讲了用RNN对句子层级进行分类任务的处理；第二，我们聊了如何把RNN当作普遍使用的特性提取器来进行分类任务的训练，特别是POS标签任务。</p>
+<p>最后，给你留一个思考题，利用RNN提取的信息能否完整捕捉文档里的内容，这一点我们怎么来判断呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#108-RNN%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">108 | RNN在自然语言处理中有哪些应用场景？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%88%86%E7%B1%BB%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">简单分类场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%80%A7%E6%8F%90%E5%8F%96%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">特性提取器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

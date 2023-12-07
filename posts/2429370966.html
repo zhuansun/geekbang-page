@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>031 | 经典搜索核心算法：TF-IDF及其变种 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="031 | 经典搜索核心算法：TF-IDF及其变种从本周开始我们进入人工智能核心技术模块，本周我会集中讲解经典的搜索核心算法，今天先来介绍TF-IDF算法。 在信息检索（Information Retrieval）、文本挖掘（Text Mining）以及自然语言处理（Natural Language Processing）领域，TF-IDF算法都可以说是鼎鼎有名。虽然在这些领域中，目前也出现了不少">
+<meta property="og:type" content="article">
+<meta property="og:title" content="031 | 经典搜索核心算法：TF-IDF及其变种">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2429370966.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="031 | 经典搜索核心算法：TF-IDF及其变种从本周开始我们进入人工智能核心技术模块，本周我会集中讲解经典的搜索核心算法，今天先来介绍TF-IDF算法。 在信息检索（Information Retrieval）、文本挖掘（Text Mining）以及自然语言处理（Natural Language Processing）领域，TF-IDF算法都可以说是鼎鼎有名。虽然在这些领域中，目前也出现了不少">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.041Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2429370966"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '031 | 经典搜索核心算法：TF-IDF及其变种',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">031 | 经典搜索核心算法：TF-IDF及其变种</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="031-经典搜索核心算法：TF-IDF及其变种"><a href="#031-经典搜索核心算法：TF-IDF及其变种" class="headerlink" title="031 | 经典搜索核心算法：TF-IDF及其变种"></a>031 | 经典搜索核心算法：TF-IDF及其变种</h1><p>从本周开始我们进入人工智能核心技术模块，本周我会集中讲解经典的搜索核心算法，今天先来介绍TF-IDF算法。</p>
+<p>在信息检索（Information Retrieval）、文本挖掘（Text Mining）以及自然语言处理（Natural Language Processing）领域，TF-IDF算法都可以说是鼎鼎有名。虽然在这些领域中，目前也出现了不少以深度学习为基础的新的文本表达和算分（Weighting）方法，但是TF-IDF作为一个最基础的方法，依然在很多应用中发挥着不可替代的作用。</p>
+<p>了解和掌握TF-IDF算法对初学者大有裨益，能够帮助初学者更快地理解其它更加深入、复杂的文本挖掘算法和模型。今天我就来谈谈TF-IDF的历史、算法本身的细节以及基于TF-IDF的几个变种算法。</p>
+<h2 id="TF-IDF的历史"><a href="#TF-IDF的历史" class="headerlink" title="TF-IDF的历史"></a>TF-IDF的历史</h2><p>把查询关键字（Query）和文档（Document）都转换成“向量”，并且尝试用线性代数等数学工具来解决信息检索问题，这样的努力至少可以追溯到20世纪70年代。</p>
+<p>1971年，美国康奈尔大学教授杰拉德·索尔顿（Gerard Salton）发表了《SMART检索系统：自动文档处理实验》（The SMART Retrieval System—Experiments in Automatic Document Processing）一文，文中首次提到了把查询关键字和文档都转换成“向量”，并且给这些向量中的元素赋予不同的值。这篇论文中描述的SMART检索系统，特别是其中对TF-IDF及其变种的描述成了后续很多工业级系统的重要参考。</p>
+<p>1972年，英国的计算机科学家卡伦·琼斯（Karen Spärck Jones）在《从统计的观点看词的特殊性及其在文档检索中的应用》（A Statistical Interpretation of Term Specificity and Its Application in Retrieval） 一文中第一次详细地阐述了IDF的应用。其后卡伦又在《检索目录中的词赋值权重》（Index Term Weighting）一文中对TF和IDF的结合进行了论述。可以说，卡伦是第一位从理论上对TF-IDF进行完整论证的计算机科学家，因此后世也有很多人把TF-IDF的发明归结于卡伦。</p>
+<p>杰拉德本人被认为是“信息检索之父”。他1927年出生于德国的纽伦堡，并与1950年和1952年先后从纽约的布鲁克林学院获得数学学士和硕士学位，1958年从哈佛大学获得应用数学博士学位，之后来到康奈尔大学参与组建计算机系。为了致敬杰拉德本人对现代信息检索技术的卓越贡献，现在，美国计算机协会ACM（Association of Computing Machinery）每三年颁发一次“杰拉德·索尔顿奖”（Gerard Salton Award），用于表彰对信息检索技术有突出贡献的研究人员。卡伦·琼斯在1988年获得了第二届“杰拉德·索尔顿奖”的殊荣。</p>
+<h2 id="TF-IDF算法详解"><a href="#TF-IDF算法详解" class="headerlink" title="TF-IDF算法详解"></a>TF-IDF算法详解</h2><p>要理解TF-IDF算法，第一个步骤是理解TF-IDF的应用背景。TF-IDF来源于一个最经典、也是最古老的信息检索模型，即“ <strong>向量空间模型</strong>”（Vector Space Model）。</p>
+<p>简单来说， <strong>向量空间模型就是希望把查询关键字和文档都表达成向量，然后利用向量之间的运算来进一步表达向量间的关系</strong>。比如，一个比较常用的运算就是计算查询关键字所对应的向量和文档所对应的向量之间的“ <strong>相关度</strong>”。</p>
+<p>因为有了向量的表达，相关度往往可以用向量在某种意义上的“ <strong>相似度</strong>”来进行近似，比如 <strong>余弦相似性</strong>（Cosine Similarity）或者是 <strong>点积</strong>（Dot Product）。这样，相关度就可以用一个值来进行表达。不管是余弦相似度还是点积都能够从线性代数或者几何的角度来解释计算的合理性。</p>
+<p>在最基本的向量空间模型的表达中，查询关键字或是文档的向量都有V维度。这里的V是整个词汇表（Vocabulary）的总长度。比如，我们如果有1万个常用的英文单词，那么这个V的取值就是1万，而查询关键字和每个文档的向量都是一个1万维的向量。 对于这个向量中的每一个维度，都表示英文中的一个单词，没有重复。</p>
+<p>你可以看到，在这样的情况下，如果当前的词出现在这个向量所对应的文档或者关键字里，就用1来表达；如果这个词没出现，就用0来表达。这就是给每个维度赋值（Weighting）的最简单的方法。</p>
+<p><strong>TF-IDF就是在向量空间模型的假设下的一种更加复杂的赋值方式。TF-IDF最基础的模式，顾名思义，就是TF和IDF的乘积</strong>。</p>
+<p>TF其实是“ <strong>单词频率</strong>”（Term Frequency）的简称。意思就是说，我们计算一个查询关键字中某一个单词在目标文档中出现的次数。举例说来，如果我们要查询“Car Insurance”，那么对于每一个文档，我们都计算“Car”这个单词在其中出现了多少次，“Insurance”这个单词在其中出现了多少次。这个就是TF的计算方法。</p>
+<p>TF背后的隐含的假设是，查询关键字中的单词应该相对于其他单词更加重要，而文档的重要程度，也就是相关度，与单词在文档中出现的次数成正比。比如，“Car”这个单词在文档A里出现了5次，而在文档B里出现了20次，那么TF计算就认为文档B可能更相关。</p>
+<p>然而，信息检索工作者很快就发现，仅有TF不能比较完整地描述文档的相关度。因为语言的因素，有一些单词可能会比较自然地在很多文档中反复出现，比如英语中的“The”、“An”、“But”等等。这些词大多起到了链接语句的作用，是保持语言连贯不可或缺的部分。然而，如果我们要搜索“How to Build A Car”这个关键词，其中的“How”、“To”以及“A”都极可能在绝大多数的文档中出现，这个时候TF就无法帮助我们区分文档的相关度了。</p>
+<p>IDF，也就是“ <strong>逆文档频率</strong>”（Inverse Document Frequency），就在这样的情况下应运而生。这里面的思路其实很简单，那就是我们需要去“惩罚”（Penalize）那些出现在太多文档中的单词。</p>
+<p>也就是说，真正携带“相关”信息的单词仅仅出现在相对比较少，有时候可能是极少数的文档里。这个信息，很容易用“文档频率”来计算，也就是，有多少文档涵盖了这个单词。很明显，如果有太多文档都涵盖了某个单词，这个单词也就越不重要，或者说是这个单词就越没有信息量。因此，我们需要对TF的值进行修正，而IDF的想法是用DF的倒数来进行修正。倒数的应用正好表达了这样的思想，DF值越大越不重要。</p>
+<p>在了解了TF和IDF的基本计算方法后，我们就可以用这两个概念的乘积来表达某个查询单词在一个目标文档中的重要性了。值得一提的是，虽然我们在介绍TF-IDF这个概念的时候，并没有提及怎么把查询关键字和文档分别表达成向量，其实TF-IDF算法隐含了这个步骤。</p>
+<p>具体来说，对于查询关键字，向量的长度是V，也就是我们刚才说过的词汇表的大小。然后其中关键字的单词出现过的维度是1，其他维度是0。对于目标文档而言，关键词出现过的维度是TF-IDF的数值，而其他维度是0。在这样的表达下，如果我们对两个文档进行“点积”操作，则得到的相关度打分（Scoring）就是TF-IDF作为相关度的打分结果。</p>
+<h2 id="TF-IDF算法变种"><a href="#TF-IDF算法变种" class="headerlink" title="TF-IDF算法变种"></a>TF-IDF算法变种</h2><p>很明显，经典的TF-IDF算法有很多因素没有考虑。在过去的很长一段时间里，研究人员和工程师开发出了很多种TF-IDF的变种。这里我介绍几个经典的变种。</p>
+<p>首先，很多人注意到TF的值在原始的定义中没有任何上限。虽然我们一般认为一个文档包含查询关键词多次相对来说表达了某种相关度，但这样的关系很难说是线性的。拿我们刚才举过的关于“Car Insurance”的例子来说，文档A可能包含“Car”这个词100次，而文档B可能包含200次，是不是说文档B的相关度就是文档A的2倍呢？其实，很多人意识到，超过了某个阈值之后，这个TF也就没那么有区分度了。</p>
+<p><strong>用Log，也就是对数函数，对TF进行变换，就是一个不让TF线性增长的技巧</strong>。具体来说，人们常常用1+Log(TF)这个值来代替原来的TF取值。在这样新的计算下，假设“Car”出现一次，新的值是1，出现100次，新的值是5.6，而出现200次，新的值是6.3。很明显，这样的计算保持了一个平衡，既有区分度，但也不至于完全线性增长。</p>
+<p>另外一个关于TF的观察则是，经典的计算并没有考虑“长文档”和“短文档”的区别。一个文档A有3,000个单词，一个文档B有250个单词，很明显，即便“Car”在这两个文档中都同样出现过20次，也不能说这两个文档都同等相关。 <strong>对TF进行“标准化”（Normalization），特别是根据文档的最大TF值进行的标准化，成了另外一个比较常用的技巧</strong>。</p>
+<p><strong>第三个常用的技巧，也是利用了对数函数进行变换的，是对IDF进行处理</strong>。相对于直接使用IDF来作为“惩罚因素”，我们可以使用N+1然后除以DF作为一个新的DF的倒数，并且再在这个基础上通过一个对数变化。这里的N是所有文档的总数。这样做的好处就是，第一，使用了文档总数来做标准化，很类似上面提到的标准化的思路；第二，利用对数来达到非线性增长的目的。</p>
+<p>还有一个重要的TF-IDF变种，则是对查询关键字向量，以及文档向量进行标准化，使得这些向量能够不受向量里有效元素多少的影响，也就是不同的文档可能有不同的长度。在线性代数里，可以把向量都标准化为一个单位向量的长度。这个时候再进行点积运算，就相当于在原来的向量上进行余弦相似度的运算。所以，另外一个角度利用这个规则就是直接在多数时候进行余弦相似度运算，以代替点积运算。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了文档检索领域或者搜索领域里最基本的一个技术：TF-IDF。我们可以看到，TF-IDF由两个核心概念组成，分别是词在文档中的频率和文档频率。TF-IDF背后隐含的是基于向量空间模型的假设。</p>
+<p>一起来回顾下要点：第一，简要介绍了TF-IDF的历史。第二，详细介绍了TF-IDF算法的主要组成部分。第三，简要介绍了TF-IDF的一些变种 。</p>
+<p>最后，给你留一个思考题，如果要把TF-IDF应用到中文环境中，是否需要一些预处理的步骤？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#031-%E7%BB%8F%E5%85%B8%E6%90%9C%E7%B4%A2%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95%EF%BC%9ATF-IDF%E5%8F%8A%E5%85%B6%E5%8F%98%E7%A7%8D"><span class="toc-number">1.</span> <span class="toc-text">031 | 经典搜索核心算法：TF-IDF及其变种</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TF-IDF%E7%9A%84%E5%8E%86%E5%8F%B2"><span class="toc-number">1.1.</span> <span class="toc-text">TF-IDF的历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TF-IDF%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">TF-IDF算法详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TF-IDF%E7%AE%97%E6%B3%95%E5%8F%98%E7%A7%8D"><span class="toc-number">1.3.</span> <span class="toc-text">TF-IDF算法变种</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

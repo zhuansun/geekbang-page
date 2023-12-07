@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>31 | 编程范式：泛型编程 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。 在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。 C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="31 | 编程范式：泛型编程">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/944131152.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。 在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。 C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stro">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.472Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/944131152"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '31 | 编程范式：泛型编程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">31 | 编程范式：泛型编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="31-编程范式：泛型编程"><a href="#31-编程范式：泛型编程" class="headerlink" title="31 | 编程范式：泛型编程"></a>31 | 编程范式：泛型编程</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。</p>
+<h1 id="C-语言"><a href="#C-语言" class="headerlink" title="C++语言"></a>C++语言</h1><p>1980年，AT&amp;T贝尔实验室的 <strong>Bjarne Stroustrup</strong> 创建的C++语言横空出世，它既可以全面兼容C语言，又巧妙揉合了一些面向对象的编程理念。现在来看，不得不佩服Stroustrup的魄力。在这里，我也向你推荐一本书，书名是《C++语言的设计和演化》。</p>
+<p>这本书系统介绍了C++诞生的背景以及初衷，书的作者就是 <a target="_blank" rel="noopener" href="https://book.douban.com/author/362072/">Stroustrup</a> 本人，所以你可以非常详细地从语言创建者的角度了解他的设计思路和创新之旅。当然，就是在今天，C++这门语言也还有很多争议，这里我不细说。如果你感兴趣的话，可以看看我几年前在酷壳上发表的文章《 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/7992.html">C++的坑真的多吗？</a>》。</p>
+<p>从语言角度来说，实际上早期C++的许多工作是对C的强化和净化，并把完全兼容C作为强制性要求（这也是C++复杂晦涩的原因，这点Java就干得比C++彻底得多）。在C89、C99这两个C语言的标准中，有许多改进都是从C++中引进的。</p>
+<p>可见，C++对C语言的贡献非常之大。是的，因为C++很大程度就是用来解决C语言中的各种问题和各种不方便的。比如：</p>
+<ul>
+<li><p>用引用来解决指针的问题。</p>
+</li>
+<li><p>用namespace来解决名字空间冲突的问题。</p>
+</li>
+<li><p>通过try-catch来解决检查返回值编程的问题。</p>
+</li>
+<li><p>用class来解决对象的创建、复制、销毁的问题，从而可以达到在结构体嵌套时可以深度复制的内存安全问题。</p>
+</li>
+<li><p>通过重载操作符来达到操作上的泛型。（比如，消除 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/301">《01 | 编程范式游记：起源》</a> 中提到的比较函数 <code>cmpFn</code>，再比如用 <code>&gt;&gt;</code> 操作符消除 <code>printf()</code> 的数据类型不够泛型的问题。）</p>
+</li>
+<li><p>通过模板template和虚函数的多态以及运行时识别来达到更高层次的泛型和多态。</p>
+</li>
+<li><p>用RAII、智能指针的方式，解决了C语言中因为需要释放资源而出现的那些非常ugly也很容易出错的代码的问题。</p>
+</li>
+<li><p>用STL解决了C语言中算法和数据结构的N多种坑。</p>
+</li>
+</ul>
+<h1 id="C-泛型编程"><a href="#C-泛型编程" class="headerlink" title="C++泛型编程"></a>C++泛型编程</h1><p>C++是支持编程范式最多的一门语言，它虽然解决了很多C语言的问题，但我个人觉得它最大的意义是解决了C语言泛型编程的问题。因为，我们可以看到一些C++的标准规格说明书里，有一半以上都在说明STL的标准规格应该是什么样的，这说明泛型编程是C++重点中的重点。</p>
+<p>理想情况下，算法应是和数据结构以及类型无关的，各种特殊的数据类型理应做好自己分内的工作，算法只关心一个标准的实现。 <strong>而对于泛型的抽象，我们需要回答的问题是，如果我们的数据类型符合通用算法，那么对数据类型的最小需求又是什么呢？</strong></p>
+<p>我们来看看C++是如何有效解决程序泛型问题的，我认为有三点。</p>
+<p><strong>第一，它通过类的方式来解决</strong>。</p>
+<ul>
+<li>类里面会有构造函数、析构函数表示这个类的分配和释放。</li>
+<li>还有它的拷贝构造函数，表示了对内存的复制。</li>
+<li>还有重载操作符，像我们要去比较大于、等于、不等于。</li>
+</ul>
+<p>这样可以让一个用户自定义的数据类型和内建的那些数据类型就很一致了。</p>
+<p><strong>第二，通过模板达到类型和算法的妥协</strong>。</p>
+<ul>
+<li>模板有点像DSL，模板的特化会根据使用者的类型在编译时期生成那个模板的代码。</li>
+<li>模板可以通过一个虚拟类型来做类型绑定，这样不会导致类型转换时的问题。</li>
+</ul>
+<p>模板很好地取代了C时代宏定义带来的问题。</p>
+<p><strong>第三，通过虚函数和运行时类型识别</strong>。</p>
+<ul>
+<li>虚函数带来的多态在语义上可以支持“同一类”的类型泛型。</li>
+<li>运行时类型识别技术可以做到在泛型时对具体类型的特殊处理。</li>
+</ul>
+<p>这样一来，就可以写出基于抽象接口的泛型。</p>
+<p>拥有了这些C++引入的技术，我们就可以做到C语言很难做到的泛型编程了。</p>
+<p>正如前面说过的，一个良好的泛型编程需要解决如下几个泛型编程的问题：</p>
+<ol>
+<li>算法的泛型；</li>
+<li>类型的泛型；</li>
+<li>数据结构（数据容器）的泛型。</li>
+</ol>
+<h2 id="C-泛型编程的示例-Search函数"><a href="#C-泛型编程的示例-Search函数" class="headerlink" title="C++泛型编程的示例 - Search函数"></a>C++泛型编程的示例 - Search函数</h2><p>就像前面的 <code>search()</code> 函数，里面的 <code>for(int i=0; i&lt;len; i++)</code> 这样的遍历方式，只能适用于 <strong>顺序型的数据结构</strong> 的方式迭代，如：array、set、queue、list和link等。并不适用于 <strong>非顺序型的数据结构</strong>。</p>
+<p>如哈希表hash table，二叉树binary tree、图graph等这样数据不是按顺序存放的数据结构（数据容器）。所以，如果找不到一种 <strong>泛型的数据结构的操作方式（如遍历、查找、增加、删除、修改……）</strong>，那么，任何的算法或是程序都不可能做到真正意义上的泛型。</p>
+<p>除了 <code>search()</code> 函数的“遍历操作”之外，还有search函数的返回值，是一个整型的索引下标。这个整型的下标对于“顺序型的数据结构”是没有问题的，但是对于“非顺序的数据结构”，在语义上都存在问题。</p>
+<p>比如，如果我要在一个hash table中查找一个key，返回什么呢？一定不是返回“索引下标”，因为在hash table这样的数据结构中，数据的存放位置不是顺序的，而且还会因为容量不够的问题被重新hash后改变，所以返回数组下标是没有意义的。</p>
+<p>对此，我们要把这个事做得泛型和通用一些。如果找到，返回找到的这个元素的一个指针（地址）会更靠谱一些。</p>
+<p>所以，为了解决泛型的问题，我们需要动用以下几个C++的技术。</p>
+<ol>
+<li><p>使用模板技术来抽象类型，这样可以写出类型无关的数据结构（数据容器）。</p>
+</li>
+<li><p>使用一个迭代器来遍历或是操作数据结构内的元素。</p>
+</li>
+</ol>
+<p>我们来看一下C++版的 <code>search()</code> 函数是什么样的。</p>
+<p>先重温一下C语言版的代码：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">,</span> <span class="token keyword">void</span><span class="token operator">*</span> target<span class="token punctuation">,</span>
+	<span class="token class-name">size_t</span> elem_size<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token operator">*</span>cmpFn<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">cmpFn</span> <span class="token punctuation">(</span>a <span class="token operator">+</span> elem_size <span class="token operator">*</span> i<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> i<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们再来看一下C++泛型版的代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;typename T, typename Iter&gt;
+Iter search(Iter pStart, Iter pEnd, T target)
+&#123;
+	for(Iter p &#x3D; pStart; p !&#x3D; pEnd; p++) &#123;
+		if ( *p &#x3D;&#x3D; target )
+			return p;
+	&#125;
+	return NULL;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在C++的泛型版本中，我们可以看到：</p>
+<ul>
+<li><p>使用 <code>typename T</code> 抽象了数据结构中存储数据的类型。</p>
+</li>
+<li><p>使用 <code>typename Iter</code>，这是不同的数据结构需要自己实现的“迭代器”，这样也就抽象掉了不同类型的数据结构。</p>
+</li>
+<li><p>然后，我们对数据容器的遍历使用了 <code>Iter</code> 中的 <code>++</code> 方法，这是数据容器需要重载的操作符，这样通过操作符重载也就泛型掉了遍历。</p>
+</li>
+<li><p>在函数的入参上使用了 <code>pStart</code> 和 <code>pEnd</code> 来表示遍历的起止。</p>
+</li>
+<li><p>使用 <code>*Iter</code> 来取得这个“指针”的内容。这也是通过重载 <code>*</code> 取值操作符来达到的泛型。</p>
+</li>
+</ul>
+<p>当然，你可能会问，为什么我们不用标准接口 <code>Iter.Next()</code> 取代 <code>++</code>， 用 <code>Iter.GetValue()</code> 来取代 <code>*</code>，而是通过重载操作符？其实这样做是为了兼容原有C语言的编程习惯。</p>
+<p>说明一下，所谓的 <code>Iter</code>，在实际代码中，就是像 <code>vector&lt;int&gt;::iterator</code> 或 <code>map&lt;int, string&gt;::iterator</code> 这样的东西。这是由相应的数据容器来实现和提供的。</p>
+<p>注：下面是C++ STL中的 <code>find()</code> 函数的代码。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class InputIterator, class T&gt;
+  InputIterator find (InputIterator first, InputIterator last, const T&amp; val)
+&#123;
+  while (first!&#x3D;last) &#123;
+    if (*first&#x3D;&#x3D;val) return first;
+    ++first;
+  &#125;
+  return last;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="C-泛型编程示例-Sum-函数"><a href="#C-泛型编程示例-Sum-函数" class="headerlink" title="C++泛型编程示例 - Sum 函数"></a>C++泛型编程示例 - Sum 函数</h2><p>也许你觉得到这一步，我们的泛型设计就完成了。其实，还远远不够。 <code>search</code> 函数只是一个开始，我们还有很多别的算法会让问题变得更为复杂。</p>
+<p>我们再来看一个 <code>sum()</code> 函数。</p>
+<p>先看C语言版：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">long</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">long</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		result <span class="token operator">+=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再看一下C++泛型的版本：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;typename T, typename Iter&gt;
+T sum(Iter pStart, Iter pEnd) &#123;
+	T result &#x3D; 0;
+	for(Iter p&#x3D;pStart; p!&#x3D;pEnd; p++) &#123;
+		result +&#x3D; *p;
+	&#125;
+	return result;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>你看到了什么样的问题？这个代码中最大的问题就是 <code>T result = 0;</code> 这条语句：</p>
+<ul>
+<li>那个 <code>0</code> 假设了类型是 <code>int</code>；</li>
+<li>那个 <code>T</code> 假设了Iter中出来的类型是 <code>T</code>。</li>
+</ul>
+<p>这样的假设是有问题的，如果类型不一样，就会导致转型的问题，这会带来非常buggy的代码。那么，我们怎么解决呢？</p>
+<h2 id="C-泛型编程的重要技术-迭代器"><a href="#C-泛型编程的重要技术-迭代器" class="headerlink" title="C++泛型编程的重要技术 - 迭代器"></a>C++泛型编程的重要技术 - 迭代器</h2><p>我们知道 <code>Iter</code> 在实际调用者那会是一个具体的像 <code>vector&lt;int&gt;::iterator</code> 这样的东西。在这个声明中， <code>int</code> 已经被传入 <code>Iter</code> 中了。所以，定义 <code>result</code> 的 <code>T</code> 应该可以从 <code>Iter</code> 中来。这样就可以保证类型是一样的，而且不会有被转型的问题。</p>
+<p>所以，我们需要精心地实现一个“迭代器”。下面是一个“精简版”的迭代器（我没有把C++ STL代码里的迭代器列出来，是因为代码太多太复杂，我这里只是为了说明问题）。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class T&gt;
+class container &#123;
+public:
+	class iterator &#123;
+	public:
+		typedef iterator self_type;
+		typedef T   value_type;
+		typedef T*  pointer;
+		typedef T&amp; 	reference;
+
+		reference operator*();
+		pointer operator-&gt;();
+		bool operator&#x3D;&#x3D;(const self_type&amp; rhs)；
+		bool operator!&#x3D;(const self_type&amp; rhs)；
+		self_type operator++() &#123; self_type i &#x3D; *this; ptr_++; return i; &#125;
+		self_type operator++(int junk) &#123; ptr_++; return *this; &#125;
+		...
+		...
+	private:
+		pointer _ptr;
+	&#125;;
+
+	iterator begin();
+	iterator end();
+	...
+	...
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的代码是我写的一个迭代器（这个迭代器在语义上是没有问题的），我没有把所有的代码列出来，而把它的一些基本思路列了出来。这里我说明一下几个关键点。</p>
+<ul>
+<li><p>首先，一个迭代器需要和一个容器在一起，因为里面是对这个容器的具体的代码实现。</p>
+</li>
+<li><p>它需要重载一些操作符，比如：取值操作 <code>*</code>、成员操作 <code>-&gt;</code>、比较操作 <code>==</code> 和 <code>!=</code>，还有遍历操作 <code>++</code>，等等。</p>
+</li>
+<li><p>然后，还要 <code>typedef</code> 一些类型，比如 <code>value_type</code>，告诉我们容器内的数据的实际类型是什么样子。</p>
+</li>
+<li><p>还有一些，如 <code>begin()</code> 和 <code>end()</code> 的基本操作。</p>
+</li>
+<li><p>我们还可以看到其中有一个 <code>pointer _ptr</code> 的内部指针来指向当前的数据（注意， <code>pointer</code> 就是 <code>T*</code>）。</p>
+</li>
+</ul>
+<p>好了，有了这个迭代器后，我们还要解决 <code>T result = 0</code> 后面的这个 <code>0</code> 的问题。这个事，算法没有办法搞定，最好由用户传入。于是出现了下面最终泛型的 <code>sum()</code> 版函数。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template &lt;class Iter&gt;
+typename Iter::value_type
+sum(Iter start, Iter end, T init) &#123;
+	typename Iter::value_type result &#x3D; init;
+	while (start !&#x3D; end) &#123;
+		result &#x3D; result + *start;
+		start++;
+	&#125;
+	return result;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以看到 <code>typename Iter::value_type result = init</code> 这条语句是关键。我们解决了所有的问题。</p>
+<p>我们使用如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">container&lt;int&gt; c;
+container&lt;int&gt;::iterator it &#x3D; c.begin();
+sum(c.begin(), c.end(), 0);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这就是整个STL的泛型方法，其中包括：</p>
+<ul>
+<li>泛型的数据容器；</li>
+<li>泛型数据容器的迭代器；</li>
+<li>然后泛型的算法就很容易写了。</li>
+</ul>
+<h1 id="需要更多的抽象"><a href="#需要更多的抽象" class="headerlink" title="需要更多的抽象"></a>需要更多的抽象</h1><h2 id="更为复杂的需求"><a href="#更为复杂的需求" class="headerlink" title="更为复杂的需求"></a>更为复杂的需求</h2><p>但是，还能不能做到更为泛型呢？比如：如果我们有这样的一个数据结构Employee，里面有vacation就是休假多少天，以及工资。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">struct Employee &#123;
+	string name;
+	string id;
+	int vacation;
+	double salary；
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在我想计算员工的总薪水，或是总休假天数。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;Employee&gt; staff;
+&#x2F;&#x2F;total salary or total vacation days?
+sum(staff.begin(), staff.end(), 0);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>我们的 <code>sum</code> 完全不知道怎么搞了，因为要累加的是 <code>Employee</code> 类中的不同字段，即便我们的Employee中重载了 <code>+</code> 操作，也不知道要加哪个字段。</p>
+<p>另外，我们可能还会有：求平均值average，求最小值min，求最大值max，求中位数mean等等。你会发现，算法写出来基本上都是一样的，只是其中的“累加”操作变成了另外一个操作。就这个例子而言，我想计算员工薪水里面最高的，和休假最少的，或者我想计算全部员工的总共休假多少天。那么面对这么多的需求，我们是否可以泛型一些呢？怎样解决这些问题呢？</p>
+<h2 id="更高维度的抽象"><a href="#更高维度的抽象" class="headerlink" title="更高维度的抽象"></a>更高维度的抽象</h2><p>要解决这个问题，我希望我的这个算法只管遍历，具体要干什么，那是业务逻辑，由外面的调用方来定义我就好了，和我无关。这样一来，代码的重用度就更高了。</p>
+<p>下面是一个抽象度更高的版本，这个版本再叫 <code>sum</code> 就不太合适了。这个版本应该是 <code>reduce</code>——用于把一个数组reduce成一个值。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class Iter, class T, class Op&gt;
+T reduce (Iter start, Iter end, T init, Op op) &#123;
+	T result &#x3D; init;
+	while ( start !&#x3D; end ) &#123;
+		result &#x3D; op( result, *start );
+		start++;
+	&#125;
+	return result;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的代码中，我们需要传一个函数进来。在STL中，它是个函数对象，我们还是这套算法，但是result不是像前面那样去加，是把整个迭代器值给你一个operation，然后由它来做。我把这个方法又拿出去了，所以就会变成这个样子。</p>
+<p>在C++ STL中，与我的这个reduce函数对应的函数名叫 <code>accumulate()</code>，其实际代码有两个版本。</p>
+<p>第一个版本就是下面的版本，只不过是用 <code>for</code> 语句而不是 <code>while</code>。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class InputIt, class T&gt;
+T accumulate(InputIt first, InputIt last, T init)
+&#123;
+    for (; first !&#x3D; last; ++first) &#123;
+        init &#x3D; init + *first;
+    &#125;
+    return init;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第二个版本，更为抽象，因为需要传入一个“二元操作函数”—— <code>BinaryOperation op</code> 来做accumulate。accumulate的语义比sum更抽象了。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class InputIt, class T, class BinaryOperation&gt;
+T accumulate(InputIt first, InputIt last, T init,
+             BinaryOperation op)
+&#123;
+    for (; first !&#x3D; last; ++first) &#123;
+        init &#x3D; op(init, *first);
+    &#125;
+    return init;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>来看看我们在使用中是什么样子的：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">double sum_salaries &#x3D;
+  reduce( staff.begin(), staff.end(), 0.0,
+		  [](double s, Employee e)
+		    &#123;return s + e.salary;&#125;  );
+
+double max_salary &#x3D;
+  reduce( staff.begin(), staff.end(), 0.0,
+		  [](double s, Employee e)
+		    &#123;return s &gt; e.salary? s: e.salary; &#125; );
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：我这里用了C++的lambda表达式。</p>
+<p>你可以很清楚地看到，reduce这个函数就更通用了，具体要干什么样的事情呢？放在匿名函数里面，它会定义我，我只做一个reduce。更抽象地来说，我就把一个数组，一个集合，变成一个值。怎么变成一个值呢？由这个函数来决定。</p>
+<h3 id="Reduce-函数"><a href="#Reduce-函数" class="headerlink" title="Reduce 函数"></a>Reduce 函数</h3><p>我们来看看如何使用reduce和其它函数完成一个更为复杂的功能。</p>
+<p>下面这个示例中，我先定义了一个函数对象 <code>counter</code>。这个函数对象需要一个 <code>Cond</code> 的函数对象，它是个条件判断函数，如果满足条件，则加1，否则加0。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class T, class Cond&gt;
+struct counter &#123;
+	size_t operator()(size_t c, T t) const &#123;
+		return c + (Cond(t) ? 1 : 0);
+	&#125;
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我用上面的 <code>counter</code> 函数对象和 <code>reduce</code> 函数共同来打造一个 <code>counter_if</code> 算法（当条件满足的时候我就记个数，也就是统计满足某个条件的个数），我们可以看到，就是一行代码的事。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">template&lt;class Iter, class Cond&gt;
+size_t count_if(Iter begin, Iter end, Cond c)&#123;
+	return reduce(begin, end, 0,
+				  counter&lt;Iter::value_type, Cond&gt;(c));
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>至于是什么样的条件，这个属于业务逻辑，不是我的流程控制，所以，这应该交给使用方。</p>
+<p>于是，当我需要统计薪资超过1万元的员工的数量时，一行代码就完成了。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">size_t cnt &#x3D; count_if(staff.begin(), staff.end(),
+					[](Employee e)&#123; return e.salary &gt; 10000; &#125;);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Reduce时可以只对结构体中的某些值做Reduce，比如说只对 <code>salary&gt;10000</code> 的人做，只选出这个里面的值，它用Reduce就可以达到这步，只要传不同的方式给它，你就可以又造出一个新的东西出来。</p>
+<p>说着说着，就到了函数式编程。函数式编程里面，我们可以用很多的像reduce这样的函数来完成更多的像STL里面的 <code>count_if()</code> 这样有具体意义的函数。关于函数式编程，我们会在后面继续具体聊。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>在这篇文章中，我们聊到C++语言是如何通过泛型来解决C语言遇到的问题，其实这里面主要就是泛型编程和函数式编程的基本方法相关的细节，虽然解决编程语言中类型带来的问题可能有多种方式，不一定就是C++这种方式。</p>
+<p>而我之所以从C&#x2F;C++开始，目的只是因为C&#x2F;C++都是比较偏底层的编程语言。从底层的原理上，我们可以更透彻地了解，从C到C++的演进这一过程中带来的编程方式的变化。这可以让你看到，在静态类型语言方面解决泛型编程的一些技术和方法，从而感受到其中的奥妙和原理。</p>
+<p><strong>因为形式是多样的，但是原理是相通的，所以，这个过程会非常有助于你更深刻地了解后面会谈到的更多的编程范式</strong>。</p>
+<p>以下是《编程范式游记》系列文章的目录，方便你了解这一系列内容的全貌。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/301">01 | 编程范式游记：起源</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/303">02 | 编程范式游记：泛型编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2017">03 | 编程范式游记：类型系统和泛型的本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2711">04 | 编程范式游记：函数式编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2723">05 | 编程范式游记：修饰器模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2729">06 | 编程范式游记：面向对象编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2741">07 | 编程范式游记：基于原型的编程范式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2748">08 | 编程范式游记：Go 语言的委托模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2751">09 | 编程范式游记：编程的本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2752">10 | 编程范式游记：逻辑编程范式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2754">11 | 编程范式游记：程序世界里的编程范式</a></li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#31-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%EF%BC%9A%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">31 | 编程范式：泛型编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E8%AF%AD%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">C++语言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">C++泛型编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E7%9A%84%E7%A4%BA%E4%BE%8B-Search%E5%87%BD%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">C++泛型编程的示例 - Search函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E7%A4%BA%E4%BE%8B-Sum-%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">C++泛型编程示例 - Sum 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%8A%80%E6%9C%AF-%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">C++泛型编程的重要技术 - 迭代器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%8A%BD%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">需要更多的抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E4%B8%BA%E5%A4%8D%E6%9D%82%E7%9A%84%E9%9C%80%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">更为复杂的需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E9%AB%98%E7%BB%B4%E5%BA%A6%E7%9A%84%E6%8A%BD%E8%B1%A1"><span class="toc-number">4.2.</span> <span class="toc-text">更高维度的抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reduce-%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.1.</span> <span class="toc-text">Reduce 函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

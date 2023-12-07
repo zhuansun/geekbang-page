@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>48 | 弹力设计：熔断设计 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="48 | 弹力设计：熔断设计你好，我是陈皓，网名左耳朵耗子。 熔断机制这个词对你来说肯定不陌生，它的灵感来源于我们电闸上的“保险丝”，当电压有问题时（比如短路），自动跳闸，此时电路就会断开，我们的电器就会受到保护。不然，会导致电器被烧坏，如果人没在家或是人在熟睡中，还会导致火灾。所以，在电路世界通常都会有这样的自我保护装置。 同样，在我们的分布式系统设计中，也应该有这样的方式。前面说过重试机制，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="48 | 弹力设计：熔断设计">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1101401378.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="48 | 弹力设计：熔断设计你好，我是陈皓，网名左耳朵耗子。 熔断机制这个词对你来说肯定不陌生，它的灵感来源于我们电闸上的“保险丝”，当电压有问题时（比如短路），自动跳闸，此时电路就会断开，我们的电器就会受到保护。不然，会导致电器被烧坏，如果人没在家或是人在熟睡中，还会导致火灾。所以，在电路世界通常都会有这样的自我保护装置。 同样，在我们的分布式系统设计中，也应该有这样的方式。前面说过重试机制，如">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.502Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1101401378"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '48 | 弹力设计：熔断设计',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">48 | 弹力设计：熔断设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="48-弹力设计：熔断设计"><a href="#48-弹力设计：熔断设计" class="headerlink" title="48 | 弹力设计：熔断设计"></a>48 | 弹力设计：熔断设计</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>熔断机制这个词对你来说肯定不陌生，它的灵感来源于我们电闸上的“保险丝”，当电压有问题时（比如短路），自动跳闸，此时电路就会断开，我们的电器就会受到保护。不然，会导致电器被烧坏，如果人没在家或是人在熟睡中，还会导致火灾。所以，在电路世界通常都会有这样的自我保护装置。</p>
+<p>同样，在我们的分布式系统设计中，也应该有这样的方式。前面说过重试机制，如果错误太多，或是在短时间内得不到修复，那么我们重试也没有意义了，此时应该开启我们的熔断操作，尤其是后端太忙的时候，使用熔断设计可以保护后端不会过载。</p>
+<h1 id="熔断设计"><a href="#熔断设计" class="headerlink" title="熔断设计"></a>熔断设计</h1><p>熔断器模式可以防止应用程序不断地尝试执行可能会失败的操作，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等待长时间的超时产生。熔断器模式也可以使应用程序能够诊断错误是否已经修正。如果已经修正，应用程序会再次尝试调用操作。</p>
+<p>换句话来说，我觉得熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定是继续操作，还是立即返回错误。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/850b613bae392236fdd097c70f7a5093.png"></p>
+<p>（本图来自 Martin Fowler 的 Circuit Breaker）</p>
+<p>熔断器可以使用状态机来实现，内部模拟以下几种状态。</p>
+<ul>
+<li><p><strong>闭合（Closed）状态</strong>：我们需要一个调用失败的计数器，如果调用失败，则使失败次数加1。如果最近失败次数超过了在给定时间内允许失败的阈值，则切换到断开(Open)状态。此时开启了一个超时时钟，当该时钟超过了该时间，则切换到半断开（Half-Open）状态。该超时时间的设定是给了系统一次机会来修正导致调用失败的错误，以回到正常工作的状态。在Closed状态下，错误计数器是基于时间的。在特定的时间间隔内会自动重置。这能够防止由于某次的偶然错误导致熔断器进入断开状态。也可以基于连续失败的次数。</p>
+</li>
+<li><p><strong>断开(Open)状态</strong>：在该状态下，对应用程序的请求会立即返回错误响应，而不调用后端的服务。这样也许比较粗暴，有些时候，我们可以cache住上次成功请求，直接返回缓存（当然，这个缓存放在本地内存就好了），如果没有缓存再返回错误（缓存的机制最好用在全站一样的数据，而不是用在不同的用户间不同的数据，因为后者需要缓存的数据有可能会很多）。</p>
+</li>
+<li><p><strong>半开（Half-Open）状态</strong>：允许应用程序一定数量的请求去调用服务。如果这些请求对服务的调用成功，那么可以认为之前导致调用失败的错误已经修正，此时熔断器切换到闭合状态，同时将错误计数器重置。</p>
+<p>如果这一定数量的请求有调用失败的情况，则认为导致之前调用失败的问题仍然存在，熔断器切回到断开状态，然后重置计时器来给系统一定的时间来修正错误。半断开状态能够有效防止正在恢复中的服务被突然而来的大量请求再次拖垮。</p>
+</li>
+</ul>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/34151c1a1caa1bd57a6fcdd3c92b7d7f.png"></p>
+<p>（本图来自 Martin Fowler 的 Circuit Breaker）</p>
+<p>实现熔断器模式使得系统更加稳定和有弹性，在系统从错误中恢复的时候提供稳定性，并且减少了错误对系统性能的影响。它快速地拒绝那些有可能导致错误的服务调用，而不会去等待操作超时或者永远不返回结果来提高系统的响应时间。</p>
+<p>如果熔断器设计模式在每次状态切换的时候会发出一个事件，这种信息可以用来监控服务的运行状态，能够通知管理员在熔断器切换到断开状态时进行处理。</p>
+<p>下图是Netflix的开源项目 <a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix">Hystrix</a> 中的熔断的实现逻辑（ <a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix/wiki/How-it-Works#CircuitBreaker">其出处在这里</a>）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/908a291d5698db2dc4734119371241e4.png"></p>
+<p>从这个流程图中，可以看到：</p>
+<ol>
+<li><p>有请求来了，首先allowRequest()函数判断是否在熔断中，如果不是则放行，如果是的话，还要看有没有到达一个熔断时间片，如果熔断时间片到了，也放行，否则直接返回出错。</p>
+</li>
+<li><p>每次调用都有两个函数markSuccess(duration)和markFailure(duration) 来统计一下在一定的duration内有多少调用是成功还是失败的。</p>
+</li>
+<li><p>判断是否熔断的条件 isOpen()，是计算一下 failure&#x2F;(success+failure) 当前的错误率，如果高于一个阈值，那么打开熔断，否则关闭。</p>
+</li>
+<li><p>Hystrix会在内存中维护一个数组，其中记录着每一个周期的请求结果的统计。超过时长长度的元素会被删除掉。</p>
+</li>
+</ol>
+<h1 id="熔断设计的重点"><a href="#熔断设计的重点" class="headerlink" title="熔断设计的重点"></a>熔断设计的重点</h1><p>在实现熔断器模式的时候，以下这些因素可能需要考虑。</p>
+<ul>
+<li><p><strong>错误的类型</strong>。需要注意的是请求失败的原因会有很多种。你需要根据不同的错误情况来调整相应的策略。所以，熔断和重试一样，需要对返回的错误进行识别。一些错误先走重试的策略（比如限流，或是超时），重试几次后再打开熔断。一些错误是远程服务挂掉，恢复时间比较长；这种错误不必走重试，就可以直接打开熔断策略。</p>
+</li>
+<li><p><strong>日志监控</strong>。熔断器应该能够记录所有失败的请求，以及一些可能会尝试成功的请求，使得管理员能够监控使用熔断器保护服务的执行情况。</p>
+</li>
+<li><p><strong>测试服务是否可用</strong>。在断开状态下，熔断器可以采用定期地ping一下远程服务的健康检查接口，来判断服务是否恢复，而不是使用计时器来自动切换到半开状态。这样做的一个好处是，在服务恢复的情况下，不需要真实的用户流量就可以把状态从半开状态切回关闭状态。否则在半开状态下，即便服务已恢复了，也需要用户真实的请求来恢复，这会影响用户的真实请求。</p>
+</li>
+<li><p><strong>手动重置</strong>。在系统中对于失败操作的恢复时间是很难确定的，提供一个手动重置功能能够使得管理员可以手动地强制将熔断器切换到闭合状态。同样的，如果受熔断器保护的服务暂时不可用的话，管理员能够强制将熔断器设置为断开状态。</p>
+</li>
+<li><p><strong>并发问题</strong>。相同的熔断器有可能被大量并发请求同时访问。熔断器的实现不应该阻塞并发的请求或者增加每次请求调用的负担。尤其是其中对调用结果的统计，一般来说会成为一个共享的数据结构，它会导致有锁的情况。在这种情况下，最好使用一些无锁的数据结构，或是atomic的原子操作。这样会带来更好的性能。</p>
+</li>
+<li><p><strong>资源分区</strong>。有时候，我们会把资源分布在不同的分区上。比如，数据库的分库分表，某个分区可能出现问题，而其它分区还可用。在这种情况下，单一的熔断器会把所有的分区访问给混为一谈，从而，一旦开始熔断，那么所有的分区都会受到熔断影响。或是出现一会儿熔断一会儿又好，来来回回的情况。所以，熔断器需要考虑这样的问题，只对有问题的分区进行熔断，而不是整体。</p>
+</li>
+<li><p><strong>重试错误的请求</strong>。有时候，错误和请求的数据和参数有关系，所以，记录下出错的请求，在半开状态下重试能够准确地知道服务是否真的恢复。当然，这需要被调用端支持幂等调用，否则会出现一个操作被执行多次的副作用。</p>
+</li>
+</ul>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>好了，我们来总结一下今天分享的主要内容。首先，熔断设计是受了电路设计中保险丝的启发，其需要实现三个状态：闭合、断开和半开，分别对应于正常、故障和故障后检测故障是否已被修复的场景，并介绍了Netflix的Hystrix对熔断的实现。最后，我总结了熔断设计的几个重点。下节课，我们讲述限流设计。希望对你有帮助。</p>
+<p>也欢迎你分享一下你实现过的熔断使用了怎样的算法？实现的过程中遇到过什么坑？</p>
+<p>文末给出了《分布式系统设计模式》系列文章的目录，希望你能在这个列表里找到自己感兴趣的内容。</p>
+<ul>
+<li>弹力设计篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/3912">认识故障和弹力设计</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/3917">隔离设计Bulkheads</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/3926">异步通讯设计Asynchronous</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4050">幂等性设计Idempotency</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4086">服务的状态State</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4087">补偿事务Compensating Transaction</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4121">重试设计Retry</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4241">熔断设计Circuit Breaker</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4245">限流设计Throttle</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4252">降级设计degradation</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/4253">弹力设计总结</a></li>
+</ul>
+</li>
+<li>管理设计篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5175">分布式锁Distributed Lock</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5819">配置中心Configuration Management</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5909">边车模式Sidecar</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/5920">服务网格Service Mesh</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/6086">网关模式Gateway</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/6283">部署升级策略</a></li>
+</ul>
+</li>
+<li>性能设计篇<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/6282">缓存Cache</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/7036">异步处理Asynchronous</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/7045">数据库扩展</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/7047">秒杀Flash Sales</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/7086">边缘计算Edge Computing</a></li>
+</ul>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#48-%E5%BC%B9%E5%8A%9B%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%86%94%E6%96%AD%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">48 | 弹力设计：熔断设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">熔断设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%87%8D%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">熔断设计的重点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

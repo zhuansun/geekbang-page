@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>124 | 计算机视觉高级话题（一）：图像物体识别和分割 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="124 | 计算机视觉高级话题（一）：图像物体识别和分割从今天开始，我们讨论几个相对比较高级的计算机视觉话题。这些话题都不是简单的分类或者回归任务，而是需要在一些现有的模型上进行改进。 我们聊的第一个话题就是图像中的 物体识别（Object Recognition）和 分割（Segmentation）。我们前面介绍过物体识别和分割。通俗地讲，就是给定一个输入的图像，我们希望模型可以分析这个图像里究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="124 | 计算机视觉高级话题（一）：图像物体识别和分割">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1380456050.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="124 | 计算机视觉高级话题（一）：图像物体识别和分割从今天开始，我们讨论几个相对比较高级的计算机视觉话题。这些话题都不是简单的分类或者回归任务，而是需要在一些现有的模型上进行改进。 我们聊的第一个话题就是图像中的 物体识别（Object Recognition）和 分割（Segmentation）。我们前面介绍过物体识别和分割。通俗地讲，就是给定一个输入的图像，我们希望模型可以分析这个图像里究">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.191Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1380456050"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '124 | 计算机视觉高级话题（一）：图像物体识别和分割',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">124 | 计算机视觉高级话题（一）：图像物体识别和分割</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="124-计算机视觉高级话题（一）：图像物体识别和分割"><a href="#124-计算机视觉高级话题（一）：图像物体识别和分割" class="headerlink" title="124 | 计算机视觉高级话题（一）：图像物体识别和分割"></a>124 | 计算机视觉高级话题（一）：图像物体识别和分割</h1><p>从今天开始，我们讨论几个相对比较高级的计算机视觉话题。这些话题都不是简单的分类或者回归任务，而是需要在一些现有的模型上进行改进。</p>
+<p>我们聊的第一个话题就是图像中的 <strong>物体识别</strong>（Object Recognition）和 <strong>分割</strong>（Segmentation）。我们前面介绍过物体识别和分割。通俗地讲，就是给定一个输入的图像，我们希望模型可以分析这个图像里究竟有哪些物体，并能够定位这些物体在整个图像中的位置，对于图像中的每一个像素，能够分析其属于哪一个物体。</p>
+<p>这一类型任务的目的是更加仔细地理解图像中的物体，包括图片分类、对图像里面的物体位置进行分析，以及在像素级别进行分割，这无疑是一个充满挑战的任务。</p>
+<h2 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h2><p>深度模型，特别是卷积神经网络（CNN）在AlexNet中的成功应用，很大程度上开启了神经网络在图像分类问题上的应用。这之后，不少学者就开始考虑把这样的思想利用到物体识别上。第一个比较成功的早期工作来自加州大学伯克利分校[1]，这就是我们接下来要介绍的 <strong>R-CNN模型</strong>。</p>
+<p>首先，R-CNN的输入是一个图片，输出是一个“选定框”（Bounding Box）和对应的标签。R-CNN采用了一种直观的方法来生成选定框：尽可能多地生成选定框，然后来看究竟哪一个选定框对应了一个物体。</p>
+<p>具体来说，针对图像，R-CNN先用不同大小的选定框来扫描，并且尝试把临近的具有相似色块、类型、密度的像素都划归到一起去。然后，再利用一个AlexNet的变形来对这些待定（Proposal）的选定框进行特征提取（Feature Extraction）。在模型的最后一层，R-CNN加入了一个支持向量机（Support Vector Machine）来判断待选定框是否是某个物体。判断好了选定框以后，R-CNN再运行一个线性回归来对选定框的坐标进行微调。</p>
+<p>R-CNN虽然证明了在物体识别这样的任务中，CNN的确可以超越传统的模型，但整个模型由多个模块组成，相对比较繁琐。</p>
+<h2 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a>Fast R-CNN</h2><p>意识到了R-CNN的问题以后，一些学者开始考虑如何在这个模型上进行改进。第一个重大改进来自于R-CNN原文中的第一作者罗斯·吉尔什克（Ross Girshick）。吉尔什克这个时候已经来到了微软研究院，他把自己改进的模型叫作 <strong>Fast R-CNN</strong>[2]。</p>
+<p>Fast R-CNN的一个重要特点就是观察到我们刚才介绍R-CNN中的第二步骤，也就是每一个待定的选定框都需要进行特征提取。这里的特征提取其实就是一个神经网络，往往非常消耗资源。而且很多待定的选定框有很多重叠的部分，可以想象就会有很多神经网络的计算是重复多余的。</p>
+<p>那么，有没有什么办法我们可以针对一个图片仅仅运行一次神经网络，但是又可以针对不同的待选定框共享呢？这其实就是Fast R-CNN的核心思想。Fast R-CNN的另外一个特点就是尝试用一个神经网络架构去替代R-CNN中间的四个模块。这样两个改进的结果是怎样的呢？Fast R-CNN和R-CNN相比在效果上差不多，但是训练时间快了9倍以上。</p>
+<h2 id="Faster-R-CNN和Mask-R-CNN"><a href="#Faster-R-CNN和Mask-R-CNN" class="headerlink" title="Faster R-CNN和Mask R-CNN"></a>Faster R-CNN和Mask R-CNN</h2><p>在Fast R-CNN的技术上，一群当时在微软研究院的学者们把对R-CNN的加速往前推进了一步，这就是模型 <strong>Faster R-CNN</strong>[3]。Faster R-CNN是在如何提出待定的选定框上做了进一步的改进，使得这部分不依赖一个单独的步骤，而依赖我们已经训练的CNN网络。这在速度上比Fast R-CNN又快了不少。</p>
+<p>在Faster R-CNN的基础上， <strong>Mask R-CNN</strong> 不仅能够做到对图像中的物体进行判别，而且还能够做到像素级的抽取[4]。前面我们在讲2017年ICCV最佳研究论文的时候，介绍过这部分内容。这里我带你做一个简单的回顾。</p>
+<p>Faster R-CNN分为两个阶段。第一个阶段是“区域提交网络”（Region Proposal Network），目的是从图像中提出可能存在候选矩形框。第二个阶段，从这些候选框中使用“RoIPool”这个技术来提取特征从而进行标签分类和矩形框位置定位这两个任务。这两个阶段的一些特征可以共享。</p>
+<p>区域提交网络的大体流程是什么样的？大体来说，最原始的输入图像经过经典的卷积层变换之后形成了一个图像特征层。在这个新的图像特征层上，模型使用了一个移动的小窗口来对区域进行建模。</p>
+<p>这个移动小窗口有这么三个任务需要考虑。首先移动小窗口所覆盖的特征经过一个变换达到一个中间层，然后经过这个中间层，直接串联到两个任务，也就是物体的分类和位置的定位。其次，移动的小窗口用于提出一个候选区域，也就是矩形框。而这个矩形框也参与刚才所说的定位信息的预测。当区域提交网络“框”出了物体的大致区域和类别之后，模型再使用一个“物体检测”的网络来对物体进行最终的检测。</p>
+<p>Mask R-CNN的第一部分完全使用Faster R-CNN所提出的区域提交网络，模型对第二部分进行了更改。那Mask R-CNN的第二部分都输出什么呢？不仅仅输出区域的类别和框的相对位置，同时还输出具体的像素分割。和很多类似工作的区别是，像素分割、类别判断、位置预测是三个独立的任务，并没有互相的依赖，这是作者们认为Mask R-CNN能够成功的一个重要的关键。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了计算机视觉高级话题之一的物体识别和分割技术。我们总结了从最早的R-CNN到加速的Fast R-CNN和更快的Faster R-CNN，以及最后能够进行像素分割的Mask R-CNN。</p>
+<p>最后，给你留一个思考题，从这一系列模型的发展中，你能总结出一些心得体会吗？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<ol>
+<li><p>Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik. <strong>Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation</strong>. The IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 580-587, 2014.</p>
+</li>
+<li><p>Ross Girshick. <strong>Fast R-CNN</strong>. The IEEE International Conference on Computer Vision (ICCV), pp. 1440-1448, 2015.</p>
+</li>
+<li><p>Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun. <strong>Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</strong>. Conference on Neural Information Processing Systems (NIPS), 2015.</p>
+</li>
+<li><p>K. He, G. Gkioxari, P. Dollar and R. Girshick. <strong>Mask R-CNN</strong>. In IEEE Transactions on Pattern Analysis and Machine Intelligence.</p>
+</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#124-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9B%BE%E5%83%8F%E7%89%A9%E4%BD%93%E8%AF%86%E5%88%AB%E5%92%8C%E5%88%86%E5%89%B2"><span class="toc-number">1.</span> <span class="toc-text">124 | 计算机视觉高级话题（一）：图像物体识别和分割</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#R-CNN"><span class="toc-number">1.1.</span> <span class="toc-text">R-CNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-R-CNN"><span class="toc-number">1.2.</span> <span class="toc-text">Fast R-CNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Faster-R-CNN%E5%92%8CMask-R-CNN"><span class="toc-number">1.3.</span> <span class="toc-text">Faster R-CNN和Mask R-CNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？你好，我是海丰。 上节课，我们学习了混淆矩阵，以及准确率、精确率和召回率这3个基础指标的计算。这节课，我们依然会借助上节课的信用评估模型，来学习二分类模型中常用的两个综合性指标，KS和AUC。 构建KS和AUC的基础：TPR和FPR首先，我们来看两个基础指标：TPR和FPR，它们是计算KS和AUC的基础指标。 在信用评分模型中，TP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3978093781.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？你好，我是海丰。 上节课，我们学习了混淆矩阵，以及准确率、精确率和召回率这3个基础指标的计算。这节课，我们依然会借助上节课的信用评估模型，来学习二分类模型中常用的两个综合性指标，KS和AUC。 构建KS和AUC的基础：TPR和FPR首先，我们来看两个基础指标：TPR和FPR，它们是计算KS和AUC的基础指标。 在信用评分模型中，TP">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.652Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3978093781"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="20-模型性能评估（二）：从信用评分产品看什么是KS、AUC？"><a href="#20-模型性能评估（二）：从信用评分产品看什么是KS、AUC？" class="headerlink" title="20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？"></a>20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？</h1><p>你好，我是海丰。</p>
+<p>上节课，我们学习了混淆矩阵，以及准确率、精确率和召回率这3个基础指标的计算。这节课，我们依然会借助上节课的信用评估模型，来学习二分类模型中常用的两个综合性指标，KS和AUC。</p>
+<h2 id="构建KS和AUC的基础：TPR和FPR"><a href="#构建KS和AUC的基础：TPR和FPR" class="headerlink" title="构建KS和AUC的基础：TPR和FPR"></a>构建KS和AUC的基础：TPR和FPR</h2><p>首先，我们来看两个基础指标：TPR和FPR，它们是计算KS和AUC的基础指标。</p>
+<p>在信用评分模型中，TPR（True Positive Rate）代表模型找到真坏人（对应混淆矩阵中的TP）占实际坏人（TP+FN）的比例，它的计算公式为TPR&#x3D;TP&#x2F;(TP+FN)。一般来说，这个指标被称为：真正率、真阳率，用来评估模型正确预测的能力。不过，因为它的计算公式和召回率是一样的，所以为了方便我们也经常叫它召回率。</p>
+<p>FPR（False Positive Rate）代表模型误伤（认为是坏人，实际是好人）的人占总体好人的比例，它的计算公式为FPR&#x3D;FP&#x2F;(FP+TN)。一般来说，这个指标被称为：假正率、假阳率，它用来评估模型误判的比率或者误伤的比率，为了方便我们也叫它误伤率。</p>
+<p>那这两个指标是怎么构建KS和AUC的呢？别着急，我们慢慢往下看。</p>
+<h2 id="ROC曲线绘制和AUC的计算"><a href="#ROC曲线绘制和AUC的计算" class="headerlink" title="ROC曲线绘制和AUC的计算"></a>ROC曲线绘制和AUC的计算</h2><p>在实际工作中，我们最希望的模型一定是找到的坏人足够多，并且误伤的好人足够少，也就是TPR尽量高、FPR尽量低。为了形象地表达它们之间的关系，我们引入了ROC曲线。</p>
+<p>那么，ROC曲线具体是怎么得到呢？</p>
+<p>这里，我们先来回顾一下上节课的信用评分模型，这个模型的分数范围是[0,100]。算法团队给出的参考阈值（60分），我们根据它对模型进行了简单的划分，得到了混淆矩阵以及相应的召回率等指标。</p>
+<p>如果我们没有这个阈值呢？实际上，我们在模型分数的每一个点上都可以做这样的划分（也就是把每一个分数点都当作是一个阈值），这样就可以得到一连串的指标。想想都知道，对所有分数进行划分会非常麻烦。虽然不能对所有分数进行划分，但是我们可以对分数进行分段处理。比如说，我们的打分人数有5000人，我们按照每10分进行一个分段，就能得到下面这张图。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/006b4yy8cb018f3849ea091c602c45da.jpeg"></p>
+<p>结合上面的图，我们可以分3种情况进行讨论。</p>
+<p><strong>第一种情况是一种极端情况：阈值定在0分上，小于0的是坏人，大于0的是好人。</strong> 这个时候，虽然0分以下没有任何人，但是我们仍然可以得到相应的混淆矩阵，也就可以得到对应的TPR和FPR。</p>
+<p>这个时候的TPR是多少呢？我们不需要计算，根据定义思考一下就知道了。因为模型只有[0,100]，没有人的打分是小于0的，这也就意味着模型没有分辨出任何一个坏人，所有人都是好人，找坏人的能力TPR就是0。</p>
+<p>那么，FPR是多少呢？同样的，因为模型认为没有人是坏人，所以它没有产生任何一个误伤，误伤率FPR就是0。</p>
+<p><strong>第二种情况也是一个极端的情况：阈值定在100分，小于100分都是坏人，大于100分都是好人。</strong> 这个时候，模型会认为所有人都是坏人，所以模型能找到所有的坏人，TPR&#x3D;1。同理，模型把所有人都当成了坏人，就相当于误伤了所有的好人，所以FPR&#x3D;1。</p>
+<p><strong>第三种情况是正常情况：阈值定在一个非0分和非100分的分数上，如60分。</strong> 那么，TPR和FPR分别会得到一个在0-1范围内的值，如TPR&#x3D;0.8，FPR&#x3D;0.2。</p>
+<p>同样的，我们也可以把这个阈值分别定在10分、20分、30分这些点位上，就会得到一连串的TPR和FPR。如果我们把FPR做横轴，TPR做纵轴，一个TPR和FPR就对应了一个点。当把这些点都连起来之后，我们就可以得到如下一条蓝色的曲线：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/ea7faff3a280bd83a7dbf5194222d35a.jpeg"></p>
+<p><strong>总的来说，ROC曲线就是在没有准确阈值的情况下，对所有分数进行分段处理，计算每一个切分点对应的TPR和FPR，以FPR做横轴、TPR做纵轴绘制出的一条曲线。</strong></p>
+<p>除了蓝线，我们看到图中还有一条红线，它是一条随机线，这条随机线上的每一个切分点的FPR和FPR都是相等的。它表示模型每次切分时，抓到坏人的概率和误伤好人的概率都是一样的。这和我们随机猜测的概率相同，所以模型的ROC曲线越贴近这条随机线，模型的分类效果就越差。甚至，如果ROC曲线在随机线下面，就说明模型预测结果和我们预期结果是反的，而当ROC曲线越偏离随机线并且靠近左上方(0,1)点的时候，说明模型分类效果越好，因为这个时候，模型的TPR&#x3D;1，FPR&#x3D;0。</p>
+<p>虽然，我们通过ROC曲线可以区分模型的好坏，但这还不够直观，而且和业务方沟通时候，我们也不能直接让他们去看这张图。</p>
+<p>因此我们想到，是不是可以把曲线右下方和横坐标轴闭合起来的面积作为一个评估指标。这个面积就是我们图上蓝色的阴影部分，它就是AUC指标。一般来说AUC都在0.5到1之间，AUC越高代表模型的区分能力越好。如果AUC&#x3D;0.5，那ROC曲线与图中红线重合，表示模型没有区分能力，它的结果等于随机猜测；如果AUC小于0.5，说明这个模型大概率很差。</p>
+<h2 id="KS的计算"><a href="#KS的计算" class="headerlink" title="KS的计算"></a>KS的计算</h2><p>现在我们知道了AUC是什么，那么KS又是什么呢？其实，KS曲线和ROC曲线的本质和数据的来源都是一致的。只不过， <strong>ROC代表的是模型召回率和误伤率之间的变化关系，KS代表的是在某一点上，模型召回率最大并且误伤率最小</strong>。</p>
+<p>因此，我们在绘制ROC曲线的时候，是用召回率和误伤率来做纵轴和横轴，而在绘制KS曲线的时候，我们把召回率和误伤率都作为纵轴，把切分的分数点作为横轴。这个时候，一个切分点会同时得到TPR和FPR两个值，所以我们可以画出来两条曲线。具体是怎么操作的呢</p>
+<p>我们还是以[0,100]的模型分数范围为例，每10分做一个分段（如0分是一个切分点，10分是一个切分点，20分是一个切分点….），在每一个切分点上，我们都可以得到一对TPR和FPR。</p>
+<p>对于得到的TPR和FPR，我们也可以和刚才一样，分三种情况讨论。</p>
+<p>第一种情况，切分点在0。这个时候，模型认为没有任何人是坏人，所以TPR &#x3D; 0，FPR也是0。因此，在横坐标0这个点上，我们得到了两个数值相同的点，也就是图上左下角蓝色的点。</p>
+<p>第二种情况，切分点在100。这个时候，TPR和FPR都是1，所以得到右上角橘色的点。</p>
+<p>第三种情况，切分点非0、非100。假设，我们还是以60分作为切分点，也会得到一对TPR和FPR。</p>
+<p>就这样，等我们把所有切分点遍历之后，就能得到所有切分点的TPR和FPR值。然后，我们把它们放到坐标系中，把得到的TPR和FPR的值分别连接起来，就能得到两条曲线。这个坐标系的横轴就是我们对信用评分的切分点，如果我们信用分是[0,100]范围，那它就是从0到100的数值。</p>
+<p>如下图所示，红色线是我们在不同的切分点得到的所有TPR的曲线，绿色线是相应的FPR曲线。它们在（0，0）和（100，1）这两个点相交。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/ff8d60a16e075809a759a955e4747b8e.jpeg"></p>
+<p><strong>由于KS代表的是在某一点上，模型召回率最大同时误伤率最小，所以KS就是图中红色线和绿色线间隔最大时候的距离。</strong></p>
+<p>如图，TPR和FPR在切分点为40的时候距离最大，这就意味着当我们拒绝给40分以下的人进行贷款，同时通过40分以上的人的信贷请求时，业务的收益最大。这是因为，我们拒绝了足够多的坏人，同时误伤了足够少的好人。那么，KS就是在这个点上，TPR-FPR的数值了。</p>
+<p>具体到图中，KS &#x3D; 0.7- 0.1&#x3D;0.6，所以我们这个模型的KS就是0.6。在实际业务中也有人会说“我们KS是60”，这也是正常的。</p>
+<p>那么，对于信用评分产品来说，KS指标是多少才合适呢？对于用于贷前审批的信用评分（申请评分卡）模型来说，一般业内会分为4种情况：</p>
+<ul>
+<li>KS&lt;20：欠拟合，模型基本不具备可用性</li>
+<li>KS&gt;20&amp;KS&lt;30：模型可用</li>
+<li>KS&gt;30&amp;KS&lt;40：模型预测能力优秀</li>
+<li>KS&gt;40：模型的区分度很高。但同时我们也要对这个结果持怀疑态度，进一步去分析入模变量中是否有一些滞后变量，来确认结果的准确性</li>
+</ul>
+<p>总的来说，如果模型的KS或者AUC值很高，不一定是一件好事情。我们需要了解背后的原因，这有可能是数据不准确导致的。比如，在贷前信用评分场景下，KS值大于50或者AUC大于80时，我们就需要注意一下数据的准确性了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这节课，我们讲了分类模型评估的进阶指标：KS和AUC，它们是我们在模型评估中用得比较多的指标。围绕它们的构建，我们又讲了TPR、FPR和ROC曲线，为了方便你记忆和对比，我把它们的核心概念、公式适用场景都总结在了下面的表格中，你可以看看。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/ca30edacf5ec38201yy01197ef3e212e.jpeg"></p>
+<p>这两节课，我们以一个信用评估模型的例子，讲完了分类模型的评估。总的来说，不同类型和不同公司的AI产品经理需要掌握的评估能力可能不同。</p>
+<p>比如说，应用层的AI产品经理可能只需要知道召回率、精确率这些就可以了。但是，B端做金融风控模型的产品经理，就需要知道KS是什么，它是怎么来的，甚至要学会看不同测试集下面的KS是否合理。</p>
+<p>就像我之前遇到一个情况：OOT测试的KS是40，测试集的KS是39，训练集的KS是35。虽然我们用的都是真实数据，但结果依然不合理，如果我把这样的结果交付给客户，客户不只会质疑我的专业程度，更有可能怀疑我们公司的技术能力。</p>
+<p>因此，我们只有确定好自己要努力的目标，才能知道这些内容自己要掌握哪些，掌握到什么程度，比如做互联网应用的产品经理一般掌握召回率、准确率、AUC 这些指标就可以完成大部分的工作了。当然，如果你想全面系统化地学习AI技术，那么尽可能地拓展自己的知识面总没有错。</p>
+<h2 id="课后讨论"><a href="#课后讨论" class="headerlink" title="课后讨论"></a>课后讨论</h2><p>在这里，我想请你尝试手动计算一下KS值。虽然实际工作中我们不需要手工计算，但是我希望你可以通过本次课后题，加深对KS的理解。</p>
+<p>下面是我们一个信用评分产品的测试数据，我已经将分数做好了分箱（我这里使用了等频分箱），并且得到了好、坏用户的数量（goods,bads），请你计算这个产品的KS值是多少。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2949b315b69517ffdce9c0f14a7ea157.jpeg"></p>
+<p>期待在留言区看到你的分享和答案，我们下节课见！</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#20-%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BB%8E%E4%BF%A1%E7%94%A8%E8%AF%84%E5%88%86%E4%BA%A7%E5%93%81%E7%9C%8B%E4%BB%80%E4%B9%88%E6%98%AFKS%E3%80%81AUC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">20 | 模型性能评估（二）：从信用评分产品看什么是KS、AUC？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAKS%E5%92%8CAUC%E7%9A%84%E5%9F%BA%E7%A1%80%EF%BC%9ATPR%E5%92%8CFPR"><span class="toc-number">1.1.</span> <span class="toc-text">构建KS和AUC的基础：TPR和FPR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROC%E6%9B%B2%E7%BA%BF%E7%BB%98%E5%88%B6%E5%92%8CAUC%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">ROC曲线绘制和AUC的计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KS%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">KS的计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.5.</span> <span class="toc-text">课后讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

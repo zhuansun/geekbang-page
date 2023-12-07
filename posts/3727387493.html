@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>102 | 基础文本分析模型之三：EM算法 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="102 | 基础文本分析模型之三：EM算法周一我们分享的模型是“概率隐语义分析”（Probabilistic Latent Semantic Indexing），或者简称为PLSA，这类模型有效地弥补了隐语义分析的不足，在LDA兴起之前，成为了有力的文本分析工具。 不管是PLSA，还是LDA，其模型的训练过程都直接或者间接地依赖一个算法，这个算法叫作“ 期望最大化”（Expectation Max">
+<meta property="og:type" content="article">
+<meta property="og:title" content="102 | 基础文本分析模型之三：EM算法">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3727387493.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="102 | 基础文本分析模型之三：EM算法周一我们分享的模型是“概率隐语义分析”（Probabilistic Latent Semantic Indexing），或者简称为PLSA，这类模型有效地弥补了隐语义分析的不足，在LDA兴起之前，成为了有力的文本分析工具。 不管是PLSA，还是LDA，其模型的训练过程都直接或者间接地依赖一个算法，这个算法叫作“ 期望最大化”（Expectation Max">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.154Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3727387493"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '102 | 基础文本分析模型之三：EM算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">102 | 基础文本分析模型之三：EM算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="102-基础文本分析模型之三：EM算法"><a href="#102-基础文本分析模型之三：EM算法" class="headerlink" title="102 | 基础文本分析模型之三：EM算法"></a>102 | 基础文本分析模型之三：EM算法</h1><p>周一我们分享的模型是“概率隐语义分析”（Probabilistic Latent Semantic Indexing），或者简称为PLSA，这类模型有效地弥补了隐语义分析的不足，在LDA兴起之前，成为了有力的文本分析工具。</p>
+<p>不管是PLSA，还是LDA，其模型的训练过程都直接或者间接地依赖一个算法，这个算法叫作“ <strong>期望最大化”</strong>（Expectation Maximization），或简称为 <strong>EM算法</strong>。实际上，EM算法是针对隐参数模型（Latent Variable Model）最直接有效的训练方法之一。既然这些模型都需要EM算法，我们今天就来谈一谈这个算法的一些核心思想。</p>
+<h2 id="EM和MLE的关系"><a href="#EM和MLE的关系" class="headerlink" title="EM和MLE的关系"></a>EM和MLE的关系</h2><p>EM算法深深根植于一种更加传统的统计参数方法： <strong>最大似然估计</strong>（Maximum Likelihood Estimation），有时候简称为 <strong>MLE</strong>。 <strong>绝大多数的机器学习都可以表达成为某种概率模型的MLE求解过程</strong>。</p>
+<p>具体来说，MLE是这样构造的。首先，我们通过概率模型写出当前数据的“似然表达”。所谓的“似然”表达，其实也就是在当前模型的参数值的情况下，看整个数据出现的可能性有多少。可能性越低，表明参数越无法解释当前的数据。反之，如果可能性非常高，则表明参数可以比较准确地解释当前的数据。因此， <strong>MLE的思想其实就是找到一组参数的取值，使其可以最好地解释现在的数据</strong>。</p>
+<p>针对某一个模型写出这个MLE以后，就是一个具体的式子，然后看我们能否找到这个式子最大值下的参数取值。这个时候，整个问题往往就已经变成了一个优化问题。从优化的角度来说，那就是针对参数求导，然后尝试把整个式子置零，从而求出在这个时候的参数值。</p>
+<p>对绝大多数相对比较简单的模型来说，我们都可以根据这个流程求出参数的取值。比如，我们熟悉的利用高斯分布来对数据进行建模，其实就可以通过MLE的形式，写出用高斯建模的似然表达式，然后通过求解最优函数解的方式得到最佳的参数表达。而正好，这个最优的参数就是样本的均值和样本的方差。</p>
+<p>然而，并不是所有的MLE表达都能够得到一个“ <strong>解析解</strong>”（Closed Form Solution），有不少的模型甚至无法优化MLE的表达式，那么这个时候，我们就需要一个新的工具来求解MLE。</p>
+<p><strong>EM算法的提出就是为了简化那些求解相对比较困难模型的MLE解。</strong></p>
+<p>有一点需要说明的是，EM算法并不能直接求到MLE，而只能提供一种近似。多数无法直接求解的MLE问题都属于 <strong>非凸（Non-Convex）问题</strong>。因此， <strong>EM能够提供的仅仅是一个局部的最优解，而不是全局的最优解</strong>。</p>
+<h2 id="EM算法的核心思想"><a href="#EM算法的核心思想" class="headerlink" title="EM算法的核心思想"></a>EM算法的核心思想</h2><p>理解了EM和MLE的关系后，我们来看一看EM的一些核心思想。因为EM算法是技术性比较强的算法，我建议你一定要亲自去推演公式，从而能够真正理解算法的精髓。我们在这里主要提供一种大体的思路。</p>
+<p>EM算法的一种解释是这样的。首先，我们可以通过代数变形，为每一个数据点的似然公式找到一个新的概率分布，而这个概率分布是通过一个隐含变量来达到的。很明显，在理论上，我们可以通过把这个隐含变量积分掉来达到恢复原始的MLE公式的目的。</p>
+<p>然而，这里遇到的一个大的阻碍就是，在MLE公式里面，有一个求对数函数（log）在这个积分符号外面。这就导致整个式子无法进行操作。通俗地讲，EM就是要针对这样的情况，试图把这个在积分符号之外的求对数函数拿到积分符号里面。能够这么做，是因为有一个不等式，叫“ <strong>杨森不等式</strong>”。你不需要去理解杨森不等式的细节，大体上这个不等式是说，函数的期望值要大于或等于先对函数的变量求期望然后再对其作用函数。</p>
+<p>于是，在这样的一个不等式的引领下，我们刚才所说的积分，其实就可以被看作是对某一个函数求期望值。而这个函数，恰好就是模型的似然表达。通过杨森不等式，我们可以把对数函数拿到积分符号里面，这样当然就无法保持等号了，也就是说，这一步的操作不是一个等值操作。利用杨森不等式之后的式子其实是原来的式子，也就是含有隐含变量的MLE式的一个“ <strong>下限</strong>”（Lower Bound）。</p>
+<p><strong>利用杨森不等式，从而写出一个原始的MLE的下限，是标准的EM算法以及一系列基于变分EM（Variational EM）算法的核心思想。这么做的目的其实就是把对数函数从积分的外面给拿到里面。</strong></p>
+<p>当我们有了这个下限之后，我们就可以套用MLE的一切流程了。注意，这时候，我们有两组未知数。一组未知数是我们 <strong>模型的参数</strong>，另外一组未知数就是 <strong>模型的隐含变量</strong>。于是，当得到下限之后，我们就需要对这两组未知数分别求导，并且得到他们的最优表达。</p>
+<p>当我们按照当前的模型参数，对模型的隐含变量所对应的概率分布求解后，最优的隐含变量的概率分布就等于隐含变量基于数据的后验概率。什么意思呢？意思就是说，如果我们把隐含变量的取值直接等于其后验概率分布，就得到了当前的最优解。这个步骤常常被叫作“ <strong>E步</strong>”。</p>
+<p>在进行了E步之后，我们再按照当前的隐含变量，求解这个时候最佳的模型参数。这常常被认为是“ <strong>M步</strong>”。 <strong>一次E步，一次M步则被认为是EM算法的一个迭代轮回</strong>。</p>
+<p>EM算法貌似很神秘，但如果我们理解了整个流程的精髓，就可以把这个算法总结为：EM算法是 <strong>利用杨森不等式得到MLE的一个下限，并且优化求解模型参数和模型的隐含变量的一个过程</strong>。</p>
+<p>掌握了这个精髓，我们就可以看到，为什么LDA和PLSA等隐变量模型需要利用EM或者类似EM的步骤进行求解。第一，这些模型的MLE都有一个对数函数在积分符号外面，使得这个过程无法直接求解。第二，这些模型本身就有隐含变量，因此不需要额外制造新的隐含变量。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了一个经常用于求解概率图模型的EM算法。</p>
+<p>一起来回顾下要点：第一，我们回顾了EM算法和MLE算法的关系；第二，我们讨论了EM算法的核心思想。</p>
+<p>最后，给你留一个思考题，EM算法在实际应用中有哪些问题呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#102-%E5%9F%BA%E7%A1%80%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E4%B9%8B%E4%B8%89%EF%BC%9AEM%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">102 | 基础文本分析模型之三：EM算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EM%E5%92%8CMLE%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">EM和MLE的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EM%E7%AE%97%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">1.2.</span> <span class="toc-text">EM算法的核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

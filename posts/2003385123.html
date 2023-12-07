@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>145 | 如何做好人工智能项目的管理？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="145 | 如何做好人工智能项目的管理？关于数据科学团队养成这个主题，在之前的分享中，我们已经聊了数据科学团队招聘以及一些高级话题，主要是围绕如何组建一个高效的团队，包括数据科学家的绩效评定、培养以及如何构建水平和垂直的组织架构这些内容。 在接下来的几篇分享里，我们重新回到数据科学团队的本源，来看一看数据科学团队在整个公司的位置，以及在数据科学团队的发展和运行中，又有哪些至关重要的环节。 今天我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="145 | 如何做好人工智能项目的管理？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2003385123.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="145 | 如何做好人工智能项目的管理？关于数据科学团队养成这个主题，在之前的分享中，我们已经聊了数据科学团队招聘以及一些高级话题，主要是围绕如何组建一个高效的团队，包括数据科学家的绩效评定、培养以及如何构建水平和垂直的组织架构这些内容。 在接下来的几篇分享里，我们重新回到数据科学团队的本源，来看一看数据科学团队在整个公司的位置，以及在数据科学团队的发展和运行中，又有哪些至关重要的环节。 今天我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.233Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2003385123"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '145 | 如何做好人工智能项目的管理？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">145 | 如何做好人工智能项目的管理？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="145-如何做好人工智能项目的管理？"><a href="#145-如何做好人工智能项目的管理？" class="headerlink" title="145 | 如何做好人工智能项目的管理？"></a>145 | 如何做好人工智能项目的管理？</h1><p>关于数据科学团队养成这个主题，在之前的分享中，我们已经聊了数据科学团队招聘以及一些高级话题，主要是围绕如何组建一个高效的团队，包括数据科学家的绩效评定、培养以及如何构建水平和垂直的组织架构这些内容。</p>
+<p>在接下来的几篇分享里，我们重新回到数据科学团队的本源，来看一看数据科学团队在整个公司的位置，以及在数据科学团队的发展和运行中，又有哪些至关重要的环节。</p>
+<p>今天我们就来聊一聊运行数据科学团队里面的一个核心问题，就是如何针对人工智能项目进行管理，从而保证团队运行的项目能够顺利完成，同时能够真正帮助企业利用人工智能技术来推动产品的发展。</p>
+<p>一说到项目管理，很多成熟的工程师或者项目经理可能会不以为然，觉得不需要对人工智能项目进行额外的关注。但是在实际工作中，如何运作数据科学项目关系到整个产品的推进，甚至可能对公司的发展都会有不小的影响。</p>
+<p>那么，通常情况下，针对人工智能项目会有哪些项目管理的模式呢？我们先来看看两种极端模式。</p>
+<h2 id="把人工智能项目当作“研究项目”"><a href="#把人工智能项目当作“研究项目”" class="headerlink" title="把人工智能项目当作“研究项目”"></a>把人工智能项目当作“研究项目”</h2><p>第一种模式是把人工智能项目完全当作是研究项目。很多从学术界转到工业界的研究人员和工程师，在处理人工智能项目时就很容易陷入这种状态。那么研究项目有哪些特点，或者说，如果我们把人工智能项目完全当作是研究项目，会带来什么问题呢？</p>
+<p>首先，在很多状态下， <strong>研究项目并没有特别明确的目标</strong>。有些项目看似是利用一个现成的方法来解决一个实际问题，但是做了一阵子才发现问题的定义并不清晰，而那个现成的方法可能需要重新修改，才能在新的问题上使用。而且，修改这个方法也许还需要进行一些理论推导，即便做了所有这些步骤以后，依然没有人可以保证这个方法对新的问题一定有效。</p>
+<p>也就是说，研究项目的每一个步骤都充满了不确定性。 <strong>这种过程和结果的不确定性，可以说是研究项目最大的特点</strong>。不确定的特点带来的结果，往往就是不太好控制整个研究项目的范围。</p>
+<p>举一个例子，如果我们要针对一组图像构建一个分类器。这个项目其实可大可小，可快可慢。如果我们直接用现成的模型，然后利用迁移学习的办法，不去重新训练模型，仅仅是把模型直接应用到新数据上，那快则一天，慢则一个星期，可能就完成了这个任务。</p>
+<p>然而，这么做对分类精度是没有任何保证的。我们可能会发现分类器的精度比我们想象的要低得多。那么，这个时候就会达到一个比较危险的时刻。原始项目范围内需要做的任务都已经完成了，但是没有达到效果，后面可以做的事情，范围可能就会非常大，也没人能说得清楚，做了这些额外的任务之后，是不是一定能提高分类器的精度。</p>
+<p>因此，把人工智能项目完全看作研究项目的弊端就很明显了，我们无法很好地把握整个项目的周期，特别是完成时间。同时，种种的不确定还可能造成项目范围的不可控。显然，这种局面是工程项目中最不愿意看到的。</p>
+<h2 id="把人工智能项目当作“软件工程项目”"><a href="#把人工智能项目当作“软件工程项目”" class="headerlink" title="把人工智能项目当作“软件工程项目”"></a>把人工智能项目当作“软件工程项目”</h2><p>另外一个人工智能项目管理的极端模式，就是完全按照软件工程的模式来进行管理。我们这里不讨论具体的软件工程管理方法，我们仅从宏观上来讨论软件工程管理模式对于人工智能项目管理的弊端。</p>
+<p>软件工程管理的一个核心思想，就是能够 <strong>把一个大的任务拆分成一些细节的任务，然后假设如果能够完成小的细节任务，那么大的项目也就能顺利完成</strong>。同时，软件工程管理还有一个重要的假设，那就是 <strong>工程的绝大多数步骤都是确定的，没有过多的变数</strong>。</p>
+<p>遗憾的是，正如我们刚才提到的，人工智能项目的一个特征，就是不确定性。因此， <strong>按照软件工程进行管理，就容易做一些看似有意义，但其实对工程进展并没有真正帮助的任务</strong>。这些任务往往是数据科学家或者工程师凭空制造出的，目的就是为了符合软件工程的管理流程。过于细节的任务划分，往往就会把整个项目真正的目标给迷失掉，从而无法针对是否达到目标很好地进行控制。</p>
+<p>回到上面那个图像分类器项目的例子，如果我们采用纯粹的软件工程管理方式，那步骤很可能是这样的：需要先写一个计划书，再对数据进行描述，然后找责任相关方来探讨是否需要重新训练模型等等。这些步骤耗费了大量时间，但是对于能否构造出高精度的分类器并没有帮助。</p>
+<h2 id="人工智能项目的管理"><a href="#人工智能项目的管理" class="headerlink" title="人工智能项目的管理"></a>人工智能项目的管理</h2><p>那到底该如何来管理人工智能项目呢？人工智能还处于发展的初期，目前其实并没有一个完全成型的项目管理方法论和一个放之四海而皆准的框架。不过，通过刚才对两种极端情况的讨论，相信我们可以在真实的项目管理过程中想出一些办法。</p>
+<p><strong>首先，我们需要有一个迭代的思路</strong>。迭代思路是为了能够有效地 <strong>管理项目的范围</strong>。还是回到我们所说的图像分类器项目，如果我们利用迭代的思路来进行项目管理，就不会把一个绝对的模型精度当作是项目的唯一目标，而把提高精度当作目标，但事先不会针对精度有过分苛责的追求，那么每一天每一周需要做的工作就相对比较容易可控。</p>
+<p><strong>其次，我们需要分清楚项目中哪些部分是相对可控的，而哪些部分是比较不容易控制的</strong>。当一个模型被训练出来后，要把这个训练流程形成一个 <strong>每天可以更新的工作流</strong>（Workflow），这个任务是相对比较可控的。可控的部分我们就可以利用软件工程的项目管理方法了，来对这些任务进行细分。那不可控的任务呢？比如希望提高当前模型的精度，或者是数据量大了十倍以上，依然希望能够进行操作等等。针对这些任务都没有直接的答案，寻找解决方法的过程充满了不确定性，那就无法真正利用软件工程的项目手段了。</p>
+<p><strong>最后，是人工智能工程项目管理的一个“小窍门”，那就是设置完整的“交工日期”</strong>（Deadline）。不同的交工日期往往意味着完全不同的解决方案，甚至这些解决方案之间会有非常大的精度区别。我们的交工日期要建立在迭代思想上，这样就能保证我们的项目在每一个交工日期都有一个成型的结果。如果模型的精度还有提升的空间，我们就可以依赖下一次迭代去完成精度的提高。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了数据科学团队的一个核心问题，那就是如何针对人工智能项目进行管理。</p>
+<p>一起来回顾下要点：第一，我简单介绍了什么是人工智能项目管理；第二，我们分析了两种极端的项目管理模式以及各自的弊端；第三，我们讨论了如何利用两种极端模式来寻求中间路线的办法。</p>
+<p>最后，给你留一个思考题，你自己的经验里，人工智能项目在运行过程中，哪些步骤或者说是流程是最消耗时间的？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#145-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%AE%A1%E7%90%86%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">145 | 如何做好人工智能项目的管理？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E9%A1%B9%E7%9B%AE%E5%BD%93%E4%BD%9C%E2%80%9C%E7%A0%94%E7%A9%B6%E9%A1%B9%E7%9B%AE%E2%80%9D"><span class="toc-number">1.1.</span> <span class="toc-text">把人工智能项目当作“研究项目”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E9%A1%B9%E7%9B%AE%E5%BD%93%E4%BD%9C%E2%80%9C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E2%80%9D"><span class="toc-number">1.2.</span> <span class="toc-text">把人工智能项目当作“软件工程项目”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">人工智能项目的管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>079 | 广告系统概述 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="079 | 广告系统概述在之前的分享里，我们已经介绍了搜索、推荐系统以及文本分析这三个重要的机器学习、人工智能领域。从基本的思想、算法以及架构说起，我们针对这几个领域要解决的问题和在解决这些问题的过程中出现的经典思路都做了比较详细的讲解。 可以说，搜索是最早利用机器学习以及人工智能思想和技术的应用领域。不管是从最初的图书馆信息检索系统还是到最近二十年年兴起的大规模现代搜索引擎，围绕搜索系统所产生的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="079 | 广告系统概述">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4084147748.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="079 | 广告系统概述在之前的分享里，我们已经介绍了搜索、推荐系统以及文本分析这三个重要的机器学习、人工智能领域。从基本的思想、算法以及架构说起，我们针对这几个领域要解决的问题和在解决这些问题的过程中出现的经典思路都做了比较详细的讲解。 可以说，搜索是最早利用机器学习以及人工智能思想和技术的应用领域。不管是从最初的图书馆信息检索系统还是到最近二十年年兴起的大规模现代搜索引擎，围绕搜索系统所产生的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.120Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4084147748"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '079 | 广告系统概述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">079 | 广告系统概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="079-广告系统概述"><a href="#079-广告系统概述" class="headerlink" title="079 | 广告系统概述"></a>079 | 广告系统概述</h1><p>在之前的分享里，我们已经介绍了搜索、推荐系统以及文本分析这三个重要的机器学习、人工智能领域。从基本的思想、算法以及架构说起，我们针对这几个领域要解决的问题和在解决这些问题的过程中出现的经典思路都做了比较详细的讲解。</p>
+<p>可以说，搜索是最早利用机器学习以及人工智能思想和技术的应用领域。不管是从最初的图书馆信息检索系统还是到最近二十年年兴起的大规模现代搜索引擎，围绕搜索系统所产生的诸多方法论、算法和模型都影响着很多相关领域。 <strong>特别是基于排序学习（Learning To Rank）的搜索排序算法的提出和成熟，让机器学习的一大批技术和搜索的现实问题得以结合，成为了机器学习和某个应用领域相互发展的一大典范</strong>。类似的，对于推荐系统来说，也在过去十几年间，通过机器学习技术和推荐问题的结合，迸发出了一系列经典方法，这些方法也影响了其他应用领域的发展。</p>
+<p>从今天起，我们就来看另一个重要的应用领域： <strong>计算广告</strong>。计算广告这个领域深受搜索系统和推荐系统的影响，可以说有很多技术都是从这两个领域直接借鉴过来的。然而，因为其应用对象的不同和场景的不同，计算广告又有很多自己独特的问题，以及解决这些问题需要注意的限制条件。因此，在过去十多年间，计算广告慢慢发展出了一条独特的道路。</p>
+<p>那么，我们首先来聊一聊广告系统的概述，看一下这个领域要解决的主要问题以及发展的简要历史。</p>
+<h2 id="计算广告的主要场景"><a href="#计算广告的主要场景" class="headerlink" title="计算广告的主要场景"></a>计算广告的主要场景</h2><p>为了给你建立一个感性的认识，我们先来讲一下计算广告的主要场景，了解这个领域需要解决什么样的问题。我们还会在后面的讲解中逐一展开这些场景下的问题设置，因此，这里主要是从大方向上来对这些场景进行一个把握。</p>
+<p>互联网的应用和内容服务商慢慢意识到，提供广告可以作为一种重要的盈利手段，这以后，一个新兴的行业就此诞生了。</p>
+<p>从最简单的场景来说，一个互联网内容服务商，例如一个新闻网站或者一个社交媒体网站，希望在自己的服务里插入广告，这基本上就是一个内容的匹配问题。我们把 <strong>在自己的服务里提供广告的内容服务商叫作“发布商”</strong>（Publisher）。</p>
+<p>发布商的目的是匹配广告和目标人群，有时候又叫“受众”（Audience），使得目标人群能够对广告产生兴趣并且点击，然后最终产生行动。这里的行动，可以是购买了广告里的商品，订阅了广告里的服务，也可以是非常广义下的行动，比如对某个品牌有了更加深刻的好印象等。</p>
+<p>在这个最简单的场景里，有两种最基本的广告模式，一种叫作“ <strong>搜索广告</strong>”，一种叫作“ <strong>展示广告</strong>”。搜索广告是说发布商提供某种形式的搜索服务，然后将广告显示在搜索结果页面上。在这样的情况下，广告需要和查询关键词的语义有关系。从本质上说，这种情况下的广告是搜索结果的自然延伸。而对于展示广告来说，往往就是显示在发布商的普通页面上，一般并不直接和任何查询关键词相关。这又和经典的推荐系统的场景非常类似，也可以看做是推荐的一个自然延伸。</p>
+<p>如果仅从这样的角度来看广告系统，那么我们基本上可以认定，广告就是特殊的搜索或者特殊的推荐。但其实广告系统还有另外一个和搜索以及推荐非常不一样的方面，最终决定了广告系统的特殊性，那就是“ <strong>广告商</strong>”（Advertiser）。</p>
+<p><strong>广告商是那些愿意把自己的广告放到发布商上来显示给受众观看的服务提供商</strong>。广告商对于自己的目标往往有明确的定位，比如希望能够通过广告来增加销售，提高服务订阅数量，提高自己的品牌效应等等。因此，广告商自然希望能够在以下这一系列的决策上有更多的发言权，比如发布商究竟如何显示广告，在什么情况下显示广告，针对什么人群显示广告等，从而能够让自己的利益最大化。</p>
+<p>也正是因为这个原因，为了满足广告商的需求，从而能够吸引更多的广告商来自己的服务打广告，发布商往往提供各种工具，帮助广告商了解自己的用户群体以及广告的效果，使得广告商认为这个发布商是一个可以值得依赖的合作伙伴。</p>
+<p>然而，即便如此，发布商和广告商的利益往往是不完全一致的。发布商，作为一个内容的提供平台或是一个社交媒体平台，需要照顾自己用户群的感受。例如，一个医院希望在一个新闻网站上投放自己的广告，即便可以为新闻网站带来丰厚的广告收益，新闻网站也需要考虑，从长远来看，这些广告内容和自己的新闻内容是否和谐，是否慢慢地会让用户产生厌烦情绪等。从这个角度来看，发布商不仅仅是简单地进行广告和受众的匹配，还有一个最重要的工作，是从宏观上平衡广告投放效果和内容服务效果，从而达到自己价值的最大化。</p>
+<p>随着发布商和广告商数目的增多，众多的发布商发现，如果都需要依靠自己的力量来构建大型广告管理系统，那无疑是非常耗时也是很多中小发布商所不具备的能力。同样，对于广告商来说，如果希望自己的广告能够投放到众多发布商中，逐一研究发布商的工具以及各个发布商用户的区别，就会为广告投放增加不小的难度。因此，针对发布商以及针对广告商的中间平台很快就应运而生。</p>
+<p>对于发布商的中间平台而言，整合众多发布机会，从而能够让发布商接触到更多的机会，成为了“ <strong>供应侧平台</strong>”（Supply Side Platform）。而对于广告商的中间平台而言，整合众多广告商机会，从而能够让广告商接触更广的发布机会，成为了“ <strong>需求侧平台</strong>”（Demand-side Platform）。而连接这两大平台的则是“ <strong>广告交换平台</strong>”（Ads Exchange Platform）。关于这些平台的具体功效，我们后面会慢慢接触到。</p>
+<p>总之，现在你可以了解到， <strong>广告系统的重要场景是涉及广告商、发布商以及受众“三种角色”的复杂系统之间的平衡以及利益的最大化</strong>。</p>
+<h2 id="计算广告的简要历史"><a href="#计算广告的简要历史" class="headerlink" title="计算广告的简要历史"></a>计算广告的简要历史</h2><p>当我们熟悉了广告系统的一些经典场景之后，我们现在来回顾一下计算广告系统的一个发展简史。</p>
+<p>最早的互联网广告出现在1994年11月27日。AT &amp; T这个电信运营商在当时展现了一个叫HotWired的广告商的广告。那个时候，整个互联网只有三千多万用户。</p>
+<p>1998年的时候，Goto.com的比尔⋅格罗斯（Bill Gross）发明了“搜索广告”（Sponsored Search），或者有些搜索引擎也把它叫作“竞价排名”。Goto.com后来在2001年成为了Overtune，并最终在2003年被雅虎公司收购。</p>
+<p>2002年，谷歌也开始了自己的搜索广告产品AdWords并且很快引入了Generalized Second-Price-Auction，或者简称 <strong>GSP</strong> 的机制来对广告进行投标竞价。2007年，雅虎也跟进了这种方式来管理所有的广告投标。值得一提的是，当时的谷歌还针对一个广告专利技术纠纷，支付了240万股股票给雅虎。</p>
+<p>另一方面，1998年已经有公司开始尝试利用自己的内容页面展示广告。2003年，谷歌收购了一家叫Oingo的公司并且将其业务更名为AdSense，从而开始了其展示广告服务。其后，雅虎和微软等服务商也相继效仿，扩展了自己的广告业务线。</p>
+<p>早在2005年前后，各种广告交换平台也纷纷出现。这些交换平台的出现为“ <strong>实时竞价</strong>”（Real-Time-Bidding），或叫 <strong>RTB</strong> 提供了可能性。今天，绝大多数广告平台都支持RTB来为广告商以及内容发布商提供服务。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你简单介绍了广告系统的概况。一起来回顾下要点：第一，我们讲了广告系统的基本应用场景以及其中的重要角色；第二，我们回顾了计算广告在过去发展的一个简单历史。</p>
+<p>最后，给你留一个思考题，除了我们所说的搜索广告和展示广告，你还见过什么其他类型的互联网广告呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#079-%E5%B9%BF%E5%91%8A%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">079 | 广告系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%B9%BF%E5%91%8A%E7%9A%84%E4%B8%BB%E8%A6%81%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">计算广告的主要场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%B9%BF%E5%91%8A%E7%9A%84%E7%AE%80%E8%A6%81%E5%8E%86%E5%8F%B2"><span class="toc-number">1.2.</span> <span class="toc-text">计算广告的简要历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

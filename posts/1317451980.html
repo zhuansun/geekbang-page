@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>111 | 聊天机器人有哪些核心技术要点？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="111 | 聊天机器人有哪些核心技术要点？对话系统分为“任务型”和“非任务型”两种基本类型。周一的分享里，我们讨论了任务型对话系统的一些技术要点，重点介绍了任务型对话系统的各个组件及其背后的模型支撑。 今天，我们就来看一看**非任务型对话系统 的主要技术要点。非任务型的对话系统有时候又会被称作是“ 聊天机器人**”。 基于信息检索的对话系统我们前面讲过，对话系统，特别是非任务型对话系统，也就是聊天">
+<meta property="og:type" content="article">
+<meta property="og:title" content="111 | 聊天机器人有哪些核心技术要点？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1317451980.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="111 | 聊天机器人有哪些核心技术要点？对话系统分为“任务型”和“非任务型”两种基本类型。周一的分享里，我们讨论了任务型对话系统的一些技术要点，重点介绍了任务型对话系统的各个组件及其背后的模型支撑。 今天，我们就来看一看**非任务型对话系统 的主要技术要点。非任务型的对话系统有时候又会被称作是“ 聊天机器人**”。 基于信息检索的对话系统我们前面讲过，对话系统，特别是非任务型对话系统，也就是聊天">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.171Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1317451980"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '111 | 聊天机器人有哪些核心技术要点？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">111 | 聊天机器人有哪些核心技术要点？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="111-聊天机器人有哪些核心技术要点？"><a href="#111-聊天机器人有哪些核心技术要点？" class="headerlink" title="111 | 聊天机器人有哪些核心技术要点？"></a>111 | 聊天机器人有哪些核心技术要点？</h1><p>对话系统分为“任务型”和“非任务型”两种基本类型。周一的分享里，我们讨论了任务型对话系统的一些技术要点，重点介绍了任务型对话系统的各个组件及其背后的模型支撑。</p>
+<p>今天，我们就来看一看**非任务型对话系统 <strong>的主要技术要点。非任务型的对话系统有时候又会被称作是“</strong> 聊天机器人**”。</p>
+<h2 id="基于信息检索的对话系统"><a href="#基于信息检索的对话系统" class="headerlink" title="基于信息检索的对话系统"></a>基于信息检索的对话系统</h2><p>我们前面讲过，对话系统，特别是非任务型对话系统，也就是聊天机器人，有一个很重要的功能，就是在一个知识库的基础上和用户进行对话。这个知识库可以是海量的已经存在的人机对话，也可以是某种形式的知识信息。</p>
+<p>比如，一个关于篮球的聊天机器人，那就需要这个系统能够访问有关篮球球队、运动员、比赛、新闻等有关篮球信息的知识库。同时，在这个对话系统运行了一段时间之后，我们就会慢慢积累很多有关篮球的对话。这些对话就成为了系统针对当前输入进行反应的基础。</p>
+<p><strong>针对当前的输入，利用之前已经有过的对话进行回馈，这就是基于信息检索技术的对话系统的核心假设</strong>。一种最基本的做法就是，找到和当前输入最相近的已有对话中的某一个语句，然后回复之前已经回复过的内容。</p>
+<p>比如，当前的问话是“迈克尔·乔丹在职业生涯中一共得过多少分？”如果在过去的对话中，已经有人问过“迈克尔·乔丹为芝加哥公牛队一共得过多少分？”。那么，我们就可以根据这两句话在词组上的相似性，返回已经回答过的答案来应对当前的输入。</p>
+<p>当然，上面这种对话系统可能会显得比较原始。但是，一旦我们把整个问题抽象成广义的搜索问题，其实就可以建立非常复杂的检索系统，来对我们究竟需要回复什么样的内容进行建模。</p>
+<p>比如，我们 <strong>可以把输入当作查询关键词</strong>，只不过从性质上来说，当前的输入语句往往要长于传统的查询关键词，但是在技术上依然可以使用各种搜索技术，例如通常的排序学习等方法都适用于这样的场景。</p>
+<p>从理论上来讲，基于检索的对话系统有很多先天的问题。比如，从根本上，搜索系统就是一个“无状态”（Stateless）的系统。特别是传统意义上的搜索系统，一般没有办法对上下文进行跟踪，其实从整个流程上讲，这并不是真正意义上的对话，当然也就谈不上是“智能”系统。</p>
+<h2 id="基于深度学习的对话系统"><a href="#基于深度学习的对话系统" class="headerlink" title="基于深度学习的对话系统"></a>基于深度学习的对话系统</h2><p>那么，如何能够让对话系统真正 <strong>对状态进行管理</strong>，从而能够对上下文的信息进行回馈呢？</p>
+<p>最近一段时间以来， <strong>基于深度学习的对话系统逐渐成为了对话系统建模的主流</strong>，就是因为这些模型都能够比较有效地对状态进行管理。</p>
+<p>那么，在这么多的深度对话系统中，首当其冲的一个经典模型就是“ <strong>序列到序列</strong>”（Sequence To Sequence）模型，简称 <strong>S2S</strong> 模型。S2S模型认为，从本质上对话系统是某种程度上的“翻译”问题，也就是说，我们需要把回应输入的句子这个问题看作是把某种语言的语句翻译成目标语言语句的一个过程。S2S模型也广泛应用在机器翻译的场景中。</p>
+<p>具体来说，S2S把一串输入语句的字符，通过学习转换成为一个中间的状态。这其实就是一个“编码”（Encode）的过程。这个中间状态，可以结合之前字句的中间状态，从而实现对上下文进行跟踪的目的。这个部分，其实就成为很多具体模型各具特色的地方。总的来说，中间状态需要随着对话的演变而产生变化。然后，我们需要一个“解码”（Decode）的过程，把中间的状态转换成为最后输出的字句。</p>
+<p>从整个流程上来说，S2S其实非常像我们已经介绍过的深度序列模型，例如RNN和LSTM。从实现上来说，很多S2S模型，其实都是直接利用RNN或者LSTM而得以实现的。因此，很多深度序列模型的技术都可以直接应用到对话系统中来。</p>
+<p>另外，我们可以看到，相比于基于信息检索的系统来说，S2S模型并没有一个“显式”的搜索过去信息的步骤，因此可以更加灵活地处理语言上的多样性，以及不是完全匹配的问题。因此，从实际的效果中来看，S2S模型在对话系统中取得了不小的成功。</p>
+<h2 id="实际系统的一些问题"><a href="#实际系统的一些问题" class="headerlink" title="实际系统的一些问题"></a>实际系统的一些问题</h2><p>在实际的开发中，非任务型对话系统会有一系列的实际问题需要解决。</p>
+<p>首先，因为是开放性的对话系统，其实并没有一个标准来衡量这些聊天机器人式的系统的好坏。究竟什么样的系统是一个好的聊天系统，依旧是一个非常具有争议的领域。</p>
+<p>其次，人们在实际的应用中发现，基于深度学习的序列模型，虽然常常能够给出比较“人性化”的语句回答，但是很多回答都没有过多的“意义”，更像是已经出现过的语句的“深层次”的“翻译”。因此在最近的一些系统中，人们又开始尝试把信息检索系统和S2S模型结合起来使用。</p>
+<p>最后，我们需要提出的就是，非任务型对话系统和任务型对话系统有时候常常需要 <strong>混合使用</strong>。比如，在一个订票系统中，可能也需要掺杂一般性的对话。如何能够有效地进行两种系统的混合，肯定又是一种新的挑战。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了非任务型对话系统的基本技术要点。</p>
+<p>一起来回顾下要点：第一，我们讲了基于信息检索，也就是搜索技术的对话系统；第二，我们聊了聊如何利用RNN或者是序列模型对对话系统进行建模。</p>
+<p>最后，给你留一个思考题，你觉得在什么样的条件下，非任务型聊天机器人可以展现出真正的“人工智能”呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#111-%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E8%A6%81%E7%82%B9%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">111 | 聊天机器人有哪些核心技术要点？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%9A%84%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">基于信息检索的对话系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text">基于深度学习的对话系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">实际系统的一些问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

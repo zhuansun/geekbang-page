@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>085 | LinkedIn的广告点击率预估模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="085 | LinkedIn的广告点击率预估模型上一篇文章我们讲了雅虎的广告预估模型。雅虎早期的模型主要集中在如何利用两轮架构来对点击率进行精确建模，后期的模型回归到了比较传统的利用线性模型外加特性哈希来进行大规模点击率预估的模式。 今天，我们继续来做公司的案例分析，结合论文《LASER：在线广告的可扩展响应预测平台》（LASER: a scalable response prediction p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="085 | LinkedIn的广告点击率预估模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2517290537.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="085 | LinkedIn的广告点击率预估模型上一篇文章我们讲了雅虎的广告预估模型。雅虎早期的模型主要集中在如何利用两轮架构来对点击率进行精确建模，后期的模型回归到了比较传统的利用线性模型外加特性哈希来进行大规模点击率预估的模式。 今天，我们继续来做公司的案例分析，结合论文《LASER：在线广告的可扩展响应预测平台》（LASER: a scalable response prediction p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.129Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2517290537"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '085 | LinkedIn的广告点击率预估模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">085 | LinkedIn的广告点击率预估模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="085-LinkedIn的广告点击率预估模型"><a href="#085-LinkedIn的广告点击率预估模型" class="headerlink" title="085 | LinkedIn的广告点击率预估模型"></a>085 | LinkedIn的广告点击率预估模型</h1><p>上一篇文章我们讲了雅虎的广告预估模型。雅虎早期的模型主要集中在如何利用两轮架构来对点击率进行精确建模，后期的模型回归到了比较传统的利用线性模型外加特性哈希来进行大规模点击率预估的模式。</p>
+<p>今天，我们继续来做公司的案例分析，结合论文《LASER：在线广告的可扩展响应预测平台》（LASER: a scalable response prediction platform for online advertising）[1]，来了解LinkedIn这家公司是怎么来做最基本的广告预估的。</p>
+<h2 id="LinkedIn广告预估模型"><a href="#LinkedIn广告预估模型" class="headerlink" title="LinkedIn广告预估模型"></a>LinkedIn广告预估模型</h2><p>我们首先来看一看LinkedIn的广告预估模型。这个模型的一大“卖点”就是直接充分考虑了“冷启动”和“热启动”两种模式。</p>
+<p>那么，什么是“冷启动”，什么又是“热启动”呢？</p>
+<p>从我们之前的分享中可以看出，很多点击率预估的模型，都强烈依赖于对用户过去信息以及对广告过去表现的建模。比如刚刚讲过的雅虎预估模型，在它早期的模式中就已经见到了这种信息的作用。</p>
+<p>然而，当我们出现新用户或者新广告时，就会有“冷启动”的问题。也就是说，“冷启动”主要是针对新用户或者新广告而言的。这时候基于历史信息的特性都无法起作用了，一般来说需要有专门的处理。</p>
+<p>相对于“冷启动”，“热启动”指的是我们已经掌握了用户或者广告的一定信息，然后利用这些历史信息来对点击率进行预测。</p>
+<p>这么说来，我们一般需要有两套对策，一套针对“冷启动”，一套针对“热启动”。LinkedIn的方法就是 <strong>希望通过一个模型来同时解决这两个问题</strong>。</p>
+<p>具体来说，LinkedIn把对点击率的预估拆成了三个部分。</p>
+<p><strong>第一部分，是利用用户、广告和上下文所建立的全局性预测</strong>。什么意思呢？就是我们利用用户特性、广告特性以及上下文特性来对点击率进行预测。这部分的核心思路就是 <strong>这些特性所对应的系数是全局性的</strong>。也就是说，对于不同的用户、不同的广告以及不同的上下文所对应的系数是相同的。因为是全局性的系数，因此这部分其实提供了一种“冷启动”的需求，也就是不管是任何新的用户或是广告，只要有一定的特性，我们总能通过这部分得到一种粗略的估计。</p>
+<p><strong>第二部分，是利用第一部分的用户、广告和上下文信息组成交叉特性，从而学习这些特性之间的关系</strong>。如果说第一部分直接就是线性的预测，那么第二部分其实就是“交叉项”形成的非线性的部分。我们之前在讲推荐系统的时候提到过“分解机”（Factorization Machines）这个模型，讲到过这种“交叉项”所带来的非线性预测的好处。虽然这里和分解机的构成不完全一样，但是整体上表达了相似的意思。</p>
+<p><strong>第三部分，是LinkedIn模型提出来的独特之处（和其他公司模型不太一样的地方）</strong>。那就是同样是利用用户、广告和上下文特性，但是LinkedIn所提模型的系数则是每个用户、广告和上下文都不同。作者们认为这可以实现“热启动”效果。也就是说，当某个用户、某个广告或者某个上下文已经有比较多的数据以后，就可以依靠这些用户、广告或者上下文自己的系数了，而不仅仅依靠第一部分的全局系数。这个第三部分只有当数据比较多的时候才能够起作用。</p>
+<h2 id="模型的其他特性"><a href="#模型的其他特性" class="headerlink" title="模型的其他特性"></a>模型的其他特性</h2><p>这个模型在增加了这些系数的先验概率信息之后变得相对比较复杂。这篇论文介绍了一系列的模型训练思路，都是不错的可以借鉴的工业界经验。</p>
+<p>首先，作者们认为，刚才模型中所说的 <strong>三个部分所需要的模型更新频率是不一样的</strong>。比如第一部分和第二部分都可以认为是全局模型，也就是说系数是全局性的。因此这些模型的变化会比较慢，作者们建议一个星期对模型进行一次更新。而第三部分则是在已经积累了历史信息后慢慢呈现出的效果，因此对于数据会非常敏感，而且每个用户和每个广告都是不同的系数，因此需要在短时间内，比如半个小时甚至几分钟内，就重新训练模型，以达到个性化的目的。</p>
+<p>其次，作者们还把 <strong>提出的模型和EE（Exploit &amp; Explore）策略结合了起来</strong>。我们在讲推荐系统时介绍过EE的思路，简单回顾一下EE的目的，主要就是探索那些并没有太多机会被展示的物品，在这里也就是广告。我们刚才说了，所有的系数都加上了先验概率，因此其实可以很容易结合数据计算 <strong>后验概率分布</strong>。有了后验概率分布，作者们提出了 <strong>以汤普森采样为主的EE模式</strong>。这也可以算是论文提出模型的一大亮点。</p>
+<p>最后我们提一下这个模型的训练算法。因为要在大规模的数据上对模型进行训练，这篇文章采用了一种 <strong>ADMM算法</strong>。在文章提出来的时候，作者们还是希望能够利用单个服务器对所有的模型参数进行训练。和其他的算法相比，一般认为ADMM这种算法的收敛速度更快，但是，利用这种算法的其他公司并不太多。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了LinkedIn广告点击率预估的核心算法。一起来回顾下要点：第一，我们讲了LinkedIn把点击率预估分为三个部分，从而分别解决“冷启动”和“热启动”的思路；第二，我们聊了如何更加有效地对这个提出的模型进行训练学习。</p>
+<p>最后，给你留一个思考题，回顾我们讲过的推荐系统模块，我们还介绍过什么方法可以结合“冷启动”和“热启动”呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<ol>
+<li>Deepak Agarwal, Bo Long, Jonathan Traupman, Doris Xin, and Liang Zhang. LASER: a scalable response prediction platform for online advertising. Proceedings of the 7th ACM international conference on Web search and data mining (WSDM ‘14). ACM, New York, NY, USA, 173-182, 2014.</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#085-LinkedIn%E7%9A%84%E5%B9%BF%E5%91%8A%E7%82%B9%E5%87%BB%E7%8E%87%E9%A2%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">085 | LinkedIn的广告点击率预估模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedIn%E5%B9%BF%E5%91%8A%E9%A2%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">LinkedIn广告预估模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">模型的其他特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>115 | Go编程模式：Kubernetes Visitor模式 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="115 | Go编程模式：Kubernetes Visitor模式你好，我是陈皓，网名左耳朵耗子。 这节课，我们来重点讨论一下，Kubernetes 的 kubectl 命令中的使用到的一个编程模式：Visitor（其实， kubectl 主要使用到了两个，一个是Builder，另一个是Visitor）。 本来，Visitor 是面向对象设计模式中一个很重要的设计模式（可以看下Wikipedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="115 | Go编程模式：Kubernetes Visitor模式">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/422789407.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="115 | Go编程模式：Kubernetes Visitor模式你好，我是陈皓，网名左耳朵耗子。 这节课，我们来重点讨论一下，Kubernetes 的 kubectl 命令中的使用到的一个编程模式：Visitor（其实， kubectl 主要使用到了两个，一个是Builder，另一个是Visitor）。 本来，Visitor 是面向对象设计模式中一个很重要的设计模式（可以看下Wikipedia">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.606Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/422789407"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '115 | Go编程模式：Kubernetes Visitor模式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">115 | Go编程模式：Kubernetes Visitor模式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="115-Go编程模式：Kubernetes-Visitor模式"><a href="#115-Go编程模式：Kubernetes-Visitor模式" class="headerlink" title="115 | Go编程模式：Kubernetes Visitor模式"></a>115 | Go编程模式：Kubernetes Visitor模式</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>这节课，我们来重点讨论一下，Kubernetes 的 <code>kubectl</code> 命令中的使用到的一个编程模式：Visitor（其实， <code>kubectl</code> 主要使用到了两个，一个是Builder，另一个是Visitor）。</p>
+<p>本来，Visitor 是面向对象设计模式中一个很重要的设计模式（可以看下Wikipedia <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor Pattern词条</a>），这个模式是将算法与操作对象的结构分离的一种方法。这种分离的实际结果是能够在不修改结构的情况下向现有对象结构添加新操作，是遵循开放&#x2F;封闭原则的一种方法。这节课，我们重点学习一下 <code>kubelet</code> 中是怎么使用函数式的方法来实现这个模式的。</p>
+<h2 id="一个简单示例"><a href="#一个简单示例" class="headerlink" title="一个简单示例"></a>一个简单示例</h2><p>首先，我们来看一个简单设计模式的Visitor的示例。</p>
+<ul>
+<li>我们的代码中有一个 <code>Visitor</code> 的函数定义，还有一个 <code>Shape</code> 接口，这需要使用 <code>Visitor</code> 函数作为参数。</li>
+<li>我们的实例的对象 <code>Circle</code> 和 <code>Rectangle</code> 实现了 <code>Shape</code> 接口的 <code>accept()</code> 方法，这个方法就是等外面给我们传递一个Visitor。</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">package main
+
+import (
+    &quot;encoding&#x2F;json&quot;
+    &quot;encoding&#x2F;xml&quot;
+    &quot;fmt&quot;
+)
+
+type Visitor func(shape Shape)
+
+type Shape interface &#123;
+    accept(Visitor)
+&#125;
+
+type Circle struct &#123;
+    Radius int
+&#125;
+
+func (c Circle) accept(v Visitor) &#123;
+    v(c)
+&#125;
+
+type Rectangle struct &#123;
+    Width, Heigh int
+&#125;
+
+func (r Rectangle) accept(v Visitor) &#123;
+    v(r)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，我们实现两个Visitor：一个是用来做JSON序列化的；另一个是用来做XML序列化的。</p>
+<pre class="line-numbers language-none"><code class="language-none">func JsonVisitor(shape Shape) &#123;
+    bytes, err :&#x3D; json.Marshal(shape)
+    if err !&#x3D; nil &#123;
+        panic(err)
+    &#125;
+    fmt.Println(string(bytes))
+&#125;
+
+func XmlVisitor(shape Shape) &#123;
+    bytes, err :&#x3D; xml.Marshal(shape)
+    if err !&#x3D; nil &#123;
+        panic(err)
+    &#125;
+    fmt.Println(string(bytes))
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面是使用Visitor这个模式的代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">func main() &#123;
+  c :&#x3D; Circle&#123;10&#125;
+  r :&#x3D;  Rectangle&#123;100, 200&#125;
+  shapes :&#x3D; []Shape&#123;c, r&#125;
+
+  for _, s :&#x3D; range shapes &#123;
+    s.accept(JsonVisitor)
+    s.accept(XmlVisitor)
+  &#125;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其实，这段代码的目的就是想解耦数据结构和算法。虽然使用 Strategy 模式也是可以完成的，而且会比较干净， <strong>但是在有些情况下，多个Visitor是来访问一个数据结构的不同部分，这种情况下，数据结构有点像一个数据库，而各个Visitor会成为一个个的小应用。</strong> <code>kubectl</code> 就是这种情况。</p>
+<h2 id="Kubernetes相关背景"><a href="#Kubernetes相关背景" class="headerlink" title="Kubernetes相关背景"></a>Kubernetes相关背景</h2><p>接下来，我们再来了解一下相关的知识背景。</p>
+<ul>
+<li>Kubernetes抽象了很多种的Resource，比如Pod、ReplicaSet、ConfigMap、Volumes、Namespace、Roles……种类非常繁多，这些东西构成了Kubernetes的数据模型（你可以看看 <a target="_blank" rel="noopener" href="https://github.com/kubernauts/practical-kubernetes-problems/blob/master/images/k8s-resources-map.png">Kubernetes Resources 地图</a> ，了解下有多复杂）。</li>
+<li><code>kubectl</code> 是Kubernetes中的一个客户端命令，操作人员用这个命令来操作Kubernetes。 <code>kubectl</code> 会联系到 Kubernetes 的API Server，API Server会联系每个节点上的 <code>kubelet</code> ，从而控制每个节点。</li>
+<li><code>kubectl</code> 的主要工作是处理用户提交的东西（包括命令行参数、YAML文件等），接着会把用户提交的这些东西组织成一个数据结构体，发送给 API Server。</li>
+<li>相关的源代码在 <code>src/k8s.io/cli-runtime/pkg/resource/visitor.go</code> 中（ <a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/cea1d4e20b4a7886d8ff65f34c6d4f95efcb4742/staging/src/k8s.io/cli-runtime/pkg/resource/visitor.go">源码链接</a>）。</li>
+</ul>
+<p><code>kubectl</code> 的代码比较复杂，不过，简单来说，基本原理就是 <strong>它从命令行和YAML文件中获取信息，通过Builder模式并把其转成一系列的资源，最后用 Visitor 模式来迭代处理这些Reources</strong>。</p>
+<p>下面我们来看看 <code>kubectl</code> 的实现。为了简化，我不直接分析复杂的源码，而是用一个小的示例来表明 。</p>
+<h2 id="kubectl的实现方法"><a href="#kubectl的实现方法" class="headerlink" title="kubectl的实现方法"></a>kubectl的实现方法</h2><h3 id="Visitor模式定义"><a href="#Visitor模式定义" class="headerlink" title="Visitor模式定义"></a>Visitor模式定义</h3><p>首先， <code>kubectl</code> 主要是用来处理 <code>Info</code> 结构体，下面是相关的定义：</p>
+<pre class="line-numbers language-none"><code class="language-none">type VisitorFunc func(*Info, error) error
+
+type Visitor interface &#123;
+    Visit(VisitorFunc) error
+&#125;
+
+type Info struct &#123;
+    Namespace   string
+    Name        string
+    OtherThings string
+&#125;
+func (info *Info) Visit(fn VisitorFunc) error &#123;
+  return fn(info, nil)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，</p>
+<ul>
+<li>有一个 <code>VisitorFunc</code> 的函数类型的定义；</li>
+<li>一个 <code>Visitor</code> 的接口，其中需要 <code>Visit(VisitorFunc) error</code> 的方法（这就像是我们上面那个例子的 <code>Shape</code> ）；</li>
+<li>最后，为 <code>Info</code> 实现 <code>Visitor</code> 接口中的 <code>Visit()</code> 方法，实现就是直接调用传进来的方法（与前面的例子相仿）。</li>
+</ul>
+<p>我们再来定义几种不同类型的 Visitor。</p>
+<h3 id="Name-Visitor"><a href="#Name-Visitor" class="headerlink" title="Name Visitor"></a>Name Visitor</h3><p>这个Visitor 主要是用来访问 <code>Info</code> 结构中的 <code>Name</code> 和 <code>NameSpace</code> 成员：</p>
+<pre class="line-numbers language-none"><code class="language-none">type NameVisitor struct &#123;
+  visitor Visitor
+&#125;
+
+func (v NameVisitor) Visit(fn VisitorFunc) error &#123;
+  return v.visitor.Visit(func(info *Info, err error) error &#123;
+    fmt.Println(&quot;NameVisitor() before call function&quot;)
+    err &#x3D; fn(info, err)
+    if err &#x3D;&#x3D; nil &#123;
+      fmt.Printf(&quot;&#x3D;&#x3D;&gt; Name&#x3D;%s, NameSpace&#x3D;%s\n&quot;, info.Name, info.Namespace)
+    &#125;
+    fmt.Println(&quot;NameVisitor() after call function&quot;)
+    return err
+  &#125;)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，在这段代码中：</p>
+<ul>
+<li>声明了一个 <code>NameVisitor</code> 的结构体，这个结构体里有一个 <code>Visitor</code> 接口成员，这里意味着多态；</li>
+<li>在实现 <code>Visit()</code> 方法时，调用了自己结构体内的那个 <code>Visitor</code> 的 <code>Visitor()</code> 方法，这其实是一种修饰器的模式，用另一个Visitor修饰了自己（关于修饰器模式，可以复习下 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/332608">第113讲</a>）。</li>
+</ul>
+<h3 id="Other-Visitor"><a href="#Other-Visitor" class="headerlink" title="Other Visitor"></a>Other Visitor</h3><p>这个Visitor主要用来访问 <code>Info</code> 结构中的 <code>OtherThings</code> 成员：</p>
+<pre class="line-numbers language-none"><code class="language-none">type OtherThingsVisitor struct &#123;
+  visitor Visitor
+&#125;
+
+func (v OtherThingsVisitor) Visit(fn VisitorFunc) error &#123;
+  return v.visitor.Visit(func(info *Info, err error) error &#123;
+    fmt.Println(&quot;OtherThingsVisitor() before call function&quot;)
+    err &#x3D; fn(info, err)
+    if err &#x3D;&#x3D; nil &#123;
+      fmt.Printf(&quot;&#x3D;&#x3D;&gt; OtherThings&#x3D;%s\n&quot;, info.OtherThings)
+    &#125;
+    fmt.Println(&quot;OtherThingsVisitor() after call function&quot;)
+    return err
+  &#125;)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实现逻辑同上，我就不再重新讲了。</p>
+<h3 id="Log-Visitor"><a href="#Log-Visitor" class="headerlink" title="Log Visitor"></a>Log Visitor</h3><pre class="line-numbers language-none"><code class="language-none">type LogVisitor struct &#123;
+  visitor Visitor
+&#125;
+
+func (v LogVisitor) Visit(fn VisitorFunc) error &#123;
+  return v.visitor.Visit(func(info *Info, err error) error &#123;
+    fmt.Println(&quot;LogVisitor() before call function&quot;)
+    err &#x3D; fn(info, err)
+    fmt.Println(&quot;LogVisitor() after call function&quot;)
+    return err
+  &#125;)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="使用方代码"><a href="#使用方代码" class="headerlink" title="使用方代码"></a>使用方代码</h3><p>现在，我们看看使用上面的代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">func main() &#123;
+  info :&#x3D; Info&#123;&#125;
+  var v Visitor &#x3D; &amp;info
+  v &#x3D; LogVisitor&#123;v&#125;
+  v &#x3D; NameVisitor&#123;v&#125;
+  v &#x3D; OtherThingsVisitor&#123;v&#125;
+
+  loadFile :&#x3D; func(info *Info, err error) error &#123;
+    info.Name &#x3D; &quot;Hao Chen&quot;
+    info.Namespace &#x3D; &quot;MegaEase&quot;
+    info.OtherThings &#x3D; &quot;We are running as remote team.&quot;
+    return nil
+  &#125;
+  v.Visit(loadFile)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，</p>
+<ul>
+<li>Visitor们一层套一层；</li>
+<li>我用 <code>loadFile</code> 假装从文件中读取数据；</li>
+<li>最后执行 <code>v.Visit(loadfile)</code> ，这样，我们上面的代码就全部开始激活工作了。</li>
+</ul>
+<p>这段代码输出如下的信息，你可以看到代码是怎么执行起来的：</p>
+<pre class="line-numbers language-none"><code class="language-none">LogVisitor() before call function
+NameVisitor() before call function
+OtherThingsVisitor() before call function
+&#x3D;&#x3D;&gt; OtherThings&#x3D;We are running as remote team.
+OtherThingsVisitor() after call function
+&#x3D;&#x3D;&gt; Name&#x3D;Hao Chen, NameSpace&#x3D;MegaEase
+NameVisitor() after call function
+LogVisitor() after call function
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的代码有以下几种功效：</p>
+<ul>
+<li>解耦了数据和程序；</li>
+<li>使用了修饰器模式；</li>
+<li>还做出了Pipeline的模式。</li>
+</ul>
+<p>所以，其实我们可以重构一下上面的代码。</p>
+<h3 id="Visitor修饰器"><a href="#Visitor修饰器" class="headerlink" title="Visitor修饰器"></a>Visitor修饰器</h3><p>我们用 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/17929.html">修饰器模式</a> 来重构一下上面的代码。</p>
+<pre class="line-numbers language-none"><code class="language-none">type DecoratedVisitor struct &#123;
+  visitor    Visitor
+  decorators []VisitorFunc
+&#125;
+
+func NewDecoratedVisitor(v Visitor, fn ...VisitorFunc) Visitor &#123;
+  if len(fn) &#x3D;&#x3D; 0 &#123;
+    return v
+  &#125;
+  return DecoratedVisitor&#123;v, fn&#125;
+&#125;
+
+&#x2F;&#x2F; Visit implements Visitor
+func (v DecoratedVisitor) Visit(fn VisitorFunc) error &#123;
+  return v.visitor.Visit(func(info *Info, err error) error &#123;
+    if err !&#x3D; nil &#123;
+      return err
+    &#125;
+    if err :&#x3D; fn(info, nil); err !&#x3D; nil &#123;
+      return err
+    &#125;
+    for i :&#x3D; range v.decorators &#123;
+      if err :&#x3D; v.decorators[i](info, nil); err !&#x3D; nil &#123;
+        return err
+      &#125;
+    &#125;
+    return nil
+  &#125;)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这段代码并不复杂，我来解释下。</p>
+<ul>
+<li>用一个 <code>DecoratedVisitor</code> 的结构来存放所有的 <code>VistorFunc</code> 函数；</li>
+<li><code>NewDecoratedVisitor</code> 可以把所有的 <code>VisitorFunc</code> 转给它，构造 <code>DecoratedVisitor</code> 对象；</li>
+<li><code>DecoratedVisitor</code> 实现了 <code>Visit()</code> 方法，里面就是来做一个for-loop，顺着调用所有的 <code>VisitorFunc</code>。</li>
+</ul>
+<p>这样，我们的代码就可以这样运作了：</p>
+<pre class="line-numbers language-none"><code class="language-none">info :&#x3D; Info&#123;&#125;
+var v Visitor &#x3D; &amp;info
+v &#x3D; NewDecoratedVisitor(v, NameVisitor, OtherVisitor)
+
+v.Visit(LoadFile)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>是不是比之前的那个简单？需要注意的是，这个 <code>DecoratedVisitor</code> 同样可以成为一个Visitor来使用。上面的这些代码全部存在于 <code>kubectl</code> 的代码中，只要你看懂了这里面的代码逻辑，就一定能看懂 <code>kubectl</code> 的代码。</p>
+<p>好了，这节课就到这里。如果你觉得今天的内容对你有所帮助，欢迎你帮我分享给更多人。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#115-Go%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%EF%BC%9AKubernetes-Visitor%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">115 | Go编程模式：Kubernetes Visitor模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">一个简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes%E7%9B%B8%E5%85%B3%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">Kubernetes相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kubectl%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">kubectl的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Visitor%E6%A8%A1%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Visitor模式定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Name-Visitor"><span class="toc-number">1.3.2.</span> <span class="toc-text">Name Visitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-Visitor"><span class="toc-number">1.3.3.</span> <span class="toc-text">Other Visitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Log-Visitor"><span class="toc-number">1.3.4.</span> <span class="toc-text">Log Visitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.5.</span> <span class="toc-text">使用方代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Visitor%E4%BF%AE%E9%A5%B0%E5%99%A8"><span class="toc-number">1.3.6.</span> <span class="toc-text">Visitor修饰器</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

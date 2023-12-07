@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>055 | 基于深度学习的搜索算法：深度结构化语义模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="055 | 基于深度学习的搜索算法：深度结构化语义模型近两个月，我们集中系统地分享了搜索核心技术模块。做一个简单的内容梳理，我们讲解了搜索引擎方方面面的话题，从经典的信息检索技术、查询关键字理解、文档理解到现代搜索引擎的架构和索引的核心技术；还从机器学习角度出发分享了搜索引擎的最核心部分，也就是排序算法，深入排序算法的细节讲解了排序支持向量机（RankSVM）、梯度增强决策树（GBDT）以及经典模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="055 | 基于深度学习的搜索算法：深度结构化语义模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/100031720.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="055 | 基于深度学习的搜索算法：深度结构化语义模型近两个月，我们集中系统地分享了搜索核心技术模块。做一个简单的内容梳理，我们讲解了搜索引擎方方面面的话题，从经典的信息检索技术、查询关键字理解、文档理解到现代搜索引擎的架构和索引的核心技术；还从机器学习角度出发分享了搜索引擎的最核心部分，也就是排序算法，深入排序算法的细节讲解了排序支持向量机（RankSVM）、梯度增强决策树（GBDT）以及经典模">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.076Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/100031720"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '055 | 基于深度学习的搜索算法：深度结构化语义模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">055 | 基于深度学习的搜索算法：深度结构化语义模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="055-基于深度学习的搜索算法：深度结构化语义模型"><a href="#055-基于深度学习的搜索算法：深度结构化语义模型" class="headerlink" title="055 | 基于深度学习的搜索算法：深度结构化语义模型"></a>055 | 基于深度学习的搜索算法：深度结构化语义模型</h1><p>近两个月，我们集中系统地分享了搜索核心技术模块。做一个简单的内容梳理，我们讲解了搜索引擎方方面面的话题，从经典的信息检索技术、查询关键字理解、文档理解到现代搜索引擎的架构和索引的核心技术；还从机器学习角度出发分享了搜索引擎的最核心部分，也就是排序算法，深入排序算法的细节讲解了排序支持向量机（RankSVM）、梯度增强决策树（GBDT）以及经典模型LambdaMART。至此，整个人工智能领域关于搜索的经典话题也就告一段落了。</p>
+<p>那么，这个星期，我们来看一些关于搜索算法的前沿思考。火热的深度学习不仅对图像、视频和音频这些领域产生了巨大的冲击，也对自然语言处理、甚至搜索领域有不小的影响。 <strong>深度学习带给传统的模型和算法以新的建模能力和新的视角，为以前所不能完成的应用打下了基础</strong>。</p>
+<p>今天，我们来看一篇较早利用深度学习技术来进行搜索建模的论文：《使用点击数据学习深度结构化的网络搜索语义模型》（Learning deep structured semantic models for web search using clickthrough data）。这篇论文阐述了一个 <strong>深度结构化语义模型</strong>，发表在第22届世界信息和知识管理大会CIKM 2013上。</p>
+<h2 id="论文背景介绍"><a href="#论文背景介绍" class="headerlink" title="论文背景介绍"></a>论文背景介绍</h2><p>发表于2013年的这篇论文应该算是比较早的直接使用深度学习中经验的论文。其主要目的是探索一些经典的深度学习方法能否在搜索的应用中得到合适的效果。</p>
+<p>下面我们来了解一下这篇论文的作者群信息。</p>
+<p>第一作者黄博森（Po-Sen Huang）是一名来自台湾的学者。在发表论文的时候，他在伊利诺伊大学香槟分校攻读电子工程和计算机博士学位，师从马克·约翰森（Mark Hasegawa-Johnson）。论文是黄博森在微软实习时的工作总结。2015年黄博森博士毕业，然后于2016年加入了微软研究院。到目前为止，他发表了30多篇人工智能相关的论文，论文引用次数已经超过1千多次。</p>
+<p>其他作者均来自当时在微软研究院工作的学者。其中不乏著名学者，比如何晓冬（Xiaodong He）、邓力（Li Deng）、亚历克斯·阿西罗（Alex Acero）和拉里·赫克（Larry Heck）等。下面聊聊比较少被提及的阿西罗和赫克。阿西罗曾长期在微软研究院担任语音相关研究组的经理职位，2013年之后，他到苹果公司担任Siri的资深总监。赫克曾经在雅虎担任搜索和广告业务副总裁，然后到微软研究院担任语音组的首席科学家。文章发表之后，赫克到了谷歌，在一个人工智能组担任总监，并于最近加入三星北美研究院担任资深副总裁。这些学者主要是为这个工作提供支持和指导工作。</p>
+<p>这篇论文自2013年发表后已经有超过390多次的引用，是深度学习在搜索领域应用中被引用次数最多的论文之一。</p>
+<h2 id="深度结构化语义模型详解"><a href="#深度结构化语义模型详解" class="headerlink" title="深度结构化语义模型详解"></a>深度结构化语义模型详解</h2><p>下面详细讲讲这篇论文的核心思想。要想理解这篇论文提出的思路，我们首先要简单回顾一下经典的搜索模型构建。</p>
+<p>在经典的搜索模型里，不管是TF-IDF、BM25、语言模型，还是基于机器学习的排序算法模型，整体来说，一个共通的想法就是争取用某种表示（Representation）来表达查询关键字，然后用相同的、或者类似的表示来表达文档，再通过某种程度的匹配函数来计算查询关键字表示和文档表示之间的距离，然后进行排序。</p>
+<p>那么，从深度学习的角度来说，要想针对这个传统的模式进行革新，当然就可以从最主要的三个方面入手： <strong>查询关键字的表达、文档的表达和匹配函数</strong>。</p>
+<p>这篇文章也正是沿着这个思路，提出了深度结构化语义模型。</p>
+<p>首先，深度结构化语义模型对查询关键字和文档进行了相似的处理。具体来说，就是先把查询关键字或者文档转换为 <strong>词向量</strong>（Term Vector），这个词向量可以是最简单的“ <strong>词袋</strong>”的表达方式，这也就是最基本的模型的输入。从词向量出发，模型首先学习一个“ <strong>词哈希</strong>”（Word Hashing），也就是把0或1的稀疏词向量转换成为一个稠密（Dense）的向量表达。这一步是 <strong>把深度学习方法应用在自然语言处理中所通用的办法，目的就是把稀疏的输入转换为稠密的输入，降低输入的数据维度</strong>。</p>
+<p>当查询关键字和文档都转换成稠密数组以后，深度结构化语义模型利用了深度学习中的重要经验，那就是通过“ <strong>非线性转换</strong>”（Non-Linear Projection）来获取数据深层次的语义信息，而不仅仅只是传统方法中字面上的匹配。这里，查询关键字和文档都使用了简单的“ <strong>前馈神经网络</strong>”（Feedforward Neural Network）的方法，对输入向量进行了多层的非线性转换。非线性转换本身通过“ <strong>双曲正切函数</strong>”（tanh函数）实现，这应该算是最传统的深度学习模型的实现方法了。</p>
+<p>经过多层转换之后，查询关键字和文档都变成了新的某种表达之后，如何来计算两者间的距离（或者远近）呢？这篇文章采用了非常直接的形式，那就是利用“ <strong>余弦函数</strong>”（Cosine）来作为距离函数，描述两个向量之间的距离。在传统信息检索的语境中，也经常用余弦函数来计算向量的距离，所以在这里应该说并没有太多创新的地方。</p>
+<p>总体来说， <strong>深度学习在这里的主要应用，就是成为查询关键字和文档的表达的提取器</strong>。和传统方法中人工提取各种类型的文字特性相比，在深度结构化语义模型中，基于前馈神经网络的特征提取器自动提取了文字的深层语义信息。</p>
+<p>提出了模型之后，我们来看这个模型是如何被训练出来的。作者们首先利用了用户的点击信息，也就是针对某一个查询关键字，有哪些文档被点击过，作为 <strong>正例数据</strong>，其他文档作为 <strong>负例数据</strong>，然后把整个建模问题看作一个 <strong>多类分类问题</strong>。这样就可以利用标签信息对整个模型进行学习了。</p>
+<p>整体来说，这个深度学习模型是可以利用“端到端”（End-to-End）的方式进行训练的，并且采用了随机梯度下降（SGD）这样的优化算法，这里就不复述了。</p>
+<h2 id="深度结构化语义模型的实验效果"><a href="#深度结构化语义模型的实验效果" class="headerlink" title="深度结构化语义模型的实验效果"></a>深度结构化语义模型的实验效果</h2><p>因为深度结构化语义模型仅仅使用了查询关键字和文档之间的文字信息，因此提出的模型就无法和完整的、利用很多特性的机器学习排序算法进行比较，只能和文字型的排序算法例如TF-IDF、BM25和语言模型进行比较，这也是文章并没有采用一些更为通用的数据集的原因。最终文章在数据集上采用了Bing的搜索数据，有1万6千多的查询关键字以及每个查询关键字所对应的15个文档，每个文档又有4级相关标签，这样可以用来计算诸如NDCG这样的指标。</p>
+<p>在这篇文章里，作者们比较了一系列的方法，比如TF-IDF、BM25，以及一些传统的降维方法如LSA和PLSA。简单来说，深度结构化语义模型在最后的比较中取得了不错的结果，NDCG在第10位的表现是接近0.5。不过，TF-IDF的表现也有0.46，而传统的PLSA和LSA也有0.45左右的表现。所以，可以说深度结构化语义模型的效果虽然很明显但并不是特别惊人。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了深度结构化语义模型的一些基本原理，这是利用深度学习技术对搜索算法进行改进的一个经典尝试。我们在上面的实验结果总结中已经说到，虽然文章仅仅谈到了文本信息的匹配，并没有作为完整的排序算法进行比较，但是也揭开了用深度模型来表征查询关键字和文档的研发序幕 。</p>
+<p>一起来回顾下要点：第一，我们简要介绍了提出深度结构化语义模型的历史。第二，我们详细介绍了深度结构化语义模型的核心思路以及实验结果。</p>
+<p>给你留一个思考题，除了文章中提到的余弦函数可以作为一个距离函数，还有没有其他的函数选择来表达两个向量之间的距离？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p>最后，预告一个小活动，本周六（1月13日）晚8:30我会在极客时间做一场直播，欢迎你参加。主题是“人工智能20问”，如果你有想交流的问题，欢迎给我留言，我们周六直播见！</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/036075efeb9f168a768b32cd178ce9a4.jpg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#055-%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%EF%BC%9A%E6%B7%B1%E5%BA%A6%E7%BB%93%E6%9E%84%E5%8C%96%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">055 | 基于深度学习的搜索算法：深度结构化语义模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">论文背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E7%BB%93%E6%9E%84%E5%8C%96%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">深度结构化语义模型详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E7%BB%93%E6%9E%84%E5%8C%96%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">深度结构化语义模型的实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

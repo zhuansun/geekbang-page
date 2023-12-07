@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>053 | 机器学习排序算法经典模型：GBDT | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="053 | 机器学习排序算法经典模型：GBDT这周我们讨论机器学习排序算法中几个经典的模型，周一分享了配对法排序中的一个经典算法，即排序支持向量机（RankSVM），这个算法的核心思想是把支持向量机应用到有序数据中，试图对数据间的顺序进行直接建模。 今天，我们来聊一聊利用机器学习进行排序的一个重要算法： “梯度增强决策树”（Gradient Boosted Decision Tree）。长期以来，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="053 | 机器学习排序算法经典模型：GBDT">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2831989096.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="053 | 机器学习排序算法经典模型：GBDT这周我们讨论机器学习排序算法中几个经典的模型，周一分享了配对法排序中的一个经典算法，即排序支持向量机（RankSVM），这个算法的核心思想是把支持向量机应用到有序数据中，试图对数据间的顺序进行直接建模。 今天，我们来聊一聊利用机器学习进行排序的一个重要算法： “梯度增强决策树”（Gradient Boosted Decision Tree）。长期以来，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.072Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2831989096"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '053 | 机器学习排序算法经典模型：GBDT',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">053 | 机器学习排序算法经典模型：GBDT</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="053-机器学习排序算法经典模型：GBDT"><a href="#053-机器学习排序算法经典模型：GBDT" class="headerlink" title="053 | 机器学习排序算法经典模型：GBDT"></a>053 | 机器学习排序算法经典模型：GBDT</h1><p>这周我们讨论机器学习排序算法中几个经典的模型，周一分享了配对法排序中的一个经典算法，即排序支持向量机（RankSVM），这个算法的核心思想是把支持向量机应用到有序数据中，试图对数据间的顺序进行直接建模。</p>
+<p>今天，我们来聊一聊利用机器学习进行排序的一个重要算法： <strong>“梯度增强决策树”（Gradient Boosted Decision Tree）</strong>。长期以来，包括雅虎在内的很多商业搜索引擎都利用这种算法作为排序算法。</p>
+<h2 id="梯度增强决策树的历史"><a href="#梯度增强决策树的历史" class="headerlink" title="梯度增强决策树的历史"></a>梯度增强决策树的历史</h2><p>梯度回归决策树的思想来源于两个地方。首先是“ <strong>增强算法</strong>”（Boosting），一种试图用弱学习器提升为强学习器的算法。这种算法中比较成熟的、有代表性的算法是由罗伯特⋅施派尔（Robert Schapire）和约阿夫⋅福伦德（Yoav Freund）所提出的 <strong>AdaBoost算法</strong>[1]。因为这个算法两人于2003年获得理论计算机界的重要奖项“哥德尔奖”（Gödel Prize）。罗伯特之前在普林斯顿大学任计算机系教授，目前在微软研究院的纽约实验室工作。约阿夫一直在加州大学圣地亚哥分校任计算机系教授。</p>
+<p>增强算法的工作机制都比较类似，那就是先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多关注，然后基于调整后的样本分布来训练下一个基学习器。如此重复进行，直到基学习器数目达到事先制定的值，最终将所有的基学习器进行加权结合。如果你对“偏差-方差分解”（Bias-Variance Decomposition）有耳闻的话，那么，Boosting主要关注降低偏差。 <strong>在实际效果中，增强算法往往能基于泛化性能相当弱的学习器构建出很强的集成结果</strong>。</p>
+<p>AdaBoost提出后不久，机器学习学者和统计学家杰罗姆⋅弗赖德曼（Jerome H. Friedman）等人发表了一篇论文[2]， <strong>从“统计视角”解释AdaBoost实质上是基于加性模型（Additive Model）以类似牛顿迭代法来优化指数损失函数（Loss Function）</strong>。于是受此启发，杰米姆提出了“ <strong>梯度增强</strong>”（Gradient Boosting）的想法。这也就是梯度回归决策树思想来源的第二个地方，也是直接根源。如果你希望对“梯度增强”有进一步的了解，可以见参考文献[3]。</p>
+<p>最早把“梯度增强”的想法应用到搜索中，是雅虎研究院的学者于2007年左右提出的[4]&amp;[5]。之后，Facebook把梯度增强决策树应用于新闻推荐中[6]。</p>
+<h2 id="梯度增强的思想核心"><a href="#梯度增强的思想核心" class="headerlink" title="梯度增强的思想核心"></a>梯度增强的思想核心</h2><p>我们刚才简单讲了增强算法的思路，那么要想理解梯度增强决策树，就必须理解梯度增强的想法。</p>
+<p><strong>梯度增强首先还是增强算法的一个扩展，也是希望能用一系列的弱学习器来达到一个强学习器的效果，从而逼近目标变量的值，也就是我们常说的标签值</strong>。而根据加性模型的假设，这种逼近效果是这些弱学习器的一个加权平均。也就是说，最终的预测效果，是所有单个弱学习器的一个平均效果，只不过这个平均不是简单的平均，而是一个加权的效果。</p>
+<p>那么如何来构造这些弱学习器和加权平均的权重呢？</p>
+<p><strong>梯度增强采用了一个统计学或者说是优化理论的视角，使得构造这些部分变得更加直观</strong>。</p>
+<p>梯度增强的作者们意识到，如果使用“梯度下降”（Gradient Descent）来优化一个目标函数，最后的预测式可以写成一个加和的形式。也就是，每一轮梯度的值和一个叫“学习速率”（Learning Rate）的参数共同叠加起来形成了最后的预测结果。这个观察非常重要，如果把这个观察和我们的目标，也就是构造弱学习器的加权平均联系起来看，我们就会发现， <strong>其实每个梯度的值就可以认为是一个弱学习器，而学习速率就可以看作是某种意义上的权重</strong>。</p>
+<p>有了这个思路，梯度增强的算法就很容易构造了。</p>
+<p><strong>首先，这是一个迭代算法</strong>。每一轮迭代，我们把当前所有学习器的加权平均结果当作这一轮的函数值，然后求得针对某一个损失函数对于当前所有学习器的参数的一个梯度。 <strong>然后，我们利用某一个弱学习器算法，可以是线性回归模型（Linear Regression）、对数几率模型（Logistic Regression）等来拟合这个梯度</strong>。 <strong>最后，我们利用“线查找”（Line Search）的方式找到权重</strong>。说得更直白一些，那就是我们尝试利用一些简单的模型来拟合不同迭代轮数的梯度。</p>
+<p>梯度增强的一个特点就是梯度下降本身带来的，那就是每一轮迭代一定是去拟合比上一轮小的一个梯度，函数对目标的整体拟合也是越来越好的。这其实也就是增强算法和梯度下降的一个完美结合。</p>
+<h2 id="梯度增强决策树以及在搜索的应用"><a href="#梯度增强决策树以及在搜索的应用" class="headerlink" title="梯度增强决策树以及在搜索的应用"></a>梯度增强决策树以及在搜索的应用</h2><p>理解了梯度增强，那么梯度增强决策树也就容易理解了。简单来说， <strong>梯度增强决策树就是利用决策树，这种最基本的学习器来当作弱学习器，去拟合梯度增强过程中的梯度</strong>。然后融合到整个梯度增强的过程中，最终，梯度增强决策树其实就是每一轮迭代都拟合一个新的决策树用来表达当前的梯度，然后跟前面已经有的决策树进行叠加。在整个过程中，决策树的形状，比如有多少层、总共有多少节点等，都是可以调整的或者学习的 <strong>超参数</strong>。而总共有多少棵决策树，也就是有多少轮迭代是重要的 <strong>调节参数</strong>，也是防止整个学习过程过拟合的重要手段。</p>
+<p>参考文献[5]和[6]，就是雅虎的科学家第一次把刚才提到的这个思路用于搜索问题中，训练排序算法。在应用的时候，有一些细节的调整，比如 <strong>损失函数的设定</strong>。这里，作者们采用了配对法排序学习方法，那就是不直接去拟合相关度，而是拟合两个不同文档相关度的差值。具体来说，就是针对某一个查询关键字，我们利用算法来最小化对文档相关度差值的预测，也就是说我们不希望把相关度高的文档放到相关度低的后面。</p>
+<p>在这些论文中，还有后续的很多研究中，利用梯度增强决策树算法进行排序训练得到的效果比当时的其他算法都有大幅度的提升。因此，这也就慢慢地奠定了 <strong>梯度增强决策树作为一种普适的机器学习排序算法</strong> 的地位。值得说明的是，梯度增强决策树的成功，一部分来自于增强算法，另一部分来自于把很多决策树堆积起来的想法。这两个思路都是在机器学习中被反复验证、行之有效的“模式”。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了梯度增强决策树算法的基本原理，这是一个利用机器学习技术来学习排序的基础算法。作为配对法排序学习的一个经典算法，梯度增强决策树算法有着广泛的应用 。 一起来回顾下要点：第一，我们简要介绍了梯度增强决策树提出的历史。第二，我们详细介绍了增强算法的核心以及梯度增强的思路。第三，我们简要介绍了梯度增强决策树的核心以及如何利用这个算法来训练排序问题。</p>
+<p>最后，给你留一个思考题，梯度增强的思路能和神经网络模型结合吗？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<ol>
+<li>Yoav Freund and Robert E Schapire. A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting. J. Comput. Syst. Sci. 55, 1 (August 1997), 119-139, 1997.</li>
+<li>Friedman, Jerome; Hastie, Trevor; Tibshirani, Robert. Additive logistic regression: a statistical view of boosting (With discussion and a rejoinder by the authors). Ann. Statist. 28 (2000), no. 2, 337–407, 2000.</li>
+<li>Friedman, Jerome H. Greedy function approximation: a gradient boosting machine. Annals of Statistics (2001): 1189–1232, 2001.</li>
+<li>Zhaohui Zheng, Hongyuan Zha, Tong Zhang, Olivier Chapelle, Keke Chen, and Gordon Sun. A general boosting method and its application to learning ranking functions for web search. Proceedings of the 20th International Conference on Neural Information Processing Systems (NIPS’07), J. C. Platt, D. Koller, Y. Singer, and S. T. Roweis (Eds.). Curran Associates Inc., USA, 1697-1704, 2007.</li>
+<li>Zhaohui Zheng, Keke Chen, Gordon Sun, and Hongyuan Zha. A regression framework for learning ranking functions using relative relevance judgments. Proceedings of the 30th annual international ACM SIGIR conference on Research and development in information retrieval (SIGIR ‘07). ACM, New York, NY, USA, 287-294, 2007.</li>
+<li>Xinran He, Junfeng Pan, Ou Jin, Tianbing Xu, Bo Liu, Tao Xu, Yanxin Shi, Antoine Atallah, Ralf Herbrich, Stuart Bowers, and Joaquin Quiñonero Candela. Practical Lessons from Predicting Clicks on Ads at Facebook. Proceedings of the Eighth International Workshop on Data Mining for Online Advertising (ADKDD’14). ACM, New York, NY, USA, , Article 5 , 9 pages, 2014.</li>
+</ol>
+<p><strong>论文链接</strong></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.face-rec.org/algorithms/Boosting-Ensemble/decision-theoretic_generalization.pdf">A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://web.stanford.edu/~hastie/Papers/AdditiveLogisticRegression/alr.pdf">Additive logistic regression: a statistical view of boosting</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://statweb.stanford.edu/~jhf/ftp/trebst.pdf">Greedy function approximation: a gradient boosting machine</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://corescholar.libraries.wright.edu/cgi/viewcontent.cgi?referer=https://www.google.com.hk/&httpsredir=1&article=1314&context=knoesis">A general boosting method and its application to learning ranking functions for web search</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cc.gatech.edu/~zha/papers/fp086-zheng.pdf">A regression framework for learning ranking functions using relative relevance judgments</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A54CCA7D4A8F05B6636C9D64316BCF96?doi=10.1.1.718.9050&rep=rep1&type=pdf">Practical Lessons from Predicting Clicks on Ads at Facebook</a></p>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#053-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B%EF%BC%9AGBDT"><span class="toc-number">1.</span> <span class="toc-text">053 | 机器学习排序算法经典模型：GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E5%A2%9E%E5%BC%BA%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%8E%86%E5%8F%B2"><span class="toc-number">1.1.</span> <span class="toc-text">梯度增强决策树的历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E5%A2%9E%E5%BC%BA%E7%9A%84%E6%80%9D%E6%83%B3%E6%A0%B8%E5%BF%83"><span class="toc-number">1.2.</span> <span class="toc-text">梯度增强的思想核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E5%A2%9E%E5%BC%BA%E5%86%B3%E7%AD%96%E6%A0%91%E4%BB%A5%E5%8F%8A%E5%9C%A8%E6%90%9C%E7%B4%A2%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">梯度增强决策树以及在搜索的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

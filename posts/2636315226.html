@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>064 | 高级推荐模型之一：张量分解模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="064 | 高级推荐模型之一：张量分解模型上周我们分享了推荐系统中矩阵分解的点点滴滴，简单复习一下讨论过的三个模型。 第一，“基于隐变量的矩阵分解”，其优势是显式地对用户和物品信息中的隐含结构进行建模，从而能够挖掘更加深层次的用户和物品关系。 第二，“基于回归的隐变量模型”，这是在基本的矩阵分解基础上衍生出来的一类模型。这种基于回归的矩阵分解模型把显式特性和隐变量结合起来，对解决“冷启动”问题有一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="064 | 高级推荐模型之一：张量分解模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2636315226.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="064 | 高级推荐模型之一：张量分解模型上周我们分享了推荐系统中矩阵分解的点点滴滴，简单复习一下讨论过的三个模型。 第一，“基于隐变量的矩阵分解”，其优势是显式地对用户和物品信息中的隐含结构进行建模，从而能够挖掘更加深层次的用户和物品关系。 第二，“基于回归的隐变量模型”，这是在基本的矩阵分解基础上衍生出来的一类模型。这种基于回归的矩阵分解模型把显式特性和隐变量结合起来，对解决“冷启动”问题有一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.089Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2636315226"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '064 | 高级推荐模型之一：张量分解模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">064 | 高级推荐模型之一：张量分解模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="064-高级推荐模型之一：张量分解模型"><a href="#064-高级推荐模型之一：张量分解模型" class="headerlink" title="064 | 高级推荐模型之一：张量分解模型"></a>064 | 高级推荐模型之一：张量分解模型</h1><p>上周我们分享了推荐系统中矩阵分解的点点滴滴，简单复习一下讨论过的三个模型。</p>
+<p>第一，“基于隐变量的矩阵分解”，其优势是显式地对用户和物品信息中的隐含结构进行建模，从而能够挖掘更加深层次的用户和物品关系。</p>
+<p>第二，“基于回归的隐变量模型”，这是在基本的矩阵分解基础上衍生出来的一类模型。这种基于回归的矩阵分解模型把显式特性和隐变量结合起来，对解决“冷启动”问题有一定作用。</p>
+<p>第三，“分解机”是由基于回归的隐变量模型衍生出来的，并且吸纳了基于信息的推荐系统的一些观点，成为了一种可以融合多种信息的强有力的工具。</p>
+<p>这周，我们跟随着这个脚步，进一步来讨论一些比较高级的模型，看这些模型如何抓住更多的用户和物品之间的关系。</p>
+<p>今天，我们先来聊一种叫作“ <strong>张量分解</strong>”（Tensor Factorization）的模型。</p>
+<h2 id="为什么需要张量分解"><a href="#为什么需要张量分解" class="headerlink" title="为什么需要张量分解"></a>为什么需要张量分解</h2><p>在我们探讨张量分解的一些基本思想之前，先来看一看，推荐系统在什么场景下需要张量分解。</p>
+<p>我们还是要从矩阵分解说起。矩阵分解的核心思想，是用矩阵这种数据结构来表达用户和物品的相互关系。这里，我们一般谈论的都是一些最简单的关系，例如评分、点击、购买等（本文我们依然只是讨论评分）。在这种二元的模式下，矩阵就是最好的表达用户和物品之间关系的数据结构。</p>
+<p>然而，在真实的场景中，用户和物品的关系以及产生这种关系的周围环境是复杂的。一个矩阵并不能完全描述所有的变量。例如，用户对于某个物品的评分是发生在某个地点、某个时间段内的。这种所谓的“上下文关系”（Context）往往会对评分产生很大影响。遗憾的是，一个矩阵无法捕捉这样的上下文关系。</p>
+<p>我们之前讨论过的“基于回归的矩阵分解”和“分解机”，本质上都是在某种程度上绕开这个问题。采用的方法就是，依然用矩阵来表达二元关系，但是把其他信息放进隐变量中，或者是采用基于信息的推荐系统的思路来得到相关信息的建模。</p>
+<p>除了这种思路，还有没有别的方法，可以把上下文关系融入到对用户和物品的建模中去呢？</p>
+<p>这时“张量”就该上场了。</p>
+<p>从本质上来说， <strong>张量就是矩阵的推广</strong>。我们可以这么理解， <strong>矩阵是对二维关系建模的一种工具；而张量，就是对N维关系的一种建模</strong>。在二维关系中，用户和物品的评分是唯一能够被建模的变量；而到了N维关系中，理论上，我们可以对任意多种上下文关系进行建模。</p>
+<p>比如，我们刚才提到的时间，就可以组成一个三维的张量，分别为用户、物品和时间。然后，在这个三维的张量中，每一个单元代表着某一个用户对于某一个物品在某一个时间段的评分。</p>
+<h2 id="基于张量分解的推荐模型"><a href="#基于张量分解的推荐模型" class="headerlink" title="基于张量分解的推荐模型"></a>基于张量分解的推荐模型</h2><p>我们已经讲了张量的作用。那么，如何使用张量来进行推荐模型的建模呢？</p>
+<p>我们还是用刚才所说的“用户、物品和时间”作为例子。在这个三维的张量里，每一个元素代表的是用户对于物品在某个时间段上的评分。那么，根据矩阵分解的思路，我们怎么来对这个张量进行分解呢？</p>
+<p>遗憾的是，张量的分解要比矩阵分解更为复杂。与矩阵分解不同，张量分解至少有两种不同的形式，这两种形式会引导出不同的分解模型和算法。</p>
+<p><strong>第一种分解模式叫 CP分解</strong>（CANDECOMP&#x2F;PARAFAC）。</p>
+<p>拿我们刚才所说的三维张量来讲，CP分解是把一个三维张量分解为三个矩阵。具体来说，比如我们的三维张量是N维用户乘以M维的物品乘以R维的时间段。那么，分解出来的三个矩阵就分别为N维乘以K维的用户矩阵，M维乘以K维的物品矩阵，以及R维乘以K维的时间矩阵。这三个矩阵中的每一个向量都代表某一个用户、某一个物品和某一个时间段。K在这里是一个参数，类似于矩阵分解中的隐变量的维度，我们也就可以把这个K理解成为隐变量的维度。</p>
+<p>那么在原始的三维张量中，某一个元素就是这三个矩阵的某三个向量对应元素乘积相加的结果。CP分解的一大好处就是，分解出来的三个矩阵的隐变量维度是一样的，这也就减少了需要调整的参数的个数。</p>
+<p><strong>第二种分解模式叫作 HOSVD分解</strong>（High Order Singular Value decomposition）。</p>
+<p>这种分解和CP分解最大的不同就是分解出来的三个矩阵的维度不再一样。也就是说，在我们之前的例子中，用户矩阵的维度可以是N乘以A，物品矩阵的维度是M乘以B，时间段矩阵的维度是R乘以C。当然，这样就无法还原之前的N乘以M乘以R的三维张量了。</p>
+<p>于是在技术上，还需要乘以一个A乘以B乘以C的小张量才能对原始数据进行复原。所以，通俗地讲，HOSVD分解就是把一个三维的张量，分解成为三个矩阵和一个更小的张量的乘积。</p>
+<p>那HOSVD相比CP分解有什么好处呢？好处自然就是给不同的数据以不同的自由度，因为不再限制用户、物品和时间段都必须有一样的维度。但同时也带来了难点，那就是有了更多的“超参数”需要调整。</p>
+<p>值得一提的是，我们仅仅是讲了讲张量分解的一个基本思路。在实际的运作中，还有一个重要的步骤，那就是 <strong>设计目标函数</strong>，或者说是 <strong>定义损失函数</strong>。在一般的分解过程中，我们可以定义“ <strong>平方差</strong>”（Squared Loss），也就是原始数值和预测数值之间的平方差来作为损失函数，当然也可以使用其他的损失函数，这一点和矩阵分解是一样的。</p>
+<h2 id="求解张量分解"><a href="#求解张量分解" class="headerlink" title="求解张量分解"></a>求解张量分解</h2><p>虽然张量是对矩阵的自然延伸，张量分解是矩阵分解的某种延伸，但是求解张量分解则是一个相对比较难的问题。</p>
+<p>一种比较简单的模式依然是使用“ <strong>随机梯度下降</strong>”法（SGD, Stochastic Gradient Descent），也就是把张量的分解问题看作是一个一般的优化问题。关于这种方法的细节我在这里不详细讲解了，感兴趣的话，建议阅读参考文献[1]，这是一篇很经典的论文，是第一次把张量分解使用在推荐系统中。</p>
+<p>另外一种方法，也是在矩阵分解中可以使用的，叫作 <strong>ALS</strong>（Alternating Least Square）方法。这种方法则是在优化每一轮的时候，按住所有其他的矩阵变量不动，单独优化一个变量。举例来说，如果我们要优化用户矩阵，那么我们就按住物品矩阵和时间段矩阵不动，不去更新里面的参数，而仅仅更新用户矩阵里面的参数。同理，在下一轮的优化中，可以仅仅更新物品矩阵里的参数。这种方法也是行之有效的一种优化方法。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了推荐系统的一个高级模型：张量分解。张量分解模型主要用来对上下文的信息进行建模。</p>
+<p>一起来回顾下要点：第一，我们简要介绍了为什么需要张量分解；第二，我们详细介绍了张量分解的基本原理；第三，我们简要地讨论了如果求解张量分解。</p>
+<p>最后，给你留一个思考题，从概念上来看，用张量分解对上下文信息进行建模的最大问题是什么？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<p>1. Alexandros Karatzoglou, Xavier Amatriain, Linas Baltrunas, and Nuria Oliver. <a target="_blank" rel="noopener" href="https://xamat.github.io/pubs/karatzoglu-recsys-2010.pdf">Multiverse recommendation: n-dimensional tensor factorization for context-aware collaborative filtering</a>. Proceedings of the fourth ACM conference on Recommender systems (RecSys ‘10). ACM, New York, NY, USA, 79-86, 2010.</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#064-%E9%AB%98%E7%BA%A7%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B%E4%B9%8B%E4%B8%80%EF%BC%9A%E5%BC%A0%E9%87%8F%E5%88%86%E8%A7%A3%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">064 | 高级推荐模型之一：张量分解模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BC%A0%E9%87%8F%E5%88%86%E8%A7%A3"><span class="toc-number">1.1.</span> <span class="toc-text">为什么需要张量分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%BC%A0%E9%87%8F%E5%88%86%E8%A7%A3%E7%9A%84%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">基于张量分解的推荐模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E5%BC%A0%E9%87%8F%E5%88%86%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">求解张量分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

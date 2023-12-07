@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>089 | 广告的竞价策略是怎样的？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="089 | 广告的竞价策略是怎样的？在上一次的分享里，我们讲了广告位竞价的一个基本原理，那就是目前广泛使用的基于第二价位的广告竞拍。简单来说，基于第二价位的广告竞拍需要利用广告点击率的估计值和竞拍的价格，把所有的竞拍广告进行排序，排名第一的广告赢得竞拍。和基于第一价位的广告竞拍不一样的是，基于第二价位的广告竞拍并不直接利用排名第一的广告的出价来对其进行收费，而是利用排名第二的价位进行收费。在这样的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="089 | 广告的竞价策略是怎样的？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/274777449.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="089 | 广告的竞价策略是怎样的？在上一次的分享里，我们讲了广告位竞价的一个基本原理，那就是目前广泛使用的基于第二价位的广告竞拍。简单来说，基于第二价位的广告竞拍需要利用广告点击率的估计值和竞拍的价格，把所有的竞拍广告进行排序，排名第一的广告赢得竞拍。和基于第一价位的广告竞拍不一样的是，基于第二价位的广告竞拍并不直接利用排名第一的广告的出价来对其进行收费，而是利用排名第二的价位进行收费。在这样的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.134Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/274777449"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '089 | 广告的竞价策略是怎样的？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">089 | 广告的竞价策略是怎样的？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="089-广告的竞价策略是怎样的？"><a href="#089-广告的竞价策略是怎样的？" class="headerlink" title="089 | 广告的竞价策略是怎样的？"></a>089 | 广告的竞价策略是怎样的？</h1><p>在上一次的分享里，我们讲了广告位竞价的一个基本原理，那就是目前广泛使用的基于第二价位的广告竞拍。简单来说，基于第二价位的广告竞拍需要利用广告点击率的估计值和竞拍的价格，把所有的竞拍广告进行排序，排名第一的广告赢得竞拍。和基于第一价位的广告竞拍不一样的是，基于第二价位的广告竞拍并不直接利用排名第一的广告的出价来对其进行收费，而是利用排名第二的价位进行收费。在这样的情况下，有理论工作和实际的数据表明，基于第二价位的广告竞拍更加符合广告商对于广告位本身真实价值的判断。</p>
+<p>今天我们来看在基于第二价位的广告竞拍的基础上，DSP或者广告商究竟该 <strong>如何形成自己的竞价策略</strong>（Bidding Strategy）。</p>
+<h2 id="竞价策略"><a href="#竞价策略" class="headerlink" title="竞价策略"></a>竞价策略</h2><p>为什么需要竞价策略？其实这个问题主要是在“ <strong>实时竞价</strong>”，或简称 <strong>RTB</strong> 的背景下来探讨的。</p>
+<p>我们之前提到过，RTB是DSP目前流行的竞价模式，也就是广告商等利用计算机程序来自动对广告竞拍进行出价。从实际的运作中来看，这样的自动竞价模式要比人工竞价更加方便快捷，也更加高效。然而，在自动竞价的模式下，我们势必需要一种指导思想，来让我们的计算机程序能够随着形式的变化来进行出价。</p>
+<p>那么在RTB中，竞价策略的环境究竟是怎样的呢？</p>
+<p>首先，竞价的一个重要特征，就是作为一个竞标方，我们并不知道其他竞标方的点击率和出价。因此，我们 <strong>处在一个信息不完整的竞价环境中</strong>。在这样的环境中，我们只能根据自己的点击率估计和自己的出价，以及过去出价的成功与否来对整个市场的形势进行判断。这就是在RTB中竞价策略的一大挑战和难点。</p>
+<p>在这样的背景下，RTB竞价策略的研究和开发集中在以下两种思路上。</p>
+<p>一种思路是 <strong>把整个竞价策略当做一种“博弈”</strong>（Game），从而根据博弈论中的方法来对竞价环境中各个竞标方的行为和收益进行研究（比较经典的论文例如参考文献[1]）。用博弈论的方法来对竞价进行研究有一个最大的特点，那就是博弈论主要是对各个竞标方行为之间的 <strong>关联性</strong> 进行建模，这种关联性包括他们之间的 <strong>收益</strong> 和他们的 <strong>动机</strong>。</p>
+<p>另外一种思路是 <strong>把整个竞价策略当做是纯粹的统计决策</strong>，也就是直接对广告商的行为进行建模，而把整个竞价环境中的种种联系都当做是当前决策下的不确定因素（这种思路比较有代表性的论文是参考文献[2]）。在这样的思路下，各个竞标方之间的行为关联变得不那么重要，而对于整个不确定性的建模则变得至关重要。</p>
+<p>第一种思路，也就是利用博弈论的方法来对竞价策略进行研究主要存在于学术界。虽然从理论上来说，博弈论可能提供一种比较有说服力的解释，但是这种思路需要对整个竞价环境有非常多的假设（例如竞标方是不是理性，市场是不是充分竞争等等）。而第二种思路，仅仅需要从广告商自身的角度出发，因此在现实中，这种思路的操作性更强，从而受到工业界的青睐。</p>
+<p>总的来说，第二种思路其实就是根据当前的输入信息，例如页面信息、广告信息、用户信息以及上下文信息等，学到一个 <strong>输出价格的函数</strong>，也就是说，这个函数的输出就是在现在情况下当前广告的出价。当然，这个函数势必需要考虑各种不确定的因素。</p>
+<h2 id="搜索广告和展示广告的竞标"><a href="#搜索广告和展示广告的竞标" class="headerlink" title="搜索广告和展示广告的竞标"></a>搜索广告和展示广告的竞标</h2><p>搜索广告和展示广告的竞标存在着不小的区别，因此，从技术上来讲，就发展出了一系列不同的方法。</p>
+<p><strong>对于搜索广告来讲，在大多数情况下，每一个出价都是针对某一个搜索关键词的</strong>。例如，一个汽车广告商可能会在一个搜索引擎里竞标针对自己车的品牌，如“大众汽车”、“奥迪汽车”相关的关键词，还可能竞标更加宽泛的关键词，如“买车”、“汽车”等。同时，这里的出价也往往是事先设置好的。</p>
+<p>参考文献[3]是第一个利用机器学习方法对搜索广告的出价进行建模的工作。在这个工作里，每一个关键词的出价来自于一个线性函数的输出，而这个线性函数是把用户信息、关键词以及其他的页面信息当做特性，学习了一个 <strong>从特性到出价的线性关系</strong>。这可以算是最早的利用线性函数来进行出价的例子了。</p>
+<p>展示广告的竞价则面临着不同的挑战。首先，在展示广告中，场景中并不存在搜索关键词这种概念。因此，很多广告商无法针对场景事先产生出价。这也就要求RTB的提供商要能够在不同的场景中帮助广告商进行出价。</p>
+<p>同时，相比于搜索广告针对 <strong>每一个关键词</strong> 的出价方式来说，针对 <strong>每一个页面显示机会</strong> 出价的挑战则更大。理论上讲，每一个页面显示机会的价格都可能有很大的不同。很多RTB都利用一种叫作 <strong>CPM的收费模式</strong>，也就是说，一旦某一个广告位被赢得之后，对于广告商来说，这往往就意味着需要被收取费用。所以，在展示广告的情况下，如何针对当前的页面显示机会以及目前的预算剩余等等因素进行统一建模，就成为一个必不可少的步骤。</p>
+<h2 id="竞价策略的其他问题"><a href="#竞价策略的其他问题" class="headerlink" title="竞价策略的其他问题"></a>竞价策略的其他问题</h2><p>除了我们谈论到的基本的竞价策略以外，竞价系统还有一些其他问题需要考虑。</p>
+<p>比如，一个广告商现在有1千元的预算参与到RTB竞价中。从广告商的角度来说，通常希望这1千元能够比较均匀地使用到整个广告竞价中。或者说，即便不是完全均匀使用，至少也不希望这笔预算被很快用完。这里面的一个原因是，在每天的各个时段，广告的表现情况，也就是说转化率或点击率是不一样的，广告商通常希望自己的广告能够在比较好的时段进行展示。而如果广告在比较好的时段还没有来临之前就已经将预算消耗殆尽，那就会让广告商觉得整个流程不是很友好。</p>
+<p>因此，在广告竞价策略中，还存在着一个叫“ <strong>预算步调</strong>”（Budget Pacing）的技术，也就是希望能够让广告的展示相对平缓而不至于在短时间内使用完全部的预算。这势必对于广告如何出价有着直接的影响。</p>
+<p>另外，对于平台而言，虽然竞价保证了一定的竞争，但是也并不是所有的展示机会都有非常充分的竞争。因此，从平台的角度来说，如何能够保证一定的收益就变得十分重要。在这样的情况下，有的平台有一种叫作“ <strong>保留价格</strong>”（Reserved Price）的做法，用来设置一个最低的竞价价格。保留价格虽然能够来保证收益，但是也可能会让广告商觉得不划算，因此如何来设置这个保留价格，也就成为了出价策略中的一个重要组成部分。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我为你介绍了广告竞价的基础知识，也就是如何形成竞价策略。</p>
+<p>一起来回顾下要点：第一，我们讲了RTB背景下竞价策略的两种思路；第二，我们介绍了搜索广告和展示广告竞价策略的不同之处；第三，我们简单聊了广告竞价策略的一些其他相关问题。</p>
+<p>最后，给你留一个思考题，你觉得如何评价一个广告竞价策略的好坏呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<ol>
+<li><p>Ramakrishna Gummadi, Peter Key and Alexandre Proutiere. <strong>Repeated auctions under budget constraints: Optimal bidding strategies and equilibria</strong>. In Eighth Workshop on Ad Auctions, 2012.</p>
+</li>
+<li><p>Yuan, S., Wang, J., and Zhao, X. <strong>Real-time bidding for online advertising: measurement and analysis</strong>. Proceedings of the Seventh International Workshop on Data Mining for Online Advertising, page 3. ACM, 2013.</p>
+</li>
+<li><p>Andrei Broder, Evgeniy Gabrilovich, Vanja Josifovski, George Mavromatis, and Alex Smola. <strong>Bid generation for advanced match in sponsored search</strong>. Proceedings of the fourth ACM international conference on Web search and data mining (WSDM ‘11). ACM, New York, NY, USA, 515-524, 2011.</p>
+</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#089-%E5%B9%BF%E5%91%8A%E7%9A%84%E7%AB%9E%E4%BB%B7%E7%AD%96%E7%95%A5%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">089 | 广告的竞价策略是怎样的？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%9E%E4%BB%B7%E7%AD%96%E7%95%A5"><span class="toc-number">1.1.</span> <span class="toc-text">竞价策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%B9%BF%E5%91%8A%E5%92%8C%E5%B1%95%E7%A4%BA%E5%B9%BF%E5%91%8A%E7%9A%84%E7%AB%9E%E6%A0%87"><span class="toc-number">1.2.</span> <span class="toc-text">搜索广告和展示广告的竞标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%9E%E4%BB%B7%E7%AD%96%E7%95%A5%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">竞价策略的其他问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

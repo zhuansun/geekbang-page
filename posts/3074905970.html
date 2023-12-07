@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>39 | 编程范式：逻辑编程范式 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="39 | 编程范式：逻辑编程范式你好，我是陈皓，网名左耳朵耗子。 这节课重点介绍Prolog语言。Prolog（Programming in Logic）是一种逻辑编程语言，它创建在逻辑学的理论基础之上，最初被运用于自然语言等研究领域。现在它已被广泛地应用在人工智能的研究中，可以用来建造专家系统、自然语言理解、智能知识库等。 Prolog语言最早由艾克斯马赛大学（Aix-Marseille Uni">
+<meta property="og:type" content="article">
+<meta property="og:title" content="39 | 编程范式：逻辑编程范式">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3074905970.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="39 | 编程范式：逻辑编程范式你好，我是陈皓，网名左耳朵耗子。 这节课重点介绍Prolog语言。Prolog（Programming in Logic）是一种逻辑编程语言，它创建在逻辑学的理论基础之上，最初被运用于自然语言等研究领域。现在它已被广泛地应用在人工智能的研究中，可以用来建造专家系统、自然语言理解、智能知识库等。 Prolog语言最早由艾克斯马赛大学（Aix-Marseille Uni">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.489Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3074905970"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '39 | 编程范式：逻辑编程范式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">39 | 编程范式：逻辑编程范式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="39-编程范式：逻辑编程范式"><a href="#39-编程范式：逻辑编程范式" class="headerlink" title="39 | 编程范式：逻辑编程范式"></a>39 | 编程范式：逻辑编程范式</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>这节课重点介绍Prolog语言。Prolog（Programming in Logic）是一种逻辑编程语言，它创建在逻辑学的理论基础之上，最初被运用于自然语言等研究领域。现在它已被广泛地应用在人工智能的研究中，可以用来建造专家系统、自然语言理解、智能知识库等。</p>
+<p>Prolog语言最早由艾克斯马赛大学（Aix-Marseille University）的Alain Colmerauer与Philippe Roussel等人于20世纪60年代末研究开发的。1972年被公认为是Prolog语言正式诞生的年份，自1972年以后，分支出多种Prolog的方言。</p>
+<p>最主要的两种方言为Edinburgh和Aix-Marseille。最早的Prolog解释器由Roussel建造，而第一个Prolog编译器则是David Warren编写的。</p>
+<p>Prolog一直在北美和欧洲被广泛使用。日本政府曾经为了建造智能计算机而用Prolog来开发ICOT第五代计算机系统。在早期的机器智能研究领域，Prolog曾经是主要的开发工具。</p>
+<p>20世纪80年代Borland开发的Turbo Prolog，进一步普及了Prolog的使用。1995年确定了ISO Prolog标准。</p>
+<p>有别于一般的函数式语言，Prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对象与对象之间的关系，之后可以用询问目标的方式来查询各种对象之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。</p>
+<p>Prolog代码中以大写字母开头的元素是变量，字符串、数字或以小写字母开头的元素是常量，下划线（_）被称为匿名变量。</p>
+<h1 id="Prolog的语言特征"><a href="#Prolog的语言特征" class="headerlink" title="Prolog的语言特征"></a>Prolog的语言特征</h1><p>逻辑编程是靠推理，比如下面的示例：</p>
+<pre class="line-numbers language-none"><code class="language-none">program mortal(X) :- philosopher(X).
+
+philosopher(Socrates).
+philosopher(Plato).
+philosopher(Aristotle).
+
+mortal_report:-
+write(&#39;Known mortals are:&#39;), nl, mortal(X),
+write(X),nl,
+fail.
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以看到下面的几个步骤。</p>
+<ol>
+<li>先定义一个规则：哲学家是人类。</li>
+<li>然后陈述事实：苏格拉底、亚里士多德、柏拉图都是哲学家。</li>
+<li>然后，我们问，谁是人类？于是就会输出苏格拉底、亚里士多德、柏拉图。</li>
+</ol>
+<p>下面是逻辑编程范式的几个特征。</p>
+<ul>
+<li>逻辑编程的要点是将正规的逻辑风格带入计算机程序设计之中。</li>
+<li>逻辑编程建立了描述一个问题里的世界的逻辑模型。</li>
+<li>逻辑编程的目标是对它的模型建立新的陈述。</li>
+<li>通过陈述事实——因果关系。</li>
+<li>程序自动推导出相关的逻辑。</li>
+</ul>
+<h1 id="经典问题：地图着色问题"><a href="#经典问题：地图着色问题" class="headerlink" title="经典问题：地图着色问题"></a>经典问题：地图着色问题</h1><p>我们再来看一个经典的四色地图问题。任何一个地图，相邻区域不能用相同颜色，只要用四种不同的颜色就够了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/db670cfbe7497d71eba70d60d8aa0fcb.png"></p>
+<p>首先，定义四种颜色。</p>
+<pre class="line-numbers language-none"><code class="language-none">color(red).
+color(green).
+color(blue).
+color(yellow).
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，定义一个规则：相邻的两个地区不能用相同的颜色。</p>
+<pre class="line-numbers language-none"><code class="language-none">neighbor(StateAColor, StateBColor) :- color(StateAColor), color(StateBColor),
+    StateAColor \&#x3D; StateBColor. &#x2F;* \&#x3D; is the not equal operator *&#x2F;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>最前面的两个条件： <code>color(StateAColor)</code> 和 <code>color(StateBColor)</code> 表明了两个变量 <code>StateAColor</code> 和 <code>StateBColor</code>。然后，第三个条件： <code>StateAColor \= StateBColor</code> 表示颜色不能相同。</p>
+<p>接下来的事就比较简单了。我们描述事实就好了，描述哪些区域是相邻的事实。</p>
+<p>比如，下面描述了 BW 和 BY 是相邻的。</p>
+<p><code>germany(BW, BY) :- neighbor(BW, BY).</code></p>
+<p>下面则描述多个区 BW、 BY、 SL、 RP、 和 ND 的相邻关系：</p>
+<p><code>germany(BW, BY, SL, RP, HE) :- neighbor(BW, BY), neighbor(BW, RP), neighbor(BW, HE).</code></p>
+<p>于是，我们就可以描述整个德国地图的相邻关系了。</p>
+<pre class="line-numbers language-none"><code class="language-none">germany(SH, MV, HH, HB, NI, ST, BE, BB, SN, NW, HE, TH, RP, SL, BW, BY) :-
+neighbor(SH, NI), neighbor(SH, HH), neighbor(SH, MV),
+neighbor(HH, NI),
+neighbor(MV, NI), neighbor(MV, BB),
+neighbor(NI, HB), neighbor(NI, BB), neighbor(NI, ST), neighbor(NI, TH),
+neighbor(NI, HE), neighbor(NI, NW),
+neighbor(ST, BB), neighbor(ST, SN), neighbor(ST, TH),
+neighbor(BB, BE), neighbor(BB, SN),
+neighbor(NW, HE), neighbor(NW, RP),
+neighbor(SN, TH), neighbor(SN, BY),
+neighbor(RP, SL), neighbor(RP, HE), neighbor(RP, BW),
+neighbor(HE, BW), neighbor(HE, TH), neighbor(HE, BY),
+neighbor(TH, BY),
+neighbor(BW, BY).
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后，我们使用如下语句，就可以让Prolog推导到各个地区的颜色。</p>
+<pre class="line-numbers language-none"><code class="language-none">?- germany(SH, MV, HH, HB, NI, ST, BE, BB, SN, NW, HE, TH, RP, SL, BW, BY).
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>Prolog这种逻辑编程，把业务逻辑或是说算法抽象成只关心规则、事实和问题的推导这样的标准方式，不需要关心程序控制，也不需要关心具体的实现算法。只需要给出可以用于推导的规则和相关的事实，问题就可以被通过逻辑推导来解决掉。是不是很有意思，也很好玩？</p>
+<p>如果有兴趣，你可以学习一下，这里推荐两个学习资源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.doc.gold.ac.uk/~mas02gw/prolog_tutorial/prologpages/">Prolog Tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.learnprolognow.org/">Learn Prolog Now!</a></li>
+</ul>
+<p>以下是《编程范式游记》系列文章的目录，方便你了解这一系列内容的全貌。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/301">01 | 编程范式游记：起源</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/303">02 | 编程范式游记：泛型编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2017">03 | 编程范式游记：类型系统和泛型的本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2711">04 | 编程范式游记：函数式编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2723">05 | 编程范式游记：修饰器模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2729">06 | 编程范式游记：面向对象编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2741">07 | 编程范式游记：基于原型的编程范式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2748">08 | 编程范式游记：Go 语言的委托模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2751">09 | 编程范式游记：编程的本质</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2752">10 | 编程范式游记：逻辑编程范式</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/2754">11 | 编程范式游记：程序世界里的编程范式</a></li>
+</ul>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#39-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%EF%BC%9A%E9%80%BB%E8%BE%91%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">39 | 编程范式：逻辑编程范式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Prolog%E7%9A%84%E8%AF%AD%E8%A8%80%E7%89%B9%E5%BE%81"><span class="toc-number">2.</span> <span class="toc-text">Prolog的语言特征</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%EF%BC%9A%E5%9C%B0%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">经典问题：地图着色问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

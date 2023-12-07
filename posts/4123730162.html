@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>126 | 计算机视觉高级话题（三）：产生式模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="126 | 计算机视觉高级话题（三）：产生式模型今天，我们来讨论计算机视觉高级话题中的“ 产生式模型”（Generative Model）。 我们前面讲到的计算机视觉问题，绝大多数场景都是去学习一个“判别式模型”（Discriminative Model），也就是我们希望构建机器学习模型来完成这样的任务，比如判断某一件事情或一个图片的特征，或者识别图片里面的物体等，这些任务都不需要回答“数据是如何">
+<meta property="og:type" content="article">
+<meta property="og:title" content="126 | 计算机视觉高级话题（三）：产生式模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4123730162.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="126 | 计算机视觉高级话题（三）：产生式模型今天，我们来讨论计算机视觉高级话题中的“ 产生式模型”（Generative Model）。 我们前面讲到的计算机视觉问题，绝大多数场景都是去学习一个“判别式模型”（Discriminative Model），也就是我们希望构建机器学习模型来完成这样的任务，比如判断某一件事情或一个图片的特征，或者识别图片里面的物体等，这些任务都不需要回答“数据是如何">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.204Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4123730162"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '126 | 计算机视觉高级话题（三）：产生式模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">126 | 计算机视觉高级话题（三）：产生式模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="126-计算机视觉高级话题（三）：产生式模型"><a href="#126-计算机视觉高级话题（三）：产生式模型" class="headerlink" title="126 | 计算机视觉高级话题（三）：产生式模型"></a>126 | 计算机视觉高级话题（三）：产生式模型</h1><p>今天，我们来讨论计算机视觉高级话题中的“ <strong>产生式模型</strong>”（Generative Model）。</p>
+<p>我们前面讲到的计算机视觉问题，绝大多数场景都是去学习一个“判别式模型”（Discriminative Model），也就是我们希望构建机器学习模型来完成这样的任务，比如判断某一件事情或一个图片的特征，或者识别图片里面的物体等，这些任务都不需要回答“数据是如何产生的”这一问题。简言之，针对判断类型的任务，不管是回归还是分类，我们都不需要对数据直接进行建模。</p>
+<p>然而，判别式模型并不能解决所有的机器学习任务。有一些任务的核心其实需要我们针对数据进行有效的建模，这就催生了“产生式模型”。</p>
+<h2 id="产生式模型的一些基础概念"><a href="#产生式模型的一些基础概念" class="headerlink" title="产生式模型的一些基础概念"></a>产生式模型的一些基础概念</h2><p>那么，针对数据建模的产生式模型都有哪些基本思想呢？</p>
+<p>首先，产生式模型的一个核心思想就是模型要能够产生数据。也就是说，产生式模型不仅需要针对已有的数据建模，还需要有能力产生新的数据。产生出的这些新数据当然需要和已有的数据有一定的相似度。换句话说，新产生的数据要能够“以假乱真”。</p>
+<p>那么，有哪些能够产生数据的工具呢？</p>
+<p><strong>在比较简单的模型中，概率分布其实就起了产生数据的作用</strong>。例如，在离散概率分布的世界里，如果我们知道了一个伯努利分布的参数，也就是某一个事件发生的概率，那么，从理论上来说，我们就可以模拟出这个事件的发生。</p>
+<p>比如，我们利用伯努利分布来对掷硬币产生的正反面建模。一旦我们知道了这个分布的概率是0.5（或者说是50%），那么，我们从这个分布中产生的数据就可以形成和掷一枚没有偏差的硬币一样的效果。</p>
+<p>同样的道理，如果我们利用正态（或者叫高斯）分布来针对一个连续变量建模，例如某一个地区的温度，那么一旦我们知道了这个正态分布的均值和方差这两个参数，我们就可以产生所有温度的可能值。假设温度完全服从这个正态分布，那么就可以认为这些可能值就是以后这个地区可能出现温度的真实情况。</p>
+<p>当然，我们可以看到，简单概率分布无法对真实世界的绝大多数场景进行建模。这也不断激发研究人员来开发各种更加复杂的概率模型来对真实世界进行描述。</p>
+<p>在过去十多年的时间里，一类机器学习思想逐渐成为主流的产生式模型，那就是 <strong>概率图模型</strong>。顾名思义，概率图模型就是概率论和图论的巧妙结合，以此来对复杂的联合概率分布来进行描述。</p>
+<p>我们今天就不针对概率图模型展开讨论了。你需要了解概率图模型的一个重要特点，那就是能够利用一个“显示的”表达式来写出这个联合概率分布，不管这个式子本身有多复杂。也就是说， <strong>概率图模型期望能够通过构建复杂的、显示的表达式来完成对真实场景的模拟</strong>。</p>
+<h2 id="产生式对抗网络"><a href="#产生式对抗网络" class="headerlink" title="产生式对抗网络"></a>产生式对抗网络</h2><p>显然，构造一个概率图模型是一个极具挑战的任务，面对复杂的情况，我们都需要写出一个显示的表达式，或者是针对这种场景的数据来进行模拟。例如，图像和音频信息就是比较复杂的数据，很难用一个公式（不管这个公式多么复杂）来表达。</p>
+<p>那究竟该怎么办？针对这种复杂的数据，研究人员提出了一种新的产生式模型，这就是“ <strong>产生式对抗网络</strong>”（Generative Adversarial Nets），简称为 <strong>GAN</strong>[1]。在过去的几年里，这种模型因其概念简单而备受青睐。</p>
+<p>GAN的基本思想是怎样的呢？</p>
+<p>首先，我们有一个 <strong>数据的“产生器”</strong>（Generator）。这个产生器的作用是从一个我们可以控制的模型中产生数据。最终我们的期望是这个产生器能够产生和真实数据一样的数据。</p>
+<p>其次，我们有一个 <strong>数据的“判别器”</strong>（Discriminator），其目的是区分数据究竟是真实的数据还是产生器产生的数据。</p>
+<p>GAN的模型训练是一个迭代的过程。最开始，产生器肯定无法真正产生有效的数据，这个时候，判别器能够很轻松地对产生的数据进行一个评判：哪些是真实数据，哪些不是。但是产生器会根据这个判别结果，逐渐调整自己产生数据的过程，慢慢地让自己产生的数据趋于真实。一直到最后，判别器无法分别出数据的真伪。</p>
+<p>GAN其实代表了这么一类模型，那就是不再对数据的产生过程进行显式建模，因为这个太过于困难，而是 <strong>想办法定义一个流程，通过这个流程产生数据，从而能够直接去对真实数据进行模拟</strong>。</p>
+<p>GAN和深度学习的结合点在哪里呢？就是产生器和判别器可以分别是多层的神经网络，甚至可以是更加复杂的深度学习模型。这样，GAN的学习过程其实也就是两个不同的，各司其职的深度学习模型参数学习的过程。</p>
+<p>在近几年的发展中，基于GAN的各类模型层出不穷，而且能够产生的图片质量也越来越高，甚至有的真的达到了能以假乱真的程度。</p>
+<p>就在很多人都对这类模型充满了信心的时候，一些理论界的研究再次让大家对产生式模型，特别是GAN的前景萌生了怀疑。GAN能够彻底解决产生式模型的所有问题吗？</p>
+<p>最新的论文[2]论证了GAN在一些限定情况下并不是对数据的整个分布进行建模。一个通俗的例子是，如果我们训练了一个可以产生猫的图片的GAN，那么在理想状态下，这个模型是不是应该可以产生各式各样不同种类的猫的图片呢？答案是，经过某种训练的GAN并不能做到这一点。相反，GAN只能产生有限的猫的图片。这肯定是不太理想的一种情况。</p>
+<p>那么，研究者究竟是应该修改GAN来克服这个问题，还是能够找到更好的方法来产生数据，目前这还是一个未知答案的研究课题。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了计算机视觉高级话题之一的产生式模型。</p>
+<p>一起来回顾下要点：第一，我们来讲了为什么需要产生式模型和简单的基于概率分布的数据产生器；第二，我们讨论了基于GAN的产生模型和最新研究的GAN的一些局限。</p>
+<p>最后，给你留一个思考题，有了能够以假乱真的产生式模型，我们可以有哪些应用呢？</p>
+<p>欢迎你给我留言，我们一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<ol>
+<li><p>Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. <strong>Generative adversarial nets</strong>. Proceedings of the 27th International Conference on Neural Information Processing Systems - Volume 2 (NIPS’14), Z. Ghahramani, M. Welling, C. Cortes, N. D. Lawrence, and K. Q. Weinberger (Eds.), Vol. 2. MIT Press, Cambridge, MA, USA, 2672-2680, 2014.</p>
+</li>
+<li><p>Sanjeev Arora and Yi Zhang. <strong>Do GANs learn the distribution? Some theory and empirics</strong>. ICLR. 2018</p>
+</li>
+</ol>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#126-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BA%A7%E7%94%9F%E5%BC%8F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">126 | 计算机视觉高级话题（三）：产生式模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E5%BC%8F%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">产生式模型的一些基础概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C"><span class="toc-number">1.2.</span> <span class="toc-text">产生式对抗网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

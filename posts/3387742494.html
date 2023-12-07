@@ -1,0 +1,501 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>112 | Go编程模式：Go Generation | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="112 | Go编程模式：Go Generation你好，我是陈皓，网名左耳朵耗子。 这节课，我们来学习一下Go语言的代码生成的玩法。 Go语言的代码生成主要还是用来解决编程泛型的问题。泛型编程主要是解决这样一个问题：因为静态类型语言有类型，所以，相关的算法或是对数据处理的程序会因为类型不同而需要复制一份，这样会导致数据类型和算法功能耦合。 我之所以说泛型编程可以解决这样的问题，就是说，在写代码的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="112 | Go编程模式：Go Generation">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3387742494.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="112 | Go编程模式：Go Generation你好，我是陈皓，网名左耳朵耗子。 这节课，我们来学习一下Go语言的代码生成的玩法。 Go语言的代码生成主要还是用来解决编程泛型的问题。泛型编程主要是解决这样一个问题：因为静态类型语言有类型，所以，相关的算法或是对数据处理的程序会因为类型不同而需要复制一份，这样会导致数据类型和算法功能耦合。 我之所以说泛型编程可以解决这样的问题，就是说，在写代码的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.602Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3387742494"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '112 | Go编程模式：Go Generation',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">112 | Go编程模式：Go Generation</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="112-Go编程模式：Go-Generation"><a href="#112-Go编程模式：Go-Generation" class="headerlink" title="112 | Go编程模式：Go Generation"></a>112 | Go编程模式：Go Generation</h1><p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>这节课，我们来学习一下Go语言的代码生成的玩法。</p>
+<p>Go语言的代码生成主要还是用来解决编程泛型的问题。泛型编程主要是解决这样一个问题：因为静态类型语言有类型，所以，相关的算法或是对数据处理的程序会因为类型不同而需要复制一份，这样会导致数据类型和算法功能耦合。</p>
+<p>我之所以说泛型编程可以解决这样的问题，就是说，在写代码的时候，不用关心处理数据的类型，只需要关心相关的处理逻辑。</p>
+<p>泛型编程是静态语言中非常非常重要的特征，如果没有泛型，我们就很难做到多态，也很难完成抽象，这就会导致我们的代码冗余量很大。</p>
+<h2 id="现实中的类比"><a href="#现实中的类比" class="headerlink" title="现实中的类比"></a>现实中的类比</h2><p>为了帮你更好地理解，我举个现实当中的例子。我们用螺丝刀来做打比方，螺丝刀本来只有一个拧螺丝的作用，但是因为螺丝的类型太多，有平口的，有十字口的，有六角的……螺丝还有不同的尺寸，这就导致我们的螺丝刀为了要适配各种千奇百怪的螺丝类型（样式和尺寸），也是各种样式的。</p>
+<p>而真正的抽象是，螺丝刀不应该关心螺丝的类型，它只要关注自己的功能是不是完备，并且让自己可以适配不同类型的螺丝就行了，这就是所谓的泛型编程要解决的实际问题。</p>
+<h2 id="Go语方的类型检查"><a href="#Go语方的类型检查" class="headerlink" title="Go语方的类型检查"></a>Go语方的类型检查</h2><p>因为Go语言目前并不支持真正的泛型，所以，只能用 <code>interface&#123;&#125;</code> 这样的类似于 <code>void*</code> 的过度泛型来玩，这就导致我们要在实际过程中进行类型检查。</p>
+<p>Go语言的类型检查有两种技术，一种是 Type Assert，一种是Reflection。</p>
+<h3 id="Type-Assert"><a href="#Type-Assert" class="headerlink" title="Type Assert"></a>Type Assert</h3><p>这种技术，一般是对某个变量进行 <code>.(type)</code> 的转型操作，它会返回两个值，分别是variable和error。 variable是被转换好的类型，error表示如果不能转换类型，则会报错。</p>
+<p>在下面的示例中，我们有一个通用类型的容器，可以进行 <code>Put(val)</code> 和 <code>Get()</code>，注意，这里使用了 <code>interface&#123;&#125;</code> 做泛型。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;Container is a generic container, accepting anything.
+type Container []interface&#123;&#125;
+
+&#x2F;&#x2F;Put adds an element to the container.
+func (c *Container) Put(elem interface&#123;&#125;) &#123;
+    *c &#x3D; append(*c, elem)
+&#125;
+&#x2F;&#x2F;Get gets an element from the container.
+func (c *Container) Get() interface&#123;&#125; &#123;
+    elem :&#x3D; (*c)[0]
+    *c &#x3D; (*c)[1:]
+    return elem
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以这样使用：</p>
+<pre class="line-numbers language-none"><code class="language-none">intContainer :&#x3D; &amp;Container&#123;&#125;
+intContainer.Put(7)
+intContainer.Put(42)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>但是，在把数据取出来时，因为类型是 <code>interface&#123;&#125;</code> ，所以，你还要做一个转型，只有转型成功，才能进行后续操作（因为 <code>interface&#123;&#125;</code> 太泛了，泛到什么类型都可以放）。</p>
+<p>下面是一个Type Assert的示例：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; assert that the actual type is int
+elem, ok :&#x3D; intContainer.Get().(int)
+if !ok &#123;
+    fmt.Println(&quot;Unable to read an int from intContainer&quot;)
+&#125;
+
+fmt.Printf(&quot;assertExample: %d (%T)\n&quot;, elem, elem)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h3><p>对于Reflection，我们需要把上面的代码修改如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">type Container struct &#123;
+    s reflect.Value
+&#125;
+func NewContainer(t reflect.Type, size int) *Container &#123;
+    if size &lt;&#x3D;0  &#123; size&#x3D;64 &#125;
+    return &amp;Container&#123;
+        s: reflect.MakeSlice(reflect.SliceOf(t), 0, size),
+    &#125;
+&#125;
+func (c *Container) Put(val interface&#123;&#125;)  error &#123;
+    if reflect.ValueOf(val).Type() !&#x3D; c.s.Type().Elem() &#123;
+        return fmt.Errorf(“Put: cannot put a %T into a slice of %s&quot;,
+            val, c.s.Type().Elem()))
+    &#125;
+    c.s &#x3D; reflect.Append(c.s, reflect.ValueOf(val))
+    return nil
+&#125;
+func (c *Container) Get(refval interface&#123;&#125;) error &#123;
+    if reflect.ValueOf(refval).Kind() !&#x3D; reflect.Ptr ||
+        reflect.ValueOf(refval).Elem().Type() !&#x3D; c.s.Type().Elem() &#123;
+        return fmt.Errorf(&quot;Get: needs *%s but got %T&quot;, c.s.Type().Elem(), refval)
+    &#125;
+    reflect.ValueOf(refval).Elem().Set( c.s.Index(0) )
+    c.s &#x3D; c.s.Slice(1, c.s.Len())
+    return nil
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的代码并不难懂，这是完全使用 Reflection的玩法，我简单解释下。</p>
+<ul>
+<li>在 <code>NewContainer()</code> 时，会根据参数的类型初始化一个Slice。</li>
+<li>在 <code>Put()</code> 时，会检查 <code>val</code> 是否和Slice的类型一致。</li>
+<li>在 <code>Get()</code> 时，我们需要用一个入参的方式，因为我们没有办法返回 <code>reflect.Value</code> 或 <code>interface&#123;&#125;</code>，不然还要做Type Assert。</li>
+<li>不过有类型检查，所以，必然会有检查不对的时候，因此，需要返回 <code>error</code>。</li>
+</ul>
+<p>于是，在使用这段代码的时候，会是下面这个样子：</p>
+<pre class="line-numbers language-none"><code class="language-none">f1 :&#x3D; 3.1415926
+f2 :&#x3D; 1.41421356237
+
+c :&#x3D; NewMyContainer(reflect.TypeOf(f1), 16)
+
+if err :&#x3D; c.Put(f1); err !&#x3D; nil &#123;
+  panic(err)
+&#125;
+if err :&#x3D; c.Put(f2); err !&#x3D; nil &#123;
+  panic(err)
+&#125;
+
+g :&#x3D; 0.0
+
+if err :&#x3D; c.Get(&amp;g); err !&#x3D; nil &#123;
+  panic(err)
+&#125;
+fmt.Printf(&quot;%v (%T)\n&quot;, g, g) &#x2F;&#x2F;3.1415926 (float64)
+fmt.Println(c.s.Index(0)) &#x2F;&#x2F;1.4142135623
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，Type Assert是不用了，但是用反射写出来的代码还是有点复杂的。那么，有没有什么好的方法？</p>
+<h2 id="他山之石"><a href="#他山之石" class="headerlink" title="他山之石"></a>他山之石</h2><p>对于泛型编程最牛的语言 C++ 来说，这类问题都是使用 Template解决的。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;用&lt;class T&gt;来描述泛型
+template &lt;class T&gt;
+T GetMax (T a, T b)  &#123;
+    T result;
+    result &#x3D; (a&gt;b)? a : b;
+    return (result);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">int i&#x3D;5, j&#x3D;6, k;
+&#x2F;&#x2F;生成int类型的函数
+k&#x3D;GetMax&lt;int&gt;(i,j);
+
+long l&#x3D;10, m&#x3D;5, n;
+&#x2F;&#x2F;生成long类型的函数
+n&#x3D;GetMax&lt;long&gt;(l,m);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>C++的编译器会在编译时分析代码，根据不同的变量类型来自动化生成相关类型的函数或类，在C++里，叫模板的具体化。</p>
+<p>这个技术是编译时的问题，所以，我们不需要在运行时进行任何的类型识别，我们的程序也会变得比较干净。</p>
+<p>那么，我们是否可以在Go中使用C++的这种技术呢？答案是肯定的，只是Go的编译器不会帮你干，你需要自己动手。</p>
+<h2 id="Go-Generator"><a href="#Go-Generator" class="headerlink" title="Go Generator"></a>Go Generator</h2><p>要玩 Go的代码生成，你需要三个东西：</p>
+<ol>
+<li>一个函数模板，在里面设置好相应的占位符；</li>
+<li>一个脚本，用于按规则来替换文本并生成新的代码；</li>
+<li>一行注释代码。</li>
+</ol>
+<h3 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h3><p>我们把之前的示例改成模板，取名为 <code>container.tmp.go</code> 放在 <code>./template/</code> 下：</p>
+<pre class="line-numbers language-none"><code class="language-none">package PACKAGE_NAME
+type GENERIC_NAMEContainer struct &#123;
+    s []GENERIC_TYPE
+&#125;
+func NewGENERIC_NAMEContainer() *GENERIC_NAMEContainer &#123;
+    return &amp;GENERIC_NAMEContainer&#123;s: []GENERIC_TYPE&#123;&#125;&#125;
+&#125;
+func (c *GENERIC_NAMEContainer) Put(val GENERIC_TYPE) &#123;
+    c.s &#x3D; append(c.s, val)
+&#125;
+func (c *GENERIC_NAMEContainer) Get() GENERIC_TYPE &#123;
+    r :&#x3D; c.s[0]
+    c.s &#x3D; c.s[1:]
+    return r
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，函数模板中我们有如下的占位符：</p>
+<ul>
+<li><code>PACKAGE_NAME</code>：包名</li>
+<li><code>GENERIC_NAME</code> ：名字</li>
+<li><code>GENERIC_TYPE</code> ：实际的类型</li>
+</ul>
+<p>其它的代码都是一样的。</p>
+<h3 id="函数生成脚本"><a href="#函数生成脚本" class="headerlink" title="函数生成脚本"></a>函数生成脚本</h3><p>然后，我们有一个叫 <code>gen.sh</code> 的生成脚本，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;bin&#x2F;bash
+
+set -e
+
+SRC_FILE&#x3D;$&#123;1&#125;
+PACKAGE&#x3D;$&#123;2&#125;
+TYPE&#x3D;$&#123;3&#125;
+DES&#x3D;$&#123;4&#125;
+#uppcase the first char
+PREFIX&#x3D;&quot;$(tr &#39;[:lower:]&#39; &#39;[:upper:]&#39; &lt;&lt;&lt; $&#123;TYPE:0:1&#125;)$&#123;TYPE:1&#125;&quot;
+
+DES_FILE&#x3D;$(echo $&#123;TYPE&#125;| tr &#39;[:upper:]&#39; &#39;[:lower:]&#39;)_$&#123;DES&#125;.go
+
+sed &#39;s&#x2F;PACKAGE_NAME&#x2F;&#39;&quot;$&#123;PACKAGE&#125;&quot;&#39;&#x2F;g&#39; $&#123;SRC_FILE&#125; | \
+    sed &#39;s&#x2F;GENERIC_TYPE&#x2F;&#39;&quot;$&#123;TYPE&#125;&quot;&#39;&#x2F;g&#39; | \
+    sed &#39;s&#x2F;GENERIC_NAME&#x2F;&#39;&quot;$&#123;PREFIX&#125;&quot;&#39;&#x2F;g&#39; &gt; $&#123;DES_FILE&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里需要4个参数：</p>
+<ul>
+<li>模板源文件；</li>
+<li>包名；</li>
+<li>实际需要具体化的类型；</li>
+<li>用于构造目标文件名的后缀。</li>
+</ul>
+<p>然后，我们用 <code>sed</code> 命令去替换刚刚的函数模板，并生成到目标文件中（关于sed命令，我给你推荐一篇文章：《 <a target="_blank" rel="noopener" href="https://coolshell.cn/articles/9104.html">sed 简明教程</a>》）。</p>
+<h3 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h3><p>接下来，我们只需要在代码中打一个特殊的注释：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;go:generate .&#x2F;gen.sh .&#x2F;template&#x2F;container.tmp.go gen uint32 container
+func generateUint32Example() &#123;
+    var u uint32 &#x3D; 42
+    c :&#x3D; NewUint32Container()
+    c.Put(u)
+    v :&#x3D; c.Get()
+    fmt.Printf(&quot;generateExample: %d (%T)\n&quot;, v, v)
+&#125;
+
+&#x2F;&#x2F;go:generate .&#x2F;gen.sh .&#x2F;template&#x2F;container.tmp.go gen string container
+func generateStringExample() &#123;
+    var s string &#x3D; &quot;Hello&quot;
+    c :&#x3D; NewStringContainer()
+    c.Put(s)
+    v :&#x3D; c.Get()
+    fmt.Printf(&quot;generateExample: %s (%T)\n&quot;, v, v)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中，</p>
+<ul>
+<li>第一个注释是生成包名gen，类型是uint32，目标文件名以container为后缀。</li>
+<li>第二个注释是生成包名gen，类型是string，目标文件名是以container为后缀。</li>
+</ul>
+<p>然后，在工程目录中直接执行 <code>go generate</code> 命令，就会生成两份代码：</p>
+<p>一份文件名为uint32_container.go：</p>
+<pre class="line-numbers language-none"><code class="language-none">package gen
+
+type Uint32Container struct &#123;
+    s []uint32
+&#125;
+func NewUint32Container() *Uint32Container &#123;
+    return &amp;Uint32Container&#123;s: []uint32&#123;&#125;&#125;
+&#125;
+func (c *Uint32Container) Put(val uint32) &#123;
+    c.s &#x3D; append(c.s, val)
+&#125;
+func (c *Uint32Container) Get() uint32 &#123;
+    r :&#x3D; c.s[0]
+    c.s &#x3D; c.s[1:]
+    return r
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>另一份的文件名为 string_container.go：</p>
+<pre class="line-numbers language-none"><code class="language-none">package gen
+
+type StringContainer struct &#123;
+    s []string
+&#125;
+func NewStringContainer() *StringContainer &#123;
+    return &amp;StringContainer&#123;s: []string&#123;&#125;&#125;
+&#125;
+func (c *StringContainer) Put(val string) &#123;
+    c.s &#x3D; append(c.s, val)
+&#125;
+func (c *StringContainer) Get() string &#123;
+    r :&#x3D; c.s[0]
+    c.s &#x3D; c.s[1:]
+    return r
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这两份代码可以让我们的代码完全编译通过，付出的代价就是需要多执行一步 <code>go generate</code> 命令。</p>
+<h2 id="新版Filter"><a href="#新版Filter" class="headerlink" title="新版Filter"></a>新版Filter</h2><p>现在我们再回头看看上节课里的那些用反射整出来的例子，你就会发现，有了这样的技术，我们就不用在代码里，用那些晦涩难懂的反射来做运行时的类型检查了。我们可以写出很干净的代码，让编译器在编译时检查类型对不对。</p>
+<p>下面是一个Fitler的模板文件 <code>filter.tmp.go</code>：</p>
+<pre class="line-numbers language-none"><code class="language-none">package PACKAGE_NAME
+
+type GENERIC_NAMEList []GENERIC_TYPE
+
+type GENERIC_NAMEToBool func(*GENERIC_TYPE) bool
+
+func (al GENERIC_NAMEList) Filter(f GENERIC_NAMEToBool) GENERIC_NAMEList &#123;
+    var ret GENERIC_NAMEList
+    for _, a :&#x3D; range al &#123;
+        if f(&amp;a) &#123;
+            ret &#x3D; append(ret, a)
+        &#125;
+    &#125;
+    return ret
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样，我们可以在需要使用这个的地方，加上相关的 Go Generate 的注释：</p>
+<pre class="line-numbers language-none"><code class="language-none">type Employee struct &#123;
+  Name     string
+  Age      int
+  Vacation int
+  Salary   int
+&#125;
+
+&#x2F;&#x2F;go:generate .&#x2F;gen.sh .&#x2F;template&#x2F;filter.tmp.go gen Employee filter
+func filterEmployeeExample() &#123;
+
+  var list &#x3D; EmployeeList&#123;
+    &#123;&quot;Hao&quot;, 44, 0, 8000&#125;,
+    &#123;&quot;Bob&quot;, 34, 10, 5000&#125;,
+    &#123;&quot;Alice&quot;, 23, 5, 9000&#125;,
+    &#123;&quot;Jack&quot;, 26, 0, 4000&#125;,
+    &#123;&quot;Tom&quot;, 48, 9, 7500&#125;,
+  &#125;
+
+  var filter EmployeeList
+  filter &#x3D; list.Filter(func(e *Employee) bool &#123;
+    return e.Age &gt; 40
+  &#125;)
+
+  fmt.Println(&quot;----- Employee.Age &gt; 40 ------&quot;)
+  for _, e :&#x3D; range filter &#123;
+    fmt.Println(e)
+  &#125;
+
+  filter &#x3D; list.Filter(func(e *Employee) bool &#123;
+    return e.Salary &lt;&#x3D; 5000
+  &#125;)
+
+  fmt.Println(&quot;----- Employee.Salary &lt;&#x3D; 5000 ------&quot;)
+  for _, e :&#x3D; range filter &#123;
+    fmt.Println(e)
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="第三方工具"><a href="#第三方工具" class="headerlink" title="第三方工具"></a>第三方工具</h2><p>我们并不需要自己手写 <code>gen.sh</code> 这样的工具类，我们可以直接使用第三方已经写好的工具。我给你提供一个列表。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/cheekybits/genny">Genny</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/taylorchu/generic">Generic</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/joeshaw/gengen">GenGen</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/clipperhouse/gen">Gen</a></li>
+</ul>
+<p>好了，这节课就到这里。如果你觉得今天的内容对你有所帮助，欢迎你帮我分享给更多人。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#112-Go%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%EF%BC%9AGo-Generation"><span class="toc-number">1.</span> <span class="toc-text">112 | Go编程模式：Go Generation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E5%AE%9E%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%AF%94"><span class="toc-number">1.1.</span> <span class="toc-text">现实中的类比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E6%96%B9%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">Go语方的类型检查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-Assert"><span class="toc-number">1.2.1.</span> <span class="toc-text">Type Assert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reflection"><span class="toc-number">1.2.2.</span> <span class="toc-text">Reflection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%96%E5%B1%B1%E4%B9%8B%E7%9F%B3"><span class="toc-number">1.3.</span> <span class="toc-text">他山之石</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go-Generator"><span class="toc-number">1.4.</span> <span class="toc-text">Go Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.4.1.</span> <span class="toc-text">函数模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC"><span class="toc-number">1.4.2.</span> <span class="toc-text">函数生成脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.3.</span> <span class="toc-text">生成代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%89%88Filter"><span class="toc-number">1.5.</span> <span class="toc-text">新版Filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7"><span class="toc-number">1.6.</span> <span class="toc-text">第三方工具</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

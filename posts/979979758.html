@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？今天，我们来看万维网大会上的一篇优秀短论文。在万维网大会上，主要发表两类论文。一类是10页的长论文，一类是2页的短论文或称作展板论文。短论文主要是发表短小的成果或者是还在研究过程中的重要成果。每一届的万维网大会，都会评选出一篇最佳短论文奖。 今天我和你分享的论文，题目是《利用查看数据，贝叶斯个性化排序的一种改进的取样器》（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/979979758.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？今天，我们来看万维网大会上的一篇优秀短论文。在万维网大会上，主要发表两类论文。一类是10页的长论文，一类是2页的短论文或称作展板论文。短论文主要是发表短小的成果或者是还在研究过程中的重要成果。每一届的万维网大会，都会评选出一篇最佳短论文奖。 今天我和你分享的论文，题目是《利用查看数据，贝叶斯个性化排序的一种改进的取样器》（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.021Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/979979758"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="017-The-Web-2018论文精读：如何改进经典的推荐算法BPR？"><a href="#017-The-Web-2018论文精读：如何改进经典的推荐算法BPR？" class="headerlink" title="017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？"></a>017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？</h1><p>今天，我们来看万维网大会上的一篇优秀短论文。在万维网大会上，主要发表两类论文。一类是10页的长论文，一类是2页的短论文或称作展板论文。短论文主要是发表短小的成果或者是还在研究过程中的重要成果。每一届的万维网大会，都会评选出一篇最佳短论文奖。</p>
+<p>今天我和你分享的论文，题目是《利用查看数据，贝叶斯个性化排序的一种改进的取样器》（ <a target="_blank" rel="noopener" href="https://www.comp.nus.edu.sg/~xiangnan/papers/www18-improvedBPR.pdf">An Improved Sampler for Bayesian Personalized Ranking by Leveraging View Data</a>）。这篇论文也有六位作者，和我们介绍的上一篇论文一样，都来自清华大学和新加坡国立大学。</p>
+<h2 id="贝叶斯个性化排序"><a href="#贝叶斯个性化排序" class="headerlink" title="贝叶斯个性化排序"></a>贝叶斯个性化排序</h2><p>要想理解这篇论文的内容，我们必须要讲一下什么是“ <strong>贝叶斯个性化排序</strong>”（Bayesian Personalized Ranking），或者简称是 <strong>BPR</strong>。有关BPR的详细介绍，可以阅读参考文献[1]。我们在这里仅对BPR进行一个高维度的总结。</p>
+<p>简单来说， <strong>BPR是推荐系统中的一个配对排序（Pairwise）学习算法</strong>。在我们前面介绍搜索算法的时候，曾经提到了各种配对排序学习算法。配对排序学习不是针对每一个数据实例来学习其标签或者响应变量，而是学习一个相对的顺序，希望能够把所有的正例都排列到负例之前。也就是说，对于配对排序来说，每一个数据实例的预测值本身并不重要，排序算法在意的是对于一正一负的一个配对来说，是否能够把正例给准确地排列到负例之上。这其实就要求BPR在数值上对正例的预测值能够比负例的预测值高。</p>
+<p>BPR主要是解决了在推荐系统中长期以来只对单个数据点进行预测，比如需要对用户物品的喜好矩阵建模的时候，之前的大多数算法都无法有效地对没有观测到的数据进行建模。而BPR是配对算法，因此我们只需要关注观测的数据以及他们之间的关系，从而能够对用户的喜好，特别是有“ <strong>隐反馈</strong>”（Implicit Feedback）数据的时候，取得更加明显的效果。这里的隐反馈指的并不是用户告诉系统其对每一个物品的喜好程度，而是用户在和系统的交互过程中通过一些行为表达出的喜好。这些用户的行为往往并不全面，因此需要算法和模型能够对这些行为进行有效建模。</p>
+<h2 id="论文的主要贡献和核心方法"><a href="#论文的主要贡献和核心方法" class="headerlink" title="论文的主要贡献和核心方法"></a>论文的主要贡献和核心方法</h2><p>了解了BPR大概是怎么回事以后，我们来看一看这篇论文的主要贡献和核心方法。</p>
+<p>首先我们刚才讲到BPR的核心是学习一个配对的排序问题。那么在训练的时候，我们需要对一个正例和一个负例的配对进行学习，更新参数。然而在一个自然的用户隐反馈数据集里，正例相对来说往往是少数，负例则是绝大多数。因此，一个传统的方法就是在组成一个配对的时候，相对于一个正例来说，我们都“均匀地”（Uniformly）选取负样本来组成配对，这个过程有时候也叫“采样”（Sampling）。</p>
+<p>这篇论文有两个主要贡献。第一个贡献是，作者们发现，如果在全局均匀地采样负样本，第一没有必要，第二可能反而会影响最后学习的效果。第二个贡献是，针对电子商务的应用，作者们发明了一种负样本采样的方法，使得学习算法可以利用到更多的用户“浏览”（View）信息，从而能够对算法的整体训练效果有大幅度的提升。</p>
+<h2 id="方法的实验效果"><a href="#方法的实验效果" class="headerlink" title="方法的实验效果"></a>方法的实验效果</h2><p>这篇论文的数据集分别使用了母婴产品“贝贝网”和天猫的数据。其中，贝贝网有约16万用户、12万商品、260万次购买和4600万次浏览；天猫的数据则有3万用户、3万多商品、46万次购买和150多万次浏览。两个数据集都呈现了大于99%的“稀疏度”（Sparsity）。</p>
+<p>首先，作者们实验了不从全局中选取负样本而仅仅采样一部分，而且是相比于原来的空间非常小的样本，比如仅仅几百个负样本而不是几万个的情况。实验效果在贝贝网上不仅没有影响算法的精确度，算法的精确度反而还有提升。而在天猫的数据集上，算法效果没有提升，而有一些小幅度的下降，但是作者们认为这样的代价还是值得的，因为数据集的减少，算法的训练时间会大幅度降低。从这个实验中，作者们得出了不需要从全局进行采样的结论。</p>
+<p>紧接着，作者们提出了一个新的概念，那就是，对用户的数据集合进行划分，把用户的行为分为“购买集”（C1）、“浏览但没有购买集”（C2）、“剩下的数据”（C3）这三个集合。作者们提出，BPR要想能够达到最好的效果，需要对这三种数据集进行采样。也就是说，我们需要组成C1和C2、C1和C3以及C2和C3的配对来学习。</p>
+<p>具体来说，用户在贝贝网和天猫的数据中尝试了不同的比例来对这三种集合进行采样。总体的经验都是C3中采样的数据要大于C2中的，然后要大于C1中的。这其实就是说训练算法要更好地学习到用户不喜欢某件东西的偏好。采用这样的采样方式，作者们展示了模型的效果比传统的BPR或仅仅使用“最流行的物品”作为推荐结果要好60%左右。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了今年万维网大会的一篇优秀短论文。文章介绍了如何对一个经典的推荐算法BPR进行改进，从而提高效率并且大幅度提升算法有效度。</p>
+<p>一起来回顾下要点：第一，我们从高维度介绍了BPR的含义；第二，我们简要介绍了论文的主要贡献和思路；第三，我们简单分享了论文的实验成果。</p>
+<p>最后，给你留一个思考题，除了这篇论文提出的组成正例和负例的配对思路以外，你能不能想到在用户浏览网站的时候，还有哪些信息可以帮助我们组成更多的配对呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+<p><strong>参考文献</strong></p>
+<p>1. Steffen Rendle, Christoph Freudenthaler, Zeno Gantner, and Lars Schmidt-Thieme. BPR: Bayesian personalized ranking from implicit feedback. Proceedings of the Twenty-Fifth Conference on Uncertainty in Artificial Intelligence (UAI ‘09). AUAI Press, Arlington, Virginia, United States, 452-461, 2009.</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#017-The-Web-2018%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%EF%BC%9A%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B%E7%BB%8F%E5%85%B8%E7%9A%84%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95BPR%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">017 | The Web 2018论文精读：如何改进经典的推荐算法BPR？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%B8%AA%E6%80%A7%E5%8C%96%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">贝叶斯个性化排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE%E5%92%8C%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">论文的主要贡献和核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">方法的实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

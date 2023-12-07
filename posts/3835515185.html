@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题在上一次的分享里，我们介绍了今年ICML大会的一篇最佳论文，这是一篇非常优秀的机器学习和计算机安全相结合的论文。这篇论文剖析了目前在白盒攻击的场景下，攻击方如何绕过一种叫作“混淆梯度”的情况，来实现有效攻击的目的。 今天，我们来分享ICML 2018的另一篇最佳论文，题目Delayed Impact of Fair Mach">
+<meta property="og:type" content="article">
+<meta property="og:title" content="026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3835515185.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题在上一次的分享里，我们介绍了今年ICML大会的一篇最佳论文，这是一篇非常优秀的机器学习和计算机安全相结合的论文。这篇论文剖析了目前在白盒攻击的场景下，攻击方如何绕过一种叫作“混淆梯度”的情况，来实现有效攻击的目的。 今天，我们来分享ICML 2018的另一篇最佳论文，题目Delayed Impact of Fair Mach">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.034Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3835515185"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="026-ICML-2018论文精读：聊一聊机器学习算法的“公平性”问题"><a href="#026-ICML-2018论文精读：聊一聊机器学习算法的“公平性”问题" class="headerlink" title="026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题"></a>026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题</h1><p>在上一次的分享里，我们介绍了今年ICML大会的一篇最佳论文，这是一篇非常优秀的机器学习和计算机安全相结合的论文。这篇论文剖析了目前在白盒攻击的场景下，攻击方如何绕过一种叫作“混淆梯度”的情况，来实现有效攻击的目的。</p>
+<p>今天，我们来分享ICML 2018的另一篇最佳论文，题目Delayed Impact of Fair Machine Learning。这篇论文主要探讨了“公平”（Fair）在机器学习中的应用。论文的五位作者都来自加州大学伯克利分校。</p>
+<h2 id="论文的背景"><a href="#论文的背景" class="headerlink" title="论文的背景"></a>论文的背景</h2><p>这篇论文所探讨的主题是机器学习的“公平性”问题。近些年，这个主题受到了学术界越来越多的关注，但是对于普通的人工智能工程师和数据科学家来说，这个议题依然显得比较陌生和遥远。所以，我先来简单梳理一下这方面研究的核心思想。</p>
+<p>机器学习有一个重要的应用，就是在各类 <strong>决策场景</strong> 中提供帮助，例如申请贷款、大学入学、警察执勤等。一个不可否认的特点是，这些决策很有可能会对社会或者个人产生重大的不可逆转的后果。其中一个重要的后果就是，针对不同的人群，有可能会产生意想不到的“不公平”的境况。比如，有一些普遍使用的算法，在帮助警察判断一个人是否可能是罪犯的时候，系统会认为美国黑人相对于白人更容易犯罪，这个判断显然存在一定的问题。</p>
+<p>机器学习研究者已经注意到了这种算法中的“公平”问题，并且开始探讨没有任何限制条件的机器学习算法，是否会对少数族裔（Underrepresented Group）产生不公平的决策判断。基于这些探索，研究者们提出了一系列的算法，对现有的各种机器学习模型增加附带了公平相关的限制条件，希望通过这种方法来解决各种不公平定义下的决策问题。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>这篇论文从理论角度展开讨论，基于什么样假设和条件下的具有公平性质的机器学习算法，在决策场景中能够真正为少数族群带来长期的福祉。值得注意的是，这里所谓的少数族裔是一个抽象化的概念，指的是数目相对较少的，或者在某种特性下比较少的一组数据群体。这篇论文并不直接讨论社会学意义下的少数族群的定义。</p>
+<p>作者们主要是比较两个人群A和B，在不同的公平条件下，看这两组人群的某种“ <strong>效用</strong>”（Utility）的差值会发生什么变化。这个差值可以是正的，没变化或者是负的。</p>
+<p>论文的主要结论是，在不同的公平条件下，效用差值会有各种可能性。这其实是一个非常重要的结论。有一些公平条件，直觉上我们感觉会促进少数族群的效用，但这篇论文向我们展示了，即便出发点是好的，在某些情况下，效用差值也可能是负的。</p>
+<p>除此以外，这篇论文还探讨了“ <strong>测量误差</strong>”（Measurement Error）对效用差值的影响。作者们认为测量误差也应该被纳入整个体系中去思考公平的问题。</p>
+<p>需要指出的是，论文的分析方法主要建立在时序关系的“ <strong>一步预测</strong>”（One Time Epoch）基础上的。也就是说，我们利用当前的数据和模型对 <strong>下一步的决策判断</strong> 进行分析，并不包括对未来时间段所有的预测。从理论上说，如果在无限未来时间段的情况下，结论有可能发生变化。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>这篇文章的核心思路是探讨针对人群A和B所采取的一种“策略”（Policy），是怎么样影响这两组人群的效用差别的。如果某种策略会导致某个群体的 <strong>效用差别为负</strong>，那么我们就说这个策略对群体产生了“ <strong>绝对损坏</strong>”（Active Harm）作用；如果 <strong>效用差别是零</strong>，就说明这个策略对群体产生了“ <strong>停滞</strong>”（Stagnation）作用；如果 <strong>效用差别是正的</strong>，就说明这个策略对群体产生了“ <strong>推动</strong>”（Improvement）作用。</p>
+<p>除此以外，我们认为有一种不考虑人群A和B具体特征的期望最大化效用的策略，称之为“ <strong>最大化效用</strong>”（MaxUtil）。这种策略其实就是在没有约束条件的情况下，利用一般的机器学习算法达到的效果。我们需要把新策略和这个策略进行比较，如果新的策略比这个策略好，就是产生了“ <strong>相对推动</strong>”（Relative Improvement），反之我们说新的策略产生了“ <strong>相对损害</strong>”（Relative Harm）。</p>
+<p>为了进一步进行分析，作者们引入了一个叫“ <strong>结果曲线</strong>”（Outcome Curve）的工具来视觉化策略和效用差值的关系。具体来说，曲线的横轴就是因为策略所导致的对某一个群体的选择概率，纵轴就是效用差值。当我们有了这个曲线之后，就能非常直观地看到效用差值的变化。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/98a16f6db74ef6470792ef6cd618c6ab.png"></p>
+<p>从这个曲线上我们可以看到，效用差值的确在一个区间内是“相对推动”的，而在另一个区间是“相对损害”的，在最右边的一个区间里是“绝对损害”的。这就打破了我们之前的看法，认为有一些选择策略会一致性地导致唯一结果。</p>
+<p>在此基础上，我们专门来看这两种特殊的策略。第一种叫“ <strong>种族公平</strong>”（Demographic Parity），思路是希望在两个人群中保持一样的选择概率。另一种策略叫“ <strong>公平机会</strong>”（Equal Opportunity），思路是希望某个人群中成功的概率（例如申请到贷款、学校录取等）和人群无关。这两种策略都是典型的试图利用限制条件来达到公平的方法。我们希望来比较的就是这两种策略以及之前说的最大化效用之间的一些关系，得出以下三个主要结论。</p>
+<p>第一个比较出乎意料的结论是最大化效用这个策略并不会导致“绝对损害”。意思就是说，和人们之前的一些想法不同，最大化效用也有可能让少数族裔的效用得到提升或者不变。</p>
+<p>第二个结论是，这两种公平策略都可能会造成“相对推动”。这也是推出这两种策略的初衷，希望能够在选择概率上进行调整，从而让少数族裔的效用得到提升。</p>
+<p>第三个结论是，这两种公平策略都可能会造成“相对损害”。这是本篇论文的一个重要结论，正式地证明了公平策略在某个区间上其实并没有带来正向的“推动”反而是“损害”了少数族群。作者们进一步比较了“种族公平”和“公平机会”这两个策略，发现“公平机会”可以避免“绝对损害”而“种族公平”则无法做到。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了今年ICML的另一篇最佳论文。</p>
+<p>一起来回顾下要点：第一，这篇论文讨论了计算机算法的公平性问题；第二，我们详细介绍了论文提出的两种策略以及得出的主要结论。</p>
+<p>最后，给你留一个思考题，研究算法的公平性对我们日常的应用型工作有什么启发作用？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#026-ICML-2018%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%EF%BC%9A%E8%81%8A%E4%B8%80%E8%81%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E2%80%9C%E5%85%AC%E5%B9%B3%E6%80%A7%E2%80%9D%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">论文的背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.2.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

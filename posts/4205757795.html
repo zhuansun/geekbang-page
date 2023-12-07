@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？今天，我来和你分享ACL 2018的第二篇最佳论文，题目是《让我们“再”次做到：检测副词前提触发词的第一种计算方法》（ Let’s do it “again”: A First Computational Approach to Detecting Adverbial Presupposition Triggers）。 这篇论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4205757795.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？今天，我来和你分享ACL 2018的第二篇最佳论文，题目是《让我们“再”次做到：检测副词前提触发词的第一种计算方法》（ Let’s do it “again”: A First Computational Approach to Detecting Adverbial Presupposition Triggers）。 这篇论">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.038Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4205757795"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="029-ACL-2018论文精读：什么是对话中的前提触发？如何检测？"><a href="#029-ACL-2018论文精读：什么是对话中的前提触发？如何检测？" class="headerlink" title="029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？"></a>029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？</h1><p>今天，我来和你分享ACL 2018的第二篇最佳论文，题目是《让我们“再”次做到：检测副词前提触发词的第一种计算方法》（ <a target="_blank" rel="noopener" href="https://www.cs.mcgill.ca/~jkabba/acl2018paper.pdf">Let’s do it “again”: A First Computational Approach to Detecting Adverbial Presupposition Triggers</a>）。</p>
+<p>这篇论文的作者都来自加拿大麦吉尔大学（McGill University）的计算机系。前三位学生作者是这篇论文的共同第一作者，对论文的贡献相同。他们的导师张智杰（Jackie Chi Kit Cheung）助理教授是这篇论文的最后一个作者。张智杰于2014年从多伦多大学博士毕业，之前曾两次在微软研究院实习过，他长期从事自然语言处理的研究。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><p>这篇论文的背景要从“语用学”（Pragmatics）说起。语用学是语言学的一个分支学科，与符号学理论相互交叉、渗透，研究语境对语言含义产生的影响和贡献。语用学包括言语行为理论、对话内涵义、交流中的对话，以及从哲学、社会学、语言学以及人类学等角度解析人类语言行为的研究。</p>
+<p>语用学分析研究语言行为（如招呼、回答、劝说）的文化准绳和发言规则。不同的文化之间皆有约定俗成、客套的对话，在跨文化交流中，为了避免因为语言规范的差异而在交谈之中产生误解，社会语言学的知识与务实能力是语言学习者所不能忽视的。</p>
+<p>在语用学中，“前提”（Presuppositions）是交谈的参与者共同约定的假设和认知，而且在谈话中被广泛使用。同时，在这篇论文中，作者们把提示“前提”的“表达”（Expression）定义为“ <strong>前提触发</strong>”（Presupposition Triggers），包括一些动词、副词和其他短语。为了更加清晰地说明这些概念，作者们举了这么一个例子。</p>
+<p>假设我们现在有两句话：</p>
+<ol>
+<li><p>约翰再次要去那家餐厅（John is going to the restaurant _again_）。</p>
+</li>
+<li><p>约翰已经去过了那家餐厅（John has been to the restaurant）。</p>
+</li>
+</ol>
+<p>第一句话要能够成立必须要建立在第二句话的基础上。特别是“前提触发”词“再”（Again）的使用，是建立在第二句话真实的情况下。换句话说，第一句话必须在第二句话的上下文中才能够被理解。值得一提的是，即便我们对第一句话进行否定，“约翰不打算再去那家餐厅了”（John is not going to the restaurant again），依然需要第二句话的支持。也就是说，“前提触发”词在这里并不受到否定的影响。</p>
+<p><strong>这篇论文的核心贡献就是对以副词为主的前提触发词进行检测</strong>。这里面包括“再”（Again）、“也”（Also）和“还”（Still）等。再此之前，还没有对这方面词汇进行检测的学术研究工作。能够对这类前提触发词进行检测，可以应用到 <strong>文本的归纳总结</strong>（Summarization）和 <strong>对话系统</strong> 等场景中。</p>
+<p>为了更好地研究这个任务，作者们还基于著名的自然语言处理数据Penn Treebank和English Gigaword，建立了两个新的数据集从而能够进行触发词的分类检测工作。最后，作者们设计了一个基于“关注”（Attention）机制的时间递归神经网络（RNN）模型来针对前提触发词进行检测，达到了很好的效果。</p>
+<h2 id="论文的核心方法"><a href="#论文的核心方法" class="headerlink" title="论文的核心方法"></a>论文的核心方法</h2><p>现在，我们来讨论这篇论文的一些细节。</p>
+<p>首先，我们来看看 <strong>数据集是如何生成的</strong>。数据中的每一个数据点都是一个 <strong>三元组</strong>，分别是标签信息（正例还是负例），文本的单词，文本单词所对应的“词类标签”或简称为POS标签（例如动词、名词）。</p>
+<p>数据点正例就表明当前数据包含前提触发词，反之则是负例。另外，因为我们需要检测的是副词性的前提触发词，因此我们还需要知道这个词所依靠的动词。作者们把这个词叫作副词的“ <strong>管理词</strong>”（Governor）。</p>
+<p>作者们首先针对文档扫描，看是否含有前提触发词。当发现有前提触发词的时候，提取这个触发词的管理词，然后提取管理词前50个单词，以及管理词后面到句子结束的所有的单词。这就组成了正例中的单词。当找到了所有的正例之后，作者们利用管理词来构建负例。也就是说，在文本中寻找哪些句子含有一样的管理词，但并不包括后面的前提触发词，这样的句子就是负例。</p>
+<p>下面，我们来看一下作者们提出模型的一些构成。从大的角度来说，为了识别前提触发词，作者们考虑了一个 <strong>双向LSTM</strong> 的基本模型架构，在此之上有一个“关注机制”，在不同的情况下来选择LSTM的中间状态。</p>
+<p>具体来说，整个模型的输入有两部分内容。</p>
+<p>第一部分，是 <strong>文本的单词进行了词向量（Embedding）的转换</strong>。我们已经反复看到了，这是在自然语言处理场景中利用深度学习模型必不可少的步骤。这样做的好处就是把离散数据转换成了连续的向量数据。</p>
+<p>第二部分，是 <strong>输入这些单词相对应的POS标签</strong>。和单词不一样的是，POS标签依然采用了离散的特性表达。</p>
+<p>然后，连续的词向量和离散POS标签表达合并在一起，成了双向LSTM的输入。这里，利用双向LSTM的目的是让模型针对输入信息的顺序进行建模。跟我们刚才提到的例子一样，前提触发词和其所依靠的动词，在一个句子的段落中很明显是和前后的其他单词有关联的。因此，双向LSTM就能够达到对这个结构进行记忆的目的，并且提取出有用的中间变量信息。</p>
+<p>下面需要做的就是 <strong>从中间变量信息到最终的分类结果的变换</strong>。这里，作者们提出了一个叫“ <strong>加权池化网络</strong>”（Weighted Pooling Network）的概念，并且和“关注”机制一起来进行这一步的中间转换。</p>
+<p>可以说，作者们这一步其实是借助了计算机视觉中的经常使用的卷积神经网络CNN中的池化操作来对文档进行处理。具体来说，作者们把所有LSTM产生的中间状态堆积成一个矩阵，然后利用同一个矩阵乘以其自身的转置就得到了一个类似于相关矩阵的新矩阵。可以说，这个新矩阵是完全抓住了当前句子通过LSTM中间变量转换后所有中间状态的两两关系。</p>
+<p>然后，作者们认为最后的分类结构就是从这个矩阵中抽取信息而得到的。至于怎么抽取，那就需要不同的权重。这种根据不同的情况来设置权重的机制就叫作“关注”机制。经过矩阵中信息的抽取，然后再经过全联通层，最终就形成了标准的分类输出。</p>
+<h2 id="论文的实验结果"><a href="#论文的实验结果" class="headerlink" title="论文的实验结果"></a>论文的实验结果</h2><p>作者们在我们上面提到的两个新数据集上进行了实验，并且和一系列的方法进行了比较。其他的方法包括简单的对数几率回归方法（Logistic Regression），简化了的但是依然利用了双向LSTM结构的模型，还有一个利用CNN来进行提取信息的模型。</p>
+<p>在两个数据集上，论文提出的方法比对数几率回归以及CNN的方法都要好10%～20%左右。和简化的LSTM模型相比，优势并没有那么大，但依然有统计意义上的好效果。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了ACL 2018的另外一篇最佳论文。</p>
+<p>一起来回顾下要点：第一，这篇论文的背景是语用学，核心贡献是对以副词为主的前提触发词进行检测；第二，论文的核心方法是提出一个双向LSTM的基本模型架构，并利用“关注机制”，根据不同的情况来设置权重；第三，论文构建了两个数据集，取得了较好的实验结果。</p>
+<p>最后，给你留一个思考题，这篇论文使用了双向LSTM的架构，能不能使用单向LSTM呢？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#029-ACL-2018%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%AF%9D%E4%B8%AD%E7%9A%84%E5%89%8D%E6%8F%90%E8%A7%A6%E5%8F%91%EF%BC%9F%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="toc-number">1.1.</span> <span class="toc-text">论文的主要贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">论文的核心方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">论文的实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

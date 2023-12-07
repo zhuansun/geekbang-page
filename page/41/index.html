@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/41/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/41/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-07 15:35:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1789542436.html" title="148 | 曾经辉煌的雅虎研究院">148 | 曾经辉煌的雅虎研究院</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">148 | 曾经辉煌的雅虎研究院雅虎是最早成功的互联网公司之一，也是最早意识到需要把基础研究，特别是机器学习以及人工智能研究，应用到实际产品中的公司。雅虎从很早就开始招聘和培养研究型人才，雅虎研究院就是在这个过程中应运而生的。
+今天我就来说一说雅虎研究院的历史，以及过去十多年间取得的成就，聊一聊如何通过引进高级人才，迅速构建起一支世界级的研发团队。当然，也会聊一聊研究院的衰落。高级研发机构对于企业而言往往是锦上添花的事情，在整个公司产品和视野都欠缺的情况下，也往往避免不了最后衰败的结局。
+雅虎研究院的创立雅虎研究院的故事要从一个叫乌萨马·菲亚德（Usama Fayyad）的人说起。乌萨马出生在北非突尼斯的迦太基（Carthage），早年在突尼斯以及其他地中海沿岸国家度过，包括中东、非洲以及南欧的一些国家。高中时期在约旦的安曼生活，后来在美国密歇根大学度过了他的本科（1984年）、硕士（1986年）以及博士（1991年）生涯。毕业之后，乌萨马来到了美国加州南部隶属于美国国家航空航天局（NASA）的喷气推进实验室（Jet Propulsion Laboratory）工作，一直到1996年。之后加入微软研究院，从事数据挖掘的研究工作。
+早在1994年，乌萨马就和拉马萨米（Ramasamy Uthurusamy）一起组织了最后一届KDD研讨班，然后在1995年，他们把这个研讨班升级成了会议 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3329920322.html" title="149 | 微软研究院：工业界研究机构的楷模">149 | 微软研究院：工业界研究机构的楷模</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">149 | 微软研究院：工业界研究机构的楷模随着人工智能的兴起，各大公司纷纷建立起自己的研发团队，来对这一重要技术领域进行探索。一些有一定规模的公司还会成立更加精英的“研究院”或者“实验室”，吸引业界顶尖人才到自己的公司进行基础的和前沿的研发工作。
+那如何来组建这样的机构呢？有没有可以参考的类似机构呢？答案是有这样一个机构，甚至很多公司会不惜重金去聘请这个机构的研究和管理人才。今天我们就来聊聊这个机构，那就是“ 微软研究院”。
+微软研究院自1991年成立以来，已经走过了接近40年的岁月。依托于微软这个软件时代的巨头，微软研究院也和微软公司一起经历了从软件时代到互联网时代、到移动时代、再到人工智能时代的重大变迁，见证了这几个时代中前沿科技对公司的影响。
+微软研究院的历史有多辉煌呢？至少有五位图灵奖得主曾经在微软研究院工作过，包括发明了“霍尔逻辑”和快速排序的托尼·霍尔（Tony Hoare）爵士、在数据库领域有卓越贡献的吉米·格雷（Jim Gray）、个人计算的先驱巴特勒·兰普森（Butler Lampson）、个人电脑的先驱查尔斯·萨克尔（Charles P. Thacker）和在分布式算法方面有突出贡献并发明了LaTeX排版语言的莱斯利·兰波特（Leslie Lamport）。研究院里的美国科学院院士、工程院院士、IEEE院士以及其他各类最高学术成就获得者，可以说是数不胜数。更别 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/426135935.html" title="150 | 聊一聊谷歌特立独行的混合型研究">150 | 聊一聊谷歌特立独行的混合型研究</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">150 | 聊一聊谷歌特立独行的混合型研究上一讲我们介绍了微软研究院发展早期的一段故事，一起讨论了为什么说微软研究院是工业界研究院的楷模。
+今天我们来看另外一种“ 混合型”的工业界研究机构模式，聊一聊 谷歌研究院，一起来讨论这种模式是不是更加适合互联网企业的需求。
+研究背景起家的谷歌谷歌的创立比微软晚了将近20年，但两个公司有一些相似的地方，其中之一就是创始人都是中断了学业，投身到创业的浪潮中。不过拉里·佩奇（Larry Page）和谢尔盖·布林（Sergey Brin）当时是在攻读博士学位，关于如何进行网页搜索的最初想法，是从他们的博士研究课题衍生出来的[1]。由此可见，谷歌从一开始就和研究类项目有着千丝万缕的联系。
+佩奇和布林的论文发表在1998年的国际万维网（WWW）大会上。这篇论文介绍了PageRank算法，在当时这简直就是一个石破天惊的算法。那它和当时其他搜索引擎的关键技术相比，独特之处在哪里呢？计算网页的相关度或者说是重要度完全不依赖文本信息，而仅仅依靠由网页之间关系组成的图，而且能够得到一种非常稳定的排序。或许就是因为这个独特的算法让两个斯坦福大学的年轻人放弃了继续攻读博士学位的想法，转身在硅谷找了一个车库，从而演绎了一个传奇的创业故事。
+或许就是因为创始人的背景，我们可以看到谷歌对学术界的最新研究成果有一种特殊的青睐，在谷歌发展的路上，屡屡上演收购案例，收购的很多公 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2518382216.html" title="151 | 精读AlphaGo Zero论文">151 | 精读AlphaGo Zero论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">151 | 精读AlphaGo Zero论文长期以来，利用人工智能技术挑战人类的一些富有智慧的项目，例如象棋、围棋、对话等等都被看做人工智能技术前进的重要参照。人工智能技术到底是不是能够带来“拟人”的思维和决策能力，在某种意义上成了衡量人工智能水平以及整个行业发展的试金石。
+在这些项目中，围棋可以说是一个难度很大的项目，更是饱受关注。一方面，围棋的走棋可能性非常多，且棋局变化多端，这似乎给计算机算法带来了很大的困难。另一方面，围棋在一些国家和地区（比如中国、日本和韩国）不仅仅是一个智力竞技项目，更有一系列理念、人格等全方位的配套文化概念，使得人们对此产生怀疑，人工智能模型和算法是否能够真正学习到有价值的信息，而不仅仅是模拟人的行为。
+2015年，来自谷歌DeepMind团队的AlphaGo打败了职业二段樊麾，在这之后短短两年的时间里，该团队的人工智能技术迅猛发展，不仅以4比1击败韩国的李世石九段，更是在今年战胜了即时世界排名第一的柯杰，可谓战胜了被誉为“人类智慧皇冠”的围棋项目。
+前段时间，DeepMind团队在《自然》杂志上发表了AlphaGo的最新研究成果，AlphaGo Zero，这项技术更是把人工智能在围棋上的应用推向了一个新高度，可以说是利用计算机算法把围棋的棋艺发展到了一个人类之前无法想象的阶段。
+今天，我就来带你认真剖析一下这篇发表在《自然》杂志上的名为《不依靠人类知 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3173118344.html" title="152 | 2017人工智能技术发展盘点">152 | 2017人工智能技术发展盘点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">152 | 2017人工智能技术发展盘点今天是大年初一，在这里先给你拜个年，祝新年新气象，新年新开始！
+在今天这个辞旧迎新的日子里，我们对过去一年的人工智能技术发展做一个简单的盘点，梳理思路，温故知新。
+2017年，对于人工智能整个领域的发展，是举足轻重的一年。这一年，人工智能的各个领域都蓬勃发展，我们目睹了一些在AI发展史上的标志性事件。比如，从人工智能的技术上看，人工智能系统AlphaGo Master与人类世界实时排名第一的棋手柯洁展开围棋人机对决，最终连胜三盘；从人工智能的投入上看，很多互联网公司都先后成立单独的人工智能研发机构，像阿里巴巴的达摩院；从云服务和人工智能结合的发展来看，2017年谷歌在这一方向发展迅猛，不仅在中国开设了研发中心，还宣布已经有超过万家企业和组织正在使用谷歌的人工智能接口。
+今天我希望能够从几个关键领域和发展方向出发，在繁多的科技进步中，理清关键信息，对过去一年的产业动态和发展做出点评，给你一个清晰而简单的信息参考。
+人工智能在棋牌上的迅猛发展2017年的一个标志性的事件，无疑是AlphaGo在围棋这项运动中的“收官”表现。虽然2016年AlphaGo战胜李世石之后，很多人依然对人类能够在围棋这个古老的运动中有所发挥保留着期望，也给予其他围棋选手以希望。然而，5月27日，AlphaGo Master与当时人类世界实时排名第一的棋手柯洁展开人机对决并 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1611899243.html" title="153 | 如何快速学习国际顶级学术会议的内容？">153 | 如何快速学习国际顶级学术会议的内容？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">153 | 如何快速学习国际顶级学术会议的内容？我们在专栏中已经多次分享了计算机科学（特别是机器学习、数据挖掘和人工智能）领域顶级学术会议的会议论文，向你介绍了这些会议中一些最新的学术和研究成果，希望这些内容能够起到抛砖引玉的作用。
+最近今年，随着机器学习和人工智能的逐渐火热，越来越多的研究人员投入到这些领域中，这些顶级会议的投稿论文数和收录稿件数都成倍增长，不少会议会有几百篇论文被收录。这就给希望学习这些论文的人，不仅是初学者，甚至是长期在这些领域工作的研究人员和实践者，都带来了不小的挑战。
+现实情况下，尝试去看完一个会议的所有论文是不现实的，从某种程度上看也是不必要的。那么，怎样才能从这些会议中快速地、有效率地吸收到更多的内容呢？想要事半功倍地学习顶级学术会议的论文，究竟有没有什么方法可以帮助我们实现这个目的呢？
+今天我就结合自己的经验，和你分享如何快速学习顶级会议的内容。
+顶级会议的基本内容架构在学习任何顶级会议的论文内容之前，我们其实最需要了解的就是这些会议本身有什么规律，或者说会议的内容安排上是不是遵循了一定的逻辑架构。这里，我们首先来看一看这些顶级会议在内容安排上的规律。
+毫无疑问，所有顶级会议的核心内容是收录的论文。这一点，我已经反复提及了。有一个细节可能是初学者容易忽视的，那就是很多会议都对收录的论文进行了区分，用于区分出最优秀的论文和一般的论文。
+这种区分一般有两 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2251111630.html" title="154 | 在人工智能领域，如何快速找到学习的切入点？">154 | 在人工智能领域，如何快速找到学习的切入点？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">154 | 在人工智能领域，如何快速找到学习的切入点？到现在，我们专栏的人工智能核心技术模块就已经全部介绍完了，我们讲了推荐系统、搜索系统、广告系统、自然语言处理及文本挖掘、计算机视觉这五大模块。相信你对这些领域都有了一个最基本的认识。同时，我们还对一些前沿领域的学术会议进行了专项的讨论，和你分享了一些读论文的经验。
+这个过程中，我收到了很多反馈，在人工智能领域，面对日新月异的新模型、新方法、新思路，很多人都感到非常难找到切入点来学习和提高。那么，今天我就来分享一下如何快速入门人工智能领域，帮你找到一些学习的捷径。
+关注知识主干我们已经介绍了这么多知识模块，不知道你是否注意到，在每个人工智能的子领域里，真正的知识主干其实是非常有限的。我这里说的“主干”是指构成这个子领域的重要的假设、思路和方法。如果你能够掌握这些主干的内容，那么也就能够相对容易地了解其他枝节信息了。
+之所以要了解主干内容，还有一个原因。从时间这个尺度上来看，有一些技术和思想在某个时期曾经有很大的影响力，但是随着时间的变化，它们会被后来更新的技术所取代。因此，只抓主干，也会比较容易看清楚不同类型的技术的时效性。
+那么，我们怎么去了解什么是知识主干呢？
+对于比较成熟的子领域，或者是传统领域，我们可以依靠教科书。一说起教科书，很多人的第一反应就是枯燥。确实，教科书对于很多知识点的描述过于细节，但是从大的知识块上来讲，教科 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2293045254.html" title="内参特刊 | 和你聊聊每个人都关心的人工智能热点话题">内参特刊 | 和你聊聊每个人都关心的人工智能热点话题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">内参特刊 | 和你聊聊每个人都关心的人工智能热点话题受极客邦科技邀请，1月份我回国参加AICon，1月13日晚做了一场直播，直播的主题是“人工智能20问”，编辑们收集整理了一些大家感兴趣的有关人工智能的话题，我在直播中分享了我自己这些年来的一些经验和心得。这场直播的文字精简版已经发布在InfoQ的公众号上，今天我也和你在专栏里分享，希望其中的某些话题能够对你有所启发，也欢迎你留言和我讨论。
+暖场篇
+Q：您本硕博学的都是计算机科学专业，这个专业其实有很多方向，您为什么会选择人工智能这样一个比较新的领域？
+
+A：我到美国读博的时候，开始并没有想去学习人工智能，而是想做一些操作系统及软件的研发。到了美国以后，我的导师认为社交媒体的数据挖掘、机器学习应用比较前沿，希望有一个相关课题，当时把新的课题给了我。我从这个课题入手，接触了机器学习，接触了人工智能，然后慢慢地走上了人工智能的发展方向。
+
+Q：您怎么定义人工智能？
+
+A：我认为人工智能有两个方面非常重要。一是人工智能是 数据驱动 的，也就是说一个人工智能产品一定得是有数据支撑的；另一方面人工智能是一个 持续的决策过程，比如说AlphaGo、无人驾驶等，都是利用机器学习，以及其他算法进行持续决策的一个过程。 在人工智能这个定义中，数据驱动和持续决策应该说是非常重要的两个元素。
+落地篇
+Q：您能不能详细介绍一下目前在Etsy有哪些人工智能的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1330821031.html" title="155 | 人工智能技术选择，该从哪里获得灵感？">155 | 人工智能技术选择，该从哪里获得灵感？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">155 | 人工智能技术选择，该从哪里获得灵感？在上一讲的内容里，我们分享了在人工智能领域快速学习的一些方法。学习到这些人工智能技术后，我们肯定是希望能够把技术应用到工程实践中，来解决实际产品的问题。
+这里面有一个非常重要的问题，就是面对这些论文、或者是别人分享的工程实践，作为初学者或者是有一些经验的工程师，我们应该如何来选择技术呢？是去实现当前最新论文介绍的技术？还是跟随其他公司已经有了的架构？
+今天，我们就来聊一聊 人工智能领域的工程技术选择 这个话题。
+如何看待学术论文和技术选择的关系首先，我们来看一看论文和工程技术选择之间的关系。我们是不是需要去实现最新论文里的模型呢？
+在回答这个问题之前，我们来聊一下学术论文本身的一些特点。
+学术论文，作为科学知识和信息传播的一种载体，本身是有其内在的使命和一定的规律的。学术论文的核心功能是在一定的规范框架下，传播、总结和讨论新知识。这里面我们需要注意的是“一定的规范框架”和“新知识”。
+我们先来说说新知识，这其实是整个学术论文存在的核心价值。很多新知识其实是某种意义上的学术尝试和创新，例如提出的一种新观点、一种新思想、一种新方法或者是一种新算法。这些新知识是不是能够沉淀下去成为某种主流思想，或者说是否能够在实际系统中真正发挥作用，还有待时间的检验。换句话说，新知识的知识结构还不完整，我们并不知道这些知识点后续会有什么样的发展，我们并不能 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4004302548.html" title="156 | 近在咫尺，走进人工智能研究">156 | 近在咫尺，走进人工智能研究</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">156 | 近在咫尺，走进人工智能研究在前面两次的分享里，我们聊了一些在人工智能领域快速入门的捷径，以及面对不同的论文或别人分享的技术实践，我们该如何来选择技术。我们今天来看另一个话题： 如何做人工智能研究。
+对于初学者来说，可能很多人会觉得人工智能研究离自己比较远，在工作中一时半会儿也接触不到。但实际上，我们有必要了解做研究的一些基本原理，而且这些思路能够应用到我们的日常工作中。
+对于中高阶的工程师来说，能够在研究方向更进一步，我们就可以更好地理解优秀的学术论文是怎么写成的，能够快速挖掘出论文的核心价值。同时，也可以把自己手上的工作总结成论文发表出去，真正参与到学术社区的建设当中。当然了，即便我们不以写论文为目的，用做研究的标准来要求自己平时的工作，也可以让很多工作更加严谨，这也是一种不错的进阶。
+什么是人工智能研究那到底什么是人工智能研究呢？
+简单来说，只要是针对某一个问题，我们有新的方法、新的见解或是新的结果，这都是潜在的研究成果。另外一方面，如果我们发现了一个新的问题，甚至是一个新的领域，那就更具备总结出来加以发表的潜质。
+你是不是已经注意到了，研究的一个核心要素就是“新”。这也是让很多初学者感到困惑的地方：我们平时的很多工作看上去都那么普通，没有什么创新的地方呀！
+其实，哪怕是在人工智能技术应用非常广泛的很多领域和场景，依然有相当多的地方存在创新点，只是初学者不太容易注意 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/40/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/#content-inner">40</a><span class="page-number current">41</span><a class="page-number" href="/page/42/#content-inner">42</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/#content-inner">59</a><a class="extend next" rel="next" href="/page/42/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/"><span class="card-category-list-name">AI技术内参</span><span class="card-category-list-count">166</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">41</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">17</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

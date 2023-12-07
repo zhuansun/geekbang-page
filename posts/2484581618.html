@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门在最近几年的人工智能发展中，深度学习技术成为了一个强劲的推动力。对于计算机视觉来讲，深度学习在过去几年重新改写了这个领域的核心方法论。时至今日，深度学习已经深入到了计算机视觉技术的方方面面，成为解决各类视觉问题的有力工具。 从今天开始，我们将介绍一系列以深度学习为背景的计算机视觉技术。那么在这个环节的第一篇分享中，我们首先来了解一下什">
+<meta property="og:type" content="article">
+<meta property="og:title" content="118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2484581618.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门在最近几年的人工智能发展中，深度学习技术成为了一个强劲的推动力。对于计算机视觉来讲，深度学习在过去几年重新改写了这个领域的核心方法论。时至今日，深度学习已经深入到了计算机视觉技术的方方面面，成为解决各类视觉问题的有力工具。 从今天开始，我们将介绍一系列以深度学习为背景的计算机视觉技术。那么在这个环节的第一篇分享中，我们首先来了解一下什">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-07T15:35:27.182Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2484581618"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-07 15:35:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">585</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="118-基于深度学习的计算机视觉技术（一）：深度神经网络入门"><a href="#118-基于深度学习的计算机视觉技术（一）：深度神经网络入门" class="headerlink" title="118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门"></a>118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门</h1><p>在最近几年的人工智能发展中，深度学习技术成为了一个强劲的推动力。对于计算机视觉来讲，深度学习在过去几年重新改写了这个领域的核心方法论。时至今日，深度学习已经深入到了计算机视觉技术的方方面面，成为解决各类视觉问题的有力工具。</p>
+<p>从今天开始，我们将介绍一系列以深度学习为背景的计算机视觉技术。那么在这个环节的第一篇分享中，我们首先来了解一下什么是深度学习。</p>
+<h2 id="为什么是深度学习"><a href="#为什么是深度学习" class="headerlink" title="为什么是深度学习"></a>为什么是深度学习</h2><p>在了解一些深度学习技术细节之前，我们首先要来看一下为什么需要深度学习技术。</p>
+<p>初学者经常会有一个误区，那就是认为和“深度学习”相对的就是“浅层学习”（Shallow Learning）。这种看法也对，也不对。</p>
+<p>“对”的地方在于“深度学习”的确强调从数据或者说是特征（Feature）中构造多层或深度的变换，从而能够得到非线性的表征（Representation）。显然，这种效果是线性模型所达不到的。</p>
+<p>“不对”的地方是，在所谓的“深度学习”，或者准确地讲是深度神经网络技术发展之前，就已经有了很多构造复杂非线性表征的尝试和技术。这些技术在机器学习和人工智能的发展中都起到了举足轻重的作用。</p>
+<p>说到这里，我们就要从 <strong>线性模型</strong> 聊起了。从线性模型发展到非线性模型，这一步貌似理所当然，但其实这里面有一个非常重要的思路，那就是线性模型并不是不能处理数据中的非线性关系，这一点很容易被忽视。很多时候，我们其实是可以构造非线性的特征，然后利用线性模型来把所有的非线性特征给串联起来。</p>
+<p>举个例子，在网页搜索中，我们经常利用类似PageRank来表征一个网页的重要性。这个模型本身就是非线性的对网页图（Graph）的一种表征。所以，即便在此之上构建线性模型，整个模型其实也是包含了非线性的表征转换。</p>
+<p>其实，对于很多深度学习模型而言，即便进行了复杂的表征转换，在最后一层对最终的输出进行建模的时候依然是一个线性模型。所以，线性模型在非线性特征的帮助下，依然能够满足整体的非线性建模的需求。</p>
+<p>那么，这种非线性特征外加线性模型的方法有什么问题呢？</p>
+<p>这类方法的主要问题是，如何才能系统性地找到这些非线性特征呢？其实，传统的机器学习中的特征工程（Feature Engineering）主要就是在做特征寻找这个事情，也就是要消耗人力和物力去寻找这些特征。有时候，找到一个好的特征可能还需要灵感和其他领域特定的知识。</p>
+<p>那么，有没有办法让模型自身就能从现有的数据中发现这些非线性关系，从而不需要额外的特征工程呢？</p>
+<p>其实在机器学习发展的早期，研发人员就意识到了这个方向的重要性，这样就发展出了各种各样的非线性模型。</p>
+<p>这里面比较有代表性的模型是“ <strong>决策树</strong>”（Decision Tree），以及在此基础上发展出来的一系列“ <strong>树模型</strong>”（Tree Models）。我们在专栏里介绍过，树模型在搜索和推荐的一些场景中都有不错的性能表现。在很大程度上，树模型可以表达非线性的关系，但是它的困难之处在于无法表达过于深层次的数据关系。一般来说，3到4层的树已经算是比较深的结构了，如果一个树模型有特别多层次还能被训练成功，这样的例子是比较少见的。</p>
+<p>除了树模型之外，还有一类模型，用来挖掘数据中间的隐含关系，特别是非线性关系，这就是“ <strong>概率图模型</strong>”（Probabilistic Graphical Model）。例如在文本挖掘领域非常流行的LDA（Latent Dirichlet Allocation），以及在推荐领域流行的矩阵分解（Matrix Factorization），都可以被看作是概率图模型中的佼佼者。</p>
+<p>概率图模型的一大优势是可以融入众多对于数据以及所需要处理问题的直觉，从而能够让模型具有一定的可解释性，甚至是“因果性”（Causality）。但是，概率图模型的最大挑战就是每一个模型都需要单独计算训练算法。也就是说，算法无法做到普适通用。这就极大地限制了概率图模型在实际问题，特别是大数据问题中的应用。</p>
+<p>综合来看， <strong>我们急需一种方法，能够自动挖掘数据中的非线性关系，而且最好能够找到数据中的隐含规律，这种隐含的规律可能是非常多层次的非线性转换；并且，这种方法还需要在计算上直接通用，不同模型可以共用一个计算框架</strong>。</p>
+<p>所有这些因素如何囊括在一个方法里呢？答案就是深度学习技术。</p>
+<h2 id="深度学习的特点"><a href="#深度学习的特点" class="headerlink" title="深度学习的特点"></a>深度学习的特点</h2><p>深度学习技术慢慢成为了主流的非线性模型。接下来我们来看一看深度学习技术的一些特点。</p>
+<p>首先，深度学习技术是一个非常大的外延，这里面包含了很多不同的 <strong>模型</strong> 和模型的 <strong>计算框架</strong> 技术。这两者都是深度学习成功必不可少的组成部分。</p>
+<p>深度学习中有一种最简单也是最基础的模型，就是“ <strong>深度神经网络</strong>”（Deep Neural Networks）。这种模型其实很早就已经被提出了。</p>
+<p>从形式上来说，深度神经网络就是把多层简单的非线性操作叠加起来，希望能够发现更加复杂的非线性关系。实际上，有理论研究表明， <strong>在有足够的内部隐含变量的情况下，深度神经网络可以表达任意复杂的函数关系</strong>。也就是说，深度神经网络有希望能够对现实世界中的复杂现象进行建模。这一点对于我们刚才提到的树模型和概率图模型来说，有相当大的难度或者说几乎是不可能的。</p>
+<p>另外，回到我们刚才说的特征工程的需求，深度神经网络的确可以减轻这方面的压力。虽然并不如很多人预期的那样，深度神经网络依然需要依赖一定的初始数据，但是已经有实验表明，通过深度神经网络学习的特征在很多时候相比于研发人员手动挖掘的特征要更加健壮。</p>
+<p>实际上， <strong>在计算机视觉这样的领域里，利用深度神经网络来挖掘特征基本上已经完全代替了手动的特征挖掘</strong>。</p>
+<p>深度神经网络还有一个特点就是 <strong>计算的普适性</strong>。刚才我们讲到概率图模型有一个“死穴”，就是计算无法做到模型普适，或者说在不牺牲性能的前提下，计算无法做到普适性。那么这一点来说，以深度神经网络为代表的深度学习，依赖简单的梯度下降就能对非常复杂的网络进行计算。而这种计算是可以针对不同的模型的，因此这就极大地降低了深度学习在实际工程应用中的代价。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你讲了基于深度学习的计算机视觉技术的第一篇分享，帮助你对深度学习有一个更加明确的认识。</p>
+<p>一起来回顾下要点：第一，深度学习技术能够自动挖掘数据中的非线性关系；第二，在计算机视觉领域里，利用深度神经网络来挖掘特征已经基本代替了手动的特征挖掘，而且，深度神经网络还具有计算的普适性。</p>
+<p>最后，给你留一个思考题，和树模型或者概率图模型相比较，深度学习有什么劣势吗？如果有，你认为它最大的劣势是什么？</p>
+<p>欢迎你给我留言，和我一起讨论。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#118-%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.1.</span> <span class="toc-text">为什么是深度学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">深度学习的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
