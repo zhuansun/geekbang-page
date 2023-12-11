@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>05 | 驯服AI：掌握prompt设计 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="05｜驯服AI：掌握prompt设计你好，我是键盘，我们继续驯服 GPT。 刚开始设计 prompt 的时候，通常会走 2 个极端。要么是缺乏背景的简陋提问，要么是一大段拥挤的描述，结构化和可读性欠佳。这样不仅容易遗漏，交给 GPT 执行的效果也不尽如人意。 其实，这是因为你的需求没有梳理好就开跑了，要不就是缺乏示例，AI 理解不到你要的细节。 想要得到相对合心意的回答，合理的顺序是“先劳心，再劳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05 | 驯服AI：掌握prompt设计">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1160977636.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="05｜驯服AI：掌握prompt设计你好，我是键盘，我们继续驯服 GPT。 刚开始设计 prompt 的时候，通常会走 2 个极端。要么是缺乏背景的简陋提问，要么是一大段拥挤的描述，结构化和可读性欠佳。这样不仅容易遗漏，交给 GPT 执行的效果也不尽如人意。 其实，这是因为你的需求没有梳理好就开跑了，要不就是缺乏示例，AI 理解不到你要的细节。 想要得到相对合心意的回答，合理的顺序是“先劳心，再劳">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
+<meta property="article:modified_time" content="2023-12-11T12:04:45.311Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1160977636"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '05 | 驯服AI：掌握prompt设计',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-11 12:04:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">587</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">05 | 驯服AI：掌握prompt设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/">零基础GPT应用入门课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="05｜驯服AI：掌握prompt设计"><a href="#05｜驯服AI：掌握prompt设计" class="headerlink" title="05｜驯服AI：掌握prompt设计"></a>05｜驯服AI：掌握prompt设计</h1><p>你好，我是键盘，我们继续驯服 GPT。</p>
+<p>刚开始设计 prompt 的时候，通常会走 2 个极端。要么是缺乏背景的简陋提问，要么是一大段拥挤的描述，结构化和可读性欠佳。这样不仅容易遗漏，交给 GPT 执行的效果也不尽如人意。</p>
+<p>其实，这是因为你的需求没有梳理好就开跑了，要不就是缺乏示例，AI 理解不到你要的细节。</p>
+<p>想要得到相对合心意的回答，合理的顺序是“先劳心，再劳力”，把更多的精力放在前置的思考环节。</p>
+<p>那么，怎么梳理自己的需求呢？从混乱到秩序、从简陋到简洁（未必是简单），怎么将问题设计成清晰、有效的 prompt？</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/1da09f2400dd20f9558e10d7577abeee.png" alt="img"></p>
+<p>这节课我们来实操一下。通过让 ChatGPT 扮演一位“重磅好书推荐助手”，掌握需求拆分、prompt 规划方法和 prompt 设计框架参考，帮助你有效提问，在提问过程中使用一些 prompt 工程技巧来提升效果。最后，我们也会针对结果做一个综合评估，完成闭环。</p>
+<h2 id="什么是清晰、明确的需求？"><a href="#什么是清晰、明确的需求？" class="headerlink" title="什么是清晰、明确的需求？"></a>什么是清晰、明确的需求？</h2><p>“清晰、明确的需求”是指准确地、简洁地描述要解决的问题，有足够的背景信息和细节要求，并且容易被 AI 理解和实现。了解这个关键技能，不仅能够让 ChatGPT 的输出更贴近预期，在向上汇报或工作沟通的时候，都会让你事半功倍。</p>
+<p>想要表达出清晰、明确的需求，我们可以分为 3 步走：明确需求并拆分，提供必要背景信息，补充细节约束。</p>
+<p>明确需求并拆分这一步，类似平时我们做需求。第一个要点，是清晰知道自己面对的任务目标是什么，用清晰、简洁的语言表达出来，尽量能够一句话说明白。第二点，是再把它切分成大大小小的事项，万一遇到特别硬的骨头，你还可以再敲碎一点，按优先级逐项解决。抓大放小，有秩序地规划 prompt 会更加有条理性。因为所有的需求一定伴随着一个预期，所以第三个要点，就是补充期望的结果。</p>
+<p>之后就到了第二步，提供必要背景信息。你想要解决什么领域、行业的课题？受众是谁？有没有相关的概念要交代？是否需要提供材料或数据？</p>
+<p>最后，补充细节约束。可以补充一些个人偏好和呈现效果的预期。通常我会聚焦在 DO &amp; DON’TS + 对应的示例、数量 &#x2F; 字数要求、风格（语气、语言）、输出的格式这 4 个方向上。当然，和 GPT 交流的时候，还可以灵活发挥。</p>
+<p>我经常会说这么两句话。</p>
+<pre class="line-numbers language-none"><code class="language-none">最后给我一点惊喜 #像老板一样督促 GPT
+请一步一步思考，输出完整的代码 #0样本思维链提示，只影响推理，不影响完整性<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>一番整理后，通用模版已经呼之欲出。“今天你要做什么助手”的模版我放在了下面，相信能够让你更有条理地解决问题。</p>
+<pre class="line-numbers language-none"><code class="language-none">[主题——做什么]，[达到......目的]
+
+背景信息：
+1
+2
+3 
+
+步骤： #可以是按优先级排列，也可以是按逻辑排列
+- 细节事项 1
+- 细节事项 2
+- 细节事项 3
+
+要求：
+[你的细节约束]
+
+材料&#x2F;数据：
+[你的材料&#x2F;数据(如需)]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="“重磅好书推荐助手”的准备工作"><a href="#“重磅好书推荐助手”的准备工作" class="headerlink" title="“重磅好书推荐助手”的准备工作"></a>“重磅好书推荐助手”的准备工作</h2><p>以“重磅好书推荐助手”的需求为例，现在，我们就要开始逐步设计了。关于 prompt 的设计，可以分成梳理自己的需求 + 书写 prompt 两部分。</p>
+<h3 id="准备一：需求的梳理和拆分"><a href="#准备一：需求的梳理和拆分" class="headerlink" title="准备一：需求的梳理和拆分"></a>准备一：需求的梳理和拆分</h3><p>需求的梳理我们按照前面说的梳理需求的三个环节去练习。</p>
+<h4 id="明确需求、结构化拆分"><a href="#明确需求、结构化拆分" class="headerlink" title="明确需求、结构化拆分"></a>明确需求、结构化拆分</h4><p><strong>1、尝试一句话简述明确的需求</strong></p>
+<p>这里我写的是：GPT 将担任我的重磅好书推荐助手，随时随地提供高质量的推荐，为我节省被动接收推荐信息的时间。同时，还能灵活地根据需求调整推荐类型或细节。</p>
+<p><strong>2、优先级</strong></p>
+<ul>
+<li>随时随地、高质量的推荐（P0）</li>
+<li>节省时间（P1）</li>
+<li>可调整（P2）</li>
+</ul>
+<p>总结下来，就是我会聚焦高质量来展开整体设计。在此基础上，能够有效节省时间意味着可以取代同类产品或服务，而实现可调整意味着有更大的应用空间。</p>
+<p><strong>3、期望的结果</strong></p>
+<p>为了避免遗漏关键信息，一定要把自己期望得到的信息梳理出来。比如这次，我希望“重磅好书推荐助手”输出封面、书名、作者、题材、出版时间、页数 、价格参考、豆瓣评分，甚至输出书的简介、 GPT 推荐的理由，而且同一批的推荐要有题材跨度体现。</p>
+<p>最后，我们再<strong>完善一下需求侧细节</strong>。让输出的内容更准确。</p>
+<ul>
+<li>需要指定题材偏好：技术入门手册、工具书、成功学、武侠小说和厚黑学都别来。</li>
+<li>可配置的推荐数量：默认 5 本。</li>
+<li>定义自己期望的重磅：大咖出品、经典巨作、经过时间的考验、有深度思考、有反直觉的理论、引起了广泛讨论、有独立的观点而不是迎合读者，豆瓣评分 8 分起。</li>
+<li>偏好：中文、脍炙人口或幽默的文笔。</li>
+</ul>
+<h4 id="必要的背景信息"><a href="#必要的背景信息" class="headerlink" title="必要的背景信息"></a><strong>必要的背景信息</strong></h4><p>按照刚才提供的梳理框架，这里可以尝试补充关于“重磅好书推荐助手”这个角色关于主体 &#x2F; 受众、行业 &#x2F; 领域、相关概念、相关材料 &#x2F; 数据，一共 4 个方面的信息。</p>
+<p><strong>主体 &#x2F; 受众是谁</strong>：面向我本人、爱好阅读或者有同样需求的朋友均可使用。</p>
+<p><strong>领域、行业和角色</strong>：书籍推荐的领域不限，但个人更偏好科技、人文、名人自传。</p>
+<p><strong>是否有相关概念 AI 可能不了解</strong>：刚才补充的需求侧细节里，或者我们之后的表达里，会不会有 AI 不了解的概念？</p>
+<p>这里列举了几个 AI 可能不了解的概念。</p>
+<ul>
+<li>豆瓣评分：豆瓣读书平台，有代表性意义的评分参考。</li>
+<li>入门手册：Html、CSS、Javascript、Photoshop、Figma、炒股技术等工具的学习类书籍。</li>
+<li>成功学：核心套路是“我的成功可以复制”，如何赚大钱。</li>
+</ul>
+<p>注意，第 3 步可以通过新开会话来提前试探，确认 ChatGPT 是了解的，那就不用补充。</p>
+<p>使用试探型 prompt，可以先撩一下 ChatGPT。</p>
+<pre class="line-numbers language-none"><code class="language-none">我们来谈谈&lt;某个概念&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或者</p>
+<pre class="line-numbers language-none"><code class="language-none">什么是&lt;某个概念&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>两种试探都可以。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e294f60676c8e738a4015bf37e83f717.png" alt="img"></p>
+<p>不过为了防止 AI 定义和自己心目中的定义出现偏差，我还是决定把它先放在初始指令中，描述自己的定义，借此观察结果对比，同时可以感受 prompt 压缩优化的过程。指导思想主打“我不要你觉得”。</p>
+<p><strong>哪些材料要输入</strong>：文档或数据不是本案例的必要项，纯指令触发。</p>
+<h4 id="补充更多约束"><a href="#补充更多约束" class="headerlink" title="补充更多约束"></a><strong>补充更多约束</strong></h4><p>信息已经比较丰满了，整合 prompt 之前，我们再补充一些约束。</p>
+<ul>
+<li><p>“DO &amp; DON’TS”+ 对应的示例：在“重磅好书推荐助手”的人设下，指的就是补充重磅书籍的参考、期望和不推荐的类型的例子。</p>
+</li>
+<li><p>数量、字数要求：数量还是默认 5 本，不过我也会下达推荐几本的指令。输出字数方面没有特别要求。</p>
+</li>
+<li><p>风格：这里指的是希望 GPT 用什么方式回答。比如：简洁 &#x2F; 严谨 &#x2F;xx 口吻 &#x2F; 富有创造性……的睿智书虫；简洁的、通俗易懂的语言，不要干巴巴的书面语。</p>
+</li>
+<li><p>输出的格式：我希望 GPT 能图文并茂，使用 Markdown 和 emoji 美化输出，而且按价格升序提供好书传送门，看中的直接买。</p>
+</li>
+<li><p>附加要求：希望除了推荐的书籍，还有一些锦上添花的结果，不过目前还没想好，具体要看跑机的结果来调整，也许还需要实时的互联网信息。</p>
+</li>
+</ul>
+<h3 id="准备二：整合设计-prompt"><a href="#准备二：整合设计-prompt" class="headerlink" title="准备二：整合设计 prompt"></a>准备二：整合设计 prompt</h3><p>这是一个角色扮演类型的 prompt，可以套用下面的衍生模版进行细化设计。</p>
+<pre class="line-numbers language-none"><code class="language-none">你是一位 [xx领域的xx角色]，[你的任务是xxx]，面向 [目标群体], 我希望你 [怎么回答]，达成 [目标]。
+[详细背景信息] #部分可以整合到上面第一句话
+背景
+概念
+材料
+...
+[输出模版] #包含结构化的输出信息，相当于[步骤]
+1
+2
+3
+[要求]
+1
+2
+3
+[你的指令]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意，和这节课最开始分享的初始模版相比，这里的描述有 2 处延伸。一个是开头增加了角色扮演，帮 ChatGPT 圈定特定领域的知识来高效解决问题。</p>
+<pre class="line-numbers language-none"><code class="language-none">你是一位 [xx领域的xx角色]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>另一个是描述问题，最后再下达指令。类似编程中的传递参数，将更具体的主题参数传入 [你的任务是 xxx]，达成使用变量来灵活控制输出的目的。</p>
+<pre class="line-numbers language-none"><code class="language-none">[你的指令]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来，我们就可以在模版的基础上规划 prompt 了。因为重点是思考，而不是书写本身。我推荐在 Mac 备忘录 &#x2F;Win 记事本中先做好 prompt 规划，完成之后再贴到 ChatGPT 对话框。这样的好处是轻松换行，梳理清晰、好读的结构化信息，不用担心手滑导致没写完就回车飞出去了，增加时间成本。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3131c3b10cbdb715cc58c81ab2715fe4.png" alt="img"></p>
+<p>最后，在备忘录中填空，形成完整的 prompt 设计。你会发现，我们最开始梳理的需求并不是生硬塞进模板里的 ，而是会有一些变化。通过移动、合并同类项等等这样的操作，一个五脏俱全的 prompt 就诞生了。最终我希望 ChatGPT 输出的是“科技 &#x2F;2”，也就是两本科技类的书。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/489c3e97af9acb3431ayy934a49feccb.png" alt="img"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/282ca33e886e1dbcbc4f05bb64b4f403.png" alt="img"></p>
+<h2 id="“重磅好书推荐助手”的跑机尝试"><a href="#“重磅好书推荐助手”的跑机尝试" class="headerlink" title="“重磅好书推荐助手”的跑机尝试"></a>“重磅好书推荐助手”的跑机尝试</h2><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3d4907b18e82de9f07e01a69a817453b.png" alt="img"></p>
+<h3 id="阶段一：试错，让-prompt-更简洁"><a href="#阶段一：试错，让-prompt-更简洁" class="headerlink" title="阶段一：试错，让 prompt 更简洁"></a>阶段一：试错，让 prompt 更简洁</h3><p>在跑机阶段，不管我们之前设计的 prompt 有多完善，都一定会遇到偏差和问题。这里我给你提供 3 个试错和纠偏的方向，有条理地迭代初始 prompt。</p>
+<p><strong>1、根据“输出”来修订“输入”</strong></p>
+<p>比如推荐类型不及预期，我在指令部分要求的是“科技 &#x2F;2”，但是结果毫无科技浓度，仔细检查才发现开头的需求概述中要求“推荐[&#x2F; 数量]本不同题材”，这里就造成了咒语冲突，GPT 也很为难。既然原因清晰，那可以选择砍一刀解决。</p>
+<p>结合试探型 prompt 和第一次跑机的结果来看，AI 是懂“重磅好书”、“豆瓣评分”和“成功学书籍”这几个概念的，所以我们也可以放心地把它们删掉。</p>
+<p><strong>2、纠偏</strong></p>
+<p>如果局部有错误，指出错误和正确的结果即可。比如我不要工具书，结果来个《PS 入门到精通》就很皮痒了，再比如不按要求，给出了低于 8 分的推荐等等。如果你想只修改细节，一般也有通用的 prompt 话术来调教。</p>
+<p>比如：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;某处细节&gt; 的理解有偏差，我希望[xxx 方式]来实现<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或</p>
+<pre class="line-numbers language-none"><code class="language-none">没有遵循 &lt;哪个要求&gt;，请修正<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>都是可以的。</p>
+<p><strong>3、信息一致性检验</strong></p>
+<p>通常指的是验证相关信息是否瞎编，是否毫无关联。这里的一致性指的就是书名、作者和出版时间匹配。</p>
+<p>GPT 无法直接联网，算出的数据是基于 2021 年 9 月前的信息，“好书推荐助手”的价格、评分与最新信息会有出入。虽然后续插件能够解决，不过这里就需要咱们手动查询了。建议移步到 newBing 验证，降低ChatGPT 会话次数爆掉的风险。（这里我用了 ChatGPT 小号）</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bc4c62ea51c9a28594e83606a7c40bce.png" alt="img"></p>
+<p>那我的“重磅好书推荐助手”都出过什么错，我又是怎么解决的呢？这里分享一下，希望能帮到你。</p>
+<ul>
+<li>第一次产生中断，无法验证“惊喜”模块：继续迭代。</li>
+<li>指令中指定了题材，和上文要求“推荐不同题材”冲突，GPT 凌乱了：只保留推荐数量。</li>
+<li>中断的衔接不理想，提前点击“Stop”止损：点击编辑图标来调整。</li>
+<li>输出数量不稳定：调整描述。</li>
+<li>书籍实例参考数量偏多：删减。</li>
+<li>点击传送门链接，发现结果不匹配，这和 GPT 的幻觉和无法直接联网的局限有关：官方联网插件能够一举解决。</li>
+<li>图片已经验证能输出：可以暂时拿掉，等全流程跑通之后重新放出。</li>
+</ul>
+<p>根据试错的结果整理，用 3 大原则来应对 prompt 优化，根据输出调整、删冗余、去冲突。对照前文可以直观看到，优化的 prompt 长度精简了近一半。</p>
+<p>💬 prompt</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d388ef326ee9255b3f28d4401d2678d7.png" alt="img"></p>
+<p>🤖️ 尝试 GPT-4 结果</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b938e890b2845633086abb5efb75013e.png" alt="img"></p>
+<p>测试发现，GPT-4 的细节良好地体现了付费模型的素养，很听话、中断无缝衔接，尽享丝滑。（Markdown 自身无法跨对话拼合代码渲染，但信息完整）</p>
+<h3 id="阶段二：迭代，输出更多惊喜"><a href="#阶段二：迭代，输出更多惊喜" class="headerlink" title="阶段二：迭代，输出更多惊喜"></a>阶段二：迭代，输出更多惊喜</h3><p>这个阶段，你可以继续检验新的输出是否达成目标。另外，如果你还想得到关于问题的拓展性信息，可以持续问答或补充更多信息来训练 AI。</p>
+<p>🤖️ 迭代结果</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bd8e55e1d522f9c07f484ea5faf38e37.png" alt="img"></p>
+<p>这里我尝试了两个方向。</p>
+<ul>
+<li>指定其他数量（对应“1”），触发新的推荐，任务是可以完成的。</li>
+<li>根据得到的惊喜，调整期望的方向，可以看到，GPT 灵活应用了上文链接的格式要求。</li>
+</ul>
+<p>看实际需要，你也可以再进行一轮或多轮迭代打磨。之后，将迭代过程的细节要求合入到初始 prompt。现在整体已经达到我的预期了，我们继续下一步。</p>
+<h3 id="阶段三：人设保存"><a href="#阶段三：人设保存" class="headerlink" title="阶段三：人设保存"></a>阶段三：人设保存</h3><p>为了下一次调用更方便，大幅缩短时间，最低成本是掏出系统记事本，粘贴备份 prompt，防止会话意外丢失。当你切换小号或者 AI 的时候（Claude、Bard 等等），感受一下有备无“换”。</p>
+<p>你也可以使用 <a target="_blank" rel="noopener" href="https://github.com/lencx/ChatGPT">第三方 ChatGPT 客户端</a> 保存为快捷指令，后续课程我还会分享怎么用输入法来保存，敬请期待。</p>
+<p>一次回话结束之后，除了在原会话输入推荐数量来继续，你还可以粘贴指令到新会话，或者直接调出快捷指令，一个清脆的回车声，起飞。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/95224625ec21d4a966b5bac3c3a32c0b.png" alt="img"></p>
+<h2 id="结果评估"><a href="#结果评估" class="headerlink" title="结果评估"></a>结果评估</h2><p>因为我们还在不断学习，输出不理想是很正常的，这个时候就需要增加一个动态的可行性综合评估，除了评估结果，还能评估自己的 prompt 质量，承担方向指引的作用。</p>
+<p><strong>先说 3 个评估维度：可行性、质量、稳定性。</strong></p>
+<ul>
+<li>整体可实现。</li>
+<li>质量在预期内，口吻还可以迭代优化。</li>
+<li>ChatGPT 对 [&#x2F; 数量] 的指定解读不稳定，经常输出 5 本，将 [&#x2F; 数量] 调整为具体数字，即可兼容。</li>
+<li>对比 ChatGPT 和 GPT-4 模型的输出结果，后者能够稳定完成任务。复用课程的方法，使用 Claud、谷歌 Bard 等模型来对照也可以。</li>
+</ul>
+<p>这里给你提供根避雷针，隔壁的 newBing 是一条没有长期记忆的金鱼，不接受人设游戏，所以人设型指令要避开 newBing。</p>
+<p><strong>再说结果评估，我们从优点、问题、改进、更多这几个角度去说。</strong></p>
+<p><strong>优点</strong>：最终指令有自定义和可衍生的空间，视觉体验较好。</p>
+<p><strong>问题</strong>：中断的衔接不好，ChatGPT 倾向于重头开始补充，而 GPT-4 基本可以无缝衔接；使用精确继续 prompt 来解决。</p>
+<pre class="line-numbers language-none"><code class="language-none">从&lt;什么部分&gt;继续<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><strong>问题（暂时）</strong>：链接能按格式输出，但结果不匹配。这个问题和 GPT 的局限性有关，后续联网插件能够彻底解决。</p>
+<p><strong>改进</strong>：图片过高，可以通过横向版本来优化版面，你也可以去掉图片，删除这行嵌入的 Markdown 图片链接，聚焦推荐信息。</p>
+<pre class="line-numbers language-none"><code class="language-none">![通用](https:&#x2F;&#x2F;s.mj.run&#x2F;eq31FdWhom8)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><strong>更多</strong>：标题字号稍大，降一级更好，加一个 # 号降一级。</p>
+<h2 id="小黑板"><a href="#小黑板" class="headerlink" title="小黑板"></a>小黑板</h2><p>这节课，我们从新手总会犯的“无意识抢跑”的问题出发，尝试慢下来，解决新手“原话师”2 个走极端带来的混乱，重新定义了“人 -AI”协作关系中的“清晰、明确的需求”。和 GPT 沟通的过程，其实也是我们扮演产品经理解决问题的路线：<strong>分析问题，拆解问题，解决问题</strong>。</p>
+<p>通过“重磅好书推荐助手”案例的设计，我在准备工作中讲解了 <strong>3 步提需求</strong>，在提炼的模版上丰满必要的背景信息，补充期望的约束，有套路地完成需求全貌的梳理，在此基础上得以整合书写 prompt。</p>
+<p>在这一阶段，我强烈地推荐<strong>利用好系统记事本来做规划，这里有更广阔的空间可以容纳你的思考</strong>。同时你可以使用推荐的试探型 prompt 来了解一些背景信息是否有必要补充。</p>
+<p>日常与 GPT 的切磋中我们会用到大量的咒语模版，它们是被设计来提升效率的，你必须<strong>吃透模版的要点，然后灵活调整应用，而不是生硬地完形填空。</strong></p>
+<p>从 0 到 1 设计好一个 prompt 之后，就到人机大战阶段。<strong>比起一步登天，在试错中迭代可以说是最佳策略了</strong>。这一阶段我提供了 3 个试错和纠偏的方向，有条理地迭代初始 prompt，更有 3 大原则来应对 prompt 优化——<strong>根据输出调整、删冗余、去冲突</strong>。通过跑机结果的对照分析，prompt 描述减半，效果更佳。</p>
+<p>最终，我们达成了目标，提炼了一个可衍生的智能人设。掏出记事本，有备无“换”。有效提升日常复用的便利性和施法效率。</p>
+<p>案例的核心是通过赋予角色来圈定课题的领域，减少 AI 说胡话的概率，接着把具体的需求转换成精确的问题，引导 GPT 解决需求。结构化表达，更是贯彻整个过程的要素。</p>
+<p><strong>输入决定输出，短短 6 个字，简洁，又不简单。</strong></p>
+<p><strong>要点：</strong></p>
+<ul>
+<li>从明确需求到 prompt 设计，过程迭代，再到人设保存，是一个可通用的套路。</li>
+<li>使用少样本学习（Few-Shot Learning prompt）让 AI 理解要求。</li>
+<li>通过加入推理演示诱发 AI 的链式思考（Chain-of-Thought），获得更好结果。</li>
+<li>追加惊喜模块，激发灵感。</li>
+<li>3 大原则应对 prompt 优化——根据输出调整、删冗余、去冲突。</li>
+<li>设计 prompt 就是设计有效的提问。</li>
+<li>不期望一步到位，迭代是必经的阶段，而提升“提问”的能力能够减少迭代的次数。</li>
+</ul>
+<h2 id="踏浪扬帆"><a href="#踏浪扬帆" class="headerlink" title="踏浪扬帆"></a>踏浪扬帆</h2><p>请根据 prompt 模版 DIY 自己的 AI 助手，你也可以衍生为观影助手、音乐推荐助手或其他实用的助手，感受高定 AI 的乐趣。也可以让 GPT 写一个爬虫，将你在豆瓣已读的书单爬下来，方便 GPT 去重。</p>
+<p>期待在评论区看到你的思考或感受，也欢迎你将这节课分享给感兴趣的朋友们，戳此加入课程交流群，我们下期再会。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#05%EF%BD%9C%E9%A9%AF%E6%9C%8DAI%EF%BC%9A%E6%8E%8C%E6%8F%A1prompt%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">05｜驯服AI：掌握prompt设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%85%E6%99%B0%E3%80%81%E6%98%8E%E7%A1%AE%E7%9A%84%E9%9C%80%E6%B1%82%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是清晰、明确的需求？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E9%87%8D%E7%A3%85%E5%A5%BD%E4%B9%A6%E6%8E%A8%E8%8D%90%E5%8A%A9%E6%89%8B%E2%80%9D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">“重磅好书推荐助手”的准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%B8%80%EF%BC%9A%E9%9C%80%E6%B1%82%E7%9A%84%E6%A2%B3%E7%90%86%E5%92%8C%E6%8B%86%E5%88%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">准备一：需求的梳理和拆分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%8E%E7%A1%AE%E9%9C%80%E6%B1%82%E3%80%81%E7%BB%93%E6%9E%84%E5%8C%96%E6%8B%86%E5%88%86"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">明确需求、结构化拆分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%85%E8%A6%81%E7%9A%84%E8%83%8C%E6%99%AF%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">必要的背景信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E6%9B%B4%E5%A4%9A%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">补充更多约束</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%BA%8C%EF%BC%9A%E6%95%B4%E5%90%88%E8%AE%BE%E8%AE%A1-prompt"><span class="toc-number">1.2.2.</span> <span class="toc-text">准备二：整合设计 prompt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E9%87%8D%E7%A3%85%E5%A5%BD%E4%B9%A6%E6%8E%A8%E8%8D%90%E5%8A%A9%E6%89%8B%E2%80%9D%E7%9A%84%E8%B7%91%E6%9C%BA%E5%B0%9D%E8%AF%95"><span class="toc-number">1.3.</span> <span class="toc-text">“重磅好书推荐助手”的跑机尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E8%AF%95%E9%94%99%EF%BC%8C%E8%AE%A9-prompt-%E6%9B%B4%E7%AE%80%E6%B4%81"><span class="toc-number">1.3.1.</span> <span class="toc-text">阶段一：试错，让 prompt 更简洁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E8%BF%AD%E4%BB%A3%EF%BC%8C%E8%BE%93%E5%87%BA%E6%9B%B4%E5%A4%9A%E6%83%8A%E5%96%9C"><span class="toc-number">1.3.2.</span> <span class="toc-text">阶段二：迭代，输出更多惊喜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%9A%E4%BA%BA%E8%AE%BE%E4%BF%9D%E5%AD%98"><span class="toc-number">1.3.3.</span> <span class="toc-text">阶段三：人设保存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.</span> <span class="toc-text">结果评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%BB%91%E6%9D%BF"><span class="toc-number">1.5.</span> <span class="toc-text">小黑板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%8F%E6%B5%AA%E6%89%AC%E5%B8%86"><span class="toc-number">1.6.</span> <span class="toc-text">踏浪扬帆</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
