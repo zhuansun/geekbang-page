@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:15:08'
+  postUpdate: '2023-12-13 15:17:32'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,63 +138,142 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3932673544.html" title="109 | 对话系统之经典的对话模型">109 | 对话系统之经典的对话模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">109 | 对话系统之经典的对话模型在文本分析这个重要的环节里，我们已经分享了Word2Vec模型，包括模型的基本假设、模型实现以及一些比较有代表意义的扩展模型。我们还讨论了基于深度学习的文本分析模型，特别是对序列建模的深度学习利器RNN，包括RNN的基本框架，流行的RNN模型实现，以及RNN在自然语言处理中的应用场景。
-今天，我们要来看另外一类和文字相关的人工智能系统—— 对话系统 的一些基础知识。
-浅析对话系统对话系统在整个人工智能领域、甚至是计算机科学领域都占据着举足轻重的地位。著名的人工智能测试，“图灵测试”，其实就是建立在某种意义的对话系统上的。在经典的图灵测试场景中，一个最主要的论述就是：看一个人和一个机器进行对话，在和这个机器系统的问答过程中，能否猜出这个系统是一个真人还是一个计算机程序系统。从这一点可以看出，即便是在计算机科学的早期，对话系统或者说是智能的对话能力，就已经成为了计算机科学家衡量智能水平的一个重要标准。
-实际上，从上个世纪50~60年代开始，研究人员就致力于研发早期的对话系统。即便是在今天看来，在一些简单的应用中，早期的对话系统也表现出了惊人的“智能”。比如，麻省理工大学的约瑟夫·维森鲍姆（Joseph Weizenbaum）教授研发了一款叫“伊丽莎”（Eliza）的早期对话系统。尽管这个对话系统只能对语言进行最肤浅的反馈，但是在“伊丽莎”系统的使用者 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1541290151.html" title="112 | 什么是文档情感分类？">112 | 什么是文档情感分类？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">112 | 什么是文档情感分类？到目前为止，我们讲完了对话系统的基础知识。一般来说，对话系统分为“任务型”和“非任务型”这两种基本类型。针对任务型对话系统，我们重点介绍了其各个组件的任务，以及这些组件都有哪些模型给予支撑。针对非任务型对话系统，也就是“聊天机器人”，我们主要介绍了如何利用深度学习技术来对一个聊天机器人进行建模，以及非任务型对话系统所面临的挑战都有哪些。
-今天，我们转入文本分析的另外一个领域，同时也是在实际系统中经常会使用的一个子领域，那就是 文本“情感分析”（Sentiment Analysis）。所谓情感分析，就是指我们要针对一段文本来判断这段文本的文字“色彩”，到底是褒义，还是贬义，到底是抒发了什么情感。
-文本情感分析是一个非常实用的工具，比如，我们需要分析用户对于商品的评价带有什么样的情感，从而能够更好地为商品的推荐和搜索结果服务。再比如，通过文本的情感分析，我们可以了解到用户针对某一个时事的观点异同，以及观点分歧在什么地方，从而能够更加清晰地了解新闻的舆情动态。
-今天，我们首先从最基础的 文档情感分类（Document Sentiment Classification）这个问题说起。
-基于监督学习的文档情感分类文档情感分类属于文本情感分析中最基本的一种任务。这种任务的假设是，一段文本的作者通过这段文本是想对某一个“ 实体”（Entity）表达一种情绪。这里的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3053669864.html" title="114 | 文本情感分析中如何做意见总结和搜索？">114 | 文本情感分析中如何做意见总结和搜索？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">114 | 文本情感分析中如何做意见总结和搜索？在文本“情感分析”（Sentiment Analysis）这个领域，我们首先介绍了最基础的文档情感分类这个问题。在绝大多数情况下，这是一个监督学习的问题。当然，我们也可以通过建立情感词库来进行简单的非监督学习的步骤。紧接着，我们讨论了文本情感分析中的另一个关键技术，即情感“实体”和“方面”的提取。这个任务可以说是很多情感分析的根基，我们需要从无结构的文本中提取实体和方面等结构信息，便于进一步的分析。我们讲了如何通过词频、挖掘配对信息以及利用监督学习来对实体和方面进行挖掘。
-今天，我们来看文本情感分析的另外一个主题—— 意见总结（Opinion Summarization）和 意见搜索（Opinion Search）。
-意见总结为什么“意见总结”这个任务会很重要的呢？
-假如你希望在电商网站上购买一款数码相机。这个时候，你可能需要打开好几款相机的页面进行比较。对于相机的硬件指标，能够从这些页面上相对容易地直接得到，除此以外，你可能还比较关心对这些相机的评价。
-在这个场景下，“意见总结”的重要性就凸显出来了。因为优秀的相机款式往往有上百甚至上千的用户评价，这些评价包括了用户对产品很多方面的评价，有褒义和贬义的情绪。如果对这些评价逐一进行浏览，很明显是一种非常低效的做法。因此，从购物网站的角度来说，如果能够为用户把这些评论进行总结，从而让用户 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1317451980.html" title="111 | 聊天机器人有哪些核心技术要点？">111 | 聊天机器人有哪些核心技术要点？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">111 | 聊天机器人有哪些核心技术要点？对话系统分为“任务型”和“非任务型”两种基本类型。周一的分享里，我们讨论了任务型对话系统的一些技术要点，重点介绍了任务型对话系统的各个组件及其背后的模型支撑。
-今天，我们就来看一看**非任务型对话系统 的主要技术要点。非任务型的对话系统有时候又会被称作是“ 聊天机器人**”。
-基于信息检索的对话系统我们前面讲过，对话系统，特别是非任务型对话系统，也就是聊天机器人，有一个很重要的功能，就是在一个知识库的基础上和用户进行对话。这个知识库可以是海量的已经存在的人机对话，也可以是某种形式的知识信息。
-比如，一个关于篮球的聊天机器人，那就需要这个系统能够访问有关篮球球队、运动员、比赛、新闻等有关篮球信息的知识库。同时，在这个对话系统运行了一段时间之后，我们就会慢慢积累很多有关篮球的对话。这些对话就成为了系统针对当前输入进行反应的基础。
-针对当前的输入，利用之前已经有过的对话进行回馈，这就是基于信息检索技术的对话系统的核心假设。一种最基本的做法就是，找到和当前输入最相近的已有对话中的某一个语句，然后回复之前已经回复过的内容。
-比如，当前的问话是“迈克尔·乔丹在职业生涯中一共得过多少分？”如果在过去的对话中，已经有人问过“迈克尔·乔丹为芝加哥公牛队一共得过多少分？”。那么，我们就可以根据这两句话在词组上的相似性，返回已经回答过的答案来应对当前的输入。
-当 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2759427001.html" title="115 | 什么是计算机视觉？">115 | 什么是计算机视觉？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">115 | 什么是计算机视觉？在之前的一系列分享中，我们详细讲解了人工智能核心技术中的搜索、推荐系统、计算广告以及自然语言处理和文本处理技术。从今天开始，我们来分享专栏里人工智能核心技术模块的最后一部分内容：计算机视觉技术。
-可以说，计算机视觉技术是人工智能技术的核心方向，特别是深度学习技术在计算机视觉中的应用，在最近五六年的人工智能浪潮中担当了先锋者的角色。甚至可以说，如果没有深度学习技术在过去几年对计算机视觉一些核心领域的推动和促进，就很可能没有这一波的人工智能技术浪潮。
-我们可以这么来看待人工智能技术，它可以说是利用计算机技术来对人的感官，例如视觉、听觉、触觉以及思维进行模拟，从而建立起逻辑推断等智能才具备的能力。其中，计算机视觉技术无疑是至关重要的，也是非常困难的。
-今天我会带你先来看看究竟什么是计算机视觉，以及这个方向的研发都需要解决哪些核心问题。
-计算机视觉的定义关于计算机视觉（Computer Vision，CV），有两种人们普遍接受的定义。
-第一种定义认为，计算机视觉是从数字图像（Digital Images）中提取信息。这些信息可以是图像中的物品识别（Identification）、导航系统的位置测量（Space Measurement）以及增强现实（Augmented Reality）的应用。
-计算机视觉的第二种定义主要是从应用的角度出发，认为计算机视觉是为了构 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3413929145.html" title="113 | 如何来提取情感“实体”和“方面”呢？">113 | 如何来提取情感“实体”和“方面”呢？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">113 | 如何来提取情感“实体”和“方面”呢？从上一篇分享开始，我们转入文本分析的另外一个领域，文本“情感分析”（Sentiment Analysis），也就是指我们要针对一段文本来判断其文字“色彩”。文本情感分析是一个非常实用的工具。我们从最基础的文档情感分类这个问题说起，这个任务是把一个单独的文档给分类为某种情感。在绝大多数情况下，我们可以把这个任务看作监督学习的问题。另外，我们也聊了聊如何通过建立情感词来进行简单的非监督学习的步骤。
-今天，我们来看文本情感分析中的另一个关键技术， 情感“实体”和“方面”的提取。
-“实体”和“方面”的提取对于文本情感分析而言，“ 实体”（Entity）和“ 方面”（Aspect）是两个非常重要的概念。很多情感分析的任务都是围绕着这两个概念而产生的。在谈论如何对这两个概念提取之前，我们先来看看这两个概念的意义。
-“实体”其实就是文本中的某一个对象，比如产品的名字、公司的名字、服务的名字、个人、事件名字等。而“方面”则是实体的某种属性和组建。
-比如这么一个句子：“我买了一部三星手机，它的通话质量很不错”。在这里，“三星手机”就是一个实体，而“通话质量”则是一个方面。更进一步，“很不错”则是一个情感表达，这里是针对“三星手机”这个实体的“通话质量”这个方面。很明显，如果我们想要精准地对文本的情感进行分析，就一定得能够对实体和方面进行有效提取。
-从广 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1751080069.html" title="116 | 掌握计算机视觉任务的基础模型和操作">116 | 掌握计算机视觉任务的基础模型和操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">116 | 掌握计算机视觉任务的基础模型和操作今天，我们来聊一聊计算机视觉的一些最基础的操作和任务，包括像素表达、过滤器和边界探测。基于这些内容，我们一起讨论利用计算机来处理视觉问题的核心思路。很多时候，越是基础的内容就越重要，因为只有掌握了基础的思路，我们才能在今后复杂的任务中灵活应用。
-像素表达我们在上一次的分享中谈到了计算机视觉任务中一个非常重要的步骤，那就是把现实世界的信号通过感知仪器（Sensing Device）收集起来，然后在计算机系统中加以表达。那么，在所有的表达中，最基础的就是“ 像素表达”（Pixel）。我们这里就展开说一说这种表达的思路。
-把图像信息利用像素来进行表达是一种非常直观简单的表达方式。
-对于黑白图像来说，图像就被转换为了0或者1的 二元矩阵。这个矩阵的每一个元素就是一个像素，0代表黑，1则代表白。
-对于灰度图像来说，每一个像素，或者说是矩阵的每一个元素，代表灰度的“ 强度”（Intensity），从0到255，0代表黑，255代表白。
-对于彩色的图像来说，我们一般要先选择一种模型来表示不同的颜色。一种较为流行的表达方式是RGB（红、绿、蓝）模型。在这样的模型中，任何一个彩色图像都能够转化成为RGB这三种颜色表达的叠加。具体来说，就是RGB分别代表三种不同的“通道”（Channel）。每一种通道都是原始图像在这个通道，也就是这个原始颜色下的表达。每一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1012181105.html" title="117 | 计算机视觉中的特征提取难在哪里？">117 | 计算机视觉中的特征提取难在哪里？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">117 | 计算机视觉中的特征提取难在哪里？在上一次的分享中，我们聊了计算机视觉的一些最基础的操作和任务，包括像素表达和过滤器这两个视觉问题。我们还简单介绍了边界探测这个任务，了解如何从计算机视觉的角度来对这个任务进行建模。
-今天，我们来看计算机视觉基础问题中的另一个核心任务，那就是特征（Feature）提取。
-特征提取的目的在深入讨论特征提取之前，我们先来了解一下特征提取的目的，或者说是研究特征提取的必要性。
-从大的方面来说，计算机视觉的一部分任务是实现对图像的智能理解。那么，理解图像的语义就是其中一个非常重要的任务。
-我们提到的边界检测或者是颜色检测，虽然都是理解图像的任务，但是这些任务并不理解图像中具体的物体，比如哪里是一只动物、哪里是行人等。那么，怎样才能理解图像中具体的物体呢？或者更进一步，整个图像表达了怎样的社会关系或者说是场景关系？例如一张会议室的图像，我们不仅关心里面的陈设和人物，还关心会议室的整体气氛，以及这样的气氛是不是传递出了更复杂的人物之间的社会关系。
-那么，如何实现这种更高维度的语义理解呢？这往往需要我们 对底层的一些图像先进行抽象，然后再在抽象出来的特征基础上，进一步来建模。
-除了我们这里提到的对图像本身的理解以外，在很多任务中，我们还需要对图像和其他信息结合起来进行理解和分析。一种常见的形式是图像和一段文字结合起来，对某一个物品或者某一个事件进行描述。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2484581618.html" title="118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门">118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">118 | 基于深度学习的计算机视觉技术（一）：深度神经网络入门在最近几年的人工智能发展中，深度学习技术成为了一个强劲的推动力。对于计算机视觉来讲，深度学习在过去几年重新改写了这个领域的核心方法论。时至今日，深度学习已经深入到了计算机视觉技术的方方面面，成为解决各类视觉问题的有力工具。
-从今天开始，我们将介绍一系列以深度学习为背景的计算机视觉技术。那么在这个环节的第一篇分享中，我们首先来了解一下什么是深度学习。
-为什么是深度学习在了解一些深度学习技术细节之前，我们首先要来看一下为什么需要深度学习技术。
-初学者经常会有一个误区，那就是认为和“深度学习”相对的就是“浅层学习”（Shallow Learning）。这种看法也对，也不对。
-“对”的地方在于“深度学习”的确强调从数据或者说是特征（Feature）中构造多层或深度的变换，从而能够得到非线性的表征（Representation）。显然，这种效果是线性模型所达不到的。
-“不对”的地方是，在所谓的“深度学习”，或者准确地讲是深度神经网络技术发展之前，就已经有了很多构造复杂非线性表征的尝试和技术。这些技术在机器学习和人工智能的发展中都起到了举足轻重的作用。
-说到这里，我们就要从 线性模型 聊起了。从线性模型发展到非线性模型，这一步貌似理所当然，但其实这里面有一个非常重要的思路，那就是线性模型并不是不能处理数据中的非线性关系，这一点很容 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1467412761.html" title="121 | 计算机视觉领域的深度学习模型（一）：AlexNet">121 | 计算机视觉领域的深度学习模型（一）：AlexNet</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">121 | 计算机视觉领域的深度学习模型（一）：AlexNet我们继续来讨论基于深度学习的计算机视觉技术。从今天开始，我们进入一个新的模块，我会结合几篇经典的论文，给你介绍几个专门为计算机视觉而提出来的深度学习模型。这些模型都在最近几年的深度学习发展中，起到了至关重要的作用。
-我们这个系列要分享的第一篇论文题目是《基于深度卷积神经网络的图像网络分类》（ImageNet Classification with Deep Convolutional Neural Network）[1]。因为这篇文章的第一作者名字叫Alex，所以文章提出的模型也经常被称为 AlexNet。
-那接下来我们就先介绍一下这篇论文的作者群。
-第一作者就是亚力克斯·克里切夫斯基（Alex Krizhevsky）。发表这篇论文的时候他在多伦多大学计算机系攻读博士学位；之后的2013~2017年间在谷歌任职，继续从事深度学习的研究。
-第二作者叫伊利亚·苏兹克维（Ilya Sutskever）。发表这篇论文的时候，苏兹克维也在多伦多大学计算机系攻读博士学位；之后到斯坦福大学跟随吴恩达做博士后研究。2013~2015年间，他在谷歌担任研究科学家一职。2016年之后，他参与共同创立了OpenAI并且担任研究总监这一职位。苏兹克维在深度学习方面已经发表了很多篇论文，目前论文的引用数已经超过7万次。
-最后一位作者是杰弗里·辛顿 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/16/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/#content-inner">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/#content-inner">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/#content-inner">81</a><a class="extend next" rel="next" href="/page/18/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1545688334.html" title="44 | 弹力设计：幂等性设计">44 | 弹力设计：幂等性设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">44 | 弹力设计：幂等性设计你好，我是陈皓，网名左耳朵耗子。
+所谓幂等性设计，就是说，一次和多次请求某一个资源应该具有同样的副作用。用数学的语言来表达就是：f(x) &#x3D; f(f(x))。
+比如，求绝对值的函数，abs(x) &#x3D; abs(abs(x))。
+为什么我们需要这样的操作？说白了，就是在我们把系统解耦隔离后，服务间的调用可能会有三个状态，一个是成功（Success），一个是失败（Failed），一个是超时（Timeout）。前两者都是明确的状态，而超时则是完全不知道是什么状态。
+比如，超时原因是网络传输丢包的问题，可能是请求时就没有请求到，也有可能是请求到了，返回结果时没有正常返回等等情况。于是我们完全不知道下游系统是否收到了请求，而收到了请求是否处理了，成功&#x2F;失败的状态在返回时是否遇到了网络问题。总之，请求方完全不知道是怎么回事。
+举几个例子：
+
+订单创建接口，第一次调用超时了，然后调用方重试了一次。是否会多创建一笔订单？
+
+订单创建时，我们需要去扣减库存，这时接口发生了超时，调用方重试了一次。是否会多扣一次库存？
+
+当这笔订单开始支付，在支付请求发出之后，在服务端发生了扣钱操作，接口响应超时了，调用方重试了一次。是否会多扣一次钱？
+
+
+因为系统超时，而调用方重试一下，会给我们的系统带来不一致的副作用。
+在这种情况下，一般有两种处理方式。
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/645851039.html" title="45 | 弹力设计：服务的状态">45 | 弹力设计：服务的状态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">45 | 弹力设计：服务的状态你好，我是陈皓，网名左耳朵耗子。
+之前在我们讲的幂等设计中，为了过滤掉已经处理过的请求，其中需要保存处理过的状态，为了把服务做成无状态的，我们引入了第三方的存储。而这一篇中，我们来聊聊服务的状态这个话题。我认为，只有清楚地了解了状态这个事，我们才有可能设计出更好或是更有弹力的系统架构。
+所谓“状态”，就是为了保留程序的一些数据或是上下文。比如之前幂等性设计中所说的需要保留每一次请求的状态，或是像用户登录时的Session，我们需要这个Session来判断这个请求的合法性，还有一个业务流程中需要让多个服务组合起来形成一个业务逻辑的运行上下文Context。这些都是所谓的状态。
+我们的代码中基本上到处都是这样的状态。
+无状态的服务 Stateless一直以来，无状态的服务都被当作分布式服务设计的最佳实践和铁律。因为无状态的服务对于扩展性和运维实在是太方便了。没有状态的服务，可以随意地增加和减少节点，同样可以随意地搬迁。而且，无状态的服务可以大幅度降低代码的复杂度以及Bug数，因为没有状态，所以也没有明显的“副作用”。
+基本上来说，无状态的服务和“函数式编程”的思维方式如出一辙。在函数式编程中，一个铁律是，函数是无状态的。换句话说，函数是immutable不变的，所有的函数只描述其逻辑和算法，根本不保存数据，也不会修改输入的数据，而是把计算好的结果返回出去， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/689887008.html" title="46 | 弹力设计：补偿事务">46 | 弹力设计：补偿事务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">46 | 弹力设计：补偿事务你好，我是陈皓，网名左耳朵耗子。
+前面，我们说过，分布式系统有一个比较明显的问题就是，一个业务流程需要组合一组服务。这样的事情在微服务下就更为明显了，因为这需要业务上一致性的保证。也就是说，如果一个步骤失败了，那么要么回滚到以前的服务调用，要么不断重试保证所有的步骤都成功。
+这里，如果需要强一致性，那在业务层上就需要使用“两阶段提交”这样的方式。但是好在我们的很多情况下并不需要这么强的一致性，而且强一致性的最佳保证基本都是在底层完成的，或是像之前说的那样Stateful的Sticky Session那样在一台机器上完成。在我们接触到的大多数业务中，其实只需要最终一致性就够了。
+ACID 和 BASE谈到这里，有必要先说一下ACID和BASE的差别。传统关系型数据库系统的事务都有ACID属性，即原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。下面我逐一做下解释：
+
+原子性：整个事务中的所有操作，要么全部完成，要么全部失败，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。
+
+一致性：在事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。
+
+隔离性：两个事务的执行是互不干扰的，一个事 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/619057040.html" title="47 | 弹力设计：重试设计">47 | 弹力设计：重试设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">47 | 弹力设计：重试设计你好，我是陈皓，网名左耳朵耗子。
+关于重试，这个模式应该是一个很普遍的设计模式了。当我们把单体应用服务化，尤其是微服务化，本来在一个进程内的函数调用就成了远程调用，这样就会涉及到网络上的问题。
+网络上有很多的各式各样的组件，如DNS服务、网卡、交换机、路由器、负载均衡等设备，这些设备都不一定是稳定的。在数据传输的整个过程中，只要任何一个环节出了问题，最后都会影响系统的稳定性。
+重试的场景所以，我们需要一个重试的机制。但是，我们需要明白的是， “重试”的语义是我们认为这个故障是暂时的，而不是永久的，所以，我们会去重试。
+我认为，设计重试时，我们需要定义出什么情况下需要重试，例如，调用超时、被调用端返回了某种可以重试的错误（如繁忙中、流控中、维护中、资源不足等）。
+而对于一些别的错误，则最好不要重试，比如：业务级的错误（如没有权限、或是非法数据等错误），技术上的错误（如：HTTP的503等，这种原因可能是触发了代码的bug，重试下去没有意义）。
+重试的策略关于重试的设计，一般来说，都需要有个重试的最大值，经过一段时间不断的重试后，就没有必要再重试了，应该报故障了。在重试过程中，每一次重试失败时都应该休息一会儿再重试，这样可以避免因为重试过快而导致网络上的负担加重。
+在重试的设计中，我们一般都会引入，Exponential Backoff的策略，也就是所谓的“ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1101401378.html" title="48 | 弹力设计：熔断设计">48 | 弹力设计：熔断设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">48 | 弹力设计：熔断设计你好，我是陈皓，网名左耳朵耗子。
+熔断机制这个词对你来说肯定不陌生，它的灵感来源于我们电闸上的“保险丝”，当电压有问题时（比如短路），自动跳闸，此时电路就会断开，我们的电器就会受到保护。不然，会导致电器被烧坏，如果人没在家或是人在熟睡中，还会导致火灾。所以，在电路世界通常都会有这样的自我保护装置。
+同样，在我们的分布式系统设计中，也应该有这样的方式。前面说过重试机制，如果错误太多，或是在短时间内得不到修复，那么我们重试也没有意义了，此时应该开启我们的熔断操作，尤其是后端太忙的时候，使用熔断设计可以保护后端不会过载。
+熔断设计熔断器模式可以防止应用程序不断地尝试执行可能会失败的操作，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等待长时间的超时产生。熔断器模式也可以使应用程序能够诊断错误是否已经修正。如果已经修正，应用程序会再次尝试调用操作。
+换句话来说，我觉得熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定是继续操作，还是立即返回错误。
+
+（本图来自 Martin Fowler 的 Circuit Breaker）
+熔断器可以使用状态机来实现，内部模拟以下几种状态。
+
+闭合（Closed）状态：我们需要一个调用失败的计数器，如果调用失败，则使失败次数加1。如果最近失败次数超过了在给定时间内允 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3574938405.html" title="50 | 弹力设计：降级设计">50 | 弹力设计：降级设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">50 | 弹力设计：降级设计你好，我是陈皓，网名左耳朵耗子。
+所谓的降级设计（Degradation），本质是为了解决资源不足和访问量过大的问题。当资源和访问量出现矛盾的时候，在有限的资源下，为了能够扛住大量的请求，我们就需要对系统进行降级操作。也就是说，暂时牺牲掉一些东西，以保障整个系统的平稳运行。
+我记得我在伦敦参与诺丁山狂欢节的时候，以及看阿森纳英超足球比赛的时候，散场时因为人太多，所有的公交系统（公交车，地铁）完全免费，就是为了让人通行得更快。而且早在散场前，场外就备着一堆公交车和地铁了，这样就是为了在最短时间内把人疏散掉。
+虽然亏掉了一些钱，但是相比因为人员拥塞造成道路交通拥塞以及还可能出现的一些意外情况所造成的社会成本的损失，公交免费策略真是很明智的做法。与此类似，我们的系统在应对一些突发情况的时候也需要这样的降级流程。
+一般来说，我们的降级需要牺牲掉的东西有：
+
+降低一致性。从强一致性变成最终一致性。
+停止次要功能。停止访问不重要的功能，从而释放出更多的资源。
+简化功能。把一些功能简化掉，比如，简化业务流程，或是不再返回全量数据，只返回部分数据。
+
+降低一致性我们要清楚地认识到，这世界上大多数系统并不是都需要强一致性的。对于降低一致性，把强一致性变成最终一致性的做法可以有效地释放资源，并且让系统运行得更快，从而可以扛住更大的流量。一般来说，会有两种做法，一种是简化流程 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3983642823.html" title="49 | 弹力设计：限流设计">49 | 弹力设计：限流设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">49 | 弹力设计：限流设计你好，我是陈皓，网名左耳朵耗子。
+保护系统不会在过载的情况下出现问题，我们就需要限流。
+我们在一些系统中都可以看到这样的设计，比如，我们的数据库访问的连接池，还有我们的线程池，还有Nginx下的用于限制瞬时并发连接数的limit_conn模块，限制每秒平均速率的limit_req模块，还有限制MQ的生产速，等等。
+限流的策略限流的目的是通过对并发访问进行限速，相关的策略一般是，一旦达到限制的速率，那么就会触发相应的限流行为。一般来说，触发的限流行为如下。
+
+拒绝服务。把多出来的请求拒绝掉。一般来说，好的限流系统在受到流量暴增时，会统计当前哪个客户端来的请求最多，直接拒掉这个客户端，这种行为可以把一些不正常的或者是带有恶意的高并发访问挡在门外。
+
+服务降级。关闭或是把后端服务做降级处理。这样可以让服务有足够的资源来处理更多的请求。降级有很多方式，一种是把一些不重要的服务给停掉，把CPU、内存或是数据的资源让给更重要的功能；一种是不再返回全量数据，只返回部分数据。
+
+
+因为全量数据需要做SQL Join操作，部分的数据则不需要，所以可以让SQL执行更快，还有最快的一种是直接返回预设的缓存，以牺牲一致性的方式来获得更大的性能吞吐。
+
+特权请求。所谓特权请求的意思是，资源不够了，我只能把有限的资源分给重要的用户，比如：分给权利更高的VIP用户。在多租户系统下，限 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4241894644.html" title="51 | 弹力设计总结">51 | 弹力设计总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">51 | 弹力设计总结你好，我是陈皓，网名左耳朵耗子。
+我们前面讲了那么多的弹力设计的设计模式，这里做个总结。
+弹力设计总图首先，我们的服务不能是单点，所以，我们需要在架构中冗余服务，也就是说有多个服务的副本。这需要使用到的具体技术有：
+
+负载均衡 + 服务健康检查–可以使用像Nginx或HAProxy这样的技术；
+服务发现 + 动态路由 + 服务健康检查，比如Consul或ZooKeeper；
+自动化运维，Kubernetes 服务调度、伸缩和故障迁移。
+
+然后，我们需要隔离我们的业务，要隔离我们的服务我们就需要对服务进行解耦和拆分，这需要使用到以前的相关技术。
+
+bulkheads模式：业务分片 、用户分片、数据库拆分。
+
+自包含系统：所谓自包含的系统是从单体到微服务的中间状态，其把一组密切相关的微服务给拆分出来，只需要做到没有外部依赖就行。
+
+异步通讯：服务发现、事件驱动、消息队列、业务工作流。
+
+自动化运维：需要一个服务调用链和性能监控的监控系统。
+
+
+然后，接下来，我们就要进行能让整个架构接受失败的相关处理设计，也就是所谓的容错设计。这会用到下面的这些技术。
+
+错误方面：调用重试 + 熔断 + 服务的幂等性设计。
+
+一致性方面：强一致性使用两阶段提交、最终一致性使用异步通讯方式。
+
+流控方面：使用限流 + 降级技术。
+
+自动化运维方面：网关流量调度，服务监控。
+
+
+我不敢 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2214754993.html" title="52 | 管理设计：分布式锁">52 | 管理设计：分布式锁</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">52 | 管理设计：分布式锁你好，我是陈皓，网名左耳朵耗子。
+我们知道，在多线程情况下访问一些共享资源需要加锁，不然就会出现数据被写乱的问题。在分布式系统下，这样的问题也是一样的。只不过，我们需要一个分布式的锁服务。对于分布式的锁服务，一般可以用数据库DB、Redis和ZooKeeper等实现。不管怎么样，分布式的锁服务需要有以下几个特点。
+
+安全性（Safety）：在任意时刻，只有一个客户端可以获得锁（ 排他性）。
+
+避免死锁：客户端最终一定可以获得锁，即使锁住某个资源的客户端在释放锁之前崩溃或者网络不可达。
+
+容错性：只要锁服务集群中的大部分节点存活，Client就可以进行加锁解锁操作。
+
+
+Redis的分布式锁服务这里提一下，避免死锁的问题。下面以Redis的锁服务为例（参考 Redis的官方文档 ）。
+我们通过以下命令对资源加锁。
+SET resource_name my_random_value NX PX 30000
+
+
+解释一下：
+
+SET NX 命令只会在 key 不存在的时候给 key 赋值， PX 命令通知Redis保存这个key 30000ms。
+
+my_random_value 必须是全局唯一的值。这个随机数在释放锁时保证释放锁操作的安全性。
+
+PX 操作后面的参数代表的是这个key的存活时间，称作锁过期时间。
+
+当资源被锁定超过这个时间时，锁将自动释放。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3513016414.html" title="53 | 管理设计：配置中心">53 | 管理设计：配置中心</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">53 | 管理设计：配置中心你好，我是陈皓，网名左耳朵耗子。
+我们知道，除了代码之外，软件还有一些配置信息，比如数据库的用户名和密码，还有一些我们不想写死在代码里的东西，像线程池大小、队列长度等运行参数，以及日志级别、算法策略等，还有一些是软件运行环境的参数，如Java的内存大小，应用启动的参数，包括操作系统的一些参数配置……
+所有这些东西，我们都叫做软件配置。以前，我们把软件配置写在一个配置文件中，就像Windows下的ini文件，或是Linux下的conf文件。然而，在分布式系统下，这样的方式就变得非常不好管理，并容易出错。于是，为了便于管理，我们引入了一个集中式的配置管理系统，这就是配置中心的由来。
+现在，软件的配置中心是分布式系统的一个必要组件。这个系统听起来很简单，但其实并不是。我见过好多公司的配置中心，但是我觉得做得都不好，所以，想写下这篇文章给你一些借鉴。
+配置中心的设计区分软件的配置首先，我们要区分软件的配置，软件配置的区分有多种方式。
+有一种方式是把软件的配置分成静态配置和动态配置。所谓静态配置其实就是在软件启动时的一些配置，运行时基本不会进行修改，也可以理解为是环境或软件初始化时需要用到的配置。
+例如，操作系统的网络配置，软件运行时Docker进程的配置，这些配置在软件环境初始化时就确定了，未来基本不会修改了。而所谓动态配置其实就是软件运行时的一些配置，在运行时 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/16/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/#content-inner">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/#content-inner">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/18/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/"><span class="card-category-list-name">AI技术内参</span><span class="card-category-list-count">166</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">41</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/"><span class="card-category-list-name">朱赟的技术管理课</span><span class="card-category-list-count">39</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">深入浅出计算机组成原理</span><span class="card-category-list-count">62</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/"><span class="card-category-list-name">程序员进阶攻略</span><span class="card-category-list-count">65</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"><span class="card-category-list-name">趣谈网络协议</span><span class="card-category-list-count">51</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">19</span></a></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/"><span class="card-category-list-name">AI技术内参</span><span class="card-category-list-count">166</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/"><span class="card-category-list-name">从0开始学架构</span><span class="card-category-list-count">66</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">41</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/"><span class="card-category-list-name">朱赟的技术管理课</span><span class="card-category-list-count">39</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">深入浅出计算机组成原理</span><span class="card-category-list-count">62</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/"><span class="card-category-list-name">程序员进阶攻略</span><span class="card-category-list-count">65</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"><span class="card-category-list-name">趣谈网络协议</span><span class="card-category-list-count">51</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">19</span></a></li>
             </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {

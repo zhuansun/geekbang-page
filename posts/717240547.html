@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>51 | 如何画出优秀的软件系统架构图？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="51 | 如何画出优秀的软件系统架构图？ 你好，我是华仔。 你现在看到的这篇文章，是我在2022年新写的。《从0开始学架构》这门课更新结束后，我又探索了很多和架构相关的事情。这期间新的经历和尝试，也让我有了更多的思考。 所以，有了今天这篇文章，把我在软件系统架构图上的实践分享给你。  很多同学技术能力很强，架构设计也做得很好，但是在给别人讲解的时候，总感觉像是“茶壶里煮饺子，有货倒不出”。 其实，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51 | 如何画出优秀的软件系统架构图？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/717240547.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="51 | 如何画出优秀的软件系统架构图？ 你好，我是华仔。 你现在看到的这篇文章，是我在2022年新写的。《从0开始学架构》这门课更新结束后，我又探索了很多和架构相关的事情。这期间新的经历和尝试，也让我有了更多的思考。 所以，有了今天这篇文章，把我在软件系统架构图上的实践分享给你。  很多同学技术能力很强，架构设计也做得很好，但是在给别人讲解的时候，总感觉像是“茶壶里煮饺子，有货倒不出”。 其实，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T23:07:14.000Z">
+<meta property="article:modified_time" content="2023-12-13T15:17:16.031Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/717240547"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '51 | 如何画出优秀的软件系统架构图？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 15:17:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">51 | 如何画出优秀的软件系统架构图？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="51-如何画出优秀的软件系统架构图？"><a href="#51-如何画出优秀的软件系统架构图？" class="headerlink" title="51 | 如何画出优秀的软件系统架构图？"></a>51 | 如何画出优秀的软件系统架构图？</h1><blockquote>
+<p>你好，我是华仔。</p>
+<p>你现在看到的这篇文章，是我在2022年新写的。《从0开始学架构》这门课更新结束后，我又探索了很多和架构相关的事情。这期间新的经历和尝试，也让我有了更多的思考。</p>
+<p>所以，有了今天这篇文章，把我在软件系统架构图上的实践分享给你。</p>
+</blockquote>
+<p>很多同学技术能力很强，架构设计也做得很好，但是在给别人讲解的时候，总感觉像是“茶壶里煮饺子，有货倒不出”。</p>
+<p>其实，在为新员工培训系统架构、给领导汇报技术规划、上技术大会做演讲或者向晋升评委介绍工作贡献的时候，如果你能画出一张优秀的 <strong>软件系统架构图</strong>，就可以大大提升自己的讲解效果，让对方轻松地理解你想表达的关键点。</p>
+<p>这一讲，我就会为你分享软件系统架构图的画图技巧。</p>
+<h2 id="4-1视图"><a href="#4-1视图" class="headerlink" title="4+1视图"></a>4+1视图</h2><p>说起软件系统架构图，你可能会想到 <strong>4+1视图</strong>，毕竟很多学习资料上都说它是架构图的标准。那么，到底什么是4+1视图呢？是不是只要按照4+1视图的标准去画，就没有问题呢？</p>
+<p>我们还是从它的由来说起。1995年，Philippe Kruchten在 <a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Philippe-Kruchten/publication/220018231_The_41_View_Model_of_Architecture/links/0046351a4dc4f9da04000000/The-4-1-View-Model-of-Architecture.pdf">论文</a> 中指出了过去用单一视图描述软件系统架构的问题，并提出了4+1视图作为解决方案。</p>
+<blockquote>
+<p>有时，软件架构的问题来源于系统设计者过早地划分软件或者过分地强调软件开发的某一个方面，比如数据工程、运行时效率、开发策略或团队组织。此外，软件架构往往不能解决它的所有“用户”的问题。……作为补救措施，我们建议使用几个并发视图来组织对软件架构的描述，其中每个视图分别解决一组特定的问题。</p>
+</blockquote>
+<p>不同视图之间的关系如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/df0e94e2b756b5994201094fc066f41c.png" alt="图片"></p>
+<p>4+1视图的核心理念是从不同的角度去剖析系统，看看系统的结构是什么样的，具体每个视图的含义是：</p>
+<ol>
+<li><strong>逻辑视图</strong>：从终端用户角度看系统提供给用户的 <strong>功能</strong>，对应 UML的 class 和 state diagrams。</li>
+<li><strong>处理视图</strong>：从动态的角度看系统的 <strong>处理过程</strong>，对应 UML 的 sequence 和 activity diagrams。</li>
+<li><strong>开发视图</strong>：从程序员角度看系统的 <strong>逻辑组成</strong>，对应 UML 的 package diagrams。</li>
+<li><strong>物理视图</strong>：从系统工程师角度看系统的 <strong>物理组成</strong>，对应 UML 的 deployment diagrams。</li>
+<li><strong>场景视图</strong>：从用户角度看系统需要实现的 <strong>需求</strong>，对应 UML 的 use case diagrams。</li>
+</ol>
+<p>（备注：逻辑视图看到的“功能”和场景视图看到的“需求”是一回事吗？答案是否定的。一个需求可能涉及多个功能，例如“取款”这个场景涉及“插卡”“密码验证”“出钞”等功能；而多个需求可能涉及同一个功能，例如“取款”和“转账”是两个不同的需求，但是都涉及“密码验证”这个功能。）</p>
+<p>我们可以看到，4+1视图本身很全面也很规范，但是为什么在实际工作中，真正按照这个标准来画架构图的公司和团队并不多呢？</p>
+<p>我认为原因主要有三点：</p>
+<ol>
+<li><p><strong>架构复杂度增加</strong>：1995年的时候，系统大部分还是单体系统，而现在分布式系统越来越多。如果我们用4+1视图来表示分布式系统的话，就会遇到困难，比如微服务架构下有那么多的微服务，Development view 就不好表示。</p>
+</li>
+<li><p><strong>绑定 UML 图</strong>：UML 图画架构图存在问题，主要问题是不美观，表达能力弱。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/8f3930d1dfcce23747eab44244c8d23a.png" alt="图片"></p>
+</li>
+</ol>
+<p>（备注：左图是用UML工具画的，右图是用Visio画的，对比之下，UML图的缺点十分明显。）</p>
+<ol>
+<li><strong>理解困难</strong>：逻辑视图、开发视图和处理视图比较容易混淆。比如说，有人把逻辑视图理解为软件开发的类结构图，也有人把处理视图和开发视图等同，还有人认为逻辑视图就是开发视图。</li>
+</ol>
+<p>这些原因导致4+1视图在目前的实际工作中并不是很实用。那么，我们到底要怎么画软件系统架构图呢？</p>
+<h2 id="核心指导思想：4R架构定义"><a href="#核心指导思想：4R架构定义" class="headerlink" title="核心指导思想：4R架构定义"></a>核心指导思想：4R架构定义</h2><p>其实，很多人之所以画不好架构图，最大的痛点就是不好把握到底要画哪些内容，画得太少担心没有展现关键信息，画得太多又觉得把握不住重点。</p>
+<p>所以现在的问题变成了： <strong>应该按照什么样的标准来明确架构图要展现的内容呢？</strong></p>
+<p>答案就是我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/6458">第1讲</a> 中介绍的 <strong>4R架构定义</strong>。</p>
+<blockquote>
+<p>软件架构指软件系统的顶层（Rank）结构，它定义了系统由哪些角色（Role）组成，角色之间的关系（Relation）和运作规则（Rule）。</p>
+</blockquote>
+<p>4R是指4个关键词：Rank，Role，Relation和Rule。既然可以通过4R来定义软件系统的架构，那么按照4R架构定义的思路来画架构图也是很合情合理的，具体步骤如下：</p>
+<ul>
+<li><strong>第一步，明确Rank</strong>：也就是说，不要事无巨细地把一个大系统的方方面面都在一张架构图中展现出来，而应该明确你要阐述的系统所属的级别（L0～L4），然后只描述这个级别的架构信息。</li>
+<li><strong>第二步，画出Role</strong>：从不同的角度来分解系统，看看系统包含哪些角色，角色对应架构图中的区块、图标和节点等。</li>
+<li><strong>第三步，画出Relation</strong>：有了角色后，画出角色之间的关系，对应架构图中角色之间的连接线，不同的连接线可以代表不同的关系。</li>
+<li><strong>第四步，最后画出Rule</strong>：挑选核心场景，画出系统角色之间如何协作来完成某项具体的业务功能，对应系统序列图。</li>
+</ul>
+<p>我把描述Role和Relation的架构图称为静态架构图，描述Rule的系统序列图称为动态架构图。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f938ebc41dcdf8dee669d1fbba02a48c.jpg" alt="图片"></p>
+<p>从某一个角度去看，静态架构图的数量跟系统复杂度有关，一般是1～2张，如果比较简单，用一张图就够了，如果比较复杂，就要分别用两张图来展现；而动态架构图是一般是多张，因为核心场景数量不止一个，对应的系统序列图有多张。</p>
+<h2 id="常见架构图"><a href="#常见架构图" class="headerlink" title="常见架构图"></a>常见架构图</h2><p>刚才介绍4+1视图的时候，我提到过，从不同的角度去剖析系统，就会得到不同的视图。其实按照4R架构定义来画架构图也是这样，用不同的方式去划分系统，就会得到不同类型的架构，分别对应不同类型的架构图。常见的类型整理如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/54921e795e5945e6e310c98476e33bb0.jpg" alt="图片"></p>
+<p>接下来，我就为你详细地讲解每一类架构图的特点。</p>
+<h3 id="1-业务架构图"><a href="#1-业务架构图" class="headerlink" title="1. 业务架构图"></a>1. 业务架构图</h3><p>【定义】</p>
+<p>描述系统对用户提供了什么业务功能，类似于 4+1 视图的场景视图。</p>
+<p>【使用场景】</p>
+<ol>
+<li>产品人员规划业务：比如说我们经常在产品规划和汇报会议上看到产品人员会用业务架构图来展现业务全局状态。</li>
+<li>给高 P 汇报业务：对于P7+以上级别的技术人员，在汇报的时候不能光讲技术，也要讲业务的发展情况，用业务架构图就比较容易的展现业务整体情况。</li>
+<li>给新员工培训业务。</li>
+</ol>
+<p>【画图技巧】</p>
+<ol>
+<li>通过不同颜色来标识业务状态：比如说哪些业务发展状态好，哪些问题比较多，哪些比较稳定，哪些竞争比较激烈等。</li>
+<li>业务分组管理：将类似的业务放在一个分组里面展现，用虚线框或者相同背景将其标识出来。</li>
+<li>区块对齐：为了美观，可以改变不同区块的长短大小进行对齐，让整体看起来更美观。</li>
+</ol>
+<p>【参考案例】</p>
+<p>AlipayHK的一个业务架构图如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/354710df87a5c2c356ee01bac841e385.jpg" alt="图片"></p>
+<p>这张业务架构图有三点关键信息：</p>
+<ol>
+<li>“MTR”区块是浅红色的，“人传人”区块是绿色的，浅红色代表正在进行的，绿色代表明年规划的。</li>
+<li>分了4组：钱包业务、第三方业务、商家服务和用户管理。</li>
+<li>“转账”和“社交红包”等区块比较长，只是为了对齐后更美观，不代表业务本身的量级或者重要程度，如果要表示这样的信息，那么可以用颜色来表示。</li>
+</ol>
+<p>注意，千万不要画得五颜六色，一般一张图的颜色数量控制在3种以内是比较好的。所以在画图的时候你要想清楚，到底哪些信息是要放在业务架构图中重点展示的关键信息，哪些信息顺带讲一下就可以了。</p>
+<h3 id="2-客户端和前端架构图"><a href="#2-客户端和前端架构图" class="headerlink" title="2. 客户端和前端架构图"></a>2. 客户端和前端架构图</h3><p>【定义】</p>
+<p>描述客户端和前端的领域逻辑架构，关注的是从逻辑的角度如何分解客户端或者前端应用。</p>
+<p>【使用场景】</p>
+<ol>
+<li>整体架构设计：由客户端或者前端架构师完成本领域的架构设计。</li>
+<li>架构培训。</li>
+</ol>
+<p>【画图技巧】</p>
+<ol>
+<li>通过不同颜色来标识不同角色。</li>
+<li>通过连接线来表示关系，如果有多种关系，例如有的是直接调用，有的是事件通知，那么可以用不同形状的线条来表示。</li>
+<li>分层或分组：将类似的角色分层或者分组管理。</li>
+</ol>
+<p>【参考案例】</p>
+<p>微信客户端架构3.x的架构图如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bf7d188aaabed60b3bf3ca050b40f507.jpg" alt="图片"></p>
+<p>这张客户端架构图有三点关键信息：</p>
+<ol>
+<li>图中用了灰色（app:UI等）、蓝色（Net Scene等）、深灰色（Storage）、浅蓝色（Network）来表示不同类型的模块。</li>
+<li>图中有两类连接线：双向的（WebViewUI和app:UI），单向的（app:UI和Net Scene等）。</li>
+<li>整体上分为4组，对应图中背景色不同的四个大的区块。</li>
+</ol>
+<h3 id="3-系统架构图"><a href="#3-系统架构图" class="headerlink" title="3. 系统架构图"></a>3. 系统架构图</h3><p>【定义】</p>
+<p>描述后端的逻辑架构，又叫“后端架构”或“技术架构”，不管是业务系统、中间件系统，还是基础的操作系统、数据库系统等，系统架构都是软件系统架构的核心。</p>
+<p>【使用场景】</p>
+<ol>
+<li>整体架构设计。</li>
+<li>架构培训。</li>
+</ol>
+<p>【画图技巧】</p>
+<ol>
+<li>通过不同颜色来标识不同角色。</li>
+<li>通过连接线来表示关系。</li>
+<li>逻辑分组。</li>
+</ol>
+<p>【参考案例】</p>
+<p>如果系统比较简单，可以参考MongoDB Sharding的系统架构图，如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3ab6145445692f65e72a69a4ee8ffd5c.png" alt="图片"></p>
+<p>如果系统相对复杂，建议首先用一张图来展示系统架构里面的角色（Role）以及每个角色的核心功能；然后再用一张图来展示角色之间的关系（Relation），可以参考一个支付中台的系统架构图，如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bbc9eeddeddf54d21f2395c8370d7e9b.png" alt="图片"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/be55dc4b9993b666275576d531ce11ee.jpg" alt="图片"></p>
+<p>（备注：完整的支付中台关系图太大了，这张关系图只是摘取其中一部分作为示意图，供你参考。）</p>
+<h3 id="4-应用架构图"><a href="#4-应用架构图" class="headerlink" title="4. 应用架构图"></a>4. 应用架构图</h3><p>【定义】</p>
+<p>描述后端系统由哪些应用组成，一个应用就是一个可部署发布运行的程序，它是项目开发过程中，开发测试运维团队协作的基础。</p>
+<p>【使用场景】</p>
+<ol>
+<li>项目开发、测试。</li>
+<li>运维部署发布。</li>
+<li>子域架构设计。</li>
+</ol>
+<p>【画图技巧】</p>
+<ol>
+<li>通过不同颜色来标识不同角色。</li>
+<li>通过连接线来表示关系。</li>
+<li>复杂系统分域来画。</li>
+</ol>
+<p>【参考案例】</p>
+<p>如果系统比较简单，那么基本上应用架构和系统架构是等价的，可以参考MongoDB Sharding的应用架构图，如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3ab6145445692f65e72a69a4ee8ffd5c.png" alt="图片"></p>
+<p>我们可以看到，这张图中的Router（mongos）、Config Servers 和 Shard（replica set），既包含了系统架构的角色信息（Router、Config Servers 和 Shard），又包含了应用信息（mongos、Config Servers 和 Shard）。</p>
+<p>如果系统比较复杂，按照架构分层的角度来看，应用架构已经到了可执行程序这一层，例如支付中台这一类的系统，包含的应用可能有几百上千个，如果把整个支付中台所有的应用都在一张图里面展示出来，信息太多太密，可能会导致架构图都看不清。</p>
+<p>这种情况下，应用架构一般都是按照子域来画应用架构图，可以参考支付中台的会员域的应用架构图，如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/69cbba7b313fea85ca4d938986c6ce42.jpg" alt="图片"></p>
+<h3 id="5-部署架构图"><a href="#5-部署架构图" class="headerlink" title="5. 部署架构图"></a>5. 部署架构图</h3><p>【定义】</p>
+<p>描述后端系统具体是如何部署的，主要包含机房信息、网络信息和硬件信息等。</p>
+<p>【使用场景】</p>
+<ol>
+<li>总体架构设计。</li>
+<li>运维规划和优化。</li>
+</ol>
+<p>【画图技巧】</p>
+<p>用图标代替区块，这样看起来更加美观和容易理解。</p>
+<p>【参考案例】</p>
+<p>一个简单的支付系统的部署架构图如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/c14f418f42e017c4b446a8c7f6153285.jpg" alt="图片"></p>
+<h3 id="6-系统序列图"><a href="#6-系统序列图" class="headerlink" title="6. 系统序列图"></a>6. 系统序列图</h3><p>【定义】</p>
+<p>描述某个业务场景下，系统各个角色如何配合起来完成业务功能。</p>
+<p>【使用场景】</p>
+<p>结合“系统架构、应用架构和部署架构”来使用。</p>
+<p>【画图技巧】</p>
+<p>使用UML的序列图来画。</p>
+<p>【参考案例】</p>
+<p>“扫码支付”这个支付核心场景的系统序列图如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/fc7494a76644b0dd0f8ce4e603b36038.jpg" alt="图片"></p>
+<p>（备注：这张序列图的角色对应前面“系统架构”这一小节的支付中台系统的关系图。）</p>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><p>如果你曾经研究过架构图的标准，那么除了4+1视图以外，你可能还看到过TOGAF的“业务架构（跟这一讲的业务架构名字相同，但是意义不同）、数据架构（不是指大数据平台架构，而是指数据资产的架构）、应用架构和技术架构”这种说法，或者还看到过C4架构模型（Context、Container、Component和Code）等等。</p>
+<p>但其实目前业界并没有就架构图标准达成共识，刚才提到的TOGAF是企业级的架构，基本上要到CTO这个级别才能接触的，而C4模型的表达能力又不够。</p>
+<p>所以，我并没有直接套用这些内容，而是根据个人经验，将我认为最有效果的架构图整理出来。这些架构图，都是我在不同类型不同规模不同业务的公司（华为、UC、阿里和蚂蚁等）里面验证过的，你可以放心地使用。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>今天我为你介绍了画软件系统架构图的总体思路，以及常见架构图的应用场景和画图技巧，希望对你有所帮助。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4427fa8def9c132538964c9ae60c8a30.jpg" alt="图片"></p>
+<p>这就是今天的全部内容，留一道思考题给你吧：为什么后端架构可以直接被称为“系统架构”，通常我们说的系统不是应该包含客户端和前端在内的一个整体吗？</p>
+<p>欢迎你把答案写到留言区，和我一起讨论。相信经过深度思考的回答，也会让你对知识的理解更加深刻。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#51-%E5%A6%82%E4%BD%95%E7%94%BB%E5%87%BA%E4%BC%98%E7%A7%80%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">51 | 如何画出优秀的软件系统架构图？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E8%A7%86%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text">4+1视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3%EF%BC%9A4R%E6%9E%B6%E6%9E%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">核心指导思想：4R架构定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text">常见架构图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 业务架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 客户端和前端架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 系统架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 应用架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%83%A8%E7%BD%B2%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. 部署架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%B3%BB%E7%BB%9F%E5%BA%8F%E5%88%97%E5%9B%BE"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. 系统序列图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.7.</span> <span class="toc-text">补充说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
