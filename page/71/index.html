@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 10:43:32'
+  postUpdate: '2023-12-13 15:15:08'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -152,7 +152,22 @@ DNS服务器在网络世界，也是这样的。你肯定记得住网站的名�
 
 DNS解析流程为了提高DNS的解析性能，很多网络都会就近部署DNS缓存服务器。于是，就有了以下的DNS解析流程。
 
-电脑客户端会发出一个DNS请求，问www.163.com的IP是啥啊，并发给本地域名服务器 (本地DNS)。那本地域名服务器 (本地DNS) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3474286736.html" title="第19讲 | HttpDNS：网络世界的地址簿也会指错路">第19讲 | HttpDNS：网络世界的地址簿也会指错路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第19讲 | HttpDNS：网络世界的地址簿也会指错路上一节我们知道了DNS的两项功能，第一是根据名称查到具体的地址，另外一个是可以针对多个地址做负载均衡，而且可以在多个地址中选择一个距离你近的地方访问。
+电脑客户端会发出一个DNS请求，问www.163.com的IP是啥啊，并发给本地域名服务器 (本地DNS)。那本地域名服务器 (本地DNS) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2340041592.html" title="第16讲 | 流媒体协议：如何在直播里看到美女帅哥？">第16讲 | 流媒体协议：如何在直播里看到美女帅哥？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第16讲 | 流媒体协议：如何在直播里看到美女帅哥？最近直播比较火，很多人都喜欢看直播，那一个直播系统里面都有哪些组成部分，都使用了什么协议呢？
+无论是直播还是点播，其实都是对于视频数据的传输。一提到视频，大家都爱看，但是一提到视频技术，大家都头疼，因为名词实在是太多了。
+三个名词系列我这里列三个名词系列，你先大致有个印象。
+
+名词系列一：AVI、MPEG、RMVB、MP4、MOV、FLV、WebM、WMV、ASF、MKV。例如RMVB和MP4，看着是不是很熟悉？
+
+名词系列二：H.261、 H.262、H.263、H.264、H.265。这个是不是就没怎么听过了？别着急，你先记住，要重点关注H.264。
+
+名词系列 三：MPEG-1、MPEG-2、MPEG-4、MPEG-7。MPEG好像听说过，但是后面的数字是怎么回事？是不是又熟悉又陌生？
+
+
+这里，我想问你个问题，视频是什么？我说，其实就是快速播放一连串连续的图片。
+每一张图片，我们称为一 帧。只要每秒钟帧的数据足够多，也即播放得足够快。比如每秒30帧，以人的眼睛的敏感程度，是看不出这是一张张独立的图片的，这就是我们常说的 帧率（ FPS）。
+每一张图片，都是由 像素 组成的，假设为1024*768（这个像素数不算多）。每个像素由RGB组成，每个8位，共24位。
+我们来算一下，每秒钟的视频有多大？
+30帧 × 1024 × 7 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3474286736.html" title="第19讲 | HttpDNS：网络世界的地址簿也会指错路">第19讲 | HttpDNS：网络世界的地址簿也会指错路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第19讲 | HttpDNS：网络世界的地址簿也会指错路上一节我们知道了DNS的两项功能，第一是根据名称查到具体的地址，另外一个是可以针对多个地址做负载均衡，而且可以在多个地址中选择一个距离你近的地方访问。
 然而有时候这个地址簿也经常给你指错路，明明距离你500米就有个吃饭的地方，非要把你推荐到5公里外。为什么会出现这样的情况呢？
 还记得吗？当我们发出请求解析DNS的时候，首先，会先连接到运营商本地的DNS服务器，由这个服务器帮我们去整棵DNS树上进行解析，然后将解析的结果返回给客户端。但是本地的DNS服务器，作为一个本地导游，往往有自己的“小心思”。
 传统DNS存在哪些问题？1.域名缓存问题它可以在本地做一个缓存，也就是说，不是每一个请求，它都会去访问权威DNS服务器，而是访问过一次就把结果缓存到自己本地，当其他人来问的时候，直接就返回这个缓存数据。
@@ -183,12 +198,7 @@ DNS解析流程为了提高DNS的解析性能，很多网络都会就近部署DN
 
 从物理机到虚拟机为了解决这些问题，人们发明了一种叫虚拟机的东西，并基于它产生了云计算技术。
 其实在你的个人电脑上，就可以使用虚拟机。如果你对虚拟机没有什么概念，你可以下载一个桌面虚拟化的软件，自己动手尝试一下。它可以让你灵活地指定CPU的数目、内存的大小、硬盘的大小，可以有多个网卡，然后在一台笔记本电脑里面创建一台或者多台虚拟电脑。不用的时候，一点删除就没有了。
-在数据中心里面，也有一种类似的开源技术qemu-kvm，能让你在一台巨大的物理机里面，掏出一台台小的机器。这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3861867528.html" title="第26讲 | 云中的网络安全：虽然不是土豪，也需要基本安全和保障">第26讲 | 云中的网络安全：虽然不是土豪，也需要基本安全和保障</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第26讲 | 云中的网络安全：虽然不是土豪，也需要基本安全和保障在今天的内容开始之前，我先卖个关子。文章结尾，我会放一个超级彩蛋，所以，今天的内容你一定要看到最后哦！
-上一节我们看到，做一个小区物业维护一个大家共享的环境，还是挺不容易的。如果都是自觉遵守规则的住户那还好，如果遇上不自觉的住户就会很麻烦。
-就像公有云的环境，其实没有你想的那么纯净，各怀鬼胎的黑客到处都是。扫描你的端口呀，探测一下你启动的什么应用啊，看一看是否有各种漏洞啊。这就像小偷潜入小区后，这儿看看，那儿瞧瞧，窗户有没有关严了啊，窗帘有没有拉上啊，主人睡了没，是不是时机潜入室内啊，等等。
-假如你创建了一台虚拟机，里面明明跑了一个电商应用，这是你非常重要的一个应用，你会把它进行安全加固。这台虚拟机的操作系统里，不小心安装了另外一个后台应用，监听着一个端口，而你的警觉性没有这么高。
-虚拟机的这个端口是对着公网开放的，碰巧这个后台应用本身是有漏洞的，黑客就可以扫描到这个端口，然后通过这个后台应用的端口侵入你的机器，将你加固好的电商网站黑掉。这就像你买了一个五星级的防盗门，卡车都撞不开，但是厕所窗户的门把手是坏的，小偷从厕所里面就进来了。
-所以 对于公有云上的虚拟机，我的建议是仅仅开放需要的端口，而将其他的端口一概关闭。这个时候，你只要通过安全措施守护好这个唯一的入口就可以了。采用的方式常常是用 ACL（Access Co ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1891798920.html" title="第25讲 | 软件定义网络：共享基础设施的小区物业管理办法">第25讲 | 软件定义网络：共享基础设施的小区物业管理办法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第25讲 | 软件定义网络：共享基础设施的小区物业管理办法上一节我们说到，使用原生的VLAN和Linux网桥的方式来进行云平台的管理，但是这样在灵活性、隔离性方面都显得不足，而且整个网络缺少统一的视图、统一的管理。
+在数据中心里面，也有一种类似的开源技术qemu-kvm，能让你在一台巨大的物理机里面，掏出一台台小的机器。这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1891798920.html" title="第25讲 | 软件定义网络：共享基础设施的小区物业管理办法">第25讲 | 软件定义网络：共享基础设施的小区物业管理办法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第25讲 | 软件定义网络：共享基础设施的小区物业管理办法上一节我们说到，使用原生的VLAN和Linux网桥的方式来进行云平台的管理，但是这样在灵活性、隔离性方面都显得不足，而且整个网络缺少统一的视图、统一的管理。
 可以这样比喻，云计算就像大家一起住公寓，要共享小区里面的基础设施，其中网络就相当于小区里面的电梯、楼道、路、大门等，大家都走，往往会常出现问题，尤其在上班高峰期，出门的人太多，对小区的物业管理就带来了挑战。
 物业可以派自己的物业管理人员，到每个单元的楼梯那里，将电梯的上下行速度调快一点，可以派人将隔离健身区、景色区的栅栏门暂时打开，让大家可以横穿小区，直接上地铁，还可以派人将多个小区出入口，改成出口多、入口少等等。等过了十点半，上班高峰过去，再派人都改回来。
 软件定义网络（SDN）这种模式就像传统的网络设备和普通的Linux网桥的模式，配置整个云平台的网络通路，你需要登录到这台机器上配置这个，再登录到另外一个设备配置那个，才能成功。
@@ -196,19 +206,17 @@ DNS解析流程为了提高DNS的解析性能，很多网络都会就近部署DN
 这就是软件定义网络（SDN）。它主要有以下三个特点。
 
 
-控制与转发分离：转发平面就是一个个虚拟或者物理的网络设备，就像小区里面的一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3935945248.html" title="第28讲 | 云中网络的隔离GRE、VXLAN：虽然住一个小区，也要保护隐私">第28讲 | 云中网络的隔离GRE、VXLAN：虽然住一个小区，也要保护隐私</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第28讲 | 云中网络的隔离GRE、VXLAN：虽然住一个小区，也要保护隐私对于云平台中的隔离问题，前面咱们用的策略一直都是VLAN，但是我们也说过这种策略的问题，VLAN只有12位，共4096个。当时设计的时候，看起来是够了，但是现在绝对不够用，怎么办呢？
+控制与转发分离：转发平面就是一个个虚拟或者物理的网络设备，就像小区里面的一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3861867528.html" title="第26讲 | 云中的网络安全：虽然不是土豪，也需要基本安全和保障">第26讲 | 云中的网络安全：虽然不是土豪，也需要基本安全和保障</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第26讲 | 云中的网络安全：虽然不是土豪，也需要基本安全和保障在今天的内容开始之前，我先卖个关子。文章结尾，我会放一个超级彩蛋，所以，今天的内容你一定要看到最后哦！
+上一节我们看到，做一个小区物业维护一个大家共享的环境，还是挺不容易的。如果都是自觉遵守规则的住户那还好，如果遇上不自觉的住户就会很麻烦。
+就像公有云的环境，其实没有你想的那么纯净，各怀鬼胎的黑客到处都是。扫描你的端口呀，探测一下你启动的什么应用啊，看一看是否有各种漏洞啊。这就像小偷潜入小区后，这儿看看，那儿瞧瞧，窗户有没有关严了啊，窗帘有没有拉上啊，主人睡了没，是不是时机潜入室内啊，等等。
+假如你创建了一台虚拟机，里面明明跑了一个电商应用，这是你非常重要的一个应用，你会把它进行安全加固。这台虚拟机的操作系统里，不小心安装了另外一个后台应用，监听着一个端口，而你的警觉性没有这么高。
+虚拟机的这个端口是对着公网开放的，碰巧这个后台应用本身是有漏洞的，黑客就可以扫描到这个端口，然后通过这个后台应用的端口侵入你的机器，将你加固好的电商网站黑掉。这就像你买了一个五星级的防盗门，卡车都撞不开，但是厕所窗户的门把手是坏的，小偷从厕所里面就进来了。
+所以 对于公有云上的虚拟机，我的建议是仅仅开放需要的端口，而将其他的端口一概关闭。这个时候，你只要通过安全措施守护好这个唯一的入口就可以了。采用的方式常常是用 ACL（Access Co ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3935945248.html" title="第28讲 | 云中网络的隔离GRE、VXLAN：虽然住一个小区，也要保护隐私">第28讲 | 云中网络的隔离GRE、VXLAN：虽然住一个小区，也要保护隐私</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第28讲 | 云中网络的隔离GRE、VXLAN：虽然住一个小区，也要保护隐私对于云平台中的隔离问题，前面咱们用的策略一直都是VLAN，但是我们也说过这种策略的问题，VLAN只有12位，共4096个。当时设计的时候，看起来是够了，但是现在绝对不够用，怎么办呢？
 一种方式是修改这个协议。这种方法往往不可行，因为当这个协议形成一定标准后，千千万万设备上跑的程序都要按这个规则来。现在说改就放，谁去挨个儿告诉这些程序呢？很显然，这是一项不可能的工程。
 另一种方式就是扩展，在原来包的格式的基础上扩展出一个头，里面包含足够用于区分租户的ID，外层的包的格式尽量和传统的一样，依然兼容原来的格式。一旦遇到需要区分用户的地方，我们就用这个特殊的程序，来处理这个特殊的包的格式。
 这个概念很像咱们 第22讲 讲过的 隧道理论，还记得自驾游通过摆渡轮到海南岛的那个故事吗？在那一节，我们说过，扩展的包头主要是用于加密的，而我们现在需要的包头是要能够区分用户的。
 底层的物理网络设备组成的网络我们称为 Underlay网络，而用于虚拟机和云中的这些技术组成的网络称为 Overlay网络， 这是一种基于物理网络的虚拟化网络实现。这一节我们重点讲两个Overlay的网络技术。
-GRE第一个技术是 GRE，全称Generic Routing Encapsulation，它是一种IP-over-IP的隧道技术。它将IP包 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3261100879.html" title="第2季回归 | 这次我们来“趣谈Linux操作系统”">第2季回归 | 这次我们来“趣谈Linux操作系统”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第2季回归 | 这次我们来“趣谈Linux操作系统”你好，我是你的老朋友刘超。在“趣谈网络协议”结课半年之后，我又给你带来了一个新的基础课程，“趣谈Linux操作系统”。
-在咱们“趣谈网络协议”的留言里，我和同学们进行了很多互动，同时，我也和其他做基础知识专栏的作者有了不少交流，我发现，无论是从个人的职业发展角度，还是从公司招聘候选人的角度来看，扎实的基础知识是很多人的诉求。这让我更加坚信，我应该在“趣谈基础知识”这条道路上走下去。
-在设计“趣谈Linux操作系统”专栏的时候，我仍然秉承“趣谈”和“故事化”的方式，将枯燥的基础知识结合某个场景，给你生动、具象地讲述出来，帮你加深理解、巩固记忆、夯实基础。
-在我看来，操作系统在计算机中承担着“大管家”的角色，这个“大管家”就好比一家公司的老板，我们的目标就是把这家公司做上市，具体的过程，我用了一张图来表示：
-
-Linux操作系统中的概念非常多，数据结构也很多，流程也复杂，一般人在学习的过程中很容易迷路。我希望能够将这些复杂的概念、数据结构、流程通俗地讲解出来，争取每篇文章都用一张图串起这篇的知识点。
-最终，整个专栏下来，你如果能把这些图都掌握了，你的知识就会形成体系和连接。在此基础上再进行深入学习，就会如鱼得水、易如反掌。
-一段新的征途即将开始，期待与你继续同行。为了感谢老同学，我为你送上一张10元专属优惠券，可以与限时优惠同享，优惠 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/123209887.html" title="第29讲 | 容器网络：来去自由的日子，不买公寓去合租">第29讲 | 容器网络：来去自由的日子，不买公寓去合租</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第29讲 | 容器网络：来去自由的日子，不买公寓去合租如果说虚拟机是买公寓，容器则相当于合租，有一定的隔离，但是隔离性没有那么好。云计算解决了基础资源层的弹性伸缩，却没有解决PaaS层应用随基础资源层弹性伸缩而带来的批量、快速部署问题。于是，容器应运而生。
+GRE第一个技术是 GRE，全称Generic Routing Encapsulation，它是一种IP-over-IP的隧道技术。它将IP包 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/123209887.html" title="第29讲 | 容器网络：来去自由的日子，不买公寓去合租">第29讲 | 容器网络：来去自由的日子，不买公寓去合租</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第29讲 | 容器网络：来去自由的日子，不买公寓去合租如果说虚拟机是买公寓，容器则相当于合租，有一定的隔离，但是隔离性没有那么好。云计算解决了基础资源层的弹性伸缩，却没有解决PaaS层应用随基础资源层弹性伸缩而带来的批量、快速部署问题。于是，容器应运而生。
 容器就是Container，而Container的另一个意思是集装箱。其实 容器的思想就是要变成软件交付的集装箱。集装箱的特点，一是打包，二是标准。
 
 在没有集装箱的时代，假设要将货物从A运到B，中间要经过三个码头、换三次船。每次都要将货物卸下船来，弄得乱七八糟，然后还要再搬上船重新整齐摆好。因此在没有集装箱的时候，每次换船，船员们都要在岸上待几天才能干完活。
