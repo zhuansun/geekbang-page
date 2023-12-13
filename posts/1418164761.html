@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>54 | 侠客行：一技压身，天下行走 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="54 | 侠客行：一技压身，天下行走从今天开始，我们进入了专栏的第 5 部分 —— 寻路：路在何方？这是一条关于方向、角色和自我定位的探索，那就让我们开始一起走走这条程序江湖路吧。 大约三年前吧，读到一篇文章《为何我工作十年，内心仍无比恐慌》，来自一位腾讯产品总监的演讲分享。文中分析了一个让其感到恐慌与焦虑的深层次原因：好像不会什么技能，技能门槛低。 这种恐慌和焦虑感在这个行业中普遍存在，不止于产">
+<meta property="og:type" content="article">
+<meta property="og:title" content="54 | 侠客行：一技压身，天下行走">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1418164761.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="54 | 侠客行：一技压身，天下行走从今天开始，我们进入了专栏的第 5 部分 —— 寻路：路在何方？这是一条关于方向、角色和自我定位的探索，那就让我们开始一起走走这条程序江湖路吧。 大约三年前吧，读到一篇文章《为何我工作十年，内心仍无比恐慌》，来自一位腾讯产品总监的演讲分享。文中分析了一个让其感到恐慌与焦虑的深层次原因：好像不会什么技能，技能门槛低。 这种恐慌和焦虑感在这个行业中普遍存在，不止于产">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:36:22.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.511Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1418164761"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '54 | 侠客行：一技压身，天下行走',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">54 | 侠客行：一技压身，天下行走</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:36:22.000Z" title="发表于 2023-12-13 18:36:22">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="54-侠客行：一技压身，天下行走"><a href="#54-侠客行：一技压身，天下行走" class="headerlink" title="54 | 侠客行：一技压身，天下行走"></a>54 | 侠客行：一技压身，天下行走</h1><p>从今天开始，我们进入了专栏的第 5 部分 —— <strong>寻路：路在何方</strong>？这是一条关于方向、角色和自我定位的探索，那就让我们开始一起走走这条程序江湖路吧。</p>
+<p>大约三年前吧，读到一篇文章《为何我工作十年，内心仍无比恐慌》，来自一位腾讯产品总监的演讲分享。文中分析了一个让其感到恐慌与焦虑的深层次原因：好像不会什么技能，技能门槛低。</p>
+<p>这种恐慌和焦虑感在这个行业中普遍存在，不止于产品经理，程序员也一样。一些传统行业的生命已经远超过一个人的寿命，而 IT 互联网行业还不满三十岁，也许正是因为其还很年轻，生命力旺盛，远超传统行业的发展速度和新陈代谢规律，让其中的从业者深感疲惫，同时对未来又充满了不确定性，而未来的不确定性通常正是让我们感到焦虑的一个主要原因。</p>
+<h2 id="门槛"><a href="#门槛" class="headerlink" title="门槛"></a>门槛</h2><p>技能的门槛高低，决定了让我们产生恐慌和焦虑的水位线。</p>
+<p>在前面提到的《恐慌》一文中说，产品的从业门槛足够低，作者十年的从业经历中见过从事产品的人来自各种专业，还有各种改行做产品的。而从业门槛主要来自于技能门槛，特别是硬技能，硬技能属于行业的专有技能，需要足够的时间积累，通常这个积累时间就是你可能熟悉的理论值：一万小时。</p>
+<p>产品看起来是一个缺乏硬技能门槛的职业，因而感觉门槛低。而程序员职业其实是有一定硬技能门槛的，但这种门槛随着技术和工具的进步正在变得越来越低。如今 IT 互联网行业当然是繁荣的，繁荣的行业带来利差，自会吸引大量其他行业的从业者进入，而这些进入者自然会选择门槛低的职业工种来跨越边界。</p>
+<p>在其他行业干了些年头的人，有些可以在这个 “互联网+” 的时代通过垂直行业专家来进入互联网行业，但要进入程序员这个职业就得赶早了，毕竟硬技能需要的积累时间是很难省却得了的。大部分人都是在大学期间或刚毕业不久就完成了转行到程序员职业的切换，如我的一个高中同学，她本是文科专业中文系的，大二就毅然开始辅修计算机的第二学位了。</p>
+<p>还有个行业一直繁荣，需求永续存在而且供不应求，但却从没见过任何其他行业的人进入。我说的就是“医生”这个职业，它的硬技能门槛之高不免让人联想起《冰与火之歌》里的绝境长城，让人完全兴不起翻越的欲望。我听说过小说写得好的前妇产科医生，却没听说过手术做得好的前小说家。</p>
+<p>医学院的学生本科都要比其他专业多读一年，但本科毕业可能都找不到什么好工作，至少要读到硕士，想有点发展还得读博，十年一晃而过。而本科毕业的程序员，一进入 IT 互联网行业可能拿的工资比医学博士生刚进入医院还高，这就是行业繁荣的好处。但坏处是，这个行业变化太快，有时你没什么错，只是因为老了。很多互联网公司喜欢年轻人，标榜年轻，员工平均年龄二十多，所以才能最懂年轻人。</p>
+<p>而医生呢？这么说吧，你是喜欢年轻有激情的医生，还是经验老道的中年 “老” 医生？</p>
+<p>程序员看似是很有技术含量的硬技能门槛，实际远不如医生这个千年来的 “古老” 职业，行业的最低技能门槛要求挡不住很多人热情地涌入，而技能成长的天花板也感觉并不高，如何能不恐慌与焦虑？</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>有时可能我们会有一个职业理想，叫 “一技压身，天下行走”，就像一名侠客一样，学好了功夫，从此闯荡江湖，好不逍遥自在。</p>
+<p>之前看过一本武侠玄幻小说，里面有一些角色就叫 “天下行走”，他们都有自己厉害的独门绝技，不厉害怎能天下行走。其中，剑客的剑快，野人的身体坚硬如铁，和尚从不说话修的闭口蝉，一开口就人人色变，这些就是他们独特的技能模型。</p>
+<p><strong>技能模型才是区分不同专业人才特点和价值的核心关键点</strong>。</p>
+<p>而技能模型的形成是一系列选择的结果。以前玩过一个游戏叫《暗黑破坏神》，正常不作弊地玩，一个角色是很难点亮所有技能的，游戏是故意这样设计的。所以你可以反复玩来尝试点亮不同的技能组合方式，这样游戏才具备反复的可玩性。而与游戏不同的是，人生只有一次，你无法点亮所有技能，只有唯一的一种点亮路径选择塑造独一无二的你。</p>
+<p>而这种选择，可能一开始是无意的，比如我成为一名 Java 程序员是偶然的，而你成为一名 C++ 程序员也可能是偶然的，早期的技能点亮策略有很多的偶然性。但到了后期，我们逐渐成长，有了更多的经验和选择权，这时就需要主动选择去建立自己的技能模型。</p>
+<p>记得有一篇关于工程师思维的文章是这么说的：</p>
+<blockquote>
+<p>工程师思维的大道，就是先创造一个好模型，然后想办法实现这个模型，工程师关心的是能不能用这个模型创造出东西来。</p>
+</blockquote>
+<p>而技能模型其实正是工程师创造的第一个元模型，这个模型决定了后续作为工程师的你还能基于此创造怎样的模型，从而完成产品的实现。</p>
+<p>当只拥有一些零散的技能点，而且这些技能点还会随着时间流逝而过时，我们当然会感到恐慌与焦虑；但如果能够将这些技能点组合成我们独有的技能模型，提供独特的价值，从此独步江湖，甚至开宗立派，想必也就没那么恐慌与焦虑了。</p>
+<p>以前文章写过关于 “知识体系”的内容，那它和技能模型有什么区别？知识体系本质也是一种知识模型，但技能模型更深一个层次，因为技能是对知识的应用。知识模型构筑了理论边界，技能模型是实践的路径。</p>
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>那么，关于技能模型这条实践路径该如何去选择和构建呢？</p>
+<p>程序员作为工程师的一种，必须得有一项核心硬技能，这是需要长时间积累和磨练的技能，要花大力气的，而这个大力气和长时间，也正是这门技能的门槛。关于技能的习得有一个流行的看法是：花 20% 的时间快速获得某个领域 80% 的知识和技能。这看起来像是一种学习的捷径，但一个硬技能领域最核心的竞争力往往都是最后那 20% —— 也就是你用那 80% 的功夫反复磨练出来的最后 20% 的技艺。</p>
+<p>古龙小说中有个角色叫荆无命，他腰带右边插着一柄剑，剑柄向左，是个左撇子，江湖中都知道他左手剑快，但其实他右手剑更快。荆无命要是个程序员的话，那可能就同时具备了两个核心硬技能，属于那种 Java 很强，但 C++ 更牛的人。但我从业这些年还没碰到过同时点亮两者的，无论 Java 还是 C++，因为各自都有足够大的生态和体系，已经需要很长的时间来积累和打磨了。</p>
+<p><strong>我们大部分普通人，拥有的是有限的时间与才华，面对的是无限的兴趣和技能，同时修炼多个核心硬技能是不明智，甚至是不可行的</strong>。记得以前读万维钢有篇文章介绍了一本书叫《达芬奇诅咒》，文艺复兴时期的达芬奇是一位多才多艺的人，但一个人如果像达芬奇一样对什么东西都感兴趣，但又没有和达芬奇匹敌的才华，很可能尝试了很多，最终却一事无成，这就中了 “达芬奇诅咒”。</p>
+<p>所以，构建核心技能模型其实是关于才华和技能的战略。《达芬奇诅咒》一书作者就选择技能领域推荐了三个标准：</p>
+<ol>
+<li>你确实喜欢</li>
+<li>你在这个领域有天赋</li>
+<li>这个领域能挣到钱</li>
+</ol>
+<p>我仔细回味了下这三个标准，真是很接地气，实在可行。你喜欢的领域，至少在启动进入时也容易一些，长时间的坚持时也更有毅力一些；而你有天赋的领域，信心也足一些，并且拥有相对竞争优势；能挣到钱的领域，最好还比别得领域更挣钱，那么外在的经济激励会更强，而同等努力相对收益也更大。无怪乎，一个技术热潮起来后，大家都看到了第三点，急匆匆跳进去，但往往忽视了前两点。</p>
+<p>另一方面，多个核心硬技能之间是一种加和关系，若非迫不得已，再下同样的大功夫去修炼另一项核心硬技能显得就不是那么明智了。所以应先深度修炼“一门”核心硬技能，建立门槛，但需要深到何种程度才能天下行走？如果刚开始起步算 0， 1 算是行业平均水准，那至少先要专注在核心硬技能上，并修行到 1 以上，能进入前 20% 就更好了。</p>
+<p>然后，就可以围绕核心硬技能适度练习和发展一些辅助技能，这些辅助技能大多属于软技能，也有部分硬技能，只是没有核心技能那么硬，通常起到放大和加强核心技能的作用，可以发挥指数效应。这也是为什么核心硬技能要先修行到 1 以上，因为指数关系只有在大于 1 时才有意义。</p>
+<p>有些辅助软技能可以通过刻意练习来掌握，而有些则很难，属于埋藏在天生的基因和后天的成长性格中。在漫画《火影》的忍术体系中对这种天生的技能有个术语叫 “血继限界”，其中最厉害的当属 “写轮眼”。想想在职业发展的技能体系中，有什么是可媲美 “写轮眼” 的辅助软技能的？如果你幸运拥有这种 “血继限界”，可别浪费了天赋。</p>
+<p>程序员怕什么？就怕技术潮流的颠覆直接废了全身武功。我读大学时就经历过一次，当时主流的企业应用开发是 C&#x2F;S 架构的 Delphi 和 VB，如今已是明日黄花。而武功体系由内力加招式组成，技术的演进容易废了招式，却不容易废了内力。</p>
+<p>张无忌学会九阳神功，一身内力惊人，招式现学现卖也打的少林龙爪手高僧叫屈，所以在点亮技能模型树的过程中，你得分清九阳神功和龙爪手的区别。类比于技能模型树，内力是根茎，招式如花叶，时间流逝，落花残叶，冬去春来，复又发新。</p>
+<p>到这里，关于技能的焦虑和建立技能模型的方法，我们就探讨完了，最后总结提炼下：</p>
+<ul>
+<li><strong>程序员这行的技术门槛没想的那么高，所以就此易引发恐慌和焦虑</strong>；</li>
+<li><strong>建立你自己的技能模型，才能提升门槛和核心竞争力</strong>；</li>
+<li><strong>避开 “达芬奇诅咒”，围绕核心硬技能，发展“一主多辅”的技能模型树</strong>。</li>
+</ul>
+<p>从此，种下技能模型之树，让其茁壮生长，方能一技压身，天下行走。</p>
+<p>在程序这个江湖上，你又是靠什么在行走天下呢？欢迎你留言分享。</p>
+<hr>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#54-%E4%BE%A0%E5%AE%A2%E8%A1%8C%EF%BC%9A%E4%B8%80%E6%8A%80%E5%8E%8B%E8%BA%AB%EF%BC%8C%E5%A4%A9%E4%B8%8B%E8%A1%8C%E8%B5%B0"><span class="toc-number">1.</span> <span class="toc-text">54 | 侠客行：一技压身，天下行走</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%A8%E6%A7%9B"><span class="toc-number">1.1.</span> <span class="toc-text">门槛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.</span> <span class="toc-text">路径</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

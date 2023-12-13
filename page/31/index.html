@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-11 12:05:01'
+  postUpdate: '2023-12-13 10:43:32'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,55 +138,158 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">587</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3576907337.html" title="046 | 大型搜索框架宏观视角：发展、特点及趋势">046 | 大型搜索框架宏观视角：发展、特点及趋势</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">046 | 大型搜索框架宏观视角：发展、特点及趋势我们在前几周的专栏里讲解了一系列最经典的信息检索（Information Retrieval）技术以及基于机器学习的排序学习算法（Learning to Rank）。然后我们花了一定的时间讨论了两个关键搜索组件的核心技术要点，包括查询关键字理解（Query Understanding）和文档理解（Document Understanding）。除此之外，我们还详细讨论了如何从线上和线下两个层面来评价一个搜索系统。相信你已经对搜索系统的各个基本组成部分有了一个比较基础的把握。
-那么，今天我们就第一次从整体上来看看大型搜索系统框架的演变和历史发展，给你一个宏观的认识。相信有了之前的基础知识铺垫，我们今天的分享会让你感觉到水到渠成。
-基于文本匹配的信息检索系统我们在介绍TF-IDF和BM25这些经典信息检索系统的时候，其实就已经介绍了不少基于文本匹配的基本的信息检索系统的核心概念。
-实际上， 从20世纪50年代有信息检索系统开始一直到2000年前后，这种纯粹基于文本匹配的搜索系统一直都是主流搜索系统的基础所在。甚至当前的很多开源搜索框架也都是基于这种最基本的信息检索系统的。
-总结一下，这种信息检索系统有这么几个特点。
-首先，文本匹配系统的基础是一个倒排索引（Inverted Index）。索引中的“字段”是某一个查询关键字。而每个字段所对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3066722535.html" title="048 | 搜索索引及其相关技术概述">048 | 搜索索引及其相关技术概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">048 | 搜索索引及其相关技术概述本周我们分享的主题是从宏观上来剖析现代搜索架构。周一我介绍了搜索系统的一个大的分类，一类是从20世纪50年代开始研发并使用的传统文本匹配信息检索系统，一类是从2000年开始发展并逐渐成熟的机器学习信息检索系统。周三我们剖析了搜索系统的另一个框架体系，多轮打分系统，阐述了为什么需要多轮打分，以及每一轮打分又有什么特性。
-今天，我们来看一个在本周已经反复涉及到的话题： 倒排索引（Inverted Index）。一起来聊聊它的核心技术。值得注意的是，关于索引的很多话题其实都会牵涉到搜索中的“查询关键字处理”（Query Processing），我们今天的分享就主要来谈谈索引及相关技术在“查询关键字处理”这个场景下的应用。
-经典的索引结构经典的索引结构由“字段”（Field）和对应的列表组成。一般来说，“字段”就是某一个查询关键字。在英文里，这就是一个单独的单词；在中文里，这也许就是一个词或者短语。每个字段所对应的列表就是包含这个查询关键字的文档列表。
-有两点值得注意。
-第一，在文档列表里的文档，大多按照某种重要的顺序排列，这方便我们首先提取重要性高的文档。比如，某个文档整体和查询关键字的相关度大，那么就会排列到这个列表的前面。
-第二，对于每个字段，也就是查询关键字而言，所有包含这个查询关键字的文档并不一定都会包含到这个列表中，这个列表可以是一个节选。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3836205867.html" title="047 | 多轮打分系统概述">047 | 多轮打分系统概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">047 | 多轮打分系统概述周一我为你介绍了搜索系统的一个宏观分类，包括传统的文本匹配信息检索系统和机器学习信息检索系统。这个分类可以让你非常清晰地了解信息搜索系统的历史进程，并对这两种搜索系统的特点有所了解。
-今天我们就来剖析搜索系统的另一个框架体系： 多轮打分（Scoring）系统。
-多轮打分系统综述什么是多轮打分系统？为什么搜索系统需要多轮打分？
-我们拿上次介绍的机器学习搜索系统为例。从整体来说，机器学习搜索系统的目的是利用机器学习模型来预测文档和搜索关键字之间的相关性。那么，在理想状态下，针对每一个查询关键字，我们需要对数据集中的每一个文档进行打分。
-如果是一个类似互联网搜索引擎的应用场景，那么理论上，每一个查询关键字都需要对几亿甚至十几亿的网页进行打分。显然，仅仅从这个数量级上来说，这样做都是不现实的。
-从另一个方面来讲，目前比较通用的机器学习模型，特别是在排序问题上有强劲表现的树模型（Tree Model），比如GBDT（Gradient Boosted Decision Trees）或者神经网络，都有较高的计算时间复杂度。要想在实时响应的反应时间内（例如几百毫秒内）对相对比较多（我们这里说的是几千甚至上万）的文档进行打分是很困难的，我们刚才提到的整个数据集中是有几亿甚至十几亿的文档，那就更加困难了。
-于是在这样的情况下，我们就需要有这么一种机制：对于每个查询关键字而言 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1623065703.html" title="049 | PageRank算法的核心思想是什么？">049 | PageRank算法的核心思想是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">049 | PageRank算法的核心思想是什么？上周我们介绍了信息搜索系统的历史进程，剖析了搜索系统的多轮打分系统，还深入探讨了倒排索引，聊了聊它的核心技术。
-这周我要和你分享的是在互联网搜索引擎兴起之后的一个研发需要，那就是如何理解网页和网页之间的关系，特别是怎么从这些关系中提取网页中除文字以外的其他特性。这部分的一些核心算法曾是提高搜索引擎质量的重要推进力量。另外，我们这周要分享的算法也适用于其他能够把信息用结点与结点关系来表达的信息网络。
-今天，我们先看一看用图来表达网页与网页之间的关系，并且计算网页重要性的经典算法： PageRank。
-PageRank的简要历史时至今日，谢尔盖·布林（Sergey Brin）和拉里·佩奇（Larry Page）作为Google这一雄厚科技帝国的创始人，已经耳熟能详。但在1995年，他们两人还都是在斯坦福大学计算机系苦读的博士生。那个年代，互联网方兴未艾。雅虎作为信息时代的第一代巨人诞生了，布林和佩奇都希望能够创立属于自己的搜索引擎。1998年夏天，两个人都暂时离开斯坦福大学的博士生项目，转而全职投入到Google的研发工作中。他们把整个项目的一个总结发表在了1998年的万维网国际会议上（ WWW7，the seventh international conference on World Wide Web）（见参考文献[1]）。 这是P ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1393202178.html" title="050 | 经典图算法之HITS">050 | 经典图算法之HITS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">050 | 经典图算法之HITS这周我们分享的内容是如何理解网页和网页之间的关系。周一我们介绍了用图（Graph）来表达网页与网页之间的关系并计算网页的重要性，就是经典算法PageRank。今天我来介绍一下PageRank的姊妹算法： HITS算法。
-HITS的简要历史HITS是Hypertext-Induced Topic Search算法的简称。这个算法是由康奈尔大学计算机科学教授乔·克莱恩堡（Jon Kleinberg）于1998年发明的，正好和我们周一讲的布林和佩奇发表PageRank算法是同一年。
-这里有必要简单介绍一下乔这个人。乔于1971年出生在马萨诸塞州波士顿。1993年他毕业于康奈尔大学获得计算机科学学士学位，并于1996年从麻省理工大学获得计算机博士学位。1998的时候，乔正在位于美国西海岸硅谷地区的IBM阿尔玛登（Almaden）研究院做博士后研究。HITS的工作最早发表于1998年在旧金山举办的第九届ACM-SIAM离散算法年会上（详细论述可参阅参考文献）。
-乔目前是美国国家工程院（National Academy of Engineering）和美国自然与人文科学院（American Academy of Arts and Sciences）院士。顺便提一下，乔的弟弟罗伯特·克莱恩堡也在康奈尔大学计算机系任教职。
-HITS的基本原理在介绍HITS算法的基本 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/942991020.html" title="051 | 社区检测算法之“模块最大化 ”">051 | 社区检测算法之“模块最大化 ”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">051 | 社区检测算法之“模块最大化 ”一起来回顾下本周的内容。周一我们介绍了用图（Graph）来表达网页与网页之间的关系并计算网页的重要性，就是经典的PageRank算法。周三我们介绍了PageRank的一个姊妹算法，HITS算法，并且分析了这两种算法的内在联系，这两类算法都希望给网页赋予一个权重来表达网页的重要性。
-今天，我们来看一类完全不一样的网页分析工具，那就是希望把网页所代表的图分割成小块的图，或者叫图聚类，每个小聚类代表一个“社区”。这类分析有时候被称作图上面的“ 社区检测”（Community Detection），意思就是从一个图上挖掘出潜在的社区结构。
-社区检测的简要历史提到社区检测就不得不提到这么一位学者，他与我们今天要介绍的算法有非常紧密的联系，而且他的研究在2000年~2010年间成了社区检测研究的标杆，影响了后续的大量研究工作。这位学者就是密歇根大学（University of Michigan）的物理学教授马克·纽曼（Mark Newman）。
-1991年，纽曼从牛津大学获得理论物理博士学位。在接下来的10年里，他在康奈尔大学和圣塔菲学院（Santa Fe Institute）分别担任博士后研究员和研究教授。2002年，纽曼来到密歇根大学物理系担任教授，并且一直在这里进行网络科学（Network Science）的基础研究。
-2006年，纽曼在《物理评 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2280688908.html" title="052 | 机器学习排序算法经典模型：RankSVM">052 | 机器学习排序算法经典模型：RankSVM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">052 | 机器学习排序算法经典模型：RankSVM到目前为止，我们在专栏里已经讨论了关于搜索引擎方方面面的很多话题，包括经典的信息检索技术、查询关键字理解、文档理解以及现代搜索引擎的架构等等 。同时，我们也从机器学习角度出发对搜索引擎的最核心部分，也就是排序算法进行了最基本的分享，囊括了单点法排序学习（Pointwise Learning to Rank）、配对法排序学习（Pairwise Learning to Rank）以及列表法排序学习（Listwise Learning to Rank），相信你应该对这类算法的大概内容有所掌握。
-那么，这周我们就来看看机器学习排序算法中几个经典的模型，希望能够通过这几个经典的算法为你深入学习和研究排序算法指明方向。
-今天，我就来分享配对法排序中最有价值一个算法， 排序支持向量机（RankSVM）。这个算法的核心思想是 应用支持向量机到序列数据中，试图对数据间的顺序直接进行建模。
-排序支持向量机的历史20世纪90年代中后期，受统计学习理论（Statistical Learning Theory ）思想和风险最小化框架（Risk Minimization Framework）趋于成熟的影响，支持向量机逐渐成为当时机器学习界的主流模型。一时间，各个应用领域的学者和工程师都在思考如何把支持向量机利用到自己的问题领域上，从而获得更好的效果。
-拉夫⋅ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2831989096.html" title="053 | 机器学习排序算法经典模型：GBDT">053 | 机器学习排序算法经典模型：GBDT</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">053 | 机器学习排序算法经典模型：GBDT这周我们讨论机器学习排序算法中几个经典的模型，周一分享了配对法排序中的一个经典算法，即排序支持向量机（RankSVM），这个算法的核心思想是把支持向量机应用到有序数据中，试图对数据间的顺序进行直接建模。
-今天，我们来聊一聊利用机器学习进行排序的一个重要算法： “梯度增强决策树”（Gradient Boosted Decision Tree）。长期以来，包括雅虎在内的很多商业搜索引擎都利用这种算法作为排序算法。
-梯度增强决策树的历史梯度回归决策树的思想来源于两个地方。首先是“ 增强算法”（Boosting），一种试图用弱学习器提升为强学习器的算法。这种算法中比较成熟的、有代表性的算法是由罗伯特⋅施派尔（Robert Schapire）和约阿夫⋅福伦德（Yoav Freund）所提出的 AdaBoost算法[1]。因为这个算法两人于2003年获得理论计算机界的重要奖项“哥德尔奖”（Gödel Prize）。罗伯特之前在普林斯顿大学任计算机系教授，目前在微软研究院的纽约实验室工作。约阿夫一直在加州大学圣地亚哥分校任计算机系教授。
-增强算法的工作机制都比较类似，那就是先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多关注，然后基于调整后的样本分布来训练下一个基学习器。如此重 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2780069384.html" title="054 | 机器学习排序算法经典模型：LambdaMART">054 | 机器学习排序算法经典模型：LambdaMART</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">054 | 机器学习排序算法经典模型：LambdaMART在这周的时间里，我们讨论机器学习排序算法中几个经典的模型。周一我们分享了排序支持向量机（RankSVM），这个算法的好处是模型是线性的，容易理解。周三我们聊了梯度增强决策树（Gradient Boosted Decision Tree），长期以来，这种算法被用在很多商业搜索引擎当中来作为排序算法。
-今天，我们来分享这一部分的最后一个经典模型： LambdaMART。这是微软在Bing中使用了较长时间的模型，也在机器学习排序这个领域享有盛誉。
-LambdaMART的历史LambdaMART的提出可以说是一个“三步曲”。
-这里有一个核心人物，叫克里斯多夫⋅博格斯（Christopher J.C. Burges）。博格斯早年从牛津大学物理学毕业之后，又于布兰戴斯大学（Brandeis University）获得物理学博士学位，他曾在麻省理工大学做过短暂的博士后研究，之后来到贝尔实验室，一待14年。2000年，他来到微软研究院，并一直在微软研究院从事机器学习和人工智能的研究工作，直到2016年退休。可以说，是博格斯领导的团队发明了微软搜索引擎Bing的算法。
-LambdaMART的第一步来自于一个叫RankNet的思想[1]。这个模型发表于ICML 2005，并且在10年之后获得ICML的时间检验奖。这也算是在深度学习火热之前，利用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/100031720.html" title="055 | 基于深度学习的搜索算法：深度结构化语义模型">055 | 基于深度学习的搜索算法：深度结构化语义模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">055 | 基于深度学习的搜索算法：深度结构化语义模型近两个月，我们集中系统地分享了搜索核心技术模块。做一个简单的内容梳理，我们讲解了搜索引擎方方面面的话题，从经典的信息检索技术、查询关键字理解、文档理解到现代搜索引擎的架构和索引的核心技术；还从机器学习角度出发分享了搜索引擎的最核心部分，也就是排序算法，深入排序算法的细节讲解了排序支持向量机（RankSVM）、梯度增强决策树（GBDT）以及经典模型LambdaMART。至此，整个人工智能领域关于搜索的经典话题也就告一段落了。
-那么，这个星期，我们来看一些关于搜索算法的前沿思考。火热的深度学习不仅对图像、视频和音频这些领域产生了巨大的冲击，也对自然语言处理、甚至搜索领域有不小的影响。 深度学习带给传统的模型和算法以新的建模能力和新的视角，为以前所不能完成的应用打下了基础。
-今天，我们来看一篇较早利用深度学习技术来进行搜索建模的论文：《使用点击数据学习深度结构化的网络搜索语义模型》（Learning deep structured semantic models for web search using clickthrough data）。这篇论文阐述了一个 深度结构化语义模型，发表在第22届世界信息和知识管理大会CIKM 2013上。
-论文背景介绍发表于2013年的这篇论文应该算是比较早的直接使用深度学习中经验的论文。其主要目的是 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/30/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/#content-inner">59</a><a class="extend next" rel="next" href="/page/32/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3053009657.html" title="19 | 答疑解惑：我们应该能够识别的表象和本质">19 | 答疑解惑：我们应该能够识别的表象和本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">19 | 答疑解惑：我们应该能够识别的表象和本质你好，我是陈皓，网名左耳朵耗子。
+前两天，我以前在亚马逊（Amazon）团队的一个小伙伴从西雅图打来电话，和我主要聊了一下他最近的一些想法和动向。他在最近几个月面试了很多美国的本土公司，从大公司到创业公司都有，比如Facebook、Snapchat、Oracle、微软、谷歌、Netflix、Uber等。他今年30岁出头，到美国那边也有3年多时间了，所以想要多一些经历，到不同的公司看一下。
+我觉得他这个想法挺好的。于是我们聊了一些对这些公司的看法，进而聊到他想要什么，感兴趣什么，想要经历什么，以及擅长什么，未来如何发展等话题……在两个多小时交谈的过程中，我们谈论到了一些关于他个人发展以及技术上的东西。他听我的建议后，说很有价值。于是，我想既然有价值，那么就把这些分享出来，供更多的人参考吧。
+首先，我觉得在美国做技术真的比国内幸福好多，有那么多很不错的不同类别的公司可供选择。这与国内相比，选择空间实在是太大了，真是幸福。所以，在如此纷乱和多样化的地方，真是需要确定自己的发展方向和目标。不然就会像这个小伙儿一样，当offer像雪片一样飞过来的时候，却有点不知所措了。
+我直接和他说，你现在不愁工作了，可以规划自己的职业生涯了，那么问题是你想走哪条路，对什么方向有兴趣，或是自己的长项是什么？结果，他说他也不知道，说就是想多看看多经历一些事情，也 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1654840680.html" title="18 | 故障处理最佳实践：故障改进">18 | 故障处理最佳实践：故障改进</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">18 | 故障处理最佳实践：故障改进你好，我是陈皓，网名左耳朵耗子。
+在上节课中，我跟你分享了在故障发生时，我们该怎样做，以及在故障前该做些什么准备。只要做到我提到的那几点，你基本上就能游刃有余地处理好故障了。然而，在故障排除后，如何做故障复盘及整改优化则更为重要。在这篇文章中，我就跟你聊聊这几个方面的内容。
+故障复盘过程对于故障，复盘是一件非常重要的事情，因为我们的成长基本上就是从故障中总结各种经验教训，从而可以获得最大的提升。在亚马逊和阿里，面对故障的复盘有不一样的流程，虽然在内容上差不多，但细节上有很多不同。
+亚马逊内部面对S1和S2的故障复盘，需要那个团队的经理写一个叫COE（Correction of Errors）的文档。这个COE文档，基本上包括以下几方面的内容。
+
+故障处理的整个过程。就像一个log一样，需要详细地记录几点几分干了什么事，把故障从发生到解决的所有细节过程都记录下来。
+
+故障原因分析。需要说明故障的原因和分析报告。
+
+Ask 5 Whys。需要反思并反问至少5个为什么，并为这些“为什么”找到答案。
+
+故障后续整改计划。需要针对上述的“Ask 5 Whys”说明后续如何举一反三地从根本上解决所有的问题。
+
+
+然后，这个文档要提交到管理层，向公司的VP级的负责人进行汇报，并由他们来审查。
+阿里的故障复盘会会把所有的相关人员都叫到现场进行复盘。我比较喜欢这样 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1451260657.html" title="21 | 分布式系统架构的冰与火">21 | 分布式系统架构的冰与火</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">21 | 分布式系统架构的冰与火你好，我是陈皓，网名左耳朵耗子。
+最近几年，我们一直在谈论各式各样的架构，如高并发架构、异地多活架构、容器化架构、微服务架构、高可用架构、弹性化架构等。还有和这些架构相关的管理型的技术方法，如DevOps、应用监控、自动化运维、SOA服务治理、去IOE等。面对这么多纷乱的技术，我看到很多团队或是公司都是一个一个地去做这些技术，非常辛苦，也非常累。这样的做法就像我们在撑开一张网里面一个一个的网眼。
+其实，只要我们能够找到这张网的“纲”，我们就能比较方便和自如地打开整张网了。那么，这张“分布式大网”的总线——“纲”在哪里呢？我希望通过这一系列文章可以让你找到这个“纲”，从而能让你更好更有效率地做好架构和工程。
+分布式系统架构的冰与火首先，我们需要阐述一下为什么需要分布式系统，而不是传统的单体架构。也许这对你来说已经不是什么问题了，但是请允许我在这里重新说明一下。使用分布式系统主要有两方面原因。
+
+增大系统容量。我们的业务量越来越大，而要能应对越来越大的业务量，一台机器的性能已经无法满足了，我们需要多台机器才能应对大规模的应用场景。所以，我们需要垂直或是水平拆分业务系统，让其变成一个分布式的架构。
+
+加强系统可用。我们的业务越来越关键，需要提高整个系统架构的可用性，这就意味着架构中不能存在单点故障。这样，整个系统不会因为一台机器出故障而导致整体不可用。所以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3643381884.html" title="22 | 从亚马逊的实践，谈分布式系统的难点">22 | 从亚马逊的实践，谈分布式系统的难点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">22 | 从亚马逊的实践，谈分布式系统的难点你好，我是陈皓，网名左耳朵耗子。
+从目前已经公开的资料来看，分布式服务化架构思想实践最早的公司应该是亚马逊。因为早在2002年的时候，亚马逊CEO杰夫·贝索斯（Jeff Bezos）就向全公司颁布了下面的这几条架构规定（来自《 Steve Yegge对Google平台吐槽》一文）。
+
+所有团队的程序模块都要通过Service Interface方式将其数据与功能开放出来。
+
+团队间程序模块的信息通信，都要通过这些接口。
+
+除此之外没有其它的通信方式。其他形式一概不允许：不能直接链结别的程序（把其他团队的程序当作动态链接库来链接），不能直接读取其他团队的数据库，不能使用共享内存模式，不能使用别人模块的后门，等等。唯一允许的通信方式是调用Service Interface。
+
+任何技术都可以使用。比如：HTTP、CORBA、Pub&#x2F;Sub、自定义的网络协议等。
+
+所有的Service Interface，毫无例外，都必须从骨子里到表面上设计成能对外界开放的。也就是说，团队必须做好规划与设计，以便未来把接口开放给全世界的程序员，没有任何例外。
+
+不这样做的人会被炒鱿鱼。
+
+
+这应该就是AWS（Amazon Web Service）出现的基因吧。当然，前面说过，采用分布式系统架构后会出现很多的问题。比如：
+
+一个线上故障的工单会在不同的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/657214964.html" title="24 | 分布式系统关键技术：全栈监控">24 | 分布式系统关键技术：全栈监控</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">24 | 分布式系统关键技术：全栈监控你好，我是陈皓，网名左耳朵耗子。
+首先，我们需要全栈系统监控，它就像是我们的眼睛，没有它，我们就不知道系统到底发生了什么，我们将无法管理或是运维整个分布式系统。所以，这个系统是非常非常关键的。
+而在分布式或Cloud Native的情况下，系统分成多层，服务各种关联，需要监控的东西特别多。没有一个好的监控系统，我们将无法进行自动化运维和资源调度。
+这个监控系统需要完成的功能为：
+
+全栈监控；
+关联分析；
+跨系统调用的串联；
+实时报警和自动处置；
+系统性能分析。
+
+多层体系的监控所谓全栈监控，其实就是三层监控。
+
+基础层：监控主机和底层资源。比如：CPU、内存、网络吞吐、硬盘I&#x2F;O、硬盘使用等。
+
+中间层：就是中间件层的监控。比如：Nginx、Redis、ActiveMQ、Kafka、MySQL、Tomcat等。
+
+应用层：监控应用层的使用。比如：HTTP访问的吞吐量、响应时间、返回码、调用链路分析、性能瓶颈，还包括用户端的监控。
+
+
+
+这还需要一些监控的标准化。
+
+日志数据结构化；
+监控数据格式标准化；
+统一的监控平台；
+统一的日志分析。
+
+什么才是好的监控系统这里还要多说一句，现在我们的很多监控系统都做得很不好，它们主要有两个很大的问题。
+
+监控数据是隔离开来的。因为公司分工的问题，开发、应用运维、系统运维，各管各的，所以很多公司的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2020995877.html" title="23 | 分布式系统的技术栈">23 | 分布式系统的技术栈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">23 | 分布式系统的技术栈你好，我是陈皓，网名左耳朵耗子。
+正如我们前面所说的，构建分布式系统的目的是增加系统容量，提高系统的可用性，转换成技术方面，也就是完成下面两件事。
+
+大流量处理。通过集群技术把大规模并发请求的负载分散到不同的机器上。
+关键业务保护。提高后台服务的可用性，把故障隔离起来阻止多米诺骨牌效应（雪崩效应）。如果流量过大，需要对业务降级，以保护关键业务流转。
+
+说白了就是干两件事。一是提高整体架构的吞吐量，服务更多的并发和流量，二是为了提高系统的稳定性，让系统的可用性更高。
+提高架构的性能咱们先来看看，提高系统性能的常用技术。
+
+
+缓存系统。加入缓存系统，可以有效地提高系统的访问能力。从前端的浏览器，到网络，再到后端的服务，底层的数据库、文件系统、硬盘和CPU，全都有缓存，这是提高快速访问能力最有效的手段。对于分布式系统下的缓存系统，需要的是一个缓存集群。这其中需要一个Proxy来做缓存的分片和路由。
+
+负载均衡系统。负载均衡系统是水平扩展的关键技术，它可以使用多台机器来共同分担一部分流量请求。
+
+异步调用。异步系统主要通过消息队列来对请求做排队处理，这样可以把前端的请求的峰值给“削平”了，而后端通过自己能够处理的速度来处理请求。这样可以增加系统的吞吐量，但是实时性就差很多了。同时，还会引入消息丢失的问题，所以要对消息做持久化，这会造成“有状态”的结点，从而增加了 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/731268789.html" title="25 | 分布式系统关键技术：服务调度">25 | 分布式系统关键技术：服务调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">25 | 分布式系统关键技术：服务调度你好，我是陈皓，网名左耳朵耗子。
+服务治理，你应该听得很多了。但是我想说，你所听到的服务治理可能混合了流量调度等其它内容。我们这里会把服务治理和流量调度分开来讲。所以，今天这节课只涉及服务治理上的一些关键技术，主要有以下几点。
+
+服务关键程度
+服务依赖关系
+服务发现
+整个架构的版本管理
+服务应用生命周期全管理
+
+服务关键程度和服务的依赖关系下面，我们先看看服务关键程度和服务的依赖关系。关于服务关键程度，主要是要我们梳理和定义服务的重要程度。这不是使用技术可以完成的，它需要细致地管理对业务的理解，才能定义出架构中各个服务的重要程度。
+然后，我们还要梳理出服务间的依赖关系，这点也非常重要。我们常说，“没有依赖，就没有伤害”。这句话的意思就是说，服务间的依赖是一件很易碎的事。依赖越多，依赖越复杂，我们的系统就越易碎。
+因为依赖关系就像“铁锁连环”一样，一个服务的问题很容易出现一条链上的问题。因此，传统的SOA希望通过ESB来解决服务间的依赖关系，这也是为什么微服务中希望服务间是没有依赖的，而让上层或是前端业务来整合这些后台服务。
+但是要真正做到服务无依赖，我认为还是比较有困难的，总是会有一些公有服务会被依赖。我们只能是降低服务依赖的深度和广度，从而让管理更为简单和简洁。在这一点上，以Spring Boot为首的微服务开发框架就开了一个好头。
+微服务是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4062254509.html" title="20 | Git协同工作流，你该怎么选？">20 | Git协同工作流，你该怎么选？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">20 | Git协同工作流，你该怎么选？你好，我是陈皓，网名左耳朵耗子。
+与传统的代码版本管理工具相比，Git有很多的优势，因而越来越成为程序员喜欢的版本管理工具。我觉得，Git这个代码版本管理工具最大的优势有以下几个。
+
+Git 是一个分布式的版本管理工具，而且可以是单机版的，所以，你在没有网络的时候同样可以提交（commit）代码。对于我们来说，这意味着在出差途中或是没有网络的环境中依然可以工作写代码。
+这是不是听起来有点不对？一方面，以后你再也不能以“没有网络”作为不能工作的借口了。另一方面，没有网络意味着没有Google和StackOverflow，光有个本地的Git我也一样不能写代码啊……（哈哈。好吧，这已经超出了Git这个技术的范畴了，这里就不讨论了）
+
+Git从一个分支向另一个分支合并代码的时候，会把要合并的分支上的所有提交一个一个应用到被合并的分支上，合并后也能看得到整个代码的变更记录。而其他的版本管理工具则不能。
+
+Git切换分支的时候通常很快。不像其他版本管理器，每个分支一份拷贝。
+
+Git有很多非常有用的命令，让你可以很方便地工作。
+
+
+比如我很喜欢的 git stash 命令，可以把当前没有完成的事先暂存一下，然后去忙别的事。 git cherry-pick 命令可以让你有选择地合并提交。 git add -p 可以让你挑选改动提交， git grep $r ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1312551759.html" title="27 | 洞悉PaaS平台的本质">27 | 洞悉PaaS平台的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">27 | 洞悉PaaS平台的本质你好，我是陈皓，网名左耳朵耗子。
+在了解了前面几篇文章中提的这些问题以后，我们需要思考一下该怎样解决这些问题。为了解决这些问题，请先允许我来谈谈软件工程的本质。
+我认为，一家商业公司的软件工程能力主要体现在三个地方。
+第一，提高服务的SLA。
+所谓服务的SLA，也就是我们能提供多少个9的系统可用性，而每提高一个9的可用性都是对整个系统架构的重新洗礼。在我看来，提高系统的SLA主要表现在两个方面：
+
+高可用的系统；
+自动化的运维。
+
+你可以看一下我在CoolShell上写的《 关于高可用系统》这篇文章，它主要讲了构建高可用的系统需要使用的分布式系统设计思路。然而这还不够，我们还需要一个高度自动化的运维和管理系统，因为故障是常态，如果没有自动化的故障恢复，就很难提高服务的SLA。
+第二，能力和资源重用或复用。
+软件工程还有一个重要的能力就是让能力和资源可以重用。其主要表现在如下两个方面：
+
+软件模块的重用；
+软件运行环境和资源的重用。
+
+为此，需要我们有两个重要的能力：一个是“软件抽象的能力”，另一个是“软件标准化的能力”。你可以认为软件抽象就是找出通用的软件模块或服务，软件标准化就是使用统一的软件通讯协议、统一的开发和运维管理方法……这样能让整体软件开发运维的能力和资源得到最大程度的复用，从而增加效率。
+第三，过程的自动化。
+编程本来就是把一个重复工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1173367560.html" title="29 | 推荐阅读：分布式数据调度相关论文">29 | 推荐阅读：分布式数据调度相关论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">29 | 推荐阅读：分布式数据调度相关论文你好，我是陈皓，网名左耳朵耗子。
+我们在之前的系列文章《分布式系统架构的本质》中说过，分布式系统的一个关键技术是“数据调度”。因为我们需要扩充节点，提高系统的高可用性，所以必须冗余数据结点。
+建立数据结点的副本看上去容易，但其中最大的难点就是分布式一致性的问题。下面，我会带你看看数据调度世界中的一些技术点以及相关的技术论文。
+对于分布式的一致性问题，相信你在前面看过好几次下面这张图。从中，我们可以看出，Paxos算法的重要程度。还有人说，分布式下真正的一致性算法只有Paxos。
+
+Paxos算法Paxos算法，是莱斯利·兰伯特（Lesile Lamport）于1990年提出来的一种基于消息传递且具有高度容错特性的一致性算法。但是这个算法太过于晦涩，所以，一直以来都属于理论上的论文性质的东西。
+其进入工程圈的源头在于Google的Chubby lock——一个分布式的锁服务，用在了Bigtable中。直到Google发布了下面的这两篇论文，Paxos才进入到工程界的视野中来。
+
+Bigtable: A Distributed Storage System for Structured Data
+
+The Chubby lock service for loosely-coupled distributed systems
+
+
+Google与B ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/30/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/#content-inner">81</a><a class="extend next" rel="next" href="/page/32/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/"><span class="card-category-list-name">AI技术内参</span><span class="card-category-list-count">166</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">41</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">19</span></a></li>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/"><span class="card-category-list-name">AI技术内参</span><span class="card-category-list-count">166</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">41</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/"><span class="card-category-list-name">朱赟的技术管理课</span><span class="card-category-list-count">39</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">深入浅出计算机组成原理</span><span class="card-category-list-count">62</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/"><span class="card-category-list-name">程序员进阶攻略</span><span class="card-category-list-count">65</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"><span class="card-category-list-name">趣谈网络协议</span><span class="card-category-list-count">51</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">19</span></a></li>
             </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {

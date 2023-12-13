@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>39 | MESI协议：如何让多核CPU的高速缓存保持一致？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="39 | MESI协议：如何让多核CPU的高速缓存保持一致？你平时用的电脑，应该都是多核的CPU。多核CPU有很多好处，其中最重要的一个就是，它使得我们在不能提升CPU的主频之后，找到了另一种提升CPU吞吐率的办法。 不知道上一讲的内容你还记得多少？上一节，我们讲到，多核CPU里的每一个CPU核，都有独立的属于自己的L1 Cache和L2 Cache。多个CPU之间，只是共用L3 Cache和主内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="39 | MESI协议：如何让多核CPU的高速缓存保持一致？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/433097192.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="39 | MESI协议：如何让多核CPU的高速缓存保持一致？你平时用的电脑，应该都是多核的CPU。多核CPU有很多好处，其中最重要的一个就是，它使得我们在不能提升CPU的主频之后，找到了另一种提升CPU吞吐率的办法。 不知道上一讲的内容你还记得多少？上一节，我们讲到，多核CPU里的每一个CPU核，都有独立的属于自己的L1 Cache和L2 Cache。多个CPU之间，只是共用L3 Cache和主内">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:18:52.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.302Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/433097192"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '39 | MESI协议：如何让多核CPU的高速缓存保持一致？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">39 | MESI协议：如何让多核CPU的高速缓存保持一致？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="39-MESI协议：如何让多核CPU的高速缓存保持一致？"><a href="#39-MESI协议：如何让多核CPU的高速缓存保持一致？" class="headerlink" title="39 | MESI协议：如何让多核CPU的高速缓存保持一致？"></a>39 | MESI协议：如何让多核CPU的高速缓存保持一致？</h1><p>你平时用的电脑，应该都是多核的CPU。多核CPU有很多好处，其中最重要的一个就是，它使得我们在不能提升CPU的主频之后，找到了另一种提升CPU吞吐率的办法。</p>
+<p>不知道上一讲的内容你还记得多少？上一节，我们讲到，多核CPU里的每一个CPU核，都有独立的属于自己的L1 Cache和L2 Cache。多个CPU之间，只是共用L3 Cache和主内存。</p>
+<p>我们说，CPU Cache解决的是内存访问速度和CPU的速度差距太大的问题。而多核CPU提供的是，在主频难以提升的时候，通过增加CPU核心来提升CPU的吞吐率的办法。我们把多核和CPU Cache两者一结合，就给我们带来了一个新的挑战。因为CPU的每个核各有各的缓存，互相之间的操作又是各自独立的，就会带来 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cache_coherence"><strong>缓存一致性</strong></a>（Cache Coherence）的问题。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0723f72f3016fede96b545e2898c0541.jpeg"></p>
+<h2 id="缓存一致性问题"><a href="#缓存一致性问题" class="headerlink" title="缓存一致性问题"></a>缓存一致性问题</h2><p>那什么是缓存一致性呢？我们拿一个有两个核心的CPU，来看一下。你可以看这里这张图，我们结合图来说。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/a6146ddd5c78f2cbc1af56b0ee3292da.jpeg"></p>
+<p>在这两个CPU核心里，1号核心要写一个数据到内存里。这个怎么理解呢？我拿一个例子来给你解释。</p>
+<p>比方说，iPhone降价了，我们要把iPhone最新的价格更新到内存里。为了性能问题，它采用了上一讲我们说的写回策略，先把数据写入到L2 Cache里面，然后把Cache Block标记成脏的。这个时候，数据其实并没有被同步到L3 Cache或者主内存里。1号核心希望在这个Cache Block要被交换出去的时候，数据才写入到主内存里。</p>
+<p>如果我们的CPU只有1号核心这一个CPU核，那这其实是没有问题的。不过，我们旁边还有一个2号核心呢！这个时候，2号核心尝试从内存里面去读取iPhone的价格，结果读到的是一个错误的价格。这是因为，iPhone的价格刚刚被1号核心更新过。但是这个更新的信息，只出现在1号核心的L2 Cache里，而没有出现在2号核心的L2 Cache或者主内存里面。 <strong>这个问题，就是所谓的缓存一致性问题，1号核心和2号核心的缓存，在这个时候是不一致的。</strong></p>
+<p>为了解决这个缓存不一致的问题，我们就需要有一种机制，来同步两个不同核心里面的缓存数据。那这样的机制需要满足什么条件呢？我觉得能够做到下面两点就是合理的。</p>
+<p>第一点叫 <strong>写传播</strong>（Write Propagation）。写传播是说，在一个CPU核心里，我们的Cache数据更新，必须能够传播到其他的对应节点的Cache Line里。</p>
+<p>第二点叫 <strong>事务的串行化</strong>（Transaction Serialization），事务串行化是说，我们在一个CPU核心里面的读取和写入，在其他的节点看起来，顺序是一样的。</p>
+<p>第一点写传播很容易理解。既然我们数据写完了，自然要同步到其他CPU核的Cache里。但是第二点事务的串行化，可能没那么好理解，我这里仔细解释一下。</p>
+<p>我们还拿刚才修改iPhone的价格来解释。这一次，我们找一个有4个核心的CPU。1号核心呢，先把iPhone的价格改成了5000块。差不多在同一个时间，2号核心把iPhone的价格改成了6000块。这里两个修改，都会传播到3号核心和4号核心。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/fe0c449e71800c5ad2e4b84af0d6e46c.jpeg"></p>
+<p>然而这里有个问题，3号核心先收到了2号核心的写传播，再收到1号核心的写传播。所以3号核心看到的iPhone价格是先变成了6000块，再变成了5000块。而4号核心呢，是反过来的，先看到变成了5000块，再变成6000块。虽然写传播是做到了，但是各个Cache里面的数据，是不一致的。</p>
+<p>事实上，我们需要的是，从1号到4号核心，都能看到相同顺序的数据变化。比如说，都是先变成了5000块，再变成了6000块。这样，我们才能称之为实现了事务的串行化。</p>
+<p>事务的串行化，不仅仅是缓存一致性中所必须的。比如，我们平时所用到的系统当中，最需要保障事务串行化的就是数据库。多个不同的连接去访问数据库的时候，我们必须保障事务的串行化，做不到事务的串行化的数据库，根本没法作为可靠的商业数据库来使用。</p>
+<p>而在CPU Cache里做到事务串行化，需要做到两点，第一点是一个CPU核心对于数据的操作，需要同步通信给到其他CPU核心。第二点是，如果两个CPU核心里有同一个数据的Cache，那么对于这个Cache数据的更新，需要有一个“锁”的概念。只有拿到了对应Cache Block的“锁”之后，才能进行对应的数据更新。接下来，我们就看看实现了这两个机制的MESI协议。</p>
+<h2 id="总线嗅探机制和MESI协议"><a href="#总线嗅探机制和MESI协议" class="headerlink" title="总线嗅探机制和MESI协议"></a>总线嗅探机制和MESI协议</h2><p>要解决缓存一致性问题，首先要解决的是多个CPU核心之间的数据传播问题。最常见的一种解决方案呢，叫作 <strong>总线嗅探</strong>（Bus Snooping）。这个名字听起来，你多半会很陌生，但是其实特很好理解。</p>
+<p>这个策略，本质上就是把所有的读写请求都通过总线（Bus）广播给所有的CPU核心，然后让各个核心去“嗅探”这些请求，再根据本地的情况进行响应。</p>
+<p>总线本身就是一个特别适合广播进行数据传输的机制，所以总线嗅探这个办法也是我们日常使用的Intel CPU进行缓存一致性处理的解决方案。关于总线这个知识点，我们会放在后面的I&#x2F;O部分更深入地进行讲解，这里你只需要了解就可以了。</p>
+<p>基于总线嗅探机制，其实还可以分成很多种不同的缓存一致性协议。不过其中最常用的，就是今天我们要讲的MESI协议。和很多现代的CPU技术一样，MESI协议也是在Pentium时代，被引入到Intel CPU中的。</p>
+<p>MESI协议，是一种叫作 <strong>写失效</strong>（Write Invalidate）的协议。在写失效协议里，只有一个CPU核心负责写入数据，其他的核心，只是同步读取到这个写入。在这个CPU核心写入Cache之后，它会去广播一个“失效”请求告诉所有其他的CPU核心。其他的CPU核心，只是去判断自己是否也有一个“失效”版本的Cache Block，然后把这个也标记成失效的就好了。</p>
+<p>相对于写失效协议，还有一种叫作 <strong>写广播</strong>（Write Broadcast）的协议。在那个协议里，一个写入请求广播到所有的CPU核心，同时更新各个核心里的Cache。</p>
+<p>写广播在实现上自然很简单，但是写广播需要占用更多的总线带宽。写失效只需要告诉其他的CPU核心，哪一个内存地址的缓存失效了，但是写广播还需要把对应的数据传输给其他CPU核心。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4ed6d05049cbbc8603346f617206cd59.jpeg"></p>
+<p>MESI协议的由来呢，来自于我们对Cache Line的四个不同的标记，分别是：</p>
+<ul>
+<li>M：代表已修改（Modified）</li>
+<li>E：代表独占（Exclusive）</li>
+<li>S：代表共享（Shared）</li>
+<li>I：代表已失效（Invalidated）</li>
+</ul>
+<p>我们先来看看“已修改”和“已失效”，这两个状态比较容易理解。所谓的“已修改”，就是我们上一讲所说的“脏”的Cache Block。Cache Block里面的内容我们已经更新过了，但是还没有写回到主内存里面。而所谓的“已失效“，自然是这个Cache Block里面的数据已经失效了，我们不可以相信这个Cache Block里面的数据。</p>
+<p>然后，我们再来看“独占”和“共享”这两个状态。这就是MESI协议的精华所在了。无论是独占状态还是共享状态，缓存里面的数据都是“干净”的。这个“干净”，自然对应的是前面所说的“脏”的，也就是说，这个时候，Cache Block里面的数据和主内存里面的数据是一致的。</p>
+<p>那么“独占”和“共享”这两个状态的差别在哪里呢？这个差别就在于，在独占状态下，对应的Cache Line只加载到了当前CPU核所拥有的Cache里。其他的CPU核，并没有加载对应的数据到自己的Cache里。这个时候，如果要向独占的Cache Block写入数据，我们可以自由地写入数据，而不需要告知其他CPU核。</p>
+<p>在独占状态下的数据，如果收到了一个来自于总线的读取对应缓存的请求，它就会变成共享状态。这个共享状态是因为，这个时候，另外一个CPU核心，也把对应的Cache Block，从内存里面加载到了自己的Cache里来。</p>
+<p>而在共享状态下，因为同样的数据在多个CPU核心的Cache里都有。所以，当我们想要更新Cache里面的数据的时候，不能直接修改，而是要先向所有的其他CPU核心广播一个请求，要求先把其他CPU核心里面的Cache，都变成无效的状态，然后再更新当前Cache里面的数据。这个广播操作，一般叫作RFO（Request For Ownership），也就是获取当前对应Cache Block数据的所有权。</p>
+<p>有没有觉得这个操作有点儿像我们在多线程里面用到的读写锁。在共享状态下，大家都可以并行去读对应的数据。但是如果要写，我们就需要通过一个锁，获取当前写入位置的所有权。</p>
+<p>整个MESI的状态，可以用一个有限状态机来表示它的状态流转。需要注意的是，对于不同状态触发的事件操作，可能来自于当前CPU核心，也可能来自总线里其他CPU核心广播出来的信号。我把对应的状态机流转图放在了下面，你可以对照着 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MESI%E5%8D%8F%E8%AE%AE">Wikipedia里面MESI的内容</a>，仔细研读一下。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/fa98835c78c879ab69fd1f29193e54d1.jpeg"></p>
+<p><a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Diagrama_MESI.GIF">图片来源</a></p>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>好了，关于CPU Cache的内容，我们介绍到这里就结束了。我们来总结一下。这一节，我们其实就讲了两块儿内容，一个是缓存一致性，另一个是MESI协议。</p>
+<p>想要实现缓存一致性，关键是要满足两点。第一个是写传播，也就是在一个CPU核心写入的内容，需要传播到其他CPU核心里。更重要的是第二点，保障事务的串行化，才能保障我们的数据是真正一致的，我们的程序在各个不同的核心上运行的结果也是一致的。这个特性不仅在CPU的缓存层面很重要，在数据库层面更加重要。</p>
+<p>之后，我介绍了基于总线嗅探机制的MESI协议。MESI协议是一种基于写失效的缓存一致性协议。写失效的协议的好处是，我们不需要在总线上传输数据内容，而只需要传输操作信号和地址信号就好了，不会那么占总线带宽。</p>
+<p>MESI协议，是已修改、独占、共享以及已失效这四个缩写的合称。独占和共享状态，就好像我们在多线程应用开发里面的读写锁机制，确保了我们的缓存一致性。而整个MESI的状态变更，则是根据来自自己CPU核心的请求，以及来自其他CPU核心通过总线传输过来的操作信号和地址信息，进行状态流转的一个有限状态机。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>大部分计算机组成或者体系结构的教科书都没有提到缓存一致性问题。不过，最近有一本国人写的计算机底层原理的书，《大话计算机》，里面的6.9章节比较详细地讲解了多核CPU的访问存储数据的一致性问题，很值得仔细读一读。</p>
+<h2 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h2><p>今天我们所讲的MESI缓存一致性协议，其实是对于MSI缓存一致性协议的一个优化。你可以通过搜索引擎研究一下，什么是MSI协议，以及MESI相对于MSI协议，究竟做了哪些优化？</p>
+<p>欢迎把你研究的结果写在留言区和大家分享。如果有收获，也欢迎你把这篇文章分享给你的朋友，和他一起学习和进步。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#39-MESI%E5%8D%8F%E8%AE%AE%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%A4%9A%E6%A0%B8CPU%E7%9A%84%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">39 | MESI协议：如何让多核CPU的高速缓存保持一致？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">缓存一致性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E5%97%85%E6%8E%A2%E6%9C%BA%E5%88%B6%E5%92%8CMESI%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">总线嗅探机制和MESI协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.3.</span> <span class="toc-text">总结延伸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.4.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.5.</span> <span class="toc-text">课后思考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣坚持到底就是胜利，终于我们一起来到了专栏的最后一个主题。让我一起带你来看一看，CPU到底能有多快。在接下来的两讲里，我会带你一起来看一个开源项目Disruptor。看看我们怎么利用CPU和高速缓存的硬件特性，来设计一个对于性能有极限追求的系统。 不知道你还记不记得，在 第37讲 里，为了优化4毫秒专门铺设光纤的故事。实际上，最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3554781151.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣坚持到底就是胜利，终于我们一起来到了专栏的最后一个主题。让我一起带你来看一看，CPU到底能有多快。在接下来的两讲里，我会带你一起来看一个开源项目Disruptor。看看我们怎么利用CPU和高速缓存的硬件特性，来设计一个对于性能有极限追求的系统。 不知道你还记不记得，在 第37讲 里，为了优化4毫秒专门铺设光纤的故事。实际上，最">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:18:52.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.348Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3554781151"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="54-理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣"><a href="#54-理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣" class="headerlink" title="54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣"></a>54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣</h1><p>坚持到底就是胜利，终于我们一起来到了专栏的最后一个主题。让我一起带你来看一看，CPU到底能有多快。在接下来的两讲里，我会带你一起来看一个开源项目Disruptor。看看我们怎么利用CPU和高速缓存的硬件特性，来设计一个对于性能有极限追求的系统。</p>
+<p>不知道你还记不记得，在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/107477">第37讲</a> 里，为了优化4毫秒专门铺设光纤的故事。实际上，最在意极限性能的并不是互联网公司，而是高频交易公司。我们今天讲解的Disruptor就是由一家专门做高频交易的公司LMAX开源出来的。</p>
+<p>有意思的是，Disruptor的开发语言，并不是很多人心目中最容易做到性能极限的C&#x2F;C++，而是性能受限于JVM的Java。这到底是怎么一回事呢？那通过这一讲，你就能体会到，其实只要通晓硬件层面的原理，即使是像Java这样的高级语言，也能够把CPU的性能发挥到极限。</p>
+<h2 id="Padding-Cache-Line，体验高速缓存的威力"><a href="#Padding-Cache-Line，体验高速缓存的威力" class="headerlink" title="Padding Cache Line，体验高速缓存的威力"></a>Padding Cache Line，体验高速缓存的威力</h2><p>我们先来看看Disruptor里面一段神奇的代码。这段代码里，Disruptor在RingBufferPad这个类里面定义了p1，p2一直到p7 这样7个long类型的变量。</p>
+<pre class="line-numbers language-none"><code class="language-none">abstract class RingBufferPad
+&#123;
+    protected long p1, p2, p3, p4, p5, p6, p7;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我在看到这段代码的第一反应是，变量名取得不规范，p1-p7这样的变量名没有明确的意义啊。不过，当我深入了解了Disruptor的设计和源代码，才发现这些变量名取得恰如其分。因为这些变量就是没有实际意义，只是帮助我们进行 <strong>缓存行填充</strong>（Padding Cache Line），使得我们能够尽可能地用上CPU高速缓存（CPU Cache）。那么缓存行填充这个黑科技到底是什么样的呢？我们接着往下看。</p>
+<p>不知道你还记不记得，我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/107422">35讲</a> 里面的这个表格。如果访问内置在CPU里的L1 Cache或者L2 Cache，访问延时是内存的1&#x2F;15乃至1&#x2F;100。而内存的访问速度，其实是远远慢于CPU的。想要追求极限性能，需要我们尽可能地多从CPU Cache里面拿数据，而不是从内存里面拿数据。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d39b0f2b3962d646133d450541fb75a6.png"></p>
+<p>CPU Cache装载内存里面的数据，不是一个一个字段加载的，而是加载一整个缓存行。举个例子，如果我们定义了一个长度为64的long类型的数组。那么数据从内存加载到CPU Cache里面的时候，不是一个一个数组元素加载的，而是一次性加载固定长度的一个缓存行。</p>
+<p>我们现在的64位Intel CPU的计算机，缓存行通常是64个字节（Bytes）。一个long类型的数据需要8个字节，所以我们一下子会加载8个long类型的数据。也就是说，一次加载数组里面连续的8个数值。这样的加载方式使得我们遍历数组元素的时候会很快。因为后面连续7次的数据访问都会命中缓存，不需要重新从内存里面去读取数据。这个性能层面的好处，我在第37讲的第一个例子里面为你演示过，印象不深的话，可以返回去看看。</p>
+<p>但是，在我们不使用数组，而是使用单独的变量的时候，这里就会出现问题了。在Disruptor的RingBuffer（环形缓冲区）的代码里面，定义了一个RingBufferFields类，里面有indexMask和其他几个变量，用来存放RingBuffer的内部状态信息。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/23adbbc656243ce85fdb8c7fab42ecf6.jpeg"></p>
+<p>CPU在加载数据的时候，自然也会把这个数据从内存加载到高速缓存里面来。不过，这个时候，高速缓存里面除了这个数据，还会加载这个数据前后定义的其他变量。这个时候，问题就来了。Disruptor是一个多线程的服务器框架，在这个数据前后定义的其他变量，可能会被多个不同的线程去更新数据、读取数据。这些写入以及读取的请求，会来自于不同的 CPU Core。于是，为了保证数据的同步更新，我们不得不把CPU Cache里面的数据，重新写回到内存里面去或者重新从内存里面加载数据。</p>
+<p>而我们刚刚说过，这些CPU Cache的写回和加载，都不是以一个变量作为单位的。这些动作都是以整个Cache Line作为单位的。所以，当INITIAL_CURSOR_VALUE 前后的那些变量被写回到内存的时候，这个字段自己也写回到了内存，这个常量的缓存也就失效了。当我们要再次读取这个值的时候，要再重新从内存读取。这也就意味着，读取速度大大变慢了。</p>
+<pre class="line-numbers language-none"><code class="language-none">......
+
+abstract class RingBufferPad
+&#123;
+    protected long p1, p2, p3, p4, p5, p6, p7;
+&#125;
+
+
+abstract class RingBufferFields&lt;E&gt; extends RingBufferPad
+&#123;
+    ......
+    private final long indexMask;
+	private final Object[] entries;
+	protected final int bufferSize;
+	protected final Sequencer sequencer;
+    ......
+&#125;
+
+public final class RingBuffer&lt;E&gt; extends RingBufferFields&lt;E&gt; implements Cursored, EventSequencer&lt;E&gt;, EventSink&lt;E&gt;
+&#123;
+    ......
+    protected long p1, p2, p3, p4, p5, p6, p7;
+    ......
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/9330b8fb1e8de3f62d34c6f85f268db1.jpeg"></p>
+<p>面临这样一个情况，Disruptor里发明了一个神奇的代码技巧，这个技巧就是缓存行填充。Disruptor 在 RingBufferFields里面定义的变量的前后，分别定义了7个long类型的变量。前面的7个来自继承的 RingBufferPad 类，后面的7个则是直接定义在 RingBuffer 类里面。这14个变量没有任何实际的用途。我们既不会去读他们，也不会去写他们。</p>
+<p>而RingBufferFields里面定义的这些变量都是final的，第一次写入之后不会再进行修改。所以，一旦它被加载到CPU Cache之后，只要被频繁地读取访问，就不会再被换出Cache了。这也就意味着，对于这个值的读取速度，会是一直是CPU Cache的访问速度，而不是内存的访问速度。</p>
+<h2 id="使用RingBuffer，利用缓存和分支预测"><a href="#使用RingBuffer，利用缓存和分支预测" class="headerlink" title="使用RingBuffer，利用缓存和分支预测"></a>使用RingBuffer，利用缓存和分支预测</h2><p>其实这个利用CPU Cache的性能的思路，贯穿了整个Disruptor。Disruptor整个框架，其实就是一个高速的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">生产者-消费者模型</a>（Producer-Consumer）下的队列。生产者不停地往队列里面生产新的需要处理的任务，而消费者不停地从队列里面处理掉这些任务。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/659082942118e7c69eb3807b00f5f556.jpeg"></p>
+<p>如果你熟悉算法和数据结构，那你应该非常清楚，如果要实现一个队列，最合适的数据结构应该是链表。我们只要维护好链表的头和尾，就能很容易实现一个队列。生产者只要不断地往链表的尾部不断插入新的节点，而消费者只需要不断从头部取出最老的节点进行处理就好了。我们可以很容易实现生产者-消费者模型。实际上，Java自己的基础库里面就有LinkedBlockingQueue这样的队列库，可以直接用在生产者-消费者模式上。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/45d4c7c8b0cb1f056684199e39660f0e.jpeg"></p>
+<p>不过，Disruptor里面并没有用LinkedBlockingQueue，而是使用了一个RingBuffer这样的数据结构，这个RingBuffer的底层实现则是一个固定长度的数组。比起链表形式的实现，数组的数据在内存里面会存在空间局部性。</p>
+<p>就像上面我们看到的，数组的连续多个元素会一并加载到CPU Cache里面来，所以访问遍历的速度会更快。而链表里面各个节点的数据，多半不会出现在相邻的内存空间，自然也就享受不到整个Cache Line加载后数据连续从高速缓存里面被访问到的优势。</p>
+<p>除此之外，数据的遍历访问还有一个很大的优势，就是CPU层面的分支预测会很准确。这可以使得我们更有效地利用了CPU里面的多级流水线，我们的程序就会跑得更快。这一部分的原理如果你已经不太记得了，可以回过头去复习一下 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/102166">第25讲</a> 关于分支预测的内容。</p>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>好了，不知道讲完这些，你有没有体会到Disruptor这个框架的神奇之处呢？</p>
+<p>CPU从内存加载数据到CPU Cache里面的时候，不是一个变量一个变量加载的，而是加载固定长度的Cache Line。如果是加载数组里面的数据，那么CPU就会加载到数组里面连续的多个数据。所以，数组的遍历很容易享受到CPU Cache那风驰电掣的速度带来的红利。</p>
+<p>对于类里面定义的单独的变量，就不容易享受到CPU Cache红利了。因为这些字段虽然在内存层面会分配到一起，但是实际应用的时候往往没有什么关联。于是，就会出现多个CPU Core访问的情况下，数据频繁在CPU Cache和内存里面来来回回的情况。而Disruptor很取巧地在需要频繁高速访问的变量，也就是RingBufferFields里面的indexMask这些字段前后，各定义了7个没有任何作用和读写请求的long类型的变量。</p>
+<p>这样，无论在内存的什么位置上，这些变量所在的Cache Line都不会有任何写更新的请求。我们就可以始终在Cache Line里面读到它的值，而不需要从内存里面去读取数据，也就大大加速了Disruptor的性能。</p>
+<p>这样的思路，其实渗透在Disruptor这个开源框架的方方面面。作为一个生产者-消费者模型，Disruptor并没有选择使用链表来实现一个队列，而是使用了RingBuffer。RingBuffer底层的数据结构则是一个固定长度的数组。这个数组不仅让我们更容易用好CPU Cache，对CPU执行过程中的分支预测也非常有利。更准确的分支预测，可以使得我们更好地利用好CPU的流水线，让代码跑得更快。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>今天讲的是Disruptor，推荐的阅读内容自然是Disruptor的官方文档。作为一个开源项目，Disruptor在自己 <a target="_blank" rel="noopener" href="https://github.com/LMAX-Exchange/disruptor/wiki/Introduction">GitHub</a> 上有很详细的设计文档，推荐你好好阅读一下。</p>
+<p>这里面不仅包含了怎么用好Disruptor，也包含了整个Disruptor框架的设计思路，是一份很好的阅读学习材料。另外，Disruptor的官方文档里，还有很多文章、演讲，详细介绍了这个框架，很值得深入去看一看。Disruptor的源代码其实并不复杂，很适合用来学习怎么阅读开源框架代码。</p>
+<h2 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h2><p>今天我们讲解了缓存行填充，你可以试试修改Disruptor的代码，看看在没有缓存行填充和有缓存行填充的情况下的性能差异。你也可以尝试直接修改Disruptor的源码和 <a target="_blank" rel="noopener" href="https://github.com/LMAX-Exchange/disruptor/blob/master/src/perftest/java/com/lmax/disruptor/immutable/CustomPerformanceTest.java">性能测试代码</a>，看看运行的结果是什么样的。</p>
+<p>欢迎你把你的测试结果写在留言区，和大家一起讨论、分享。如果有收获，你也可以把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#54-%E7%90%86%E8%A7%A3Disruptor%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E5%B8%A6%E4%BD%A0%E4%BD%93%E4%BC%9ACPU%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E9%A3%8E%E9%A9%B0%E7%94%B5%E6%8E%A3"><span class="toc-number">1.</span> <span class="toc-text">54 | 理解Disruptor（上）：带你体会CPU高速缓存的风驰电掣</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Padding-Cache-Line%EF%BC%8C%E4%BD%93%E9%AA%8C%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E5%A8%81%E5%8A%9B"><span class="toc-number">1.1.</span> <span class="toc-text">Padding Cache Line，体验高速缓存的威力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8RingBuffer%EF%BC%8C%E5%88%A9%E7%94%A8%E7%BC%93%E5%AD%98%E5%92%8C%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="toc-number">1.2.</span> <span class="toc-text">使用RingBuffer，利用缓存和分支预测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.3.</span> <span class="toc-text">总结延伸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.4.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.5.</span> <span class="toc-text">课后思考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

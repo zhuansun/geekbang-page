@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>07 | 函数调用：为什么会发生stack overflow？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="07 | 函数调用：为什么会发生stack overflow？在开发软件的过程中我们经常会遇到错误，如果你用Google搜过出错信息，那你多少应该都访问过 Stack Overflow 这个网站。作为全球最大的程序员问答网站，Stack Overflow的名字来自于一个常见的报错，就是栈溢出（stack overflow）。 今天，我们就从程序的函数调用开始，讲讲函数间的相互调用，在计算机指令层面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07 | 函数调用：为什么会发生stack overflow？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3650251502.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="07 | 函数调用：为什么会发生stack overflow？在开发软件的过程中我们经常会遇到错误，如果你用Google搜过出错信息，那你多少应该都访问过 Stack Overflow 这个网站。作为全球最大的程序员问答网站，Stack Overflow的名字来自于一个常见的报错，就是栈溢出（stack overflow）。 今天，我们就从程序的函数调用开始，讲讲函数间的相互调用，在计算机指令层面">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:18:52.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.205Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3650251502"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '07 | 函数调用：为什么会发生stack overflow？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">07 | 函数调用：为什么会发生stack overflow？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="07-函数调用：为什么会发生stack-overflow？"><a href="#07-函数调用：为什么会发生stack-overflow？" class="headerlink" title="07 | 函数调用：为什么会发生stack overflow？"></a>07 | 函数调用：为什么会发生stack overflow？</h1><p>在开发软件的过程中我们经常会遇到错误，如果你用Google搜过出错信息，那你多少应该都访问过 <a target="_blank" rel="noopener" href="https://stackoverflow.com/">Stack Overflow</a> 这个网站。作为全球最大的程序员问答网站，Stack Overflow的名字来自于一个常见的报错，就是栈溢出（stack overflow）。</p>
+<p>今天，我们就从程序的函数调用开始，讲讲函数间的相互调用，在计算机指令层面是怎么实现的，以及什么情况下会发生栈溢出这个错误。</p>
+<h2 id="为什么我们需要程序栈？"><a href="#为什么我们需要程序栈？" class="headerlink" title="为什么我们需要程序栈？"></a>为什么我们需要程序栈？</h2><p>和前面几讲一样，我们还是从一个非常简单的C程序function_example.c看起。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; function_example.c
+#include &lt;stdio.h&gt;
+int static add(int a, int b)
+&#123;
+    return a+b;
+&#125;
+
+int main()
+&#123;
+    int x &#x3D; 5;
+    int y &#x3D; 10;
+    int u &#x3D; add(x, y);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个程序定义了一个简单的函数add，接受两个参数a和b，返回值就是a+b。而main函数里则定义了两个变量x和y，然后通过调用这个add函数，来计算u&#x3D;x+y，最后把u的数值打印出来。</p>
+<pre class="line-numbers language-none"><code class="language-none">$ gcc -g -c function_example.c
+$ objdump -d -M intel -S function_example.o
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>我们把这个程序编译之后，objdump出来。我们来看一看对应的汇编代码。</p>
+<pre class="line-numbers language-none"><code class="language-none">int static add(int a, int b)
+&#123;
+   0:   55                      push   rbp
+   1:   48 89 e5                mov    rbp,rsp
+   4:   89 7d fc                mov    DWORD PTR [rbp-0x4],edi
+   7:   89 75 f8                mov    DWORD PTR [rbp-0x8],esi
+    return a+b;
+   a:   8b 55 fc                mov    edx,DWORD PTR [rbp-0x4]
+   d:   8b 45 f8                mov    eax,DWORD PTR [rbp-0x8]
+  10:   01 d0                   add    eax,edx
+&#125;
+  12:   5d                      pop    rbp
+  13:   c3                      ret
+0000000000000014 &lt;main&gt;:
+int main()
+&#123;
+  14:   55                      push   rbp
+  15:   48 89 e5                mov    rbp,rsp
+  18:   48 83 ec 10             sub    rsp,0x10
+    int x &#x3D; 5;
+  1c:   c7 45 fc 05 00 00 00    mov    DWORD PTR [rbp-0x4],0x5
+    int y &#x3D; 10;
+  23:   c7 45 f8 0a 00 00 00    mov    DWORD PTR [rbp-0x8],0xa
+    int u &#x3D; add(x, y);
+  2a:   8b 55 f8                mov    edx,DWORD PTR [rbp-0x8]
+  2d:   8b 45 fc                mov    eax,DWORD PTR [rbp-0x4]
+  30:   89 d6                   mov    esi,edx
+  32:   89 c7                   mov    edi,eax
+  34:   e8 c7 ff ff ff          call   0 &lt;add&gt;
+  39:   89 45 f4                mov    DWORD PTR [rbp-0xc],eax
+  3c:   b8 00 00 00 00          mov    eax,0x0
+&#125;
+  41:   c9                      leave
+  42:   c3                      ret
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看出来，在这段代码里，main函数和上一节我们讲的的程序执行区别并不大，它主要是把jump指令换成了函数调用的call指令。call指令后面跟着的，仍然是跳转后的程序地址。</p>
+<p>这些你理解起来应该不成问题。我们下面来看一个有意思的部分。</p>
+<p>我们来看add函数。可以看到，add函数编译之后，代码先执行了一条push指令和一条mov指令；在函数执行结束的时候，又执行了一条pop和一条ret指令。这四条指令的执行，其实就是在进行我们接下来要讲 <strong>压栈</strong>（Push）和 <strong>出栈</strong>（Pop）操作。</p>
+<p>你有没有发现，函数调用和上一节我们讲的if…else和for&#x2F;while循环有点像。它们两个都是在原来顺序执行的指令过程里，执行了一个内存地址的跳转指令，让指令从原来顺序执行的过程里跳开，从新的跳转后的位置开始执行。</p>
+<p>但是，这两个跳转有个区别，if…else和for&#x2F;while的跳转，是跳转走了就不再回来了，就在跳转后的新地址开始顺序地执行指令，就好像徐志摩在《再别康桥》里面写的：“我挥一挥衣袖，不带走一片云彩”，继续进行新的生活了。而函数调用的跳转，在对应函数的指令执行完了之后，还要再回到函数调用的地方，继续执行call之后的指令，就好像贺知章在《回乡偶书》里面写的那样：“少小离家老大回，乡音未改鬓毛衰”，不管走多远，最终还是要回来。</p>
+<p>那我们有没有一个可以不跳转回到原来开始的地方，来实现函数的调用呢？直觉上似乎有这么一个解决办法。你可以把调用的函数指令，直接插入在调用函数的地方，替换掉对应的call指令，然后在编译器编译代码的时候，直接就把函数调用变成对应的指令替换掉。</p>
+<p>不过，仔细琢磨一下，你会发现这个方法有些问题。如果函数A调用了函数B，然后函数B再调用函数A，我们就得面临在A里面插入B的指令，然后在B里面插入A的指令，这样就会产生无穷无尽地替换。就好像两面镜子面对面放在一块儿，任何一面镜子里面都会看到无穷多面镜子。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0b4d9f07a7d15e5e25908bbf1532e706.jpg"></p>
+<p>Infinite Mirror Effect，如果函数A调用B，B再调用A，那么代码会无限展开， <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/w/index.php?curid=40716759">图片来源</a></p>
+<p>看来，把被调用函数的指令直接插入在调用处的方法行不通。那我们就换一个思路，能不能把后面要跳回来执行的指令地址给记录下来呢？就像前面讲PC寄存器一样，我们可以专门设立一个“程序调用寄存器”，来存储接下来要跳转回来执行的指令地址。等到函数调用结束，从这个寄存器里取出地址，再跳转到这个记录的地址，继续执行就好了。</p>
+<p>但是在多层函数调用里，简单只记录一个地址也是不够的。我们在调用函数A之后，A还可以调用函数B，B还能调用函数C。这一层又一层的调用并没有数量上的限制。在所有函数调用返回之前，每一次调用的返回地址都要记录下来，但是我们CPU里的寄存器数量并不多。像我们一般使用的Intel i7 CPU只有16个64位寄存器，调用的层数一多就存不下了。</p>
+<p>最终，计算机科学家们想到了一个比单独记录跳转回来的地址更完善的办法。我们在内存里面开辟一段空间，用栈这个 <strong>后进先出</strong>（LIFO，Last In First Out）的数据结构。栈就像一个乒乓球桶，每次程序调用函数之前，我们都把调用返回后的地址写在一个乒乓球上，然后塞进这个球桶。这个操作其实就是我们常说的 <strong>压栈</strong>。如果函数执行完了，我们就从球桶里取出最上面的那个乒乓球，很显然，这就是 <strong>出栈</strong>。</p>
+<p>拿到出栈的乒乓球，找到上面的地址，把程序跳转过去，就返回到了函数调用后的下一条指令了。如果函数A在执行完成之前又调用了函数B，那么在取出乒乓球之前，我们需要往球桶里塞一个乒乓球。而我们从球桶最上面拿乒乓球的时候，拿的也一定是最近一次的，也就是最下面一层的函数调用完成后的地址。乒乓球桶的底部，就是 <strong>栈底</strong>，最上面的乒乓球所在的位置，就是 <strong>栈顶</strong>。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d0c75219d3a528c920c2a593daaf77be.jpeg"></p>
+<p>在真实的程序里，压栈的不只有函数调用完成后的返回地址。比如函数A在调用B的时候，需要传输一些参数数据，这些参数数据在寄存器不够用的时候也会被压入栈中。整个函数A所占用的所有内存空间，就是函数A的 <strong>栈帧</strong>（Stack Frame）。Frame在中文里也有“相框”的意思，所以，每次到这里，我都有种感觉，整个函数A所需要的内存空间就像是被这么一个“相框”给框了起来，放在了栈里面。</p>
+<p>而实际的程序栈布局，顶和底与我们的乒乓球桶相比是倒过来的。底在最上面，顶在最下面，这样的布局是因为栈底的内存地址是在一开始就固定的。而一层层压栈之后，栈顶的内存地址是在逐渐变小而不是变大。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2361ecf8cf08f07c83377376a31869d1.jpeg"></p>
+<p>图中，rbp是register base pointer 栈基址寄存器（栈帧指针），指向当前栈帧的栈底地址。rsp是register stack pointer 栈顶寄存器（栈指针），指向栈顶元素。</p>
+<p>对应上面函数add的汇编代码，我们来仔细看看，main函数调用add函数时，add函数入口在0～1行，add函数结束之后在12～13行。</p>
+<p>我们在调用第34行的call指令时，会把当前的PC寄存器里的下一条指令的地址压栈，保留函数调用结束后要执行的指令地址。而add函数的第0行，push rbp这个指令，就是在进行压栈。这里的rbp又叫栈帧指针（Frame Pointer），是一个存放了当前栈帧位置的寄存器。push rbp就把之前调用函数，也就是main函数的栈帧的栈底地址，压到栈顶。</p>
+<p>接着，第1行的一条命令mov rbp, rsp里，则是把rsp这个栈指针（Stack Pointer）的值复制到rbp里，而rsp始终会指向栈顶。这个命令意味着，rbp这个栈帧指针指向的地址，变成当前最新的栈顶，也就是add函数的栈帧的栈底地址了。</p>
+<p>而在函数add执行完成之后，又会分别调用第12行的pop rbp来将当前的栈顶出栈，这部分操作维护好了我们整个栈帧。然后，我们可以调用第13行的ret指令，这时候同时要把call调用的时候压入的PC寄存器里的下一条指令出栈，更新到PC寄存器中，将程序的控制权返回到出栈后的栈顶。</p>
+<h2 id="如何构造一个stack-overflow？"><a href="#如何构造一个stack-overflow？" class="headerlink" title="如何构造一个stack overflow？"></a>如何构造一个stack overflow？</h2><p>通过引入栈，我们可以看到，无论有多少层的函数调用，或者在函数A里调用函数B，再在函数B里调用A，这样的递归调用，我们都只需要通过维持rbp和rsp，这两个维护栈顶所在地址的寄存器，就能管理好不同函数之间的跳转。不过，栈的大小也是有限的。如果函数调用层数太多，我们往栈里压入它存不下的内容，程序在执行的过程中就会遇到栈溢出的错误，这就是大名鼎鼎的“stack overflow”。</p>
+<p>要构造一个栈溢出的错误并不困难，最简单的办法，就是我们上面说的Infiinite Mirror Effect的方式，让函数A调用自己，并且不设任何终止条件。这样一个无限递归的程序，在不断地压栈过程中，将整个栈空间填满，并最终遇上stack overflow。</p>
+<pre class="line-numbers language-none"><code class="language-none">int a()
+&#123;
+  return a();
+&#125;
+
+int main()
+&#123;
+  a();
+  return 0;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>除了无限递归，递归层数过深，在栈空间里面创建非常占内存的变量（比如一个巨大的数组），这些情况都很可能给你带来stack overflow。相信你理解了栈在程序运行的过程里面是怎么回事，未来在遇到stackoverflow这个错误的时候，不会完全没有方向了。</p>
+<h2 id="如何利用函数内联进行性能优化？"><a href="#如何利用函数内联进行性能优化？" class="headerlink" title="如何利用函数内联进行性能优化？"></a>如何利用函数内联进行性能优化？</h2><p>上面我们提到一个方法，把一个实际调用的函数产生的指令，直接插入到的位置，来替换对应的函数调用指令。尽管这个通用的函数调用方案，被我们否决了，但是如果被调用的函数里，没有调用其他函数，这个方法还是可以行得通的。</p>
+<p>事实上，这就是一个常见的编译器进行自动优化的场景，我们通常叫 <strong>函数内联</strong>（Inline）。我们只要在GCC编译的时候，加上对应的一个让编译器自动优化的参数-O，编译器就会在可行的情况下，进行这样的指令替换。</p>
+<p>我们来看一段代码。</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+
+int static add(int a, int b)
+&#123;
+    return a+b;
+&#125;
+
+int main()
+&#123;
+    srand(time(NULL));
+    int x &#x3D; rand() % 5
+    int y &#x3D; rand() % 10;
+    int u &#x3D; add(x, y)
+    printf(&quot;u &#x3D; %d\n&quot;, u)
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为了避免编译器优化掉太多代码，我小小修改了一下function_example.c，让参数x和y都变成了，通过随机数生成，并在代码的最后加上将u通过printf打印出来的语句。</p>
+<pre class="line-numbers language-none"><code class="language-none">$ gcc -g -c -O function_example_inline.c
+$ objdump -d -M intel -S function_example_inline.o
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>上面的function_example_inline.c的编译出来的汇编代码，没有把add函数单独编译成一段指令顺序，而是在调用u &#x3D; add(x, y)的时候，直接替换成了一个add指令。</p>
+<pre class="line-numbers language-none"><code class="language-none">  return a+b;
+4c:   01 de                   add    esi,ebx
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>除了依靠编译器的自动优化，你还可以在定义函数的地方，加上inline的关键字，来提示编译器对函数进行内联。</p>
+<p>内联带来的优化是，CPU需要执行的指令数变少了，根据地址跳转的过程不需要了，压栈和出栈的过程也不用了。</p>
+<p>不过内联并不是没有代价，内联意味着，我们把可以复用的程序指令在调用它的地方完全展开了。如果一个函数在很多地方都被调用了，那么就会展开很多次，整个程序占用的空间就会变大了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/dca83475560147d4dd492ff283ae0c85.jpeg"></p>
+<p>这样没有调用其他函数，只会被调用的函数，我们一般称之为 <strong>叶子函数（或叶子过程）</strong>。</p>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>这一节，我们讲了一个程序的函数间调用，在CPU指令层面是怎么执行的。其中一定需要你牢记的，就是 <strong>程序栈</strong> 这个新概念。</p>
+<p>我们可以方便地通过压栈和出栈操作，使得程序在不同的函数调用过程中进行转移。而函数内联和栈溢出，一个是我们常常可以选择的优化方案，另一个则是我们会常遇到的程序Bug。</p>
+<p>通过加入了程序栈，我们相当于在指令跳转的过程种，加入了一个“记忆”的功能，能在跳转去运行新的指令之后，再回到跳出去的位置，能够实现更加丰富和灵活的指令执行流程。这个也为我们在程序开发的过程中，提供了“函数”这样一个抽象，使得我们在软件开发的过程中，可以复用代码和指令，而不是只能简单粗暴地复制、粘贴代码和指令。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>如果你觉得还不过瘾，可以仔细读一下《深入理解计算机系统（第三版）》的3.7小节《过程》，进一步了解函数调用是怎么回事。</p>
+<p>另外，我推荐你花一点时间，通过搜索引擎搞清楚function_example.c每一行汇编代码的含义，这个能够帮你进一步深入了解程序栈、栈帧、寄存器以及Intel CPU的指令集。</p>
+<h2 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h2><p>在程序栈里面，除了我们跳转前的指令地址外，还需要保留哪些信息，才能在我们在函数调用完成之后，跳转回到指令地址的时候，继续执行完函数调用之后的指令呢？</p>
+<p>你可以想一想，查一查，然后在留言区留下你的思考和答案，也欢迎你把今天的内容分享给你的朋友，和他一起思考和进步。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#07-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%8F%91%E7%94%9Fstack-overflow%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">07 | 函数调用：为什么会发生stack overflow？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%A8%8B%E5%BA%8F%E6%A0%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">为什么我们需要程序栈？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AAstack-overflow%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">如何构造一个stack overflow？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E5%87%BD%E6%95%B0%E5%86%85%E8%81%94%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">如何利用函数内联进行性能优化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.4.</span> <span class="toc-text">总结延伸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.5.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text">课后思考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>18 | 每个工程师都应该了解的：API 的设计和实现 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="18 | 每个工程师都应该了解的：API 的设计和实现在一个初创公司成长的过程中，作为工程师的你也许常常会遇到下面这样的情况。 有一天，你看到一个段代码或一个算法，觉得这些代码不大经得起推敲；于是你用 git blame 命令去寻找代码的主人；结果发现，原来作者是如今早就不写代码的 CTO 或 VP。 之后，在一个偶然的机会里，你和他讲起这件事，他会自豪地告诉你：“哦，那时候我们必须在一天之内做出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18 | 每个工程师都应该了解的：API 的设计和实现">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4221906281.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="18 | 每个工程师都应该了解的：API 的设计和实现在一个初创公司成长的过程中，作为工程师的你也许常常会遇到下面这样的情况。 有一天，你看到一个段代码或一个算法，觉得这些代码不大经得起推敲；于是你用 git blame 命令去寻找代码的主人；结果发现，原来作者是如今早就不写代码的 CTO 或 VP。 之后，在一个偶然的机会里，你和他讲起这件事，他会自豪地告诉你：“哦，那时候我们必须在一天之内做出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:10:20.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.153Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4221906281"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '18 | 每个工程师都应该了解的：API 的设计和实现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">18 | 每个工程师都应该了解的：API 的设计和实现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:10:20.000Z" title="发表于 2023-12-13 18:10:20">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="18-每个工程师都应该了解的：API-的设计和实现"><a href="#18-每个工程师都应该了解的：API-的设计和实现" class="headerlink" title="18 | 每个工程师都应该了解的：API 的设计和实现"></a>18 | 每个工程师都应该了解的：API 的设计和实现</h1><p>在一个初创公司成长的过程中，作为工程师的你也许常常会遇到下面这样的情况。</p>
+<p>有一天，你看到一个段代码或一个算法，觉得这些代码不大经得起推敲；于是你用 git blame 命令去寻找代码的主人；结果发现，原来作者是如今早就不写代码的 CTO 或 VP。</p>
+<p>之后，在一个偶然的机会里，你和他讲起这件事，他会自豪地告诉你：“哦，那时候我们必须在一天之内做出这个产品特性。当时也就我一个程序员吧，一天的时间，这是当时能做出最好的方案了。” 说完，他便陷入了对美好时光的怀念里。</p>
+<p>你也可能听说过这样的故事。</p>
+<p>有一天你的 CTO 突发奇想，行云流水地提交了一段代码；大家一看很激动啊，很多人跑去观摩大神的代码，结果觉得问题多多，于是在PR（ Pull Request ）上提了一堆评论。</p>
+<p>CTO 一看有点傻眼了：“几十条评论……现在代码要这么写啊，好麻烦。”于是他就和一位工程师说：“你把评论里的问题解决下，合并（Merge）到主分支吧”， 然后就开开心心地该干嘛干嘛去了。</p>
+<p>这两个小故事是想说明一个道理：一个公司早期的代码会因为各种历史原因不是那么完美，但是，在特定的时间点，这就是当时最优的方案。</p>
+<p>随着公司的发展，成品功能不断叠加，代码架构不断优化，系统会经历一些从简到繁，然后再由繁到简的迭代过程，代码的改动也会相当巨大，也许有一天，你会几乎不认识自己当初的作品了。</p>
+<p>API 的设计和实现更是如此。在我们的工作中，很少能见到 API 的设计和实现从最开始就完美无瑕疵。一套成熟的 API，很多时候都是需要通过不断演化迭代出来的。今天我就和你聊聊 API 的设计和实现。</p>
+<p>首先第一点，我们先从 API 的签名（Signature）说起。</p>
+<h2 id="API-的签名（Signature）"><a href="#API-的签名（Signature）" class="headerlink" title="API 的签名（Signature）"></a>API 的签名（Signature）</h2><p>API 的签名，或者叫协议，就是指 API 请求（Request） 和响应（ Response ）支持哪些格式和什么样的参数。</p>
+<p>首先，做过 API 的人都知道，一个上线使用的 API 再想改它的签名，会因为兼容性的问题痛苦不堪。因此，API 签名的设计初期，一定要经过反复推敲，尽量避免上线后的改动。</p>
+<p>除了一些基本的 RESTful 原则外，签名的定义很多时候是对业务逻辑的抽象过程。一个系统的业务逻辑可能错综复杂，因此 API 设计的时候，就应该做到用最简洁直观的格式去支持所有的需求。</p>
+<p>这往往是 API 设计中相对立的两面，我们需要找到平衡。有时候为了支持某一个功能，似乎不得不增加一个很违反设计的接口；而有时候我们为了保证 API 绝对规范，又不得不放弃对某一些功能的直接支持，这些功能就只能通过迭代调用或客户端预处理的方式来实现。</p>
+<p>这种设计上的取舍，通常会列出所有可行的方案，从简单的设计到繁杂的设计；然后通过分析各种使用实例的频率和使用某种设计时的复杂度，从实际的系统需求入手，尽可能让常用的功能得到最简单直接的支持；还要一定程度上 “牺牲” 一些极少用到的功能，反复考虑系统使用场景，尽可能获得一个合理的折衷方案。</p>
+<h2 id="API-设计原则"><a href="#API-设计原则" class="headerlink" title="API 设计原则"></a>API 设计原则</h2><p>在这个折衷的过程中，我们需要始终保证满足这些基本原则。</p>
+<ol>
+<li><p>保证 API 100% RESTful。RESTful 的核心是： everything is a “resource”，所有的行为（ Action ）和接口，都应该是相应 Resource 上的增删改查（CRUD）操作。如果脱离这种设计模式，一定要再三考虑是不是必要？有没有其他方案可以避免破坏 RESTful 风格。</p>
+</li>
+<li><p>在请求和响应中，应该尽可能地保持参数的结构化。如果是一个哈希（hash），就传一个哈希（不要传 hash.to_string）。API 的序列化和反序列化机制（ Serialization &#x2F; Deserialization ）会将其自动序列化成字符串。多语言之间的 API，比如 Ruby、Java、C# 之间的调用，通常都是在序列化和反序列化机制中完成不同语言间类型的转换。</p>
+</li>
+<li><p>认证（Authentication ） 和安全（ Security ）的考虑。 安全的考虑始终应该放在首位，保证对特定的用户永远只暴露相关的接口和权限。可以使用证书和白名单，也可以通过用户登陆的证书（ Credentials ）生成的验证票据（ Token ），或者 Session &#x2F; Cookie 等方式来处理。此外，所有的 API 层的日志（ Logging ），要保证不记录任何敏感的信息。</p>
+</li>
+<li><p>API 本身应该是客户端无关的。也就是说，一个 API 对请求的处理尽可能避免对客户端是 移动端还是网页端的考虑。客户端相关的响应格式，不应该在 API 中实现。所有的客户端无关的计算和处理，要尽可能在服务器（ Server ） 端统一处理，以提高性能和一致性。</p>
+</li>
+<li><p>尽可能让 API 是幂等（Idempotent）的。关于幂等，可以参考我之前写的“聊聊幂等“一文。这里面有几个不同层次的含义。举例说明：同一个请求发一遍和发两遍是不是能够保证结果相同？请求失败后重发和第一次发是不是能保证相同结果？当然，要不要做成幂等，具体的实现还要看具体的应用场景。</p>
+</li>
+</ol>
+<h2 id="使用好-API-框架"><a href="#使用好-API-框架" class="headerlink" title="使用好 API 框架"></a>使用好 API 框架</h2><p>每个语言都已经提供了很好的 API 框架，你需要在设计前先多了解这些框架。如果你是个小团队，资源没那么充分，选一个合适的框架入手，适当调整，比从零开始造轮子要好得多。等公司长大了，由于各自业务逻辑的特殊需求，最终都会定制一套自己的 API 实现方案。</p>
+<p>评估一个 API 框架，可以从以下几个方面考虑：</p>
+<ol>
+<li>对访问权限的统一控制</li>
+<li>自动测试的支持</li>
+<li>对请求和响应的格式，以及序列化和反序列化（ Serialization 和 Deserialization ）的支持</li>
+<li>对日志和日志过滤（Logging 和 Logging Filtering ） 的支持</li>
+<li>对自动文档生成的支持</li>
+<li>对架构以及性能的影响</li>
+</ol>
+<h2 id="设计中的平衡"><a href="#设计中的平衡" class="headerlink" title="设计中的平衡"></a>设计中的平衡</h2><p>API 设计中存在很多对立的因素，比如简洁还是繁复，兼容性和效率，为现在设计还是为未来打算等等。根据自己的工作实践，我给出以下观点供你参考：</p>
+<p><strong>1 自由总是相对的</strong></p>
+<p>就好像在一个群体里，如果没有规则，完全行为自由，就会出现各种问题。小群体还好，而对于一个大群体，有人就会被别人的”自由“误伤。</p>
+<p>写软件也是一样。一个小的创业公司里，API 怎么设计，代码怎么写，几个人一协商，达成共识，并不需要那么多的条条框框，也照样行的通。</p>
+<p>公司越大，代码协作的人越多，个人的自由就会在设计和实现中产生问题，并导致最终的冲突。所以，很多大公司会制定一些 API 的最佳实践，强制要求设计和实现中必须按照某种模式来做。</p>
+<p>有些规则虽有道理，但也不是说不这样不行，所以在很多时候，因为这样的规则，我们的 API 设计中会有很多限制，这在表面上似乎给设计带来无谓的难度，但是仔细考量，从规范代码和设计一致性的角度而言，还是有很大好处的。</p>
+<p><strong>2 为当前设计，还是为未来设计？</strong></p>
+<p>API 设计里很常见的一个情况是：一个目前并没有人使用的系统功能，它的存在只是因为有人提出：“这种情况我们以后应该要支持。” 前文中我曾讲过，由于 API 上线后再改很困难，所以在设计初期就要尽可能地考虑未来的发展；但是这些 “可能” 的应用场景因为需求的细节和使用频度都不明确，最容易造成系统的过度设计（ Over-design ）。</p>
+<p>我记得有一个 API 设计的经典原则，概括一下就是：要考虑未来的场景，在设计时留有余地，但永远只实现当前产品真正要用的功能。</p>
+<p><strong>3 可维护性和效率（ Maintainability v.s. Efficiency）</strong></p>
+<p>设计和实现里常常会有一些封装和抽象的概念。某些特殊情况下，封装再分拆的过程可能会在一定程度上影响 API 的响应速度，或者代码质量的优化和性能的优化上有冲突。这个很难一概而论，具体的做法要看代码是否在关键路径上，或者这段代码是不是需要多人协作等等。最终的选择就要具体问题具体分析了。</p>
+<p><strong>4 是否采用AOP</strong></p>
+<p>AOP 本身就是一个极具争议的话题。概括说来，AOP 的理念是从主关注点中分离出横切关注点。</p>
+<p>分离关注点使得解决特定领域问题的代码从业务逻辑中独立出来，业务逻辑的代码中不再含有针对特定领域问题代码的调用，业务逻辑同特定领域问题的关系通过侧面来封装、维护，这样原本分散在在整个应用程序中的变动就可以很好地管理起来。</p>
+<p>因为 API 的设计和实现中有很多通用的关注点，如日志（ Logging）、解析（ Parsing）、监控（ Monitoring ）等等，所以 API 成了 AOP 一个很自然的应用领域。</p>
+<p>使用 AOP 的 API 设计继承了 AOP 的优势，如：代码的重用性，规整性，以及程序员可以集中关注于系统的核心业务逻辑等；但也会自然而然地继承了 AOP 固有问题，例如代码的剖析（Profiling）和调试（Debugging）困难增加，对程序员的相关经验有更多要求，相互协作的要求也增强了，比如改变某一个功能可能会影响到其它的功能，等等。</p>
+<p>是否选择使用 AOP，和你的需求场景，人员技能和设计复杂度息息相关，需要技术决策者根据具体环境做出判断。</p>
+<p>今天我从两个小故事入手，和你讨论了 API 的设计和原则，内容分为四个部分：API 的签名、API 的设计原则、使用现有编程语言的 API 框架、如何在 API 设计中取得平衡。</p>
+<p>API 设计是现代软件系统中不可或缺的一个环节，不同的系统需求和不同编程语言下，API 的设计都大不相同，但总有一些原则和注意事项是可以提取出来的，今天我和你讨论的就是这些通用的原则，希望对你的实际工作有帮助。</p>
+<p>最后，给你留一道思考题，API 的签名（Signature）设计是语言无关的，那你在设计中会引入更多的语言还是更少的语言去实现不同的 API 呢，优点和缺点各是什么？期待你的回复，我们一起进步。下期再见。</p>
+<p><a target="_blank" rel="noopener" href="https://time.geekbang.org/activity/sale-poster?utm_source=app&utm_medium=zhuyun-article&utm_campaign=zhuyun-saleposter&utm_content=zhuyun0416">戳此获取你的专属海报</a></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#18-%E6%AF%8F%E4%B8%AA%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%83%BD%E5%BA%94%E8%AF%A5%E4%BA%86%E8%A7%A3%E7%9A%84%EF%BC%9AAPI-%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">18 | 每个工程师都应该了解的：API 的设计和实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E7%9A%84%E7%AD%BE%E5%90%8D%EF%BC%88Signature%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">API 的签名（Signature）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">API 设计原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%A5%BD-API-%E6%A1%86%E6%9E%B6"><span class="toc-number">1.3.</span> <span class="toc-text">使用好 API 框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%B9%B3%E8%A1%A1"><span class="toc-number">1.4.</span> <span class="toc-text">设计中的平衡</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

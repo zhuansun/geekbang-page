@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？到今天为止，专栏已经过半了。过去的20多讲里，我给你讲的内容，很多都是围绕着怎么提升CPU的性能这个问题展开的。 我们先回顾一下 第4讲，不知道你是否还记得这个公式： 程序的CPU执行时间 &#x3D; 指令数 × CPI × Clock Cycle Time 这个公式里，有一个叫CPI的指标。我们知道，CPI的倒数，又叫作I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4245858070.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？到今天为止，专栏已经过半了。过去的20多讲里，我给你讲的内容，很多都是围绕着怎么提升CPU的性能这个问题展开的。 我们先回顾一下 第4讲，不知道你是否还记得这个公式： 程序的CPU执行时间 &#x3D; 指令数 × CPI × Clock Cycle Time 这个公式里，有一个叫CPI的指标。我们知道，CPI的倒数，又叫作I">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:18:52.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.265Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4245858070"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="26-Superscalar和VLIW：如何让CPU的吞吐率超过1？"><a href="#26-Superscalar和VLIW：如何让CPU的吞吐率超过1？" class="headerlink" title="26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？"></a>26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？</h1><p>到今天为止，专栏已经过半了。过去的20多讲里，我给你讲的内容，很多都是围绕着怎么提升CPU的性能这个问题展开的。</p>
+<p>我们先回顾一下 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/93246">第4讲</a>，不知道你是否还记得这个公式：</p>
+<p>程序的CPU执行时间 &#x3D; 指令数 × CPI × Clock Cycle Time</p>
+<p>这个公式里，有一个叫CPI的指标。我们知道，CPI的倒数，又叫作IPC（Instruction Per Clock），也就是一个时钟周期里面能够执行的指令数，代表了CPU的吞吐率。那么，这个指标，放在我们前面几节反复优化流水线架构的CPU里，能达到多少呢？</p>
+<p>答案是，最佳情况下，IPC也只能到1。因为无论做了哪些流水线层面的优化，即使做到了指令执行层面的乱序执行，CPU仍然只能在一个时钟周期里面，取一条指令。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/dd88d0dbf3a88b09d5e8fb6d9e3aea13.jpeg"></p>
+<p>这说明，无论指令后续能优化得多好，一个时钟周期也只能执行完这样一条指令，CPI只能是1。但是，我们现在用的Intel CPU或者ARM的CPU，一般的CPI都能做到2以上，这是怎么做到的呢？</p>
+<p>今天，我们就一起来看看，现代CPU都使用了什么“黑科技”。</p>
+<h2 id="多发射与超标量：同一时间执行的两条指令"><a href="#多发射与超标量：同一时间执行的两条指令" class="headerlink" title="多发射与超标量：同一时间执行的两条指令"></a>多发射与超标量：同一时间执行的两条指令</h2><p>之前讲CPU的硬件组成的时候，我们把所有算术和逻辑运算都抽象出来，变成了一个ALU这样的“黑盒子”。你应该还记得第13讲到第16讲，关于加法器、乘法器、乃至浮点数计算的部分，其实整数的计算和浮点数的计算过程差异还是不小的。实际上，整数和浮点数计算的电路，在CPU层面也是分开的。</p>
+<p>一直到80386，我们的CPU都是没有专门的浮点数计算的电路的。当时的浮点数计算，都是用软件进行模拟的。所以，在80386时代，Intel给386配了单独的387芯片，专门用来做浮点数运算。那个时候，你买386芯片的话，会有386sx和386dx这两种芯片可以选择。386dx就是带了387浮点数计算芯片的，而sx就是不带浮点数计算芯片的。</p>
+<p>其实，我们现在用的Intel CPU芯片也是一样的。虽然浮点数计算已经变成CPU里的一部分，但并不是所有计算功能都在一个ALU里面，真实的情况是，我们会有多个ALU。这也是为什么，在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/101436">第24讲</a> 讲乱序执行的时候，你会看到，其实指令的执行阶段，是由很多个功能单元（FU）并行（Parallel）进行的。</p>
+<p>不过，在指令乱序执行的过程中，我们的取指令（IF）和指令译码（ID）部分并不是并行进行的。</p>
+<p>既然指令的执行层面可以并行进行，为什么取指令和指令译码不行呢？如果想要实现并行，该怎么办呢？</p>
+<p>其实只要我们把取指令和指令译码，也一样通过增加硬件的方式，并行进行就好了。我们可以一次性从内存里面取出多条指令，然后分发给多个并行的指令译码器，进行译码，然后对应交给不同的功能单元去处理。这样，我们在一个时钟周期里，能够完成的指令就不只一条了。IPC也就能做到大于1了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/85f15ec667d09fd2d368822904029b32.jpeg"></p>
+<p>这种CPU设计，我们叫作 <strong>多发射</strong>（Mulitple Issue）和 <strong>超标量</strong>（Superscalar）。</p>
+<p>什么叫多发射呢？这个词听起来很抽象，其实它意思就是说，我们同一个时间，可能会同时把多条指令发射（Issue）到不同的译码器或者后续处理的流水线中去。</p>
+<p>在超标量的CPU里面，有很多条并行的流水线，而不是只有一条流水线。“超标量“这个词是说，本来我们在一个时钟周期里面，只能执行一个标量（Scalar）的运算。在多发射的情况下，我们就能够超越这个限制，同时进行多次计算。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/2e96fe0985a4ae3bd7a58c345def29d3.jpeg"></p>
+<p>你可以看我画的这个超标量设计的流水线示意图。仔细看，你应该能看到一个有意思的现象，每一个功能单元的流水线的长度是不同的。事实上，不同的功能单元的流水线长度本来就不一样。我们平时所说的14级流水线，指的通常是进行整数计算指令的流水线长度。如果是浮点数运算，实际的流水线长度则会更长一些。</p>
+<h2 id="Intel的失败之作：安腾的超长指令字设计"><a href="#Intel的失败之作：安腾的超长指令字设计" class="headerlink" title="Intel的失败之作：安腾的超长指令字设计"></a>Intel的失败之作：安腾的超长指令字设计</h2><p>无论是之前几讲里讲的乱序执行，还是现在更进一步的超标量技术，在实际的硬件层面，其实实施起来都挺麻烦的。这是因为，在乱序执行和超标量的体系里面，我们的CPU要解决依赖冲突的问题。这也就是前面几讲我们讲的冒险问题。</p>
+<p>CPU需要在指令执行之前，去判断指令之间是否有依赖关系。如果有对应的依赖关系，指令就不能分发到执行阶段。因为这样，上面我们所说的超标量CPU的多发射功能，又被称为 <strong>动态多发射处理器</strong>。这些对于依赖关系的检测，都会使得我们的CPU电路变得更加复杂。</p>
+<p>于是，计算机科学家和工程师们就又有了一个大胆的想法。我们能不能不把分析和解决依赖关系的事情，放在硬件里面，而是放到软件里面来干呢？</p>
+<p>如果你还记得的话，我在第4讲也讲过，要想优化CPU的执行时间，关键就是拆解这个公式：</p>
+<p>程序的CPU执行时间 &#x3D; 指令数 × CPI × Clock Cycle Time</p>
+<p>当时我们说过，这个公式里面，我们可以通过改进编译器来优化指令数这个指标。那接下来，我们就来看看一个非常大胆的CPU设计想法，叫作 <strong>超长指令字设计</strong>（Very Long Instruction Word，VLIW）。这个设计呢，不仅想让编译器来优化指令数，还想直接通过编译器，来优化CPI。</p>
+<p>围绕着这个设计的，是Intel一个著名的“史诗级”失败，也就是著名的IA-64架构的安腾（Itanium）处理器。只不过，这一次，责任不全在Intel，还要拉上可以称之为硅谷起源的另一家公司，也就是惠普。</p>
+<p>之所以称为“史诗”级失败，这个说法来源于惠普最早给这个架构取的名字， <strong>显式并发指令运算</strong>（Explicitly Parallel Instruction Computer），这个名字的缩写 <strong>EPIC</strong>，正好是“史诗”的意思。</p>
+<p>好巧不巧，安腾处理器和和我之前给你介绍过的Pentium 4一样，在市场上是一个失败的产品。在经历了12年之久的设计研发之后，安腾一代只卖出了几千套。而安腾二代，在从2002年开始反复挣扎了16年之后，最终在2018年被Intel宣告放弃，退出了市场。自此，世上再也没有这个“史诗”服务器了。</p>
+<p>那么，我们就来看看，这个超长指令字的安腾处理器是怎么回事儿。</p>
+<p>在乱序执行和超标量的CPU架构里，指令的前后依赖关系，是由CPU内部的硬件电路来检测的。而到了 <strong>超长指令字</strong> 的架构里面，这个工作交给了编译器这个软件。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/22b3f723ceee5950ac20a7b874dabbde.jpeg"></p>
+<p>我从专栏第5讲开始，就给你看了不少C代码到汇编代码和机器代码的对照。编译器在这个过程中，其实也能够知道前后数据的依赖。于是，我们可以让编译器把没有依赖关系的代码位置进行交换。然后，再把多条连续的指令打包成一个指令包。安腾的CPU就是把3条指令变成一个指令包。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f16a1ae443418caca0dc2fc3cec200f6.jpeg"></p>
+<p>CPU在运行的时候，不再是取一条指令，而是取出一个指令包。然后，译码解析整个指令包，解析出3条指令直接并行运行。可以看到，使用 <strong>超长指令字</strong> 架构的CPU，同样是采用流水线架构的。也就是说，一组（Group）指令，仍然要经历多个时钟周期。同样的，下一组指令并不是等上一组指令执行完成之后再执行，而是在上一组指令的指令译码阶段，就开始取指令了。</p>
+<p>值得注意的一点是，流水线停顿这件事情在 <strong>超长指令字</strong> 里面，很多时候也是由编译器来做的。除了停下整个处理器流水线， <strong>超长指令字</strong> 的CPU不能在某个时钟周期停顿一下，等待前面依赖的操作执行完成。编译器需要在适当的位置插入NOP操作，直接在编译出来的机器码里面，就把流水线停顿这个事情在软件层面就安排妥当。</p>
+<p>虽然安腾的设想很美好，Intel也曾经希望能够让安腾架构成为替代x86的新一代架构，但是最终安腾还是在前前后后折腾将近30年后失败了。2018年，Intel宣告安腾9500会在2021年停止供货。</p>
+<p>安腾失败的原因有很多，其中有一个重要的原因就是“向前兼容”。</p>
+<p>一方面，安腾处理器的指令集和x86是不同的。这就意味着，原来x86上的所有程序是没有办法在安腾上运行的，而需要通过编译器重新编译才行。</p>
+<p>另一方面，安腾处理器的VLIW架构决定了，如果安腾需要提升并行度，就需要增加一个指令包里包含的指令数量，比方说从3个变成6个。一旦这么做了，虽然同样是VLIW架构，同样指令集的安腾CPU，程序也需要重新编译。因为原来编译器判断的依赖关系是在3个指令以及由3个指令组成的指令包之间，现在要变成6个指令和6个指令组成的指令包。编译器需要重新编译，交换指令顺序以及NOP操作，才能满足条件。甚至，我们需要重新来写编译器，才能让程序在新的CPU上跑起来。</p>
+<p>于是，安腾就变成了一个既不容易向前兼容，又不容易向后兼容的CPU。那么，它的失败也就不足为奇了。</p>
+<p>可以看到，技术思路上的先进想法，在实际的业界应用上会遇到更多具体的实践考验。无论是指令集向前兼容性，还是对应CPU未来的扩展，在设计的时候，都需要更多地去考虑实践因素。</p>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>这一讲里，我和你一起向CPU的性能发起了一个新的挑战：让CPU的吞吐率，也就是IPC能够超过1。</p>
+<p>我先是为你介绍了超标量，也就是Superscalar这个方法。超标量可以让CPU不仅在指令执行阶段是并行的，在取指令和指令译码的时候，也是并行的。通过超标量技术，可以使得你所使用的CPU的IPC超过1。</p>
+<p>在Intel的x86的CPU里，从Pentium时代，第一次开始引入超标量技术，整个CPU的性能上了一个台阶。对应的技术，一直沿用到了现在。超标量技术和你之前看到的其他流水线技术一样，依赖于在硬件层面，能够检测到对应的指令的先后依赖关系，解决“冒险”问题。所以，它也使得CPU的电路变得更复杂了。</p>
+<p>因为这些复杂性，惠普和Intel又共同推出了著名的安腾处理器。通过在编译器层面，直接分析出指令的前后依赖关系。于是，硬件在代码编译之后，就可以直接拿到调换好先后顺序的指令。并且这些指令中，可以并行执行的部分，会打包在一起组成一个指令包。安腾处理器在取指令和指令译码的时候，拿到的不再是单个指令，而是这样一个指令包。并且在指令执行阶段，可以并行执行指令包里所有的指令。</p>
+<p>虽然看起来，VLIW在技术层面更具有颠覆性，不仅仅只是一个硬件层面的改造，而且利用了软件层面的编译器，来组合解决提升CPU指令吞吐率的问题。然而，最终VLIW却没有得到市场和业界的认可。</p>
+<p>惠普和Intel强强联合开发的安腾处理器命运多舛。从1989开始研发，直到2001年才发布了第一代安腾处理器。然而12年的开发过程后，第一代安腾处理器最终只卖出了几千套。而2002年发布的安腾2处理器，也没能拯救自己的命运。最终在2018年，Intel宣布安腾退出市场。自此之后，市面上再没有能够大规模商用的VLIW架构的处理器了。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>关于超标量和多发射的相关知识，你可以多看一看《计算机组成与设计：硬件&#x2F;软件接口》的4.10部分。其中，4.10.1和4.10.2的推测和静态多发射，其实就是今天我们讲的超长指令字（VLIW）的知识点。4.10.2的动态多发射，其实就是今天我们讲的超标量（Superscalar）的知识点。</p>
+<h2 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h2><p>在超长指令字架构的CPU里面，我之前给你讲到的各种应对流水线冒险的方案还是有效的么？操作数前推、乱序执行，分支预测能用在这样的体系架构下么？安腾CPU里面是否有用到这些相关策略呢？</p>
+<p>欢迎留言和我分享你的疑惑和见解。你也可以把今天的内容，分享给你的朋友，和他一起学习和进步。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#26-Superscalar%E5%92%8CVLIW%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9CPU%E7%9A%84%E5%90%9E%E5%90%90%E7%8E%87%E8%B6%85%E8%BF%871%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">26 | Superscalar和VLIW：如何让CPU的吞吐率超过1？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%8F%91%E5%B0%84%E4%B8%8E%E8%B6%85%E6%A0%87%E9%87%8F%EF%BC%9A%E5%90%8C%E4%B8%80%E6%97%B6%E9%97%B4%E6%89%A7%E8%A1%8C%E7%9A%84%E4%B8%A4%E6%9D%A1%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">多发射与超标量：同一时间执行的两条指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intel%E7%9A%84%E5%A4%B1%E8%B4%A5%E4%B9%8B%E4%BD%9C%EF%BC%9A%E5%AE%89%E8%85%BE%E7%9A%84%E8%B6%85%E9%95%BF%E6%8C%87%E4%BB%A4%E5%AD%97%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">Intel的失败之作：安腾的超长指令字设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.3.</span> <span class="toc-text">总结延伸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.4.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.5.</span> <span class="toc-text">课后思考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

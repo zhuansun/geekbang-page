@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？在小区里面，是不是经常有住户不自觉就霸占公共通道，如果你找他理论，他的话就像一个相声《楼道曲》说的一样：“公用公用，你用我用，大家都用，我为什么不能用？”。 除此之外，你租房子的时候，有没有碰到这样的情况：本来合租共享WiFi，一个人狂下小电影，从而你网都上不去，是不是很懊恼？ 在云平台上，也有这种现象，好在有一种流量控制的技术，可以实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3002981264.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？在小区里面，是不是经常有住户不自觉就霸占公共通道，如果你找他理论，他的话就像一个相声《楼道曲》说的一样：“公用公用，你用我用，大家都用，我为什么不能用？”。 除此之外，你租房子的时候，有没有碰到这样的情况：本来合租共享WiFi，一个人狂下小电影，从而你网都上不去，是不是很懊恼？ 在云平台上，也有这种现象，好在有一种流量控制的技术，可以实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:30:23.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.588Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3002981264"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="第27讲-云中的网络QoS：邻居疯狂下电影，我该怎么办？"><a href="#第27讲-云中的网络QoS：邻居疯狂下电影，我该怎么办？" class="headerlink" title="第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？"></a>第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？</h1><p>在小区里面，是不是经常有住户不自觉就霸占公共通道，如果你找他理论，他的话就像一个相声《楼道曲》说的一样：“公用公用，你用我用，大家都用，我为什么不能用？”。</p>
+<p>除此之外，你租房子的时候，有没有碰到这样的情况：本来合租共享WiFi，一个人狂下小电影，从而你网都上不去，是不是很懊恼？</p>
+<p>在云平台上，也有这种现象，好在有一种流量控制的技术，可以实现 <strong>QoS</strong>（Quality of Service），从而保障大多数用户的服务质量。</p>
+<p>对于控制一台机器的网络的QoS，分两个方向，一个是入方向，一个是出方向。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/747b0d537fd1705171ffcca3faf96211.jpg"></p>
+<p>其实我们能控制的只有出方向，通过Shaping，将出的流量控制成自己想要的模样。而进入的方向是无法控制的，只能通过Policy将包丢弃。</p>
+<h2 id="控制网络的QoS有哪些方式？"><a href="#控制网络的QoS有哪些方式？" class="headerlink" title="控制网络的QoS有哪些方式？"></a>控制网络的QoS有哪些方式？</h2><p>在Linux下，可以通过TC控制网络的QoS，主要就是通过队列的方式。</p>
+<h3 id="无类别排队规则"><a href="#无类别排队规则" class="headerlink" title="无类别排队规则"></a>无类别排队规则</h3><p>第一大类称为 <strong>无类别排队规则</strong>（Classless Queuing Disciplines）。还记得我们讲 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/7772">ip addr</a> 的时候讲过的 <strong>pfifo_fast</strong>，这是一种不把网络包分类的技术。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e391b4b79580a7d66afe4307ff3f6f6c.jpg"></p>
+<p>pfifo_fast分为三个先入先出的队列，称为三个Band。根据网络包里面TOS，看这个包到底应该进入哪个队列。TOS总共四位，每一位表示的意思不同，总共十六种类型。</p>
+<p>通过命令行tc qdisc show dev eth0，可以输出结果priomap，也是十六个数字。在0到2之间，和TOS的十六种类型对应起来，表示不同的TOS对应的不同的队列。其中Band 0优先级最高，发送完毕后才轮到Band 1发送，最后才是Band 2。</p>
+<p>另外一种无类别队列规则叫作 <strong>随机公平队列</strong>（Stochastic Fair Queuing）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b6ec2e4e20ddee7d6952b7fa4586ba99.jpg"></p>
+<p>会建立很多的FIFO的队列，TCP Session会计算hash值，通过hash值分配到某个队列。在队列的另一端，网络包会通过轮询策略从各个队列中取出发送。这样不会有一个Session占据所有的流量。</p>
+<p>当然如果两个Session的hash是一样的，会共享一个队列，也有可能互相影响。hash函数会经常改变，从而session不会总是相互影响。</p>
+<p>还有一种无类别队列规则称为 <strong>令牌桶规则</strong>（TBF，Token Bucket Filte）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/145c6f8593bf7603eae79246b9d6859b.jpg"></p>
+<p>所有的网络包排成队列进行发送，但不是到了队头就能发送，而是需要拿到令牌才能发送。</p>
+<p>令牌根据设定的速度生成，所以即便队列很长，也是按照一定的速度进行发送的。</p>
+<p>当没有包在队列中的时候，令牌还是以既定的速度生成，但是不是无限累积的，而是放满了桶为止。设置桶的大小为了避免下面的情况：当长时间没有网络包发送的时候，积累了大量的令牌，突然来了大量的网络包，每个都能得到令牌，造成瞬间流量大增。</p>
+<h3 id="基于类别的队列规则"><a href="#基于类别的队列规则" class="headerlink" title="基于类别的队列规则"></a>基于类别的队列规则</h3><p>另外一大类是 <strong>基于类别的队列规则</strong>（Classful Queuing Disciplines），其中典型的为 <strong>分层令牌桶规则</strong>（ <strong>HTB</strong>， Hierarchical Token Bucket）。</p>
+<p>HTB往往是一棵树，接下来我举个具体的例子，通过TC如何构建一棵HTB树来带你理解。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e6de57bf00f2fe8865ec3548bf8c67f5.jpg"></p>
+<p>使用TC可以为某个网卡eth0创建一个HTB的队列规则，需要付给它一个句柄为（1:）。</p>
+<p>这是整棵树的根节点，接下来会有分支。例如图中有三个分支，句柄分别为（:10）、（:11）、（:12）。最后的参数default 12，表示默认发送给1:12，也即发送给第三个分支。</p>
+<pre class="line-numbers language-none"><code class="language-none">tc qdisc add dev eth0 root handle 1: htb default 12
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>对于这个网卡，需要规定发送的速度。一般有两个速度可以配置，一个是 <strong>rate</strong>，表示一般情况下的速度；一个是 <strong>ceil</strong>，表示最高情况下的速度。对于根节点来讲，这两个速度是一样的，于是创建一个root class，速度为（rate&#x3D;100kbps，ceil&#x3D;100kbps）。</p>
+<pre class="line-numbers language-none"><code class="language-none">tc class add dev eth0 parent 1: classid 1:1 htb rate 100kbps ceil 100kbps
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来要创建分支，也即创建几个子class。每个子class统一有两个速度。三个分支分别为（rate&#x3D;30kbps，ceil&#x3D;100kbps）、（rate&#x3D;10kbps，ceil&#x3D;100kbps）、（rate&#x3D;60kbps，ceil&#x3D;100kbps）。</p>
+<pre class="line-numbers language-none"><code class="language-none">tc class add dev eth0 parent 1:1 classid 1:10 htb rate 30kbps ceil 100kbps
+tc class add dev eth0 parent 1:1 classid 1:11 htb rate 10kbps ceil 100kbps
+tc class add dev eth0 parent 1:1 classid 1:12 htb rate 60kbps ceil 100kbps
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>你会发现三个rate加起来，是整个网卡允许的最大速度。</p>
+<p>HTB有个很好的特性，同一个root class下的子类可以相互借流量，如果不直接在队列规则下面创建一个root class，而是直接创建三个class，它们之间是不能相互借流量的。借流量的策略，可以使得当前不使用这个分支的流量的时候，可以借给另一个分支，从而不浪费带宽，使带宽发挥最大的作用。</p>
+<p>最后，创建叶子队列规则，分别为 <strong>fifo</strong> 和 <strong>sfq</strong>。</p>
+<pre class="line-numbers language-none"><code class="language-none">tc qdisc add dev eth0 parent 1:10 handle 20: pfifo limit 5
+tc qdisc add dev eth0 parent 1:11 handle 30: pfifo limit 5
+tc qdisc add dev eth0 parent 1:12 handle 40: sfq perturb 10
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>基于这个队列规则，我们还可以通过TC设定发送规则：从1.2.3.4来的，发送给port 80的包，从第一个分支1:10走；其他从1.2.3.4发送来的包从第二个分支1:11走；其他的走默认分支。</p>
+<pre class="line-numbers language-none"><code class="language-none">tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip src 1.2.3.4 match ip dport 80 0xffff flowid 1:10
+tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip src 1.2.3.4 flowid 1:11
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="如何控制QoS？"><a href="#如何控制QoS？" class="headerlink" title="如何控制QoS？"></a>如何控制QoS？</h2><p>我们讲过，使用OpenvSwitch将云中的网卡连通在一起，那如何控制QoS呢？</p>
+<p>就像我们上面说的一样，OpenvSwitch支持两种：</p>
+<ul>
+<li>对于进入的流量，可以设置策略Ingress policy；</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">ovs-vsctl set Interface tap0 ingress_policing_rate&#x3D;100000
+ovs-vsctl set Interface tap0 ingress_policing_burst&#x3D;10000
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>对于发出的流量，可以设置QoS规则Egress shaping，支持HTB。</li>
+</ul>
+<p>我们构建一个拓扑图，来看看OpenvSwitch的QoS是如何工作的。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3b0de72bc937e108519a473067f607ee.jpg"></p>
+<p>首先，在port上可以创建QoS规则，一个QoS规则可以有多个队列Queue。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e65435bde65a255a085f10d02d2ff184.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">ovs-vsctl set port first_br qos&#x3D;@newqos -- --id&#x3D;@newqos create qos type&#x3D;linux-htb other-config:max-rate&#x3D;10000000 queues&#x3D;0&#x3D;@q0,1&#x3D;@q1,2&#x3D;@q2 -- --id&#x3D;@q0 create queue other-config:min-rate&#x3D;3000000 other-config:max-rate&#x3D;10000000 -- --id&#x3D;@q1 create queue other-config:min-rate&#x3D;1000000 other-config:max-rate&#x3D;10000000 -- --id&#x3D;@q2 create queue other-config:min-rate&#x3D;6000000 other-config:max-rate&#x3D;10000000
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上面的命令创建了一个QoS规则，对应三个Queue。min-rate就是上面的rate，max-rate就是上面的ceil。通过交换机的网络包，要通过流表规则，匹配后进入不同的队列。然后我们就可以添加流表规则Flow(first_br是br0上的port 5)。</p>
+<pre class="line-numbers language-none"><code class="language-none">ovs-ofctl add-flow br0 &quot;in_port&#x3D;6 nw_src&#x3D;192.168.100.100 actions&#x3D;enqueue:5:0&quot;
+ovs-ofctl add-flow br0 &quot;in_port&#x3D;7 nw_src&#x3D;192.168.100.101 actions&#x3D;enqueue:5:1&quot;
+ovs-ofctl add-flow br0 &quot;in_port&#x3D;8 nw_src&#x3D;192.168.100.102 actions&#x3D;enqueue:5:2&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来，我们单独测试从192.168.100.100，192.168.100.101，192.168.100.102到192.168.100.103的带宽的时候，每个都是能够打满带宽的。</p>
+<p>如果三个一起测试，一起狂发网络包，会发现是按照3:1:6的比例进行的，正是根据配置的队列的带宽比例分配的。</p>
+<p>如果192.168.100.100和192.168.100.101一起测试，发现带宽占用比例为3:1，但是占满了总的流量，也即没有发包的192.168.100.102有60%的带宽被借用了。</p>
+<p>如果192.168.100.100和192.168.100.102一起测试，发现带宽占用比例为1:2。如果192.168.100.101和192.168.100.102一起测试，发现带宽占用比例为1:6。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>好了，这一节就讲到这里了，我们来总结一下。</p>
+<ul>
+<li><p>云中的流量控制主要通过队列进行的，队列分为两大类：无类别队列规则和基于类别的队列规则。</p>
+</li>
+<li><p>在云中网络Openvswitch中，主要使用的是分层令牌桶规则（HTB），将总的带宽在一棵树上按照配置的比例进行分配，并且在一个分支不用的时候，可以借给另外的分支，从而增强带宽利用率。</p>
+</li>
+</ul>
+<p>最后，给你留两个思考题。</p>
+<ol>
+<li><p>这一节中提到，入口流量其实没有办法控制，出口流量是可以很好控制的，你能想出一个控制云中的虚拟机的入口流量的方式吗？</p>
+</li>
+<li><p>安全性和流量控制大概解决了，但是不同用户在物理网络的隔离还是没有解决，你知道怎么解决吗？</p>
+</li>
+</ol>
+<p>我们的专栏更新到第27讲，不知你掌握得如何？每节课后我留的思考题，你都有没有认真思考，并在留言区写下答案呢？我会从 <strong>已发布的文章中选出一批认真留言的同学</strong>，赠送学习奖励礼券和我整理的独家网络协议知识图谱。</p>
+<p>欢迎你留言和我讨论。趣谈网络协议，我们下期见！</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC27%E8%AE%B2-%E4%BA%91%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9CQoS%EF%BC%9A%E9%82%BB%E5%B1%85%E7%96%AF%E7%8B%82%E4%B8%8B%E7%94%B5%E5%BD%B1%EF%BC%8C%E6%88%91%E8%AF%A5%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%BD%91%E7%BB%9C%E7%9A%84QoS%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">控制网络的QoS有哪些方式？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%B1%BB%E5%88%AB%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">无类别排队规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%B1%BB%E5%88%AB%E7%9A%84%E9%98%9F%E5%88%97%E8%A7%84%E5%88%99"><span class="toc-number">1.1.2.</span> <span class="toc-text">基于类别的队列规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8E%A7%E5%88%B6QoS%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">如何控制QoS？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

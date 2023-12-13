@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>06 | 每个工程师都应该了解的：聊聊幂等 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="06 | 每个工程师都应该了解的：聊聊幂等什么是幂等（Idempotency）呢？简单来说，一个操作如果多次任意执行所产生的影响，均与一次执行的影响相同，我们就称其为幂等。 这样说来，似乎很容易理解；但要知道这样的定义，其实是一个语义范畴对行为结果的定义。 如何用语法和规则去确保行为能达到这个结果，往往需要很谨慎地设计和实现。实际系统中，幂等是一个极为重要的概念，无论是在大型互联网应用还是企业级架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06 | 每个工程师都应该了解的：聊聊幂等">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/830302136.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="06 | 每个工程师都应该了解的：聊聊幂等什么是幂等（Idempotency）呢？简单来说，一个操作如果多次任意执行所产生的影响，均与一次执行的影响相同，我们就称其为幂等。 这样说来，似乎很容易理解；但要知道这样的定义，其实是一个语义范畴对行为结果的定义。 如何用语法和规则去确保行为能达到这个结果，往往需要很谨慎地设计和实现。实际系统中，幂等是一个极为重要的概念，无论是在大型互联网应用还是企业级架">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:10:19.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.132Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/830302136"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '06 | 每个工程师都应该了解的：聊聊幂等',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">06 | 每个工程师都应该了解的：聊聊幂等</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:10:19.000Z" title="发表于 2023-12-13 18:10:19">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="06-每个工程师都应该了解的：聊聊幂等"><a href="#06-每个工程师都应该了解的：聊聊幂等" class="headerlink" title="06 | 每个工程师都应该了解的：聊聊幂等"></a>06 | 每个工程师都应该了解的：聊聊幂等</h1><p>什么是幂等（Idempotency）呢？简单来说，一个操作如果多次任意执行所产生的影响，均与一次执行的影响相同，我们就称其为幂等。</p>
+<p>这样说来，似乎很容易理解；但要知道这样的定义，其实是一个语义范畴对行为结果的定义。</p>
+<p>如何用语法和规则去确保行为能达到这个结果，往往需要很谨慎地设计和实现。实际系统中，幂等是一个极为重要的概念，无论是在大型互联网应用还是企业级架构中，都能见到 REST API 被越来越多地采用，而正确实现幂等，往往是 API 中最难的技术点之一。</p>
+<p><strong>先说说为什么重要，我来举一个简单易懂的例子。</strong></p>
+<p>比如，你要处理一次电商网站收款或者付款的交易。当你给微信支付发送这个付款请求后，一个顺利的场景是不会有任何错误发生的，微信支付收到你的付款请求，处理所有转账，然后返回一个 HTTP 200 消息表示交易完成。</p>
+<p>那如果发出请求后，有个请求超时，你再也没有收到关于这个请求是成功还是失败的回执，又该如何呢？</p>
+<p><strong>这里就有很多种可能的情况。</strong></p>
+<ol>
+<li>这个请求在到达微信支付端前就已经发生超时，微信支付从来没有收到这样的请求。</li>
+<li>这个请求到达微信支付端，但是支付交易失败，这时发生超时，微信支付收到这样的请求，但没有处理成功。</li>
+<li>这个请求到达微信支付端，并且支付交易成功，这时发生超时，微信支付收到这样的请求，处理成功，但是没有回执。</li>
+<li>这个请求到达微信支付端，并且支付交易成功，并且发回回执，然而因为网络原因回执丢失，客户端超时，微信支付收到这样的请求，处理成功，发出回执，但是客户没有收到。</li>
+</ol>
+<p>人们很直观的想法，也是现实中开发者最常见的做法就是：重新提交一次支付请求。但是这样做有一个潜在的问题：请求超时是上面的哪一种情况，会不会引发多次支付的可能性？</p>
+<p>这就涉及系统中的幂等是如何实现的了。</p>
+<p><strong>那么幂等又该如何实现呢？</strong></p>
+<p>首先来看一下幂等的定义：多次执行所产生的影响均与一次执行的影响相同。简言之，你需要一个去重的机制。这往往有很多不同的实现方法，但是有两个很关键的因素。</p>
+<p>第一个因素是幂等令牌（Idempotency Key）。客户端和服务器端通过什么方式来识别，这实际上是同一个请求或是同一个请求的多次尝试。这往往需要双方有一个既定的协议，比如账单号或者交易令牌，这种在同一个请求上具备唯一标识的元素，这种元素通常由客户端生成。</p>
+<p>第二个因素是确保唯一性（Uniqueness Guarantee）。服务器端用什么机制去确保同一个请求一定不会被处理两次，也就是微信支付如何确保，同一笔交易不会因为客户端发送两次请求就被处理多次。</p>
+<p>最常用的做法是利用数据库。比如把幂等令牌所在的数据库表的列作为唯一性索引。这样，当你试图存储两个含有同样令牌的请求时，必定有一个会报错。注意，简单的读检查并不一定成功，因为读与读之间会有竞争条件（Race Condition），因此还是有可能出错。</p>
+<p><strong>一个系统能正确处理和实现上面的两个要素，基本就达到了幂等的需求。那么，现实系统中常见的问题都出在哪里呢？</strong></p>
+<p><strong>一是幂等令牌什么时候产生，怎样产生。</strong> 这一点很重要。拿上面的例子来说，就算微信支付可以保证，每一个请求对应的支付交易一定只会被处理一次，但是这个请求的多次重复，一定要共有微信可以识别的某个标识。</p>
+<p>假如客户端对同一笔交易多次请求，产生的幂等令牌并不相同，那么无论你其余的地方多么完美，都不可能保证 “一个操作如果具有任意多次执行，所产生的影响均与一次执行的影响相同”。</p>
+<p><strong>二是令牌有没有被误删的可能。</strong> 这是上面问题的一个特殊情况。幂等令牌是由客户端生成的，那如果生成的令牌在被使用后（一次微信支付请求中使用了），不小心因为数据库回滚（DB Rollback） 等原因被删除了，那么客户端就不知道自己其实已经发过一次请求。这就有可能生成一个新的账单，并产生全新的令牌，而服务端对此则一无所知。</p>
+<p><strong>三是各种竞争条件。</strong> 我在前面讲过，用数据库的读检查来确保唯一性经常因为竞争而不生效，其实一个需要幂等的系统中，保证唯一性的各个环节和实现，都要考虑竞争条件（Race Condition）。</p>
+<p><strong>四是对请求重试的处理。</strong> 这大部分是服务器端要做的工作。一个常见的方法是：区分正在处理的请求、处理成功和处理失败的请求。这样当客户端重试的时候，根据情况或者直接返回，或者再次处理。这就好像之前提到的微信支付的例子，微信支付服务需要知道每一笔交易的处理情况，只有这样，当面对再次转账请求时，才能知道应该用什么方式去处理相应的请求。</p>
+<p><strong>五是一个系统中需要多层幂等。</strong> 这是什么意思呢？A 发送请求给 B，B 处理的一部分是要发送请求给另一个系统 C，C 在处理的过程中还可能需要发请求给另一个系统 D …… D 处理完了返回给 C，C 返回给 B，B 返回给 A。在这个链条中，如果 A、B、C、D 中任何一个系统没有正确实现幂等，也就是出现了 “幂等漏洞”，那么一次请求还是有可能被多次执行，产生区别于一次执行的影响。</p>
+<p>今天我和你讨论了架构设计中的幂等概念。我们聊了什么是幂等，幂等的应用场景，如何实现一个幂等功能，以及幂等系统中容易出现的问题。</p>
+<p>现在回到文章的开头，什么是幂等？一个操作如果任意多次执行所产生的影响均与一次执行的影响相同，我们就称为幂等。这是一个语义范畴上对行为结果的定义，只有当你把实现中所有的细节都做对了，你才能得到想要的效果。任何一个地方设计有漏洞，或是实现上有 Bug，系统都会出现这样或那样的问题。</p>
+<p><a target="_blank" rel="noopener" href="https://time.geekbang.org/activity/sale-poster?utm_source=app&utm_medium=zhuyun-article&utm_campaign=zhuyun-saleposter&utm_content=zhuyun0416">戳此获取你的专属海报</a></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#06-%E6%AF%8F%E4%B8%AA%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%83%BD%E5%BA%94%E8%AF%A5%E4%BA%86%E8%A7%A3%E7%9A%84%EF%BC%9A%E8%81%8A%E8%81%8A%E5%B9%82%E7%AD%89"><span class="toc-number">1.</span> <span class="toc-text">06 | 每个工程师都应该了解的：聊聊幂等</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

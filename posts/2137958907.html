@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>30 | GPU（上）：为什么玩游戏需要使用GPU？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="30 | GPU（上）：为什么玩游戏需要使用GPU？讲完了CPU，我带你一起来看一看计算机里的另外一个处理器，也就是被称之为GPU的图形处理器。过去几年里，因为深度学习的大发展，GPU一下子火起来了，似乎GPU成了一个专为深度学习而设计的处理器。那GPU的架构究竟是怎么回事儿呢？它最早是用来做什么而被设计出来的呢？ 想要理解GPU的设计，我们就要从GPU的老本行图形处理说起。因为图形处理才是GPU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30 | GPU（上）：为什么玩游戏需要使用GPU？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2137958907.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="30 | GPU（上）：为什么玩游戏需要使用GPU？讲完了CPU，我带你一起来看一看计算机里的另外一个处理器，也就是被称之为GPU的图形处理器。过去几年里，因为深度学习的大发展，GPU一下子火起来了，似乎GPU成了一个专为深度学习而设计的处理器。那GPU的架构究竟是怎么回事儿呢？它最早是用来做什么而被设计出来的呢？ 想要理解GPU的设计，我们就要从GPU的老本行图形处理说起。因为图形处理才是GPU">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:18:52.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.278Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2137958907"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '30 | GPU（上）：为什么玩游戏需要使用GPU？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">30 | GPU（上）：为什么玩游戏需要使用GPU？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="30-GPU（上）：为什么玩游戏需要使用GPU？"><a href="#30-GPU（上）：为什么玩游戏需要使用GPU？" class="headerlink" title="30 | GPU（上）：为什么玩游戏需要使用GPU？"></a>30 | GPU（上）：为什么玩游戏需要使用GPU？</h1><p>讲完了CPU，我带你一起来看一看计算机里的另外一个处理器，也就是被称之为GPU的图形处理器。过去几年里，因为深度学习的大发展，GPU一下子火起来了，似乎GPU成了一个专为深度学习而设计的处理器。那GPU的架构究竟是怎么回事儿呢？它最早是用来做什么而被设计出来的呢？</p>
+<p>想要理解GPU的设计，我们就要从GPU的老本行图形处理说起。因为图形处理才是GPU设计用来做的事情。只有了解了图形处理的流程，我们才能搞明白，为什么GPU要设计成现在这样；为什么在深度学习上，GPU比起CPU有那么大的优势。</p>
+<h2 id="GPU的历史进程"><a href="#GPU的历史进程" class="headerlink" title="GPU的历史进程"></a>GPU的历史进程</h2><p>GPU是随着我们开始在计算机里面需要渲染三维图形的出现，而发展起来的设备。图形渲染和设备的先驱，第一个要算是SGI（Silicon Graphics Inc.）这家公司。SGI的名字翻译成中文就是“硅谷图形公司”。这家公司从80年代起就开发了很多基于Unix操作系统的工作站。它的创始人Jim Clark是斯坦福的教授，也是图形学的专家。</p>
+<p>后来，他也是网景公司（Netscape）的创始人之一。而Netscape，就是那个曾经和IE大战300回合的浏览器公司，虽然最终败在微软的Windows免费捆绑IE的策略下，但是也留下了Firefox这个完全由开源基金会管理的浏览器。不过这个都是后话了。</p>
+<p>到了90年代中期，随着个人电脑的性能越来越好，PC游戏玩家们开始有了“3D显卡”的需求。那个时代之前的3D游戏，其实都是伪3D。比如，大神卡马克开发的著名 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wolfenstein_3D">Wolfenstein 3D</a>（德军总部3D），从不同视角看到的是8幅不同的贴图，实际上并不是通过图形学绘制渲染出来的多边形。</p>
+<p>这样的情况下，游戏玩家的视角旋转个10度，看到的画面并没有变化。但是如果转了45度，看到的画面就变成了另外一幅图片。而如果我们能实时渲染基于多边形的3D画面的话，那么任何一点点的视角变化，都会实时在画面里面体现出来，就好像你在真实世界里面看到的一样。</p>
+<p>而在90年代中期，随着硬件和技术的进步，我们终于可以在PC上用硬件直接实时渲染多边形了。“真3D”游戏开始登上历史舞台了。“古墓丽影”“最终幻想7”，这些游戏都是在那个时代诞生的。当时，很多国内的计算机爱好者梦寐以求的，是一块Voodoo FX的显卡。</p>
+<p>那为什么CPU的性能已经大幅度提升了，但是我们还需要单独的GPU呢？想要了解这个问题，我们先来看一看三维图像实际通过计算机渲染出来的流程。</p>
+<h2 id="图形渲染的流程"><a href="#图形渲染的流程" class="headerlink" title="图形渲染的流程"></a>图形渲染的流程</h2><p>现在我们电脑里面显示出来的3D的画面，其实是通过多边形组合出来的。你可以看看下面这张图，你在玩的各种游戏，里面的人物的脸，并不是那个相机或者摄像头拍出来的，而是通过 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Polygonal_modeling">多边形建模</a>（Polygon Modeling）创建出来的。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/0777aed6775051cfd83d0bb512de8722.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.ebalstudios.com/blog/polygon-modeling-basics">图片来源</a>3D游戏里的人脸，其实是用多边形建模创建出来的</p>
+<p>而实际这些人物在画面里面的移动、动作，乃至根据光线发生的变化，都是通过计算机根据图形学的各种计算，实时渲染出来的。</p>
+<p>这个对于图像进行实时渲染的过程，可以被分解成下面这样5个步骤：</p>
+<ol>
+<li>顶点处理（Vertex Processing）</li>
+<li>图元处理（Primitive Processing）</li>
+<li>栅格化（Rasterization）</li>
+<li>片段处理（Fragment Processing）</li>
+<li>像素操作（Pixel Operations）</li>
+</ol>
+<p>我们现在来一步一步看这5个步骤。</p>
+<h3 id="顶点处理"><a href="#顶点处理" class="headerlink" title="顶点处理"></a>顶点处理</h3><p>图形渲染的第一步是顶点处理。构成多边形建模的每一个多边形呢，都有多个顶点（Vertex）。这些顶点都有一个在三维空间里的坐标。但是我们的屏幕是二维的，所以在确定当前视角的时候，我们需要把这些顶点在三维空间里面的位置，转化到屏幕这个二维空间里面。这个转换的操作，就被叫作顶点处理。</p>
+<p>如果你稍微学过一点图形学的话，应该知道，这样的转化都是通过线性代数的计算来进行的。可以想见，我们的建模越精细，需要转换的顶点数量就越多，计算量就越大。 <strong>而且，这里面每一个顶点位置的转换，互相之间没有依赖，是可以并行独立计算的。</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/04c3da62c382e45b8f891cfa046169de.jpeg"></p>
+<p>顶点处理就是在进行线性变换</p>
+<h3 id="图元处理"><a href="#图元处理" class="headerlink" title="图元处理"></a>图元处理</h3><p>在顶点处理完成之后呢，我们需要开始进行第二步，也就是图元处理。图元处理，其实就是要把顶点处理完成之后的各个顶点连起来，变成多边形。其实转化后的顶点，仍然是在一个三维空间里，只是第三维的Z轴，是正对屏幕的“深度”。所以我们针对这些多边形，需要做一个操作，叫剔除和裁剪（Cull and Clip），也就是把不在屏幕里面，或者一部分不在屏幕里面的内容给去掉，减少接下来流程的工作量。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4a20559c43f93177d7a99081a0cd0e1d.jpeg"></p>
+<h3 id="栅格化"><a href="#栅格化" class="headerlink" title="栅格化"></a>栅格化</h3><p>在图元处理完成之后呢，渲染还远远没有完成。我们的屏幕分辨率是有限的。它一般是通过一个个“像素（Pixel）”来显示出内容的。所以，对于做完图元处理的多边形，我们要开始进行第三步操作。这个操作就是把它们转换成屏幕里面的一个个像素点。这个操作呢，就叫作栅格化。 <strong>这个栅格化操作，有一个特点和上面的顶点处理是一样的，就是每一个图元都可以并行独立地栅格化。</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e60a58e632fc05dbf96eaa5cbb7fb2a6.jpeg"></p>
+<h3 id="片段处理"><a href="#片段处理" class="headerlink" title="片段处理"></a>片段处理</h3><p>在栅格化变成了像素点之后，我们的图还是“黑白”的。我们还需要计算每一个像素的颜色、透明度等信息，给像素点上色。这步操作，就是片段处理。 <strong>这步操作，同样也可以每个片段并行、独立进行，和上面的顶点处理和栅格化一样。</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/490f298719e81beb1871c10566d56308.jpeg"></p>
+<h3 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h3><p>最后一步呢，我们就要把不同的多边形的像素点“混合（Blending）”到一起。可能前面的多边形可能是半透明的，那么前后的颜色就要混合在一起变成一个新的颜色；或者前面的多边形遮挡住了后面的多边形，那么我们只要显示前面多边形的颜色就好了。最终，输出到显示设备。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/312b8e4730ac04d36c99ee7c56bbba1f.jpg"></p>
+<p>经过这完整的5个步骤之后，我们就完成了从三维空间里的数据的渲染，变成屏幕上你可以看到的3D动画了。这样5个步骤的渲染流程呢，一般也被称之为 <strong>图形流水线</strong>（Graphic Pipeline）。这个名字和我们讲解CPU里面的流水线非常相似，都叫 <strong>Pipeline</strong>。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/bf6554dffdf501182ac45bc59d30648f.jpeg"></p>
+<h2 id="解放图形渲染的GPU"><a href="#解放图形渲染的GPU" class="headerlink" title="解放图形渲染的GPU"></a>解放图形渲染的GPU</h2><p>我们可以想一想，如果用CPU来进行这个渲染过程，需要花上多少资源呢？我们可以通过一些数据来做个粗略的估算。</p>
+<p>在上世纪90年代的时候，屏幕的分辨率还没有现在那么高。一般的CRT显示器也就是640×480的分辨率。这意味着屏幕上有30万个像素需要渲染。为了让我们的眼睛看到画面不晕眩，我们希望画面能有60帧。于是，每秒我们就要重新渲染60次这个画面。也就是说，每秒我们需要完成1800万次单个像素的渲染。从栅格化开始，每个像素有3个流水线步骤，即使每次步骤只有1个指令，那我们也需要5400万条指令，也就是54M条指令。</p>
+<p>90年代的CPU的性能是多少呢？93年出货的第一代Pentium处理器，主频是60MHz，后续逐步推出了66MHz、75MHz、100MHz的处理器。以这个性能来看，用CPU来渲染3D图形，基本上就要把CPU的性能用完了。因为实际的每一个渲染步骤可能不止一个指令，我们的CPU可能根本就跑不动这样的三维图形渲染。</p>
+<p>也就是在这个时候，Voodoo FX这样的图形加速卡登上了历史舞台。既然图形渲染的流程是固定的，那我们直接用硬件来处理这部分过程，不用CPU来计算是不是就好了？很显然，这样的硬件会比制造有同样计算性能的CPU要便宜得多。因为整个计算流程是完全固定的，不需要流水线停顿、乱序执行等等的各类导致CPU计算变得复杂的问题。我们也不需要有什么可编程能力，只要让硬件按照写好的逻辑进行运算就好了。</p>
+<p>那个时候，整个顶点处理的过程还是都由CPU进行的，不过后续所有到图元和像素级别的处理都是通过Voodoo FX或者TNT这样的显卡去处理的。也就是从这个时代开始，我们能玩上“真3D”的游戏了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/852288ae6b69b7e649c81f90c9fd7cdb.jpeg"></p>
+<p>不过，无论是Voodoo FX还是NVidia TNT。整个显卡的架构还不同于我们现代的显卡，也没有现代显卡去进行各种加速深度学习的能力。这个能力，要到NVidia提出Unified Shader Archicture才开始具备。这也是我们下一讲要讲的内容。</p>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>这一讲里，我带你了解了一个基于多边形建模的三维图形的渲染过程。这个渲染过程需要经过顶点处理、图元处理、栅格化、片段处理以及像素操作这5个步骤。这5个步骤把存储在内存里面的多边形数据变成了渲染在屏幕上的画面。因为里面的很多步骤，都需要渲染整个画面里面的每一个像素，所以其实计算量是很大的。我们的CPU这个时候，就有点跑不动了。</p>
+<p>于是，像3dfx和NVidia这样的厂商就推出了3D加速卡，用硬件来完成图元处理开始的渲染流程。这些加速卡和现代的显卡还不太一样，它们是用固定的处理流程来完成整个3D图形渲染的过程。不过，因为不用像CPU那样考虑计算和处理能力的通用性。我们就可以用比起CPU芯片更低的成本，更好地完成3D图形的渲染工作。而3D游戏的时代也是从这个时候开始的。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>想要了解GPU的设计构造，一个有效的办法就是回头去看看GPU的历史。我建议你好好读一读Wikipedia里面，关于GPU的条目。另外，也可以看看Techspot上的 <a target="_blank" rel="noopener" href="https://www.techspot.com/article/650-history-of-the-gpu/">The History of the Mordern Graphics Processor</a> 的系列文章。</p>
+<h2 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h2><p>我们上面说的图形加速卡，可以加速3D图形的渲染。那么，这些显卡对于传统的2D图形，也能够进行加速，让CPU摆脱这些负担吗？</p>
+<p>欢迎留言和我分享你的疑惑和见解。你也可以把今天的内容，分享给你的朋友，和他一起学习和进步。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#30-GPU%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%A9%E6%B8%B8%E6%88%8F%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8GPU%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">30 | GPU（上）：为什么玩游戏需要使用GPU？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GPU%E7%9A%84%E5%8E%86%E5%8F%B2%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">GPU的历史进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">图形渲染的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B6%E7%82%B9%E5%A4%84%E7%90%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">顶点处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%85%83%E5%A4%84%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">图元处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%A0%BC%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">栅格化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%87%E6%AE%B5%E5%A4%84%E7%90%86"><span class="toc-number">1.2.4.</span> <span class="toc-text">片段处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%83%8F%E7%B4%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.5.</span> <span class="toc-text">像素操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%94%BE%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%9A%84GPU"><span class="toc-number">1.3.</span> <span class="toc-text">解放图形渲染的GPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.4.</span> <span class="toc-text">总结延伸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.5.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text">课后思考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异支付是很多互联网行业和产品不可或缺的一部分，我在支付领域工作了很多年，也积累了不少经验和教训，今天，我就来谈一个看起来比较宏大的话题：“中美在支付技术和大环境下的差异”，与你共同探讨一下支付领域的技术和生态，以及支付在美国和中国的差异性。希望这篇文章可以对你有一定的启发。 概况当我们谈支付系统的时候，一般会这样定义：一笔钱从甲方转移到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2097950449.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异支付是很多互联网行业和产品不可或缺的一部分，我在支付领域工作了很多年，也积累了不少经验和教训，今天，我就来谈一个看起来比较宏大的话题：“中美在支付技术和大环境下的差异”，与你共同探讨一下支付领域的技术和生态，以及支付在美国和中国的差异性。希望这篇文章可以对你有一定的启发。 概况当我们谈支付系统的时候，一般会这样定义：一笔钱从甲方转移到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:10:20.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.159Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2097950449"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:10:20.000Z" title="发表于 2023-12-13 18:10:20">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="21-每个工程师都应该了解的：中美在支付技术和大环境下的差异"><a href="#21-每个工程师都应该了解的：中美在支付技术和大环境下的差异" class="headerlink" title="21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异"></a>21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异</h1><p>支付是很多互联网行业和产品不可或缺的一部分，我在支付领域工作了很多年，也积累了不少经验和教训，今天，我就来谈一个看起来比较宏大的话题：“中美在支付技术和大环境下的差异”，与你共同探讨一下支付领域的技术和生态，以及支付在美国和中国的差异性。希望这篇文章可以对你有一定的启发。</p>
+<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>当我们谈支付系统的时候，一般会这样定义：一笔钱从甲方转移到乙方。这笔转移可能是商家和顾客间的货款交易，也可能是个人对个人的转账，支付系统就是让这笔交易或转账发生的系统。这中间可能是银行间的转账，也可能是一个虚拟的闭环系统，比如在支付宝、PayPal、甚至比特币系统中的价值转移。</p>
+<p>用到支付的地方很多，比如传统的柜台、店家销售、电子商务和远程商务、账单支付、个人对个人（P2P）、公司对公司（B2B ）、薪资发放等，这些都要使用到不同的支付方式。</p>
+<p>支付可以由收款方发起，这时候我们需要知道付款方的账号信息，比如在商店里刷信用卡；也可以是由付款方发起，这时候我们需要知道收款方的账号信息，比如公司直接往员工银行账户转账。</p>
+<p>支付系统在处理各种交易中，不仅仅是处理交易，完成钱或者价值的转移；更多的时候，它也需要其他功能的支持，这包括了：制定法律法规、确定规范和程序、处理异常，还有收费的标准、一笔交易应该多久保证能完成等等。</p>
+<p>支付方式不同，这些标准也会有所不同。比如银行卡的交易手续费通常比较高，自动交换中心（Automated Clearing House - ACH）交易完成的时间比较长，等等。</p>
+<h2 id="市场占有"><a href="#市场占有" class="headerlink" title="市场占有"></a>市场占有</h2><p>在美国，传统的支付方式会包括：</p>
+<ol>
+<li>各种卡：如借记卡、信用卡、预付（Prepaid）卡</li>
+<li>自动交换中心 ACH：这是一种美国的转账系统，手续费远远低于各种卡交易。</li>
+<li>支票</li>
+<li>现金</li>
+<li>电汇（Wire Transfer）</li>
+<li>PayPal 等通过绑定银行卡的快速支付或手机支付</li>
+</ol>
+<p>除了现金支付无法追踪，以上的各种支付方式都可以进行数据追踪和分析。从近些年交易笔数来看，近一半是借记卡交易，约 20% 是信用卡交易，而余下的交易由 ACH 和支票平分秋色。从交易总额度来看，最多的为 ACH，占 60% 以上，其次为支票，约占 25%，而信用卡、借记卡因为手续费比较高，总交易额度只各占约 3%。</p>
+<p>这和中国的情况很不一样。早些年卡的交易笔数在中国要低得多。自从支付宝、微信支付成为主流支付方式后，绑定卡的闭环系统交易数量大大增加。</p>
+<p>不论是银行系统，还是各种新型的支付方式，都会希望尽可能地占有市场份额。这其中主要有三个原因。第一，交易手续费会是一个很大的盈利方式；第二，资金的流动会形成一个资金池，有用来投资的可能；第三，当在支付生态系统中占有了很大的用户份额后，就更有机会基于这个用户群体进行下一步的产品开发和推广，比如 Square、亚马逊支付（Amazon Pay）就属于这一类。</p>
+<p>在市场份额的竞争中，支付技术带来的处理速度、安全性、使用的便捷性、国际化等因素，都是竞争力的主要体现。</p>
+<h2 id="钱包系统"><a href="#钱包系统" class="headerlink" title="钱包系统"></a>钱包系统</h2><p>钱包系统是指用手机作为载体，通过一个 App 实现虚拟 “钱包”。比如 PayPal，支付宝、Square Cash、星巴克钱包、谷歌钱包、苹果支付 （Apple Pay） 等等。</p>
+<p>钱包实现中常用的技术有：</p>
+<ol>
+<li>近场通讯（ NFC）: 一种手机芯片，可以和支持射频识别（ RFID ）的终端进行交互。苹果支付、安卓支付 、三星智付（ Apple Pay、Android Pay、Samsung Pay ）都使用了 NFC 技术。</li>
+<li>射频识别（RFID）: 一种磁卡和终端交互的无线通信技术。</li>
+<li>二维码（ QR Code）: 一种用于存储数据的机器可读的标识。</li>
+<li>磁性感应（Magnetic Induction）: 模拟读词条时磁场的一种无线信号。</li>
+<li>安全芯片（ Secure Element）: 手机中可安全存储数据的一种芯片。</li>
+<li>主机卡模拟 （HCE）: 安卓手机中使用软件对智能卡进行虚拟而精确的呈现。</li>
+<li>客户验证数据（ Customer Verification Numbers CVNs)：关联用户银行卡的一个由磁卡或芯片卡产生，能被银行系统识别的一个数字。</li>
+<li>令牌化技术 （Tokenization ）：和卡号关联的一个标识，降低把卡号公开的风险。</li>
+</ol>
+<p>关于技术细节，由于时间的关系，我这里就不多做详述了。</p>
+<p>除了这种和银行卡绑定的钱包，还有一种是 App 内预充值的钱包，比如星巴克的钱包。这种钱包只能应用于某个特定的场景，星巴克钱包就只能在星巴克连锁店里使用。星巴克的这个移动应用实际上更像是一个数字礼品卡，可以关联银行卡方便充值和支付，每次到柜台通过扫描二维码发起交易，星巴克的 POS 交易中，有约 20% 的支付是通过这种手机钱包来完成的。</p>
+<h2 id="PayPal、支付宝和微信支付"><a href="#PayPal、支付宝和微信支付" class="headerlink" title="PayPal、支付宝和微信支付"></a>PayPal、支付宝和微信支付</h2><p><strong>1 PayPal</strong></p>
+<p>PayPal 也叫贝宝，主要在美国使用。用户使用电子邮件来唯一标识自己的身份，通过关联信用卡或借记卡在用户之间进行资金转移，在各大电商网站使用广泛。手续费用较高，支持多个币种间的转换。总的来说对付款方保护比较多，对收款方限制比较多。其主要产品和技术包括了 PayPal Pro 在内的十余种产品（ PayPal Payments Standard &#x2F; Advanced &#x2F; Pro、Payflow Gateway、Express Checkout、Invoicing、Send Money、Mass Payments、X.Commerce Platform等）。</p>
+<p>此外，基于 PayPal 的 Venmo，PayPal Here，PayPal Beacon，PayPal One Touch 等产品也有不少用户。PayPal 交易中，关联信用卡的交易约占 60%，借记卡约占 25%，使用钱包额度的约占 15%。</p>
+<p>PayPal 使用灵活，有很好的风控系统，支付确认速度比较快，并且还支持多币种和全球范围的大数据等，这些优点让它在美国支付领域逐渐积累了很大的用户群，用户的数目超过两亿。它最早主要是在易贝（eBay ）上使用，现在商家已达百万级，支付交易数上亿级，支付总额度达千亿级，虽然 PayPal主要应用在电商，但也发展了很多的新型市场。</p>
+<p>PayPal 的集成和开发也很成熟。比如 Braintree 就有 PayPal 的 SDK，为很多电商和共享经济平台使用 PayPal 提供了的支持。每天约有百万级以上的 API 调用。</p>
+<p>专家预计，在未来至少十年内，PayPal 仍然可以保持 15% 以上的增长率。</p>
+<p><strong>2 支付宝</strong></p>
+<p>支付宝是对应于 PayPal 在中国使用很广泛的支付方式。对于国内读者来说，很多人应该比我更了解支付宝，所以，在这里我只简单地做一下介绍。</p>
+<p>支付宝的创立最初是为了解决阿里巴巴淘宝网的交易安全问题，并首先使用了 “第三方担保交易模式”，让买卖双方的资金和商品都能获得系统性的保护。2004年，支付宝独立成为公司，逐渐向更多的合作方提供支付服务，并发展成为中国最大的第三方支付平台，目前隶属于蚂蚁金服。</p>
+<p>2016年，支付宝有了 4.5 亿实名用户，71% 的支付笔数发生在移动端。2016 天猫双 11 全球狂欢节总交易额超 1207 亿，其移动端占比82%，支付宝的支付峰值达到12万笔&#x2F;秒。这些都是极其庞大的支付数据。</p>
+<p>到了今天，支付宝已经发展成为以支付业务为核心的生态环境，形成了一个提供生活服务的平台。支付宝这么强大，是不是已经无敌于天下了呢？</p>
+<p>如果没有微信支付的话，支付宝确实可以独步江湖，只是“既生瑜，何生亮”，两大支付不得不平分秋色。下面我就来聊聊微信支付。</p>
+<p><strong>3 微信支付</strong></p>
+<p>微信最初是个即时通信工具，后来发展成一个庞大的社交平台，有了几亿的用户基数之后，做支付就变得势在必行。2014年，微信几乎是以必须进入的态势推出了支付功能。2015年春节，微信支付联合商家以“摇红包”的形式送出了5亿金额的现金红包，一举奠定了微信在支付领域的地位。</p>
+<p>微信依靠简洁安全的支付方式，庞大的日活用户，节制的商业态度，很快成为支付宝最大的竞争对手。2016年支付宝和微信的支付总额达 3 万亿美元，微信的支付总额达到了 1.2 万亿美元，基本上形成了两家独大的垄断地位。今年的数据还没出来，我估计微信支付会进一步缩小与支付宝的差距。</p>
+<p>支付宝和微信支付我个人都使用过，整体来说，这两款产品对海外用户的支持上远不如国内用户那么方便，希望未来能够更好地优化海外用户的支付体验。</p>
+<h2 id="Square的产品与技术"><a href="#Square的产品与技术" class="headerlink" title="Square的产品与技术"></a>Square的产品与技术</h2><p>Square 是杰克·多尔西（ Jack Dorsey ）和他的朋友在 2009 年共同创办的。</p>
+<p>Square 系列包括 Square Cash 在内的多项产品（ Square Register、Square Stand、Square Capital、Square Wallet（已停止）、Square Order（已停止）、Square Store、Square Capital、Caviar（订餐服务）等）。我在 2013-2015 年间作为软件工程师曾就职 Square，参与了包括 Square Wallet、Square Market、Square Store 等多个项目的工作。</p>
+<p>Square 在技术上有自己的风格，这包括了使用音频输出口接入磁卡和芯片卡的读卡器，生成方便快捷的电子账单，指纹签名等多种创新。</p>
+<p>Square 凭借扎实的支付技术和各种对中小商家交易费用的优化，非常受欢迎。EMV 卡新技术出来的时候，Square 也在第一时间研究了读卡器并对其加以支持，因此在移动读卡器领域一直属于领先地位。</p>
+<p>Square 读卡器是一种新型的移动端 POS 系统。用一个小小的硬件即插即用到手机或者平板的音频输出口上，就可以像传统收银台一样支持银行卡交易。这种模式在美国中小商家曾风行一时，但是在中国市场反馈并不好，比如类似产品拉卡拉。我想这其中的原因，大概是国内直接携带并使用信用卡的人群并不是支付主流。</p>
+<p>Square Cash 是一款个人对个人（ P2P ）或者个人对公司（ P2B ）的产品，通过每个用户或者商家定义自己的 “$Cashtags” 就可以轻松转账。因为在其技术实现中使用了一些技巧，所以它的手续费远远低于类似产品。</p>
+<p>Square Stand 是一个可以和 iPad 集成的读卡器，并有相关的配件如 Cash Drawer，Printer 等。Square 所有交易中，iPad 上占约 60%，因此 Square Stand 一直是其主流产品。它的设计特别精美，和苹果的风格很像，也很搭配，但是制作成本很高。Squre 为了推广这一款明星产品，长期以低于成本价的价格销售。不过只要后期交易手续费足够高，这个本钱还是可以赚回来的。</p>
+<p>虽然很多人认为 Square 是一家支付公司，但是其实杰克·多尔西一直把自己定位为一家贸易（Commerce）公司。Square 很注重数据和数据分析，风控系统也做得很好。</p>
+<h2 id="支付技术的发展趋势"><a href="#支付技术的发展趋势" class="headerlink" title="支付技术的发展趋势"></a>支付技术的发展趋势</h2><p>1 可穿戴设备的支付。</p>
+<p>随着软硬件技术的发展，开始出现可穿戴设备的支付方式。可穿戴支付使用的技术包括无线 BLE 及智能手机和 Beacons。比如微软智能手环 （Microsoft Band）、PayPal Pebble、苹果智能手表 （ Apple Watch）、谷歌眼镜 （Google Glass） 等，都可以一定程度上绑定手机完成支付。</p>
+<p>2 支付正变得越来越快。</p>
+<p>所有的支付方式不论在验证，交易处理，还是记账、收据等环节都在让交易更省时更方便。最明显的就是 ACH 速度更迭越来越快。</p>
+<p>3 虚拟货币的兴起。</p>
+<p>如比特币、数据区块链（ Block Chain ）记账法等。这些新型货币更多地用于一些货币不稳定的国家、跨国贸易和非法交易等。用于日常生活还会有多挑战，也会有很长的路要走。</p>
+<p>关于比特币，可以参考我早期的一篇文章进行阅读：</p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s/npIosR1C5dfBB5wAAOGxUQ">http://mp.weixin.qq.com/s/npIosR1C5dfBB5wAAOGxUQ</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>线上支付系统是一门巨大的生意，支付领域的战争正在全球如火如荼地展开，这个领域内的方方面面绝不是我一篇文章能写完的。</p>
+<p>今天，我主要是从一个支付从业者的角度，和你聊了支付领域的技术和生态，包括支付的概况、支付的市场，接下来我讲了讲钱包系统相关的技术点，举了 PayPal、支付宝和微信支付的例子，并简单介绍了 Square 的技术和产品介绍，最后简单展望了支付技术的发展趋势。</p>
+<p>在现代社会，几乎所有互联网相关的业务模式都和支付有关，支付已经成为很多产品本身的一部分。这篇文章会帮助你了解一些支付的技术和生态，希望对你有所帮助。如果你们在研发产品的过程中遇到了支付相关的问题，也可以在留言中反馈，我们一起讨论解决，下期再见。</p>
+<p><a target="_blank" rel="noopener" href="https://time.geekbang.org/activity/sale-poster?utm_source=app&utm_medium=zhuyun-article&utm_campaign=zhuyun-saleposter&utm_content=zhuyun0416">戳此获取你的专属海报</a></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#21-%E6%AF%8F%E4%B8%AA%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%83%BD%E5%BA%94%E8%AF%A5%E4%BA%86%E8%A7%A3%E7%9A%84%EF%BC%9A%E4%B8%AD%E7%BE%8E%E5%9C%A8%E6%94%AF%E4%BB%98%E6%8A%80%E6%9C%AF%E5%92%8C%E5%A4%A7%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="toc-number">1.</span> <span class="toc-text">21 | 每个工程师都应该了解的：中美在支付技术和大环境下的差异</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%86%B5"><span class="toc-number">1.1.</span> <span class="toc-text">概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%82%E5%9C%BA%E5%8D%A0%E6%9C%89"><span class="toc-number">1.2.</span> <span class="toc-text">市场占有</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%92%B1%E5%8C%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text">钱包系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PayPal%E3%80%81%E6%94%AF%E4%BB%98%E5%AE%9D%E5%92%8C%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98"><span class="toc-number">1.4.</span> <span class="toc-text">PayPal、支付宝和微信支付</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Square%E7%9A%84%E4%BA%A7%E5%93%81%E4%B8%8E%E6%8A%80%E6%9C%AF"><span class="toc-number">1.5.</span> <span class="toc-text">Square的产品与技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E4%BB%98%E6%8A%80%E6%9C%AF%E7%9A%84%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-number">1.6.</span> <span class="toc-text">支付技术的发展趋势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

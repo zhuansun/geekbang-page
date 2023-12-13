@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>32 | FPGA和ASIC：计算机体系结构的黄金时代 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="32 | FPGA和ASIC：计算机体系结构的黄金时代过去很长一段时间里，大家在讲到高科技、互联网、信息技术的时候，谈的其实都是“软件”。从1995年微软发布Windows 95开始，高科技似乎就等同于软件业和互联网。著名的风险投资基金Andreessen Horowitz的合伙人Marc Andreessen，在2011年发表了 一篇博客，声称“Software is Eating the Wo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="32 | FPGA和ASIC：计算机体系结构的黄金时代">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2002713066.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="32 | FPGA和ASIC：计算机体系结构的黄金时代过去很长一段时间里，大家在讲到高科技、互联网、信息技术的时候，谈的其实都是“软件”。从1995年微软发布Windows 95开始，高科技似乎就等同于软件业和互联网。著名的风险投资基金Andreessen Horowitz的合伙人Marc Andreessen，在2011年发表了 一篇博客，声称“Software is Eating the Wo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:18:51.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.284Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2002713066"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '32 | FPGA和ASIC：计算机体系结构的黄金时代',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">32 | FPGA和ASIC：计算机体系结构的黄金时代</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:18:51.000Z" title="发表于 2023-12-13 18:18:51">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="32-FPGA和ASIC：计算机体系结构的黄金时代"><a href="#32-FPGA和ASIC：计算机体系结构的黄金时代" class="headerlink" title="32 | FPGA和ASIC：计算机体系结构的黄金时代"></a>32 | FPGA和ASIC：计算机体系结构的黄金时代</h1><p>过去很长一段时间里，大家在讲到高科技、互联网、信息技术的时候，谈的其实都是“软件”。从1995年微软发布Windows 95开始，高科技似乎就等同于软件业和互联网。著名的风险投资基金Andreessen Horowitz的合伙人Marc Andreessen，在2011年发表了 <a target="_blank" rel="noopener" href="https://a16z.com/2011/08/20/why-software-is-eating-the-world/">一篇博客</a>，声称“Software is Eating the World”。Marc Andreessen，不仅是投资人，更是Netscape的创始人之一。他当时的搭档就是我们在前两讲提过的SGI创始人Jim Clark。</p>
+<p>的确，过去20年计算机工业界的中心都在软件上。似乎硬件对大家来说，慢慢变成了一个黑盒子。虽然必要，但却显得有点无关紧要。</p>
+<p>不过，在上世纪70～80年代，计算机的世界可不是这样的。那个时候，计算机工业届最激动人心的，是层出不穷的硬件。无论是Intel的8086，还是摩托罗拉的68000，这样用于个人电脑的CPU，还是直到今天大家还会提起的Macintosh，还有史上最畅销的计算机Commodore 64，都是在那个时代被创造出来的。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/325bfc1e0daa59c3451a6e5361dece3e.png"></p>
+<p>电视剧Halt and Catch Fire，灵感应该就是来自第一台笔记本电脑Compaq Portable的诞生</p>
+<p>不过，随着计算机主频提升越来越困难。这几年，计算机硬件又进入了一个新的、快速发展的时期。</p>
+<p>从树莓派基金会这样的非盈利组织开发35美元的单片机，到Google这样的巨头为了深度学习专门开发出来的TPU，新的硬件层出不穷，也无怪乎David Patterson老爷爷，去年在拿图灵奖之后专门发表 <a target="_blank" rel="noopener" href="https://eecs.berkeley.edu/turing-colloquium/schedule/patterson">讲话</a>，说计算机体系结构又进入了一个黄金时代。那今天我就带你一起来看看，FPGA和ASIC这两个最近比较时髦的硬件发展。</p>
+<h2 id="FPGA"><a href="#FPGA" class="headerlink" title="FPGA"></a>FPGA</h2><p>之前我们讲解CPU的硬件实现的时候说过，其实CPU其实就是一些简单的门电路像搭积木一样搭出来的。从最简单的门电路，搭建成半加器、全加器，然后再搭建成完整功能的ALU。这些电路里呢，有完成各种实际计算功能的组合逻辑电路，也有用来控制数据访问，创建出寄存器和内存的时序逻辑电路。如果你对这块儿内容印象不深，可以回顾一下第12讲到第14讲的内容，以及第17讲的内容。</p>
+<p>好了，那现在我问你一个问题，在我们现代CPU里面，有多少个晶体管这样的电路开关呢？这个答案说出来有点儿吓人。一个四核i7的Intel CPU，上面的晶体管数量差不多有20亿个。那接着问题就来了，我们要想设计一个CPU，就要想办法连接这20亿个晶体管。</p>
+<p>这已经够难了，后面还有更难的。就像我们写程序一样，连接晶体管不是一次就能完事儿了的。设计更简单一点儿的专用于特定功能的芯片，少不了要几个月。而设计一个CPU，往往要以“年”来计。在这个过程中，硬件工程师们要设计、验证各种各样的技术方案，可能会遇到各种各样的Bug。如果我们每次验证一个方案，都要单独设计生产一块芯片，那这个代价也太高了。</p>
+<p>我们有没有什么办法，不用单独制造一块专门的芯片来验证硬件设计呢？能不能设计一个硬件，通过不同的程序代码，来操作这个硬件之前的电路连线，通过“编程”让这个硬件变成我们设计的电路连线的芯片呢？</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/88becfbd1d82daad6d2bfebc92809f7a.png"></p>
+<p><a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Fpga_xilinx_spartan.jpg">图片来源</a>XILINX的FPGA芯片</p>
+<p>这个，就是我们接下来要说的FPGA，也就是 <strong>现场可编程门阵列</strong>（Field-Programmable Gate Array）。看到这个名字，你可能要说了，这里面每个单词单独我都认识，放到一起就不知道是什么意思了。</p>
+<p>没关系，我们就从FPGA里面的每一个字符，一个一个来看看它到底是什么意思。</p>
+<ul>
+<li>P代表Programmable，这个很容易理解。也就是说这是一个可以通过编程来控制的硬件。</li>
+<li>G代表Gate也很容易理解，它就代表芯片里面的门电路。我们能够去进行编程组合的就是这样一个一个门电路。</li>
+<li>A代表的Array，叫作阵列，说的是在一块FPGA上，密密麻麻列了大量Gate这样的门电路。</li>
+<li>最后一个F，不太容易理解。它其实是说，一块FPGA这样的板子，可以在“现场”多次进行编程。它不像PAL（Programmable Array Logic，可编程阵列逻辑）这样更古老的硬件设备，只能“编程”一次，把预先写好的程序一次性烧录到硬件里面，之后就不能再修改了。</li>
+</ul>
+<p>这么看来，其实“FPGA”这样的组合，基本上解决了我们前面说的想要设计硬件的问题。我们可以像软件一样对硬件编程，可以反复烧录，还有海量的门电路，可以组合实现复杂的芯片功能。</p>
+<p>不过，相信你和我一样好奇，我们究竟怎么对硬件进行编程呢？我们之前说过，CPU其实就是通过晶体管，来实现各种组合逻辑或者时序逻辑。那么，我们怎么去“编程”连接这些线路呢？</p>
+<p>FPGA的解决方案很精巧，我把它总结为这样三个步骤。</p>
+<p><strong>第一，用存储换功能实现组合逻辑。</strong> 在实现CPU的功能的时候，我们需要完成各种各样的电路逻辑。在FPGA里，这些基本的电路逻辑，不是采用布线连接的方式进行的，而是预先根据我们在软件里面设计的逻辑电路，算出对应的真值表，然后直接存到一个叫作LUT（Look-Up Table，查找表）的电路里面。这个LUT呢，其实就是一块存储空间，里面存储了“特定的输入信号下，对应输出0还是1”。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/da9a35820e7c1038c30ad54390888a1e.jpeg"></p>
+<p>如果还没理解，你可以想一下这个问题。假如现在我们要实现一个函数，这个函数需要返回斐波那契数列的第N项，并且限制这个N不会超过100。该怎么解决这个问题呢？</p>
+<p>斐波那契数列的通项公式是 f(N) &#x3D; f(N-1) + f(N-2) 。所以，我们的第一种办法，自然是写一个程序，从第1项开始算。但其实还有一种办法，就是我们预先用程序算好斐波那契数量前100项，然后把它预先放到一个数组里面。这个数组就像 [1, 1, 2, 3, 5…] 这样。当要计算第N项的时候呢，我们并不是去计算得到结果，而是直接查找这个数组里面的第N项。</p>
+<p>这里面的关键就在于，这个查表的办法，不只能够提供斐波那契数列。如果我们要有一个获得N的5次方的函数，一样可以先计算好，放在表里面进行查询。这个“查表”的方法，其实就是FPGA通过LUT来实现各种组合逻辑的办法。</p>
+<p><strong>第二，对于需要实现的时序逻辑电路，我们可以在FPGA里面直接放上D触发器，作为寄存器。</strong> 这个和CPU里的触发器没有什么本质不同。不过，我们会把很多个LUT的电路和寄存器组合在一起，变成一个叫作逻辑簇（Logic Cluster）的东西。在FPGA里，这样组合了多个LUT和寄存器的设备，也被叫做CLB（Configurable Logic Block，可配置逻辑块）。</p>
+<p>我们通过配置CLB实现的功能有点儿像我们前面讲过的全加器。它已经在最基础的门电路上做了组合，能够提供更复杂一点的功能。更复杂的芯片功能，我们不用再从门电路搭起，可以通过CLB组合搭建出来。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/325f24043bf68651063dd5b907ab3300.jpeg"></p>
+<p><strong>第三，FPGA是通过可编程逻辑布线，来连接各个不同的CLB，最终实现我们想要实现的芯片功能。</strong> 这个可编程逻辑布线，你可以把它当成我们的铁路网。整个铁路系统已经铺好了，但是整个铁路网里面，设计了很多个道岔。我们可以通过控制道岔，来确定不同的列车线路。在可编程逻辑布线里面，“编程”在做的，就是拨动像道岔一样的各个电路开关，最终实现不同CLB之间的连接，完成我们想要的芯片功能。</p>
+<p>于是，通过LUT和寄存器，我们能够组合出很多CLB，而通过连接不同的CLB，最终有了我们想要的芯片功能。最关键的是，这个组合过程是可以“编程”控制的。而且这个编程出来的软件，还可以后续改写，重新写入到硬件里。让同一个硬件实现不同的芯片功能。从这个角度来说，FPGA也是“软件吞噬世界”的一个很好的例子。</p>
+<h2 id="ASIC"><a href="#ASIC" class="headerlink" title="ASIC"></a>ASIC</h2><p>除了CPU、GPU，以及刚刚的FPGA，我们其实还需要用到很多其他芯片。比如，现在手机里就有专门用在摄像头里的芯片；录音笔里会有专门处理音频的芯片。尽管一个CPU能够处理好手机拍照的功能，也能处理好录音的功能，但是我们直接在手机或者录音笔里塞上一个Intel CPU，显然比较浪费。</p>
+<p>于是，我们就考虑为这些有专门用途的场景，单独设计一个芯片。这些专门设计的芯片呢，我们称之为 <strong>ASIC</strong>（Application-Specific Integrated Circuit），也就是 <strong>专用集成电路</strong>。事实上，过去几年，ASIC发展得特别快。因为ASIC是针对专门用途设计的，所以它的电路更精简，单片的制造成本也比CPU更低。而且，因为电路精简，所以通常能耗要比用来做通用计算的CPU更低。而我们上一讲所说的早期的图形加速卡，其实就可以看作是一种ASIC。</p>
+<p>因为ASIC的生产制造成本，以及能耗上的优势，过去几年里，有不少公司设计和开发ASIC用来“挖矿”。这个“挖矿”，说的其实就是设计专门的数值计算芯片，用来“挖”比特币、ETH这样的数字货币。</p>
+<p>那么，我们能不能用刚才说的FPGA来做ASIC的事情呢？当然是可以的。我们对FPGA进行“编程”，其实就是把FPGA的电路变成了一个ASIC。这样的芯片，往往在成本和功耗上优于需要做通用计算的CPU和GPU。</p>
+<p>那你可能又要问了，那为什么我们干脆不要用ASIC了，全都用FPGA不就好了么？你要知道，其实FPGA一样有缺点，那就是它的硬件上有点儿“浪费”。这个很容易理解，我一说你就明白了。</p>
+<p>每一个LUT电路，其实都是一个小小的“浪费”。一个LUT电路设计出来之后，既可以实现与门，又可以实现或门，自然用到的晶体管数量，比单纯连死的与门或者或门的要多得多。同时，因为用的晶体管多，它的能耗也比单纯连死的电路要大，单片FPGA的生产制造的成本也比ASIC要高不少。</p>
+<p>当然，有缺点就有优点，FPGA的优点在于，它没有硬件研发成本。ASIC的电路设计，需要仿真、验证，还需要经过流片（Tape out），变成一个印刷的电路版，最终变成芯片。这整个从研发到上市的过程，最低花费也要几万美元，高的话，会在几千万乃至数亿美元。更何况，整个设计还有失败的可能。所以，如果我们设计的专用芯片，只是要制造几千片，那买几千片现成的FPGA，可能远比花上几百万美元，来设计、制造ASIC要经济得多。</p>
+<p>实际上，到底使用ASIC这样的专用芯片，还是采用FPGA这样可编程的通用硬件，核心的决策因素还是成本。不过这个成本，不只是单个芯片的生产制造成本，还要考虑 <strong>总体拥有成本</strong>（Total Cost of Ownership），也就是说，除了生产成本之外，我们要把研发成本也算进去。如果我们只制造了一片芯片，那么成本就是“这枚芯片的成本+为了这枚芯片建的生产线的成本+芯片的研发成本”，而不只是“芯片的原材料沙子的成本+生产的电费”。</p>
+<p>单个ASIC的生产制造成本比FPGA低，ASIC的能耗也比能实现同样功能的FPGA要低。能耗低，意味着长时间运行这些芯片，所用的电力成本也更低。</p>
+<p>但是，ASIC有一笔很高的NRE（Non-Recuring Engineering Cost，一次性工程费用）成本。这个成本，就是ASIC实际“研发”的成本。只有需要大量生产ASIC芯片的时候，我们才能摊薄这份研发成本。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4cbada39aeedefd718eca8c329797834.jpeg"></p>
+<p>其实，在我们的日常软件开发过程中，也需要做同样的决策。很多我们需要的功能，可能在市面上已经有开源的软件可以实现。我们可以在开源的软件之上做配置或者开发插件，也可以选择自己从头开始写代码。</p>
+<p>在开源软件或者是买来的商业软件上启动，往往能很快让产品上线。如果从头开始写代码，往往会有一笔不地的NRE成本，也就是研发成本。但是通常我们自己写的代码，能够100%贴近我们的业务需求，后续随着业务需求的改造成本会更低。如果要大规模部署很多服务器的话，服务器的成本会更低。学会从TCO和NRE的成本去衡量做决策，也是每一个架构师的必修课。</p>
+<h2 id="总结延伸"><a href="#总结延伸" class="headerlink" title="总结延伸"></a>总结延伸</h2><p>好了，这一讲里，我为你介绍了FPGA和ASIC这两种近年来非常时髦的芯片。</p>
+<p>FPGA本质上是一个可以通过编程，来控制硬件电路的芯片。我们通过用LUT这样的存储设备，来代替需要的硬连线的电路，有了可编程的逻辑门，然后把很多LUT和寄存器放在一起，变成一个更复杂的逻辑电路，也就是CLB，然后通过控制可编程布线中的很多开关，最终设计出属于我们自己的芯片功能。FPGA，常常被我们用来进行芯片的设计和验证工作，也可以直接拿来当成专用的芯片，替换掉CPU或者GPU，以节约成本。</p>
+<p>相比FPGA，ASIC在“专用”上更进一步。它是针对特定的使用场景设计出来的芯片，比如，摄像头、音频、“挖矿”或者深度学习。虽然ASIC的研发成本高昂，但是生产制造成本和能耗都很低。所以，对于有大量需求的专用芯片，用ASIC是很划得来的。而在FPGA和ASIC之间进行取舍，就要看两者的整体拥有成本哪一个更低了。</p>
+<p>专用芯片的故事我们还没有讲完，下一讲，我们来看看Google开发的TPU，这个近两年最知名的ASIC芯片的故事。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>既然用了David Patterson老爷爷的“黄金时代”作为这一讲的标题，那么他的这篇讲话不可不读。我在文稿里留下了对应的 <a target="_blank" rel="noopener" href="https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext">文章链接</a>，你也可以在网络上看对应的 <a target="_blank" rel="noopener" href="https://eecs.berkeley.edu/turing-colloquium/schedule/patterson">讲话视频和PPT。</a></p>
+<h2 id="课后思考"><a href="#课后思考" class="headerlink" title="课后思考"></a>课后思考</h2><p>最后，给你留一道思考题。除了我今天讲到的FPGA、ASIC之外，你最近关注到什么新的、有意思的硬件呢？</p>
+<p>欢迎在留言区分享出来。让我们不只了解计算机“软件”，也能够看到更广阔的“硬件”世界。同时，如果你觉得今天的内容很有收获，你也可以把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#32-FPGA%E5%92%8CASIC%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E9%BB%84%E9%87%91%E6%97%B6%E4%BB%A3"><span class="toc-number">1.</span> <span class="toc-text">32 | FPGA和ASIC：计算机体系结构的黄金时代</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FPGA"><span class="toc-number">1.1.</span> <span class="toc-text">FPGA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ASIC"><span class="toc-number">1.2.</span> <span class="toc-text">ASIC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BB%B6%E4%BC%B8"><span class="toc-number">1.3.</span> <span class="toc-text">总结延伸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.4.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.5.</span> <span class="toc-text">课后思考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

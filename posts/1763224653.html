@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>45 | 代码评审：寄望与哀伤 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="45 | 代码评审：寄望与哀伤我们都知道代码评审（Code Review）很有用、很重要，但现实中我所经历的和看到的团队，很少有能把代码评审落地得很好，并发挥出其应有作用的。这个问题困扰我已久。 感性认识代码评审的作用，有一定经验的程序员们想必都会有感性认识。 它是很多软件工程理论和方法学中的重要一环，对于提升代码质量和找出一些潜在隐患很有帮助，如果你有一些正式的代码评审经历过程，想必也能感性认知">
+<meta property="og:type" content="article">
+<meta property="og:title" content="45 | 代码评审：寄望与哀伤">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1763224653.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="45 | 代码评审：寄望与哀伤我们都知道代码评审（Code Review）很有用、很重要，但现实中我所经历的和看到的团队，很少有能把代码评审落地得很好，并发挥出其应有作用的。这个问题困扰我已久。 感性认识代码评审的作用，有一定经验的程序员们想必都会有感性认识。 它是很多软件工程理论和方法学中的重要一环，对于提升代码质量和找出一些潜在隐患很有帮助，如果你有一些正式的代码评审经历过程，想必也能感性认知">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-13T18:36:21.000Z">
+<meta property="article:modified_time" content="2023-12-13T10:43:15.493Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1763224653"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '45 | 代码评审：寄望与哀伤',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-13 10:43:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">804</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">45 | 代码评审：寄望与哀伤</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="45-代码评审：寄望与哀伤"><a href="#45-代码评审：寄望与哀伤" class="headerlink" title="45 | 代码评审：寄望与哀伤"></a>45 | 代码评审：寄望与哀伤</h1><p>我们都知道代码评审（Code Review）很有用、很重要，但现实中我所经历的和看到的团队，很少有能把代码评审落地得很好，并发挥出其应有作用的。这个问题困扰我已久。</p>
+<h2 id="感性认识"><a href="#感性认识" class="headerlink" title="感性认识"></a>感性认识</h2><p>代码评审的作用，有一定经验的程序员们想必都会有感性认识。</p>
+<p>它是很多软件工程理论和方法学中的重要一环，对于提升代码质量和找出一些潜在隐患很有帮助，如果你有一些正式的代码评审经历过程，想必也能感性认知到其正面作用。但在我过去工作的这些年里，经历了几家公司，数个不同的团队，却几乎没有哪一个会把代码评审作为必要的一环去执行的。</p>
+<p>过去，我们总是在线上出现一些奇怪的疑难问题后，一群相关程序员才围坐在一起，打开相关代码来逐行分析，根据线上现场的“尸检”来做事后分析和推导。这样的事后代码分析实际上根本不是代码评审，也完全违背了代码评审的初衷。</p>
+<p><strong>代码评审的初衷是提高代码质量，在代码进入生产环境前经过同行评审来发现缺陷，降低损失概率</strong>。这一点程序员都好理解，提前的代码评审就像雷达扫描我们重点关注的代码领地，以期发现或明显或隐藏的危险因素。</p>
+<p>漫画《火影忍者》里有一种忍术技能：白眼，这种技能有近 360° 的观察范围。程序员在写程序时力求思考全面，不留死角或盲点，但实际死角或盲点总是存在的。随着我们经历和经验的成长，思考和认识得越发全面（越发接近 360°），拥有了近乎 “白眼” 的能力，但即使是像 “白眼” 一样，也依然会存在盲点。</p>
+<p>正如世界上没有两片完全一样的树叶，也许也不会有两个认知视角完全重叠的人，这样相互进行代码评审也就弥补了个人单一视角和认知思考的盲点问题。除此之外，代码评审还有一个社会性功用，如果你在编程，而且知道一定会有同事将检查你的代码，那么你编程的姿势和心态就会完全不同。这之间的微妙差异正是在于会不会有人将对你的代码做出反馈与评价。</p>
+<p>代码评审的编程实践正是基于这样的感性认知，影响你的编码心理，并试图通过群体视角来找出个体认知盲点区域的隐患或 Bug，但到底这样的做法能降低多少出现 Bug 的概率呢？</p>
+<h2 id="理性分析"><a href="#理性分析" class="headerlink" title="理性分析"></a>理性分析</h2><p>有人对代码评审的作用进行了更理性且量化的分析，结论如下（来自维基百科）：</p>
+<blockquote>
+<p>卡珀斯·琼斯（Capers Jones）分析了超过 12,000 个软件开发项目，其中使用正式代码审查的项目，发现潜在缺陷率约在 60%～65% 之间；若是非正式的代码审查，发现潜在缺陷率不到 50%；而大部分的测试，发现的潜在缺陷率会在 30% 左右。</p>
+</blockquote>
+<blockquote>
+<p>一般的代码审查速度约是一小时 150 行，对于一些关键的软件，一小时数百行代码的审查速度太快，可能无法找到程序中的问题。对于产品生命周期很长的软件公司而言，代码审查是很有效的工具。</p>
+</blockquote>
+<p>从如上的实验分析结论来看，代码评审对于发现潜在缺陷很有用，相比测试能发现的缺陷率高一倍，但也需要投入巨大的时间成本 —— 一小时审查 150 行代码，再快就不利于发现潜在缺陷了，而且更适用于长生命周期的产品。</p>
+<p>所以，下面这个现象就容易理解了。我发现在同一家公司做代码评审较多的都是研发通用底层技术产品或中间件的团队，而做业务开发的团队则较少做代码评审。两者对比，底层技术产品或中间件的需求较稳定，且生命周期长；而业务项目，特别是尝试性的创新业务，需求不稳定，时间要求紧迫，并且其生命周期还可能是昙花一现。</p>
+<h2 id="多种困境"><a href="#多种困境" class="headerlink" title="多种困境"></a>多种困境</h2><p>从感性和理性两个角度认知和分析了代码评审的好处，但其适用的场景和花费的成本代价也需要去平衡。除了这点，如果把代码评审作为一个必要环节引入到研发流程中，也许还有一些关于如何实施代码评审的困境。</p>
+<p><strong>困境一</strong>，项目期限 Deadline 已定，时间紧迫，天天加班忙成狗了，谁还愿意搞代码评审？这是一个最常见的客观阻碍因素，因为 Deadline 很多时候都不是我们自己能确定和改变的。</p>
+<p><strong>困境二</strong>，即使强制推行下去，如何保障其效果？团队出于应付，每次走个过场，那么也就失去了评审的初衷和意义。</p>
+<p><strong>困境三</strong>，团队人员结构搭配不合理，新人没经验的多，有经验的少。新人交叉评审可能效果不好，而老是安排经验多的少数人帮助 Review 多数新人的代码，新人或有收获，但对高级或资深程序员又有多大裨益？一个好的规则或制度，总是需要既符合多方参与者的个体利益又能满足组织或团队的共同利益，这样的规则或制度才能更顺畅、有效地实施和运转。</p>
+<p><strong>困境四</strong>，有人就是不喜欢别人 Review 他的代码，他会感觉是在找茬。比如，团队中存在一些自信超强大的程序员，觉得自己写的代码绝对没问题，不需要别人来给他Review。</p>
+<p>以上种种，仅仅是我过去经历的一些执行代码评审时面临的困境与障碍，我们需要找到一条路径来绕过或破除这样的障碍与困境。</p>
+<h2 id="参考路径"><a href="#参考路径" class="headerlink" title="参考路径"></a>参考路径</h2><p>在国内，我并没有看到或听闻哪家把代码评审作为一项研发制度或规则强制要求，并落地得很好的公司。</p>
+<p>而对于一些硅谷的互联网公司，倒是听闻过一些关于代码评审的优秀实践。比如，在一篇介绍 Google 代码评审实践的文章中说道：在 Google，任何产品，任何工程的代码，在被进行严格或者明确的代码评审之前，是不允许提交的。这一点，Google 是通过工具自动就控制了未经评审的代码就没机会进入代码库。</p>
+<p>Google 以一种强硬的姿态来制定了关于代码评审的规则，规则适用范围是全公司，对任何人都不例外。即使面对团队中超自信且强大的程序员也无例外，要么遵守规则，要么离开组织。这一点从 C 语言和 Unix 的发明者、图灵奖得主——肯·汤普森（Ken Thompson）在 Google 的趣事中可以一窥其规则的强硬性，作为 C 语言发明者之一的他因为没有参加 Google 的编程语言能力测试所以无法在 Google 提交 C 代码。</p>
+<p>所以，像 Google 这样的公司对于代码评审属于高度认可且有公司制度和规则的强硬支持，再辅助自动检测和控制工具的严格执行，一举就破解了以上四类困境。但要实践类似 Google 这样严格的代码评审制度和规则，似乎对于大部分公司而言都有不小的挑战，这需要公司制度、团队文化和技术工具三方面都能支持到位，而且还要让各方对实施此项制度的收益和代价取得一致认可，岂是易事？</p>
+<p>所以，现实的情况是，大部分公司都是在各自的小团队中进行着各种各样不同形式的代码评审，或者完全没有代码评审。</p>
+<h2 id="现实选择"><a href="#现实选择" class="headerlink" title="现实选择"></a>现实选择</h2><p>以前尝试过要在团队内部做代码评审，听说兄弟团队搞得不错，然后就一起交流经验。交流开始不久就跑偏了，重心就落在了应该选个什么好用的代码评审工具来做，如今想来这完全是舍本逐末了。</p>
+<p>这就像以为有了好的编辑器（或 IDE）就能写出好的代码一样，而事实就是有很多好用的代码评审工具我们依然做不好代码评审。这让我联想起了古龙小说《陆小凤传奇》中的一段描述，记忆尤深：</p>
+<blockquote>
+<p>西门吹雪：此剑乃天下利器，剑锋三尺七寸，净重七斤十三两。</p>
+<p>叶孤城：好剑。</p>
+<p>西门吹雪：的确是好剑。</p>
+<p>叶孤城：此剑乃海外寒剑精英，吹毛断发，剑锋三尺三，净重六斤四两。</p>
+<p>西门吹雪：好剑。</p>
+<p>叶孤城：本就是好剑。</p>
+</blockquote>
+<p>剑是好剑，但还需要配合好剑客与好剑法。</p>
+<p>即使在最差的环境下，完全没有人关心代码评审这件事，一个有追求的程序员依然可以做到一件事，自己给自己 Review。就像写文章，我写完一篇文章不会立刻发布，而是从头脑中放下（Unload），过上一段时间，也许是几天后，再自己重新细读一遍，改掉其中必然会出现的错别字或文句不通畅之处，甚或论据不充分或逻辑不准确的地方，因为我知道不管我写了多少文字，总还会有这些 Bug，这就是给自己的 Review。</p>
+<p><strong>给自己 Review 是一种自省，自我的成长总是从自省开始的。</strong></p>
+<p>代码评审，能提升质量，降低缺陷；代码评审，也能传播知识，促进沟通；代码评审，甚至还能影响心理，端正姿势。代码评审，好处多多，让人寄予希望，执行起来却又不免哀伤，也许正是因为每一次评审的收益是不确定的、模糊的，但付出的代价却是固定的，包括固定的评审时间、可能延期的发布等。</p>
+<p>哀伤过后，我们提交了一段代码，也许没人给我们 Review，稍后我们自己给自己 Review 了，也可以得到了一段更好的代码和一个更好的自己。</p>
+<p>最后，我曾在前文 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/42866">《思维：科学与系统》</a> 中就用代码评审作为例子说明了这是一个系统问题，每个团队面临类似的系统问题都会有具体的情况。关于代码评审，不妨谈谈你所在环境所面临的情况和你的理解？</p>
+<hr>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#45-%E4%BB%A3%E7%A0%81%E8%AF%84%E5%AE%A1%EF%BC%9A%E5%AF%84%E6%9C%9B%E4%B8%8E%E5%93%80%E4%BC%A4"><span class="toc-number">1.</span> <span class="toc-text">45 | 代码评审：寄望与哀伤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%84%9F%E6%80%A7%E8%AE%A4%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">感性认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">理性分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%A7%8D%E5%9B%B0%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">多种困境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B7%AF%E5%BE%84"><span class="toc-number">1.4.</span> <span class="toc-text">参考路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E5%AE%9E%E9%80%89%E6%8B%A9"><span class="toc-number">1.5.</span> <span class="toc-text">现实选择</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
