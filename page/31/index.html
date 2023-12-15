@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,76 +138,157 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/384896962.html" title="066 | 高级推荐模型之三：优化复杂目标函数">066 | 高级推荐模型之三：优化复杂目标函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">066 | 高级推荐模型之三：优化复杂目标函数周三我们讨论了协同矩阵分解，其主要思想就是解决多个两两关系的矩阵分解，并且希望能够建立隐变量之间的共享。
-今天，我们来看一个稍微不一样的话题，那就是 如何优化更加复杂的目标函数。
-为什么需要复杂的目标函数在介绍更复杂的目标函数之前，我们首先来回想一下，在之前的分享中，都接触到了哪些目标函数。
-对于基于流行度或者相似度的推荐系统来说，其实并没有真正的目标函数的概念。这些推荐模型都是某种直观的“翻译”，这也导致了这些推荐系统很难直接使用在真实的应用中，往往是被当作特性用在其他模型中。
-基于信息的推荐系统，本质上就是监督学习在推荐系统中的应用。因为是监督学习，那自然就需要目标函数。这里，经常是对点击率或者购买率进行建模，也就是说，经常使用 二分分类的目标函数。
-当我们使用矩阵分解的架构来对用户和物品的关系进行建模时，绝大多数情况下我们是在讨论 评分。对于评分信息，常用的其实是 线性回归（Linear Regression），也有学者使用 泊松回归，因为泊松回归对于整数变量的建模要好于线性回归。当然了，矩阵分解也可以扩展到对点击率或者购买率的建模。
-当年Netflix竞赛之后，Netflix公司把获奖的矩阵分解拿来进行实现，放入线上系统中，结果发现并没有本质性地提高推荐效果，这其实就和目标函数有关。虽然Netflix竞赛造就了矩阵分解等类似模型 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/363727735.html" title="065 | 高级推荐模型之二：协同矩阵分解">065 | 高级推荐模型之二：协同矩阵分解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">065 | 高级推荐模型之二：协同矩阵分解周一我们讨论了“张量分解”模型。这种模型的特点是能够把不同的上下文当作新的维度，放进一个张量中进行建模。虽然张量分解是矩阵分解在概念上的一种直觉扩展，但其在现实建模的过程中有很大难度，最大的问题就是张量分解的求解过程相对比较复杂，不同的分解方法又带来不同的建模选择。
-今天，我们来看另外一种思路，来解决融合多种渠道信息的问题，这就是 协同矩阵分解（Collective Matrix Factorization）。
-为什么需要协同矩阵分解在解释什么是协同矩阵分解之前，我们先来看一看为什么需要这样一种思路。我们还是需要回到矩阵分解本身。
-矩阵分解的核心就是通过矩阵，这个二维的数据结构，来对用户和物品的交互信息进行建模。因为其二维的属性，矩阵往往只能对用户的某一种交互信息直接进行建模，这就带来很大的局限性。
-在之前的讨论中，我们看到了一系列不同的思路来对这样的基本结构进行扩展。
-思路一，就是通过建立显式变量和隐变量之间的回归关系，从而让矩阵分解的核心结构可以获得更多信息的帮助。
-思路二，则是采用分解机这样的集大成模型，从而把所有的特性，都融入到一个统一的模型中去。
-思路三，就是我们这周已经讲到的，利用张量，把二维的信息扩展到N维进行建模。
-这些已有的思路都各有利弊，需要针对具体的情况来分析究竟什么样的模型最有效果。
-然而在有一些应用中，除了用户和物 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3556506264.html" title="068 | 推荐的Exploit和Explore算法之二：UCB算法">068 | 推荐的Exploit和Explore算法之二：UCB算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">068 | 推荐的Exploit和Explore算法之二：UCB算法这周，我们来讨论EE策略，周一介绍了EE的综合情况。今天来看一种最基本的思路，叫作 UCB（Upper Confidence Bound）算法。
-EG算法在介绍UCB算法之前，我们先来看一种更加简单的EE算法，叫 EG（Epsilon-Greedy）算法。
-我们先来回顾一下EE的主要目的。EE的核心思想是说，我们对当前物品的估计往往是有限的、不准确的，需要不断尝试来增强对整个环境的了解，进而能够更加准确地对每个物品进行估计。
-可以说， EG算法是最简单也是最基本的EE算法。EG算法的基本思路是这样的：既然我们当前对所有物品的估计是不完整的，那就可以随机地显示所有物品来获取数据。假设我们现在有一千个物品，我们对每个物品都需要估计一个数值，比如点击率。很显然，这个点击率的估计受以下两个因素的影响：已经显示了什么样的物品和显示的次数。那么，要想进一步提高这个估计值的准确度，EG算法认为我们必须对所有物品进行“探索”（Explore）。
-具体来说， EG算法的流程是这样的：对于所有的物品，在概率P的情况下，按照当前的估计值来显示物品。回到刚才点击率的例子，那就是在概率P的情况下，谁的点击率高就显示谁。然后在概率1-P的情况下，随机地在所有物品中选择显示对象。如果我们从所有用户的角度来看，也就是说，P%的用户看到的是根据点击 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3159836728.html" title="067 | 推荐的Exploit和Explore算法之一：EE算法综述">067 | 推荐的Exploit和Explore算法之一：EE算法综述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">067 | 推荐的Exploit和Explore算法之一：EE算法综述上周，我们聊了一些比较高级的模型，包括张量分解和协同矩阵分解，讨论这些模型如何能够抓住更多的用户和物品之间的关系。最后，我们还讨论了如何优化更加复杂的目标函数。
-这周，我们来看一个完全不同的话题，那就是 Exploitation（利用）和 Exploration（探索）的策略，俗称“ EE策略”。
-一个推荐系统，如果片面优化用户的喜好，很可能导致千篇一律的推荐结果。其实，EE策略是推荐系统里很有意思，但也非常有争议的一个话题。一方面，大家都明白这类算法的目的，每年有很多相关论文发表。但另一方面，工业界对于部署这类算法非常谨慎，有的产品经理甚至视之为“洪水猛兽”。我们今天就来分析一下导致这个现象的一些因素。
-走一步看一步的策略这里再简单阐述一下什么是EE。简单来说，就是我们在优化某些目标函数的时候，从一个时间维度来看，当信息不足或者决策不确定性（Uncertainty）很大的时候，我们需要平衡两类决策：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1654840680.html" title="18 | 故障处理最佳实践：故障改进">18 | 故障处理最佳实践：故障改进</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">18 | 故障处理最佳实践：故障改进你好，我是陈皓，网名左耳朵耗子。
+在上节课中，我跟你分享了在故障发生时，我们该怎样做，以及在故障前该做些什么准备。只要做到我提到的那几点，你基本上就能游刃有余地处理好故障了。然而，在故障排除后，如何做故障复盘及整改优化则更为重要。在这篇文章中，我就跟你聊聊这几个方面的内容。
+故障复盘过程对于故障，复盘是一件非常重要的事情，因为我们的成长基本上就是从故障中总结各种经验教训，从而可以获得最大的提升。在亚马逊和阿里，面对故障的复盘有不一样的流程，虽然在内容上差不多，但细节上有很多不同。
+亚马逊内部面对S1和S2的故障复盘，需要那个团队的经理写一个叫COE（Correction of Errors）的文档。这个COE文档，基本上包括以下几方面的内容。
 
-选择现在可能是最佳的方案；
-选择现在不确定，但未来可能会有高收益的方案。
+故障处理的整个过程。就像一个log一样，需要详细地记录几点几分干了什么事，把故障从发生到解决的所有细节过程都记录下来。
 
-在做这两类决策的过程中，我们也逐渐更新对所有决策不确定性的认识。最终，从时间的维度上来看，我们在不确定性的干扰下，依然能够去优化目标函数。
-也就是说， EE可以看作是一个优化过程，需要多次迭代才能找到比较好的方案。
-EE的应用历史早期把E ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4179162045.html" title="069 | 推荐的Exploit和Explore算法之三：汤普森采样算法">069 | 推荐的Exploit和Explore算法之三：汤普森采样算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">069 | 推荐的Exploit和Explore算法之三：汤普森采样算法周三的分享里，我们讨论了一种叫作UCB（Upper Confidence Bound）的算法。这种算法的核心是使用均值和标准差组成对物品的估计，并且利用这种估计达到EE的效果。同时，我们也提到，UCB的最大问题就是并没有真正达到随机的效果。
-今天，我们来看一种不太一样的算法，叫“ 汤普森采样”（Thompson Sampling）。
-为什么需要随机采样？在讨论汤普森采样之前，我们先来看一看什么是 随机采样。随机采样的技术和概率分布密不可分，也和计算机产生随机数有很大的联系。
-我们这里主要是关心如何从一个概率分布中产生一个随机变量的样本。因为是随机变量的样本，因此不可能每一次产生的结果都一样。然而，对于大量的样本来说，其均值往往是对概率分布均值的一个比较好的估计。因此，样本其实可以用来刻画一个概率分布。
-比如，我们用参数是0.5的伯努利分布来表达抛硬币这个事件。那么，从这个伯努利分布中产生的样本，也就是0和1，象征了硬币是正面还是反面这两个事件。很显然，因为是随机样本，所以如果我们的抽样次数足够多，每个事件发生的概率会趋向于0.5。
-然而，有一点需要注意，并不是所有的分布都能够这样容易地抽取样本。实际上，即便是伯努利分布，也是因为有一定的程序，才能够确定从中抽样。而能够抽样的，往往是标准的分布，诸如伯努利分布、高 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2503068623.html" title="070 | 推荐系统评测之一：传统线下评测">070 | 推荐系统评测之一：传统线下评测</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">070 | 推荐系统评测之一：传统线下评测上周我们讨论了EE算法，介绍了UCB（Upper Confidence Bound）算法和“汤普森采样”（Thompson Sampling）。
-这周，我们回归到一个更加传统的话题，那就是 如何评测推荐系统。这个话题非常重要，牵涉到如何持续对一个推荐系统进行评价，从而能够提高推荐系统的精度。
-今天，我们先来看一看 推荐系统的线下评测。
-基于评分的线下评测在过去10年里，随着Netflix大奖赛的举行，很多研究人员和工程人员往往把推荐系统的模型学习简化为对用户评分的一种估计。同时，在模型上面来说，对用户物品评分矩阵进行分解成为了一种主流的方法。
-在这样的场景下，如何对模型进行评测呢？
-一种简单且直观的办法，就是 衡量评分的准确性，换句话说，也就是看我们预测的评分和真实评分之间有多大的差距。
-那么，有哪些方法可以用来衡量两个数值之间的差异呢？
-在机器学习中，一个经常使用的测度叫“ 均方差”（Mean Square Error），或 MSE。有时候，我们也会使用它的根号后的结果，叫作“ 方差”（Rooted Mean Square Error），或 RMSE。
-MSE是这么定义的。首先，如果我们知道一个用户i和物品j的真实评分，假设叫$ Y_{ij} $ ，那么我们的一个估计值是$ Z_{ij} $，MSE计算的就是$ Y_{ij} $ 和$ Z ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/77861831.html" title="071 | 推荐系统评测之二：线上评测">071 | 推荐系统评测之二：线上评测</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">071 | 推荐系统评测之二：线上评测周一，我们聊了推荐系统的线下评测。线下评测是任何系统能够不断演化的最直接的要求。在线下的环境中，我们能够开发出系统的种种改进，并且希望能够通过这些线下评测的手段来选择下一个更好的版本。
-今天，我们来讨论推荐系统的线上评测。任何系统在开发之后最终都要放到线上拿给用户使用。那么，在线上评测的时候需要注意什么呢？
-线上评测的基础推荐系统线上评测的基础和我们之前讲过的搜索系统有很多类似的地方。
-线上评测的核心就是 在线可控实验，有时候又称作是在线实验，或者叫作在线A&#x2F;B实验。我们希望能够利用在线实验来对推荐系统的某一个部分进行检验，看是否对用户和系统的交互产生影响。
-在线可控实验其实是建立“ 因果联系”（Causal Relationship）的重要工具，也可以说是唯一完全可靠的工具。这里面的基础是统计的 假设检验。
-具体来说，就是我们针对访问网站或者应用的人群，进行某种划分，一般情况下是平均随机划分。50%的用户进入被划定的一个群组，叫作“控制组”（Control Bucket），而另外50%的用户进入另一个群组，叫作“对照组”（Treatment Bucket）。“控制组”和“对照组”的唯一区别在于所面对的系统。
-假设我们有一个推荐系统，想对其中的某个部分进行改进。那么，可以保持住其他的部分，让这个希望得到改进的部分成为唯一的“ 独立变量 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3050892997.html" title="072 | 推荐系统评测之三：无偏差估计">072 | 推荐系统评测之三：无偏差估计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">072 | 推荐系统评测之三：无偏差估计周三，我讲了推荐系统的线上评测，我们讨论了如何做在线评测，以及推荐系统在线评测可能遇到的一系列问题。
-今天，我们来看一个比较高级的话题，那就是如何做到推荐系统的无偏差估计。
-推荐系统的偏差性在理解为什么需要无偏差估计之前，我们先来看一看现在系统为什么会存在偏差性，以及这种偏差性会对推荐系统的学习造成什么样的影响。
-先假定我们讨论的是一个新闻推荐系统。为了方便，假设我们的系统中仅有两类文章，体育新闻和财经新闻。我们先来看一个极端情况，假设系统因为种种原因，只给用户推荐体育新闻，会出现什么样的情况呢？
-很明显，如果我们只给用户看体育新闻，那么，用户只可能在这些体育新闻里面选择点击，压根不知道财经新闻的存在。因为用户只在体育新闻里面通过点击浏览表达了喜好，任何一个机器学习系统，只能在这些新闻里面学习到用户的喜好。
-具体来说，用户已点击的新闻可以认为是正例，没有点击的可以认为是负例。这样可以对用户在体育新闻上面的喜好加以建模。但是很明显，系统在用户对财经新闻喜好的学习上是一筹莫展的，因为我们根本没有任何用户对于财经新闻的回馈数据。
-这就是系统的偏差性。在这样的设置下，系统存在的偏差是无法修正的。通俗地讲，我们压根没有给财经新闻任何机会，所以没有数据可以供系统学习。
-其实还有更加严重的情况。因为我们当前的系统仅仅学习到了用户对于体育新闻的喜好，然后如果 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2108802552.html" title="073 | 现代推荐架构剖析之一：基于线下离线计算的推荐架构">073 | 现代推荐架构剖析之一：基于线下离线计算的推荐架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">073 | 现代推荐架构剖析之一：基于线下离线计算的推荐架构上周，我们讨论了推荐系统的评测，聊了推荐系统的线下评测、线上评测和无偏差估计。至此，我们已经聊了推荐系统的一些基本技术和评测体系，相信你已对推荐系统有了一个基本的认识。
-那么，到底该如何搭建一个工业级的推荐系统呢？这周，我们就来谈一谈 现代推荐系统的架构体系，帮助你从宏观上对推荐系统的构建有一个更加完整的认识。
-今天，我们先来看一看， 基于线下离线计算的推荐架构。
-推荐架构需要解决的问题在讨论任何一种架构之前，我们首先来看一下这个架构需要解决什么样的问题。然后在这些问题的指引下，我们就可以来分析不同架构在解决这些问题上的优劣。
-那么，对于一个推荐架构来说，我们需要解决什么样的问题呢？
-首先，从大的角度来说，一个用户来到我们的网站或者服务， 推荐系统最重要的一个任务就是，能够在一两百毫秒内给用户提供当前的推荐结果。也就是说，从用户的角度来看， 推荐结果的呈现必须是实时的。这一条就是把工业级应用和学术模型区分开的一个重要指标。
-在过去十多年里，学术界的推荐系统，或者是Kaggle竞赛的推荐系统，往往是一个使用了很多不同模型的 集成模型（Ensemble Model），这种方式虽然在比赛和论文发表中能够取得较高的精度，但是在现实的系统中，如果不加修改直接使用，必然无法在规定的时间内，也就是一两百毫秒内产生所有的推荐结果。同样的， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3767501976.html" title="075 | 现代推荐架构剖析之三：复杂现代推荐架构漫谈">075 | 现代推荐架构剖析之三：复杂现代推荐架构漫谈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">075 | 现代推荐架构剖析之三：复杂现代推荐架构漫谈本周我们讨论现代推荐系统的架构体系。周一我们看了最简单的基于线下离线计算的推荐架构，周三我们聊了基于多层搜索架构的推荐系统。
-今天，我们来谈一谈如何从这两种架构的思路出发，来满足更加复杂多变的实际情况。
-推荐架构需要解决的问题这周我反复强调推荐系统的几个基本需求点。第一，能够在一两百毫秒内给用户提供当前的推荐结果；第二，需要对用户和系统的交互结果做出响应；第三，需要考虑用户群体的覆盖率问题。
-接下来我们就聊一些经常考虑的场景，起到一个抛砖引玉的作用，供你参考。
-新用户的问题如果你要搭建的系统面临的情况是新用户多，比如一个新上线的快速增长的产品，那么我们需要怎么考虑架构呢？
-这里面有 两个基本思路。第一，我们要更加快速地抓住这些新用户和系统的交互信息，从而更好地为他们推荐信息。第二，在我们还没有足够多的信息的时候，如何为这些用户提供推荐结果。
-我们先从第一点说起，如果希望能够更加快速地抓住用户的交互信息，从而很好地为他们推荐内容，有两种做法：要么能够快速更新模型从而更新推荐结果，要么快速更新特性从而更新推荐结果。
-如果我们整个产品只有一个全局的排序模型的话，不管是基于线下的静态架构还是基于搜索的架构，基本上都不可能很快地去更新这个全局模型。因此，在这种情况下就需要去思考如何更新特性。
-对于搜索的框架，也许我们可以通过更新特性，从而 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/30/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/32/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+故障原因分析。需要说明故障的原因和分析报告。
+
+Ask 5 Whys。需要反思并反问至少5个为什么，并为这些“为什么”找到答案。
+
+故障后续整改计划。需要针对上述的“Ask 5 Whys”说明后续如何举一反三地从根本上解决所有的问题。
+
+
+然后，这个文档要提交到管理层，向公司的VP级的负责人进行汇报，并由他们来审查。
+阿里的故障复盘会会把所有的相关人员都叫到现场进行复盘。我比较喜欢这样 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4062254509.html" title="20 | Git协同工作流，你该怎么选？">20 | Git协同工作流，你该怎么选？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">20 | Git协同工作流，你该怎么选？你好，我是陈皓，网名左耳朵耗子。
+与传统的代码版本管理工具相比，Git有很多的优势，因而越来越成为程序员喜欢的版本管理工具。我觉得，Git这个代码版本管理工具最大的优势有以下几个。
+
+Git 是一个分布式的版本管理工具，而且可以是单机版的，所以，你在没有网络的时候同样可以提交（commit）代码。对于我们来说，这意味着在出差途中或是没有网络的环境中依然可以工作写代码。
+这是不是听起来有点不对？一方面，以后你再也不能以“没有网络”作为不能工作的借口了。另一方面，没有网络意味着没有Google和StackOverflow，光有个本地的Git我也一样不能写代码啊……（哈哈。好吧，这已经超出了Git这个技术的范畴了，这里就不讨论了）
+
+Git从一个分支向另一个分支合并代码的时候，会把要合并的分支上的所有提交一个一个应用到被合并的分支上，合并后也能看得到整个代码的变更记录。而其他的版本管理工具则不能。
+
+Git切换分支的时候通常很快。不像其他版本管理器，每个分支一份拷贝。
+
+Git有很多非常有用的命令，让你可以很方便地工作。
+
+
+比如我很喜欢的 git stash 命令，可以把当前没有完成的事先暂存一下，然后去忙别的事。 git cherry-pick 命令可以让你有选择地合并提交。 git add -p 可以让你挑选改动提交， git grep $r ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2020995877.html" title="23 | 分布式系统的技术栈">23 | 分布式系统的技术栈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">23 | 分布式系统的技术栈你好，我是陈皓，网名左耳朵耗子。
+正如我们前面所说的，构建分布式系统的目的是增加系统容量，提高系统的可用性，转换成技术方面，也就是完成下面两件事。
+
+大流量处理。通过集群技术把大规模并发请求的负载分散到不同的机器上。
+关键业务保护。提高后台服务的可用性，把故障隔离起来阻止多米诺骨牌效应（雪崩效应）。如果流量过大，需要对业务降级，以保护关键业务流转。
+
+说白了就是干两件事。一是提高整体架构的吞吐量，服务更多的并发和流量，二是为了提高系统的稳定性，让系统的可用性更高。
+提高架构的性能咱们先来看看，提高系统性能的常用技术。
+
+
+缓存系统。加入缓存系统，可以有效地提高系统的访问能力。从前端的浏览器，到网络，再到后端的服务，底层的数据库、文件系统、硬盘和CPU，全都有缓存，这是提高快速访问能力最有效的手段。对于分布式系统下的缓存系统，需要的是一个缓存集群。这其中需要一个Proxy来做缓存的分片和路由。
+
+负载均衡系统。负载均衡系统是水平扩展的关键技术，它可以使用多台机器来共同分担一部分流量请求。
+
+异步调用。异步系统主要通过消息队列来对请求做排队处理，这样可以把前端的请求的峰值给“削平”了，而后端通过自己能够处理的速度来处理请求。这样可以增加系统的吞吐量，但是实时性就差很多了。同时，还会引入消息丢失的问题，所以要对消息做持久化，这会造成“有状态”的结点，从而增加了 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/657214964.html" title="24 | 分布式系统关键技术：全栈监控">24 | 分布式系统关键技术：全栈监控</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">24 | 分布式系统关键技术：全栈监控你好，我是陈皓，网名左耳朵耗子。
+首先，我们需要全栈系统监控，它就像是我们的眼睛，没有它，我们就不知道系统到底发生了什么，我们将无法管理或是运维整个分布式系统。所以，这个系统是非常非常关键的。
+而在分布式或Cloud Native的情况下，系统分成多层，服务各种关联，需要监控的东西特别多。没有一个好的监控系统，我们将无法进行自动化运维和资源调度。
+这个监控系统需要完成的功能为：
+
+全栈监控；
+关联分析；
+跨系统调用的串联；
+实时报警和自动处置；
+系统性能分析。
+
+多层体系的监控所谓全栈监控，其实就是三层监控。
+
+基础层：监控主机和底层资源。比如：CPU、内存、网络吞吐、硬盘I&#x2F;O、硬盘使用等。
+
+中间层：就是中间件层的监控。比如：Nginx、Redis、ActiveMQ、Kafka、MySQL、Tomcat等。
+
+应用层：监控应用层的使用。比如：HTTP访问的吞吐量、响应时间、返回码、调用链路分析、性能瓶颈，还包括用户端的监控。
+
+
+
+这还需要一些监控的标准化。
+
+日志数据结构化；
+监控数据格式标准化；
+统一的监控平台；
+统一的日志分析。
+
+什么才是好的监控系统这里还要多说一句，现在我们的很多监控系统都做得很不好，它们主要有两个很大的问题。
+
+监控数据是隔离开来的。因为公司分工的问题，开发、应用运维、系统运维，各管各的，所以很多公司的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3643381884.html" title="22 | 从亚马逊的实践，谈分布式系统的难点">22 | 从亚马逊的实践，谈分布式系统的难点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">22 | 从亚马逊的实践，谈分布式系统的难点你好，我是陈皓，网名左耳朵耗子。
+从目前已经公开的资料来看，分布式服务化架构思想实践最早的公司应该是亚马逊。因为早在2002年的时候，亚马逊CEO杰夫·贝索斯（Jeff Bezos）就向全公司颁布了下面的这几条架构规定（来自《 Steve Yegge对Google平台吐槽》一文）。
+
+所有团队的程序模块都要通过Service Interface方式将其数据与功能开放出来。
+
+团队间程序模块的信息通信，都要通过这些接口。
+
+除此之外没有其它的通信方式。其他形式一概不允许：不能直接链结别的程序（把其他团队的程序当作动态链接库来链接），不能直接读取其他团队的数据库，不能使用共享内存模式，不能使用别人模块的后门，等等。唯一允许的通信方式是调用Service Interface。
+
+任何技术都可以使用。比如：HTTP、CORBA、Pub&#x2F;Sub、自定义的网络协议等。
+
+所有的Service Interface，毫无例外，都必须从骨子里到表面上设计成能对外界开放的。也就是说，团队必须做好规划与设计，以便未来把接口开放给全世界的程序员，没有任何例外。
+
+不这样做的人会被炒鱿鱼。
+
+
+这应该就是AWS（Amazon Web Service）出现的基因吧。当然，前面说过，采用分布式系统架构后会出现很多的问题。比如：
+
+一个线上故障的工单会在不同的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/731268789.html" title="25 | 分布式系统关键技术：服务调度">25 | 分布式系统关键技术：服务调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">25 | 分布式系统关键技术：服务调度你好，我是陈皓，网名左耳朵耗子。
+服务治理，你应该听得很多了。但是我想说，你所听到的服务治理可能混合了流量调度等其它内容。我们这里会把服务治理和流量调度分开来讲。所以，今天这节课只涉及服务治理上的一些关键技术，主要有以下几点。
+
+服务关键程度
+服务依赖关系
+服务发现
+整个架构的版本管理
+服务应用生命周期全管理
+
+服务关键程度和服务的依赖关系下面，我们先看看服务关键程度和服务的依赖关系。关于服务关键程度，主要是要我们梳理和定义服务的重要程度。这不是使用技术可以完成的，它需要细致地管理对业务的理解，才能定义出架构中各个服务的重要程度。
+然后，我们还要梳理出服务间的依赖关系，这点也非常重要。我们常说，“没有依赖，就没有伤害”。这句话的意思就是说，服务间的依赖是一件很易碎的事。依赖越多，依赖越复杂，我们的系统就越易碎。
+因为依赖关系就像“铁锁连环”一样，一个服务的问题很容易出现一条链上的问题。因此，传统的SOA希望通过ESB来解决服务间的依赖关系，这也是为什么微服务中希望服务间是没有依赖的，而让上层或是前端业务来整合这些后台服务。
+但是要真正做到服务无依赖，我认为还是比较有困难的，总是会有一些公有服务会被依赖。我们只能是降低服务依赖的深度和广度，从而让管理更为简单和简洁。在这一点上，以Spring Boot为首的微服务开发框架就开了一个好头。
+微服务是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1451260657.html" title="21 | 分布式系统架构的冰与火">21 | 分布式系统架构的冰与火</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">21 | 分布式系统架构的冰与火你好，我是陈皓，网名左耳朵耗子。
+最近几年，我们一直在谈论各式各样的架构，如高并发架构、异地多活架构、容器化架构、微服务架构、高可用架构、弹性化架构等。还有和这些架构相关的管理型的技术方法，如DevOps、应用监控、自动化运维、SOA服务治理、去IOE等。面对这么多纷乱的技术，我看到很多团队或是公司都是一个一个地去做这些技术，非常辛苦，也非常累。这样的做法就像我们在撑开一张网里面一个一个的网眼。
+其实，只要我们能够找到这张网的“纲”，我们就能比较方便和自如地打开整张网了。那么，这张“分布式大网”的总线——“纲”在哪里呢？我希望通过这一系列文章可以让你找到这个“纲”，从而能让你更好更有效率地做好架构和工程。
+分布式系统架构的冰与火首先，我们需要阐述一下为什么需要分布式系统，而不是传统的单体架构。也许这对你来说已经不是什么问题了，但是请允许我在这里重新说明一下。使用分布式系统主要有两方面原因。
+
+增大系统容量。我们的业务量越来越大，而要能应对越来越大的业务量，一台机器的性能已经无法满足了，我们需要多台机器才能应对大规模的应用场景。所以，我们需要垂直或是水平拆分业务系统，让其变成一个分布式的架构。
+
+加强系统可用。我们的业务越来越关键，需要提高整个系统架构的可用性，这就意味着架构中不能存在单点故障。这样，整个系统不会因为一台机器出故障而导致整体不可用。所以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1312551759.html" title="27 | 洞悉PaaS平台的本质">27 | 洞悉PaaS平台的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">27 | 洞悉PaaS平台的本质你好，我是陈皓，网名左耳朵耗子。
+在了解了前面几篇文章中提的这些问题以后，我们需要思考一下该怎样解决这些问题。为了解决这些问题，请先允许我来谈谈软件工程的本质。
+我认为，一家商业公司的软件工程能力主要体现在三个地方。
+第一，提高服务的SLA。
+所谓服务的SLA，也就是我们能提供多少个9的系统可用性，而每提高一个9的可用性都是对整个系统架构的重新洗礼。在我看来，提高系统的SLA主要表现在两个方面：
+
+高可用的系统；
+自动化的运维。
+
+你可以看一下我在CoolShell上写的《 关于高可用系统》这篇文章，它主要讲了构建高可用的系统需要使用的分布式系统设计思路。然而这还不够，我们还需要一个高度自动化的运维和管理系统，因为故障是常态，如果没有自动化的故障恢复，就很难提高服务的SLA。
+第二，能力和资源重用或复用。
+软件工程还有一个重要的能力就是让能力和资源可以重用。其主要表现在如下两个方面：
+
+软件模块的重用；
+软件运行环境和资源的重用。
+
+为此，需要我们有两个重要的能力：一个是“软件抽象的能力”，另一个是“软件标准化的能力”。你可以认为软件抽象就是找出通用的软件模块或服务，软件标准化就是使用统一的软件通讯协议、统一的开发和运维管理方法……这样能让整体软件开发运维的能力和资源得到最大程度的复用，从而增加效率。
+第三，过程的自动化。
+编程本来就是把一个重复工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3284817586.html" title="26 | 分布式系统关键技术：流量与数据调度">26 | 分布式系统关键技术：流量与数据调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">26 | 分布式系统关键技术：流量与数据调度你好，我是陈皓，网名左耳朵耗子。
+关于流量调度，现在很多架构师都把这个事和服务治理混为一谈了。我觉得还是应该分开的。一方面，服务治理是内部系统的事，而流量调度可以是内部的，更是外部接入层的事。另一方面，服务治理是数据中心的事，而流量调度要做得好，应该是数据中心之外的事，也就是我们常说的边缘计算，是应该在类似于CDN上完成的事。
+所以，流量调度和服务治理是在不同层面上的，不应该混在一起，所以在系统架构上应该把它们分开。
+流量调度的主要功能对于一个流量调度系统来说，其应该具有的主要功能是：
+
+依据系统运行的情况，自动地进行流量调度，在无需人工干预的情况下，提升整个系统的稳定性；
+
+让系统应对爆品等突发事件时，在弹性计算扩缩容的较长时间窗口内或底层资源消耗殆尽的情况下，保护系统平稳运行。
+
+
+这还是为了提高系统架构的稳定性和高可用性。
+此外，这个流量调度系统还可以完成以下几方面的事情。
+
+服务流控。服务发现、服务路由、服务降级、服务熔断、服务保护等。
+流量控制。负载均衡、流量分配、流量控制、异地灾备（多活）等。
+流量管理。协议转换、请求校验、数据缓存、数据计算等。
+
+所有的这些都应该是一个API Gateway应该做的事。
+流量调度的关键技术但是，作为一个API Gateway来说，因为要调度流量，首先需要扛住流量，而且还需要有一些比较轻量的业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3053009657.html" title="19 | 答疑解惑：我们应该能够识别的表象和本质">19 | 答疑解惑：我们应该能够识别的表象和本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">19 | 答疑解惑：我们应该能够识别的表象和本质你好，我是陈皓，网名左耳朵耗子。
+前两天，我以前在亚马逊（Amazon）团队的一个小伙伴从西雅图打来电话，和我主要聊了一下他最近的一些想法和动向。他在最近几个月面试了很多美国的本土公司，从大公司到创业公司都有，比如Facebook、Snapchat、Oracle、微软、谷歌、Netflix、Uber等。他今年30岁出头，到美国那边也有3年多时间了，所以想要多一些经历，到不同的公司看一下。
+我觉得他这个想法挺好的。于是我们聊了一些对这些公司的看法，进而聊到他想要什么，感兴趣什么，想要经历什么，以及擅长什么，未来如何发展等话题……在两个多小时交谈的过程中，我们谈论到了一些关于他个人发展以及技术上的东西。他听我的建议后，说很有价值。于是，我想既然有价值，那么就把这些分享出来，供更多的人参考吧。
+首先，我觉得在美国做技术真的比国内幸福好多，有那么多很不错的不同类别的公司可供选择。这与国内相比，选择空间实在是太大了，真是幸福。所以，在如此纷乱和多样化的地方，真是需要确定自己的发展方向和目标。不然就会像这个小伙儿一样，当offer像雪片一样飞过来的时候，却有点不知所措了。
+我直接和他说，你现在不愁工作了，可以规划自己的职业生涯了，那么问题是你想走哪条路，对什么方向有兴趣，或是自己的长项是什么？结果，他说他也不知道，说就是想多看看多经历一些事情，也 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/30/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/32/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

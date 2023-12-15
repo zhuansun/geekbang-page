@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,157 +138,52 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/657214964.html" title="24 | 分布式系统关键技术：全栈监控">24 | 分布式系统关键技术：全栈监控</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">24 | 分布式系统关键技术：全栈监控你好，我是陈皓，网名左耳朵耗子。
-首先，我们需要全栈系统监控，它就像是我们的眼睛，没有它，我们就不知道系统到底发生了什么，我们将无法管理或是运维整个分布式系统。所以，这个系统是非常非常关键的。
-而在分布式或Cloud Native的情况下，系统分成多层，服务各种关联，需要监控的东西特别多。没有一个好的监控系统，我们将无法进行自动化运维和资源调度。
-这个监控系统需要完成的功能为：
-
-全栈监控；
-关联分析；
-跨系统调用的串联；
-实时报警和自动处置；
-系统性能分析。
-
-多层体系的监控所谓全栈监控，其实就是三层监控。
-
-基础层：监控主机和底层资源。比如：CPU、内存、网络吞吐、硬盘I&#x2F;O、硬盘使用等。
-
-中间层：就是中间件层的监控。比如：Nginx、Redis、ActiveMQ、Kafka、MySQL、Tomcat等。
-
-应用层：监控应用层的使用。比如：HTTP访问的吞吐量、响应时间、返回码、调用链路分析、性能瓶颈，还包括用户端的监控。
-
-
-
-这还需要一些监控的标准化。
-
-日志数据结构化；
-监控数据格式标准化；
-统一的监控平台；
-统一的日志分析。
-
-什么才是好的监控系统这里还要多说一句，现在我们的很多监控系统都做得很不好，它们主要有两个很大的问题。
-
-监控数据是隔离开来的。因为公司分工的问题，开发、应用运维、系统运维，各管各的，所以很多公司的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/731268789.html" title="25 | 分布式系统关键技术：服务调度">25 | 分布式系统关键技术：服务调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">25 | 分布式系统关键技术：服务调度你好，我是陈皓，网名左耳朵耗子。
-服务治理，你应该听得很多了。但是我想说，你所听到的服务治理可能混合了流量调度等其它内容。我们这里会把服务治理和流量调度分开来讲。所以，今天这节课只涉及服务治理上的一些关键技术，主要有以下几点。
-
-服务关键程度
-服务依赖关系
-服务发现
-整个架构的版本管理
-服务应用生命周期全管理
-
-服务关键程度和服务的依赖关系下面，我们先看看服务关键程度和服务的依赖关系。关于服务关键程度，主要是要我们梳理和定义服务的重要程度。这不是使用技术可以完成的，它需要细致地管理对业务的理解，才能定义出架构中各个服务的重要程度。
-然后，我们还要梳理出服务间的依赖关系，这点也非常重要。我们常说，“没有依赖，就没有伤害”。这句话的意思就是说，服务间的依赖是一件很易碎的事。依赖越多，依赖越复杂，我们的系统就越易碎。
-因为依赖关系就像“铁锁连环”一样，一个服务的问题很容易出现一条链上的问题。因此，传统的SOA希望通过ESB来解决服务间的依赖关系，这也是为什么微服务中希望服务间是没有依赖的，而让上层或是前端业务来整合这些后台服务。
-但是要真正做到服务无依赖，我认为还是比较有困难的，总是会有一些公有服务会被依赖。我们只能是降低服务依赖的深度和广度，从而让管理更为简单和简洁。在这一点上，以Spring Boot为首的微服务开发框架就开了一个好头。
-微服务是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3284817586.html" title="26 | 分布式系统关键技术：流量与数据调度">26 | 分布式系统关键技术：流量与数据调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">26 | 分布式系统关键技术：流量与数据调度你好，我是陈皓，网名左耳朵耗子。
-关于流量调度，现在很多架构师都把这个事和服务治理混为一谈了。我觉得还是应该分开的。一方面，服务治理是内部系统的事，而流量调度可以是内部的，更是外部接入层的事。另一方面，服务治理是数据中心的事，而流量调度要做得好，应该是数据中心之外的事，也就是我们常说的边缘计算，是应该在类似于CDN上完成的事。
-所以，流量调度和服务治理是在不同层面上的，不应该混在一起，所以在系统架构上应该把它们分开。
-流量调度的主要功能对于一个流量调度系统来说，其应该具有的主要功能是：
-
-依据系统运行的情况，自动地进行流量调度，在无需人工干预的情况下，提升整个系统的稳定性；
-
-让系统应对爆品等突发事件时，在弹性计算扩缩容的较长时间窗口内或底层资源消耗殆尽的情况下，保护系统平稳运行。
-
-
-这还是为了提高系统架构的稳定性和高可用性。
-此外，这个流量调度系统还可以完成以下几方面的事情。
-
-服务流控。服务发现、服务路由、服务降级、服务熔断、服务保护等。
-流量控制。负载均衡、流量分配、流量控制、异地灾备（多活）等。
-流量管理。协议转换、请求校验、数据缓存、数据计算等。
-
-所有的这些都应该是一个API Gateway应该做的事。
-流量调度的关键技术但是，作为一个API Gateway来说，因为要调度流量，首先需要扛住流量，而且还需要有一些比较轻量的业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1312551759.html" title="27 | 洞悉PaaS平台的本质">27 | 洞悉PaaS平台的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">27 | 洞悉PaaS平台的本质你好，我是陈皓，网名左耳朵耗子。
-在了解了前面几篇文章中提的这些问题以后，我们需要思考一下该怎样解决这些问题。为了解决这些问题，请先允许我来谈谈软件工程的本质。
-我认为，一家商业公司的软件工程能力主要体现在三个地方。
-第一，提高服务的SLA。
-所谓服务的SLA，也就是我们能提供多少个9的系统可用性，而每提高一个9的可用性都是对整个系统架构的重新洗礼。在我看来，提高系统的SLA主要表现在两个方面：
-
-高可用的系统；
-自动化的运维。
-
-你可以看一下我在CoolShell上写的《 关于高可用系统》这篇文章，它主要讲了构建高可用的系统需要使用的分布式系统设计思路。然而这还不够，我们还需要一个高度自动化的运维和管理系统，因为故障是常态，如果没有自动化的故障恢复，就很难提高服务的SLA。
-第二，能力和资源重用或复用。
-软件工程还有一个重要的能力就是让能力和资源可以重用。其主要表现在如下两个方面：
-
-软件模块的重用；
-软件运行环境和资源的重用。
-
-为此，需要我们有两个重要的能力：一个是“软件抽象的能力”，另一个是“软件标准化的能力”。你可以认为软件抽象就是找出通用的软件模块或服务，软件标准化就是使用统一的软件通讯协议、统一的开发和运维管理方法……这样能让整体软件开发运维的能力和资源得到最大程度的复用，从而增加效率。
-第三，过程的自动化。
-编程本来就是把一个重复工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3655932601.html" title="28 | 推荐阅读：分布式系统架构经典资料">28 | 推荐阅读：分布式系统架构经典资料</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">28 | 推荐阅读：分布式系统架构经典资料你好，我是陈皓，网名左耳朵耗子。
-前段时间，我写了一系列分布式系统架构方面的文章，有很多读者纷纷留言讨论相关的话题，还有读者留言表示对分布式系统架构这个主题感兴趣，希望我能推荐一些学习资料。
-就像我在前面的课程中多次提到的，分布式系统的技术栈巨大无比，所以我要推荐的学习资料也比较多，后面在课程中我会结合主题逐步推荐给你。在今天这一讲中，我将推荐一些分布式系统的基础理论和一些不错的图书和资料。
-这一讲比较长，所以我特意整理了目录，帮你快速找到自己感兴趣的内容。
-基础理论
-CAP 定理
-Fallacies of Distributed Computing
-
-经典资料
-Distributed systems theory for the distributed systems engineer
-FLP Impossibility Result
-An introduction to distributed systems
-Distributed Systems for fun and profit
-Distributed Systems: Principles and Paradigms
-Scalable Web Architecture and Distributed Systems
-Principles of Distributed Syste ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2036511950.html" title="30 | 编程范式：起源">30 | 编程范式：起源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">30 | 编程范式：起源序你好，我是陈皓，网名左耳朵耗子。
-现在很多的文章和演讲都在谈架构，很少有人再会谈及编程范式。然而， 这些基础性和本质性的话题，却是非常非常重要的。
-一方面，我发现在一些语言争论上，有很多人对编程语言的认识其实并不深；另一方面，通过编程语言的范式，我们不但可以知道整个编程语言的发展史，而且还能提高自己的编程技能，写出更好的代码。
-我希望通过一系列的文章带大家漫游一下各式各样的编程范式。（这一系列文章中代码量很大，很难用音频体现出来，所以没有录制音频，还望谅解。）
-
-01 | 编程范式游记：起源
-02 | 编程范式游记：泛型编程
-03 | 编程范式游记：类型系统和泛型的本质
-04 | 编程范式游记：函数式编程
-05 | 编程范式游记：修饰器模式
-06 | 编程范式游记：面向对象编程
-07 | 编程范式游记：基于原型的编程范式
-08 | 编程范式游记：Go 语言的委托模式
-09 | 编程范式游记：编程的本质
-10 | 编程范式游记：逻辑编程范式
-11 | 编程范式游记：程序世界里的编程范式
-
-这一经历可能有些漫长，途中也会有各式各样的语言的代码。但是我保证这一历程对于一个程序员来说是非常有价值的，因为你不但可以对主流编程语言的一些特性有所了解，而且当我们到达终点的时候，你还能了解到编程的本质是什么。
-这一系列文章中有各种语言的代码，其中有C、C++、Python ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1173367560.html" title="29 | 推荐阅读：分布式数据调度相关论文">29 | 推荐阅读：分布式数据调度相关论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">29 | 推荐阅读：分布式数据调度相关论文你好，我是陈皓，网名左耳朵耗子。
-我们在之前的系列文章《分布式系统架构的本质》中说过，分布式系统的一个关键技术是“数据调度”。因为我们需要扩充节点，提高系统的高可用性，所以必须冗余数据结点。
-建立数据结点的副本看上去容易，但其中最大的难点就是分布式一致性的问题。下面，我会带你看看数据调度世界中的一些技术点以及相关的技术论文。
-对于分布式的一致性问题，相信你在前面看过好几次下面这张图。从中，我们可以看出，Paxos算法的重要程度。还有人说，分布式下真正的一致性算法只有Paxos。
-
-Paxos算法Paxos算法，是莱斯利·兰伯特（Lesile Lamport）于1990年提出来的一种基于消息传递且具有高度容错特性的一致性算法。但是这个算法太过于晦涩，所以，一直以来都属于理论上的论文性质的东西。
-其进入工程圈的源头在于Google的Chubby lock——一个分布式的锁服务，用在了Bigtable中。直到Google发布了下面的这两篇论文，Paxos才进入到工程界的视野中来。
-
-Bigtable: A Distributed Storage System for Structured Data
-
-The Chubby lock service for loosely-coupled distributed systems
-
-
-Google与B ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/692793914.html" title="32 | 编程范式：类型系统和泛型的本质">32 | 编程范式：类型系统和泛型的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">32 | 编程范式：类型系统和泛型的本质你好，我是陈皓，网名左耳朵耗子。
-前面，我们讨论了从C到C++的泛型编程方法，并且初探了更为抽象的函数式编程。正如在上一讲中所说的，泛型编程的方式并不只有C++这一种类型，我们只是通过这个过程了解一下，底层静态类型语言的泛型编程原理。这样能够方便我们继续后面的历程。
-是的，除了C++那样的泛型，如果你了解其它编程语言一定会发现，在动态类型语言或是某些有语法糖支持的语言中，那个 swap() 或 search() 函数的泛型其实可以很简单地就实现了。
-比如，你甚至可以把 swap() 函数简单地写成下面这个样子（包括Go语言也有这样的语法）：
-b, a &#x3D; a, b;
-
-
-在上一讲后面的Reduce函数中，可以看到，在编程世界中，我们需要处理好两件事：
-
-第一件事是编程语言中的类型问题。
-第二件事是对真实世界中业务代码的抽象、重用和拼装。
-
-所以，在这一讲中，我们还是继续深入地讨论上面这两个问题，着重讨论一下编程语言中的类型系统和泛型编程的本质。
-类型系统在计算机科学中，类型系统用于定义如何将编程语言中的数值和表达式归类为许多不同的类型，以及如何操作这些类型，还有这些类型如何互相作用。类型可以确认一个值或者一组值，具有特定的意义和目的。
-一般来说，编程语言会有两种类型，一种是内建类型，如int、float和char等，一种是抽象类型， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/944131152.html" title="31 | 编程范式：泛型编程">31 | 编程范式：泛型编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。
-在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。
-C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stroustrup 创建的C++语言横空出世，它既可以全面兼容C语言，又巧妙揉合了一些面向对象的编程理念。现在来看，不得不佩服Stroustrup的魄力。在这里，我也向你推荐一本书，书名是《C++语言的设计和演化》。
-这本书系统介绍了C++诞生的背景以及初衷，书的作者就是 Stroustrup 本人，所以你可以非常详细地从语言创建者的角度了解他的设计思路和创新之旅。当然，就是在今天，C++这门语言也还有很多争议，这里我不细说。如果你感兴趣的话，可以看看我几年前在酷壳上发表的文章《 C++的坑真的多吗？》。
-从语言角度来说，实际上早期C++的许多工作是对C的强化和净化，并把完全兼容C作为强制性要求（这也是C++复杂晦涩的原因，这点Java就干得比C++彻底得多）。在C89、C99这两个C语言的标准中，有许多改进都是从C++中引进的。
-可见，C++对C语言的贡献非常之大。是的，因为C++很大程度就是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/432270148.html" title="34 | 编程范式：修饰器模式">34 | 编程范式：修饰器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">34 | 编程范式：修饰器模式你好，我是陈皓，网名左耳朵耗子。
-在上一讲中，我们领略了函数式编程的趣味和魅力，主要讲了函数式编程的主要技术。还记得有哪些吗？递归、Map、Reduce、Filter等，并利用Python的Decorator和Generator功能，将多个函数组合成了管道。
-此时，你心中可能会有个疑问，这个decorator又是怎样工作的呢？这就是本文中要讲述的内容，“Decorator模式”，又叫“修饰器模式”，或是“装饰器模式”。
-Python的DecoratorPython的Decorator在使用上和Java的Annotation（以及C#的Attribute）很相似，就是在方法名前面加一个@XXX注解来为这个方法装饰一些东西。但是，Java&#x2F;C#的Annotation也很让人望而却步，太过于复杂了。你要玩它，需要先了解一堆Annotation的类库文档，感觉几乎就是在学另外一门语言。
-而Python使用了一种相对于Decorator Pattern和Annotation来说非常优雅的方法，这种方法不需要你去掌握什么复杂的OO模型或是Annotation的各种类库规定，完全就是语言层面的玩法：一种函数式编程的技巧。
-这是我最喜欢的一个模式了，也是一个挺好玩儿的东西，这个模式动用了函数式编程的一个技术——用一个函数来构造另一个函数。
-好了，我们先来点感 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/14/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/#content-inner">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/16/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1654393453.html" title="024 | CVPR 2018论文精读：如何解决排序学习计算复杂度高这个问题？">024 | CVPR 2018论文精读：如何解决排序学习计算复杂度高这个问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">024 | CVPR 2018论文精读：如何解决排序学习计算复杂度高这个问题？今天，我们来看这次大会的一篇最佳论文提名，标题是《基于排序的损失函数的有效优化》（Efficient Optimization for Rank-based Loss Functions）。
+还是先简单介绍下论文的作者群。这篇论文的作者来自好几个不同的学术机构。
+第一作者普里迪什·莫哈帕德拉（Pritish Mohapatra）是印度海得拉巴的国际信息科技大学（International Institute of Information Technology，Hyderabad）的计算机科学博士生。他已经在NIPS、CVPR、ICCV、AISTATS等国际机器学习权威会议上发表了多篇论文。
+第二作者米卡尔·罗莱内克（Michal Rolinek）来自德国的马克思普朗克智能系统大学（Max Planck Institute for Intelligent Systems），博士后研究员。在这篇论文中，第一作者和第二作者的贡献相当。
+第三作者贾瓦哈（C.V. Jawahar）是来自印度国际信息科技学院的教授。他是第一作者莫哈帕德拉的博士生导师。
+第四作者弗拉迪米尔·科莫格罗夫（Vladimir Kolmogorov）是奥地利科技大学（Institute of Science and Technology Au ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3062922053.html" title="025 | ICML 2018论文精读：模型经得起对抗样本的攻击？这或许只是个错觉">025 | ICML 2018论文精读：模型经得起对抗样本的攻击？这或许只是个错觉</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">025 | ICML 2018论文精读：模型经得起对抗样本的攻击？这或许只是个错觉2018年7月10日~15日，国际机器学习大会ICML 2018（The 35th International Conference on Machine Learning），在瑞典的斯德哥尔摩举行。
+ICML从1980年开始举办，已有30多年的历史 ，是机器学习、人工智能领域的顶级会议。
+今年ICML大会共收到了2473份投稿，投稿量和去年相比增加了45%。今年最后录取了621篇论文，录取率近25%。除了主会议以外，ICML大会还组织了9个讲座，67个研讨班。
+在接下来的几期内容里，我会为你精选三篇ICML 2018的论文，我们一起来讨论。
+今天，我和你分享的是大会的最佳论文，题目是《梯度混淆带来的安全错觉：绕过对对抗样本的防御》（Obfuscated Gradients Give a False Sense of Security: Circumventing Defenses to Adversarial Examples）。
+先简单介绍下这篇论文的作者群。
+第一作者阿尼什·阿提耶（Anish Athalye）是麻省理工大学的博士生，主要研究方向是机器学习算法的安全。他在今年的ICML大会上就发表了3篇论文。
+第二作者尼古拉·泽多维奇（Nickolai Zeldovich）是阿提耶的导师。他是麻 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3835515185.html" title="026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题">026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">026 | ICML 2018论文精读：聊一聊机器学习算法的“公平性”问题在上一次的分享里，我们介绍了今年ICML大会的一篇最佳论文，这是一篇非常优秀的机器学习和计算机安全相结合的论文。这篇论文剖析了目前在白盒攻击的场景下，攻击方如何绕过一种叫作“混淆梯度”的情况，来实现有效攻击的目的。
+今天，我们来分享ICML 2018的另一篇最佳论文，题目Delayed Impact of Fair Machine Learning。这篇论文主要探讨了“公平”（Fair）在机器学习中的应用。论文的五位作者都来自加州大学伯克利分校。
+论文的背景这篇论文所探讨的主题是机器学习的“公平性”问题。近些年，这个主题受到了学术界越来越多的关注，但是对于普通的人工智能工程师和数据科学家来说，这个议题依然显得比较陌生和遥远。所以，我先来简单梳理一下这方面研究的核心思想。
+机器学习有一个重要的应用，就是在各类 决策场景 中提供帮助，例如申请贷款、大学入学、警察执勤等。一个不可否认的特点是，这些决策很有可能会对社会或者个人产生重大的不可逆转的后果。其中一个重要的后果就是，针对不同的人群，有可能会产生意想不到的“不公平”的境况。比如，有一些普遍使用的算法，在帮助警察判断一个人是否可能是罪犯的时候，系统会认为美国黑人相对于白人更容易犯罪，这个判断显然存在一定的问题。
+机器学习研究者已经注意到了这种算法中的“公平”问题 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1330488269.html" title="027 | ICML 2018论文精读：优化目标函数的时候，有可能放大了“不公平”？">027 | ICML 2018论文精读：优化目标函数的时候，有可能放大了“不公平”？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">027 | ICML 2018论文精读：优化目标函数的时候，有可能放大了“不公平”？今天我们要分享的是ICML 2018的一篇最佳论文提名，题目是Fairness Without Demographics in Repeated Loss Minimization。
+这篇论文讨论了这样一个话题，在优化目标函数的时候，如何能够做到针对不同的子群体，准确率是相当的，从而避免优化的过程中过分重视多数群体。这篇论文的作者都来自斯坦福大学。
+论文的主要贡献这篇论文其实也是希望讨论算法带来的“公平性”问题，但是出发的角度和我们上一篇讨论公平性的论文非常不一样。这篇论文的核心思想，是希望通过机器学习目标函数优化的原理，来讨论机器学习和公平性的关系。
+作者们发现，基于“平均损失”（Average Loss）优化的机器学习算法，常常会给某一些少数群体带来巨大的不准确性。这其实并不是模型本身的问题，而是优化的目标函数的问题。在这样的情况下，目标函数主要是关注有较多数据的群体，保证这些群体的损失最小化，而可能忽略了在数量上不占优势的少数群体。
+在此基础上，还带来了另外一个用户“ 留存度”（Retention）的问题。因为少数群体忍受了比较大的优化损失，因此这些群体有可能离开或者被这个系统剔除。所以，长期下去，少数群体的数目就可能逐渐变少。这也许是目标函数的设计者们无从想到的一个平均损失函数的副产品。作者 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/810401825.html" title="028 | ACL 2018论文精读：问答系统场景下，如何提出好问题？">028 | ACL 2018论文精读：问答系统场景下，如何提出好问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">028 | ACL 2018论文精读：问答系统场景下，如何提出好问题？今年7月15日~20日，计算语言学协会年会ACL 2018（56th Annual Meeting of the Association for Computational Linguistics），在澳大利亚的墨尔本举行，这是自然语言处理和计算语言学领域的顶级会议。
+计算语言学协会（ACL）最早成立于1962年，每年都赞助举行各种学术交流和研讨大会。ACL大会是ACL的旗舰会议，可以说这个会议是了解自然语言处理每年发展情况的重量级场所。
+会议今年收到了1018篇长论文和526篇短论文的投稿。最终，大会接收了256篇长论文以及125篇短论文，综合录用率达到24.7%。
+今天，我们来看这次会议的一篇最佳论文，题目是《学习提出好问题：使用完美信息的神经期望价值对澄清问题进行排序》（ Learning to Ask Good Questions: Ranking Clarification Questions using Neural Expected Value of Perfect Information）。
+首先给你简单介绍下论文的作者。
+第一作者萨德哈·饶（Sudha Rao）来自马里兰大学学院市分校（University of Maryland, College Park），是计算机系的博士生。她已经在ACL ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4205757795.html" title="029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？">029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">029 | ACL 2018论文精读：什么是对话中的前提触发？如何检测？今天，我来和你分享ACL 2018的第二篇最佳论文，题目是《让我们“再”次做到：检测副词前提触发词的第一种计算方法》（ Let’s do it “again”: A First Computational Approach to Detecting Adverbial Presupposition Triggers）。
+这篇论文的作者都来自加拿大麦吉尔大学（McGill University）的计算机系。前三位学生作者是这篇论文的共同第一作者，对论文的贡献相同。他们的导师张智杰（Jackie Chi Kit Cheung）助理教授是这篇论文的最后一个作者。张智杰于2014年从多伦多大学博士毕业，之前曾两次在微软研究院实习过，他长期从事自然语言处理的研究。
+论文的主要贡献这篇论文的背景要从“语用学”（Pragmatics）说起。语用学是语言学的一个分支学科，与符号学理论相互交叉、渗透，研究语境对语言含义产生的影响和贡献。语用学包括言语行为理论、对话内涵义、交流中的对话，以及从哲学、社会学、语言学以及人类学等角度解析人类语言行为的研究。
+语用学分析研究语言行为（如招呼、回答、劝说）的文化准绳和发言规则。不同的文化之间皆有约定俗成、客套的对话，在跨文化交流中，为了避免因为语言规范的差异而在交谈之中产生误解，社会语言学 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/408861033.html" title="030 | ACL 2018论文精读：什么是“端到端”的语义哈希？">030 | ACL 2018论文精读：什么是“端到端”的语义哈希？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">030 | ACL 2018论文精读：什么是“端到端”的语义哈希？今天，我们来看今年ACL大会的一篇最佳论文提名，题目是《NASH：面向生成语义哈希的端到端神经架构》（ NASH: Toward End-to-End Neural Architecture for Generative Semantic Hashing）。
+先来简单介绍下论文的作者群，我着重介绍三位。
+第一作者沈丁涵（Dinghan Shen音译）是杜克大学计算机科学系的博士生。他已经发表了多篇自然语言处理和机器学习相关的论文，并且在NEC实验室和微软研究院都实习过。
+论文的共同第一作者苏勤亮（Qinliang Su音译），目前是中山大学数据科学与计算机学院的副教授。他在香港大学取得博士学位，之后曾在杜克大学从事博士后研究工作。
+作者中的劳伦斯·卡林（Lawrence Carin）是杜克大学教授。卡林是机器学习的权威，也是沈丁涵的导师。
+论文的主要贡献在很多的应用中，我们都需要根据一个已有的文档表达和一个文档库，找到最相近的，或者说最类似的文档。这经常被叫作“ 相似查找”（Similarity Search）或者“ 最近邻查找”（Nearest-Neighbor Search），在推荐系统、信息检索、图片检索等领域都有非常广泛的应用。
+“语义哈希”（Semantic Hashing）被认为是解决“相似查找”的一个重 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2429370966.html" title="031 | 经典搜索核心算法：TF-IDF及其变种">031 | 经典搜索核心算法：TF-IDF及其变种</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">031 | 经典搜索核心算法：TF-IDF及其变种从本周开始我们进入人工智能核心技术模块，本周我会集中讲解经典的搜索核心算法，今天先来介绍TF-IDF算法。
+在信息检索（Information Retrieval）、文本挖掘（Text Mining）以及自然语言处理（Natural Language Processing）领域，TF-IDF算法都可以说是鼎鼎有名。虽然在这些领域中，目前也出现了不少以深度学习为基础的新的文本表达和算分（Weighting）方法，但是TF-IDF作为一个最基础的方法，依然在很多应用中发挥着不可替代的作用。
+了解和掌握TF-IDF算法对初学者大有裨益，能够帮助初学者更快地理解其它更加深入、复杂的文本挖掘算法和模型。今天我就来谈谈TF-IDF的历史、算法本身的细节以及基于TF-IDF的几个变种算法。
+TF-IDF的历史把查询关键字（Query）和文档（Document）都转换成“向量”，并且尝试用线性代数等数学工具来解决信息检索问题，这样的努力至少可以追溯到20世纪70年代。
+1971年，美国康奈尔大学教授杰拉德·索尔顿（Gerard Salton）发表了《SMART检索系统：自动文档处理实验》（The SMART Retrieval System—Experiments in Automatic Document Processing）一文，文中首次提到 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3878382731.html" title="032 | 经典搜索核心算法：BM25及其变种（内附全年目录）">032 | 经典搜索核心算法：BM25及其变种（内附全年目录）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">032 | 经典搜索核心算法：BM25及其变种（内附全年目录）周一我们讲了TF-IDF算法和它的四个变种，相对于TF-IDF而言，在信息检索和文本挖掘领域，BM25算法则更具理论基础，而且是工程实践中当仁不让的重要基线（Baseline）算法 。BM25在20世纪70年代到80年代被提出，到目前为止已经过去二三十年了，但是这个算法依然在很多信息检索的任务中表现优异，是很多工程师首选的算法之一。
+今天我就来谈谈BM25算法的历史、算法本身的核心概念以及BM25的一些重要变种，帮助你快速掌握这个信息检索和文本挖掘的利器。
+BM25的历史BM25，有时候全称是Okapi BM25，是由英国一批信息检索领域的计算机科学家开发的排序算法。这里的“BM”是“最佳匹配”（Best Match）的简称。
+BM25背后有两位著名的英国计算机科学家。第一位叫斯蒂芬·罗伯逊（Stephen Robertson）。斯蒂芬最早从剑桥大学数学系本科毕业，然后从城市大学（City University）获得硕士学位，之后从伦敦大学学院（University College London）获得博士学位。斯蒂芬从1978年到1998年之间在城市大学任教。1998年到2013年间在微软研究院剑桥实验室工作。我们之前提到过，美国计算机协会ACM现在每三年颁发一次“杰拉德·索尔顿奖”，用于表彰对信息检索技术有突出贡献的研 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/857664186.html" title="033 | 经典搜索核心算法：语言模型及其变种">033 | 经典搜索核心算法：语言模型及其变种</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">033 | 经典搜索核心算法：语言模型及其变种在信息检索和文本挖掘领域，我们之前已经讲过了TF-IDF算法和BM25算法。TF-IDF因其简单和实用常常成为很多信息检索任务的第一选择，BM25则以其坚实的经验公式成了很多工业界实际系统的重要基石。
+然而，在信息检索研究者的心里，一直都在寻找一种既容易解释，又能自由扩展，并且在实际使用中效果显著的检索模型。这种情况一直到20世纪90年代末、21世纪初才得到了突破，一种叫“语言模型”（Language Model）的新模型得到发展。其后10多年的时间里，以语言模型为基础的各类变种可谓层出不穷，成了信息检索和搜索领域的重要研究方向。
+今天我就来谈谈语言模型的历史，算法细节和语言模型的重要变种，帮助初学者快速掌握这一模型。
+语言模型的历史语言模型在信息检索中的应用开始于1998年的SIGIR大会（International ACM SIGIR Conference on Research and Development in Information Retrieval，国际信息检索大会）。来自马萨诸塞州大学阿姆赫斯特分校（UMass Amherst）的信息检索学者杰·庞特（Jay M. Ponte）和布鲁斯·夸夫特（W. Bruce Croft）发表了第一篇应用语言模型的论文，从此开启了一个新的时代。
+布鲁斯是信息检索的学术权威。早年他在英 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/14/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/#content-inner">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/16/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

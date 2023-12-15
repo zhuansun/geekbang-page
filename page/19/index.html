@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,123 +138,73 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1943697662.html" title="64 | 区块链技术细节：哈希算法">64 | 区块链技术细节：哈希算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">64 | 区块链技术细节：哈希算法你好，我是陈皓，网名左耳朵耗子。
-对于计算机来说，区块链就像一个单向链表，一个数据块中保存着三个信息。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2971602056.html" title="060 | 简单推荐模型之三：基于内容信息的推荐模型">060 | 简单推荐模型之三：基于内容信息的推荐模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">060 | 简单推荐模型之三：基于内容信息的推荐模型周一的文章中，我们聊了一个最基本的基于流行度的推荐模型。周三我们讨论了基于相似信息的推荐模型。基于相似信息的推荐模型，其核心就是协同过滤的思想，希望能够通过相似的用户或者相似的物品来对当前的场景进行推荐。
+然而，不管是基于流行度的推荐，还是协同过滤，这些方法都有一些根本的问题。比如，对于基于流行度预测的推荐来说，推荐结果不是个性化的。因为流行度预测是一种全局的预测，每个人得到的推荐结果是一样的。而协同过滤的问题是强烈依赖相似用户以及相似物品的定义，而且对于新用户或者新物品来说有数据稀缺的问题。因此，在实际应用中，往往不能在整个系统中单独使用协同过滤。
+今天，我们来分享一个更加普遍的方法，那就是 基于内容信息的推荐系统。这种系统在实践中往往更能适应各种不同的推荐场景。
+什么是基于内容信息的推荐系统所谓基于内容信息的推荐系统，其实就是 用特征（Feature）来表示用户、物品以及用户和物品的交互，从而能够把推荐问题转换成为监督学习任务。
+把推荐系统完全定义为监督学习任务，需要有这么几个步骤。
+第一，就是我们已经提到的，需要把所有用户、物品的各种信号用特征来表示。这里面往往牵涉非常复杂和繁琐的 特征工程，也就是看如何能够把不同的信息通过特征表达出来。
+第二，就是每一个监督任务都需要面临的问题，如何构造一个 目标函数，来描述当前的场景。可 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2636315226.html" title="064 | 高级推荐模型之一：张量分解模型">064 | 高级推荐模型之一：张量分解模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">064 | 高级推荐模型之一：张量分解模型上周我们分享了推荐系统中矩阵分解的点点滴滴，简单复习一下讨论过的三个模型。
+第一，“基于隐变量的矩阵分解”，其优势是显式地对用户和物品信息中的隐含结构进行建模，从而能够挖掘更加深层次的用户和物品关系。
+第二，“基于回归的隐变量模型”，这是在基本的矩阵分解基础上衍生出来的一类模型。这种基于回归的矩阵分解模型把显式特性和隐变量结合起来，对解决“冷启动”问题有一定作用。
+第三，“分解机”是由基于回归的隐变量模型衍生出来的，并且吸纳了基于信息的推荐系统的一些观点，成为了一种可以融合多种信息的强有力的工具。
+这周，我们跟随着这个脚步，进一步来讨论一些比较高级的模型，看这些模型如何抓住更多的用户和物品之间的关系。
+今天，我们先来聊一种叫作“ 张量分解”（Tensor Factorization）的模型。
+为什么需要张量分解在我们探讨张量分解的一些基本思想之前，先来看一看，推荐系统在什么场景下需要张量分解。
+我们还是要从矩阵分解说起。矩阵分解的核心思想，是用矩阵这种数据结构来表达用户和物品的相互关系。这里，我们一般谈论的都是一些最简单的关系，例如评分、点击、购买等（本文我们依然只是讨论评分）。在这种二元的模式下，矩阵就是最好的表达用户和物品之间关系的数据结构。
+然而，在真实的场景中，用户和物品的关系以及产生这种关系的周围环境是复杂的。一个矩阵并不能完全描 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/384896962.html" title="066 | 高级推荐模型之三：优化复杂目标函数">066 | 高级推荐模型之三：优化复杂目标函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">066 | 高级推荐模型之三：优化复杂目标函数周三我们讨论了协同矩阵分解，其主要思想就是解决多个两两关系的矩阵分解，并且希望能够建立隐变量之间的共享。
+今天，我们来看一个稍微不一样的话题，那就是 如何优化更加复杂的目标函数。
+为什么需要复杂的目标函数在介绍更复杂的目标函数之前，我们首先来回想一下，在之前的分享中，都接触到了哪些目标函数。
+对于基于流行度或者相似度的推荐系统来说，其实并没有真正的目标函数的概念。这些推荐模型都是某种直观的“翻译”，这也导致了这些推荐系统很难直接使用在真实的应用中，往往是被当作特性用在其他模型中。
+基于信息的推荐系统，本质上就是监督学习在推荐系统中的应用。因为是监督学习，那自然就需要目标函数。这里，经常是对点击率或者购买率进行建模，也就是说，经常使用 二分分类的目标函数。
+当我们使用矩阵分解的架构来对用户和物品的关系进行建模时，绝大多数情况下我们是在讨论 评分。对于评分信息，常用的其实是 线性回归（Linear Regression），也有学者使用 泊松回归，因为泊松回归对于整数变量的建模要好于线性回归。当然了，矩阵分解也可以扩展到对点击率或者购买率的建模。
+当年Netflix竞赛之后，Netflix公司把获奖的矩阵分解拿来进行实现，放入线上系统中，结果发现并没有本质性地提高推荐效果，这其实就和目标函数有关。虽然Netflix竞赛造就了矩阵分解等类似模型 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3159836728.html" title="067 | 推荐的Exploit和Explore算法之一：EE算法综述">067 | 推荐的Exploit和Explore算法之一：EE算法综述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">067 | 推荐的Exploit和Explore算法之一：EE算法综述上周，我们聊了一些比较高级的模型，包括张量分解和协同矩阵分解，讨论这些模型如何能够抓住更多的用户和物品之间的关系。最后，我们还讨论了如何优化更加复杂的目标函数。
+这周，我们来看一个完全不同的话题，那就是 Exploitation（利用）和 Exploration（探索）的策略，俗称“ EE策略”。
+一个推荐系统，如果片面优化用户的喜好，很可能导致千篇一律的推荐结果。其实，EE策略是推荐系统里很有意思，但也非常有争议的一个话题。一方面，大家都明白这类算法的目的，每年有很多相关论文发表。但另一方面，工业界对于部署这类算法非常谨慎，有的产品经理甚至视之为“洪水猛兽”。我们今天就来分析一下导致这个现象的一些因素。
+走一步看一步的策略这里再简单阐述一下什么是EE。简单来说，就是我们在优化某些目标函数的时候，从一个时间维度来看，当信息不足或者决策不确定性（Uncertainty）很大的时候，我们需要平衡两类决策：
 
-真正的数据。
-自己的地址（或是ID）。
-前一个数据块的地址。
+选择现在可能是最佳的方案；
+选择现在不确定，但未来可能会有高收益的方案。
 
-这样，通过追溯前一个块的地址，把所有的数据块存成了一条链。所以，我们叫其BlockChain。如下图所示。
-
-每个数据块的“地址”的编码使用了计算机上的一个算法，计算机圈内人士把这个算法叫Secure Hash。有人音译为“安全哈希”，也有人意译为“安全散列”。在计算机应用中，hash算法主要有几个功能。
-
-用来生成唯一标识一个数据块的ID（身份证），这个ID几乎不能重复。
-
-用来做数据的特征码。只要数据中一个bit的数据出现更改，那么整个hash值就完全不一样了。而且数学上保证了，我们无法通过hash值反推回原数据。
-
-
-于是，很多公司在互联网上发布信息或软件的时候，都会带上一个Checksum（校验码）。你只要把整个文件的数据传入到那个特定的hash算法中，就会得到一串很长的字符串。如果和官方发布的Checksum字符串不一样，那么就说明信息或文件内容被人更改或是信息残缺了。因此，也被应用在“数字签名”中。
-在计算机世界里，有两个很著名的hash算法，一个叫MD5（ Wikipedia链接），一个叫SHA-2（ Wikipedia链接）， 区块链用的是SHA-256这个算法。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2663218069.html" title="65 | 区块链技术细节：加密和挖矿">65 | 区块链技术细节：加密和挖矿</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">65 |  区块链技术细节：加密和挖矿你好，我是陈皓，网名左耳朵耗子。
-前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。
-那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。
-比特币的加密方法密钥对&#x2F;签名&#x2F;证书所谓密钥对，也就是一种非对称加密技术。这种技术，在对信息进行加密和解密时，使用两个不同的密钥。这样一来，我们就可以把其中一个密钥公布出去，称之为公钥，另一个密钥私密地保管好，称之为私钥。
-现实社会中，有人使用公钥加密，私钥解密，也有反过来用私钥加密，公钥解密，这得看具体的场景。（比特币使用了非对称加密的技术，其使用了 ECDSA 密钥对比技术。）
-比如，我把我加密的密钥发布给所有人，然后大家都用这个公钥加密信息，但其他人没有私钥，所以他们解不了密文，只有我能解密文，也只有我能看得懂别人用我的公钥加密后发给我的密文。如下图所示。
-
-但是，这会有个问题，那就是每个人都有我的公钥，别人可以截获Mike发给我的信息，然后自己用我的公钥加密一个别的信息，伪装成Mike发给我， 这样我就被黑了。于是，我们需要对Mike的身份进行验证，此时就需要用到“数字签名”的概念了。
-Mike也有一对密钥对， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3487429568.html" title="66 | 区块链技术细节：去中心化的共识机制">66 | 区块链技术细节：去中心化的共识机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">66 | 区块链技术细节：去中心化的共识机制你好，我是陈皓，网名左耳朵耗子。
-其实，去中心化的共识机制也是要解决拜占庭将军问题（ The Byzantine Generals Problem），它是莱斯利·兰伯特（Leslie Lamport）于1982年提出来的，用来解释一致性问题的一个虚构模型。同时，它也是分布式领域中最复杂、最严格的容错模型。
-分布式一致性算法拜占庭的将军们没有一个中心化的领导机构，所以，如果他们需要攻击某个城市，所有将军需要对任何将军可能提出的攻击时间达成共识。也就是说，只有所有的将军都达成了共识，在同一个攻击时间攻击，就有非常大的胜率。但是，问题来了。这时，可能会有多个将军同时发出不同的攻击计划，而且这些将军中还有叛徒。那么，将军们怎样达成共识呢？
-莱斯利·兰伯特证明，当叛变者不超过 1&#x2F;3时，存在有效的算法。不论叛变者如何折腾，忠诚的将军们总能达成一致的结果。如果叛变者过多，则无法保证一定能达到一致性。
-拜占庭问题之所以难解，在于任何时候系统中都可能存在多个提案（因为提案成本很低），并且要完成最终的一致性确认过程十分困难，容易受干扰。但一旦确认，即为最终确认。
-比特币的区块链网络在设计时使用的 PoW（Proof of Work） 算法思路。一个是限制一段时间内整个网络中出现提案的个数（增加提案成本），另外一个是放宽对最终一致性确认的需求，约定 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3017688784.html" title="67 | 区块链技术细节：智能合约">67 | 区块链技术细节：智能合约</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">67 | 区块链技术细节：智能合约你好，我是陈皓，网名左耳朵耗子。
-要讲清楚智能合约，我先给你看几个案例。第一个案例是打赌。比如，张三和李四打赌，周末拜仁和皇马的足球比赛谁会赢。如果拜仁赢了，张三给李四100元；如果反过来，李四给张三100元；如果打成平局，则不赢不输。
-张三和李四都怕对方不认账，所以，他们需要找一个他们都信得过的人来做公证，两人都把100元钱给这个公证人。然后，如果拜仁赢了，公证人把全部200元给李四；如果皇马赢了，则全部给张三；如果是平局，则分别退还100元。
-
-上面这个模型什么都好，就是有一个问题，这个“公证人”跑路了怎么办？因为他们只赌100元，公证人犯不着为了200元跑路。但是，如果有一万人把赌金交给公证人呢？如果张三李四赌金是100万呢？公证人的人性会受到极大的挑战，他还有那么可信吗？
-银行的资金托管业务也就是说，当业务大到一定程度的时候，个人的信用是不足以来当中间公证人这个角色了。这时，你要找更为靠谱的机构，这个机构叫银行，银行的信用等级至少在这几方面上要比个人高。
-
-银行是机构，所以受政府监管，受法律约束；
-
-银行的钱很多，就算是里面有员工作案，银行也赔得起；
-
-银行里有比较安全的资金管理流程和措施；
-
-
-因此，银行的受信程度很高，可以来做担保。
-下面，我们来看一个示例，银行在二手房交易中的“资金托管”业务。因为房屋交易时涉及到的资金数目太大，买家怕 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4118339733.html" title="69 | 程序员练级攻略：介绍">69 | 程序员练级攻略：介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">69 | 程序员练级攻略：介绍你好，我是陈皓，网名左耳朵耗子。
-2011年，我在 CoolShell 上发表了 《 程序员技术练级攻略》一文，收到了很多读读者的追捧，同时，这几年时间里，我还陆续收到了一些人的反馈，说跟着这篇文章找到了不错的工作，他们希望我把这篇文章更新一下，因为毕竟行业的变化很快。
-是的， 老实说，抛开这几年技术的更新迭代不说，那篇文章写得也不算特别系统，同时标准也有点低，当时是给一个想要入门的朋友写的。所以，非常有必要从头更新一下《程序员练级攻略》这一主题。
-前言导读升级版的《程序员练级攻略》会比Coolshell上的内容更多，也更专业。这篇文章有【入门篇】、【修养篇】、【专业基础篇】、【软件设计篇】、【高手成长篇】五大篇章。它们会帮助你从零开始，一步步地，系统地，完成从陌生到熟悉，到理解掌握，从编码到设计再到架构，从码农到程序员再到工程师再到架构师的进阶，实现从普通到精通到卓越的完美转身……
-在 入门篇 中，我先推荐的是把Python和JavaScript作为入门语言，并给出了相应的学习资源和方法。Python语法比较简单，有大量的库和语法糖，是零基础的人学习编程的不二之选。而JavaScript是前端语言，更容易让你获得编程的成就感。
-随后，我们需要学习使用操作系统Linux、编程工具Visual Studio Code等入门必学内容。Web互联网作为第三次 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3026780820.html" title="68 | 谈谈传统金融和虚拟货币">68 | 谈谈传统金融和虚拟货币</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">68 | 谈谈传统金融和虚拟货币你好，我是陈皓，网名左耳朵耗子。
-前面我们讲了银行的资金托管业务以及国际贸易业务。我讲这些东西，主要想讲什么呢？
-金融的本质我想讲金融的本质。我个人认为金融行业最大的本质就是—— 促进交易完成，实现价值提升！ 也就是说，如果整个社会的交易能够更快更高效更安全地完成，那么我们这个社会就会有更好的运作效率，更低的成本，更多的价值。这对于促进整个社会的经济发展是相当关键的。
-所以，为了保证交易完成，金融行业需要解决下面几个问题。
-
-交易中的信用问题。所以，银行会来做中间人来担保。
-
-交易中资金不足的问题。通过借贷来让交易完成。
-
-交易中大额的问题。把一个大额的金融事件以股份的方式拆碎进行大众投资。
-
-
-总之，金融行业就是要促进社会的交易，使得这个社会的交易越来越活跃，从而可以产生更多的价值。那么，这个社会的经济就会越来越健康。
-下图给出了金融行业的四个重要属性。
-
-
-效率提升：加快货币、股票、债券的流通性，快速地促成交易。
-
-价值提升：通过金融产品的流通性，让实际价值得到充分的体现，并升值。
-
-激励机制：为实体经济添砖加瓦，并激励社会持续付出和成长。
-
-信用评级：建立信用社会、评估信用等级，从而改善社会。
-
-
-是不是有银行做担保，有这些金融机构我们就可以高枕无忧了？不是的，我在前面说过，主要是钱不够多，只要钱多到一定数量的时候，什么事都可能发生。因为逐利是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/959326212.html" title="70 | 程序员练级攻略：零基础启蒙">70 | 程序员练级攻略：零基础启蒙</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">70 | 程序员练级攻略：零基础启蒙你好，我是陈皓，网名左耳朵耗子。
-如果你从来没有接触过程序语言，这里给你两个方面的教程，一个偏后端，一个偏前端。对从零基础开始的人来说，最重要的是能够对编程有兴趣，而要对编程有兴趣，就要有成就感。而成就感又来自于用程序打造东西，所以，我推荐下面这份不错的入门教程。
-第一份入门教程，主要是让你体会到编程是什么。
-
-《与孩子一起学编程》 ，这本书以Python语言教你如何写程序，是一本老少咸宜的编程书。其中会教你编一些小游戏，还会和你讲基本的编程知识，相当不错。
-两个在线编程入门的网站： Codecademy: Learn Python 和 People Can Program ，你也可以在这两个网站上学习Python，只不过是英文的。
-
-然后，你可以到 CodeAbbey 上去做一些在线编程的小练习。
-第二份入门教程，主要是让你做点实际有用的东西。嗯，做个网页吧。
-
-MDN的 Web开发入门 ，MDN全称是Mozilla Developer Network，你可以认为是Web方面的官方技术网站。这个教程会带着你建立一个网站。然后，你可以把你的网页发布在GitHub上。
-
-这两份教程都很不错，都是从零开始，带着你从环境准备开始，一点一点地从一些简单又有意思的东西入手，让你感觉一下编程世界是什么样的，相信这两个教程可以让零基础的你喜欢上编程。
-编程入门 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2747902006.html" title="72 | 程序员练级攻略：程序员修养">72 | 程序员练级攻略：程序员修养</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">72 | 程序员练级攻略：程序员修养你好，我是陈皓，网名左耳朵耗子。
-在完成上述的入门知识学习之后，我们要向专业的计算机软件开发进军了。但是在学习那些专业的知识前，我们先要抽一部分的篇幅来说一下程序员的修养。这是程序员的工程师文化，也就是程序员的价值观，因为我觉得如果你的技术修养不够的话，你学再多的知识也是没有用的。
-要了解程序员的修养，你可以先从Quora上的这个贴子开始 “ What are some of the most basic things every programmer should know?”，我摘录一些在这里供你参考。
-
-Bad architecture causes more problems than bad code.
-You will spend more time thinking than coding.
-The best programmers are always building things.
-There’s always a better way.
-Code reviews by your peers will make all of you better.
-Fewer features for better code is always the right answer in the end.
-If it’s not tested,  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/453487315.html" title="71 | 程序员练级攻略：正式入门">71 | 程序员练级攻略：正式入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">71 | 程序员练级攻略：正式入门你好，我是陈皓，网名左耳朵耗子。
-学习了前面文章中的入门级经验和知识后，你可能会有两种反应。
-
-一种反应可能是，你对编程有一点的兴趣了，甚至有一点点小骄傲，可能还会四处炫耀。我想说，请保持这种感觉，但是你也要清醒一下，上面的那些东西，还不算真正的入门，你只是入门了一条腿。
-
-另一种反应也可能是，你被吓着了，觉得太难了。感觉不是一般人能玩的，如果是这样的话，我想鼓励你一下–“ 无论你做什么事，你都会面对各式各样的困难，这对每个人来说都是一样的，而只有兴趣、热情和成就感才能让你不畏惧这些困难”。所以，你问问你自己，是否从中收获了成就感，如果没有的话，可能这条路并不适合你。如果有的话，哪怕一丁点儿，你也应该继续坚持下来。
-
-
-这篇文章，我主要是让你成为更为专业的入门程序员。请注意，此时，你可能需要读一些比较枯燥的书，但我想说，这些是非常非常重要的。你一定要坚持住。
-编程技能在系统地学习编程技能之前，我希望你能先看一下” The Key To Accelerating Your Coding Skills“， 这篇文章会告诉你如何有效地快速提高自己的编程能力。
-然后接下来是下面几大块内容，但还只是入门级的。
-
-编程技巧方面 - 你可以开始看怎么把程序写好的书了，这里推荐的是《 代码大全》。这本书好多年没有更新了，其中有一些内容可能有点过时，但还是一本非常好 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3921607301.html" title="74 | 程序员练级攻略：理论学科">74 | 程序员练级攻略：理论学科</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">74 | 程序员练级攻略：理论学科你好，我是陈皓，网名左耳朵耗子。
-进入专业的编程领域，算法、数据结构、网络模型、计算机原理等这样的计算机科学专业需要学习的理论知识是必须要学习的。下面我们先来看看数据结构和算法。
-数据结构和算法算法是比较难学习的，而且学习“算法”是需要智商的。数组、链表、哈希表、二叉树、排序算法等一些基础知识，对大多数人来说是没什么问题的。但是一旦进入到路径规划、背包问题、字符串匹配、动态规划、递归遍历等一些比较复杂的问题上，就会让很多人跟不上了，不但跟不上，而且还会非常痛苦。是的，解决算法问题的确是可以区分人类智商的一个比较好的方式，这也是为什么好些公司用算法题当面试题来找到智商比较高的程序员。
-然而，在很多时候，我们在工作中却发现根本用不到算法，或是一些基本的算法也没有必要实现，只需要使用一下第三方的库就好了。于是，导致社会上出现很多“算法无用论”的声音。
-对此，我想说，算法真的很重要。我这20年的经历告诉我，无论是做业务还是做底层系统，经常需要使用算法处理各种各样的问题。比如，业务上我需要用算法比较两个数组中差异的布隆过滤器，或是在做监控系统时实时计算过去一分钟的P99统计时的蓄水池算法，或是数据库的B+树索引，还有Linux内核中的epoll的红黑树，还有在做服务调度里的“背包问题”等都会用算法，真的是会本质上帮助到你，也是会让你瞬间会产生成就感的事情。
- ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/18/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/#content-inner">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/#content-inner">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/20/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+在做这两类决策的过程中，我们也逐渐更新对所有决策不确定性的认识。最终，从时间的维度上来看，我们在不确定性的干扰下，依然能够去优化目标函数。
+也就是说， EE可以看作是一个优化过程，需要多次迭代才能找到比较好的方案。
+EE的应用历史早期把E ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3556506264.html" title="068 | 推荐的Exploit和Explore算法之二：UCB算法">068 | 推荐的Exploit和Explore算法之二：UCB算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">068 | 推荐的Exploit和Explore算法之二：UCB算法这周，我们来讨论EE策略，周一介绍了EE的综合情况。今天来看一种最基本的思路，叫作 UCB（Upper Confidence Bound）算法。
+EG算法在介绍UCB算法之前，我们先来看一种更加简单的EE算法，叫 EG（Epsilon-Greedy）算法。
+我们先来回顾一下EE的主要目的。EE的核心思想是说，我们对当前物品的估计往往是有限的、不准确的，需要不断尝试来增强对整个环境的了解，进而能够更加准确地对每个物品进行估计。
+可以说， EG算法是最简单也是最基本的EE算法。EG算法的基本思路是这样的：既然我们当前对所有物品的估计是不完整的，那就可以随机地显示所有物品来获取数据。假设我们现在有一千个物品，我们对每个物品都需要估计一个数值，比如点击率。很显然，这个点击率的估计受以下两个因素的影响：已经显示了什么样的物品和显示的次数。那么，要想进一步提高这个估计值的准确度，EG算法认为我们必须对所有物品进行“探索”（Explore）。
+具体来说， EG算法的流程是这样的：对于所有的物品，在概率P的情况下，按照当前的估计值来显示物品。回到刚才点击率的例子，那就是在概率P的情况下，谁的点击率高就显示谁。然后在概率1-P的情况下，随机地在所有物品中选择显示对象。如果我们从所有用户的角度来看，也就是说，P%的用户看到的是根据点击 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4179162045.html" title="069 | 推荐的Exploit和Explore算法之三：汤普森采样算法">069 | 推荐的Exploit和Explore算法之三：汤普森采样算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">069 | 推荐的Exploit和Explore算法之三：汤普森采样算法周三的分享里，我们讨论了一种叫作UCB（Upper Confidence Bound）的算法。这种算法的核心是使用均值和标准差组成对物品的估计，并且利用这种估计达到EE的效果。同时，我们也提到，UCB的最大问题就是并没有真正达到随机的效果。
+今天，我们来看一种不太一样的算法，叫“ 汤普森采样”（Thompson Sampling）。
+为什么需要随机采样？在讨论汤普森采样之前，我们先来看一看什么是 随机采样。随机采样的技术和概率分布密不可分，也和计算机产生随机数有很大的联系。
+我们这里主要是关心如何从一个概率分布中产生一个随机变量的样本。因为是随机变量的样本，因此不可能每一次产生的结果都一样。然而，对于大量的样本来说，其均值往往是对概率分布均值的一个比较好的估计。因此，样本其实可以用来刻画一个概率分布。
+比如，我们用参数是0.5的伯努利分布来表达抛硬币这个事件。那么，从这个伯努利分布中产生的样本，也就是0和1，象征了硬币是正面还是反面这两个事件。很显然，因为是随机样本，所以如果我们的抽样次数足够多，每个事件发生的概率会趋向于0.5。
+然而，有一点需要注意，并不是所有的分布都能够这样容易地抽取样本。实际上，即便是伯努利分布，也是因为有一定的程序，才能够确定从中抽样。而能够抽样的，往往是标准的分布，诸如伯努利分布、高 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2503068623.html" title="070 | 推荐系统评测之一：传统线下评测">070 | 推荐系统评测之一：传统线下评测</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">070 | 推荐系统评测之一：传统线下评测上周我们讨论了EE算法，介绍了UCB（Upper Confidence Bound）算法和“汤普森采样”（Thompson Sampling）。
+这周，我们回归到一个更加传统的话题，那就是 如何评测推荐系统。这个话题非常重要，牵涉到如何持续对一个推荐系统进行评价，从而能够提高推荐系统的精度。
+今天，我们先来看一看 推荐系统的线下评测。
+基于评分的线下评测在过去10年里，随着Netflix大奖赛的举行，很多研究人员和工程人员往往把推荐系统的模型学习简化为对用户评分的一种估计。同时，在模型上面来说，对用户物品评分矩阵进行分解成为了一种主流的方法。
+在这样的场景下，如何对模型进行评测呢？
+一种简单且直观的办法，就是 衡量评分的准确性，换句话说，也就是看我们预测的评分和真实评分之间有多大的差距。
+那么，有哪些方法可以用来衡量两个数值之间的差异呢？
+在机器学习中，一个经常使用的测度叫“ 均方差”（Mean Square Error），或 MSE。有时候，我们也会使用它的根号后的结果，叫作“ 方差”（Rooted Mean Square Error），或 RMSE。
+MSE是这么定义的。首先，如果我们知道一个用户i和物品j的真实评分，假设叫$ Y_{ij} $ ，那么我们的一个估计值是$ Z_{ij} $，MSE计算的就是$ Y_{ij} $ 和$ Z ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/77861831.html" title="071 | 推荐系统评测之二：线上评测">071 | 推荐系统评测之二：线上评测</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">071 | 推荐系统评测之二：线上评测周一，我们聊了推荐系统的线下评测。线下评测是任何系统能够不断演化的最直接的要求。在线下的环境中，我们能够开发出系统的种种改进，并且希望能够通过这些线下评测的手段来选择下一个更好的版本。
+今天，我们来讨论推荐系统的线上评测。任何系统在开发之后最终都要放到线上拿给用户使用。那么，在线上评测的时候需要注意什么呢？
+线上评测的基础推荐系统线上评测的基础和我们之前讲过的搜索系统有很多类似的地方。
+线上评测的核心就是 在线可控实验，有时候又称作是在线实验，或者叫作在线A&#x2F;B实验。我们希望能够利用在线实验来对推荐系统的某一个部分进行检验，看是否对用户和系统的交互产生影响。
+在线可控实验其实是建立“ 因果联系”（Causal Relationship）的重要工具，也可以说是唯一完全可靠的工具。这里面的基础是统计的 假设检验。
+具体来说，就是我们针对访问网站或者应用的人群，进行某种划分，一般情况下是平均随机划分。50%的用户进入被划定的一个群组，叫作“控制组”（Control Bucket），而另外50%的用户进入另一个群组，叫作“对照组”（Treatment Bucket）。“控制组”和“对照组”的唯一区别在于所面对的系统。
+假设我们有一个推荐系统，想对其中的某个部分进行改进。那么，可以保持住其他的部分，让这个希望得到改进的部分成为唯一的“ 独立变量 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3050892997.html" title="072 | 推荐系统评测之三：无偏差估计">072 | 推荐系统评测之三：无偏差估计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">072 | 推荐系统评测之三：无偏差估计周三，我讲了推荐系统的线上评测，我们讨论了如何做在线评测，以及推荐系统在线评测可能遇到的一系列问题。
+今天，我们来看一个比较高级的话题，那就是如何做到推荐系统的无偏差估计。
+推荐系统的偏差性在理解为什么需要无偏差估计之前，我们先来看一看现在系统为什么会存在偏差性，以及这种偏差性会对推荐系统的学习造成什么样的影响。
+先假定我们讨论的是一个新闻推荐系统。为了方便，假设我们的系统中仅有两类文章，体育新闻和财经新闻。我们先来看一个极端情况，假设系统因为种种原因，只给用户推荐体育新闻，会出现什么样的情况呢？
+很明显，如果我们只给用户看体育新闻，那么，用户只可能在这些体育新闻里面选择点击，压根不知道财经新闻的存在。因为用户只在体育新闻里面通过点击浏览表达了喜好，任何一个机器学习系统，只能在这些新闻里面学习到用户的喜好。
+具体来说，用户已点击的新闻可以认为是正例，没有点击的可以认为是负例。这样可以对用户在体育新闻上面的喜好加以建模。但是很明显，系统在用户对财经新闻喜好的学习上是一筹莫展的，因为我们根本没有任何用户对于财经新闻的回馈数据。
+这就是系统的偏差性。在这样的设置下，系统存在的偏差是无法修正的。通俗地讲，我们压根没有给财经新闻任何机会，所以没有数据可以供系统学习。
+其实还有更加严重的情况。因为我们当前的系统仅仅学习到了用户对于体育新闻的喜好，然后如果 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2108802552.html" title="073 | 现代推荐架构剖析之一：基于线下离线计算的推荐架构">073 | 现代推荐架构剖析之一：基于线下离线计算的推荐架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">073 | 现代推荐架构剖析之一：基于线下离线计算的推荐架构上周，我们讨论了推荐系统的评测，聊了推荐系统的线下评测、线上评测和无偏差估计。至此，我们已经聊了推荐系统的一些基本技术和评测体系，相信你已对推荐系统有了一个基本的认识。
+那么，到底该如何搭建一个工业级的推荐系统呢？这周，我们就来谈一谈 现代推荐系统的架构体系，帮助你从宏观上对推荐系统的构建有一个更加完整的认识。
+今天，我们先来看一看， 基于线下离线计算的推荐架构。
+推荐架构需要解决的问题在讨论任何一种架构之前，我们首先来看一下这个架构需要解决什么样的问题。然后在这些问题的指引下，我们就可以来分析不同架构在解决这些问题上的优劣。
+那么，对于一个推荐架构来说，我们需要解决什么样的问题呢？
+首先，从大的角度来说，一个用户来到我们的网站或者服务， 推荐系统最重要的一个任务就是，能够在一两百毫秒内给用户提供当前的推荐结果。也就是说，从用户的角度来看， 推荐结果的呈现必须是实时的。这一条就是把工业级应用和学术模型区分开的一个重要指标。
+在过去十多年里，学术界的推荐系统，或者是Kaggle竞赛的推荐系统，往往是一个使用了很多不同模型的 集成模型（Ensemble Model），这种方式虽然在比赛和论文发表中能够取得较高的精度，但是在现实的系统中，如果不加修改直接使用，必然无法在规定的时间内，也就是一两百毫秒内产生所有的推荐结果。同样的， ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/18/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/#content-inner">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/#content-inner">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/20/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

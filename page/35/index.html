@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,55 +138,124 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2133227377.html" title="106 | 序列建模的深度学习利器：RNN基础架构">106 | 序列建模的深度学习利器：RNN基础架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">106 | 序列建模的深度学习利器：RNN基础架构前面我们介绍了一个重要的文本模型，Word2Vec，我们聊了这个模型的基本假设，模型实现，一些重要的扩展，以及其在自然语言处理各个领域的应用。
-接下来，我们来讨论更加复杂的**基于深度学习的文本分析模型 。这些模型的一大特点就是更加丰富地利用了 文字的序列信息**，从而能够对文本进行大规模建模。
-今天，我们首先来看一看，序列建模的深度学习利器 RNN（Recurrent Neural Network，递归神经网络）的基本架构。
-文本信息中的序列数据我们在之前介绍Word2Vec的时候，讲了为什么希望能够把上下文信息给融入到模型当中去。一个非常重要的原因，就是在最早的利用“词包”（Bag of Word）的形式下，离散的词向量无法表达更多的语义信息。那么，从文本的角度来讲，很多研究人员都面对的困扰是，如何对有序列信息的文本进行有效的建模？同时，对于广大文本挖掘的科研工作者来说，这也是大家心中一直深信不疑的一个假设，那就是 对文字的深层次的理解一定是建立在对序列、对上下文的建模之中。
-你可能有一个疑问，文字信息中真的有那么多序列数据吗？
-其实，从最简单的语义单元“句子”出发，到“段落”，到“章节”，再到整个“文章”。这些文字的组成部分都依赖于对更小单元的序列组合。例如，句子就是词语的序列，段落就是句子的序列，章节就是段落的序列等等。不仅 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3012948229.html" title="107 | 基于门机制的RNN架构：LSTM与GRU">107 | 基于门机制的RNN架构：LSTM与GRU</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">107 | 基于门机制的RNN架构：LSTM与GRU这周，我们继续来讨论基于深度学习的文本分析模型。这些模型的一大特点就是更加丰富地利用了文字的序列信息，从而能够对文本进行大规模的建模。在上一次的分享里，我们聊了对序列建模的深度学习利器“递归神经网络”，或简称RNN。我们分析了文本信息中的序列数据，了解了如何对文本信息中最复杂的一部分进行建模，同时还讲了在传统机器学习中非常有代表性的“隐马尔科夫模型”（HMM）的基本原理以及RNN和HMM的异同。
-今天我们进一步展开RNN这个基本框架，看一看在当下都有哪些流行的RNN模型实现。
-简单的RNN模型为了能让你对今天要进一步介绍的RNN模型有更加深入的了解，我们先来回顾一下RNN的基本框架。
-一个RNN通常有一个输入序列X和一个输出序列Y，这两个序列都随着时间的变化而变化。也就是说，每一个时间点，我们都对应着一个X和一个Y。RNN假定X和Y都不独立发生变化，它们的变化和关系都是通过一组隐含状态来控制的。具体来说，时间T时刻的隐含状态有两个输入，一个输入是时间T时刻之前的所有隐含状态，一个输入是当前时刻，也就是时间T时刻的输入变量X。时间T时刻的隐含状态根据这两个输入，会产生一个输出，这个输出就是T时刻的Y值。
-那么，在这样的一个框架下，一个最简单的RNN模型是什么样子的呢？我们需要确定两个元素。第一个元素就是在时刻T，究竟如何处理过去的隐 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/523521699.html" title="104 | Word2Vec算法有哪些扩展模型？">104 | Word2Vec算法有哪些扩展模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">104 | Word2Vec算法有哪些扩展模型？从上一期的分享开始，我们进入到文本分析的另外一个环节，那就是介绍一个最近几年兴起的重要文本模型，Word2Vec。这个模型对文本挖掘、自然语言处理等很多领域都有重要影响。我们讨论了Word2Vec模型的基本假设，主要是如何从离散的词包输入获得连续的词的表达，以及如何能够利用上下文从而学习到词的隐含特性。我们还聊了两个Word2Vec模型，SG（SkipGram）模型和CBOW（Continuous-Bag-of-Word）模型，讨论了它们都有什么特性以及如何实现。
-今天，我们就来看一看 Word2Vec的一些扩展模型。
-Word2Vec的扩展思路在列举几个比较知名的Word2Vec扩展模型之前，我们首先来看看这个模型怎么进行扩展。
-首先，我们来回忆一下Word2Vec的一个基本的性质，那就是这是一个语言模型。而语言模型本身其实是一个 离散分布模型。我们一起来想一想，什么是语言模型？语言模型就是针对某一个词库（这里其实就是一个语言的所有单词），然后在某种语境下，产生下一个单词的模型。也就是说，语言模型是一个 产生式模型，而且这个产生式模型是产生单词这一离散数据的。
-既然是这样，如果我们更改这个词库，变成任何的离散数据，那么，Word2Vec这个模型依然能够输出在新词库下的离散数据。比如，如果我们把词汇库从英语单词换成物品的下标，那Wor ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3986094655.html" title="108 | RNN在自然语言处理中有哪些应用场景？">108 | RNN在自然语言处理中有哪些应用场景？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">108 | RNN在自然语言处理中有哪些应用场景？周一我们进一步展开了RNN这个基本框架，讨论了几个流行的RNN模型实现，从最简单的RNN模型到为什么需要“门机制”，再到流行的LSTM和GRU框架的核心思想。
-今天，我们就来看一看RNN究竟在自然语言处理的哪些任务和场景中有所应用。
-简单分类场景我们首先来聊一种 简单的分类场景。在这种场景下，RNN输入一个序列的文字，然后根据所有这些文字，做一个决策，或者叫作输出一个符号。这类应用是文本挖掘和分析中最基本的一个场景。
-在绝大多数的“简单分类”任务中，传统的文字表达，例如“ 词包”（Bag of Word）或者“ N元语法”（Ngram），经常都能有不错的表现。也就是说，在很多这类任务中，文字的顺序其实并不是很重要，或者说词序并没有携带更多的语义信息。
-然而，实践者们发现，在一些场景中，如果利用RNN来对文字序列进行建模，会获得额外的效果提升。比如有一类任务叫作“ 句子级别的情感分类”（Sentence-Level Sentiment Classification），这类任务常常出现在分析商品的评论文本（Review）这个场景。这时候，我们需要对每一个句子输出至少两种感情色彩的判断，褒义或者贬义，正面或者负面。比如，我们在分析电影评价的时候，就希望知道用户在某一个句子中是否表达了对电影“喜爱”或者“不喜爱”的情绪。
-面对这样句子级别的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3932673544.html" title="109 | 对话系统之经典的对话模型">109 | 对话系统之经典的对话模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">109 | 对话系统之经典的对话模型在文本分析这个重要的环节里，我们已经分享了Word2Vec模型，包括模型的基本假设、模型实现以及一些比较有代表意义的扩展模型。我们还讨论了基于深度学习的文本分析模型，特别是对序列建模的深度学习利器RNN，包括RNN的基本框架，流行的RNN模型实现，以及RNN在自然语言处理中的应用场景。
-今天，我们要来看另外一类和文字相关的人工智能系统—— 对话系统 的一些基础知识。
-浅析对话系统对话系统在整个人工智能领域、甚至是计算机科学领域都占据着举足轻重的地位。著名的人工智能测试，“图灵测试”，其实就是建立在某种意义的对话系统上的。在经典的图灵测试场景中，一个最主要的论述就是：看一个人和一个机器进行对话，在和这个机器系统的问答过程中，能否猜出这个系统是一个真人还是一个计算机程序系统。从这一点可以看出，即便是在计算机科学的早期，对话系统或者说是智能的对话能力，就已经成为了计算机科学家衡量智能水平的一个重要标准。
-实际上，从上个世纪50~60年代开始，研究人员就致力于研发早期的对话系统。即便是在今天看来，在一些简单的应用中，早期的对话系统也表现出了惊人的“智能”。比如，麻省理工大学的约瑟夫·维森鲍姆（Joseph Weizenbaum）教授研发了一款叫“伊丽莎”（Eliza）的早期对话系统。尽管这个对话系统只能对语言进行最肤浅的反馈，但是在“伊丽莎”系统的使用者 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2239007065.html" title="110 | 任务型对话系统有哪些技术要点？">110 | 任务型对话系统有哪些技术要点？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">110 | 任务型对话系统有哪些技术要点？在上一期的分享中，我为你开启了另外一种和文字相关的人工智能系统——对话系统的一些基础知识。我重点和你分享了对话系统的由来，以及对话系统分为“任务型”和“非任务型”两种类型的概况。同时，我们也聊了聊早期的基于规则的对话系统的构建，以及这样的系统对后来各式系统的影响。最后，我为你简单介绍了对话系统的各个基本组件以及这些组件的主要目标。
-在今天的分享里，我们就来看一看 任务型对话系统 的一些技术要点。
-任务型对话系统的基本架构首先，我们来回顾一下任务型对话系统的一些基本架构。尽管不同的对话系统有着不同的目的，但是从大的架构上来看，所有的任务型对话系统都有一些基本共同的组件。
-第一个组件是“自动语音识别器”（ASR），这个组件是把人的语音进行识别，转换成为计算机能够理解的信号。
-第二个组件是“自然语言理解器”（NLU）。在这个组件里，我们主要是针对已经文字化了的输入进行理解，比如提取文字中的关键字，对文字中的信息进行理解等。
-第三个组件是“对话管理器”（DM）。这个组件的意义是能够管理对话的上下文，从而能够对指代信息，上下文的简称，以及上下文的内容进行跟踪和监测。
-第四个组件是“任务管理器”（TM），用于管理我们需要完成的任务的状态。
-第五个组件是NLG，既从管理器的这些中间状态中产生输出的文本，也就是自然和连贯的语言。
-最后一个组件是TTS。在一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1541290151.html" title="112 | 什么是文档情感分类？">112 | 什么是文档情感分类？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">112 | 什么是文档情感分类？到目前为止，我们讲完了对话系统的基础知识。一般来说，对话系统分为“任务型”和“非任务型”这两种基本类型。针对任务型对话系统，我们重点介绍了其各个组件的任务，以及这些组件都有哪些模型给予支撑。针对非任务型对话系统，也就是“聊天机器人”，我们主要介绍了如何利用深度学习技术来对一个聊天机器人进行建模，以及非任务型对话系统所面临的挑战都有哪些。
-今天，我们转入文本分析的另外一个领域，同时也是在实际系统中经常会使用的一个子领域，那就是 文本“情感分析”（Sentiment Analysis）。所谓情感分析，就是指我们要针对一段文本来判断这段文本的文字“色彩”，到底是褒义，还是贬义，到底是抒发了什么情感。
-文本情感分析是一个非常实用的工具，比如，我们需要分析用户对于商品的评价带有什么样的情感，从而能够更好地为商品的推荐和搜索结果服务。再比如，通过文本的情感分析，我们可以了解到用户针对某一个时事的观点异同，以及观点分歧在什么地方，从而能够更加清晰地了解新闻的舆情动态。
-今天，我们首先从最基础的 文档情感分类（Document Sentiment Classification）这个问题说起。
-基于监督学习的文档情感分类文档情感分类属于文本情感分析中最基本的一种任务。这种任务的假设是，一段文本的作者通过这段文本是想对某一个“ 实体”（Entity）表达一种情绪。这里的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1317451980.html" title="111 | 聊天机器人有哪些核心技术要点？">111 | 聊天机器人有哪些核心技术要点？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">111 | 聊天机器人有哪些核心技术要点？对话系统分为“任务型”和“非任务型”两种基本类型。周一的分享里，我们讨论了任务型对话系统的一些技术要点，重点介绍了任务型对话系统的各个组件及其背后的模型支撑。
-今天，我们就来看一看**非任务型对话系统 的主要技术要点。非任务型的对话系统有时候又会被称作是“ 聊天机器人**”。
-基于信息检索的对话系统我们前面讲过，对话系统，特别是非任务型对话系统，也就是聊天机器人，有一个很重要的功能，就是在一个知识库的基础上和用户进行对话。这个知识库可以是海量的已经存在的人机对话，也可以是某种形式的知识信息。
-比如，一个关于篮球的聊天机器人，那就需要这个系统能够访问有关篮球球队、运动员、比赛、新闻等有关篮球信息的知识库。同时，在这个对话系统运行了一段时间之后，我们就会慢慢积累很多有关篮球的对话。这些对话就成为了系统针对当前输入进行反应的基础。
-针对当前的输入，利用之前已经有过的对话进行回馈，这就是基于信息检索技术的对话系统的核心假设。一种最基本的做法就是，找到和当前输入最相近的已有对话中的某一个语句，然后回复之前已经回复过的内容。
-比如，当前的问话是“迈克尔·乔丹在职业生涯中一共得过多少分？”如果在过去的对话中，已经有人问过“迈克尔·乔丹为芝加哥公牛队一共得过多少分？”。那么，我们就可以根据这两句话在词组上的相似性，返回已经回答过的答案来应对当前的输入。
-当 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3053669864.html" title="114 | 文本情感分析中如何做意见总结和搜索？">114 | 文本情感分析中如何做意见总结和搜索？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">114 | 文本情感分析中如何做意见总结和搜索？在文本“情感分析”（Sentiment Analysis）这个领域，我们首先介绍了最基础的文档情感分类这个问题。在绝大多数情况下，这是一个监督学习的问题。当然，我们也可以通过建立情感词库来进行简单的非监督学习的步骤。紧接着，我们讨论了文本情感分析中的另一个关键技术，即情感“实体”和“方面”的提取。这个任务可以说是很多情感分析的根基，我们需要从无结构的文本中提取实体和方面等结构信息，便于进一步的分析。我们讲了如何通过词频、挖掘配对信息以及利用监督学习来对实体和方面进行挖掘。
-今天，我们来看文本情感分析的另外一个主题—— 意见总结（Opinion Summarization）和 意见搜索（Opinion Search）。
-意见总结为什么“意见总结”这个任务会很重要的呢？
-假如你希望在电商网站上购买一款数码相机。这个时候，你可能需要打开好几款相机的页面进行比较。对于相机的硬件指标，能够从这些页面上相对容易地直接得到，除此以外，你可能还比较关心对这些相机的评价。
-在这个场景下，“意见总结”的重要性就凸显出来了。因为优秀的相机款式往往有上百甚至上千的用户评价，这些评价包括了用户对产品很多方面的评价，有褒义和贬义的情绪。如果对这些评价逐一进行浏览，很明显是一种非常低效的做法。因此，从购物网站的角度来说，如果能够为用户把这些评论进行总结，从而让用户 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3413929145.html" title="113 | 如何来提取情感“实体”和“方面”呢？">113 | 如何来提取情感“实体”和“方面”呢？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">113 | 如何来提取情感“实体”和“方面”呢？从上一篇分享开始，我们转入文本分析的另外一个领域，文本“情感分析”（Sentiment Analysis），也就是指我们要针对一段文本来判断其文字“色彩”。文本情感分析是一个非常实用的工具。我们从最基础的文档情感分类这个问题说起，这个任务是把一个单独的文档给分类为某种情感。在绝大多数情况下，我们可以把这个任务看作监督学习的问题。另外，我们也聊了聊如何通过建立情感词来进行简单的非监督学习的步骤。
-今天，我们来看文本情感分析中的另一个关键技术， 情感“实体”和“方面”的提取。
-“实体”和“方面”的提取对于文本情感分析而言，“ 实体”（Entity）和“ 方面”（Aspect）是两个非常重要的概念。很多情感分析的任务都是围绕着这两个概念而产生的。在谈论如何对这两个概念提取之前，我们先来看看这两个概念的意义。
-“实体”其实就是文本中的某一个对象，比如产品的名字、公司的名字、服务的名字、个人、事件名字等。而“方面”则是实体的某种属性和组建。
-比如这么一个句子：“我买了一部三星手机，它的通话质量很不错”。在这里，“三星手机”就是一个实体，而“通话质量”则是一个方面。更进一步，“很不错”则是一个情感表达，这里是针对“三星手机”这个实体的“通话质量”这个方面。很明显，如果我们想要精准地对文本的情感进行分析，就一定得能够对实体和方面进行有效提取。
-从广 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/34/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/#content-inner">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/36/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2121070793.html" title="58 | 性能设计：缓存">58 | 性能设计：缓存</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">58 | 性能设计：缓存你好，我是陈皓，网名左耳朵耗子。
+前面分享了《分布式系统设计模式》系列文章的前两部分——弹力设计篇和管理设计篇。今天开始这一系列的最后一部分内容——性能设计篇，主题为《性能设计篇之“缓存”》。
+基本上来说，在分布式系统中最耗性能的地方就是最后端的数据库了。一般来说，只要小心维护好，数据库四种操作（select、update、insert和delete）中的三个写操作insert、update和delete不太会出现性能问题（insert一般不会有性能问题，update和delete一般会有主键，所以也不会太慢）。除非索引建得太多，而数据库里的数据又太多，这三个操作才会变慢。
+绝大多数情况下，select是出现性能问题最大的地方。一方面，select会有很多像join、group、order、like等这样丰富的语义，而这些语义是非常耗性能的；另一方面，大多数应用都是读多写少，所以加剧了慢查询的问题。
+分布式系统中远程调用也会消耗很多资源，因为网络开销会导致整体的响应时间下降。为了挽救这样的性能开销，在业务允许的情况（不需要太实时的数据）下，使用缓存是非常必要的事情。
+从另一个方面说，缓存在今天的移动互联网中是必不可少的一部分，因为网络质量不一定永远是最好的，所以前端也会为所有的API加上缓存。不然，网络不通畅的时候，没有数据，前端都不知道怎么展示UI了。既然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1918198860.html" title="59 | 性能设计：异步处理">59 | 性能设计：异步处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">59 | 性能设计：异步处理你好，我是陈皓，网名左耳朵耗子。
+在弹力设计篇中我们讲过，异步通讯的设计模式有助于提高系统的稳定性和容错能力。其实，异步通讯在分布式系统中还可以增加整个系统的吞吐量，从而可以面对更高的并发，并可以从容地利用好现有的系统资源。为什么这么说呢？
+我们试想一下，在你的工作中，有很多人会来找你，让你帮着做事。如果你是这种请求响应式的工作方式，那么本质上来说，你是在被动工作，也就是被别人驱动的工作方式。
+当你在做一件事的时候，如果有别人来找你做其它事，你就会被打断而要去干别的事。而如果你可以统筹安排这些事情，本来五件事只需要2个小时，如果不能，或者老被别人打乱思路，那你可能就要花5个小时。异步处理任务可以让你更好地利用好时间和资源。利用好了时间和资源，性能自然就会提升上来。
+这就好像邮递业务一样，你寄东西的时候，邮递公司会把大量的去往同一个方向的订单合并处理，并统一地调配物流交通工具，从而在整体上更为节省资源和时间。
+在分布式架构中，我们的系统被拆成了很多的子系统。如果想把这堆系统合理地用好，并更快地处理大量的任务，我们就需要统一地规划和统筹整体，这样可以达到整体的最优。本质上，这和邮递公司处理邮件一样，是相同的道理。
+在计算机的世界里，到处都是异步处理。比如：当程序读写文件时，我们的操作系统并不会真正同步地去操作硬盘，而是把硬盘读写请求先在内存中hold上一小会 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3763500409.html" title="60 | 性能设计：数据库扩展">60 | 性能设计：数据库扩展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">60 | 性能设计：数据库扩展你好，我是陈皓，网名左耳朵耗子。
+读写分离 CQRS读写分离是数据库扩展最简单实用的玩法了，这种方法针对读多写少的业务场景还是很管用的，而且还可以有效地把业务做相应的隔离。
+如下图所示，数据库只有一个写库，有两个读库，所有的服务都写一个数据库。对于读操作来说，服务A和服务B走从库A，服务D和服务E走从库B，服务C在从库A和从库B间做轮询。
+
+这样的方法好处是：
+
+比较容易实现。数据库的master-slave的配置和服务框架里的读写分离都比较成熟，应用起来也很快。
+可以很好地把各个业务隔离开来。不会因为一个业务把数据库拖死而导致所有的业务都死掉。
+可以很好地分担数据库的读负载，毕竟读操作是最耗数据库CPU的操作。
+
+这样的方法不好的地方是：
+
+写库有单点故障问题。如果是写库出了性能问题，那么所有的业务一样不可用。对于交易型的业务，要得到高的写操作速度，这样的方式不行。
+数据库同步不实时，需要强一致性的读写操作还是需要落在写库上。
+
+综上所述，一般来说，这样的玩法主要是为了减少读操作的压力。
+当然，这样的读写分离看上去有点差强人意，那么，我们还是为之找一个更靠谱的设计——CQRS。关于CQRS，我在这里只做一个简单的介绍，更多的细节你可以上网自行Google。
+CQRS全称Command and Query Responsibility Segregat ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1683736450.html" title="61 | 性能设计：秒杀">61 | 性能设计：秒杀</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">61 | 性能设计：秒杀你好，我是陈皓，网名左耳朵耗子。
+一说起秒杀，大家都觉得这事很有技术含量。实际上，并不是这个样子的，秒杀这种互联网的交易方式其实并没有我们想象中的那么复杂。下面先让我们来系统地看一下，秒杀是怎么做的。
+秒杀的流程“秒杀”其实是商家为了促销，使用非常低的价格销售商品，比如，1元卖iPhone，100台，于是来了一百万人抢购。
+我们把技术挑战放在一边，先从用户或是产品的角度来看一下，秒杀的流程是什么样的。
+
+首先，你需要一个秒杀的landing page，在这个秒杀页上有一个倒计时的按钮。
+一旦这个倒计时的时间到了，按钮就被点亮，让你可以点击按钮下单。
+一般来说下单时需要你填写一个校验码，以防止是机器来抢。
+
+从技术上来说，这个倒计时按钮上的时间和按钮可以被点击的时间是需要后台服务器来校准的，这意味着：
+
+前端页面要不断地向后端来请求，开没开始，开没开始……
+每次询问的时候，后端都会给前端一个时间，以校准前端的时间。
+一旦后端服务器表示OK可以开始，后端服务会返回一个URL。
+这个URL会被安置在那个按钮上，就可以点击了。
+点击后，如果抢到了库存，就进入支付页面，如果没有则返回秒杀已结束。
+
+这个不断轮询的过程，就好像大家等着抢。你想想，有100万人来不停地询问有没有开始了这个事，估计后端也扛不住。
+秒杀的技术挑战接下来，我们需要来看一下“秒杀”的技术挑战。
+面 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2917424240.html" title="62 | 性能设计：边缘计算">62 | 性能设计：边缘计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">62 | 性能设计：边缘计算你好，我是陈皓，网名左耳朵耗子。
+前面我们通过一个秒杀的示例，展示了如何在CDN结点上简单地部署小服务，然后就可以完成在数据中心很难完成的事，我想你应该能看到边缘结点的一些威力。今天，我会和你聊聊我所认识的边缘计算，这也是我创业的方向。
+首先，一说起边缘计算，网上大多数文章都会说这是和IoT相关的一个技术。其实，我觉得这个说法只说对了边缘计算的一部分，边缘计算可以做的事情还有很多很多。
+所谓边缘计算，它是相对于数据中心而言。数据中心喜欢把所有的服务放在一个机房里集中处理用户的数据和请求，集中式部署一方面便于管理和运维，另一方面也便于服务间的通讯有一个比较好的网络保障。的确没错。不过，我们依然需要像CDN这样的边缘式的内容发布网络，把我们的静态内容推到离用户最近的地方，然后获得更好的性能。
+如果我们让CDN的这些边缘结点拥有可定制的计算能力，那么就可以像秒杀那样，可以在边缘结点上处理很多事情，从而为我们的数据中心带来更好的性能，更好的扩展性，还有更好的稳定性。而我们的用户也会觉得响应飞快，从而有了更好的用户体验。
+下面，让我们来看看为什么边缘计算会变成一个必然的产物。这里，我有两个例子。
+为什么要有边缘计算从趋势上来说首先，我们得看一下整个时代是怎么发展的。我们处在信息化革命时代，也有人叫数字化革命，总之就是电脑时代。这个时代，把各式各样的信息都给数字化掉 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1536482978.html" title="63 | 区块链技术的本质">63 | 区块链技术的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">63 | 区块链技术的本质你好，我是陈皓，网名左耳朵耗子。
+去年专栏一开始更新的时候，就有读者留言让我发表一下对区块链技术的看法。当时我觉得区块链相关的技术相对比较简单，没什么好说的。并且，“左耳听风”专栏的主要目标是帮助大家学习更为主流的关键技术，所以那会我就把区块链相关的技术文章降级处理了。
+那为什么现在我又要写这个主题呢？
+2010年，我在浏览国外技术网站时，看到好多人在讨论一个叫bitcoin的东西，还看到有人说用几万个这个东西换了个披萨。随后，我看了一下它的 白皮书，这篇不到10页的文档读起来还是很容易的，所以建议你读一读。
+然后，我在一台电脑上尝试安装了一下，就像用BT或电驴下载一样，连入了这个没有服务器的P2P网络，下载了账本，还尝试了一下“挖矿”。
+花了不少的时间，我收到了来自系统奖励的50个比特币。当时，我默默地看着这个又耗硬盘空间，又非常吃CPU的家伙，心里想，这什么破软件，太难用了，就删除了。（是的，这50个比特币也就不知道去哪了。）
+记得比特币开始有价值的时候，像维基解密这样的机构为了避开被政府控制的银行，会接受比特币的捐款。2012年的时候，比特币已经看涨了，到了2013年，比特币的市值已经比较高了，突破了1000美金。
+那个时候，中国有好多人在挖矿。记得最厉害的是李笑来，他持有的比特币数量很可观，如果没有卖的话，现在就更为“恐怖”了。
+在2016年的时候 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2663218069.html" title="65 | 区块链技术细节：加密和挖矿">65 | 区块链技术细节：加密和挖矿</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">65 |  区块链技术细节：加密和挖矿你好，我是陈皓，网名左耳朵耗子。
+前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。
+那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。
+比特币的加密方法密钥对&#x2F;签名&#x2F;证书所谓密钥对，也就是一种非对称加密技术。这种技术，在对信息进行加密和解密时，使用两个不同的密钥。这样一来，我们就可以把其中一个密钥公布出去，称之为公钥，另一个密钥私密地保管好，称之为私钥。
+现实社会中，有人使用公钥加密，私钥解密，也有反过来用私钥加密，公钥解密，这得看具体的场景。（比特币使用了非对称加密的技术，其使用了 ECDSA 密钥对比技术。）
+比如，我把我加密的密钥发布给所有人，然后大家都用这个公钥加密信息，但其他人没有私钥，所以他们解不了密文，只有我能解密文，也只有我能看得懂别人用我的公钥加密后发给我的密文。如下图所示。
+
+但是，这会有个问题，那就是每个人都有我的公钥，别人可以截获Mike发给我的信息，然后自己用我的公钥加密一个别的信息，伪装成Mike发给我， 这样我就被黑了。于是，我们需要对Mike的身份进行验证，此时就需要用到“数字签名”的概念了。
+Mike也有一对密钥对， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1943697662.html" title="64 | 区块链技术细节：哈希算法">64 | 区块链技术细节：哈希算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">64 | 区块链技术细节：哈希算法你好，我是陈皓，网名左耳朵耗子。
+对于计算机来说，区块链就像一个单向链表，一个数据块中保存着三个信息。
+
+真正的数据。
+自己的地址（或是ID）。
+前一个数据块的地址。
+
+这样，通过追溯前一个块的地址，把所有的数据块存成了一条链。所以，我们叫其BlockChain。如下图所示。
+
+每个数据块的“地址”的编码使用了计算机上的一个算法，计算机圈内人士把这个算法叫Secure Hash。有人音译为“安全哈希”，也有人意译为“安全散列”。在计算机应用中，hash算法主要有几个功能。
+
+用来生成唯一标识一个数据块的ID（身份证），这个ID几乎不能重复。
+
+用来做数据的特征码。只要数据中一个bit的数据出现更改，那么整个hash值就完全不一样了。而且数学上保证了，我们无法通过hash值反推回原数据。
+
+
+于是，很多公司在互联网上发布信息或软件的时候，都会带上一个Checksum（校验码）。你只要把整个文件的数据传入到那个特定的hash算法中，就会得到一串很长的字符串。如果和官方发布的Checksum字符串不一样，那么就说明信息或文件内容被人更改或是信息残缺了。因此，也被应用在“数字签名”中。
+在计算机世界里，有两个很著名的hash算法，一个叫MD5（ Wikipedia链接），一个叫SHA-2（ Wikipedia链接）， 区块链用的是SHA-256这个算法。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3487429568.html" title="66 | 区块链技术细节：去中心化的共识机制">66 | 区块链技术细节：去中心化的共识机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">66 | 区块链技术细节：去中心化的共识机制你好，我是陈皓，网名左耳朵耗子。
+其实，去中心化的共识机制也是要解决拜占庭将军问题（ The Byzantine Generals Problem），它是莱斯利·兰伯特（Leslie Lamport）于1982年提出来的，用来解释一致性问题的一个虚构模型。同时，它也是分布式领域中最复杂、最严格的容错模型。
+分布式一致性算法拜占庭的将军们没有一个中心化的领导机构，所以，如果他们需要攻击某个城市，所有将军需要对任何将军可能提出的攻击时间达成共识。也就是说，只有所有的将军都达成了共识，在同一个攻击时间攻击，就有非常大的胜率。但是，问题来了。这时，可能会有多个将军同时发出不同的攻击计划，而且这些将军中还有叛徒。那么，将军们怎样达成共识呢？
+莱斯利·兰伯特证明，当叛变者不超过 1&#x2F;3时，存在有效的算法。不论叛变者如何折腾，忠诚的将军们总能达成一致的结果。如果叛变者过多，则无法保证一定能达到一致性。
+拜占庭问题之所以难解，在于任何时候系统中都可能存在多个提案（因为提案成本很低），并且要完成最终的一致性确认过程十分困难，容易受干扰。但一旦确认，即为最终确认。
+比特币的区块链网络在设计时使用的 PoW（Proof of Work） 算法思路。一个是限制一段时间内整个网络中出现提案的个数（增加提案成本），另外一个是放宽对最终一致性确认的需求，约定 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3026780820.html" title="68 | 谈谈传统金融和虚拟货币">68 | 谈谈传统金融和虚拟货币</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">68 | 谈谈传统金融和虚拟货币你好，我是陈皓，网名左耳朵耗子。
+前面我们讲了银行的资金托管业务以及国际贸易业务。我讲这些东西，主要想讲什么呢？
+金融的本质我想讲金融的本质。我个人认为金融行业最大的本质就是—— 促进交易完成，实现价值提升！ 也就是说，如果整个社会的交易能够更快更高效更安全地完成，那么我们这个社会就会有更好的运作效率，更低的成本，更多的价值。这对于促进整个社会的经济发展是相当关键的。
+所以，为了保证交易完成，金融行业需要解决下面几个问题。
+
+交易中的信用问题。所以，银行会来做中间人来担保。
+
+交易中资金不足的问题。通过借贷来让交易完成。
+
+交易中大额的问题。把一个大额的金融事件以股份的方式拆碎进行大众投资。
+
+
+总之，金融行业就是要促进社会的交易，使得这个社会的交易越来越活跃，从而可以产生更多的价值。那么，这个社会的经济就会越来越健康。
+下图给出了金融行业的四个重要属性。
+
+
+效率提升：加快货币、股票、债券的流通性，快速地促成交易。
+
+价值提升：通过金融产品的流通性，让实际价值得到充分的体现，并升值。
+
+激励机制：为实体经济添砖加瓦，并激励社会持续付出和成长。
+
+信用评级：建立信用社会、评估信用等级，从而改善社会。
+
+
+是不是有银行做担保，有这些金融机构我们就可以高枕无忧了？不是的，我在前面说过，主要是钱不够多，只要钱多到一定数量的时候，什么事都可能发生。因为逐利是 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/34/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/#content-inner">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/36/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

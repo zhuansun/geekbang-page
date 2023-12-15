@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,76 +138,123 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4123730162.html" title="126 | 计算机视觉高级话题（三）：产生式模型">126 | 计算机视觉高级话题（三）：产生式模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">126 | 计算机视觉高级话题（三）：产生式模型今天，我们来讨论计算机视觉高级话题中的“ 产生式模型”（Generative Model）。
-我们前面讲到的计算机视觉问题，绝大多数场景都是去学习一个“判别式模型”（Discriminative Model），也就是我们希望构建机器学习模型来完成这样的任务，比如判断某一件事情或一个图片的特征，或者识别图片里面的物体等，这些任务都不需要回答“数据是如何产生的”这一问题。简言之，针对判断类型的任务，不管是回归还是分类，我们都不需要对数据直接进行建模。
-然而，判别式模型并不能解决所有的机器学习任务。有一些任务的核心其实需要我们针对数据进行有效的建模，这就催生了“产生式模型”。
-产生式模型的一些基础概念那么，针对数据建模的产生式模型都有哪些基本思想呢？
-首先，产生式模型的一个核心思想就是模型要能够产生数据。也就是说，产生式模型不仅需要针对已有的数据建模，还需要有能力产生新的数据。产生出的这些新数据当然需要和已有的数据有一定的相似度。换句话说，新产生的数据要能够“以假乱真”。
-那么，有哪些能够产生数据的工具呢？
-在比较简单的模型中，概率分布其实就起了产生数据的作用。例如，在离散概率分布的世界里，如果我们知道了一个伯努利分布的参数，也就是某一个事件发生的概率，那么，从理论上来说，我们就可以模拟出这个事件的发生。
-比如，我们利用伯努利分布来对掷硬币 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1380456050.html" title="124 | 计算机视觉高级话题（一）：图像物体识别和分割">124 | 计算机视觉高级话题（一）：图像物体识别和分割</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">124 | 计算机视觉高级话题（一）：图像物体识别和分割从今天开始，我们讨论几个相对比较高级的计算机视觉话题。这些话题都不是简单的分类或者回归任务，而是需要在一些现有的模型上进行改进。
-我们聊的第一个话题就是图像中的 物体识别（Object Recognition）和 分割（Segmentation）。我们前面介绍过物体识别和分割。通俗地讲，就是给定一个输入的图像，我们希望模型可以分析这个图像里究竟有哪些物体，并能够定位这些物体在整个图像中的位置，对于图像中的每一个像素，能够分析其属于哪一个物体。
-这一类型任务的目的是更加仔细地理解图像中的物体，包括图片分类、对图像里面的物体位置进行分析，以及在像素级别进行分割，这无疑是一个充满挑战的任务。
-R-CNN深度模型，特别是卷积神经网络（CNN）在AlexNet中的成功应用，很大程度上开启了神经网络在图像分类问题上的应用。这之后，不少学者就开始考虑把这样的思想利用到物体识别上。第一个比较成功的早期工作来自加州大学伯克利分校[1]，这就是我们接下来要介绍的 R-CNN模型。
-首先，R-CNN的输入是一个图片，输出是一个“选定框”（Bounding Box）和对应的标签。R-CNN采用了一种直观的方法来生成选定框：尽可能多地生成选定框，然后来看究竟哪一个选定框对应了一个物体。
-具体来说，针对图像，R-CNN先用不同大小的选定框来扫描，并且尝试 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/716690386.html" title="128 | 数据科学家基础能力之机器学习">128 | 数据科学家基础能力之机器学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">128 | 数据科学家基础能力之机器学习想要成为合格的，或者更进一步成为优秀的人工智能工程师或数据科学家，机器学习的各种基础知识是必不可少的。然而，机器学习领域浩如烟海，各类教材和入门课程层出不穷。特别是机器学习基础需要不少的数学知识，这对于想进入这一领域的工程师而言，无疑是一个比较高的门槛。
-今天，我来和你聊一聊如何学习和掌握机器学习基础知识，又如何通过核心的知识脉络快速掌握更多的机器学习算法和模型。
-监督学习和无监督学习要问机器学习主要能解决什么问题，抛开各式各样的机器学习流派和层出不穷的算法模型不谈， 机器学习主要解决的是两类问题：监督学习和无监督学习。掌握机器学习，主要就是学习这两类问题，掌握解决这两类问题的基本思路。
-什么是解决这两类问题的基本思路呢？基本思路，简而言之就是“套路”。放在这里的语境，那就是指：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/681167405.html" title="79 | 程序员练级攻略：Java底层知识">79 | 程序员练级攻略：Java底层知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">79 | 程序员练级攻略：Java底层知识你好，我是陈皓，网名左耳朵耗子。
+前两篇文章分享的是系统底层方面的内容，今天我们进入高手成长篇的第二部分——Java底层知识。
+Java 字节码相关首先，Java最黑科技的玩法就是字节码编程，也就是动态修改或是动态生成Java字节码。Java的字节码相当于汇编，其中的一些细节你可以从下面的这几个教程中学习。
 
-如何把现实场景中的问题抽象成相应的数学模型，并知道在这个抽象过程中，数学模型有怎样的假设。
+Java Zone: Introduction to Java Bytecode ，这篇文章图文并茂地向你讲述了Java字节码的一些细节，是一篇很不错的入门文章。
 
-如何利用数学工具，对相应的数学模型参数进行求解。
+IBM DeveloperWorks: Java bytecode ，虽然这篇文章很老了，但是这篇文章是一篇非常好的讲Java 字节码的文章。
 
-如何根据实际问题提出评估方案，对应用的数学模型进行评估，看是否解决了实际问题。
+Java Bytecode and JVMTI Examples，这是一些使用 JVM Tool Interface 操作字节码的比较实用的例子。包括方法调用统计、静态字节码修改、Heap Taggin和Heap Walking。
 
 
-这三步就是我们学习监督学习和无监督学习，乃至所有的机器学习算法的核心思路。机器学习中不同模型、不同算法都是围绕这三步来展开的，我们不妨把这个思路叫作“三步套路”。
-那什么是监督学习呢？监督学习是指这么一个过程，我们通过外部的响应变量（Re ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1281410182.html" title="129 | 数据科学家基础能力之系统">129 | 数据科学家基础能力之系统</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">129 | 数据科学家基础能力之系统对于初学人工智能的工程师或者数据科学家来说，在知识积累的过程中，“系统”往往是一个很容易被忽视的环节。特别是非计算机科学专业出身的朋友，一般都没有真正地建立过“系统”的概念，在今后从事人工智能的相关工作时，很可能会遇到一些障碍。
-今天我想给你分享一下，作为人工智能工程师和数据科学家，需要建立的关于“系统”的最基本认知。这些认知能够帮助你把书本的理论知识和现实的应用场景快速结合起来。
-理解管道（Pipeline）在很多人工智能初学者的认知中，机器学习的流程是这样的。有一个已经准备好的数据集，这个数据集里面已经有了各种特征以及所对应的标签或者响应变量。这个时候，你需要做的就是利用这个数据集和一些现成的机器学习工具包，来训练一些机器学习模型。模型训练好以后，就可以计算一些已知的评估指标了，比如准确度、精度等等。
-这是一般教科书和课程上介绍的标准机器学习流程，也是很多机器学习论文中的实验环境。遗憾的是，这个静态的流程并不适用于工业级的数据产品。
-要支持工业级的人工智能产品，一个最基本的概念就是， 你需要搭建一个管道让你的环境是动态的、闭环的。在英文的语言背景里，“管道”这个词很形象地说明了这个环境的特点。我们把数据想象成“管道”里的水，这里面的一个核心思想，就是数据从一个环节到下一个环节，源源不断。我们再把最终的产品，也就是这个管道的末端，和最开始的数据 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1113421443.html" title="127 | 数据科学家基础能力之概率统计">127 | 数据科学家基础能力之概率统计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">127 | 数据科学家基础能力之概率统计学习人工智能的工程师，甚至是在人工智能相关领域从业的数据科学家，往往都不重视概率统计知识的学习和培养。有人认为概率统计知识已经过时了，现在是拥抱复杂的机器学习模型的时候了。实际上，概率统计知识和数据科学家的日常工作，以及一个人工智能项目的正常运作都密切相关， 概率统计知识正在人工智能中发挥着越来越重要的作用。
-和机器学习一样，概率统计各个领域的知识以及研究成果浩如烟海。今天我就和你聊一聊，如何从这么繁多的信息中，掌握能够立即应用到实际问题中的概率统计知识，以及如何快速入手一些核心知识，并能触类旁通学习到更多的内容。
-使用概率的语言概率统计中的“概率”，对于学习和掌握人工智能的诸多方面都有着举足轻重的作用。这里面最重要的，恐怕要数概率论中各种分布的定义。初学者往往会觉得这部分内容过于枯燥乏味，实际上， 概率论中的各种分布就像是一门语言的基本单词，掌握了这些基本的“建模语言”单词，才能在机器学习的各个领域游刃有余。
-值得注意的是，目前火热的深度学习模型，以及在之前一段时间占领机器学习统治地位的概率图模型（Probabilistic Graphical Models），都依赖于概率分布作为这些框架的基本建模语言。因此，能够真正掌握这些分布就显得尤为重要。
-对于分布的掌握其实可以很容易。只要对少量几个分布有一定的认识后，就能够很容易地扩展开来。首先， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/509018059.html" title="130 | 数据科学家高阶能力之分析产品">130 | 数据科学家高阶能力之分析产品</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">130 | 数据科学家高阶能力之分析产品人工智能工程师和数据科学家的主要工作是什么？很多人认为，他们的主要工作是利用复杂的机器学习模型和算法来解决产品中的难题。这样的认识既“对”也“不对”。“对”的地方是说，机器学习模型和算法的确是人工智能技术在产品上落地的核心步骤。“不对”的地方是说，这种认识往往片面地总结了人工智能从业人员的工作范畴。
-实际上，要想真正地提出一个好的人工智能解决方案，分析产品的能力是必需的。从较高的层次来讲，就是分析一个产品目前遇到的难题是什么，为什么需要用人工智能技术去解决，哪些是可以用人工智能技术解决的，哪些不能。
-今天，我就来分享一下，站在人工智能工程师和数据科学家的角度，我们如何理解并提升分析产品的能力，学会了解产品的需求。
-产品需求的庖丁解牛一个数据驱动的产品往往是一个复杂的复合体。这里面当然有很多数据、人工智能的元素，也有不少其他元素，比如设计、人机交互、商业规则、心理学等等。那么，如何在这么一个综合复杂的体系中找到人工智能技术的合适位置，以及技术究竟要扮演什么样的角色，其实是一个数据驱动型产品能否成功的核心问题。
-想要对这个问题有一个比较全面的认识，我们首先需要回答这么一个问题，那就是人工智能技术到底能够给产品带来什么？
-很多朋友可能觉得这个问题不言自明。人工智能技术难道不是解决产品的核心算法难题吗？
-这种看法其实不够全面。 人工智能技术给产品带来 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/242899950.html" title="131 | 数据科学家高阶能力之评估产品">131 | 数据科学家高阶能力之评估产品</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">131 | 数据科学家高阶能力之评估产品“ 如果你无法衡量它，你就无法改进它。”（If you can’t measure it you can’t improve it.）这是一句你可能会经常听到的话，这句话也被应用到很多不同的场景中。那么，对于人工智能工程师和数据科学家来说，这句话其实是他们工作核心的核心。不管是模型和算法，还是产品迭代，都离不开“指标”和“评估”这两个方面。
-评估一个产品的好坏，是一项说起来最容易但做起来最困难的工作。任何人，从用户到产品经理，对某一个产品都可能有自己的主观意见。然而对一个产品，特别是要面对成千上万用户的产品来说，依靠主观感觉是很难有一个完整、全面的评价的。同时， 有一个成熟的产品评价体系可以成为产品不断迭代的领航标。
-今天，我就来聊一聊如何评估一个数据驱动型产品，又如何从评估产品的角度来推动产品的迭代。我们需要建立层次化的评估体系，需要一个衡量产品好坏的框架。这个框架要从宏观到微观，能够对你的产品进行全方位的检测，并且这种检测能够帮助你更容易地进行决策。
-产品的经济收益你可能要问，是的，我们需要评估一个产品，但是如何找到衡量产品的这些指标呢？
-比方说你要做一个社交网络的网站，怎么来制定检测指标呢？首先，你要问自己，我做这个社交网络的最终目的是什么？很明显，一个商业网站的终极目标是赚钱，也就是说，你最终的指标是你网站的经济收益。知道了这一点远远 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1855114133.html" title="133 | 职场话题：当数据科学家遇见产品团队">133 | 职场话题：当数据科学家遇见产品团队</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">133 | 职场话题：当数据科学家遇见产品团队我们在之前的分享中已经聊了数据科学家应该具备的基本能力，主要是希望从机器学习、统计知识、系统知识等方面给你一个完整的基本知识框架。然后我们聊了一些数据科学家的高阶能力，主要是能够通过分析产品、建立产品的评估体系以及对产品的长短期目标进行建模来系统性地提升产品性能。
-今天我们就把话题从数据科学家和人工智能算法工程师自身的修养和提升，扩展到一个更大的范围，那就是在职场中必然会遇到的发展和协作问题，我们来聊聊数据科学家和产品团队的关系这个话题。
-作为数据科学家或者算法专家，不知道你有没有遇到过这样的场景：
+当然，一般来说，我们不使用JVMTI操作字节码，而是用一些更好用的库。这里有三个库可以帮你比较容易地做这个事。
 
-你正在开发最新的推荐算法，产品经理找到你说，希望给在北京的女性用户推荐一款红色的高跟鞋；
+asmtools - 用于生产环境的Java .class文件开发工具。
+Byte Buddy - 代码生成库：运行时创建Class文件而不需要编译器帮助。
+Jitescript -  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1843480495.html" title="78 | 程序员练级攻略：异步I/O模型和Lock-Free编程">78 | 程序员练级攻略：异步I/O模型和Lock-Free编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">78 | 程序员练级攻略：异步I&#x2F;O模型和Lock-Free编程你好，我是陈皓，网名左耳朵耗子。
+异步I&#x2F;O模型异步I&#x2F;O模型是我个人觉得所有程序员都必需要学习的一门技术或是编程方法，这其中的设计模式或是解决方法可以借鉴到分布式架构上来。再说一遍，学习这些模型，是非常非常重要的，你千万要认真学习。
+史蒂文斯（Stevens）在《 UNIX网络编程》一书6.2 I&#x2F;O Models中介绍了五种I&#x2F;O模型。
 
-你正在研究如何使用最新的深度学习技术来提高搜索结果，产品的设计师告诉你，产品团队现在决定在近期做一个推广，需要在搜索结果上方展示一个很大的条幅，使得整个搜索页面往下移动了不少；
+阻塞I&#x2F;O
+非阻塞I&#x2F;O
+I&#x2F;O的多路复用（select和poll）
+信号驱动的I&#x2F;O（SIGIO）
+异步I&#x2F;O（POSIX的aio_functions）
 
-你正在给公司的广告系统设计新的模型，产品的营销人员告诉你，这周需要展示给用户的折扣信息，广告位从以前的6个变成了3个。
-相信类似的场景你应该不陌生。这也就是我们今天要探讨的问题，数据科学家如何在一个更加广阔的环境中协作。
+然后，在前面我们也阅读过了 - C10K Problem 。相信你对I&#x2F;O模型也有了一定的了解。 这里，我们需要更为深入地学习I&#x2F;O模型，尤其是其中的异步I&#x2F;O模型。
+首先，我们看一篇和Java相关的I&#x2F;O模型的文章来复习一下之前的内容。 Thousands of Threads and Blocking I&#x2F;O: The Old Way to Write Java Servers Is New Again (and Way Better) ，这个PPT中不仅回顾和比较了各种I ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2948227777.html" title="84 | 程序员练级攻略：微服务">84 | 程序员练级攻略：微服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">84 | 程序员练级攻略：微服务你好，我是陈皓，网名左耳朵耗子。
+微服务是分布式系统中最近比较流行的架构模型，也是SOA架构的一个进化。微服务架构并不是银弹，所以，也不要寄希望于微服务架构能够解决所有的问题。微服务架构主要解决的是如何快速地开发和部署我们的服务，这对于一个能够适应快速开发和成长的公司是非常必要的。同时我也觉得，微服务中有很多很不错的想法和理念，所以学习微服务是每一个技术人员迈向卓越的架构师的必经之路。
+首先，你需要看一下，Martin Fowler的这篇关于微服务架构的文档 - Microservice Architecture （ 中译版），这篇文章说明了微服务的架构与传统架构的不同之处在于，微服务的每个服务与其数据库都是独立的，可以无依赖地进行部署。你也可以看看Martin Fowler老人家现身说法的 视频。
+另外，你还可以简单地浏览一下，各家对微服务的理解。
+
+AWS的理解 - What are Microservices?。
+Microsoft的理解 - Microservices architecture style。
+Pivotal的理解 - Microservices。
+
+微服务架构接下来，你可以看一下 IBM红皮书：Microservices Best Practices for Java ，这本书非常好，不但有通过把Spring Boot和 Dr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3159056066.html" title="81 | 程序员练级攻略：分布式架构入门">81 | 程序员练级攻略：分布式架构入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">81 | 程序员练级攻略：分布式架构入门你好，我是陈皓，网名左耳朵耗子。
+学习分布式系统跟学习其它技术非常不一样，分布式系统涵盖的面非常广，具体来说涵盖如下几方面：
+
+服务调度，涉及服务发现、配置管理、弹性伸缩、故障恢复等。
+
+资源调度，涉及对底层资源的调度使用，如计算资源、网络资源和存储资源等。
+
+流量调度，涉及路由、负载均衡、流控、熔断等。
+
+数据调度，涉及数据复本、数据一致性、分布式事务、分库、分表等。
+
+容错处理，涉及隔离、幂等、重试、业务补偿、异步、降级等。
+
+自动化运维，涉及持续集成、持续部署、全栈监控、调用链跟踪等。
 
 
-数据科学家和产品团队的关系会出问题吗？数据科学家和产品团队究竟有着怎样的关系呢？先理清楚这个问题，我们才能去探讨这样的关系会有怎样的互相依赖以及可能 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2918909274.html" title="132 | 数据科学家高阶能力之如何系统提升产品性能">132 | 数据科学家高阶能力之如何系统提升产品性能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">132 | 数据科学家高阶能力之如何系统提升产品性能人工智能工程师和数据科学家的一个核心任务，就是依靠人工智能、机器学习这样的工具来帮助产品不断提升品质，吸引更多用户，以实现既定的长期目标。这里有一个关键点，就是我们如何开发出一套方法论，让提升产品性能的过程可以“有章可循”，并成为一个系统性的流程。
-初入门槛的工程师和数据科学家，容易把精力和眼光都集中在具体的算法模型上面。这固然是短期内的重要工作，但是，如何能够持续不断地为产品提供前进的动力，才是让人工智能技术有别于之前多次技术浪潮的根本因素。今天，我就来为你剖析一下，持续不断地、系统性提升产品性能的一些关键步骤。
-优化长期目标一个产品如果需要利用数据驱动的人工智能技术来提升品质，第一件事情一定不是专注于部署某一个模型或者算法。或者说，如果已经急迫地上线了第一个简单的算法，接下来最重要的事情一定是停下来，看一看我们是否已经弄明白，这个产品到底需要“优化”什么目标，是否有一个指标检测体系，来指导我们的优化过程。
-我们利用人工智能技术手段一定要优化产品的长期目标，这是系统性提升产品性能的一个关键。乍一听这是一句废话，难道算法和模型还有不优化产品长期目标的时候？你心中一定有这样的疑问。其实，确定你所制定的技术方案一定能够优化产品的长期目标，是一件比较困难的事情。
-设想一下这些例子。比如你为一个在线视频的网站设计推荐系统，你根据很多教科书 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2409930383.html" title="134 | 职场话题：数据科学家应聘要具备哪些能力？">134 | 职场话题：数据科学家应聘要具备哪些能力？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">134 | 职场话题：数据科学家应聘要具备哪些能力？周一，我们探讨了在公司内部，数据科学家和产品团队的其他职能人员在协作中都会遇到哪些问题，以及如何看待数据科学家或者人工智能工程师所做的算法性工作在一个产品发展中的位置。
-那么，今天我们稍微换一个方向，来讨论数据科学家和算法工程师在应聘方面的问题。一起来看看，作为数据科学家，在面试一家公司时，究竟应该怎么准备，有哪些信息是需要了解的。
-希望今天的内容对正在思考进入这个行业的年轻学者、工程师有所帮助，从大的方向上为你的应聘提供一些可借鉴的内容。
-数据科学家应聘的“硬”实力对于数据科学家或者人工智能工程师来说，最核心的竞争力无疑是他们对人工智能、机器学习等技术的知识积累以及融会贯通的能力。
-我们之前的一系列分享中已经提到了这些“硬”实力的大范畴，这里我做一个简单的归纳。
+所有这些形成了分布式架构的整体复杂度，也造就了分布式系统中的很多很多论文、图书以及很多很多的项目。要学好分布式系统及其架构，我们需要大量的时间和实践才能真正掌握这些技术。
+这里有几点需要你注意一下。
 
-首先，我们需要理解和掌握一些机器学习的基本概念和理论。
+分布式系统之所以复杂，就是因为它太容易出错了。这意味着， 你要把处理错误的代码当成正常功能的代码来处理。
 
-第一个重点无疑就是监督学习。
-什么是监督学习呢？监督学习就是指我们通过外部的响应变量（Response Variable）来指导模型学习我们关心的任务从而达到我们需要的目的这一过程。 监督学习中需要彻底掌握三个最基础的模型，包括 线性回归（Linear Regression）、 对数几率回归（Logistic Regression）和 决策树（Decision Trees）。
-怎么理解我说的“彻底掌握”呢？这里 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/36/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/#content-inner">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/38/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+开发一个健壮的分布式系统的成本是单体系统的几百倍甚至几万倍。这意味着， 我们要自己开发一个，需要能力很强的开发人员。
+
+非常健壮的开源的分布式系统并不多，或者说基本没有。这意味着， 如果你要用开源的，那么你需要hold得住其源码。
+
+管理或是协调多个服务或机器是非常难的。这意味着， 我们要去读很多很多的分布式系统的论文。
+
+在分布式环境下，出了问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2467252409.html" title="80 | 程序员练级攻略：数据库">80 | 程序员练级攻略：数据库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">80 | 程序员练级攻略：数据库你好，我是陈皓，网名左耳朵耗子。
+对于数据库方向，重点就是两种数据库，一种是以SQL为代表的关系型数据库，另一种是以非SQL为代表的NoSQL数据库。关系型数据库主要有三个：Oracle、MySQL 和 Postgres。
+在这里，我们只讨论越来越主流的MySQL数据库。首先，我们要了解数据库的一些实现原理和内存的一些细节，然后我们要知道数据的高可用和数据复制这些比较重要的话题，了解一下关系型数据库的一些实践和难点。然后，我们会进入到NoSQL数据库的学习。
+NoSQL数据库千奇百怪，其主要是解决了关系型数据库中的各种问题。第一个大问题就是数据的Schema非常多，用关系型数据库来表示不同的Data Schema是非常笨拙的，所以要有不同的数据库（如时序型、键值对型、搜索型、文档型、图结构型等）。另一个大问题是，关系型数据库的ACID是一件很讨厌的事，这极大地影响了数据库的性能和扩展性，所以NoSQL在这上面做了相应的妥协以解决大规模伸缩的问题。
+对于一个程序员，你可能觉得数据库的事都是DBA的事，然而我想告诉你你错了，这些事才真正是程序员的事。因为程序是需要和数据打交道的，所以程序员或架构师不仅需要设计数据模型，还要保证整体系统的稳定性和可用性，数据是整个系统中关键中的关键。所以，作为一个架构师或程序员，你必须了解最重要的数据存储——数据库。
+关系 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4243008574.html" title="82 | 程序员练级攻略：分布式架构经典图书和论文">82 | 程序员练级攻略：分布式架构经典图书和论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">82 | 程序员练级攻略：分布式架构经典图书和论文你好，我是陈皓，网名左耳朵耗子。
+经典图书首先，我推荐几本分布式架构方面的经典图书。
+
+**Distributed Systems for fun and profit**，这是一本免费的电子书。作者撰写此书的目的是希望以一种更易于理解的方式，讲述以亚马逊的Dynamo、谷歌的Bigtable和MapReduce等为代表的分布式系统背后的核心思想。
+
+**Designing Data Intensive Applications**，这本书是一本非常好的书，我们知道，在分布式的世界里，数据结点的扩展是一件非常麻烦的事。这本书深入浅出地用很多的工程案例讲解了如何让数据结点做扩展。作者马丁·科勒普曼（Martin Kleppmann）在分布式数据系统领域有着很深的功底，并在这本书中完整地梳理各类纷繁复杂设计背后的技术逻辑，不同架构之间的妥协与超越，很值得开发人员与架构设计者阅读。
+这本书深入到B-Tree、SSTables、LSM这类数据存储结构中，并且从外部的视角来审视这些数据结构对NoSQL和关系型数据库的影响。这本书可以让你很清楚地了解到真正世界的大数据架构中的数据分区、数据复制的一些坑，并提供了很好的解决方案。最赞的是，作者将各种各样技术的本质非常好地关联在一起，令你触类旁通。
+而且，这本书完全就是抽丝剥茧，循循善诱，从“提出问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1256364273.html" title="83 | 程序员练级攻略：分布式架构工程设计">83 | 程序员练级攻略：分布式架构工程设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">83 | 程序员练级攻略：分布式架构工程设计你好，我是陈皓，网名左耳朵耗子。
+要学好分布式架构，你首先需要学习一些架构指导性的文章和方法论，即分布式架构设计原则。下面是几篇很不错的文章，值得一读。
+
+Designs, Lessons and Advice from Building Large Distributed Systems，Google 杰夫·迪恩（Jeff Dean）2009年一次演讲的PPT。2010年，斯坦福大学请杰夫·迪恩到大学里给他们讲了一节课，你可以在YouTube上看一下， Building Software Systems At Google and Lessons Learned ，其回顾了Google发展的历史。
+
+The Twelve-Factor App ，如今，软件通常会作为一种服务来交付，它们被称为网络应用程序，或软件即服务（SaaS）。12-Factor 为构建SaaS应用提供了方法论，是架构师必读的文章。（ 中译版）这篇文章在业内的影响力很大，必读！
+
+Notes on Distributed Systems for Young Bloods ，给准备进入分布式系统领域的人的一些忠告。
+
+On Designing and Deploying Internet-Scale Services（ 中译版），微软Windows Live服务平台的一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2200648344.html" title="85 | 程序员练级攻略：容器化和自动化运维">85 | 程序员练级攻略：容器化和自动化运维</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">85 | 程序员练级攻略：容器化和自动化运维你好，我是陈皓，网名左耳朵耗子。
+这篇文章我们来重点学习 Docker 和 Kubernetes，它们已经是分布式架构和自动化运维的必备工具了。对于这两个东西，你千万不要害怕，因为技术方面都不算复杂，只是它们的玩法和传统运维不一样，所以你不用担心，只要你花上一点时间，一定可以学好的。
+Docker
+你可以先看一下Docker的官方介绍 Docker Overview 。
+
+然后再去一个Web在线的Playground上体验一下， Katacoda Docker Playground 或者是 Play With Docker 。
+
+接下来，跟着 Learn Docker 这个文档中的教程自己安装一个Docker的环境，实操一把。
+
+然后跟着 Docker Curriculum 这个超详细的教程玩一下Docker。
+
+
+有了上述的一些感性体会之后，你就可以阅读Docker官方文档 Docker Documentation 了，这是学习Docker最好的方式。
+如果你想了解一下Docker的底层技术细节，你可以参看我的文章。
+
+Docker 基础技术：Linux Namespace（上）
+Docker 基础技术：Linux Namespace（下）
+Docker 基础技术：Cgroup
+Docker 基础技术：AUFS
+Docker 基础技术： ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3704656987.html" title="89 | 程序员练级攻略：UI/UX设计">89 | 程序员练级攻略：UI/UX设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">89 | 程序员练级攻略：UI&#x2F;UX设计你好，我是陈皓，网名左耳朵耗子。
+上面的技术都讲完了，前端还有一个很重要的事就是设计。作为前端人员，我们有必要了解现在的一些知名且流行的设计语言或是一些设计规范或是设计方法，学习它们的设计思想和方法，有助于我们拓宽眼界、与时俱进。我并不觉得这些内容是设计师要学习的，如果你要成为一个前端程序员，那么学习这些设计上的东西可以让你有更好的成长空间。
+对于学习设计的新手来说，推荐看看 7 steps to become a UI&#x2F;UX designer ，这是一篇很不错的让新手入门的文章，非常具有指导性。首先，你得开始学习设计的一些原则和套路，如配色、平衡、排版、一致性等。还有用户体验的4D步骤——Discover、Define、Develop 和 Delivery。然后，开始到一些网站上找灵感。接下来，是到不同的网站上读各种文章和资源，开始学习使用设计工具，最后是找人拜师。此外，其中还链接了其它一些不错的文章、网站、博客和工具。我认为，这篇文章是一篇很不错的设计师从入门到精通的练级攻略。
+虽然有这么一个速成的教程，但我觉得还是应该系统地学习一下，所以有了下面这些推荐。
+图书和文章推荐先推荐几本书。
+
+Don’t Make Me Think ，这是我看的第一本和设计相关的书。这本书对我的影响也比较深远。这本书践行了自己的理论，整本 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3750195186.html" title="86 | 程序员练级攻略：机器学习和人工智能">86 | 程序员练级攻略：机器学习和人工智能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">86 | 程序员练级攻略：机器学习和人工智能你好，我是陈皓，网名左耳朵耗子。
+我之前写过一篇机器学习的入门文章，因为我也是在入门和在学习的人，所以，那篇文章和这篇机器学习和人工智能方向的文章可能都会有点太肤浅。如果你有更好的学习方式或资料，欢迎补充。
+基本原理简介我们先来介绍一下机器学习的基本原理。
+机器学习主要有两种方式，一种是监督式学习（Supervised Learning），另一种是非监督式学习（Unsupervised Learning）。下面简单地说一下这两者的不同。
+
+监督式学习（Supervised Learning）。所谓监督式学习，也就是说，我们需要提供一组学习样本，包括相关的特征数据和相应的标签。我们的程序可以通过这组样本来学习相关的规律或是模式，然后通过得到的规律或模式来判断没有被打过标签的数据是什么样的数据。
+举个例子，假设需要识别一些手写的数字，我们要找到尽可能多的手写体数字的图像样本，然后人工或是通过某种算法来明确地标注上什么是这些手写体的图片，谁是1，谁是2，谁是3…… 这组数据叫样本数据，又叫训练数据（training data）。然后通过机器学习的算法，找到每个数字在不同手写体下的特征，找到规律和模式。通过得到的规律或模式来识别那些没有被打过标签的手写数据，以此完成识别手写体数字的目的。
+
+非监督式学习（Unsupervised Learning ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/36/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/#content-inner">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/38/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

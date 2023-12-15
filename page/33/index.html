@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,61 +138,109 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3953896585.html" title="086 | Twitter的广告点击率预估模型">086 | Twitter的广告点击率预估模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">086 | Twitter的广告点击率预估模型在上一篇文章的分享里，我们了解了LinkedIn这家公司是怎么来做最基本的广告预估的。LinkedIn的广告预估模型分为三部分，这里面的核心思想是直接对“冷启动”和“热启动”进行建模，外加和EE策略（Exploit &amp; Explore）结合在一起，从而提升了效果。
-今天，我们就结合论文《Twitter时间轴上的广告点击率预估》（Click-through Prediction for Advertising in Twitter Timeline）[1]，来看看Twitter的广告预估到底是怎么做的。
-Twitter的广告预估我们前面提到过最基本的广告形态分类，可以分为“搜索广告”和“展示广告”。当计算广告在互联网上出现以后，这两种广告形态就迅速被很多网站和服务商所采纳。
-在最近的10年里，随着社交媒体的发展，希望在社交媒体的 用户信息流 里投放广告的需求逐渐增强。我们之前谈到的Facebook的案例，其实也是往用户的信息流中插入广告。很多类似的社交媒体都争先恐后地开始进行相似的项目，这一类广告经常被称为 社交广告。
-社交广告的特点是，需要根据用户的社交圈子以及这些社交圈所产生的内容，而动态产生广告的内容。广告商和社交媒体平台都相信，不管是在投放的精准度上，还是在相关性上，社交广告都有极大的可能要强过搜索广告和展示广告。毕竟，在 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2517290537.html" title="085 | LinkedIn的广告点击率预估模型">085 | LinkedIn的广告点击率预估模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">085 | LinkedIn的广告点击率预估模型上一篇文章我们讲了雅虎的广告预估模型。雅虎早期的模型主要集中在如何利用两轮架构来对点击率进行精确建模，后期的模型回归到了比较传统的利用线性模型外加特性哈希来进行大规模点击率预估的模式。
-今天，我们继续来做公司的案例分析，结合论文《LASER：在线广告的可扩展响应预测平台》（LASER: a scalable response prediction platform for online advertising）[1]，来了解LinkedIn这家公司是怎么来做最基本的广告预估的。
-LinkedIn广告预估模型我们首先来看一看LinkedIn的广告预估模型。这个模型的一大“卖点”就是直接充分考虑了“冷启动”和“热启动”两种模式。
-那么，什么是“冷启动”，什么又是“热启动”呢？
-从我们之前的分享中可以看出，很多点击率预估的模型，都强烈依赖于对用户过去信息以及对广告过去表现的建模。比如刚刚讲过的雅虎预估模型，在它早期的模式中就已经见到了这种信息的作用。
-然而，当我们出现新用户或者新广告时，就会有“冷启动”的问题。也就是说，“冷启动”主要是针对新用户或者新广告而言的。这时候基于历史信息的特性都无法起作用了，一般来说需要有专门的处理。
-相对于“冷启动”，“热启动”指的是我们已经掌握了用户或者广告的一定信息，然后利用这些历史信息来对点击率进行预测。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/274777449.html" title="089 | 广告的竞价策略是怎样的？">089 | 广告的竞价策略是怎样的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">089 | 广告的竞价策略是怎样的？在上一次的分享里，我们讲了广告位竞价的一个基本原理，那就是目前广泛使用的基于第二价位的广告竞拍。简单来说，基于第二价位的广告竞拍需要利用广告点击率的估计值和竞拍的价格，把所有的竞拍广告进行排序，排名第一的广告赢得竞拍。和基于第一价位的广告竞拍不一样的是，基于第二价位的广告竞拍并不直接利用排名第一的广告的出价来对其进行收费，而是利用排名第二的价位进行收费。在这样的情况下，有理论工作和实际的数据表明，基于第二价位的广告竞拍更加符合广告商对于广告位本身真实价值的判断。
-今天我们来看在基于第二价位的广告竞拍的基础上，DSP或者广告商究竟该 如何形成自己的竞价策略（Bidding Strategy）。
-竞价策略为什么需要竞价策略？其实这个问题主要是在“ 实时竞价”，或简称 RTB 的背景下来探讨的。
-我们之前提到过，RTB是DSP目前流行的竞价模式，也就是广告商等利用计算机程序来自动对广告竞拍进行出价。从实际的运作中来看，这样的自动竞价模式要比人工竞价更加方便快捷，也更加高效。然而，在自动竞价的模式下，我们势必需要一种指导思想，来让我们的计算机程序能够随着形式的变化来进行出价。
-那么在RTB中，竞价策略的环境究竟是怎样的呢？
-首先，竞价的一个重要特征，就是作为一个竞标方，我们并不知道其他竞标方的点击率和出价。因此，我们 处在一个信息不完整的竞价环境中。在这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/834876244.html" title="087 | 阿里巴巴的广告点击率预估模型">087 | 阿里巴巴的广告点击率预估模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">087 | 阿里巴巴的广告点击率预估模型今天，我们继续来进行点击率预估的案例分析，结合三篇核心论文，来看一看阿里巴巴的广告预估又有哪些值得我们学习的地方。
-多段线性模型我们之前介绍了多个公司关于点击率或者转化率预估的案例。从这些案例中，你可能已经发现有两个非常重要的特征需要机器学习模型来处理。
-第一，就是 数据中呈现的非线性化的关系。也就是说，我们的模型必须在某一个地方考虑到特性之间的非线性表征，以及对于目标标签的非线性关系。
-第二，就是 数据的不均衡以及数据的稀疏性。有很多广告商是新广告商，很多广告是新广告。在这样的情况下，我们就必须要处理“冷启动”和“热启动”这两种局面。
-在《从广告点击率预估的大规模数据中学习多段线性模型》（Learning Piece-wise Linear Models from Large Scale Data for Ad Click Prediction）[1]这篇文章中，作者们提出了一种 多段线性模型 来解决我们刚刚说的这两个问题，这个模型简称为 LS-PLM（ Large Scale Piecewise Linear Model ）。
-LS-PLM的核心思路其实非常直观。既然数据在整个空间里可能呈现非线性的关系，那么我们是否能够 把整个空间分割成较小的区域，使得每个区域内依然可以使用 线性模型 来逼近这个区域内的数据点呢？其实在统计学习中，这种模 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1477846906.html" title="088 | 什么是“基于第二价位的广告竞拍”？">088 | 什么是“基于第二价位的广告竞拍”？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">088 | 什么是“基于第二价位的广告竞拍”？在之前一段时间的分享里，我们重点讲解了广告系统中的回馈预测，也就是我们常说的点击率预测或是转化率预测的问题，和你一起分享了一些有代表性的公司对于点击率预测的技术方案。
-在最早介绍计算广告系统的时候，我们介绍了DSP，也就是需求侧平台的基本功能。这个平台的一个很重要的作用就是决定到底投放哪个广告。我们介绍过的点击率预测可以提供对广告优劣的一种预测，除此之外，我们还需要一种机制，来决定如何从众多的广告中进行选取，这就是 广告的竞价排名。
-广告位竞价排名的出现有两个原因。第一，发布商的广告位是有限的。不管是搜索广告还是展示广告，绝大多数的发布商都以一定的比例在原生的内容，例如新闻、社交媒体内容里插入一些广告位。但是这些广告位的数目是有限的，特别是在优质的发布商资源里，就会出现一些广告位有着很大的竞争。第二，既然有竞争，那么如果引入一种竞价机制的话，势必有可能抬高广告的单价，从而让广告中间平台例如DSP，或者是发布商从中获取更高的价值。
-今天，我们就来讲一讲广告位竞价的一个基本原理，特别是目前广泛使用的 基于第二价位的广告竞拍。
-基于第一价位的竞拍在我们开始讨论基于第二价位的广告竞拍之前，我们首先来看一个更加自然的竞拍手段， 基于第一价位的竞拍。其实，在现实生活中，基于第一价位的竞拍会显得更加普遍。
-所谓基于第一价位的竞拍，指的是所有的投标方都 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/983022241.html" title="090 | 如何优化广告的竞价策略？">090 | 如何优化广告的竞价策略？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">090 | 如何优化广告的竞价策略？广告的竞价排名是计算广告系统中非常重要的一个话题，我们介绍了目前广泛使用的基于第二价位的广告竞拍，以及在此基础上，DSP或者广告商究竟该如何形成自己的竞价策略（Bidding Strategy）。
-今天，我们就来看一些 具体的广告竞价策略方法。
-单个广告推广计划优化我们首先来看单个广告“推广计划”（Campaign）的竞价策略的优化。
-在上一次的分享里我们介绍了，利用统计决策的一个重要假设就是最终的出价是一个各种输入（例如环境、用户、页面等）的函数输出。这里我们采用一个简化的假设，认为一个推广计划的出价是点击率的一个函数。在这样的情况下，我们先来理清一些概念。
-第一个概念是“ 赢的概率”（Winning Probability）。这里面，如果我们知道现在市场的一个价格分布以及我们的出价。那么，赢的概率就是一个已知概率密度函数求概率的计算，也就是通常情况下的一个积分计算。
-第二个概念就是“ 效用”（Utility）。这是一个广告商关注的指标，通常情况下是点击率的某种函数，比如利润，那就是每一次点击后的价值减去成本。
-在这种情况下的成本其实主要就是 出价后产生的交易价格。如果是基于第一价位的竞价，那么这个成本就是出价；如果是基于第二价位的竞价，这个成本就是超过第二价位多少还能赢得竞价的价格。
-最后还有一点需要说明，那就是所有的广告推广计划都必须要在预 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3914803041.html" title="092 | 如何设置广告竞价的底价？">092 | 如何设置广告竞价的底价？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">092 | 如何设置广告竞价的底价？在互联网广告生态系统的环境中，我们已经分享了不少关于点击率优化和竞价排名以及如何优化出价的内容，相信你对于广告的整体运作以及其中的核心算法都有了一定的了解。
-我们首先来简单回顾一下，发布商和广告商或者DSP之间的关系。发布商，往往是类似于新闻网站、社交媒体网站和视频网站这样的内容提供方。这些网站的一个特点就是他们本身并不产生收益，甚至往往是免费提供服务。因为流量巨大，这些内容提供方希望能够通过在自身的网站上发布广告从而获得巨额收益。对于广告商和DSP来说，则是希望能够利用发布商的巨大流量来接触更多的用户从而推销自己的服务和产品。
-我们之前的很多讨论，其实重点都放到了需求侧平台，也就是常说的DSP方面，包括点击率预估和很多调整竞价排名的方法等等。今天，我们就来看一个 发布商 在广告竞价流程中可以参与调优的地方，那就是广告竞价中的底价优化。
-底价底价，顾名思义，就是在广告的竞价中给竞拍设定一个最低价。
-为什么需要这么做呢？其实在理想的状态下，一个充分竞争的，并且有着充分广告源的市场，广告的单价应该是逐渐升高的。因为广告位资源毕竟是有限的，在有充分广告源的情况下，所有的广告商为了竞争这些有限的广告位，必定是会逐渐抬高广告位的价格。而作为内容发布商，在这个过程中则可以享受到逐渐升高的广告位价值。
-然而，在现实中的很多情况下，这种理想状态的竞争态势并不完全 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1797634682.html" title="094 | 归因模型：如何来衡量广告的有效性">094 | 归因模型：如何来衡量广告的有效性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">094 | 归因模型：如何来衡量广告的有效性在互联网广告生态系统的环境中，我们已经分享了不少关于点击率优化和竞价排名以及如何优化出价的内容。接下来我们开始讨论一些计算广告相关的高级话题。之所以说这些是高级话题，是因为作为机器学习在计算广告的应用，这些话题往往都比较偏冷，但在现实中又特别有实用价值。
-今天我们先来聊一聊归因模型，这种技术在计算广告业中被广泛使用。
-什么是归因模型归因模型（Attribution Model）是一种计算广告中分配“贡献”的机制。
-在现代网站或者应用中，每一个用户都有可能在每一次会话中看到多个不同的广告，或者在多个不同的会话中看到相同广告的不同展示。那么，当用户点击了某个广告，或者是当用户转化以后，比如购买了某个商品或是订阅了某种服务，广告商通常希望知道究竟是哪一个广告起了更大的作用。也就是说，广告商想知道用户接收到的不同广告对这个最后的转化事件都起了什么作用，这个问题就是归因模型研究的核心。
-归因模型之所以重要，是因为这里面牵涉到了 广告有效性 这个话题。那么，如何来衡量广告的有效性呢？
-衡量广告的有效性，就需要利用归因模型，针对每一个转化来分配“贡献”。这样，对于广告商来说，就可以通过 贡献值的叠加 来看某一个渠道或者某一个内容发布平台的转化效果。
-然而，归因模型的难点在于，这里面并没有完全的“基本事实”（Ground Truth），全部都基于一定的假 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3274062642.html" title="091 | 如何控制广告预算？">091 | 如何控制广告预算？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">091 | 如何控制广告预算？我们在前面的一系列分享里讲了广告位竞价的基本原理，那就是目前广泛使用的基于第二价位的广告竞拍。也分享了广告的竞价策略，以及具体的竞价策略优化方法，比如单个广告推广计划的优化等。
-今天，我们来看在广告竞价策略中一个比较重要的问题，这个问题我们在前一篇的分享里也提到过，那就是如何能够比较流畅地利用广告商的预算，而不是把广告商的钱一下子都花完。
-预算步调优化控制广告预算的第一种方法是 预算步调优化（Budget Pacing），这个方法的目的就是在某一个时间段里均匀地分配广告商的预算。同时，在每一个时段，发布商所面临的受众都有可能不太一样，所以，对于广告商而言，比较理想的状态是一个广告可以在一天的不同时段被不同的受众所看到，从而达到扩大受众面的目的。
-预算步调优化有两种比较常见的思路，一种叫“ 节流”（Throttling），一种叫“ 修改出价”。
-节流这种方法主要是把单位时间的支出或者是成本给控制在某一个速率内，使得预算能够被均匀地使用。这种方法往往是在我们已经介绍过的竞价模型之外运行。修改出价这个思路很直观，也就是直接修改我们的竞价，从而带来预算均匀化的结果。
-关于节流思路，有一种做法[1]是把如何节流当做一种 “线性优化”问题，并且是 有限制的最大化问题。具体来说，对于每一个出价的请求，我们都可以做一个二元的决定，决定我们是否接受这个出价请求。当然，对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3408681052.html" title="093 | 聊一聊“程序化直接购买”和“广告期货”">093 | 聊一聊“程序化直接购买”和“广告期货”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">093 | 聊一聊“程序化直接购买”和“广告期货”在周一的分享里，我们讨论了内容发布商优化自己收益策略的 底价方案。如果能够把这种底价方案运用得当，就可以增加市场的竞争程度，从而人为地抬高竞价，达到增加收益的目的。
-今天，我们来看关于计算广告竞价的另外两个话题：一个是程序化直接购买，另一个是广告期货。
-程序化直接购买程序化直接购买（Programmatic Direct）是指广告商不通过竞价的方式获取发布商的广告位。这往往意味着广告商需要和发布商 直接签订合同来购买一定量的展示机会（Impression）。
-在互联网的早期，其实有很多广告合同是通过直接购买的方式进行的。这一类合同的签订通常是经过相对比较传统的模式，也就是由公司的销售人员直接进行接洽。
-直接购买的广告合作合同往往是比较大的。例如，可口可乐公司需要在雅虎主页显示一类新饮料的广告。这种广告要求涵盖的人群广，并且时间也比较长。如果按照竞标的方式，这可能是要竞标上百万次甚至上千万次的展示机会。在这样的情况下，对于广告商和发布商来说，比较快捷的方式反而可能是一次性购买下这些展示机会。
-以雅虎为例，在很长的一段时间里，广告的销售都是分为“有保证的销售”和“无保证的销售”。后者类似于今天的RTB市场，而前者就是我们现在所说的直接购买。
-时至今日，对于顶级的内容发布商来说，大家依然喜欢把最优价值的一些广告位，比如较好的位置或者尺寸较 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/32/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/#content-inner">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/34/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3074905970.html" title="39 | 编程范式：逻辑编程范式">39 | 编程范式：逻辑编程范式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">39 | 编程范式：逻辑编程范式你好，我是陈皓，网名左耳朵耗子。
+这节课重点介绍Prolog语言。Prolog（Programming in Logic）是一种逻辑编程语言，它创建在逻辑学的理论基础之上，最初被运用于自然语言等研究领域。现在它已被广泛地应用在人工智能的研究中，可以用来建造专家系统、自然语言理解、智能知识库等。
+Prolog语言最早由艾克斯马赛大学（Aix-Marseille University）的Alain Colmerauer与Philippe Roussel等人于20世纪60年代末研究开发的。1972年被公认为是Prolog语言正式诞生的年份，自1972年以后，分支出多种Prolog的方言。
+最主要的两种方言为Edinburgh和Aix-Marseille。最早的Prolog解释器由Roussel建造，而第一个Prolog编译器则是David Warren编写的。
+Prolog一直在北美和欧洲被广泛使用。日本政府曾经为了建造智能计算机而用Prolog来开发ICOT第五代计算机系统。在早期的机器智能研究领域，Prolog曾经是主要的开发工具。
+20世纪80年代Borland开发的Turbo Prolog，进一步普及了Prolog的使用。1995年确定了ISO Prolog标准。
+有别于一般的函数式语言，Prolog的程序是基于谓词逻辑的理论。最基本的写法是定立对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2648547453.html" title="38 | 编程范式：编程的本质">38 | 编程范式：编程的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">38 | 编程范式：编程的本质你好，我是陈皓，网名左耳朵耗子。
+前面我们讲了各式各样的不同语言的编程范式，从C语言的泛型，讲到C++的泛型，再讲到函数式的 Map&#x2F;Reduce&#x2F;Filter，以及 Pipeline 和 Decorator，还有面向对象的多态通过依赖接口而不是实现的桥接模式、策略模式和代理模式，以及面向对象的IoC，还有JavaScript的原型编程在运行时对对象原型进行修改，以及Go语言的委托模式……
+所有的这一切，不知道你是否看出一些端倪，或是其中的一些共性来了？
+两篇论文1976年，瑞士计算机科学家，Algol W，Modula，Oberon和Pascal语言的设计师 Niklaus Emil Wirth 写了一本非常经典的书《 Algorithms + Data Structures &#x3D; Programs》（链接为1985年版） ，即算法 + 数据结构 &#x3D; 程序。
+这本书主要写了算法和数据结构的关系，这本书对计算机科学的影响深远，尤其在计算机科学的教育中。
+1979年，英国逻辑学家和计算机科学家 Robert Kowalski 发表论文 Algorithm &#x3D; Logic + Control，并且主要开发“逻辑编程”相关的工作。
+Robert Kowalski是一位逻辑学家和计算机科学家，从20世纪70年代末 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2927556277.html" title="40 | 程序世界里的编程范式总结">40 | 程序世界里的编程范式总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">40 | 程序世界里的编程范式总结你好，我是陈皓，网名左耳朵耗子。
+这个世界到今天已经有很多很多的编程范式，相当复杂。下面这个图比较好地描绘了这些各式各样的编程范式，这个图越往左边就越是“声明式的”，越往右边就越不是“声明式的”（指令式的），我们可以看到，函数式编程和逻辑编程，都在左边，而右边是指令式的，有状态的，有类型的。
+
+上面这个图有点乱，不过总体说来，我们可以简单地把这世界上纷乱的编程范式，分成这几类： 声明式、 命令式、 逻辑的、 函数式、 面向对象的、 面向过程的。
+于是我们归纳一下，就可以得到下面这个简单的图。简单描述一下：
+
+中间两个声明式编程范式（函数式和逻辑式）偏向于你定义要什么，而不是怎么做。
+而两边的命令式编程范式和面向对象编程范式，偏向于怎么做，而不是要做什么。
+
+
+我们再归纳一下，基本上来说，就是两大分支，一边是在解决数据和算法，一边是在解决逻辑和控制。
+
+下面再结合一张表格说明一下这世界上四大编程范式的类别，以及它们的特性和主要的编程语言。
+
+程序编程范式。一个是左脑，一个是右脑。我们程序员基本上是在用左脑，左脑是理性分析，喜欢数据证据，线性思维，陷入细节，具体化的，不抽象。但是，实际上玩儿出这些东西的都在右脑，函数式，还有像逻辑式的抽象能力都在右脑。所以我们非线性的想象力都在这边，而标准化教育把我们这边已经全部干掉了，我们只剩左边。我们陷入细节，我一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/833916726.html" title="41 | 弹力设计：认识故障和弹力设计">41 | 弹力设计：认识故障和弹力设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">41 | 弹力设计：认识故障和弹力设计你好，我是陈皓，网名左耳朵耗子。
+我前面写的《分布式系统架构的本质》系列文章，从分布式系统的业务层、中间件层、数据库层等各个层面介绍了高并发架构、异地多活架构、容器化架构、微服务架构、高可用架构、弹性化架构等，也就是所谓的“纲”。通过这个“纲”，你能够按图索骥，掌握分布式系统中每个部件的用途与总体架构思路。
+为了让你更深入地了解分布式系统，在接下来的几期中，我想谈谈分布式系统中一些比较关键的设计模式，其中包括容错、性能、管理等几个方面。
+
+容错设计又叫弹力设计，其中着眼于分布式系统的各种“容忍”能力，包括容错能力（服务隔离、异步调用、请求幂等性）、可伸缩性（有&#x2F;无状态的服务）、一致性（补偿事务、重试）、应对大流量的能力（熔断、降级）。可以看到，在确保系统正确性的前提下，系统的可用性是弹力设计保障的重点。
+
+管理篇 会讲述一些管理分布式系统架构的一些设计模式，比如网关方面的，边车模式，还有一些刚刚开始流行的，如Service Mesh相关的设计模式。
+
+性能设计篇 会讲述一些缓存、CQRS、索引表、优先级队列、业务分片等相关的架构模式。
+
+
+我相信，你在掌握了这些设计模式之后，无论是对于部署一个分布式系统，开发一个分布式的业务模块，还是研发一个新的分布式系统中间件，都会有所裨益。
+今天分享的就是《分布式系统设计模式》系列文章中的第一篇《 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1043801333.html" title="43 | 弹力设计：异步通讯设计">43 | 弹力设计：异步通讯设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">43 | 弹力设计：异步通讯设计你好，我是陈皓，网名左耳朵耗子。
+前面所说的隔离设计通常都需要对系统做解耦设计，而把一个单体系统解耦，不单单是把业务功能拆分出来，正如前面所说，拆分完后还会面对很多的问题。其中一个重要的问题就是这些系统间的通讯。
+通讯一般来说分同步和异步两种。同步通讯就像打电话，需要实时响应，而异步通讯就像发邮件，不需要马上回复。各有千秋，我们很难说谁比谁好。但是在面对超高吞吐量的场景下，异步处理就比同步处理有比较大的优势了，这就好像一个人不可能同时接打很多电话，但是他可以同时接收很多的电子邮件一样。
+同步调用虽然让系统间只耦合于接口，而且实时性也会比异步调用要高，但是我们也需要知道同步调用会带来如下几个问题。
+
+同步调用需要被调用方的吞吐不低于调用方的吞吐。否则会导致被调用方因为性能不足而拖死调用方。换句话说，整个同步调用链的性能会由最慢的那个服务所决定。
+
+同步调用会导致调用方一直在等待被调用方完成，如果一层接一层地同步调用下去，所有的参与方会有相同的等待时间。这会非常消耗调用方的资源。因为调用方需要保存现场（Context）等待远端返回，所以对于并发比较高的场景来说，这样的等待可能会极度消耗资源。
+
+同步调用只能是一对一的，很难做到一对多。
+
+同步调用最不好的是，如果被调用方有问题，那么其调用方就会跟着出问题，于是会出现多米诺骨牌效应，故障一下就蔓延开来。
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4029936080.html" title="42 | 弹力设计：隔离设计">42 | 弹力设计：隔离设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">42 | 弹力设计：隔离设计你好，我是陈皓，网名左耳朵耗子。
+隔离设计对应的单词是Bulkheads，中文翻译为隔板。但其实，这个术语是用在造船上的，也就是船舱里防漏水的隔板。一般的船无论大小都会有这个东西，大一点的船都会把船舱隔成若干个空间。这样，如果船舱漏水，只会进到一个小空间里，不会让整个船舱都进水而导致整艘船都沉了，如下图所示。
+
+
+我们的软件设计当然也“漏水”，所以为了不让“故障”蔓延开来，需要使用“隔板”技术，来将架构分隔成多个“船舱”来隔离故障。
+多扯一句，著名的泰坦尼克号也有Bulkheads设计，然而其设计上有个缺陷。如下图所示，当其撞上冰山漏水时，因为船体倾斜，导致水漫过了隔板，从而下沉了。
+
+在分布式软件架构中，我们同样需要使用类似的技术来让我们的故障得到隔离。这就需要我们对系统进行分离。一般来说，对于系统的分离有两种方式，一种是以服务的种类来做分离，一种是以用户来做分离。下面具体说明一下这两种方式。
+按服务的种类来做分离下面这个图中，说明了按服务种类来做分离的情况。
+
+上图中，我们将系统分成了用户、商品、社区三个板块。这三个块分别使用不同的域名、服务器和数据库，做到从接入层到应用层再到数据层三层完全隔离。这样一来，在物理上来说，一个板块的故障就不会影响到另一板块。
+在亚马逊，每个服务都有自己的一个数据库，每个数据库中都保存着和这个业务相关的数据和相应的处理状 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1545688334.html" title="44 | 弹力设计：幂等性设计">44 | 弹力设计：幂等性设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">44 | 弹力设计：幂等性设计你好，我是陈皓，网名左耳朵耗子。
+所谓幂等性设计，就是说，一次和多次请求某一个资源应该具有同样的副作用。用数学的语言来表达就是：f(x) &#x3D; f(f(x))。
+比如，求绝对值的函数，abs(x) &#x3D; abs(abs(x))。
+为什么我们需要这样的操作？说白了，就是在我们把系统解耦隔离后，服务间的调用可能会有三个状态，一个是成功（Success），一个是失败（Failed），一个是超时（Timeout）。前两者都是明确的状态，而超时则是完全不知道是什么状态。
+比如，超时原因是网络传输丢包的问题，可能是请求时就没有请求到，也有可能是请求到了，返回结果时没有正常返回等等情况。于是我们完全不知道下游系统是否收到了请求，而收到了请求是否处理了，成功&#x2F;失败的状态在返回时是否遇到了网络问题。总之，请求方完全不知道是怎么回事。
+举几个例子：
+
+订单创建接口，第一次调用超时了，然后调用方重试了一次。是否会多创建一笔订单？
+
+订单创建时，我们需要去扣减库存，这时接口发生了超时，调用方重试了一次。是否会多扣一次库存？
+
+当这笔订单开始支付，在支付请求发出之后，在服务端发生了扣钱操作，接口响应超时了，调用方重试了一次。是否会多扣一次钱？
+
+
+因为系统超时，而调用方重试一下，会给我们的系统带来不一致的副作用。
+在这种情况下，一般有两种处理方式。
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/689887008.html" title="46 | 弹力设计：补偿事务">46 | 弹力设计：补偿事务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">46 | 弹力设计：补偿事务你好，我是陈皓，网名左耳朵耗子。
+前面，我们说过，分布式系统有一个比较明显的问题就是，一个业务流程需要组合一组服务。这样的事情在微服务下就更为明显了，因为这需要业务上一致性的保证。也就是说，如果一个步骤失败了，那么要么回滚到以前的服务调用，要么不断重试保证所有的步骤都成功。
+这里，如果需要强一致性，那在业务层上就需要使用“两阶段提交”这样的方式。但是好在我们的很多情况下并不需要这么强的一致性，而且强一致性的最佳保证基本都是在底层完成的，或是像之前说的那样Stateful的Sticky Session那样在一台机器上完成。在我们接触到的大多数业务中，其实只需要最终一致性就够了。
+ACID 和 BASE谈到这里，有必要先说一下ACID和BASE的差别。传统关系型数据库系统的事务都有ACID属性，即原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。下面我逐一做下解释：
+
+原子性：整个事务中的所有操作，要么全部完成，要么全部失败，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。
+
+一致性：在事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。
+
+隔离性：两个事务的执行是互不干扰的，一个事 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/645851039.html" title="45 | 弹力设计：服务的状态">45 | 弹力设计：服务的状态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">45 | 弹力设计：服务的状态你好，我是陈皓，网名左耳朵耗子。
+之前在我们讲的幂等设计中，为了过滤掉已经处理过的请求，其中需要保存处理过的状态，为了把服务做成无状态的，我们引入了第三方的存储。而这一篇中，我们来聊聊服务的状态这个话题。我认为，只有清楚地了解了状态这个事，我们才有可能设计出更好或是更有弹力的系统架构。
+所谓“状态”，就是为了保留程序的一些数据或是上下文。比如之前幂等性设计中所说的需要保留每一次请求的状态，或是像用户登录时的Session，我们需要这个Session来判断这个请求的合法性，还有一个业务流程中需要让多个服务组合起来形成一个业务逻辑的运行上下文Context。这些都是所谓的状态。
+我们的代码中基本上到处都是这样的状态。
+无状态的服务 Stateless一直以来，无状态的服务都被当作分布式服务设计的最佳实践和铁律。因为无状态的服务对于扩展性和运维实在是太方便了。没有状态的服务，可以随意地增加和减少节点，同样可以随意地搬迁。而且，无状态的服务可以大幅度降低代码的复杂度以及Bug数，因为没有状态，所以也没有明显的“副作用”。
+基本上来说，无状态的服务和“函数式编程”的思维方式如出一辙。在函数式编程中，一个铁律是，函数是无状态的。换句话说，函数是immutable不变的，所有的函数只描述其逻辑和算法，根本不保存数据，也不会修改输入的数据，而是把计算好的结果返回出去， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1101401378.html" title="48 | 弹力设计：熔断设计">48 | 弹力设计：熔断设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">48 | 弹力设计：熔断设计你好，我是陈皓，网名左耳朵耗子。
+熔断机制这个词对你来说肯定不陌生，它的灵感来源于我们电闸上的“保险丝”，当电压有问题时（比如短路），自动跳闸，此时电路就会断开，我们的电器就会受到保护。不然，会导致电器被烧坏，如果人没在家或是人在熟睡中，还会导致火灾。所以，在电路世界通常都会有这样的自我保护装置。
+同样，在我们的分布式系统设计中，也应该有这样的方式。前面说过重试机制，如果错误太多，或是在短时间内得不到修复，那么我们重试也没有意义了，此时应该开启我们的熔断操作，尤其是后端太忙的时候，使用熔断设计可以保护后端不会过载。
+熔断设计熔断器模式可以防止应用程序不断地尝试执行可能会失败的操作，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等待长时间的超时产生。熔断器模式也可以使应用程序能够诊断错误是否已经修正。如果已经修正，应用程序会再次尝试调用操作。
+换句话来说，我觉得熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定是继续操作，还是立即返回错误。
+
+（本图来自 Martin Fowler 的 Circuit Breaker）
+熔断器可以使用状态机来实现，内部模拟以下几种状态。
+
+闭合（Closed）状态：我们需要一个调用失败的计数器，如果调用失败，则使失败次数加1。如果最近失败次数超过了在给定时间内允 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/32/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/#content-inner">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/34/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

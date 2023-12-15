@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,64 +138,99 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2231401771.html" title="20｜TTS与语音合成：让你的机器人拥有声音">20｜TTS与语音合成：让你的机器人拥有声音</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">20｜TTS与语音合成：让你的机器人拥有声音你好，我是徐文浩。
-上一讲里，我们通过Whisper模型，让AI“听懂”了我们在说什么。我们可以利用这个能力，让AI替我们听播客、做小结。不过，这只是我们和AI的单向沟通。那我们能不能更进一步，让AI不仅能“听懂”我们说的话，通过ChatGPT去回答我们问的问题，最后还能让AI把这些内容合成为语音，“说”给我们听呢？
-当然可以，这也是我们这一讲的主题，我会带你一起来让AI说话。和上一讲一样，我不仅会教你如何使用云端API来做语音合成（Text-To-Speech），也会教你使用开源模型，给你一个用本地CPU就能实现的解决方案。这样，你也就不用担心数据安全的问题了。
-使用Azure云进行语音合成语音合成其实已经是一个非常成熟的技术了，现在在很多短视频平台里，你听到的很多配音其实都是通过语音合成技术完成的。国内外的各大公司都有类似的云服务，比如 科大讯飞、 阿里云、 百度、 AWS Polly、 Google Cloud 等等。不过，今天我们先来体验一下微软Azure云的语音合成API。选用Azure，主要有两个原因。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1457749217.html" title="13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理">13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理你好，我是黄佳，欢迎来到LangChain实战课！
+在上一讲中，我们深入LangChain程序内部机制，探索了AgentExecutor究竟是如何思考（Thought）、执行（Execute&#x2F;Act）和观察（Observe）的，这些步骤之间的紧密联系就是代理在推理（Reasoning）和工具调用过程中的“生死因果”。
+现在我们趁热打铁，再学习几种更为复杂的代理：Structured Tool Chat（结构化工具对话）代理、Self-Ask with Search（自主询问搜索）代理、Plan and execute（计划与执行） 代理。
+什么是结构化工具LangChain的第一个版本是在 2022 年 11 月推出的，当时的设计是基于 ReAct 论文构建的，主要围绕着代理和工具的使用，并将二者集成到提示模板的框架中。
+早期的工具使用十分简单，AgentExecutor引导模型经过推理调用工具时，仅仅能够生成两部分内容：一是工具的名称，二是输入工具的内容。而且，在每一轮中，代理只被允许使用一个工具，并且输入内容只能是一个简单的字符串。这种简化的设计方式是为了让模型的任务变得更简单，因为进行复杂的操作可能会使得执行过程变得不太稳定。
+不过，随着语言模型的发展， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3353709308.html" title="16｜连接数据库：通过链和代理查询鲜花信息">16｜连接数据库：通过链和代理查询鲜花信息</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">16｜连接数据库：通过链和代理查询鲜花信息你好，我是黄佳，欢迎来到 LangChain 实战课！
+一直以来，在计算机编程和数据库管理领域，所有的操作都需要通过严格、专业且结构化的语法来完成。这就是结构化查询语言（SQL）。当你想从一个数据库中提取信息或进行某种操作时，你需要使用这种特定的语言明确地告诉计算机你的要求。这不仅需要我们深入了解正在使用的技术，还需要对所操作的数据有充分的了解。
 
-因为微软和OpenAI有合作，Azure还提供了OpenAI相关模型的托管。这样，我们在实际的生产环境使用的时候，只需要和一个云打交道就好了。
-价格比较便宜，并且提供了免费的额度。如果你每个月的用量在50万个字符以内，那么就 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1838659324.html" title="22｜再探HuggingFace：一键部署自己的大模型">22｜再探HuggingFace：一键部署自己的大模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">22｜再探HuggingFace：一键部署自己的大模型你好，我是徐文浩。
-过去几讲里，我们一起为AI加上了语音能力。而且相对于大语言模型，语音识别和语音合成都有完全可以用于商业应用的开源模型。事实上，Huggingface的火爆离不开他们开源的这个Transformers库。这个开源库里有数万个我们可以直接调用的模型。很多场景下，这个开源模型已经足够我们使用了。
-不过，在使用这些开源模型的过程中，你会发现大部分模型都需要一块不错的显卡。而如果回到我们更早使用过的开源大语言模型，就更是这样了。
-在课程里面，我们是通过用Colab免费的GPU资源来搞定的。但是如果我们想要投入生产环境使用，免费的Colab就远远不够用了。而且，Colab的GPU资源对于大语言模型来说还是太小了。我们在前面不得不使用小尺寸的T5-base和裁剪过的ChatGLM-6B-INT4，而不是FLAN-UL2或者ChatGLM-130B这样真正的大模型。
-那么，这一讲我们就来看看，Transformers可以给我们提供哪些模型，以及如何在云端使用真正的大模型。而想要解决这两个问题啊，都少不了要使用HuggingFace这个目前最大的开源模型社区。
-Transformers PipelinePipeline的基本功能我们先来看看，Transformers这个开源库到底能干些什么。下面的代码都是直接使用开源模型，需要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1138924586.html" title="21｜DID和PaddleGAN：表情生动的数字人播报员">21｜DID和PaddleGAN：表情生动的数字人播报员</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">21｜DID和PaddleGAN：表情生动的数字人播报员你好，我是徐文浩。
-上一讲里，我们已经学会了通过AI来进行语音合成。有了语音识别、ChatGPT，再加上这个语音合成，我们就可以做一个能和我们语音聊天的机器人了。不过光有声音还不够，我们还希望这个声音可以是某一个特定的人的声音。就好像在电影《Her》里面那样，AI因为用了影星斯嘉丽·约翰逊的配音，也吸引到不少观众。最后，光有声音还不够，我们还希望能够有视觉上的效果，最好能够模拟自己真的在镜头面前侃侃而谈的样子。
-这些需求结合在一起，就是最近市面上很火的“数字人”，也是我们这一讲要学习的内容。当然，在这么短的时间里，我们做出来的数字人的效果肯定比不上商业公司的方案。不过作为概念演示也完全够用了。
-制作一个语音聊天机器人从文本ChatBot起步我们先从最简单的文本ChatBot起步，先来做一个和 第 6 讲 一样的文本聊天机器人。对应的代码逻辑和第6讲的ChatGPT应用基本一样，整个的UI界面也还是使用Gradio来创建。
-唯一的区别在于，我们把原先自己封装的Conversation类换成了Langchain的ConversationChain来实现，并且使用了SummaryBufferMemory。这样，我们就不需要强行设定只保留过去几轮对话了。
-import openai, os
-import gradio as gr
-fr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1617948929.html" title="23｜OpenClip：让我们搞清楚图片说了些什么">23｜OpenClip：让我们搞清楚图片说了些什么</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">23｜OpenClip：让我们搞清楚图片说了些什么你好，我是徐文浩。
-前面我们已经学完了文本和音频的部分。接下来，我们就要进入课程的最后一部分，也就是图像模块了。
-与视觉和语音一样，Transformer架构的模型在过去几年里也逐渐成为了图像领域的一个主流研究方向。自然，发表了GPT和Whisper的OpenAI也不会落后。一贯相信“大力出奇迹”的OpenAI，就拿4亿张互联网上找到的图片，以及图片对应的ALT文字训练了一个叫做CLIP的多模态模型。今天，我们就看看在实际的应用里怎么使用这个模型。在学习的过程中你会发现， 我们不仅可以把它拿来做常见的图片分类、目标检测，也能够用来优化业务场景里面的商品搜索和内容推荐。
-多模态的CLIP模型相信你最近已经听到过很多次“多模态”这个词儿了，无论是在OpenAI对GPT-4的介绍里，还是我们在之前介绍llama-index的时候，这个名词都已经出现过了。
-所谓“多模态”，就是多种媒体形式的内容。 我们看到很多评测里面都拿GPT模型来做数学试题，那么如果我们遇到一个平面几何题的话，光有题目的文字信息是不够的，还需要把对应的图形一并提供给AI才可以。而这也是我们通往通用人工智能的必经之路，因为真实世界就是多模态的。我们每天除了处理文本信息，还会看视频、图片以及和人说话。
-而CLIP这个模型，就是一个多模态模型。一如即往，OpenAI仍然是通过 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/911593760.html" title="24｜Stable Diffusion：最热门的开源AI画图工具">24｜Stable Diffusion：最热门的开源AI画图工具</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">24｜Stable Diffusion：最热门的开源AI画图工具你好，我是徐文浩。
-上一讲，我们一起体验了CLIP这个多模态的模型。在这个模型里，我们已经能够把一段文本和对应的图片关联起来了。看到文本和图片的关联，想必你也能联想到过去半年非常火热的“文生图”（Text-To-Image）的应用浪潮了。相比于在大语言模型里OpenAI的一枝独秀。文生图领域就属于百花齐放了，OpenAI陆续发表了DALL-E和 DALL-E 2，Google也不甘示弱地发表了 Imagen，而市场上实际被用得最多、反馈最好的用户端产品是 Midjourney。
-不过，在整个技术社区里，最流行的产品则是Stable Diffusion。因为它是一个完全开源的产品，我们不仅可以调用Stable Diffusion内置的模型来生成图片，还能够下载社区里其他人训练好的模型来生成图片。我们不仅可以通过文本来生成图片，还能通过图片来生成图片，通过文本来编辑图片。
-那么今天这一讲，我们就来看看如何使用Stable Diffusion，做到上面这些事情。
-使用Stable Diffusion生成图片文生图可能你还没怎么体验过文生图的应用，那我们先用几行最简单的代码体验一下。在这一讲里，我建议一定要用Colab或者其他的GPU环境，因为用CPU来执行的话，速度会慢到让人无法接受。
-安装依赖包：
-%pip install ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1714578286.html" title="26｜Visual ChatGPT是如何做到边聊边画的？">26｜Visual ChatGPT是如何做到边聊边画的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">26｜Visual ChatGPT是如何做到边聊边画的？你好，我是徐文浩。
-过去三讲里，我们分别体验了CLIP、Stable Diffusion和ControlNet这三个模型。我们用这些模型来识别图片的内容，或者通过输入一段文本指令来画图。这些模型都是所谓的多模态模型，能够把图片和文本信息联系在一起。
-不过，如果我们不仅仅是要随便找几个关键词画两张画玩个票，而是要在实际的工作环境里生成能用的图片，那么现在的体验还是远远不够的。对于画出来的图我们总有各种各样的修改和编辑的需求。比如，我们总是会遇到各个团队的人对着设计师的图指手画脚地提出各种各样的意见：“能不能把小狗移到图片的右边？”“能不能把背景从草地改成森林？”“我想要一个色彩斑斓的黑。”等等。
-所以， 理想中的AI画画的功能，最好还能配上一个听得懂人话的AI，能够根据我们这些外行的指手画脚来修改生成的图片。 针对这个需求，我们就来介绍一下微软开源的Visual ChatGPT。
-和之前我们自己写代码不同，这一讲我们一起来读一读 Visual ChatGPT 这个开源项目的代码，看看它是如何做到能让我们聊着天就把图片给修改完了的。
-体验 Visual ChatGPT我们先来体验一下Visual ChatGPT的效果是怎么样的。这一次，Colab里的GPU也不够我们用了。Visual ChatGPT要加载很多个不同的图片相关的模型 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2171008711.html" title="25｜ControlNet：让你的图拥有一个“骨架”">25｜ControlNet：让你的图拥有一个“骨架”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">25｜ControlNet：让你的图拥有一个“骨架”你好，我是徐文浩。
-上一讲，我们体验了Stable Diffusion这个时下最流行的开源“AI画画”项目，不知道你有没有试着用它画一些你想要的图片呢？不过，如果仅仅是使用预训练好的模型来画图的话，我们对于画出来的图还是缺少必要的控制。这会出现一个常见的问题：我们只能通过文本描述来绘制一张图片，但是具体的图片很有可能和你脑海中想象的完全不一样。
-尽管我们可以通过img2img的方式，提供一张底图来对图片产生一定的控制，但是实际你多尝试一下就会发现这样的控制不太稳定，随机性很强。
-对于这个问题，繁荣的Stable Diffusion社区也很快给出了回应，就是今天我们要介绍的项目ControlNet。ControlNet是在Stable Diffusion的基础上进行优化的一个开源项目，它既对原本的模型架构进行了修改，又在此基础上进行了进一步地训练，提供了一系列新的模型供你使用。
-体验使用ControlNet模型那么，接下来我们就先来看看如何使用ControlNet。我们还是需要Colab这样的GPU环境，并且安装好一系列依赖包。
-%pip install diffusers transformers xformers accelerate
-%pip install opencv-contrib-python
-%pip install ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3456957197.html" title="导读｜从今天开始，让AI成为你的贴身助理">导读｜从今天开始，让AI成为你的贴身助理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">导读｜从今天开始，让AI成为你的贴身助理你好，我是徐文浩。
-今天，我们就专门来聊一聊，你应该怎么来学习这门课程。并且更进一步地来说，在AI爆发的当前，学习这件事情本身应该发生什么样的变化。
-采用多尝试、多体验、多做做头脑风暴的学习方法这一门课程的目标，不是传授你AI的数学基础或者模型的理论知识，而是希望能够让你用几周的时间就可以上手开发AI应用。没有艰深的知识，在大学里往往会被称之为一门“水课”。不过，这也是这次以大模型为基础的AI浪潮最让人兴奋的一点。不需要你掌握多少理论和技巧，通过基础模型提供的简单的API，任何人都可以通过几行代码开发出有实用价值的AI应用。
-所以，在这门课程的学习过程里，我希望你能够多尝试、多体验、多做做头脑风暴。
+你需要拥有一个程序员基本的技能和知识才能有效地与计算机交互。不过，随着人工智能的兴起和大语言模型的发展，情况开始发生变化。
+现在，我们正进入一个 全新的编程范式，其中机器学习和自然语言处理技术使得与计算机的交互变得更加自然。这意味着，我们可以用更加接近我们日常话语的自然语言来与计算机交流。例如，不用复杂的SQL语句查询数据库，我们可以简单地问：“请告诉我去年的销售额是多少？” 计算机能够理解这个问题，并给出相应的答案。
+这种转变不仅使得非技术人员更容易与计算机交互，还为开发者提供了更大的便利性。简而言之，我们从“ 告诉计算机每一步怎么做”，转变为“ 告诉计算机我们想要什么”，整个过程变得更加人性化和高效。
+新的数据库查询范式下面这个图，非常清晰地解释了这个以LLM为驱动引擎，从自然语言的（模糊）询问，到自然语言的查询结果输出的流程。
 
-第一点是你要多尝试运行代码和修改代码。
+这种范式结合了自然语言处理和传统数据库查询的功能，为用户提供 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/948258930.html" title="15｜检索增强生成：通过RAG助力鲜花运营">15｜检索增强生成：通过RAG助力鲜花运营</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">15｜检索增强生成：通过RAG助力鲜花运营你好，我是黄佳，欢迎来到LangChain实战课！
+在 第2课 中，我曾经带着你完成了一个基于本地文档的问答系统。用当下时髦的话说，你实现了一个RAG 应用。
+什么是RAG？其全称为Retrieval-Augmented Generation，即检索增强生成，它结合了检索和生成的能力，为文本序列生成任务引入外部知识。RAG将传统的语言生成模型与大规模的外部知识库相结合，使模型在生成响应或文本时可以动态地从这些知识库中检索相关信息。这种结合方法旨在增强模型的生成能力，使其能够产生更为丰富、准确和有根据的内容，特别是在需要具体细节或外部事实支持的场合。
+RAG 的工作原理可以概括为几个步骤。
 
-在这门课程的每一节课里，都会有可以直接运行的代码。在学习的过程中，我推荐你去实际运行一下这些代码，体会一下实际开发AI应用是怎么样的。这个尝试的过程对于学习应用开发是不可或缺的。
-为此，我也将课程里所有的代码部分，通过Jupyter Notebook的形式放在了GitHub上，你可以直接 获取 运行。对于没有技术背景的同学，我也在 第01讲 里，教会你如何在Colab这样的在线环境里运行代码，获得最直观的体验。而在运行了我给你的原始代码之后，我也建议你多试试看修改里面的代码，利用这些代码去使用你自己的数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/816097303.html" title="27｜从Midjourney开始，探索AI产品的用户体验">27｜从Midjourney开始，探索AI产品的用户体验</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">27｜从Midjourney开始，探索AI产品的用户体验你好，我是徐文浩。
-学到这里，这个课程终于到了尾声。过去的二十多讲里，我们围绕着文本、语音、视频、图像体验了大量的AI应用场景。不过在这些场景里，我们还只是通过撰写代码体验了AI的能力。那么，如果我们今天想通过学习到的这些知识，开发一个真正的AI应用，需要注意些什么呢？我们是只需要简单地给我们的Python代码封装一个对话框一样的用户界面就可以了吗？
-如果你有这样的疑惑，那请一定要坚持学完这最后一讲。我们一起来看看Midjourney这个AI画画的应用是怎么做的。它在整个应用的体验里考虑了哪些设计原则？毕竟，Midjourney在过去一年里可谓是创造了一个AI产品的奇迹。它没有独立的App，完全依赖Discord这个语音社区聊天工具和用户交互。团队只有十几个人，但是出图的质量始终领先于有整个开源社区支持的Stable Diffusion。没有外部融资，却完全靠用户订阅获取了1亿美元的年收入。
-无论从哪个角度来看，Midjourney都是一个值得研究的AI产品。在它所有的产品设计里，我认为有三个要点是今天所有的AI应用都应该借鉴的，那就是 以用户社区作为入门教程、给用户即时反馈以及搭建数据飞轮以迭代模型。下面我们一个一个来看。
-善用用户社区，降低上手门槛Midjourney这样的AI内容生成类型的产品，常常会遇到一个挑战，就是用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2002989716.html" title="开篇词｜GPT来了，跑步迎接AI爆发的时代">开篇词｜GPT来了，跑步迎接AI爆发的时代</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">开篇词｜GPT来了，跑步迎接AI爆发的时代你好，我是徐文浩，一个创办过一家AI聊天机器人公司的工程师。
-有人说，编译原理、操作系统和图形学是程序员的三大浪漫。不过在整个计算机科学领域，还有一个超越这三者之外的存在，那就是人工智能。人工智能的诞生其实非常早，公认的起源是1956年的达特茅斯会议。从那个时候开始， “机器可以思维吗？” 就是人工智能研究者想要回答的一个永恒的主题。
-在2016年，我离开了飞速发展的拼多多，在年底创办了一家人工智能聊天机器人的公司BotHub。那个时候，Transformer这个当前最重要的基础模型还没有被提出来。在之后的研发过程里面，我们尝试过各种机器学习模型、开源的软件包以及各种云平台提供的解决方案，也通过数据标注、模型的训练，为不少中国出海的企业提供了面向普通消费者的智能聊天机器人。
-但是，在这个过程中，我们始终没有摆脱 “有多少人工就有多少智能” 这样一个诅咒。所有的“智能”都来自于大量的人工数据标注，甚至很多硬编码的业务规则。而即便这样，在很多特殊情况下，“人工智能”还是表现得像一个“人工智障”。也因为如此，整个智能聊天机器人的服务也显得很不经济。所以在2019年，我们也断了继续研发人工智能的念想，之后的几年里转而专注于面向海外电商领域的产品研发。
-去年12月初，在ChatGPT刚刚发布没几天，出于职业习惯的好奇心，我第一时间就去尝试体验了一下。 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+检索 ： 对于给定的输入（问题），模型首先使用检索系统从大型文档集合中查找相关的文档或段落。这个检索系统通常基于密集向量搜索，例如ChromaDB、Faiss这样的向量数据库。
+上下文编码 ： 找到相关的文档或段落后，模型将它们与原始输入（问题）一起编码。
+生成 ： 使用编码的上下文信息，模型生成输出（答案）。这通常当然是通过大模型完成的。
+
+RAG 的一个关键特点是，它不仅仅依赖于训练数据中的信息，还可以从大型外部知识库中检索信息。这使得RAG模型特别适合处理在训练数据中未出现的问题。
+
+RAG类的任务，目前企业实际应用场景中的需求量相当大，也是Lan ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1500427115.html" title="18｜CAMEL：通过角色扮演脑暴一个鲜花营销方案">18｜CAMEL：通过角色扮演脑暴一个鲜花营销方案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">18｜CAMEL：通过角色扮演脑暴一个鲜花营销方案你好，我是黄佳，欢迎来到LangChain实战课！
+大模型的成功，在很大程度上依赖于用户的输入来引导对话生成。如果用户能够详细描述他们的任务和需求，并与ChatGPT建立一个连贯的聊天上下文，那么ChatGPT往往能提供更精确和高质量的答案。但是，为模型提供这种引导是一项既费时又费力的任务。
+这就引出了一个有趣的问题： 能否让ChatGPT自己生成这些引导文本呢？
+基于这个想法，KAUST（阿卜杜拉国王大学）的研究团队提出了一个名为CAMEL的框架。CAMEL采用了一种基于“角色扮演”方式的大模型交互策略。在这种策略中，不同的AI代理扮演不同的角色，通过互相交流来完成任务。
+CAMEL 交流式代理框架下面我们一起来看看CAMEL——这个多AI通过角色扮演进行交互的框架，以及它在LangChain中的具体实现。
+
+CAMEL，字面意思是骆驼。这个框架来自于论文《 CAMEL: Communicative Agents for “Mind” Exploration of Large Scale Language Model Society》（CAMEL：用于大规模语言模型社会的“心智”探索的交流式代理）。这里面所谓的CAMEL，实际上来自 沟通（也就是交流）、 代理、 心智、 探索 以及 LLM 这五个单词的英文首字母。
+CAMEL框架 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2756903923.html" title="21｜部署一个鲜花网络电商的人脉工具（下）">21｜部署一个鲜花网络电商的人脉工具（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">21｜部署一个鲜花网络电商的人脉工具（下）你好，我是黄佳，欢迎来到LangChain实战课！
+在上节课中，我们通过LangChain，找到了适合为某一类鲜花做推广的微博大V，并且爬取了他的信息。下面，我带着你继续完成易速鲜花电商人脉工具的后续部分。
+项目步骤复习先复习一下项目实现过程的五个具体步骤。
+第一步： 通过LangChain的搜索工具，以模糊搜索的方式，帮助运营人员找到微博中有可能对相关鲜花推广感兴趣的大V（比如喜欢牡丹花的大V），并返回UID。
+第二步： 根据微博UID，通过爬虫工具拿到相关大V的微博公开信息，并以JSON格式返回大V的数据。
+第三步： 通过LangChain调用LLM，通过信息整合以及文本生成功能，根据大V的个人信息，写一篇热情洋溢的介绍型文章，谋求与该大V的合作。
+第四步： 把LangChain输出解析功能加入进来，让LLM生成可以嵌入提示模板的格式化数据结构。
+第五步： 添加HTML、CSS，并用Flask创建一个App，在网络上部署及发布这个鲜花电商人脉工具，供市场营销部门的人员使用。
+
+第三步 ： 生成介绍文章下面我们开始第三个步骤，把步骤二中返回的JSON数据（大V的个人简介）传递给LLM，发挥大模型超强的总结整理和文本生成能力，帮助运营人员创建文案。
+这个文案可以有很多种形式，比如说可以总结一下大V的特点，根据他的自我介绍猜测一下他的兴趣爱好 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1550437576.html" title="19｜BabyAGI：根据气候变化自动制定鲜花存储策略">19｜BabyAGI：根据气候变化自动制定鲜花存储策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">19｜BabyAGI：根据气候变化自动制定鲜花存储策略你好，我是黄佳，欢迎来到LangChain实战课！
+在上节课中，我们深入探讨了如何利用CAMEL框架制定出一个高效的鲜花营销方案。然而，LangChain目前是将基于CAMEL框架的代理定义为Simulation Agents（模拟代理）。这种代理在模拟环境中进行角色扮演，试图模拟特定场景或行为，而不是在真实世界中完成具体的任务。
+随着ChatGPT的崭露头角，我们迎来了一种新型的代理——Autonomous Agents（自治代理或自主代理）。这些代理的设计初衷就是能够独立地执行任务，并持续地追求长期目标。在LangChain的代理、工具和记忆这些组件的支持下， 它们能够在无需外部干预的情况下自主运行，这在真实世界的应用中具有巨大的价值。
+目前，GitHub上已有好几个备受关注的“网红”项目，如AutoGPT、BabyAGI和HuggingGPT，它们都代表了自治代理的初步尝试。尽管这些代理仍处于实验阶段，但潜力十分巨大。它们都是基于LangChain框架构建的。通过LangChain，你可以在这些开源项目中轻松地切换和测试多种LLM、使用多种向量存储作为记忆，以及充分利用LangChain的丰富工具集。
+今天的这节课，我就带着你看一看这些项目，同时也通过LangChain完成一个 BabyAGI 的实现。
+AutoGPTAu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1156965186.html" title="17｜回调函数：在AI应用中引入异步通信机制">17｜回调函数：在AI应用中引入异步通信机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">17｜回调函数：在AI应用中引入异步通信机制你好，我是黄佳，欢迎来到LangChain实战课！
+这节课我们一起来学习一下LangChain中的回调函数。
+回调函数和异步编程回调函数，你可能并不陌生。它是函数A作为参数传给另一个函数B，然后在函数B内部执行函数A。当函数B完成某些操作后，会调用（即“回调”）函数A。这种编程模式常见于处理异步操作，如事件监听、定时任务或网络请求。
+
+在编程中，异步通常是指代码不必等待某个操作完成（如I&#x2F;O操作、网络请求、数据库查询等）就可以继续执行的能力。异步机制的实现涉及事件循环、任务队列和其他复杂的底层机制。这与同步编程形成对比，在同步编程中，操作必须按照它们出现的顺序完成。
+
+下面是回调函数的一个简单示例。
+def compute(x, y, callback):
+    result = x + y
+    callback(result)
+
+def print_result(value):
+    print(f"The result is: &#123;value&#125;")
+
+def square_result(value):
+    print(f"The squared result is: &#123;value**2&#125;")
+
+# 使用print_result作为回调
+compute(3, 4, print_ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1445489413.html" title="20｜部署一个鲜花网络电商的人脉工具（上）">20｜部署一个鲜花网络电商的人脉工具（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">20｜部署一个鲜花网络电商的人脉工具（上）你好，我是黄佳，欢迎来到LangChain实战课！
+从今天开始，我要用4节课的篇幅，带着你设计两个有趣而又实用的应用程序。设计这两个应用程序的目的，是为了让你能够把LangChain中的各个组件灵活地组合起来，融会贯通，并以此作为启发，在你熟悉的业务场景中，利用LangChain和LLM的能力，开发出更多、更强大的效率工具。
+第一个应用程序，是用LangChain创建出一个专属于“易速鲜花”的网络人脉工具。光这么说，有些模糊，这个人脉工具长啥样？有些啥具体功能？
+动手之前，让我先给你把这个所谓“人脉”工具的能力和细节说清楚。
+“人脉工具”项目说明项目背景：易速鲜花电商网络自从创建以来，通过微信、抖音、小红书等自媒体宣传推广，短期内获得了广泛流量展示。目前，营销部门希望以此为契机，再接再厉，继续扩大品牌影响力。经过调研，发现很多用户会通过微博热搜推荐的新闻来购买鲜花赠送给明星、达人等，因此各部门一致认为应该联络相关微博大V，共同推广，带动品牌成长。
+然而，发掘并选择适合于“鲜花推广”的微博大V有一定难度。营销部门员工表示，这个任务比找微信、抖音和小红书达人要难得多。他们都希望技术部门能够给出一个“人脉搜索工具”来协助完成这一目标。
+项目目标： 帮助市场营销部门的员工找到微博上适合做鲜花推广的大V，并给出具体的联络方案。
+项目的技术实现细节这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2096095726.html" title="22｜易速鲜花聊天客服机器人的开发（上）">22｜易速鲜花聊天客服机器人的开发（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">22｜易速鲜花聊天客服机器人的开发（上）你好，我是黄佳，欢迎来到LangChain实战课！
+上节课，咱们的易速鲜花人脉工具成功上线。市场部的朋友们用了都说好。
+这节课，我们继续为易速鲜花市场部、销售部和客服部门的员工，以及易速鲜花的广大用户来开发一个聊天机器人。
+“聊天机器人”项目说明聊天机器人（Chatbot）是LLM和LangChain的核心用例之一，很多人学习大语言模型，学习LangChain，就是为了开发出更好的、更能理解用户意图的聊天机器人。聊天机器人的核心特征是，它们可以进行长时间的对话并访问用户想要了解的信息。
+
+如图所示，聊天机器人设计过程中的核心组件包括：
+
+聊天模型：这是对话的基础，它更偏向于自然的对话风格。你可以参考LangChain相关文档中所支持的聊天模型的列表。尽管大模型（LLM）也可以应用于聊天机器人，但专用的聊天模型（Chat Model）更适合对话场景。
+提示模板：帮助你整合默认消息、用户输入、历史交互以及检索时需要的上下文。
+记忆：它允许机器人记住与用户之间的先前互动，增强对话连贯性。
+检索器：这是一个可选组件，特别适合那些需要提供特定领域知识的机器人。
+
+整体来说，聊天机器人的关键在于其记忆和检索能力，记忆使聊天机器人能够记住过去的交互，而检索则为聊天机器人提供最新的、特定于领域的信息。
+项目的技术实现细节在这个聊天机器人的实现过程中，我们将遵 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1009979939.html" title="结束语｜人生的价值就在于创造">结束语｜人生的价值就在于创造</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">结束语｜人生的价值就在于创造你好，我是黄佳。
+时间过得真快，转眼间就到了本专栏的最后一节课，我想为坚持学到最后的你大声鼓掌，也很开心能将我的阶段性沉淀传递出去，相信此刻的你已经体验到了 LangChain 的魅力。
+技术上的进步，还需要你不断去练习，因为我深知： 动手实践，比千言万语更有力量。所以在结束语中，我们不再谈技术细节，只分享一点我近期的感悟吧！如果我们恰好有共鸣，那就太棒了。
+某一个深夜，SpaceX 研发的最新一代运载火箭系统“星舰”升空，但在发射仅3分钟后，“超重型推进器”未能与“星舰”分离，在高空解体。
+不过，SpaceX CEO 马斯克没有太多的情绪，他在推特写道：“恭喜 SpaceX 团队令人兴奋的星舰试射，这为几个月后的下一次试射积累了许多经验。”马斯克希望在10年内建造1000艘“星舰”登陆火星，使人类成为跨行星物种的愿景不变。
+
+仰望苍穹，宇宙浩瀚。每每想起人类已在月球上留下脚印，而今又要再度出发，就不由在心中感慨：如此有幸，能生活在这个时代。如此有幸，能见证通用人工智能时代的到来！
+是的，人类见证过一次次的历史时刻，现在，我们又站在另一个历史的节点上——通用人工智能的诞生。这并不仅仅是一个技术的进步，更是对未来世界的重新塑造。让我深感幸运的是，即便 AI 如此发达，有些东西仍是不可替代的，那就是人的创造力和情感。
+也许， 人生的真正价值并不仅仅是在于我们 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

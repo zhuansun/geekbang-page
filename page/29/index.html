@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,51 +138,113 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3576907337.html" title="046 | 大型搜索框架宏观视角：发展、特点及趋势">046 | 大型搜索框架宏观视角：发展、特点及趋势</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">046 | 大型搜索框架宏观视角：发展、特点及趋势我们在前几周的专栏里讲解了一系列最经典的信息检索（Information Retrieval）技术以及基于机器学习的排序学习算法（Learning to Rank）。然后我们花了一定的时间讨论了两个关键搜索组件的核心技术要点，包括查询关键字理解（Query Understanding）和文档理解（Document Understanding）。除此之外，我们还详细讨论了如何从线上和线下两个层面来评价一个搜索系统。相信你已经对搜索系统的各个基本组成部分有了一个比较基础的把握。
-那么，今天我们就第一次从整体上来看看大型搜索系统框架的演变和历史发展，给你一个宏观的认识。相信有了之前的基础知识铺垫，我们今天的分享会让你感觉到水到渠成。
-基于文本匹配的信息检索系统我们在介绍TF-IDF和BM25这些经典信息检索系统的时候，其实就已经介绍了不少基于文本匹配的基本的信息检索系统的核心概念。
-实际上， 从20世纪50年代有信息检索系统开始一直到2000年前后，这种纯粹基于文本匹配的搜索系统一直都是主流搜索系统的基础所在。甚至当前的很多开源搜索框架也都是基于这种最基本的信息检索系统的。
-总结一下，这种信息检索系统有这么几个特点。
-首先，文本匹配系统的基础是一个倒排索引（Inverted Index）。索引中的“字段”是某一个查询关键字。而每个字段所对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3836205867.html" title="047 | 多轮打分系统概述">047 | 多轮打分系统概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">047 | 多轮打分系统概述周一我为你介绍了搜索系统的一个宏观分类，包括传统的文本匹配信息检索系统和机器学习信息检索系统。这个分类可以让你非常清晰地了解信息搜索系统的历史进程，并对这两种搜索系统的特点有所了解。
-今天我们就来剖析搜索系统的另一个框架体系： 多轮打分（Scoring）系统。
-多轮打分系统综述什么是多轮打分系统？为什么搜索系统需要多轮打分？
-我们拿上次介绍的机器学习搜索系统为例。从整体来说，机器学习搜索系统的目的是利用机器学习模型来预测文档和搜索关键字之间的相关性。那么，在理想状态下，针对每一个查询关键字，我们需要对数据集中的每一个文档进行打分。
-如果是一个类似互联网搜索引擎的应用场景，那么理论上，每一个查询关键字都需要对几亿甚至十几亿的网页进行打分。显然，仅仅从这个数量级上来说，这样做都是不现实的。
-从另一个方面来讲，目前比较通用的机器学习模型，特别是在排序问题上有强劲表现的树模型（Tree Model），比如GBDT（Gradient Boosted Decision Trees）或者神经网络，都有较高的计算时间复杂度。要想在实时响应的反应时间内（例如几百毫秒内）对相对比较多（我们这里说的是几千甚至上万）的文档进行打分是很困难的，我们刚才提到的整个数据集中是有几亿甚至十几亿的文档，那就更加困难了。
-于是在这样的情况下，我们就需要有这么一种机制：对于每个查询关键字而言 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3066722535.html" title="048 | 搜索索引及其相关技术概述">048 | 搜索索引及其相关技术概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">048 | 搜索索引及其相关技术概述本周我们分享的主题是从宏观上来剖析现代搜索架构。周一我介绍了搜索系统的一个大的分类，一类是从20世纪50年代开始研发并使用的传统文本匹配信息检索系统，一类是从2000年开始发展并逐渐成熟的机器学习信息检索系统。周三我们剖析了搜索系统的另一个框架体系，多轮打分系统，阐述了为什么需要多轮打分，以及每一轮打分又有什么特性。
-今天，我们来看一个在本周已经反复涉及到的话题： 倒排索引（Inverted Index）。一起来聊聊它的核心技术。值得注意的是，关于索引的很多话题其实都会牵涉到搜索中的“查询关键字处理”（Query Processing），我们今天的分享就主要来谈谈索引及相关技术在“查询关键字处理”这个场景下的应用。
-经典的索引结构经典的索引结构由“字段”（Field）和对应的列表组成。一般来说，“字段”就是某一个查询关键字。在英文里，这就是一个单独的单词；在中文里，这也许就是一个词或者短语。每个字段所对应的列表就是包含这个查询关键字的文档列表。
-有两点值得注意。
-第一，在文档列表里的文档，大多按照某种重要的顺序排列，这方便我们首先提取重要性高的文档。比如，某个文档整体和查询关键字的相关度大，那么就会排列到这个列表的前面。
-第二，对于每个字段，也就是查询关键字而言，所有包含这个查询关键字的文档并不一定都会包含到这个列表中，这个列表可以是一个节选。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3288754262.html" title="045 | 文档理解的重要特例：多模文档建模">045 | 文档理解的重要特例：多模文档建模</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">045 | 文档理解的重要特例：多模文档建模本周我们重点分享搜索系统中的一个重要部件，那就是文档理解。周一我们首先分享了文档理解最基本的一个步骤，那就是给文档分类，主要是看不同文档表达什么类别的信息。然后，周三我们聊了聊另外一个重要的文档理解组件，也就是文档聚类的一些基本的概念和技术。今天我就来和你分享一个文档理解的重要特例： 多模文档建模（Multimodal Modeling）。
-多模数据我们首先来了解一下，到底什么是多模数据。
-多模数据，其实就是说数据有多种模式（Modal）的表达途径。而这些多种不同的模式都共同参与描述同一个数据点的不同方面。
-比如，有一张照片反映的是美国总统特朗普在华盛顿白宫的致辞。那么照片本身是对这个场景的一个描述，这是一个模式。然后，和照片相应的文字描述，说明这是特朗普在白宫的致辞，又是另外一个模式。这两个模式是相辅相成的，都是对这个场景的描述。很明显，针对这样多种数据模式的建模是多媒体时代、社交媒体时代非常重要的课题。
-在文档领域，非常普遍的情况是文字和图片混搭。一般来说，新闻网站一般都有大量的图文信息。而有一些特殊场景，文字和图片则出现很不对称的混合情况。比如，一些社交媒体（例如Instagram、Pinterest甚至Twitter）上很多短文档都仅仅包含图片或者图片和很少的文字。在这些情况中，文字和图片就成了非常重要的互相补充的信息源。
-另外， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1393202178.html" title="050 | 经典图算法之HITS">050 | 经典图算法之HITS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">050 | 经典图算法之HITS这周我们分享的内容是如何理解网页和网页之间的关系。周一我们介绍了用图（Graph）来表达网页与网页之间的关系并计算网页的重要性，就是经典算法PageRank。今天我来介绍一下PageRank的姊妹算法： HITS算法。
-HITS的简要历史HITS是Hypertext-Induced Topic Search算法的简称。这个算法是由康奈尔大学计算机科学教授乔·克莱恩堡（Jon Kleinberg）于1998年发明的，正好和我们周一讲的布林和佩奇发表PageRank算法是同一年。
-这里有必要简单介绍一下乔这个人。乔于1971年出生在马萨诸塞州波士顿。1993年他毕业于康奈尔大学获得计算机科学学士学位，并于1996年从麻省理工大学获得计算机博士学位。1998的时候，乔正在位于美国西海岸硅谷地区的IBM阿尔玛登（Almaden）研究院做博士后研究。HITS的工作最早发表于1998年在旧金山举办的第九届ACM-SIAM离散算法年会上（详细论述可参阅参考文献）。
-乔目前是美国国家工程院（National Academy of Engineering）和美国自然与人文科学院（American Academy of Arts and Sciences）院士。顺便提一下，乔的弟弟罗伯特·克莱恩堡也在康奈尔大学计算机系任教职。
-HITS的基本原理在介绍HITS算法的基本 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1623065703.html" title="049 | PageRank算法的核心思想是什么？">049 | PageRank算法的核心思想是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">049 | PageRank算法的核心思想是什么？上周我们介绍了信息搜索系统的历史进程，剖析了搜索系统的多轮打分系统，还深入探讨了倒排索引，聊了聊它的核心技术。
-这周我要和你分享的是在互联网搜索引擎兴起之后的一个研发需要，那就是如何理解网页和网页之间的关系，特别是怎么从这些关系中提取网页中除文字以外的其他特性。这部分的一些核心算法曾是提高搜索引擎质量的重要推进力量。另外，我们这周要分享的算法也适用于其他能够把信息用结点与结点关系来表达的信息网络。
-今天，我们先看一看用图来表达网页与网页之间的关系，并且计算网页重要性的经典算法： PageRank。
-PageRank的简要历史时至今日，谢尔盖·布林（Sergey Brin）和拉里·佩奇（Larry Page）作为Google这一雄厚科技帝国的创始人，已经耳熟能详。但在1995年，他们两人还都是在斯坦福大学计算机系苦读的博士生。那个年代，互联网方兴未艾。雅虎作为信息时代的第一代巨人诞生了，布林和佩奇都希望能够创立属于自己的搜索引擎。1998年夏天，两个人都暂时离开斯坦福大学的博士生项目，转而全职投入到Google的研发工作中。他们把整个项目的一个总结发表在了1998年的万维网国际会议上（ WWW7，the seventh international conference on World Wide Web）（见参考文献[1]）。 这是P ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2280688908.html" title="052 | 机器学习排序算法经典模型：RankSVM">052 | 机器学习排序算法经典模型：RankSVM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">052 | 机器学习排序算法经典模型：RankSVM到目前为止，我们在专栏里已经讨论了关于搜索引擎方方面面的很多话题，包括经典的信息检索技术、查询关键字理解、文档理解以及现代搜索引擎的架构等等 。同时，我们也从机器学习角度出发对搜索引擎的最核心部分，也就是排序算法进行了最基本的分享，囊括了单点法排序学习（Pointwise Learning to Rank）、配对法排序学习（Pairwise Learning to Rank）以及列表法排序学习（Listwise Learning to Rank），相信你应该对这类算法的大概内容有所掌握。
-那么，这周我们就来看看机器学习排序算法中几个经典的模型，希望能够通过这几个经典的算法为你深入学习和研究排序算法指明方向。
-今天，我就来分享配对法排序中最有价值一个算法， 排序支持向量机（RankSVM）。这个算法的核心思想是 应用支持向量机到序列数据中，试图对数据间的顺序直接进行建模。
-排序支持向量机的历史20世纪90年代中后期，受统计学习理论（Statistical Learning Theory ）思想和风险最小化框架（Risk Minimization Framework）趋于成熟的影响，支持向量机逐渐成为当时机器学习界的主流模型。一时间，各个应用领域的学者和工程师都在思考如何把支持向量机利用到自己的问题领域上，从而获得更好的效果。
-拉夫⋅ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/942991020.html" title="051 | 社区检测算法之“模块最大化 ”">051 | 社区检测算法之“模块最大化 ”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">051 | 社区检测算法之“模块最大化 ”一起来回顾下本周的内容。周一我们介绍了用图（Graph）来表达网页与网页之间的关系并计算网页的重要性，就是经典的PageRank算法。周三我们介绍了PageRank的一个姊妹算法，HITS算法，并且分析了这两种算法的内在联系，这两类算法都希望给网页赋予一个权重来表达网页的重要性。
-今天，我们来看一类完全不一样的网页分析工具，那就是希望把网页所代表的图分割成小块的图，或者叫图聚类，每个小聚类代表一个“社区”。这类分析有时候被称作图上面的“ 社区检测”（Community Detection），意思就是从一个图上挖掘出潜在的社区结构。
-社区检测的简要历史提到社区检测就不得不提到这么一位学者，他与我们今天要介绍的算法有非常紧密的联系，而且他的研究在2000年~2010年间成了社区检测研究的标杆，影响了后续的大量研究工作。这位学者就是密歇根大学（University of Michigan）的物理学教授马克·纽曼（Mark Newman）。
-1991年，纽曼从牛津大学获得理论物理博士学位。在接下来的10年里，他在康奈尔大学和圣塔菲学院（Santa Fe Institute）分别担任博士后研究员和研究教授。2002年，纽曼来到密歇根大学物理系担任教授，并且一直在这里进行网络科学（Network Science）的基础研究。
-2006年，纽曼在《物理评 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2831989096.html" title="053 | 机器学习排序算法经典模型：GBDT">053 | 机器学习排序算法经典模型：GBDT</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">053 | 机器学习排序算法经典模型：GBDT这周我们讨论机器学习排序算法中几个经典的模型，周一分享了配对法排序中的一个经典算法，即排序支持向量机（RankSVM），这个算法的核心思想是把支持向量机应用到有序数据中，试图对数据间的顺序进行直接建模。
-今天，我们来聊一聊利用机器学习进行排序的一个重要算法： “梯度增强决策树”（Gradient Boosted Decision Tree）。长期以来，包括雅虎在内的很多商业搜索引擎都利用这种算法作为排序算法。
-梯度增强决策树的历史梯度回归决策树的思想来源于两个地方。首先是“ 增强算法”（Boosting），一种试图用弱学习器提升为强学习器的算法。这种算法中比较成熟的、有代表性的算法是由罗伯特⋅施派尔（Robert Schapire）和约阿夫⋅福伦德（Yoav Freund）所提出的 AdaBoost算法[1]。因为这个算法两人于2003年获得理论计算机界的重要奖项“哥德尔奖”（Gödel Prize）。罗伯特之前在普林斯顿大学任计算机系教授，目前在微软研究院的纽约实验室工作。约阿夫一直在加州大学圣地亚哥分校任计算机系教授。
-增强算法的工作机制都比较类似，那就是先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多关注，然后基于调整后的样本分布来训练下一个基学习器。如此重 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2780069384.html" title="054 | 机器学习排序算法经典模型：LambdaMART">054 | 机器学习排序算法经典模型：LambdaMART</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">054 | 机器学习排序算法经典模型：LambdaMART在这周的时间里，我们讨论机器学习排序算法中几个经典的模型。周一我们分享了排序支持向量机（RankSVM），这个算法的好处是模型是线性的，容易理解。周三我们聊了梯度增强决策树（Gradient Boosted Decision Tree），长期以来，这种算法被用在很多商业搜索引擎当中来作为排序算法。
-今天，我们来分享这一部分的最后一个经典模型： LambdaMART。这是微软在Bing中使用了较长时间的模型，也在机器学习排序这个领域享有盛誉。
-LambdaMART的历史LambdaMART的提出可以说是一个“三步曲”。
-这里有一个核心人物，叫克里斯多夫⋅博格斯（Christopher J.C. Burges）。博格斯早年从牛津大学物理学毕业之后，又于布兰戴斯大学（Brandeis University）获得物理学博士学位，他曾在麻省理工大学做过短暂的博士后研究，之后来到贝尔实验室，一待14年。2000年，他来到微软研究院，并一直在微软研究院从事机器学习和人工智能的研究工作，直到2016年退休。可以说，是博格斯领导的团队发明了微软搜索引擎Bing的算法。
-LambdaMART的第一步来自于一个叫RankNet的思想[1]。这个模型发表于ICML 2005，并且在10年之后获得ICML的时间检验奖。这也算是在深度学习火热之前，利用 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/28/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/#content-inner">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/30/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2072914629.html" title="复盘 6 | 数据科学家与数据科学团队是怎么养成的？">复盘 6 | 数据科学家与数据科学团队是怎么养成的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">复盘 6 | 数据科学家与数据科学团队是怎么养成的？今天，我准备了24张知识卡，和你一起复盘数据科学家养成和数据科学团队的养成这两个模块。在这两个模块里，我们一共讨论了8个话题，从方方面面分享了数据科学家所需具备的技能；也从组建一个团队的角度出发，让你更了解自己在团队中的角色；最后，我们还聊了雅虎研究院等知名团队，帮你拓展视野。
+提示：点击知识卡跳转到你最想看的那篇文章，温故而知新。
+数据科学家基础能力
+
+
+数据科学家高阶能力
+
+
+数据科学家职场话题
+
+
+数据科学家套路
+
+
+数据科学团队基础
+
+
+数据科学团队招聘
+
+
+数据科学团队高级话题
+
+
+著名数据科学人工智能团队漫谈
+
+
+积跬步以至千里最后，恭喜你学完了这个模块的所有内容。不管你是一名数据科学或人工智能的初学者，还是已经积累很多宝贵的经验，亦或要组建自己的数据科学或人工智能团队，都希望这一模块的内容对你有所帮助和启发。
+学无止境，选择了人工智能这条路，就意味着我们选择了一种生活方式。今天就让我们以几句诗结尾，作者是我很喜欢的美国诗人罗伯特·弗罗斯特（Robet Frost）。
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.
+树林中分出两条路，而我——
+我选择了那 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4179892298.html" title="开篇词 | 你的360度人工智能信息助理">开篇词 | 你的360度人工智能信息助理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">开篇词 | 你的360度人工智能信息助理你好，我是洪亮劼，目前在电子商务网站Etsy任数据科学主管，很高兴能和你在这里相识，也很期待在接下来的时间里，通过“AI技术内参”这个专栏和你共同探讨与人工智能有关的话题。
+在未来的一年里，我会为你讲解人工智能的核心基础，介绍顶级学术会议的最新研究成果，为广大工程师和数据科学家的个人成长出谋划策，也期待能为计划成立和管理数据科学家团队的工程管理领导提供一些意见和建议。我希望“AI技术内参”能够成为你的360度人工智能信息助理，帮助你在这个高速发展的领域稳步前行。
+那么，我为什么愿意来写这么一个专栏呢？这让我想起了最近发生的一个片段，我在波士顿参加一个有关数据科学的工业界会议，会场上，一位目前在美国一家时装品牌J.Crew工作的数据科学家和我聊天，中间问我，如果想在数据科学、人工智能这个领域进阶，需要看什么样的资料、需要怎样才能不断学习和进步。我当时发现，自己很难为这位数据科学家推荐某一本书、某几篇论文、某一个资料，就能够起到这样的作用。
+事实上，回想我自己在人工智能这个领域的成长，一个突出的特点就是，需要学习的东西太多、太杂而且很细。
+比方说，对于一个人工智能领域的从业人员来说，基础阶段需要系统地学习有关机器学习、概率统计的很多书，还要会使用相关的专业软件以及人工智能框架，然后如果你希望能够在某一个专业领域（比如搜索、推荐、图像技术、语音技术 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/419933971.html" title="结束语 | 雄关漫道真如铁，而今迈步从头越">结束语 | 雄关漫道真如铁，而今迈步从头越</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">结束语 | 雄关漫道真如铁，而今迈步从头越去年，“极客时间”联系到我，询问是否愿意开一个人工智能主题的专栏，因为我对知识经济充满好奇，对知识分享更是有极大的热情，所以我几乎是不加思考就答应了下来，对于接下来一年会遇到的挑战和收获丝毫没有准备。
+一年过去了，我们的专栏到了说再见的时候。现在我的感受是，我和你一起完成了一个不可能完成的任务。今天就和你聊聊一路走来我遇到的那些挑战和收获。
+我的第一个挑战就是在浩如烟海的人工智能知识库中，究竟要为你准备什么样的内容才能照顾到不同人群的需求。人工智能技术涵盖面广，变化更新很快，涉及到大量的工程实践以及纯粹的理论工作，如何取舍呢？
+最后呈现给你的156期内容，涵盖推荐、搜索、广告、自然语言处理和计算机视觉这五个人工智能核心技术模块，带你了解最关键的概念、模型和技术；最新的顶级学术会议论文导读，帮助你跟踪最新的技术动态；以及数据科学家成长和数据科学团队建设的经验之谈，帮助初学者快速入门。
+一切取舍之间的纠结都是为了打造一整套丰富的内容，给初学者一个理想的入门手册，带你跨进人工智能的大门，看清这里面都有什么，在心里画出一张人工智能的地图；同时还能给你一个进阶指南，让你能够找到继续精进的方向。
+对于顶级学术会议中精彩论文的分享，我花费了很多精力。现在很多会议动辄发表一两百篇甚至几百篇新论文，我每次都要扎进去选取我认为最优质的内容你给解读。我之所以觉得 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3103934278.html" title="01 | 程序员如何用技术变现？（上）">01 | 程序员如何用技术变现？（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">01 | 程序员如何用技术变现？（上）你好，我是陈皓，网名左耳朵耗子。
+程序员用自己的技术变现，其实是一件天经地义的事儿。写程序是一门“手艺活儿”，那么作为手艺人，程序员当然可以做到靠自己的手艺和技能养活自己。
+然而，现在很多手艺人程序员却说自己是“码农”，编码的农民工，在工作上被各种使唤，各种加班，累得像个牲口。在职业发展上各种迷茫和彷徨，完全看不到未来的希望，更别说可以成为一个手艺人用自己的技能变现了。
+从大学时代帮人打字挣点零花钱，到逐渐通过自己的技能帮助别人，由此获得相对丰厚的收入，我在很早就意识到，从事编程这个事可以做到，完全靠自己的手艺、不依赖任何人或公司去生活的。
+这对于程序员来说，本就应该是件天经地义的事，只是好像并不是所有的程序员都能意识到自己的价值。这里，我想结合我的一些经历来跟你聊聊。当然，我的经历有限，也不一定全对，只希望能给你一个参考。
+学生时代我是1994年上的大学，计算机科学软件专业。在1996年上大二的时候，因为五笔学得好打字很快，我应征到教务处帮忙，把一些文档录入到电脑里。打了三个月的字，学校按照每千字10元，给了我1000元钱。
+由于我的五笔越打越快，还会用CCED和WPS排版，于是引起了别人的注意，叫我帮忙去他的打字工作室，一个月收入400元。我的大学是在昆明上的，这相当于那会当地收入的中上水平了。
+后来，1997年的时候，我帮一个开公司的老师 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2179239062.html" title="02 | 程序员如何用技术变现？（下）">02 | 程序员如何用技术变现？（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">02 | 程序员如何用技术变现？（下）你好，我是陈皓，网名左耳朵耗子。
+我不算是聪明的人，经历也不算特别成功，但一步一步走来，我认为，我能做到的，你一定也能做到，而且应该还能做得比我更好。
+如何让自己的技能变现还是那句话，本质上来说，程序员是个手艺人，有手艺的人就能做出别人做不出来的东西，而付费也是一件很自然的事了。那么，这个问题就变成如何让自己的“手艺”更为值钱的问题了。
+第一， 千里之行，积于跬步。任何一件成功的大事，都是通过一个一个的小成功达到的。所以，你得确保你有一个一个的小成功。
+具体说来，首先，你得让自己身边的人有求于你，或是向别人推荐你。这就需要你能够掌握大多数人不能掌握的技能或技术，需要你更多地学习，并要有更多的别人没有的经验和经历。
+一旦你身边的人开始有求于你，或是向别人推荐你，你就会被外部的人注意到，于是其他人就会付费来获取你的帮助。而一旦你的帮忙对别人来说有效果，那就会产生效益，无论是经济效益还是社会效益，都会为你开拓更大的空间。
+你也会因为这样的正向反馈而鼓励自己去学习和钻研更多的东西，从而得到一个正向的循环。而且这个正向循环，一旦开始就停不下来了。
+第二， 关注有价值的东西。什么是有价值的东西？价值其实是受供需关系影响的，供大于求，就没什么价值，供不应求，就有价值。这意味着你不仅要看到市场，还要看到技术的趋势，能够分辨出什么是主流技术，什么是过渡式的技术。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2621135647.html" title="03 | Equifax信息泄露始末">03 | Equifax信息泄露始末</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">03 | Equifax信息泄露始末你好，我是陈皓，网名左耳朵耗子。
+相信你一定有所耳闻，9月份美国知名征信公司Equifax出现了大规模数据泄露事件，致使1.43亿美国用户及大量的英国和加拿大用户受到影响。今天，我就来跟你聊聊Equifax信息泄露始末，并对造成本次事件的原因进行简单的分析。
+Equifax信息泄露始末Equifax日前确认，黑客利用了其系统中未修复的Apache Struts漏洞（CVE-2017-5638，2017年3月6日曝光）来发起攻击，导致了最近这次影响恶劣的大规模数据泄露事件。
+作为美国三大信用报告公司中历史最悠久的一家，Equifax的主营业务是为客户提供美国、加拿大和其他多个国家的公民信用信息。保险公司就是其服务的主要客户之一，涉及生命、汽车、火灾、医疗保险等多个方面。
+此外，Equifax还提供入职背景调查、保险理赔调查，以及针对企业的信用调查等服务。由于Equifax掌握了多个国家公民的信用档案，包括公民的学前和学校经历、婚姻、工作、健康、政治参与等大量隐私信息，所以这次的信息泄露，影响面积很大，而且性质特别恶劣。
+受这次信息泄露影响的美国消费者有1.43亿左右，另估计约有4400万的英国客户和大量加拿大客户受到影响。事件导致Equifax市值瞬间蒸发掉逾30亿美元。
+根据《华尔街日报》（The Wall Street Journal）的观察， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3565562151.html" title="05 | 何为技术领导力？">05 | 何为技术领导力？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">05 | 何为技术领导力？你好，我是陈皓，网名左耳朵耗子。
+我先说明一下，我们要谈的并不是“如何成为一名管理者”。我想谈的是技术上的领先，技术上的优势，而不是一个职称，一个人事组织者。另外，我不想在理论上泛泛而谈这个事，我想谈得更落地、更实际一些，所以，我需要直面一些问题。
+首先，要考虑的问题是——做技术有没有前途？我们在很多场合都能听到：技术做不长，技术无用商业才有用等这样的言论。所以，在谈技术领导力前，我需要直面这个问题，否则，技术领导力就成为一个伪命题了。
+技术重要吗？在中国，程序员把自己称作“码农”，说自己是编程的农民工，干的都是体力活，加班很严重，认为做技术没有什么前途，好多人都拼命地想转管理或是转行。这是中国技术人员的一个现实问题。
+与国外相比，似乎中国的程序员在生存上遇到的问题更多。为什么会有这样的问题？我是这么理解的，在中国，需要解决的问题很多，而且人口众多。也就是说，中国目前处于加速发展中，遍地机会，公司可以通过“野蛮开采”来实现自身业务的快速拓展和扩张。而西方发达国家人口少一些，相对成熟一些，竞争比较激烈，所以，更多的是采用“精耕细作”的方式。
+此外，中国的基础技术还正在发展中，技术能力不足，所以，目前的状态下，销售、运营、地推等简单快速的业务手段显得更为有效一些，需要比拼的是如何拿到更多的“地”。而西方的“精耕细作”需要比拼的是在同样大小的一块田里，如何才能更 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1186681167.html" title="04 | 从Equifax信息泄露看数据安全">04 | 从Equifax信息泄露看数据安全</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">04 | 从Equifax信息泄露看数据安全你好，我是陈皓，网名左耳朵耗子。
+上节课中，我们讲了Equifax信息泄露始末，并对造成此次事件的漏洞进行了分析。今天，我们就来回顾一下互联网时代的其他几次大规模数据泄露事件，分析背后的原因，给出解决这类安全问题的技术手段和方法。
+数据泄露介绍以及历史回顾类似于Equifax这样的大规模数据泄露事件在互联网时代时不时地会发生。上一次如此大规模的数据泄露事件主角应该是雅虎。
+继2013年大规模数据泄露之后，雅虎在2014年又遭遇攻击，泄露出5亿用户的密码，直到2016年有人在黑市公开交易这些数据时才为大众所知。雅虎股价在事件爆出的第二天就下跌了2.4%。而此次Equifax的股价下跌超过30%，市值缩水约53亿。这让各大企业不得不警惕。
+类似的，LinkedIn在2012年也泄露了6500万用户名和密码。事件发生后，LinkedIn为了亡羊补牢，及时阻止被黑账户的登录，强制被黑用户修改密码，并改进了登录措施，从单步认证增强为带短信验证的两步认证。
+国内也有类似的事件。2014年携程网安全支付日志存在漏洞，导致大量用户信息如姓名、身份证号、银行卡类别、银行卡号、银行卡CVV码等信息泄露。这意味着，一旦这些信息被黑客窃取，在网络上盗刷银行卡消费将易如反掌。
+如果说网络运维安全是一道防线，那么社会工程学攻击则可能攻破另一道防线——人。2011年， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1365516297.html" title="07 | 推荐阅读：每个程序员都该知道的知识">07 | 推荐阅读：每个程序员都该知道的知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">07 | 推荐阅读：每个程序员都该知道的知识你好，我是陈皓，网名左耳朵耗子。
+在整个为期一年的专栏内容中，我会逐步向你推荐一些有价值的内容，供你参考，这些内容有中文，有英文，也有视频，它们都是我认为对我非常有价值的信息，我也希望它们对你能有同样的帮助和启发。
+今天，我为你推荐的5篇文章，它们分别是：
+
+Stack Overflow上推荐的一个经典书单；
+美国某大学教授给计算机专业学生的一些建议，其中有很多的学习资源；
+LinkedIn的高效代码复查实践，很不错的方法，值得你一读；
+一份关于程序语言和bug数相关的有趣的报告，可以让你对各种语言有所了解；
+最后是一本关于C++性能优化的电子书。
+
+每个程序员都应该要读的书在Stack Overflow上有用户问了一个 问题，大意是想让大家推荐一些每个程序员都应该阅读的最有影响力的图书。
+虽然这个问题已经被关闭了，但这真是一个非常热门的话题。排在第一位的用户给出了一大串图书的列表，看上去着实吓人，不过都是一些相当经典相当有影响力的书，在这里我重新罗列一些我觉得你必须要看的。
+
+《代码大全》 虽然这本书有点过时了，而且厚到可以垫显示器，但是这绝对是一本经典的书。
+
+《程序员修练之道》 这本书也是相当经典，我觉得就是你的指路明灯。
+
+《计算机的构造和解释》 经典中的经典，必读。
+
+《算法导论》 美国的本科生教材，这本书应该也是中国计算机学生 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4018219930.html" title="06 | 如何才能拥有技术领导力？">06 | 如何才能拥有技术领导力？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">06 | 如何才能拥有技术领导力？你好，我是陈皓，网名左耳朵耗子。
+通过上节课，相信你现在已经理解了“什么才是技术领导力”。今天，我就要跟你继续聊聊，怎样才能拥有技术领导力。
+第一，你要吃透基础技术。基础技术是各种上层技术共同的基础。 吃透基础技术是为了更好地理解程序的运行原理，并基于这些基础技术进化出更优化的产品。吃透基础技术，有很多好处，具体来说，有如下几点。
+
+万丈高楼平地起。一栋楼能盖多高，一座大桥能造多长，重要的是它们的地基。同样对于技术人员来说，基础知识越扎实，走得就会越远。
+
+计算机技术太多了，但是仔细分析你会发现，只是表现形式很多，而基础技术并不多。学好基础技术，能让你一通百通，更快地使用各种新技术，从而可以更轻松地与时代同行。
+
+很多分布式系统架构，以及高可用、高性能、高并发的解决方案基本都可以在基础技术上找到它们的身影。所以，学习基础技术能让你更好地掌握更高维度的技术。
+
+
+那么，哪些才是基础技术呢？我在下面罗列了一些。老实说，这些技术你学起来可能会感到枯燥无味，但是，我还是鼓励你能够克服人性的弱点，努力啃完。
+具体来说，可以分成两个部分： 编程和系统。
+编程部分
+C语言：相对于很多其他高级语言来说，C语言更接近底层。在具备跨平台能力的前提下，它可以比较容易地被人工翻译成相应的汇编代码。它的内存管理更为直接，可以让我们直接和内存地址打交道。
+学习好C语言的好处是 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/28/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/#content-inner">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/30/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

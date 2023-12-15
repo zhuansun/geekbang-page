@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-13 15:17:32'
+  postUpdate: '2023-12-15 09:26:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,103 +138,64 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2702593907.html" title="54 | 管理设计：边车模式">54 | 管理设计：边车模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">54 | 管理设计：边车模式你好，我是陈皓，网名左耳朵耗子。
-所谓的边车模式，对应于我们生活中熟知的边三轮摩托车。也就是说，我们可以通过给一个摩托车加上一个边车的方式来扩展现有的服务和功能。这样可以很容易地做到”控制”和”逻辑”的分离。
-也就是说，我们不需要在服务中实现控制面上的东西，如监视、日志记录、限流、熔断、服务注册、协议适配转换等这些属于控制面上的东西，而只需要专注地做好和业务逻辑相关的代码，然后，由“边车”来实现这些与业务逻辑没有关系的控制功能。
-边车模式设计具体来说，你可以理解为，边车就有点像一个服务的Agent，这个服务所有对外的进出通讯都通过这个Agent来完成。这样，我们就可以在这个Agent上做很多文章了。但是，我们需要保证的是，这个Agent要和应用程序一起创建，一起停用。
-边车模式有时候也叫搭档模式，或是伴侣模式，或是跟班模式。就像我们在《编程范式游记》中看到的那样， 编程的本质就是将控制和逻辑分离和解耦，而边车模式也是异曲同工，同样是让我们在分布式架构中做到逻辑和控制分离。
-对于监视、日志、限流、熔断、服务注册、协议转换等等这些功能，其实都是大同小异，甚至是完全可以做成标准化的组件和模块的。一般来说，我们有两种方式。
-
-一种是通过SDK、Lib或Framework软件包方式，在开发时与真实的应用服务集成起来。
-
-另一种是通过像Sidecar这样的方式，在运 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2321437361.html" title="55 | 管理设计：服务网格">55 | 管理设计：服务网格</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">55 | 管理设计：服务网格你好，我是陈皓，网名左耳朵耗子。
-前面，我讨论了Sidecar边车模式，这是一个非常不错的分布式架构的设计模式。因为这个模式可以有效地分离系统控制和业务逻辑，并且可以让整个系统架构在控制面上可以集中管理，可以显著地提高分布式系统的整体控制和管理效率，并且可以让业务开发更快速。
-那么，我们不妨在上面这个模式下think big一下。假如，我们在一个分布式系统中，已经把一些标准的Sidecar给部署好了。比如前面文章说过的熔断、限流、重试、幂等、路由、监视等这些东西。我们在每个计算结点上都部署好了这些东西，那么真实的业务服务只需要往这个集群中放，就可以和本地的Sidecar通信，然后由Sidecar委托代理与其它系统的交互和控制。这样一来，我们的业务开发和运维岂不是简单至极了？
-是啊，试想一下，如果某云服务提供商，提供了一个带着前面我们说过的那些各式各样的分布式设计模式的Sidecar集群，那么我们的用户真的就只用写业务逻辑相关的service了。写好一个就往这个集群中部署，开发和运维工作量都会得到巨大的降低和减少。
-什么是Service Mesh这就是CNCF（Cloud Native Computing Foundation，云原生计算基金会）目前主力推动的新一代的微服务架构——Service Mesh服务网格。
-在 What’s a service m ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2577676403.html" title="56 | 管理设计：网关模式">56 | 管理设计：网关模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">56 | 管理设计：网关模式你好，我是陈皓，网名左耳朵耗子。
-前面，我们讲了Sidecar和Service Mesh这两种设计模式，它们都是在不侵入业务逻辑的情况下，把控制面（control plane）和数据面（data plane）的处理解耦分离。但是这两种模式都让我们的运维成本变得特别大，因为每个服务都需要一个Sidecar，这让本来就复杂的分布式系统的架构就更为复杂和难以管理了。
-在谈Service Mesh的时候，我们提到了Gateway。我个人觉得并不需要为每个服务的实例都配置上一个Sidecar。其实，一个服务集群配上一个Gateway就可以了，或是一组类似的服务配置上一个Gateway。
-这样一来，Gateway方式下的架构，可以细到为每一个服务的实例配置一个自己的Gateway，也可以粗到为一组服务配置一个，甚至可以粗到为整个架构配置一个接入的Gateway。于是，整个系统架构的复杂度就会变得简单可控起来。
-
-这张图展示了一个多层Gateway架构，其中有一个总的Gateway接入所有的流量，并分发给不同的子系统，还有第二级Gateway用于做各个子系统的接入Gateway。可以看到，网关所管理的服务粒度可粗可细。通过网关，我们可以把分布式架构组织成一个星型架构，由网络对服务的请求进行路由和分发，也可以架构成像Servcie Mesh那样的网格架构，或者只是为了适 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1983838970.html" title="57 | 管理设计：部署升级策略">57 | 管理设计：部署升级策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">57 | 管理设计：部署升级策略你好，我是陈皓，网名左耳朵耗子。
-在分布式系统的世界里，一个服务有多个实例，所以部署或是升级一个服务也会变得比较麻烦。今天我们讨论服务部署的模式。一般来说，有如下几种：
-
-停机部署（Big Bang &#x2F; Recreate）： 把现有版本的服务停机，然后部署新的版本。
-
-蓝绿部署（Blue&#x2F;Green &#x2F;Stage）：部署好新版本后，把流量从老服务那边切过来。
-
-滚动部署（Rolling Update &#x2F; Ramped）： 一点一点地升级现有的服务。
-
-灰度部署（Canary）：把一部分用户切到新版本上来，然后看一下有没有问题。如果没有问题就继续扩大升级，直到全部升级完成。
-
-AB测试（A&#x2F;B Testing）：同时上线两个版本，然后做相关的比较。
-
-
-下面，我们来看一下每种方式的使用场景和优缺点。
-停机部署停机部署其实是最简单粗暴的方式，就是简单地把现有版本的服务停机，然后部署新的版本。有时候，我们不得不使用这样的方式来部署或升级多个服务。比如，新版本中的服务使用到了和老版本完全不兼容的数据表设计。这个时候，我们对生产有两个变更，一个是数据库，另一个是服务，而且新老版本互不兼容，所以只能使用停机部署的方式。
-这种方式的优势是，在部署过程中不会出现新老版本同时在线的情况，所有状态完全一致。停机部署主要是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2121070793.html" title="58 | 性能设计：缓存">58 | 性能设计：缓存</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">58 | 性能设计：缓存你好，我是陈皓，网名左耳朵耗子。
-前面分享了《分布式系统设计模式》系列文章的前两部分——弹力设计篇和管理设计篇。今天开始这一系列的最后一部分内容——性能设计篇，主题为《性能设计篇之“缓存”》。
-基本上来说，在分布式系统中最耗性能的地方就是最后端的数据库了。一般来说，只要小心维护好，数据库四种操作（select、update、insert和delete）中的三个写操作insert、update和delete不太会出现性能问题（insert一般不会有性能问题，update和delete一般会有主键，所以也不会太慢）。除非索引建得太多，而数据库里的数据又太多，这三个操作才会变慢。
-绝大多数情况下，select是出现性能问题最大的地方。一方面，select会有很多像join、group、order、like等这样丰富的语义，而这些语义是非常耗性能的；另一方面，大多数应用都是读多写少，所以加剧了慢查询的问题。
-分布式系统中远程调用也会消耗很多资源，因为网络开销会导致整体的响应时间下降。为了挽救这样的性能开销，在业务允许的情况（不需要太实时的数据）下，使用缓存是非常必要的事情。
-从另一个方面说，缓存在今天的移动互联网中是必不可少的一部分，因为网络质量不一定永远是最好的，所以前端也会为所有的API加上缓存。不然，网络不通畅的时候，没有数据，前端都不知道怎么展示UI了。既然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1918198860.html" title="59 | 性能设计：异步处理">59 | 性能设计：异步处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">59 | 性能设计：异步处理你好，我是陈皓，网名左耳朵耗子。
-在弹力设计篇中我们讲过，异步通讯的设计模式有助于提高系统的稳定性和容错能力。其实，异步通讯在分布式系统中还可以增加整个系统的吞吐量，从而可以面对更高的并发，并可以从容地利用好现有的系统资源。为什么这么说呢？
-我们试想一下，在你的工作中，有很多人会来找你，让你帮着做事。如果你是这种请求响应式的工作方式，那么本质上来说，你是在被动工作，也就是被别人驱动的工作方式。
-当你在做一件事的时候，如果有别人来找你做其它事，你就会被打断而要去干别的事。而如果你可以统筹安排这些事情，本来五件事只需要2个小时，如果不能，或者老被别人打乱思路，那你可能就要花5个小时。异步处理任务可以让你更好地利用好时间和资源。利用好了时间和资源，性能自然就会提升上来。
-这就好像邮递业务一样，你寄东西的时候，邮递公司会把大量的去往同一个方向的订单合并处理，并统一地调配物流交通工具，从而在整体上更为节省资源和时间。
-在分布式架构中，我们的系统被拆成了很多的子系统。如果想把这堆系统合理地用好，并更快地处理大量的任务，我们就需要统一地规划和统筹整体，这样可以达到整体的最优。本质上，这和邮递公司处理邮件一样，是相同的道理。
-在计算机的世界里，到处都是异步处理。比如：当程序读写文件时，我们的操作系统并不会真正同步地去操作硬盘，而是把硬盘读写请求先在内存中hold上一小会 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3763500409.html" title="60 | 性能设计：数据库扩展">60 | 性能设计：数据库扩展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">60 | 性能设计：数据库扩展你好，我是陈皓，网名左耳朵耗子。
-读写分离 CQRS读写分离是数据库扩展最简单实用的玩法了，这种方法针对读多写少的业务场景还是很管用的，而且还可以有效地把业务做相应的隔离。
-如下图所示，数据库只有一个写库，有两个读库，所有的服务都写一个数据库。对于读操作来说，服务A和服务B走从库A，服务D和服务E走从库B，服务C在从库A和从库B间做轮询。
-
-这样的方法好处是：
-
-比较容易实现。数据库的master-slave的配置和服务框架里的读写分离都比较成熟，应用起来也很快。
-可以很好地把各个业务隔离开来。不会因为一个业务把数据库拖死而导致所有的业务都死掉。
-可以很好地分担数据库的读负载，毕竟读操作是最耗数据库CPU的操作。
-
-这样的方法不好的地方是：
-
-写库有单点故障问题。如果是写库出了性能问题，那么所有的业务一样不可用。对于交易型的业务，要得到高的写操作速度，这样的方式不行。
-数据库同步不实时，需要强一致性的读写操作还是需要落在写库上。
-
-综上所述，一般来说，这样的玩法主要是为了减少读操作的压力。
-当然，这样的读写分离看上去有点差强人意，那么，我们还是为之找一个更靠谱的设计——CQRS。关于CQRS，我在这里只做一个简单的介绍，更多的细节你可以上网自行Google。
-CQRS全称Command and Query Responsibility Segregat ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2917424240.html" title="62 | 性能设计：边缘计算">62 | 性能设计：边缘计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">62 | 性能设计：边缘计算你好，我是陈皓，网名左耳朵耗子。
-前面我们通过一个秒杀的示例，展示了如何在CDN结点上简单地部署小服务，然后就可以完成在数据中心很难完成的事，我想你应该能看到边缘结点的一些威力。今天，我会和你聊聊我所认识的边缘计算，这也是我创业的方向。
-首先，一说起边缘计算，网上大多数文章都会说这是和IoT相关的一个技术。其实，我觉得这个说法只说对了边缘计算的一部分，边缘计算可以做的事情还有很多很多。
-所谓边缘计算，它是相对于数据中心而言。数据中心喜欢把所有的服务放在一个机房里集中处理用户的数据和请求，集中式部署一方面便于管理和运维，另一方面也便于服务间的通讯有一个比较好的网络保障。的确没错。不过，我们依然需要像CDN这样的边缘式的内容发布网络，把我们的静态内容推到离用户最近的地方，然后获得更好的性能。
-如果我们让CDN的这些边缘结点拥有可定制的计算能力，那么就可以像秒杀那样，可以在边缘结点上处理很多事情，从而为我们的数据中心带来更好的性能，更好的扩展性，还有更好的稳定性。而我们的用户也会觉得响应飞快，从而有了更好的用户体验。
-下面，让我们来看看为什么边缘计算会变成一个必然的产物。这里，我有两个例子。
-为什么要有边缘计算从趋势上来说首先，我们得看一下整个时代是怎么发展的。我们处在信息化革命时代，也有人叫数字化革命，总之就是电脑时代。这个时代，把各式各样的信息都给数字化掉 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1683736450.html" title="61 | 性能设计：秒杀">61 | 性能设计：秒杀</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">61 | 性能设计：秒杀你好，我是陈皓，网名左耳朵耗子。
-一说起秒杀，大家都觉得这事很有技术含量。实际上，并不是这个样子的，秒杀这种互联网的交易方式其实并没有我们想象中的那么复杂。下面先让我们来系统地看一下，秒杀是怎么做的。
-秒杀的流程“秒杀”其实是商家为了促销，使用非常低的价格销售商品，比如，1元卖iPhone，100台，于是来了一百万人抢购。
-我们把技术挑战放在一边，先从用户或是产品的角度来看一下，秒杀的流程是什么样的。
-
-首先，你需要一个秒杀的landing page，在这个秒杀页上有一个倒计时的按钮。
-一旦这个倒计时的时间到了，按钮就被点亮，让你可以点击按钮下单。
-一般来说下单时需要你填写一个校验码，以防止是机器来抢。
-
-从技术上来说，这个倒计时按钮上的时间和按钮可以被点击的时间是需要后台服务器来校准的，这意味着：
-
-前端页面要不断地向后端来请求，开没开始，开没开始……
-每次询问的时候，后端都会给前端一个时间，以校准前端的时间。
-一旦后端服务器表示OK可以开始，后端服务会返回一个URL。
-这个URL会被安置在那个按钮上，就可以点击了。
-点击后，如果抢到了库存，就进入支付页面，如果没有则返回秒杀已结束。
-
-这个不断轮询的过程，就好像大家等着抢。你想想，有100万人来不停地询问有没有开始了这个事，估计后端也扛不住。
-秒杀的技术挑战接下来，我们需要来看一下“秒杀”的技术挑战。
-面 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1536482978.html" title="63 | 区块链技术的本质">63 | 区块链技术的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">63 | 区块链技术的本质你好，我是陈皓，网名左耳朵耗子。
-去年专栏一开始更新的时候，就有读者留言让我发表一下对区块链技术的看法。当时我觉得区块链相关的技术相对比较简单，没什么好说的。并且，“左耳听风”专栏的主要目标是帮助大家学习更为主流的关键技术，所以那会我就把区块链相关的技术文章降级处理了。
-那为什么现在我又要写这个主题呢？
-2010年，我在浏览国外技术网站时，看到好多人在讨论一个叫bitcoin的东西，还看到有人说用几万个这个东西换了个披萨。随后，我看了一下它的 白皮书，这篇不到10页的文档读起来还是很容易的，所以建议你读一读。
-然后，我在一台电脑上尝试安装了一下，就像用BT或电驴下载一样，连入了这个没有服务器的P2P网络，下载了账本，还尝试了一下“挖矿”。
-花了不少的时间，我收到了来自系统奖励的50个比特币。当时，我默默地看着这个又耗硬盘空间，又非常吃CPU的家伙，心里想，这什么破软件，太难用了，就删除了。（是的，这50个比特币也就不知道去哪了。）
-记得比特币开始有价值的时候，像维基解密这样的机构为了避开被政府控制的银行，会接受比特币的捐款。2012年的时候，比特币已经看涨了，到了2013年，比特币的市值已经比较高了，突破了1000美金。
-那个时候，中国有好多人在挖矿。记得最厉害的是李笑来，他持有的比特币数量很可观，如果没有卖的话，现在就更为“恐怖”了。
-在2016年的时候 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/17/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#content-inner">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/#content-inner">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/19/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2831989096.html" title="053 | 机器学习排序算法经典模型：GBDT">053 | 机器学习排序算法经典模型：GBDT</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">053 | 机器学习排序算法经典模型：GBDT这周我们讨论机器学习排序算法中几个经典的模型，周一分享了配对法排序中的一个经典算法，即排序支持向量机（RankSVM），这个算法的核心思想是把支持向量机应用到有序数据中，试图对数据间的顺序进行直接建模。
+今天，我们来聊一聊利用机器学习进行排序的一个重要算法： “梯度增强决策树”（Gradient Boosted Decision Tree）。长期以来，包括雅虎在内的很多商业搜索引擎都利用这种算法作为排序算法。
+梯度增强决策树的历史梯度回归决策树的思想来源于两个地方。首先是“ 增强算法”（Boosting），一种试图用弱学习器提升为强学习器的算法。这种算法中比较成熟的、有代表性的算法是由罗伯特⋅施派尔（Robert Schapire）和约阿夫⋅福伦德（Yoav Freund）所提出的 AdaBoost算法[1]。因为这个算法两人于2003年获得理论计算机界的重要奖项“哥德尔奖”（Gödel Prize）。罗伯特之前在普林斯顿大学任计算机系教授，目前在微软研究院的纽约实验室工作。约阿夫一直在加州大学圣地亚哥分校任计算机系教授。
+增强算法的工作机制都比较类似，那就是先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多关注，然后基于调整后的样本分布来训练下一个基学习器。如此重 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/100031720.html" title="055 | 基于深度学习的搜索算法：深度结构化语义模型">055 | 基于深度学习的搜索算法：深度结构化语义模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">055 | 基于深度学习的搜索算法：深度结构化语义模型近两个月，我们集中系统地分享了搜索核心技术模块。做一个简单的内容梳理，我们讲解了搜索引擎方方面面的话题，从经典的信息检索技术、查询关键字理解、文档理解到现代搜索引擎的架构和索引的核心技术；还从机器学习角度出发分享了搜索引擎的最核心部分，也就是排序算法，深入排序算法的细节讲解了排序支持向量机（RankSVM）、梯度增强决策树（GBDT）以及经典模型LambdaMART。至此，整个人工智能领域关于搜索的经典话题也就告一段落了。
+那么，这个星期，我们来看一些关于搜索算法的前沿思考。火热的深度学习不仅对图像、视频和音频这些领域产生了巨大的冲击，也对自然语言处理、甚至搜索领域有不小的影响。 深度学习带给传统的模型和算法以新的建模能力和新的视角，为以前所不能完成的应用打下了基础。
+今天，我们来看一篇较早利用深度学习技术来进行搜索建模的论文：《使用点击数据学习深度结构化的网络搜索语义模型》（Learning deep structured semantic models for web search using clickthrough data）。这篇论文阐述了一个 深度结构化语义模型，发表在第22届世界信息和知识管理大会CIKM 2013上。
+论文背景介绍发表于2013年的这篇论文应该算是比较早的直接使用深度学习中经验的论文。其主要目的是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3146744512.html" title="059 | 简单推荐模型之二：基于相似信息的推荐模型">059 | 简单推荐模型之二：基于相似信息的推荐模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">059 | 简单推荐模型之二：基于相似信息的推荐模型这周我们开始讲推荐系统。周一的文章中，我们聊了一个最基本的推荐模型：基于流行度的推荐模型。这是一种简单且实用的推荐系统搭建方式，那就是需要对每一个物品的流行度进行估计。
+今天，我们来看另外一种简单但很有效果的推荐模型： 基于相似信息的推荐模型。
+什么是相似信息的推荐模型相似信息的推荐模型又叫 “临近”（Neighborhood）模型。顾名思义，就是我们希望利用临近、或者相似的数据点来为用户推荐。
+临近模型的内在假设是推荐系统中著名的“ 协同过滤”（Collaborative Filtering）。什么意思呢？就是说，我们认为， 相似的用户可能会有相似的喜好，相似的物品可能会被相似的人所偏好。于是，如果我们能够定义怎么寻找相似的用户或者相似的物品，那么我们就可以利用这些类别的人群或者物品来给用户进行推荐。
+例如，对于一个电影推荐的场景来说，有一个用户A观看了电影《战狼2》，我们希望根据这个信息来为用户进行推荐。很显然，如果我们仅仅知道用户A观看过《战狼2》，这个信息是非常有限的。但是，假设有一个用户B也观看过《战狼2》，并且最近还观看过《红海行动》。那么， 我们可以根据B的信息来对A进行推荐，也就是说，我们认为用户A也有可能喜欢《红海行动》。
+这里面，我们其实经历了这么两个步骤。
+第一，联系用户A和用户B的是他们都看过《战狼2》。这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2203793993.html" title="056 | 基于深度学习的搜索算法：卷积结构下的隐含语义模型">056 | 基于深度学习的搜索算法：卷积结构下的隐含语义模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">056 | 基于深度学习的搜索算法：卷积结构下的隐含语义模型这个星期，也是我们整个搜索领域分享的最后一周内容，来看一些搜索算法的前沿思考，特别是深度学习对搜索领域的影响。周一我们分享了一篇较早利用深度学习技术来进行搜索建模的论文，论文提出如何使用前馈神经网络来对查询关键字和文档进行信息提取，从而能够学习更有意义的语义信息。
+今天我们来看一篇文章《信息检索中结合卷积池化结构的隐含语义模型》（ A Latent Semantic Model with Convolutional-Pooling Structure for Information Retrieval），可以说这是我们周一分享论文的一个后续工作。这篇论文发表在第23届世界信息和知识管理大会CIKM 2014上。
+论文背景介绍这篇论文的主要目的是探讨深度学习中的卷积神经网络能否应用在搜索中，并取得较好的效果。
+下面我们先来了解一下这篇论文作者群的信息。
+第一作者Yelong Shen是微软研究院的一名资深研究员。
+第二作者是何晓冬（Xiaodong He）是微软研究院深度学习组的主任研究员兼经理，发表过一百多篇学术论文，在人工智能领域，特别是近年来在深度学习领域有很突出的贡献。
+第三作者高剑峰（Jianfeng Gao）是一名长期在微软研究院工作的研究员和经理。
+第四作者邓力（Li Deng）是微软研究院的人工智能学者，曾担 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2099802919.html" title="057 | 基于深度学习的搜索算法：局部和分布表征下的搜索模型">057 | 基于深度学习的搜索算法：局部和分布表征下的搜索模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">057 | 基于深度学习的搜索算法：局部和分布表征下的搜索模型周一我们分享了一篇较早利用深度学习技术来进行搜索建模的论文，利用前馈神经网络来对查询关键字和文档进行信息提取，从而学习到更有意义的语义信息。周三我们分享了另外一篇论文，可以说是周一分享文章的一个后续工作，探讨了如何利用卷积神经网络来对搜索表征进行进一步提升。这两篇论文呈现了一个统一的套路，那就是尝试把深度学习的一些经验直接应用到传统的搜索建模上。这些尝试，也都取得了一些初步成绩。
+今天我们来聊一篇2017年刚刚发表的论文《网页搜索中利用文本的局部和分布表征学习匹配》（Learning to Match Using Local and Distributed Representations of Text for Web Search），这是近期将深度学习模型应用在搜索领域的一个创新。这篇论文发表在世界万维网大会WWW 2017上。
+论文背景介绍下面我们来了解一下这篇论文的作者群信息。
+第一作者巴斯卡⋅米特拉（Bhaskar Mitra）是微软研究院在剑桥实验室的一名研究员。他已经发表了多篇利用深度学习技术解决搜索问题的论文。目前，米特拉在伦敦大学学院攻读博士学位。
+第二作者是费尔南多⋅迪亚兹（Fernando Diaz）在文章发表的时候是微软研究院的一名研究员，目前则在Spotify工作。迪亚兹长期从事搜索以及信息检索的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2448576342.html" title="061 | 基于隐变量的模型之一：矩阵分解">061 | 基于隐变量的模型之一：矩阵分解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">061 | 基于隐变量的模型之一：矩阵分解上周我们聊了三个简单的推荐模型，分别是基于流行度的推荐模型，基于相似信息的推荐模型和基于内容特征的推荐模型。
+这周，我们来看一类非常重要的推荐模型： 基于隐变量的推荐模型。这类模型的优势是对用户和物品信息中的隐含结构进行建模，从而能够挖掘更加深层次的用户和物品关系。
+什么是隐变量在解释如何用隐变量来生成推荐结果之前，我们先来说一下什么是隐变量。
+隐变量（Latent Variable），顾名思义，就是“隐藏的变量”或者叫“隐藏的参数”，这里主要是指我们假定实际的数据是由一系列的隐含变量产生的。我们通过模型的假设，知道隐变量之间的关系，但暂时并不知道隐变量的取值。因此需要通过“推断”（Inference）过程来确定隐变量的实际取值。当我们知道了这些隐变量的取值之后，就可以根据这些取值来对未来的数据进行预测和分析。
+隐变量往往还带有“统计分布”（Distribution）的假设。什么意思呢？就是隐变量之间，或者隐变量和显式变量之间的关系，我们往往认为是由某种分布产生的。
+举一个最简单的隐变量模型的例子，那就是“ 高斯混合模型”（Mixture of Gaussian）。
+高斯混合模型假设数据是由多个不同的高斯分布产生的，每一个高斯分布有自己的均值和方差。在最简单的两个高斯的情况下，每一个数据点，都有可能是由这两个高斯分布中的一个产生的，但是，究 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3711575384.html" title="063 | 基于隐变量的模型之三：分解机">063 | 基于隐变量的模型之三：分解机</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">063 | 基于隐变量的模型之三：分解机周三我们分享了“基于回归的隐变量模型”，这是在基本的矩阵分解基础上衍生出来的一类模型。这种模型把显式特性和隐变量结合起来，对解决“冷启动”问题有一定作用。
+今天，我们来介绍一种叫作“ 分解机”（Factorization Machines）的推荐技术。这个模型是从基于回归的隐变量模型中衍生出来的，已成为了主流的推荐模型。
+矩阵分解和基于回归的隐变量模型存在哪些问题？在介绍分解机的基本原理之前，我们先来回顾一下从“矩阵分解”到“基于回归的隐变量模型”的一个发展脉络。
+首先，矩阵分解主要解决了两个问题，那就是从一个大矩阵降维到两个小矩阵，并且寄希望这两个小矩阵能够抓住用户和物品的相关度。
+然而，单纯的矩阵分解无法融入很多用户和物品的特性，这就引导我们开发出了基于回归的矩阵分解。所谓的回归部分，也就是从显式特性出发，建立从显式特性到隐变量之间关系的流程，从而使我们能够把更多的信号放进模型中。
+在一定程度上，基于回归的隐变量模型实现了把显式变量和隐变量结合的目的，但是这类模型的学习过程非常麻烦。实际上，因为这类模型复杂的训练流程，其在实际应用中并不常见。
+那么，有没有其他思路来统一显式变量和隐变量的处理方式呢？
+分解机的基本原理分解机[1]是学者斯特芬·润顿（Steffen Rendle）在德国康斯坦扎大学任教期间开发出来的推荐模型。斯特芬后来加入谷 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2326685517.html" title="058 | 简单推荐模型之一：基于流行度的推荐模型">058 | 简单推荐模型之一：基于流行度的推荐模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">058 | 简单推荐模型之一：基于流行度的推荐模型今天，我们正式进入专栏的另一个比较大的模块，那就是 推荐系统。之前我们详细且全面地介绍了搜索系统的各个组成部分。在接下来的几周时间里，我们一起来看推荐系统的技术要点又有哪些。
+我们还是从简单推荐系统聊起，由易到难，逐步为你讲述一些经典的推荐模型。
+推荐系统目前已经深入到了互联网的各类产品中。不管是到电子商务网站购物，还是到新闻阅读网站获取信息，甚至是在出行的时候希望听到不同的音乐，不同种类的推荐系统都在我们的生活中发挥着举足轻重的作用。
+那么，搭建一个最简单的推荐系统，应该如何入手呢？今天我们就来聊一个最基本的推荐模型： 基于流行度的推荐模型。
+最简单的流行度估计什么是基于流行度（Popularity-based）？通俗地说，就是什么内容吸引用户，就给用户推荐什么内容。
+这里面其实有一个隐含的假设，那就是物品本身的质量好坏和流行度有一定的正比关系。什么意思呢？就是说好的东西，关注的人自然就多，自然就会有更多的谈论。当然，这是一个主观的假设，并不是所有质量高的物品都会有很高的流行度。然而，在不需要过多其他信息和假设的情况下，流行度可以算是衡量物品质量好坏的一个最简单的测度。
+那么，如果我们能够在每一个时间点上准确地估计到一个物品的流行度，就只需要按照流行度的数值从高到低排序显示所有的物品就可以了。
+然而，这里牵涉到一个问题，那就是如何 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/979546257.html" title="062 | 基于隐变量的模型之二：基于回归的矩阵分解">062 | 基于隐变量的模型之二：基于回归的矩阵分解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">062 | 基于隐变量的模型之二：基于回归的矩阵分解本周我们主要来分享“矩阵分解”的点点滴滴，这是过去10年里推荐系统中最流行的一类模型。周一我们讨论了这类方法中最基础的基于隐变量的矩阵分解。这类模型的优势是显式地对用户和物品信息中的隐含结构进行建模，从而能够挖掘更加深层次的用户和物品关系。矩阵分解的流行起源于10年前的Netflix大赛，当时各类矩阵分解模型都在实际数据中起到了很好的效果。
+今天我们要分享的模型，叫作“ 基于回归的隐变量模型”（Regression-based Latent Factor Model）。这是在基本矩阵分解的基础上衍生出来的一类模型。
+基本矩阵分解的问题我们先来看看基本矩阵分解模型的潜在问题。
+首先，我们来回顾一下矩阵分解的基本表达。假设我们在对用户和物品的评分进行建模。对于每一个用户，用一个向量来表达其对于所有可能物品的评分，把所有用户的向量堆积起来，就可以得到一个矩阵。这个矩阵的每一行代表一个用户，每一列代表一个物品，每一个交叉的元素代表某一个用户对于某一个商品的评分。对于每一个用户和物品的隐向量都要少于原有的物品数目，因此，我们也说矩阵分解的模型实现了“降维”（降低建模维度）的目的。
+虽然矩阵分解的模型对于挖掘用户和物品的内在联系有比较强的作用，但是这类模型的劣势也十分明显。
+第一，矩阵分解的矩阵仅仅是对用户和物品的喜好进行了“编码”（Enco ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/363727735.html" title="065 | 高级推荐模型之二：协同矩阵分解">065 | 高级推荐模型之二：协同矩阵分解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">065 | 高级推荐模型之二：协同矩阵分解周一我们讨论了“张量分解”模型。这种模型的特点是能够把不同的上下文当作新的维度，放进一个张量中进行建模。虽然张量分解是矩阵分解在概念上的一种直觉扩展，但其在现实建模的过程中有很大难度，最大的问题就是张量分解的求解过程相对比较复杂，不同的分解方法又带来不同的建模选择。
+今天，我们来看另外一种思路，来解决融合多种渠道信息的问题，这就是 协同矩阵分解（Collective Matrix Factorization）。
+为什么需要协同矩阵分解在解释什么是协同矩阵分解之前，我们先来看一看为什么需要这样一种思路。我们还是需要回到矩阵分解本身。
+矩阵分解的核心就是通过矩阵，这个二维的数据结构，来对用户和物品的交互信息进行建模。因为其二维的属性，矩阵往往只能对用户的某一种交互信息直接进行建模，这就带来很大的局限性。
+在之前的讨论中，我们看到了一系列不同的思路来对这样的基本结构进行扩展。
+思路一，就是通过建立显式变量和隐变量之间的回归关系，从而让矩阵分解的核心结构可以获得更多信息的帮助。
+思路二，则是采用分解机这样的集大成模型，从而把所有的特性，都融入到一个统一的模型中去。
+思路三，就是我们这周已经讲到的，利用张量，把二维的信息扩展到N维进行建模。
+这些已有的思路都各有利弊，需要针对具体的情况来分析究竟什么样的模型最有效果。
+然而在有一些应用中，除了用户和物 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/17/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#content-inner">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/#content-inner">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/19/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
