@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-15 14:43:43'
+  postUpdate: '2023-12-16 02:20:01'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -151,15 +151,7 @@ openai.ChatCompletion.create(
 不过，我们之前选用的问题的确有点太简单了。我们把5个不同的分数分成了正面、负面和中性，还去掉了相对难以判断的“中性”评价，这样我们判断的准确率高的确是比较好实现的。但如果我们想要准确地预测出具体的分数呢？
 利用Embedding，训练机器学习模型最简单的办法就是利用我们拿到的文本Embedding的向量。这一次，我们不直接用向量之间的距离，而是使用传统的机器学习的方法来进行分类。毕竟，如果只是用向量之间的距离作为衡量标准，就没办法最大化地利用已经标注好的分数信息了。
 事实上，OpenAI在自己的官方教程里也直接给出了这样一个例子。我在这里也放上了相应的GitHub的代码 链接，你可以去看一下。不过，为了避免OpenAI王婆卖瓜自卖自夸，我们也希望能和其他人用传统的机器学习方式得到的结果做个比较。
-因此我重新找了一个中文的数据集来试一试。这个数据集是在中文互联网上比较容易找到的一份今日头条的新闻标题和新闻关键词，在GitHub上可以直接找到数据，我把 链接 也放在这里。用这个数据集的好处是，有人同步放出了预测的实验效果。我们可以拿自己训练的结果和他做 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2306057863.html" title="08｜文本改写和内容审核，别让你的机器人说错话">08｜文本改写和内容审核，别让你的机器人说错话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">08｜文本改写和内容审核，别让你的机器人说错话你好，我是徐文浩。
-前面，我们已经把OpenAI最主要的接口介绍完了。这一讲也是我们基础知识篇里面的最后一讲，我们会覆盖完OpenAI的GPT系列模型剩下的一些接口。也许有些接口你不一定会频繁使用，但是了解一下没有什么坏处，说不定你有什么需求就能用得上它。
-在这一讲里，我们会一起来看看OpenAI为文本改写和内容审核提供的功能有哪些。以及OpenAI的GPT系列有哪些模型，这些模型有哪些区别，什么情况下我们应该用什么模型。
-文本改写，从使用提示语开始我猜课程学到这里，你应该已经用过不少基于AI大语言模型的产品了。很常见的一类应用，就是写作助手。比如Notion AI就能帮助你，在已经写好的文章里面选取一段内容，你可以让AI帮你修改。这个修改可以是让文本短一点或者长一点，也可以是让文本改一下自己的语气。
-
-不过，OpenAI的GPT的系列模型是一个生成式的模型，也就是它的用法是你给它一段文字，然后它补全后面的文字。按理来说，你是没法让它修改一段内容的。当然，在看了那么多不同的“提示语”之后，相信你自然想到可以通过一段提示语来解决这个问题。比如，下面这段代码就是这样的，我们通过上一讲介绍的ChatGPT的模型来实现了这个功能。
-def make_text_short(text):
-    messages = []
-    messages ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3755627929.html" title="09｜语义检索，利用Embedding优化你的搜索功能">09｜语义检索，利用Embedding优化你的搜索功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">09｜语义检索，利用Embedding优化你的搜索功能你好，我是徐文浩。
+因此我重新找了一个中文的数据集来试一试。这个数据集是在中文互联网上比较容易找到的一份今日头条的新闻标题和新闻关键词，在GitHub上可以直接找到数据，我把 链接 也放在这里。用这个数据集的好处是，有人同步放出了预测的实验效果。我们可以拿自己训练的结果和他做 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3755627929.html" title="09｜语义检索，利用Embedding优化你的搜索功能">09｜语义检索，利用Embedding优化你的搜索功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">09｜语义检索，利用Embedding优化你的搜索功能你好，我是徐文浩。
 在过去的8讲里面，相信你已经对Embedding和Completion接口非常熟悉了。Embedding向量适合作为一个中间结果，用于传统的机器学习场景，比如分类、聚类。而Completion接口，一方面可以直接拿来作为一个聊天机器人，另一方面，你只要善用提示词，就能完成合理的文案撰写、文本摘要、机器翻译等一系列的工作。
 不过，很多同学可能会说，这个和我的日常工作又没有什么关系。的确，日常我们的需求里面，最常使用自然语言处理（NLP）技术的，是搜索、广告、推荐这样的业务。那么，今天我们就来看看，怎么利用OpenAI提供的接口来为这些需求提供些帮助。
 让AI生成实验数据在实际演示代码之前，我们需要一些可以拿来实验的数据。之前，我们都是在网上找一些数据集，或者直接使用一些机器学习软件包里面自带的数据集。但是，并不是所有时候我们都能很快找到合适的数据集。这个时候，我们也可以利用AI，我们直接让AI帮我们生成一些数据不就好了吗？
@@ -169,7 +161,15 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 COMPLETION_MODEL = "text-davinci-003"
 
 def generate_data_by_prompt(prompt):
-  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/735898898.html" title="10｜AI连接外部资料库，让Llama Index带你阅读一本书">10｜AI连接外部资料库，让Llama Index带你阅读一本书</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">10｜AI连接外部资料库，让Llama Index带你阅读一本书你好，我是徐文浩。
+  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2306057863.html" title="08｜文本改写和内容审核，别让你的机器人说错话">08｜文本改写和内容审核，别让你的机器人说错话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">08｜文本改写和内容审核，别让你的机器人说错话你好，我是徐文浩。
+前面，我们已经把OpenAI最主要的接口介绍完了。这一讲也是我们基础知识篇里面的最后一讲，我们会覆盖完OpenAI的GPT系列模型剩下的一些接口。也许有些接口你不一定会频繁使用，但是了解一下没有什么坏处，说不定你有什么需求就能用得上它。
+在这一讲里，我们会一起来看看OpenAI为文本改写和内容审核提供的功能有哪些。以及OpenAI的GPT系列有哪些模型，这些模型有哪些区别，什么情况下我们应该用什么模型。
+文本改写，从使用提示语开始我猜课程学到这里，你应该已经用过不少基于AI大语言模型的产品了。很常见的一类应用，就是写作助手。比如Notion AI就能帮助你，在已经写好的文章里面选取一段内容，你可以让AI帮你修改。这个修改可以是让文本短一点或者长一点，也可以是让文本改一下自己的语气。
+
+不过，OpenAI的GPT的系列模型是一个生成式的模型，也就是它的用法是你给它一段文字，然后它补全后面的文字。按理来说，你是没法让它修改一段内容的。当然，在看了那么多不同的“提示语”之后，相信你自然想到可以通过一段提示语来解决这个问题。比如，下面这段代码就是这样的，我们通过上一讲介绍的ChatGPT的模型来实现了这个功能。
+def make_text_short(text):
+    messages = []
+    messages ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/735898898.html" title="10｜AI连接外部资料库，让Llama Index带你阅读一本书">10｜AI连接外部资料库，让Llama Index带你阅读一本书</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">10｜AI连接外部资料库，让Llama Index带你阅读一本书你好，我是徐文浩。
 有不少人在使用OpenAI提供的GPT系列模型的时候，都反馈效果并不好。这些反馈中有一大类问题，是回答不了一些简单的问题。比如当我们用中文问AI一些事实性的问题，AI很容易胡编乱造。而当你问它最近发生的新闻事件的时候，它就干脆告诉你它不知道21年之后的事情。
 本来呢，我写到这里就可以了。不过到了3月24日，OpenAI推出了ChatGPT Plugins这个功能，可以让ChatGPT通过插件的形式链接外部的第三方应用。我自己也还在排队等waiting list，所以暂时也无法体验。不过，即使有了第三方应用，我们也不能确保自己想要知道的信息正好被其他人提供了。而且，有些信息和问题我们只想提供给自己公司的内部使用，并不想开放给所有人。这个时候，我们既希望能够利用OpenAI的大语言模型的能力，但是又需要这些能力仅仅在我们自己指定的数据上。那么这一讲，就是为了解决这个问题的。
 大型语言模型的不足之处我们先来尝试问ChatGPT一个人尽皆知的常识，“鲁迅先生去日本学习医学的老师是谁”，结果它给出的答案是鲁迅的好友，内山书店的老板内山完造，而不是大家都学习过的藤野先生。
@@ -178,19 +178,7 @@ def generate_data_by_prompt(prompt):
 上一讲里，我们用上了最新的ChatGPT的API，注册好了HuggingFace的账号，也把我们的聊天机器人部署了出去。希望通过这个过程，你对实际的应用开发过程已经有了充足的体验。那么这一讲里，我们会回到OpenAI的各个接口能够提供的能力。我们分别看看怎么通过Embedding进行文本聚类，怎么利用提示语（Prompt）做文本的总结。
 基于Embedding向量进行文本聚类我先给不太了解技术的同学简单科普一下什么叫做文本聚类，文本聚类就是把很多没有标注过的文本，根据它们之间的相似度，自动地分成几类。基于GPT系列的模型进行文本聚类很简单，因为我们可以通过Embedding把文本变成一段向量。而对于向量我们自然可以用一些简单的聚类算法，比如我们采用最简单的K-Means算法就可以了。
 这一次，我们选用的数据集，是很多老的机器学习教程里常用的20 newsgroups数据集，也就是一个带了标注分好类的英文新闻组的数据集。这个数据集，其实不是最自然的自然语言，里面的数据是经过了预处理的，比如去除了标点符号、停用词等等。我们正好可以拿来看看，面对这样其实不太“自然语言”的数据，OpenAI的GPT系列模型处理的效果怎么样。
-首先，我们先通过scikit-learn这个Python库来拿到数据，数据集就内置在这个库里面。sciki ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/219070318.html" title="13 ｜让AI帮你写测试，体验多步提示语">13 ｜让AI帮你写测试，体验多步提示语</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">13 ｜让AI帮你写测试，体验多步提示语你好，我是徐文浩。
-上一讲，我们一起通过ChatGPT做了一个小应用。不过，这个过程并不是一个“自动档”的。我们尝试一步一步输入我们的需求，给到ChatGPT，并根据拿到的指示尝试运行代码。通过和ChatGPT不断地交互，我们最终完成了一个小应用。
-虽然这在我们探索性地开发一些功能的时候，已经极大地提高了我们的效率。但是这个过程并不能做成一个产品。我们理想中的产品应该是“自动档”的，我们只要用自然语言输入自己的需求，对应的代码就自动写出来了。如果中间出现了错误，AI可以自己拿到反馈来更正，而不需要我们人工去介入调试，或者复制粘贴。
-先让GPT-4写个代码这个思路听起来似乎有些科幻，但是随着GPT-4的发布，以及未来模型能力的进一步增长，这其实并不是遥不可及的。不过，这个时候你应该还只有GPT-3.5的API权限。所以这一讲，我们还是先把目标放低一点，先来 通过大语言模型，帮我们自动写单元测试代码。整个过程仍然是一个自动档的体验，只是能够提供的能力还相对比较简单，仅限于为现有代码提供单元测试而已。
-这个想法，源自OpenAI Cookbook提供的 AI 写单元测试的示例。但是那个例子里面的代码，已经不能使用了，因为对应的code-davinci-002模型已经被OpenAI下线了。但是例子里，分步骤分析问题，通过多个Prompts来完成单元测 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/941426346.html" title="14｜链式调用，用LangChain简化多步提示语">14｜链式调用，用LangChain简化多步提示语</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">14｜链式调用，用LangChain简化多步提示语你好，我是徐文浩。
-OpenAI的大语言模型，只是提供了简简单单的Completion和Embedding这样两个核心接口。但是你也看到了，在过去的13讲里，通过合理使用这两个接口，我们完成了各种各样复杂的任务。
-
-通过提示语（Prompt）里包含历史的聊天记录，我们能够让AI根据上下文正确地回答问题。
-通过将Embedding提前索引好存起来，我们能够让AI根据外部知识回答问题。
-而通过多轮对话，将AI返回的答案放在新的问题里，我们能够让AI帮我们给自己的代码撰写单元测试。
-
-这些方法，也是一个实用的自然语言类应用里常见的模式。我之前也都通过代码为你演示过具体的做法。但是，如果我们每次写应用的时候，都需要自己再去OpenAI提供的原始API里做一遍，那就太麻烦了。于是，开源社区就有人将这些常见的需求和模式抽象了出来，开发了一个叫做Langchain的开源库。那么接下来，我们就来看看如何使用LangChain来快速实现之前我们利用大语言模型实现过的功能。以及我们如何进一步地，将Langchain和我们的业务系统整合，完成更复杂、更有实用价值的功能。
-使用Langchain的链式调用如果你观察得比较仔细的话，你会发现在 第 11 讲 我们使用llama-index的时候，就已经装好LangChain了。llama-index专注于为大 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3942764729.html" title="11｜省下钱买显卡，如何利用开源模型节约成本？">11｜省下钱买显卡，如何利用开源模型节约成本？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">11｜省下钱买显卡，如何利用开源模型节约成本？你好，我是徐文浩。
+首先，我们先通过scikit-learn这个Python库来拿到数据，数据集就内置在这个库里面。sciki ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3942764729.html" title="11｜省下钱买显卡，如何利用开源模型节约成本？">11｜省下钱买显卡，如何利用开源模型节约成本？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">11｜省下钱买显卡，如何利用开源模型节约成本？你好，我是徐文浩。
 不知道课程上到这里，你账户里免费的5美元的额度还剩下多少了？如果你尝试着完成我给的几个数据集里的思考题，相信这个额度应该是不太够用的。而ChatCompletion的接口，又需要传入大量的上下文信息，实际消耗的Token数量其实比我们感觉的要多。
 而且，除了费用之外，还有一个问题是数据安全。因为每个国家的数据监管要求不同，并不是所有的数据，都适合通过OpenAI的API来处理的。所以，从这两个角度出发，我们需要一个OpenAI以外的解决方案。那对于没有足够技术储备的中小型公司来说，最可行的一个思路就是利用好开源的大语言模型。
 在Colab里使用GPU因为这一讲我们要使用一些开源模型，但不是所有人的电脑里都有一个强劲的NVidia GPU的。所以，我建议你通过Colab来运行对应的Notebook，并且注意，要把对应的运行环境设置成GPU。
@@ -203,12 +191,30 @@ OpenAI的大语言模型，只是提供了简简单单的Completion和Embedding�
 然后在弹出的对话框里，把Hardware accelerator换成GPU，然后点击Save就可以了。
 
 只要用得不是太多，Colab的GPU是可以免费使用的。
-HuggingfaceEmbedding，你的开源伙伴其实我们之前在 第 4 讲 对比零样本分类效果的时候，就已经使用过Goog ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3688931663.html" title="12｜让AI帮你写个小插件，轻松处理Excel文件">12｜让AI帮你写个小插件，轻松处理Excel文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">12｜让AI帮你写个小插件，轻松处理Excel文件你好，我是徐文浩。
-过去的十多讲里，我为你介绍了各种利用大语言模型的方法和技巧。特别是在过去两讲里，我们也尝试更加深入地利用开源代码帮我们完成一些工作。通过llama-index这样的开源库，我们能够将自己的数据和大语言模型连接在一起。通过sentence_transformers这样的开源库和ChatGLM这样的开源大语言模型，不依赖OpenAI，我们也可以完成简单的电商FAQ的问答。
-不过，这里面的代码，都是我们自己写的。虽然我们已经用了像Colab这样的在线Notebook工具，但是这些对非技术人员来说还是有一些门槛的。如果想要让广告投放、产品运营的同事们用起来，我们还需要专门做一个适合他们习惯的界面。
-其实，普通业务人员最常用的界面就是像Excel或者Chrome浏览器这样人手一个的应用。而且这些产品都有自己的插件机制。那么今天，我们就来为Excel写一个插件，让业务人员不需要懂代码也能随时使用ChatGPT来辅助完成工作，提高效率。而且，这个插件的代码也不是由我们自己来写，而是让ChatGPT来帮我们写。 在这个过程中，你会看到我们如何利用ChatGPT逐步探索，使用我们并不熟悉，甚至完全不会的编程语言和工具完成任务。
-所以这一讲，不是一堂技能课，而是一堂方法和思维课。
-让我们再来看看那只发光的青蛙在课程的 第 1 讲 里 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+HuggingfaceEmbedding，你的开源伙伴其实我们之前在 第 4 讲 对比零样本分类效果的时候，就已经使用过Goog ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2135493766.html" title="15｜深入使用LLMChain，给AI连上Google和计算器">15｜深入使用LLMChain，给AI连上Google和计算器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">15｜深入使用LLMChain，给AI连上Google和计算器你好，我是徐文浩。
+上一讲里，我们一起学习了怎么通过LangChain这个Python包，链式地调用OpenAI的API。通过链式调用的方式，我们可以把一个需要询问AI多轮才能解决的问题封装起来，把一个通过自然语言多轮调用才能解决的问题，变成了一个函数调用。
+不过，LangChain能够帮到我们的远不止这一点。前一阵，ChatGPT发布了 Plugins 这个插件机制。通过Plugins，ChatGPT可以浏览整个互联网，还可以接上Wolfram这样的科学计算工具，能够实现很多原先光靠大语言模型解决不好的问题。不过，这个功能目前还是处于wait list的状态，我也还没有拿到权限。
+不过没有关系，我们通过LangChain也能实现这些类似的功能。今天这一讲，我们就继续深入挖掘一下Langchain，看看它怎么解决这些问题。
+解决AI数理能力的难题很多人发现，虽然ChatGPT回答各种问题的时候都像模像样的，但是一到计算三位数乘法的时候就露馅儿了。感觉它只是快速估计了一个数字，而不是真的准确计算了。我们来看下面这段代码，我们让OpenAI帮我们计算一下 352 x 493 等于多少，你会发现，它算得大差不差，但还是算错了。这就很尴尬，如果我们真的想要让它来担任一个小学数学的助教，总是给出错误的答案也不是个事儿。
+impor ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3276640541.html" title="16｜Langchain里的“记忆力”，让AI只记住有用的事儿">16｜Langchain里的“记忆力”，让AI只记住有用的事儿</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">16｜Langchain里的“记忆力”，让AI只记住有用的事儿你好，我是徐文浩。
+在过去的两讲里，我们深入了解了Langchain的第一个核心功能，也就是LLMChain。 LLMChain能够帮助我们链式地调用一系列命令，这里面既包含直接调用OpenAI的API，也包括调用其他外部接口，或者自己实现的Python代码。但是这一连串的调用，还只是完成一个小任务。我们很多时候还是希望用一个互动聊天的过程，来完成整个任务。
+所以LangChain并不是只有链式调用这样一个核心功能，它还封装了很多其他能力，来方便我们开发AI应用。比如，让AI能够拥有“记忆力”，也就是记住我们聊天上下文的能力。不知道你还记不记得，我们在 第 6 讲 里做的聊天机器人。在那个里面，为了能够让ChatGPT知道整个聊天的上下文，我们需要把历史的对话记录都传给它。但是，因为能够接收的Token数量有上限，所以我们只能设定一个参数，只保留最后几轮对话。我们最后把这个功能，抽象成了一个Conversation类。
+import openai
+import os
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
+class Conversation:
+    def __init__(self, prompt, num_of_round):
+        sel ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/941426346.html" title="14｜链式调用，用LangChain简化多步提示语">14｜链式调用，用LangChain简化多步提示语</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">14｜链式调用，用LangChain简化多步提示语你好，我是徐文浩。
+OpenAI的大语言模型，只是提供了简简单单的Completion和Embedding这样两个核心接口。但是你也看到了，在过去的13讲里，通过合理使用这两个接口，我们完成了各种各样复杂的任务。
+
+通过提示语（Prompt）里包含历史的聊天记录，我们能够让AI根据上下文正确地回答问题。
+通过将Embedding提前索引好存起来，我们能够让AI根据外部知识回答问题。
+而通过多轮对话，将AI返回的答案放在新的问题里，我们能够让AI帮我们给自己的代码撰写单元测试。
+
+这些方法，也是一个实用的自然语言类应用里常见的模式。我之前也都通过代码为你演示过具体的做法。但是，如果我们每次写应用的时候，都需要自己再去OpenAI提供的原始API里做一遍，那就太麻烦了。于是，开源社区就有人将这些常见的需求和模式抽象了出来，开发了一个叫做Langchain的开源库。那么接下来，我们就来看看如何使用LangChain来快速实现之前我们利用大语言模型实现过的功能。以及我们如何进一步地，将Langchain和我们的业务系统整合，完成更复杂、更有实用价值的功能。
+使用Langchain的链式调用如果你观察得比较仔细的话，你会发现在 第 11 讲 我们使用llama-index的时候，就已经装好LangChain了。llama-index专注于为大 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

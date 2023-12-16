@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-15 14:43:43'
+  postUpdate: '2023-12-16 02:20:01'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,154 +138,69 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/657214964.html" title="24 | 分布式系统关键技术：全栈监控">24 | 分布式系统关键技术：全栈监控</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">24 | 分布式系统关键技术：全栈监控你好，我是陈皓，网名左耳朵耗子。
-首先，我们需要全栈系统监控，它就像是我们的眼睛，没有它，我们就不知道系统到底发生了什么，我们将无法管理或是运维整个分布式系统。所以，这个系统是非常非常关键的。
-而在分布式或Cloud Native的情况下，系统分成多层，服务各种关联，需要监控的东西特别多。没有一个好的监控系统，我们将无法进行自动化运维和资源调度。
-这个监控系统需要完成的功能为：
-
-全栈监控；
-关联分析；
-跨系统调用的串联；
-实时报警和自动处置；
-系统性能分析。
-
-多层体系的监控所谓全栈监控，其实就是三层监控。
-
-基础层：监控主机和底层资源。比如：CPU、内存、网络吞吐、硬盘I&#x2F;O、硬盘使用等。
-
-中间层：就是中间件层的监控。比如：Nginx、Redis、ActiveMQ、Kafka、MySQL、Tomcat等。
-
-应用层：监控应用层的使用。比如：HTTP访问的吞吐量、响应时间、返回码、调用链路分析、性能瓶颈，还包括用户端的监控。
-
-
-
-这还需要一些监控的标准化。
-
-日志数据结构化；
-监控数据格式标准化；
-统一的监控平台；
-统一的日志分析。
-
-什么才是好的监控系统这里还要多说一句，现在我们的很多监控系统都做得很不好，它们主要有两个很大的问题。
-
-监控数据是隔离开来的。因为公司分工的问题，开发、应用运维、系统运维，各管各的，所以很多公司的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3284817586.html" title="26 | 分布式系统关键技术：流量与数据调度">26 | 分布式系统关键技术：流量与数据调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">26 | 分布式系统关键技术：流量与数据调度你好，我是陈皓，网名左耳朵耗子。
-关于流量调度，现在很多架构师都把这个事和服务治理混为一谈了。我觉得还是应该分开的。一方面，服务治理是内部系统的事，而流量调度可以是内部的，更是外部接入层的事。另一方面，服务治理是数据中心的事，而流量调度要做得好，应该是数据中心之外的事，也就是我们常说的边缘计算，是应该在类似于CDN上完成的事。
-所以，流量调度和服务治理是在不同层面上的，不应该混在一起，所以在系统架构上应该把它们分开。
-流量调度的主要功能对于一个流量调度系统来说，其应该具有的主要功能是：
-
-依据系统运行的情况，自动地进行流量调度，在无需人工干预的情况下，提升整个系统的稳定性；
-
-让系统应对爆品等突发事件时，在弹性计算扩缩容的较长时间窗口内或底层资源消耗殆尽的情况下，保护系统平稳运行。
-
-
-这还是为了提高系统架构的稳定性和高可用性。
-此外，这个流量调度系统还可以完成以下几方面的事情。
-
-服务流控。服务发现、服务路由、服务降级、服务熔断、服务保护等。
-流量控制。负载均衡、流量分配、流量控制、异地灾备（多活）等。
-流量管理。协议转换、请求校验、数据缓存、数据计算等。
-
-所有的这些都应该是一个API Gateway应该做的事。
-流量调度的关键技术但是，作为一个API Gateway来说，因为要调度流量，首先需要扛住流量，而且还需要有一些比较轻量的业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1312551759.html" title="27 | 洞悉PaaS平台的本质">27 | 洞悉PaaS平台的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">27 | 洞悉PaaS平台的本质你好，我是陈皓，网名左耳朵耗子。
-在了解了前面几篇文章中提的这些问题以后，我们需要思考一下该怎样解决这些问题。为了解决这些问题，请先允许我来谈谈软件工程的本质。
-我认为，一家商业公司的软件工程能力主要体现在三个地方。
-第一，提高服务的SLA。
-所谓服务的SLA，也就是我们能提供多少个9的系统可用性，而每提高一个9的可用性都是对整个系统架构的重新洗礼。在我看来，提高系统的SLA主要表现在两个方面：
-
-高可用的系统；
-自动化的运维。
-
-你可以看一下我在CoolShell上写的《 关于高可用系统》这篇文章，它主要讲了构建高可用的系统需要使用的分布式系统设计思路。然而这还不够，我们还需要一个高度自动化的运维和管理系统，因为故障是常态，如果没有自动化的故障恢复，就很难提高服务的SLA。
-第二，能力和资源重用或复用。
-软件工程还有一个重要的能力就是让能力和资源可以重用。其主要表现在如下两个方面：
-
-软件模块的重用；
-软件运行环境和资源的重用。
-
-为此，需要我们有两个重要的能力：一个是“软件抽象的能力”，另一个是“软件标准化的能力”。你可以认为软件抽象就是找出通用的软件模块或服务，软件标准化就是使用统一的软件通讯协议、统一的开发和运维管理方法……这样能让整体软件开发运维的能力和资源得到最大程度的复用，从而增加效率。
-第三，过程的自动化。
-编程本来就是把一个重复工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3655932601.html" title="28 | 推荐阅读：分布式系统架构经典资料">28 | 推荐阅读：分布式系统架构经典资料</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">28 | 推荐阅读：分布式系统架构经典资料你好，我是陈皓，网名左耳朵耗子。
-前段时间，我写了一系列分布式系统架构方面的文章，有很多读者纷纷留言讨论相关的话题，还有读者留言表示对分布式系统架构这个主题感兴趣，希望我能推荐一些学习资料。
-就像我在前面的课程中多次提到的，分布式系统的技术栈巨大无比，所以我要推荐的学习资料也比较多，后面在课程中我会结合主题逐步推荐给你。在今天这一讲中，我将推荐一些分布式系统的基础理论和一些不错的图书和资料。
-这一讲比较长，所以我特意整理了目录，帮你快速找到自己感兴趣的内容。
-基础理论
-CAP 定理
-Fallacies of Distributed Computing
-
-经典资料
-Distributed systems theory for the distributed systems engineer
-FLP Impossibility Result
-An introduction to distributed systems
-Distributed Systems for fun and profit
-Distributed Systems: Principles and Paradigms
-Scalable Web Architecture and Distributed Systems
-Principles of Distributed Syste ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1173367560.html" title="29 | 推荐阅读：分布式数据调度相关论文">29 | 推荐阅读：分布式数据调度相关论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">29 | 推荐阅读：分布式数据调度相关论文你好，我是陈皓，网名左耳朵耗子。
-我们在之前的系列文章《分布式系统架构的本质》中说过，分布式系统的一个关键技术是“数据调度”。因为我们需要扩充节点，提高系统的高可用性，所以必须冗余数据结点。
-建立数据结点的副本看上去容易，但其中最大的难点就是分布式一致性的问题。下面，我会带你看看数据调度世界中的一些技术点以及相关的技术论文。
-对于分布式的一致性问题，相信你在前面看过好几次下面这张图。从中，我们可以看出，Paxos算法的重要程度。还有人说，分布式下真正的一致性算法只有Paxos。
-
-Paxos算法Paxos算法，是莱斯利·兰伯特（Lesile Lamport）于1990年提出来的一种基于消息传递且具有高度容错特性的一致性算法。但是这个算法太过于晦涩，所以，一直以来都属于理论上的论文性质的东西。
-其进入工程圈的源头在于Google的Chubby lock——一个分布式的锁服务，用在了Bigtable中。直到Google发布了下面的这两篇论文，Paxos才进入到工程界的视野中来。
-
-Bigtable: A Distributed Storage System for Structured Data
-
-The Chubby lock service for loosely-coupled distributed systems
-
-
-Google与B ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2036511950.html" title="30 | 编程范式：起源">30 | 编程范式：起源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">30 | 编程范式：起源序你好，我是陈皓，网名左耳朵耗子。
-现在很多的文章和演讲都在谈架构，很少有人再会谈及编程范式。然而， 这些基础性和本质性的话题，却是非常非常重要的。
-一方面，我发现在一些语言争论上，有很多人对编程语言的认识其实并不深；另一方面，通过编程语言的范式，我们不但可以知道整个编程语言的发展史，而且还能提高自己的编程技能，写出更好的代码。
-我希望通过一系列的文章带大家漫游一下各式各样的编程范式。（这一系列文章中代码量很大，很难用音频体现出来，所以没有录制音频，还望谅解。）
-
-01 | 编程范式游记：起源
-02 | 编程范式游记：泛型编程
-03 | 编程范式游记：类型系统和泛型的本质
-04 | 编程范式游记：函数式编程
-05 | 编程范式游记：修饰器模式
-06 | 编程范式游记：面向对象编程
-07 | 编程范式游记：基于原型的编程范式
-08 | 编程范式游记：Go 语言的委托模式
-09 | 编程范式游记：编程的本质
-10 | 编程范式游记：逻辑编程范式
-11 | 编程范式游记：程序世界里的编程范式
-
-这一经历可能有些漫长，途中也会有各式各样的语言的代码。但是我保证这一历程对于一个程序员来说是非常有价值的，因为你不但可以对主流编程语言的一些特性有所了解，而且当我们到达终点的时候，你还能了解到编程的本质是什么。
-这一系列文章中有各种语言的代码，其中有C、C++、Python ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/944131152.html" title="31 | 编程范式：泛型编程">31 | 编程范式：泛型编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。
-在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。
-C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stroustrup 创建的C++语言横空出世，它既可以全面兼容C语言，又巧妙揉合了一些面向对象的编程理念。现在来看，不得不佩服Stroustrup的魄力。在这里，我也向你推荐一本书，书名是《C++语言的设计和演化》。
-这本书系统介绍了C++诞生的背景以及初衷，书的作者就是 Stroustrup 本人，所以你可以非常详细地从语言创建者的角度了解他的设计思路和创新之旅。当然，就是在今天，C++这门语言也还有很多争议，这里我不细说。如果你感兴趣的话，可以看看我几年前在酷壳上发表的文章《 C++的坑真的多吗？》。
-从语言角度来说，实际上早期C++的许多工作是对C的强化和净化，并把完全兼容C作为强制性要求（这也是C++复杂晦涩的原因，这点Java就干得比C++彻底得多）。在C89、C99这两个C语言的标准中，有许多改进都是从C++中引进的。
-可见，C++对C语言的贡献非常之大。是的，因为C++很大程度就是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/692793914.html" title="32 | 编程范式：类型系统和泛型的本质">32 | 编程范式：类型系统和泛型的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">32 | 编程范式：类型系统和泛型的本质你好，我是陈皓，网名左耳朵耗子。
-前面，我们讨论了从C到C++的泛型编程方法，并且初探了更为抽象的函数式编程。正如在上一讲中所说的，泛型编程的方式并不只有C++这一种类型，我们只是通过这个过程了解一下，底层静态类型语言的泛型编程原理。这样能够方便我们继续后面的历程。
-是的，除了C++那样的泛型，如果你了解其它编程语言一定会发现，在动态类型语言或是某些有语法糖支持的语言中，那个 swap() 或 search() 函数的泛型其实可以很简单地就实现了。
-比如，你甚至可以把 swap() 函数简单地写成下面这个样子（包括Go语言也有这样的语法）：
-b, a &#x3D; a, b;
-
-
-在上一讲后面的Reduce函数中，可以看到，在编程世界中，我们需要处理好两件事：
-
-第一件事是编程语言中的类型问题。
-第二件事是对真实世界中业务代码的抽象、重用和拼装。
-
-所以，在这一讲中，我们还是继续深入地讨论上面这两个问题，着重讨论一下编程语言中的类型系统和泛型编程的本质。
-类型系统在计算机科学中，类型系统用于定义如何将编程语言中的数值和表达式归类为许多不同的类型，以及如何操作这些类型，还有这些类型如何互相作用。类型可以确认一个值或者一组值，具有特定的意义和目的。
-一般来说，编程语言会有两种类型，一种是内建类型，如int、float和char等，一种是抽象类型， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/905989416.html" title="33 | 编程范式：函数式编程">33 | 编程范式：函数式编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">33 | 编程范式：函数式编程你好，我是陈皓，网名左耳朵耗子。
-从前三章内容中，我们了解到，虽然C语言简单灵活，能够让程序员在高级语言特性之上轻松进行底层上的微观控制，被誉为“高级语言中的汇编语言”，但其基于过程和底层的设计初衷又成了它的短板。
-在程序世界中，编程工作更多的是解决业务上的问题，而不是计算机的问题，我们需要更为贴近业务、更为抽象的语言，如典型的面向对象语言C++和Java等。
-C++很大程度上解决了C语言中的各种问题和不便，尤其是通过类、模板、虚函数和运行时识别等解决了C语言的泛型编程问题。然而，如何做更为抽象的泛型呢？答案就是函数式编程（Functional Programming）。
-函数式编程相对于计算机的历史而言，函数式编程其实是一个非常古老的概念。函数式编程的基础模型来源于 λ 演算，而 λ 演算并没有被设计在计算机上执行。它是由 Alonzo Church 和 Stephen Cole Kleene 在 20 世纪 30 年代引入的一套用于研究函数定义、函数应用和递归的形式系统。
-如 Alonzo 所说，像 booleans、integers 或者其他的数据结构都可以被函数取代掉。
-
-我们来看一下函数式编程，它的理念就来自于数学中的代数。
-f(x)&#x3D;5x^2+4x+3
-g(x)&#x3D;2f(x)+5&#x3D;10x^2+8x+11
-h(x) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/432270148.html" title="34 | 编程范式：修饰器模式">34 | 编程范式：修饰器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">34 | 编程范式：修饰器模式你好，我是陈皓，网名左耳朵耗子。
-在上一讲中，我们领略了函数式编程的趣味和魅力，主要讲了函数式编程的主要技术。还记得有哪些吗？递归、Map、Reduce、Filter等，并利用Python的Decorator和Generator功能，将多个函数组合成了管道。
-此时，你心中可能会有个疑问，这个decorator又是怎样工作的呢？这就是本文中要讲述的内容，“Decorator模式”，又叫“修饰器模式”，或是“装饰器模式”。
-Python的DecoratorPython的Decorator在使用上和Java的Annotation（以及C#的Attribute）很相似，就是在方法名前面加一个@XXX注解来为这个方法装饰一些东西。但是，Java&#x2F;C#的Annotation也很让人望而却步，太过于复杂了。你要玩它，需要先了解一堆Annotation的类库文档，感觉几乎就是在学另外一门语言。
-而Python使用了一种相对于Decorator Pattern和Annotation来说非常优雅的方法，这种方法不需要你去掌握什么复杂的OO模型或是Annotation的各种类库规定，完全就是语言层面的玩法：一种函数式编程的技巧。
-这是我最喜欢的一个模式了，也是一个挺好玩儿的东西，这个模式动用了函数式编程的一个技术——用一个函数来构造另一个函数。
-好了，我们先来点感 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/27/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/#content-inner">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/#content-inner">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/29/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/752338702.html" title="154 | Y Combinator：孵化器还是培训班？">154 | Y Combinator：孵化器还是培训班？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">154 | Y Combinator：孵化器还是培训班？孵化器作为给创业公司提供帮助的组织模式，并非Y Combinator首创。很长一段时间里，“孵化器”的名声一度不好，主要是因为孵化器并不能真正给创业者带来好处，而且又在盘剥创业公司上很厉害。
+Y Combinator的横空出世，很大程度上改写了孵化器的历史，今天无数创业者都想去Y Combinator或者类似的孵化器，和Y Combinator创立前“孵化器”等同骗子的状况不可同日而语。作为硅谷最为成功的孵化器公司，Y Combinator以其独特的孵化模式，在全世界都享誉盛名。
+Y Combinator是保罗·格雷厄姆（Paul Graham）、杰西卡·利文斯通（Jessica Livingston）、特雷弗·布莱克威尔（Trevor Blackwell）和罗伯特·泰潘·莫里斯（Robert Tappan Morris）在2005年创立的，至今已有13年。它的特殊之处在于不是一个随时入驻的孵化器，要想加入Y Combinator，必须参加它一年两次的创业投资培训计划，每次三个月。而这个创业投资培训计划，是需要经过严格PK选取的。
+具体来说，创业团队向Y Combinator提出申请。Y Combinator邀请一部分候选团队来面试，经过严格的面试的小比例团队会被录取。当然，伴随着Y Combinator的名气越来越大，申请人 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/221401208.html" title="155 | 创业公司进孵化器真的值得吗？">155 | 创业公司进孵化器真的值得吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">155 | 创业公司进孵化器真的值得吗？伴随Y Combinator孵化器在全球范围内的成功，越来越多的创业公司都要面临着一个选择：到底是不是应该进孵化器呢？
+不进孵化器的好处很明显，不会丢失股份。进孵化器会得到帮助，但往往孵化器本身会拿走2%到10%不等的原始股。而孵化器除了不高的资金投入，其好处就不一定那么明显了，创业团队有可能获得很好的帮助，也可能一无所获。
+在我看来，这个取舍需要考虑两方面因素：创业的团队和孵化器的资质。
+先聊一下创业的团队。我想，曾经成功创业的人再次创业和从未创业的人开始创业，其结果可能很不一样。有大公司高管加盟的创业团队，和全是学校刚毕业的学生组成的创业团队，其结果也是很不一样的。
+如果是学生创业，大家都毫无经验的话，有人指导一下前面的路应该怎么走，总归比自己瞎走要好。举个例子，Airbnb是一家非常成功的创业公司了，但是当初两位创始人都是艺术家出身，毫无创业经验。他们如果没有报名Y Combinator的培训班的话，我想无论是找一个程序员做联合创始人，还是后来去找VC要钱等等，很多事情都有可能耽误他们创业的成功。
+再举个相反的例子，有一家著名的数据库创业公司Snowflake，其三位联合创始人中的一位自己之前搞过创业公司并成功卖掉了，另外两位在Oracle工作了很多年，是非常资深的高层，请来的CEO则在微软做到过Senior Vice Presiden ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/748636080.html" title="156 | Paul Graham：硅谷创业教父">156 | Paul Graham：硅谷创业教父</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">156 | Paul Graham：硅谷创业教父著名程序员、计算机编程语言Lisp专家、 创业者、投资人、作家，这些头衔每一个都金光闪闪。当把这些头衔都集中到一个人身上的时候，这个人就岂止金光闪闪，简直令人仰望了。然而世界上的确有这样的人，比如今天这篇文章的主角保罗·格雷厄姆（Paul Graham）。
+格雷厄姆如今最为著名的身份，是享誉全球的孵化器Y Combinator的创始人，但是他的身份和头衔，远不止这一个。今天我们就来全方位地看看他是怎样集众多头衔于一身的。
+早年出道的格雷厄姆，是众多互联网软件开发者中的一员。但是作为一个资深的程序员，他有一点和其他程序员不太一样，就是特别擅长计算机界一种诞生于20世纪60年代的函数式编程语言：LISP。
+有关LISP的故事我们可以大书特书。简单来说，这是一个很优秀很有历史的语言，但同时掌握起来也很有难度。即使是在LISP最辉煌的年代，也鲜有人是LISP的专家。而在格雷厄姆进入计算机行业的20世纪90年代，LISP早已经不是一种很常用的语言了。那个时候是结构化编程语言的天下，C和C++是主流，Java才诞生。
+但是格雷厄姆是少数几个钟爱LISP，并且研究得非常透彻的人。他曾经写过若干本LISP的书，比如 _ON LISP_、 ANSI COMMON LISP 等等。这些书到今天依然是这个领域的经典著作。
+他对LISP的钟爱，延续到了199 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3978238900.html" title="158 | 论Zynga的倒台">158 | 论Zynga的倒台</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">158 | 论Zynga的倒台2011年的Zynga有两件大事：Mafia War 2带来的首次惨败和IPO，然而Zynga的坏运气并没有终止，2012年Zynga耗费很大精力开发的另外一款游戏The Ville，再一次把Zynga带向了失败的边缘。
+The Ville的开发始于2010年，是一款模拟人生的社交游戏。它的开发过程一直不顺利。与此同时，Electronic Arts著名的模拟人生游戏 The Sims 在2011年的时候发布了自己的社交版 The Sims Social。这个游戏的发布让Zynga着急了，所以Zynga匆匆忙忙地发布了自己的虚拟人生社交游戏The Ville。
+很不幸的是，Zynga终究是没办法做得过模拟人生游戏的鼻祖和行家Electronic Arts。这款The Ville既不叫好也不卖座，几个月以后就彻底关门大吉了。The Ville创造了Zynga最短命游戏的历史记录，与此同时，Electronic Arts还起诉Zynga抄袭，一时间，Zynga的负面新闻不断。
+之后Zynga的游戏做得越发谨小慎微，仿佛几次的失败彻底束缚了自己的创造力，Zynga发布的游戏也变得越来越不成功。 这是因为，Zynga把太多的精力放在了关注自己的失败上，却忽略了智能手机的兴起，当整个游戏产业从个人计算机开始过渡到手机上时，Zynga开始变得不知所措。
+于是在这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4065361822.html" title="157 | Zynga：发家从农场开始">157 | Zynga：发家从农场开始</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">157 | Zynga：发家从农场开始网络游戏市场一直都是非常热门的市场。早年在PC机时代就诞生了无数游戏企业，进入互联网时代，游戏企业更是风起云涌。今天我们的主角也是这样的一家游戏企业：Zynga。
+很多人都不知道Zynga是什么公司，但是在它的鼎盛时期，Zynga毫无疑问是一个闪耀的巨星，是很多人仰慕学习的对象。
+那么巨星是怎样起家的，又是怎样倒下的呢？今天我们就从Zynga的发家开始讲起。
+2007年4月的时候，马克 · 平克斯（Mark Pincus）、艾瑞克 ‧ 席尔迈尔（Eric Schiermeyer）、贾斯汀 ‧ 沃尔德伦（Justin Waldron）、麦可 ‧ 勒克斯顿（Michael Luxton）、史提夫 ‧ 舍特勒尔（Steve Schoettler）和安德鲁 ‧ 楚莱德（Andrew Trader）成立了一家名字叫做Presidio Media的公司。
+这个公司在同年7月改名为Zynga，改名的原因是创始人兼CEO的马克以前养过一只宠物狗，名字叫做 “Zinga”。所以Zynga的公司图标上面是一只狗。
+Zynga在2007年开发了一款叫做Zynga Poker的德州扑克游戏，在Facebook上发布。这是Zynga最早的一款游戏，这款游戏给Zynga带来了不少的名气，伴随着在Facebook上的游戏越来越吸引用户，Zynga到2009年4月第一次顺利拿 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4179957610.html" title="159 | 企业分析要求综合素质">159 | 企业分析要求综合素质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">159 | 企业分析要求综合素质在我的专栏里，方法论这部分是最难写的。因为我需要先去总结自己是怎么看待企业发展、怎么分析企业的，之后，再把总结的东西以每个人能够听懂的方式，通俗易懂地讲出来。
+这一点其实比我自己分析企业的时候要更难，不过，我也觉得这一部分很重要，毕竟“授之以渔”和“授之以鱼”的区别，我想你一定也懂。所以，作为结束专栏的最后一篇文章，我们再来谈一次方法论。
+今天，我想讲一个特别简单的道理。 我们如果想要去分析企业的话，需要掌握的东西是非常多的。所以，如果你只是把自己拘泥于开发工程师的世界里，只懂得用什么样的代码去实现什么功能，是不太容易做好企业分析的。
+对某一领域技术的深入理解，对于我们分析这个领域的企业是有好处的。最起码我们知道，一个企业在讨论自己的技术和产品的时候，是在胡说八道，还是真的有理有据；是行业领先，还是只是一个吃瓜的玩家。
+不过，对某个领域技术的深入理解，既不是分析企业的必要条件，也不是分析企业充分条件。
+我们如果想要分析企业，首先需要对经济学的基本原理有一些了解。对我来说，这得益于我在大学期间就看过很多杂书，包括曼昆的一系列经济学教程。
+为什么经济学很重要呢？一个企业不可能脱离大环境存在，理解大环境，才能理解企业在大环境下做出的决策，从而才能判断出这些决策是否合理。
+我们举一个例子吧。特朗普上台后推行了他的减税计划，这是美国自里根总统以来第一次大规模的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2949251319.html" title="一键直达 | 系列解读文章回顾">一键直达 | 系列解读文章回顾</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">一键直达 | 系列解读文章回顾你好，很荣幸我们能够一起走过一年的时间，我是这个专栏的主编毛倩倩。
+在《技术与商业案例解读》这个全年专栏中，徐飞特别针对一些行业撰写了几大系列文章，希望让你对一个个行业内企业在技术与商业发展上的逻辑有更深刻的思考。
+这些系列文章虽有序却分散在全年的专栏目录中，专栏的最后，我特别整理了几大系列文章的直达目录，以方便你按行业领域来回顾。
+点击相应文章标题，直达你最需要回顾的那篇。
+1. 西雅图公司系列：（001）RealNetworks：一个帝国的兴衰（上）
+（002）RealNetworks：一个帝国的兴衰（下）
+（003）以RealNetworks为例，谈谈初创公司如何应对巨头碾压
+（004）可视化分析鼻祖Tableau
+（005）从Tableau上市，看学术界和工业界人士创业
+（006）在线旅游帝国Expedia崛起的背后
+（007）房产经纪的颠覆者Redfin：在“传统”与“现代”间徘徊
+（008）房产经纪的“协作者”Zillow：一个地产数据平台
+（009）颠覆还是协作，房地产市场上Redfin和Zillow的抉择
+（010）应用交付网络大厂F5：“一招鲜”之殇
+（011）在线差旅报销鼻祖Concur：在转型中获得发展
+（012）漫谈企业转型：在市场变迁中寻找生机
+（013）克雷公司沉浮录：行走在超级计算机市场
+（014）“单一化”的隐忧：从克雷 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3240930736.html" title="新书首发丨《大数据浪潮之巅》">新书首发丨《大数据浪潮之巅》</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">新书首发丨《大数据浪潮之巅》你好，我是徐飞。
+今天要分享一个好消息，我的新书《大数据浪潮之巅》已经正式出版，并在极客时间商城独家首发。 戳此查看&gt;&gt;&gt;
+为什么更新完专栏之后要出书呢？图书不同于专栏，专栏里我有160篇文章，解读了很多不同公司的案例，而这本书中我聚焦对大数据的宏观发展进行了讲述。
+本书描绘了大数据从无到有，从起步到兴盛，从兴盛到不断迭代的波澜壮阔的整个发展史，在这个过程中，我介绍了大公司和创业公司在大数据发展浪潮中跌宕起伏的，众多广为流传和不为人知的故事。据我所知，这是全球唯一一本全面系统讲述大数据发展史的书，你可以到图书详情页查看目录进行了解。 戳此查看&gt;&gt;&gt;
+在讲述大数据发展浪潮的同时，我也在技术之上，从宏观、大环境的层面来分析大公司和创业公司的大数据技术与商业融合创新的历程。
+本书既讲述了谷歌“三驾马车”的问世，也讲述了Hadoop生态圈的建立，更讲到Spark取代Hadoop原来的MapReduce框架的地位，还描述了Flink是如何异军突起的。书中既包括耳熟能详的Hadoop发行商们，也包括神秘的大数据公司Palantir，更讲述了国产新数据库TiDB的创业故事。
+《大数据浪潮之巅》这本书的目的是通过讲述大数据波澜壮阔的发展史，用这些技术与商业融合的案例，来引发读者的深度思考。 可以说这是一本大数据技术的发展史，也是一本商 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1961752808.html" title="开篇词 | 突破技术思维，站在商业的角度看问题">开篇词 | 突破技术思维，站在商业的角度看问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">开篇词 | 突破技术思维，站在商业的角度看问题2017年6月，InfoQ的编辑联系我说希望能在“极客时间”中开个全年的订阅专栏，我收到邮件之后大约一半是诚惶诚恐，一半又颇欣欣然的感觉。
+我从去年开始写公众号，最初只是把它当成梳理自己的知识和思维的一个方式。我陆陆续续写了很多方面的内容，从我最擅长和熟悉的大数据领域开始，写了大数据的发展史，到我不是那么熟悉的互联网行业的发展、职场就业、企业分析等多少都有涉及。
+收到专栏邀请后，有一个问题就摆在了我的面前：我的专栏到底应该讲什么。和公众号不同，我希望给自己的专栏做一个相对明确而统一的主题。我的PhD训练教会了我一个非常重要的道理：选择比努力更重要。
+屈指算来，我在互联网行业里摸爬滚打也差不多有二十年了。这些年里一半在求学，一半在工作。早年我非常希望自己可以成为一名教授，既能教书育人又可以做前沿的研究，后来阴差阳错进入了工业界，成了一名不折不扣的程序员。所谓时也命也，我做研究的时候主要研究数据库的基础架构问题，在工业界又赶上了大数据发展的早期，这让我比较早地进入了大数据这个领域。
+但我觉得自己并没有选好赛道，因为我既没有进入谷歌这样的先驱企业，也未能站队Hadoop的生态圈。相反的我进了微软，从无到有地搭了一个内部大数据处理平台。这段经历让我在后来很长的一段时间里都在思考一个问题：在大数据领域，谷歌微软这样的大企业是怎样被Hadoop生态 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2707275221.html" title="结束语 | 积跬步，而终至千里">结束语 | 积跬步，而终至千里</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">结束语 | 积跬步，而终至千里时光飞逝，不知不觉一年就过去了。
+回顾这一年，160篇的原创文章，40多万字的输出，自己都觉得有些难以置信。这一年的写作很是艰难辛苦。至今我还记得自己下班回家就不停加班看材料写东西到深夜，周末和节假日一天工作十多个小时的过往。曾经有段时间因为打字多了手腕疼得厉害，我还专门找到了可以语音输入的讯飞输入法。
+但是一切都是值得的，感谢极客时间这个平台给了我这个机会，更要感谢每一个订阅了专栏的“你”，虽然从未谋面，但正是因为你，让我更感这段经历弥足珍贵。
+在这个专栏里，我用最大的篇幅写了诸多企业的发展历程，既有如今的商业大鳄，也有曾经辉煌的明日黄花，我还从大数据一路写到办公软件再写到企业应用领域，并从游戏写到了新硬件领域，不一而足。回头来看，这恰似互联网领域横跨数十年的一幅企业画卷。而我在专栏内写作的几大系列文章，相信会让你对一个个行业内企业在技术与商业发展上的逻辑有更深刻的思考。
+我还专门介绍了很多企业家和投资者的故事，带你看他们的抉择与人生经验。同时，我还专门介绍了一些我个人分析企业和人的一些方法论，希望授人以渔，丰富你看企业和看人的途径与方式。
+陪君一年，终有一别。希望我的专栏故事，让每一个“你”都有一份不同的收获。
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/27/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/#content-inner">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/#content-inner">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/29/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

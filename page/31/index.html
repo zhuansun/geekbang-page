@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-15 14:43:43'
+  postUpdate: '2023-12-16 02:20:01'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,103 +138,158 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2702593907.html" title="54 | 管理设计：边车模式">54 | 管理设计：边车模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">54 | 管理设计：边车模式你好，我是陈皓，网名左耳朵耗子。
-所谓的边车模式，对应于我们生活中熟知的边三轮摩托车。也就是说，我们可以通过给一个摩托车加上一个边车的方式来扩展现有的服务和功能。这样可以很容易地做到”控制”和”逻辑”的分离。
-也就是说，我们不需要在服务中实现控制面上的东西，如监视、日志记录、限流、熔断、服务注册、协议适配转换等这些属于控制面上的东西，而只需要专注地做好和业务逻辑相关的代码，然后，由“边车”来实现这些与业务逻辑没有关系的控制功能。
-边车模式设计具体来说，你可以理解为，边车就有点像一个服务的Agent，这个服务所有对外的进出通讯都通过这个Agent来完成。这样，我们就可以在这个Agent上做很多文章了。但是，我们需要保证的是，这个Agent要和应用程序一起创建，一起停用。
-边车模式有时候也叫搭档模式，或是伴侣模式，或是跟班模式。就像我们在《编程范式游记》中看到的那样， 编程的本质就是将控制和逻辑分离和解耦，而边车模式也是异曲同工，同样是让我们在分布式架构中做到逻辑和控制分离。
-对于监视、日志、限流、熔断、服务注册、协议转换等等这些功能，其实都是大同小异，甚至是完全可以做成标准化的组件和模块的。一般来说，我们有两种方式。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">870</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3643381884.html" title="22 | 从亚马逊的实践，谈分布式系统的难点">22 | 从亚马逊的实践，谈分布式系统的难点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">22 | 从亚马逊的实践，谈分布式系统的难点你好，我是陈皓，网名左耳朵耗子。
+从目前已经公开的资料来看，分布式服务化架构思想实践最早的公司应该是亚马逊。因为早在2002年的时候，亚马逊CEO杰夫·贝索斯（Jeff Bezos）就向全公司颁布了下面的这几条架构规定（来自《 Steve Yegge对Google平台吐槽》一文）。
 
-一种是通过SDK、Lib或Framework软件包方式，在开发时与真实的应用服务集成起来。
+所有团队的程序模块都要通过Service Interface方式将其数据与功能开放出来。
 
-另一种是通过像Sidecar这样的方式，在运 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2321437361.html" title="55 | 管理设计：服务网格">55 | 管理设计：服务网格</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">55 | 管理设计：服务网格你好，我是陈皓，网名左耳朵耗子。
-前面，我讨论了Sidecar边车模式，这是一个非常不错的分布式架构的设计模式。因为这个模式可以有效地分离系统控制和业务逻辑，并且可以让整个系统架构在控制面上可以集中管理，可以显著地提高分布式系统的整体控制和管理效率，并且可以让业务开发更快速。
-那么，我们不妨在上面这个模式下think big一下。假如，我们在一个分布式系统中，已经把一些标准的Sidecar给部署好了。比如前面文章说过的熔断、限流、重试、幂等、路由、监视等这些东西。我们在每个计算结点上都部署好了这些东西，那么真实的业务服务只需要往这个集群中放，就可以和本地的Sidecar通信，然后由Sidecar委托代理与其它系统的交互和控制。这样一来，我们的业务开发和运维岂不是简单至极了？
-是啊，试想一下，如果某云服务提供商，提供了一个带着前面我们说过的那些各式各样的分布式设计模式的Sidecar集群，那么我们的用户真的就只用写业务逻辑相关的service了。写好一个就往这个集群中部署，开发和运维工作量都会得到巨大的降低和减少。
-什么是Service Mesh这就是CNCF（Cloud Native Computing Foundation，云原生计算基金会）目前主力推动的新一代的微服务架构——Service Mesh服务网格。
-在 What’s a service m ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1983838970.html" title="57 | 管理设计：部署升级策略">57 | 管理设计：部署升级策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">57 | 管理设计：部署升级策略你好，我是陈皓，网名左耳朵耗子。
-在分布式系统的世界里，一个服务有多个实例，所以部署或是升级一个服务也会变得比较麻烦。今天我们讨论服务部署的模式。一般来说，有如下几种：
+团队间程序模块的信息通信，都要通过这些接口。
 
-停机部署（Big Bang &#x2F; Recreate）： 把现有版本的服务停机，然后部署新的版本。
+除此之外没有其它的通信方式。其他形式一概不允许：不能直接链结别的程序（把其他团队的程序当作动态链接库来链接），不能直接读取其他团队的数据库，不能使用共享内存模式，不能使用别人模块的后门，等等。唯一允许的通信方式是调用Service Interface。
 
-蓝绿部署（Blue&#x2F;Green &#x2F;Stage）：部署好新版本后，把流量从老服务那边切过来。
+任何技术都可以使用。比如：HTTP、CORBA、Pub&#x2F;Sub、自定义的网络协议等。
 
-滚动部署（Rolling Update &#x2F; Ramped）： 一点一点地升级现有的服务。
+所有的Service Interface，毫无例外，都必须从骨子里到表面上设计成能对外界开放的。也就是说，团队必须做好规划与设计，以便未来把接口开放给全世界的程序员，没有任何例外。
 
-灰度部署（Canary）：把一部分用户切到新版本上来，然后看一下有没有问题。如果没有问题就继续扩大升级，直到全部升级完成。
-
-AB测试（A&#x2F;B Testing）：同时上线两个版本，然后做相关的比较。
+不这样做的人会被炒鱿鱼。
 
 
-下面，我们来看一下每种方式的使用场景和优缺点。
-停机部署停机部署其实是最简单粗暴的方式，就是简单地把现有版本的服务停机，然后部署新的版本。有时候，我们不得不使用这样的方式来部署或升级多个服务。比如，新版本中的服务使用到了和老版本完全不兼容的数据表设计。这个时候，我们对生产有两个变更，一个是数据库，另一个是服务，而且新老版本互不兼容，所以只能使用停机部署的方式。
-这种方式的优势是，在部署过程中不会出现新老版本同时在线的情况，所有状态完全一致。停机部署主要是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2577676403.html" title="56 | 管理设计：网关模式">56 | 管理设计：网关模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">56 | 管理设计：网关模式你好，我是陈皓，网名左耳朵耗子。
-前面，我们讲了Sidecar和Service Mesh这两种设计模式，它们都是在不侵入业务逻辑的情况下，把控制面（control plane）和数据面（data plane）的处理解耦分离。但是这两种模式都让我们的运维成本变得特别大，因为每个服务都需要一个Sidecar，这让本来就复杂的分布式系统的架构就更为复杂和难以管理了。
-在谈Service Mesh的时候，我们提到了Gateway。我个人觉得并不需要为每个服务的实例都配置上一个Sidecar。其实，一个服务集群配上一个Gateway就可以了，或是一组类似的服务配置上一个Gateway。
-这样一来，Gateway方式下的架构，可以细到为每一个服务的实例配置一个自己的Gateway，也可以粗到为一组服务配置一个，甚至可以粗到为整个架构配置一个接入的Gateway。于是，整个系统架构的复杂度就会变得简单可控起来。
+这应该就是AWS（Amazon Web Service）出现的基因吧。当然，前面说过，采用分布式系统架构后会出现很多的问题。比如：
 
-这张图展示了一个多层Gateway架构，其中有一个总的Gateway接入所有的流量，并分发给不同的子系统，还有第二级Gateway用于做各个子系统的接入Gateway。可以看到，网关所管理的服务粒度可粗可细。通过网关，我们可以把分布式架构组织成一个星型架构，由网络对服务的请求进行路由和分发，也可以架构成像Servcie Mesh那样的网格架构，或者只是为了适 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2121070793.html" title="58 | 性能设计：缓存">58 | 性能设计：缓存</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">58 | 性能设计：缓存你好，我是陈皓，网名左耳朵耗子。
-前面分享了《分布式系统设计模式》系列文章的前两部分——弹力设计篇和管理设计篇。今天开始这一系列的最后一部分内容——性能设计篇，主题为《性能设计篇之“缓存”》。
-基本上来说，在分布式系统中最耗性能的地方就是最后端的数据库了。一般来说，只要小心维护好，数据库四种操作（select、update、insert和delete）中的三个写操作insert、update和delete不太会出现性能问题（insert一般不会有性能问题，update和delete一般会有主键，所以也不会太慢）。除非索引建得太多，而数据库里的数据又太多，这三个操作才会变慢。
-绝大多数情况下，select是出现性能问题最大的地方。一方面，select会有很多像join、group、order、like等这样丰富的语义，而这些语义是非常耗性能的；另一方面，大多数应用都是读多写少，所以加剧了慢查询的问题。
-分布式系统中远程调用也会消耗很多资源，因为网络开销会导致整体的响应时间下降。为了挽救这样的性能开销，在业务允许的情况（不需要太实时的数据）下，使用缓存是非常必要的事情。
-从另一个方面说，缓存在今天的移动互联网中是必不可少的一部分，因为网络质量不一定永远是最好的，所以前端也会为所有的API加上缓存。不然，网络不通畅的时候，没有数据，前端都不知道怎么展示UI了。既然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1918198860.html" title="59 | 性能设计：异步处理">59 | 性能设计：异步处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">59 | 性能设计：异步处理你好，我是陈皓，网名左耳朵耗子。
-在弹力设计篇中我们讲过，异步通讯的设计模式有助于提高系统的稳定性和容错能力。其实，异步通讯在分布式系统中还可以增加整个系统的吞吐量，从而可以面对更高的并发，并可以从容地利用好现有的系统资源。为什么这么说呢？
-我们试想一下，在你的工作中，有很多人会来找你，让你帮着做事。如果你是这种请求响应式的工作方式，那么本质上来说，你是在被动工作，也就是被别人驱动的工作方式。
-当你在做一件事的时候，如果有别人来找你做其它事，你就会被打断而要去干别的事。而如果你可以统筹安排这些事情，本来五件事只需要2个小时，如果不能，或者老被别人打乱思路，那你可能就要花5个小时。异步处理任务可以让你更好地利用好时间和资源。利用好了时间和资源，性能自然就会提升上来。
-这就好像邮递业务一样，你寄东西的时候，邮递公司会把大量的去往同一个方向的订单合并处理，并统一地调配物流交通工具，从而在整体上更为节省资源和时间。
-在分布式架构中，我们的系统被拆成了很多的子系统。如果想把这堆系统合理地用好，并更快地处理大量的任务，我们就需要统一地规划和统筹整体，这样可以达到整体的最优。本质上，这和邮递公司处理邮件一样，是相同的道理。
-在计算机的世界里，到处都是异步处理。比如：当程序读写文件时，我们的操作系统并不会真正同步地去操作硬盘，而是把硬盘读写请求先在内存中hold上一小会 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3763500409.html" title="60 | 性能设计：数据库扩展">60 | 性能设计：数据库扩展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">60 | 性能设计：数据库扩展你好，我是陈皓，网名左耳朵耗子。
-读写分离 CQRS读写分离是数据库扩展最简单实用的玩法了，这种方法针对读多写少的业务场景还是很管用的，而且还可以有效地把业务做相应的隔离。
-如下图所示，数据库只有一个写库，有两个读库，所有的服务都写一个数据库。对于读操作来说，服务A和服务B走从库A，服务D和服务E走从库B，服务C在从库A和从库B间做轮询。
+一个线上故障的工单会在不同的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1451260657.html" title="21 | 分布式系统架构的冰与火">21 | 分布式系统架构的冰与火</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">21 | 分布式系统架构的冰与火你好，我是陈皓，网名左耳朵耗子。
+最近几年，我们一直在谈论各式各样的架构，如高并发架构、异地多活架构、容器化架构、微服务架构、高可用架构、弹性化架构等。还有和这些架构相关的管理型的技术方法，如DevOps、应用监控、自动化运维、SOA服务治理、去IOE等。面对这么多纷乱的技术，我看到很多团队或是公司都是一个一个地去做这些技术，非常辛苦，也非常累。这样的做法就像我们在撑开一张网里面一个一个的网眼。
+其实，只要我们能够找到这张网的“纲”，我们就能比较方便和自如地打开整张网了。那么，这张“分布式大网”的总线——“纲”在哪里呢？我希望通过这一系列文章可以让你找到这个“纲”，从而能让你更好更有效率地做好架构和工程。
+分布式系统架构的冰与火首先，我们需要阐述一下为什么需要分布式系统，而不是传统的单体架构。也许这对你来说已经不是什么问题了，但是请允许我在这里重新说明一下。使用分布式系统主要有两方面原因。
 
-这样的方法好处是：
+增大系统容量。我们的业务量越来越大，而要能应对越来越大的业务量，一台机器的性能已经无法满足了，我们需要多台机器才能应对大规模的应用场景。所以，我们需要垂直或是水平拆分业务系统，让其变成一个分布式的架构。
 
-比较容易实现。数据库的master-slave的配置和服务框架里的读写分离都比较成熟，应用起来也很快。
-可以很好地把各个业务隔离开来。不会因为一个业务把数据库拖死而导致所有的业务都死掉。
-可以很好地分担数据库的读负载，毕竟读操作是最耗数据库CPU的操作。
+加强系统可用。我们的业务越来越关键，需要提高整个系统架构的可用性，这就意味着架构中不能存在单点故障。这样，整个系统不会因为一台机器出故障而导致整体不可用。所以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2020995877.html" title="23 | 分布式系统的技术栈">23 | 分布式系统的技术栈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">23 | 分布式系统的技术栈你好，我是陈皓，网名左耳朵耗子。
+正如我们前面所说的，构建分布式系统的目的是增加系统容量，提高系统的可用性，转换成技术方面，也就是完成下面两件事。
 
-这样的方法不好的地方是：
+大流量处理。通过集群技术把大规模并发请求的负载分散到不同的机器上。
+关键业务保护。提高后台服务的可用性，把故障隔离起来阻止多米诺骨牌效应（雪崩效应）。如果流量过大，需要对业务降级，以保护关键业务流转。
 
-写库有单点故障问题。如果是写库出了性能问题，那么所有的业务一样不可用。对于交易型的业务，要得到高的写操作速度，这样的方式不行。
-数据库同步不实时，需要强一致性的读写操作还是需要落在写库上。
+说白了就是干两件事。一是提高整体架构的吞吐量，服务更多的并发和流量，二是为了提高系统的稳定性，让系统的可用性更高。
+提高架构的性能咱们先来看看，提高系统性能的常用技术。
 
-综上所述，一般来说，这样的玩法主要是为了减少读操作的压力。
-当然，这样的读写分离看上去有点差强人意，那么，我们还是为之找一个更靠谱的设计——CQRS。关于CQRS，我在这里只做一个简单的介绍，更多的细节你可以上网自行Google。
-CQRS全称Command and Query Responsibility Segregat ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1683736450.html" title="61 | 性能设计：秒杀">61 | 性能设计：秒杀</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">61 | 性能设计：秒杀你好，我是陈皓，网名左耳朵耗子。
-一说起秒杀，大家都觉得这事很有技术含量。实际上，并不是这个样子的，秒杀这种互联网的交易方式其实并没有我们想象中的那么复杂。下面先让我们来系统地看一下，秒杀是怎么做的。
-秒杀的流程“秒杀”其实是商家为了促销，使用非常低的价格销售商品，比如，1元卖iPhone，100台，于是来了一百万人抢购。
-我们把技术挑战放在一边，先从用户或是产品的角度来看一下，秒杀的流程是什么样的。
 
-首先，你需要一个秒杀的landing page，在这个秒杀页上有一个倒计时的按钮。
-一旦这个倒计时的时间到了，按钮就被点亮，让你可以点击按钮下单。
-一般来说下单时需要你填写一个校验码，以防止是机器来抢。
+缓存系统。加入缓存系统，可以有效地提高系统的访问能力。从前端的浏览器，到网络，再到后端的服务，底层的数据库、文件系统、硬盘和CPU，全都有缓存，这是提高快速访问能力最有效的手段。对于分布式系统下的缓存系统，需要的是一个缓存集群。这其中需要一个Proxy来做缓存的分片和路由。
 
-从技术上来说，这个倒计时按钮上的时间和按钮可以被点击的时间是需要后台服务器来校准的，这意味着：
+负载均衡系统。负载均衡系统是水平扩展的关键技术，它可以使用多台机器来共同分担一部分流量请求。
 
-前端页面要不断地向后端来请求，开没开始，开没开始……
-每次询问的时候，后端都会给前端一个时间，以校准前端的时间。
-一旦后端服务器表示OK可以开始，后端服务会返回一个URL。
-这个URL会被安置在那个按钮上，就可以点击了。
-点击后，如果抢到了库存，就进入支付页面，如果没有则返回秒杀已结束。
+异步调用。异步系统主要通过消息队列来对请求做排队处理，这样可以把前端的请求的峰值给“削平”了，而后端通过自己能够处理的速度来处理请求。这样可以增加系统的吞吐量，但是实时性就差很多了。同时，还会引入消息丢失的问题，所以要对消息做持久化，这会造成“有状态”的结点，从而增加了 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/657214964.html" title="24 | 分布式系统关键技术：全栈监控">24 | 分布式系统关键技术：全栈监控</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">24 | 分布式系统关键技术：全栈监控你好，我是陈皓，网名左耳朵耗子。
+首先，我们需要全栈系统监控，它就像是我们的眼睛，没有它，我们就不知道系统到底发生了什么，我们将无法管理或是运维整个分布式系统。所以，这个系统是非常非常关键的。
+而在分布式或Cloud Native的情况下，系统分成多层，服务各种关联，需要监控的东西特别多。没有一个好的监控系统，我们将无法进行自动化运维和资源调度。
+这个监控系统需要完成的功能为：
 
-这个不断轮询的过程，就好像大家等着抢。你想想，有100万人来不停地询问有没有开始了这个事，估计后端也扛不住。
-秒杀的技术挑战接下来，我们需要来看一下“秒杀”的技术挑战。
-面 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2917424240.html" title="62 | 性能设计：边缘计算">62 | 性能设计：边缘计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">62 | 性能设计：边缘计算你好，我是陈皓，网名左耳朵耗子。
-前面我们通过一个秒杀的示例，展示了如何在CDN结点上简单地部署小服务，然后就可以完成在数据中心很难完成的事，我想你应该能看到边缘结点的一些威力。今天，我会和你聊聊我所认识的边缘计算，这也是我创业的方向。
-首先，一说起边缘计算，网上大多数文章都会说这是和IoT相关的一个技术。其实，我觉得这个说法只说对了边缘计算的一部分，边缘计算可以做的事情还有很多很多。
-所谓边缘计算，它是相对于数据中心而言。数据中心喜欢把所有的服务放在一个机房里集中处理用户的数据和请求，集中式部署一方面便于管理和运维，另一方面也便于服务间的通讯有一个比较好的网络保障。的确没错。不过，我们依然需要像CDN这样的边缘式的内容发布网络，把我们的静态内容推到离用户最近的地方，然后获得更好的性能。
-如果我们让CDN的这些边缘结点拥有可定制的计算能力，那么就可以像秒杀那样，可以在边缘结点上处理很多事情，从而为我们的数据中心带来更好的性能，更好的扩展性，还有更好的稳定性。而我们的用户也会觉得响应飞快，从而有了更好的用户体验。
-下面，让我们来看看为什么边缘计算会变成一个必然的产物。这里，我有两个例子。
-为什么要有边缘计算从趋势上来说首先，我们得看一下整个时代是怎么发展的。我们处在信息化革命时代，也有人叫数字化革命，总之就是电脑时代。这个时代，把各式各样的信息都给数字化掉 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1536482978.html" title="63 | 区块链技术的本质">63 | 区块链技术的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">63 | 区块链技术的本质你好，我是陈皓，网名左耳朵耗子。
-去年专栏一开始更新的时候，就有读者留言让我发表一下对区块链技术的看法。当时我觉得区块链相关的技术相对比较简单，没什么好说的。并且，“左耳听风”专栏的主要目标是帮助大家学习更为主流的关键技术，所以那会我就把区块链相关的技术文章降级处理了。
-那为什么现在我又要写这个主题呢？
-2010年，我在浏览国外技术网站时，看到好多人在讨论一个叫bitcoin的东西，还看到有人说用几万个这个东西换了个披萨。随后，我看了一下它的 白皮书，这篇不到10页的文档读起来还是很容易的，所以建议你读一读。
-然后，我在一台电脑上尝试安装了一下，就像用BT或电驴下载一样，连入了这个没有服务器的P2P网络，下载了账本，还尝试了一下“挖矿”。
-花了不少的时间，我收到了来自系统奖励的50个比特币。当时，我默默地看着这个又耗硬盘空间，又非常吃CPU的家伙，心里想，这什么破软件，太难用了，就删除了。（是的，这50个比特币也就不知道去哪了。）
-记得比特币开始有价值的时候，像维基解密这样的机构为了避开被政府控制的银行，会接受比特币的捐款。2012年的时候，比特币已经看涨了，到了2013年，比特币的市值已经比较高了，突破了1000美金。
-那个时候，中国有好多人在挖矿。记得最厉害的是李笑来，他持有的比特币数量很可观，如果没有卖的话，现在就更为“恐怖”了。
-在2016年的时候 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/30/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/32/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+全栈监控；
+关联分析；
+跨系统调用的串联；
+实时报警和自动处置；
+系统性能分析。
+
+多层体系的监控所谓全栈监控，其实就是三层监控。
+
+基础层：监控主机和底层资源。比如：CPU、内存、网络吞吐、硬盘I&#x2F;O、硬盘使用等。
+
+中间层：就是中间件层的监控。比如：Nginx、Redis、ActiveMQ、Kafka、MySQL、Tomcat等。
+
+应用层：监控应用层的使用。比如：HTTP访问的吞吐量、响应时间、返回码、调用链路分析、性能瓶颈，还包括用户端的监控。
+
+
+
+这还需要一些监控的标准化。
+
+日志数据结构化；
+监控数据格式标准化；
+统一的监控平台；
+统一的日志分析。
+
+什么才是好的监控系统这里还要多说一句，现在我们的很多监控系统都做得很不好，它们主要有两个很大的问题。
+
+监控数据是隔离开来的。因为公司分工的问题，开发、应用运维、系统运维，各管各的，所以很多公司的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1312551759.html" title="27 | 洞悉PaaS平台的本质">27 | 洞悉PaaS平台的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">27 | 洞悉PaaS平台的本质你好，我是陈皓，网名左耳朵耗子。
+在了解了前面几篇文章中提的这些问题以后，我们需要思考一下该怎样解决这些问题。为了解决这些问题，请先允许我来谈谈软件工程的本质。
+我认为，一家商业公司的软件工程能力主要体现在三个地方。
+第一，提高服务的SLA。
+所谓服务的SLA，也就是我们能提供多少个9的系统可用性，而每提高一个9的可用性都是对整个系统架构的重新洗礼。在我看来，提高系统的SLA主要表现在两个方面：
+
+高可用的系统；
+自动化的运维。
+
+你可以看一下我在CoolShell上写的《 关于高可用系统》这篇文章，它主要讲了构建高可用的系统需要使用的分布式系统设计思路。然而这还不够，我们还需要一个高度自动化的运维和管理系统，因为故障是常态，如果没有自动化的故障恢复，就很难提高服务的SLA。
+第二，能力和资源重用或复用。
+软件工程还有一个重要的能力就是让能力和资源可以重用。其主要表现在如下两个方面：
+
+软件模块的重用；
+软件运行环境和资源的重用。
+
+为此，需要我们有两个重要的能力：一个是“软件抽象的能力”，另一个是“软件标准化的能力”。你可以认为软件抽象就是找出通用的软件模块或服务，软件标准化就是使用统一的软件通讯协议、统一的开发和运维管理方法……这样能让整体软件开发运维的能力和资源得到最大程度的复用，从而增加效率。
+第三，过程的自动化。
+编程本来就是把一个重复工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/731268789.html" title="25 | 分布式系统关键技术：服务调度">25 | 分布式系统关键技术：服务调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">25 | 分布式系统关键技术：服务调度你好，我是陈皓，网名左耳朵耗子。
+服务治理，你应该听得很多了。但是我想说，你所听到的服务治理可能混合了流量调度等其它内容。我们这里会把服务治理和流量调度分开来讲。所以，今天这节课只涉及服务治理上的一些关键技术，主要有以下几点。
+
+服务关键程度
+服务依赖关系
+服务发现
+整个架构的版本管理
+服务应用生命周期全管理
+
+服务关键程度和服务的依赖关系下面，我们先看看服务关键程度和服务的依赖关系。关于服务关键程度，主要是要我们梳理和定义服务的重要程度。这不是使用技术可以完成的，它需要细致地管理对业务的理解，才能定义出架构中各个服务的重要程度。
+然后，我们还要梳理出服务间的依赖关系，这点也非常重要。我们常说，“没有依赖，就没有伤害”。这句话的意思就是说，服务间的依赖是一件很易碎的事。依赖越多，依赖越复杂，我们的系统就越易碎。
+因为依赖关系就像“铁锁连环”一样，一个服务的问题很容易出现一条链上的问题。因此，传统的SOA希望通过ESB来解决服务间的依赖关系，这也是为什么微服务中希望服务间是没有依赖的，而让上层或是前端业务来整合这些后台服务。
+但是要真正做到服务无依赖，我认为还是比较有困难的，总是会有一些公有服务会被依赖。我们只能是降低服务依赖的深度和广度，从而让管理更为简单和简洁。在这一点上，以Spring Boot为首的微服务开发框架就开了一个好头。
+微服务是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3655932601.html" title="28 | 推荐阅读：分布式系统架构经典资料">28 | 推荐阅读：分布式系统架构经典资料</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">28 | 推荐阅读：分布式系统架构经典资料你好，我是陈皓，网名左耳朵耗子。
+前段时间，我写了一系列分布式系统架构方面的文章，有很多读者纷纷留言讨论相关的话题，还有读者留言表示对分布式系统架构这个主题感兴趣，希望我能推荐一些学习资料。
+就像我在前面的课程中多次提到的，分布式系统的技术栈巨大无比，所以我要推荐的学习资料也比较多，后面在课程中我会结合主题逐步推荐给你。在今天这一讲中，我将推荐一些分布式系统的基础理论和一些不错的图书和资料。
+这一讲比较长，所以我特意整理了目录，帮你快速找到自己感兴趣的内容。
+基础理论
+CAP 定理
+Fallacies of Distributed Computing
+
+经典资料
+Distributed systems theory for the distributed systems engineer
+FLP Impossibility Result
+An introduction to distributed systems
+Distributed Systems for fun and profit
+Distributed Systems: Principles and Paradigms
+Scalable Web Architecture and Distributed Systems
+Principles of Distributed Syste ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3284817586.html" title="26 | 分布式系统关键技术：流量与数据调度">26 | 分布式系统关键技术：流量与数据调度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">26 | 分布式系统关键技术：流量与数据调度你好，我是陈皓，网名左耳朵耗子。
+关于流量调度，现在很多架构师都把这个事和服务治理混为一谈了。我觉得还是应该分开的。一方面，服务治理是内部系统的事，而流量调度可以是内部的，更是外部接入层的事。另一方面，服务治理是数据中心的事，而流量调度要做得好，应该是数据中心之外的事，也就是我们常说的边缘计算，是应该在类似于CDN上完成的事。
+所以，流量调度和服务治理是在不同层面上的，不应该混在一起，所以在系统架构上应该把它们分开。
+流量调度的主要功能对于一个流量调度系统来说，其应该具有的主要功能是：
+
+依据系统运行的情况，自动地进行流量调度，在无需人工干预的情况下，提升整个系统的稳定性；
+
+让系统应对爆品等突发事件时，在弹性计算扩缩容的较长时间窗口内或底层资源消耗殆尽的情况下，保护系统平稳运行。
+
+
+这还是为了提高系统架构的稳定性和高可用性。
+此外，这个流量调度系统还可以完成以下几方面的事情。
+
+服务流控。服务发现、服务路由、服务降级、服务熔断、服务保护等。
+流量控制。负载均衡、流量分配、流量控制、异地灾备（多活）等。
+流量管理。协议转换、请求校验、数据缓存、数据计算等。
+
+所有的这些都应该是一个API Gateway应该做的事。
+流量调度的关键技术但是，作为一个API Gateway来说，因为要调度流量，首先需要扛住流量，而且还需要有一些比较轻量的业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/944131152.html" title="31 | 编程范式：泛型编程">31 | 编程范式：泛型编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。
+在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。
+C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stroustrup 创建的C++语言横空出世，它既可以全面兼容C语言，又巧妙揉合了一些面向对象的编程理念。现在来看，不得不佩服Stroustrup的魄力。在这里，我也向你推荐一本书，书名是《C++语言的设计和演化》。
+这本书系统介绍了C++诞生的背景以及初衷，书的作者就是 Stroustrup 本人，所以你可以非常详细地从语言创建者的角度了解他的设计思路和创新之旅。当然，就是在今天，C++这门语言也还有很多争议，这里我不细说。如果你感兴趣的话，可以看看我几年前在酷壳上发表的文章《 C++的坑真的多吗？》。
+从语言角度来说，实际上早期C++的许多工作是对C的强化和净化，并把完全兼容C作为强制性要求（这也是C++复杂晦涩的原因，这点Java就干得比C++彻底得多）。在C89、C99这两个C语言的标准中，有许多改进都是从C++中引进的。
+可见，C++对C语言的贡献非常之大。是的，因为C++很大程度就是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1173367560.html" title="29 | 推荐阅读：分布式数据调度相关论文">29 | 推荐阅读：分布式数据调度相关论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">29 | 推荐阅读：分布式数据调度相关论文你好，我是陈皓，网名左耳朵耗子。
+我们在之前的系列文章《分布式系统架构的本质》中说过，分布式系统的一个关键技术是“数据调度”。因为我们需要扩充节点，提高系统的高可用性，所以必须冗余数据结点。
+建立数据结点的副本看上去容易，但其中最大的难点就是分布式一致性的问题。下面，我会带你看看数据调度世界中的一些技术点以及相关的技术论文。
+对于分布式的一致性问题，相信你在前面看过好几次下面这张图。从中，我们可以看出，Paxos算法的重要程度。还有人说，分布式下真正的一致性算法只有Paxos。
+
+Paxos算法Paxos算法，是莱斯利·兰伯特（Lesile Lamport）于1990年提出来的一种基于消息传递且具有高度容错特性的一致性算法。但是这个算法太过于晦涩，所以，一直以来都属于理论上的论文性质的东西。
+其进入工程圈的源头在于Google的Chubby lock——一个分布式的锁服务，用在了Bigtable中。直到Google发布了下面的这两篇论文，Paxos才进入到工程界的视野中来。
+
+Bigtable: A Distributed Storage System for Structured Data
+
+The Chubby lock service for loosely-coupled distributed systems
+
+
+Google与B ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/30/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/#content-inner">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/#content-inner">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/32/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

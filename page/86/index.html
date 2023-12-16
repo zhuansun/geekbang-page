@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-15 14:43:43'
+  postUpdate: '2023-12-16 02:20:01'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -148,24 +148,27 @@
 技术人员说：我们的可用性太差，现在才3个9，业界都是4个9！
 项目经理想：什么是3个9，三九感冒灵？4个9和3个9不就是差个9嘛，和可用有什么关系……
 技术人员说：我们系统设计不合理，A业务和B业务耦合！
-运营人员想：咦，耦合，莲藕还是藕 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/710197625.html" title="47 | 架构重构内功心法第三式：运筹帷幄">47 | 架构重构内功心法第三式：运筹帷幄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">47 | 架构重构内功心法第三式：运筹帷幄在前面的架构重构内功心法“ 有的放矢”和“ 合纵连横”中，我提到架构师需要从一大堆问题中识别关键的复杂度问题，然后有的放矢地通过架构重构来解决。但是通常情况下，需要架构重构的系统，基本上都是因为各种历史原因和历史问题没有及时处理，遗留下来逐渐积累，然后到了一个临界点，各种问题开始互相作用，集中爆发！到了真正要开始重构的时候，架构师识别出系统关键的复杂度问题后，如果只针对这个复杂度问题进行架构重构，可能会发现还是无法落地，因为很多条件不具备或者有的问题没解决的情况下就是不能做架构重构。因此，架构师在识别系统关键的复杂度问题后，还需要识别为了解决这个问题，需要做哪些准备事项，或者还要先解决哪些问题。这就需要我今天要和你分享的架构重构内功心法第三式：运筹帷幄。
+运营人员想：咦，耦合，莲藕还是藕 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/607235893.html" title="44 | 互联网架构模板：“平台”技术">44 | 互联网架构模板：“平台”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">44 | 互联网架构模板：“平台”技术当业务规模比较小、系统复杂度不高时，运维、测试、数据分析、管理等支撑功能主要由各系统或者团队独立完成。随着业务规模越来越大，系统复杂度越来越高，子系统数量越来越多，如果继续采取各自为政的方式来实现这些支撑功能，会发现重复工作非常多。因此我们自然而然就会想到将这些支撑功能做成平台，避免重复造轮子，减少不规范带来的沟通和协作成本。
+今天，我就来聊聊互联网架构模板的“平台”技术。由于每个平台本身都是一个庞大的体系，专栏只是介绍一下平台的核心职责和关键设计点，具体细节就不详细展开了。
+运维平台运维平台核心的职责分为四大块：配置、部署、监控、应急，每个职责对应系统生命周期的一个阶段，如下图所示：
+
+
+配置：主要负责资源的管理。例如，机器管理、IP地址管理、虚拟机管理等。
+
+部署：主要负责将系统发布到线上。例如，包管理、灰度发布管理、回滚等。
+
+监控：主要负责收集系统上线运行后的相关数据并进行监控，以便及时发现问题。
+
+应急：主要负责系统出故障后的处理。例如，停止程序、下线故障机器、切换IP等。
+
+
+运维平台的核心设计要素是“四化”：标准化、平台化、自动化、可视化。
+1.标准化
+需要制定运维标准，规范配置管理、部署流程、监控指标、应急能力等，各系统按照运维标准来实现，避免不同的系统不同的处理方式。标准化是运维平台的基础， 没有标准化就没有运维平台。
+如果某 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/710197625.html" title="47 | 架构重构内功心法第三式：运筹帷幄">47 | 架构重构内功心法第三式：运筹帷幄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">47 | 架构重构内功心法第三式：运筹帷幄在前面的架构重构内功心法“ 有的放矢”和“ 合纵连横”中，我提到架构师需要从一大堆问题中识别关键的复杂度问题，然后有的放矢地通过架构重构来解决。但是通常情况下，需要架构重构的系统，基本上都是因为各种历史原因和历史问题没有及时处理，遗留下来逐渐积累，然后到了一个临界点，各种问题开始互相作用，集中爆发！到了真正要开始重构的时候，架构师识别出系统关键的复杂度问题后，如果只针对这个复杂度问题进行架构重构，可能会发现还是无法落地，因为很多条件不具备或者有的问题没解决的情况下就是不能做架构重构。因此，架构师在识别系统关键的复杂度问题后，还需要识别为了解决这个问题，需要做哪些准备事项，或者还要先解决哪些问题。这就需要我今天要和你分享的架构重构内功心法第三式：运筹帷幄。
 经过分析和思考，我们可能从最初的100个问题列表，挑选出其中50个是需要在架构重构中解决的，其中一些是基础能力建设或者准备工作，而另外一些就是架构重构的核心工作。有了这样一个表格后，那我们应该怎么去把这50个问题最终解决呢？
 最简单的做法是每次从中挑一个解决，最终总会把所有的问题都解决。这种做法操作起来比较简单，但效果会很差，为什么呢？
-第一个原因是 没有区分问题的优先级，所有问题都一视同仁，没有集中有限资源去解决最重要或者最关键的问题，导致最后做了大半年，回头一看好像做了很多事情，但没取 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2705098548.html" title="45 | 架构重构内功心法第一式：有的放矢">45 | 架构重构内功心法第一式：有的放矢</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">45 | 架构重构内功心法第一式：有的放矢在 专栏第8期“架构设计三原则”中的演化原则部分，我提到了系统的架构是不断演化的，少部分架构演化可能需要推倒重来进行重写，但绝大部分的架构演化都是通过架构重构来实现的。相比全新的架构设计来说，架构重构对架构师的要求更高，主要体现在：
-
-业务已经上线，不能停下来
-
-架构重构时，业务已经上线运行了，重构既需要尽量保证业务继续往前发展，又要完成架构调整，这就好比“给飞行中的波音747换引擎”；而如果是新设计架构，业务还没有上线，则即使做砸了对业务也不会有太大影响。
-
-关联方众多，牵一发动全身
-
-架构重构涉及的业务关联方很多，不同关联方的资源投入程度、业务发展速度、对架构痛点的敏感度等有很大差异，如何尽量减少对关联方的影响，或者协调关联方统一行动，是一项很大的挑战；而如果是新设计架构，则在新架构上线前，对关联方没有影响。
-
-旧架构的约束
-
-架构重构需要在旧的架构基础上进行，这是一个很强的约束，会限制架构师的技术选择范围；而如果是新设计架构，则架构师的技术选择余地大得多。
-即使是我们决定推倒到重来，完全抛弃旧的架构而去设计新的架构，新架构也会受到旧架构的约束和影响，因为业务在旧架构上产生的数据是不能推倒重来的，新架构必须考虑如何将旧架构产生的数据转换过来。
-因此，架构重构对架构师的综合能力要求非常高，业务上要求架构师能够说服产品经理暂缓甚至暂停业务来 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1111353378.html" title="49 | 谈谈App架构的演进">49 | 谈谈App架构的演进</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">49 | 谈谈App架构的演进专栏截止到上一期，架构设计相关的理念、技术、实践已经基本讲完，相信你一路学习过来会有一种感觉，这些内容主要都是讲后端系统的架构设计，例如存储高可用、微服务、异地多活等，都是后端系统才会涉及。事实上确实也是如此，通常情况下我们讲架构设计，主要聚焦在后端系统，但这并不意味着App、前端就没有架构设计了，专栏所讲述的整套架构设计理念，虽然是来源于我的后端设计经验，但一旦形成完善的技术理论后，同样适应于App和前端。
+第一个原因是 没有区分问题的优先级，所有问题都一视同仁，没有集中有限资源去解决最重要或者最关键的问题，导致最后做了大半年，回头一看好像做了很多事情，但没取 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1111353378.html" title="49 | 谈谈App架构的演进">49 | 谈谈App架构的演进</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">49 | 谈谈App架构的演进专栏截止到上一期，架构设计相关的理念、技术、实践已经基本讲完，相信你一路学习过来会有一种感觉，这些内容主要都是讲后端系统的架构设计，例如存储高可用、微服务、异地多活等，都是后端系统才会涉及。事实上确实也是如此，通常情况下我们讲架构设计，主要聚焦在后端系统，但这并不意味着App、前端就没有架构设计了，专栏所讲述的整套架构设计理念，虽然是来源于我的后端设计经验，但一旦形成完善的技术理论后，同样适应于App和前端。
 首先，先来复习一下我的专栏所讲述的架构设计理念，可以提炼为下面几个关键点：
 
 架构是系统的顶层结构。
@@ -222,14 +225,17 @@ ChatGPT 因何爆火？ChatGPT为什么会如此火热和流行呢？体验过�
 偶尔有几篇说中台有问题的文章，例如《 中台翻车纪实：一年叫停，员工转岗被裁，资源全浪费》《 中台，我信了你的邪 | 深氪》，也很快会有人跳出来说“你们能力不行，所以中台没做好”、“中台是一个业务、组织、技术的协同，你们肯定是组织没保证”……
 总而言之，现在到处都能看到做中台的人说中台如何如何好，偶尔有几个跳出来说不好的都会被质疑能力不行！
 按照我的技术理念来看，没有完美的技术，没有放之四海皆好的技术，如果你只能看到一项技术的好处，而看不到坑，那实际上很可能就会掉到坑里去。
-我虽然没有真正负责做过中台，但我做过平台和中间件，更为特别的是，我参与了两个基于中台的业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/955961526.html" title="开篇词 | 照着做，你也能成为架构师！">开篇词 | 照着做，你也能成为架构师！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">开篇词 | 照着做，你也能成为架构师！每个程序员心中都有一个成为架构师的梦想，梦想是美好的，但道路是曲折的。
-我大概在2006年开始参与架构设计，原本以为学习架构设计就像学习一门编程语言一样，先学习一下基本的语法，再研究一下细节和原理，然后实践一下就能够快速掌握。但真正实践后才发现，架构设计的难度和复杂度要高很多。从最早开始接触架构设计，到自我感觉初步完整掌握架构设计，至少花费了6年时间。等到自我感觉彻底掌握架构设计的精髓，至少花费了8年的时间（当然，这个过程中我不是一直在做架构设计）。
-我曾经以为是自己天资愚笨才会这样， 后来我带了团队，看到几乎每个程序员在尝试架构设计的时候，都面临着我曾经遇到过的各种困惑和瓶颈。特别是我作为职业等级晋升评委的时候， 发现很多同学技术能力很强，业务也很不错，但却卡在了架构设计这部分。我意识到这应该不是个人天资的问题，而是架构设计本身的一些特性导致的。
-我总结几个架构设计相关的特性：
-1.架构设计的思维和程序设计的思维差异很大。
-架构设计的关键思维是判断和取舍，程序设计的关键思维是逻辑和实现。很多程序员在转换为架构师后，很难一开始就意识到这个差异，还是按照写代码的方式去思考架构，会导致很多困惑。
-2.架构设计没有体系化的培训和训练机制。
-大学的课程几乎没有架构设计相关的课程，架构设计的书籍更多的也只是关注某个架构设计点，没有体系化的架构设计书籍，导 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/85/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/85/#content-inner">85</a><span class="page-number current">86</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/87/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+我虽然没有真正负责做过中台，但我做过平台和中间件，更为特别的是，我参与了两个基于中台的业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1567189393.html" title="如何高效地学习开源项目 | “华仔，放学别走！” 第3期">如何高效地学习开源项目 | “华仔，放学别走！” 第3期</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">如何高效地学习开源项目 | “华仔，放学别走！” 第3期你好，我是华仔。今天这期“特别放送”，我想和你聊聊如何高效地学习开源项目，一方面澄清开源项目学习过程中的几个误区，另一方面谈谈我自己具体实践时的一套方法论。
+得益于开源运动的蓬勃发展，众多技术顶尖的公司、团队或者个人通过开源的方式向技术社区贡献了许多优秀的开源项目，一方面大大促进了整体技术的发展，另一方面大大减轻了中小公司和团队在技术方面的投入压力，让团队能够更加聚焦于业务。
+开源项目对团队和业务有很大好处，但对于技术人员来说，如果只是简单的采取“拿来主义”，那就变成一个陷阱：看似很快的用开源项目实现了需求，但自己的技术水平并没有什么提升；甚至可能出现看起来用了很多开源项目，知道很多项目名称，但技术水平止步不前的窘境。
+因此，对于开源项目，不能简单的采取“拿来主义”，而要比较深入的去学习开源项目，做到“知其然，知其所以然”，一方面是为了更好地应用这些开源项目，另一方面也是为了通过学习优秀的开源项目来提升自己的能力。
+很多技术同学确实也想深入学习一些业界成熟和优秀的开源项目，例如Nginx、Redis、Netty等，但是在具体实践的时候，常常因为一些不正确的观点而误入歧途，例如：
+
+只有开发这些开源项目的人才能真正理解，我没法参与这个项目开发，因此我很难深入理解。
+
+我的项目没有用Redis，不用的话很难深入理解。
+
+数据结构和 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/85/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/85/#content-inner">85</a><span class="page-number current">86</span><a class="page-number" href="/page/87/#content-inner">87</a><a class="extend next" rel="next" href="/page/87/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
