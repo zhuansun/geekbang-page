@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>95 | 项目实战二：设计实现一个通用的接口幂等框架（实现） | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）上一节课，我们讲解了幂等框架的设计思路。在正常情况下，幂等框架的处理流程是比较简单的。调用方生成幂等号，传递给实现方，实现方记录幂等号或者用幂等号判重。但是，幂等框架要处理的异常情况很多，这也是设计的复杂之处和难点之处。比如，代码运行异常、业务系统宕机、幂等框架异常。 虽然幂等框架要处理的异常很多，但考虑到开发成本以及简单易用性，我们对某">
+<meta property="og:type" content="article">
+<meta property="og:title" content="95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1070593821.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）上一节课，我们讲解了幂等框架的设计思路。在正常情况下，幂等框架的处理流程是比较简单的。调用方生成幂等号，传递给实现方，实现方记录幂等号或者用幂等号判重。但是，幂等框架要处理的异常情况很多，这也是设计的复杂之处和难点之处。比如，代码运行异常、业务系统宕机、幂等框架异常。 虽然幂等框架要处理的异常很多，但考虑到开发成本以及简单易用性，我们对某">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.396Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1070593821"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="95-项目实战二：设计实现一个通用的接口幂等框架（实现）"><a href="#95-项目实战二：设计实现一个通用的接口幂等框架（实现）" class="headerlink" title="95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）"></a>95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）</h1><p>上一节课，我们讲解了幂等框架的设计思路。在正常情况下，幂等框架的处理流程是比较简单的。调用方生成幂等号，传递给实现方，实现方记录幂等号或者用幂等号判重。但是，幂等框架要处理的异常情况很多，这也是设计的复杂之处和难点之处。比如，代码运行异常、业务系统宕机、幂等框架异常。</p>
+<p>虽然幂等框架要处理的异常很多，但考虑到开发成本以及简单易用性，我们对某些异常的处理在工程上做了妥协，交由业务系统或者人工介入处理。这样就大大简化了幂等框架开发的复杂度和难度。</p>
+<p>今天，我们针对幂等框架的设计思路，讲解如何编码实现。跟限流框架的讲解相同，对于幂等框架，我们也会还原它的整个开发过程，从V1版本需求、最小原型代码讲起，然后讲解如何review代码发现问题、重构代码解决问题，最终得到一份易读、易扩展、易维护、灵活、可测试的高质量代码实现。</p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="V1版本功能需求"><a href="#V1版本功能需求" class="headerlink" title="V1版本功能需求"></a>V1版本功能需求</h2><p>上一节课给出的设计思路比较零散，重点还是在讲设计的缘由，为什么要这么设计。今天，我们再重新整理一下，经过上一节课的分析梳理最终得到的设计思路。虽然上一节课的分析很复杂、很烧脑，但思从深而行从简，最终得到的幂等框架的设计思路是很简单的，主要包含下面这样两个主要的功能开发点：</p>
+<ul>
+<li>实现生成幂等号的功能；</li>
+<li>实现存储、查询、删除幂等号的功能。</li>
+</ul>
+<p>因为功能非常简单，所以，我们就不再进一步裁剪了。在V1版本中，我们会实现上面罗列的所有功能。针对这两个功能点，我们先来说下实现思路。</p>
+<p><strong>我们先来看，如何生成幂等号。</strong></p>
+<p>幂等号用来标识两个接口请求是否是同一个业务请求，换句话说，两个接口请求是否是重试关系，而非独立的两个请求。接口调用方需要在发送接口请求的同时，将幂等号一块传递给接口实现方。那如何来生成幂等号呢？一般有两种生成方式。一种方式是集中生成并且分派给调用方，另一种方式是直接由调用方生成。</p>
+<p>对于第一种生成方式，我们需要部署一套幂等号的生成系统，并且提供相应的远程接口（Restful或者RPC接口），调用方通过调用远程接口来获取幂等号。这样做的好处是，对调用方完全隐藏了幂等号的实现细节。当我们需要改动幂等号的生成算法时，调用方不需要改动任何代码。</p>
+<p>对于第二种生成方式，调用方按照跟接口实现方预先商量好的算法，自己来生成幂等号。这种实现方式的好处在于，不用像第一种方式那样调用远程接口，所以执行效率更高。但是，一旦需要修改幂等号的生成算法，就需要修改每个调用方的代码。</p>
+<p>并且，每个调用方自己实现幂等号的生成算法也会有问题。一方面，重复开发，违反DRY原则。另一方面，工程师的开发水平层次不齐，代码难免会有bug。除此之外，对于复杂的幂等号生成算法，比如依赖外部系统Redis等，显然更加适合上一种实现方式，可以避免调用方为了使用幂等号引入新的外部系统。</p>
+<p>权衡来讲，既考虑到生成幂等号的效率，又考虑到代码维护的成本，我们选择第二种实现方式，并且在此基础上做些改进，由幂等框架来统一提供幂等号生成算法的代码实现，并封装成开发类库，提供给各个调用方复用。除此之外，我们希望生成幂等号的算法尽可能的简单，不依赖其他外部系统。</p>
+<p>实际上，对于幂等号的唯一要求就是全局唯一。全局唯一ID的生成算法有很多。比如，简单点的有取UUID，复杂点的可以把应用名拼接在UUID上，方便做问题排查。总体上来讲，幂等号的生成算法并不难。</p>
+<p><strong>我们再来看，如何实现幂等号的存储、查询和删除。</strong></p>
+<p>从现在的需求来看，幂等号只是为了判重。在数据库中，我们只需要存储一个幂等号就可以，不需要太复杂的存储结构，所以，我们不选择使用复杂的关系型数据库，而是选择使用更加简单的、读写更加快速的键值数据库，比如Redis。</p>
+<p>在幂等判重逻辑中，我们需要先检查幂等号是否存在。如果没有存在，再将幂等号存储进Redis。多个线程（同一个业务实例的多个线程）或者多进程（多个业务实例）同时执行刚刚的“检查-设置”逻辑时，就会存在竞争关系（竞态，race condition）。比如，A线程检查幂等号不存在，在A线程将幂等号存储进Redis之前，B线程也检查幂等号不存在，这样就会导致业务被重复执行。为了避免这种情况发生，我们要给“检查-设置”操作加锁，让同一时间只有一个线程能执行。除此之外，为了避免多进程之间的竞争，普通的线程锁还不起作用，我们需要分布式锁。</p>
+<p>引入分布式锁会增加开发的难度和复杂度，而Redis本身就提供了把“检查-设置”操作作为原子操作执行的命令：setnx(key, value)。它先检查key是否存在，如果存在，则返回结果0；如果不存在，则将key值存下来，并将值设置为value，返回结果1。因为Redis本身是单线程执行命令的，所以不存在刚刚讲到的并发问题。</p>
+<h2 id="最小原型代码实现"><a href="#最小原型代码实现" class="headerlink" title="最小原型代码实现"></a>最小原型代码实现</h2><p>V1版本要实现的功能和实现思路，现在已经很明确了。现在，我们来看下具体的代码实现。还是跟限流框架同样的实现方法，我们先不考虑设计和代码质量，怎么简单怎么来，先写出MVP代码，然后基于这个最简陋的版本做优化重构。</p>
+<p>V1版本的功能非常简单，我们用一个类就能搞定，代码如下所示。只用了不到30行代码，就搞定了一个框架，是不是觉得有点不可思议。对于这段代码，你可以先思考下，有哪些值得优化的地方。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Idempotence &#123;
+  private JedisCluster jedisCluster;
+
+  public Idempotence(String redisClusterAddress, GenericObjectPoolConfig config) &#123;
+    String[] addressArray&#x3D; redisClusterAddress.split(&quot;;&quot;);
+    Set&lt;HostAndPort&gt; redisNodes &#x3D; new HashSet&lt;&gt;();
+    for (String address : addressArray) &#123;
+      String[] hostAndPort &#x3D; address.split(&quot;:&quot;);
+      redisNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+    &#125;
+    this.jedisCluster &#x3D; new JedisCluster(redisNodes, config);
+  &#125;
+
+  public String genId() &#123;
+    return UUID.randomUUID().toString();
+  &#125;
+
+  public boolean saveIfAbsent(String idempotenceId) &#123;
+    Long success &#x3D; jedisCluster.setnx(idempotenceId, &quot;1&quot;);
+    return success &#x3D;&#x3D; 1;
+  &#125;
+
+  public void delete(String idempotenceId) &#123;
+    jedisCluster.del(idempotenceId);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Review最小原型代码"><a href="#Review最小原型代码" class="headerlink" title="Review最小原型代码"></a>Review最小原型代码</h2><p>尽管MVP代码很少，但仔细推敲，也有很多值得优化的地方。现在，我们就站在Code Reviewer的角度，分析一下这段代码。我把我的所有意见都放到代码注释中了，你可以对照着代码一块看下。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Idempotence &#123;
+  &#x2F;&#x2F; comment-1: 如果要替换存储方式，是不是很麻烦呢？
+  private JedisCluster jedisCluster;
+
+  &#x2F;&#x2F; comment-2: 如果幂等框架要跟业务系统复用jedisCluster连接呢？
+  &#x2F;&#x2F; comment-3: 是不是应该注释说明一下redisClusterAddress的格式，以及config是否可以传递进null呢？
+  public Idempotence(String redisClusterAddress, GenericObjectPoolConfig config) &#123;
+    &#x2F;&#x2F; comment-4: 这段逻辑放到构造函数里，不容易写单元测试呢
+    String[] addressArray&#x3D; redisClusterAddress.split(&quot;;&quot;);
+    Set&lt;HostAndPort&gt; redisNodes &#x3D; new HashSet&lt;&gt;();
+    for (String address : addressArray) &#123;
+      String[] hostAndPort &#x3D; address.split(&quot;:&quot;);
+      redisNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+    &#125;
+    this.jedisCluster &#x3D; new JedisCluster(redisNodes, config);
+  &#125;
+
+  &#x2F;&#x2F; comment-5: generateId()是不是比缩写要好点？
+  &#x2F;&#x2F; comment-6: 根据接口隔离原则，这个函数跟其他函数的使用场景完全不同，这个函数主要用在调用方，其他函数用在实现方，是不是应该分别放到两个类中？
+  public String genId() &#123;
+    return UUID.randomUUID().toString();
+  &#125;
+
+  &#x2F;&#x2F; comment-7: 返回值的意义是不是应该注释说明一下？
+  public boolean saveIfAbsent(String idempotenceId) &#123;
+    Long success &#x3D; jedisCluster.setnx(idempotenceId, &quot;1&quot;);
+    return success &#x3D;&#x3D; 1;
+  &#125;
+
+  public void delete(String idempotenceId) &#123;
+    jedisCluster.del(idempotenceId);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>总结一下，MVP代码主要涉及下面这样几个问题。</p>
+<ul>
+<li><strong>代码可读性问题</strong>：有些函数的参数和返回值的格式和意义不够明确，需要注释补充解释一下。genId()函数使用了缩写，全拼generateId()可能更好些！</li>
+<li><strong>代码可扩展性问题</strong>：按照现在的代码实现方式，如果改变幂等号的存储方式和生成算法，代码修改起来会比较麻烦。除此之外，基于接口隔离原则，我们应该将genId()函数跟其他函数分离开来，放到两个类中。独立变化，隔离修改，更容易扩展！</li>
+<li><strong>代码可测试性问题</strong>：解析Redis Cluster地址的代码逻辑较复杂，但因为放到了构造函数中，无法对它编写单元测试。</li>
+<li><strong>代码灵活性问题</strong>：业务系统有可能希望幂等框架复用已经建立好的jedisCluster，而不是单独给幂等框架创建一个jedisCluster。</li>
+</ul>
+<h2 id="重构最小原型代码"><a href="#重构最小原型代码" class="headerlink" title="重构最小原型代码"></a>重构最小原型代码</h2><p>实际上，问题找到了，修改起来就容易多了。针对刚刚罗列的几个问题，我们对MVP代码进行重构，重构之后的代码如下所示。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 代码目录结构
+com.xzg.cd.idempotence
+ --Idempotence
+ --IdempotenceIdGenerator(幂等号生成类)
+ --IdempotenceStorage(接口：用来读写幂等号)
+ --RedisClusterIdempotenceStorage(IdempotenceStorage的实现类)
+
+&#x2F;&#x2F; 每个类的代码实现
+public class Idempotence &#123;
+  private IdempotenceStorage storage;
+
+  public Idempotence(IdempotenceStorage storage) &#123;
+    this.storage &#x3D; storage;
+  &#125;
+
+  public boolean saveIfAbsent(String idempotenceId) &#123;
+    return storage.saveIfAbsent(idempotenceId);
+  &#125;
+
+  public void delete(String idempotenceId) &#123;
+    storage.delete(idempotenceId);
+  &#125;
+&#125;
+
+public class IdempotenceIdGenerator &#123;
+  public String generateId() &#123;
+    return UUID.randomUUID().toString();
+  &#125;
+&#125;
+
+public interface IdempotenceStorage &#123;
+  boolean saveIfAbsent(String idempotenceId);
+  void delete(String idempotenceId);
+&#125;
+
+public class RedisClusterIdempotenceStorage implements IdempotenceStorage &#123;
+  private JedisCluster jedisCluster;
+
+  &#x2F;**
+   * Constructor
+   * @param redisClusterAddress the format is 128.91.12.1:3455;128.91.12.2:3452;289.13.2.12:8978
+   * @param config should not be null
+   *&#x2F;
+  public RedisIdempotenceStorage(String redisClusterAddress, GenericObjectPoolConfig config) &#123;
+    Set&lt;HostAndPort&gt; redisNodes &#x3D; parseHostAndPorts(redisClusterAddress);
+    this.jedisCluster &#x3D; new JedisCluster(redisNodes, config);
+  &#125;
+
+  public RedisIdempotenceStorage(JedisCluster jedisCluster) &#123;
+    this.jedisCluster &#x3D; jedisCluster;
+  &#125;
+
+  &#x2F;**
+   * Save &#123;@idempotenceId&#125; into storage if it does not exist.
+   * @param idempotenceId the idempotence ID
+   * @return true if the &#123;@idempotenceId&#125; is saved, otherwise return false
+   *&#x2F;
+  public boolean saveIfAbsent(String idempotenceId) &#123;
+    Long success &#x3D; jedisCluster.setnx(idempotenceId, &quot;1&quot;);
+    return success &#x3D;&#x3D; 1;
+  &#125;
+
+  public void delete(String idempotenceId) &#123;
+    jedisCluster.del(idempotenceId);
+  &#125;
+
+  @VisibleForTesting
+  protected Set&lt;HostAndPort&gt; parseHostAndPorts(String redisClusterAddress) &#123;
+    String[] addressArray&#x3D; redisClusterAddress.split(&quot;;&quot;);
+    Set&lt;HostAndPort&gt; redisNodes &#x3D; new HashSet&lt;&gt;();
+    for (String address : addressArray) &#123;
+      String[] hostAndPort &#x3D; address.split(&quot;:&quot;);
+      redisNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+    &#125;
+    return redisNodes;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来，我再总结罗列一下，针对之前发现的问题，我们都做了哪些代码改动。主要有下面这样几点，你可以结合着代码一块看下。</p>
+<p><strong>在代码可读性方面，</strong> 我们对构造函数、saveIfAbsense()函数的参数和返回值做了注释，并且将genId()函数改为全拼generateId()。不过，对于这个函数来说，缩写实际上问题也不大。</p>
+<p><strong>在代码可扩展性方面，</strong> 我们按照基于接口而非实现的编程原则，将幂等号的读写独立出来，设计成IdempotenceStorage接口和RedisClusterIdempotenceStorage实现类。RedisClusterIdempotenceStorage实现了基于Redis Cluster的幂等号读写。如果我们需要替换新的幂等号读写方式，比如基于单个Redis而非Redis Cluster，我们就可以再定义一个实现了IdempotenceStorage接口的实现类：RedisIdempotenceStorage。</p>
+<p>除此之外，按照接口隔离原则，我们将生成幂等号的代码抽离出来，放到IdempotenceIdGenerator类中。这样，调用方只需要依赖这个类的代码就可以了。幂等号生成算法的修改，跟幂等号存储逻辑的修改，两者完全独立，一个修改不会影响另外一个。</p>
+<p><strong>在代码可测试性方面，</strong> 我们把原本放在构造函数中的逻辑抽离出来，放到了parseHostAndPorts()函数中。这个函数本应该是Private访问权限的，但为了方便编写单元测试，我们把它设置为成了Protected访问权限，并且通过注解@VisibleForTesting做了标明。</p>
+<p><strong>在代码灵活性方面，</strong> 为了方便复用业务系统已经建立好的jedisCluster，我们提供了一个新的构造函数，支持业务系统直接传递jedisCluster来创建Idempotence对象。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>我们前面花了两节课的时间，用很大的篇幅在讲需求和设计，特别是设计的缘由。而真正到了实现环节，我们只用了不到30行代码，就实现了幂等框架。这就很好体现了“思从深而行从简”的道理。对于不到30行代码，很多人觉得不大可能有啥优化空间了，但我们今天还是提出了7个优化建议，并且对代码结构做了比较大的调整。这说明，只要仔细推敲，再小的代码都有值得优化的地方。</p>
+<p>不过，之前有人建议我举一些大型项目中的例子，最好是上万行代码的那种，不要举这种几十行的小例子。大项目和小项目在编码这个层面，实际上没有太大区别。再宏大的工程、再庞大的项目，也是一行一行写出来的。那些上来就要看上万行代码，分析庞大项目的，大部分都还没有理解编码的精髓。编码本身就是一个很细节的事情，牛不牛也都隐藏在一行一行的代码中。空谈架构、设计、大道理，实际上没有太多意义，对你帮助不大。能沉下心来把细节都做好那才是真的牛！</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><ol>
+<li>针对MVP代码，我有两个问题留给你思考。其中一个问题是，delete()是应该返回void值还是boolean值？如果删除出错，应该如何处理？另一个问题是，需不需要给幂等号生成算法抽象出一个接口呢？为什么？</li>
+<li>在后续的版本规划中，你觉得幂等框架还可以继续扩展哪些功能？或者做哪些优化？如果让你规划第二个版本，你会做哪些东西？</li>
+</ol>
+<p>欢迎留言和我分享你的想法。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#95-%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E4%BA%8C%EF%BC%9A%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E6%A1%86%E6%9E%B6%EF%BC%88%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">95 | 项目实战二：设计实现一个通用的接口幂等框架（实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#V1%E7%89%88%E6%9C%AC%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text">V1版本功能需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%8E%9F%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">最小原型代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review%E6%9C%80%E5%B0%8F%E5%8E%9F%E5%9E%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">Review最小原型代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E6%9C%80%E5%B0%8F%E5%8E%9F%E5%9E%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">重构最小原型代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.5.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.6.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

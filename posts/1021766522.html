@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>12 | 领域建模：如何用事件风暴构建领域模型？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="12 | 领域建模：如何用事件风暴构建领域模型？你好，我是欧创新。 还记得我在 [第01讲] 中说过，微服务设计为什么要选择DDD吗？其中有一个非常重要的原因，就是采用DDD方法建立的领域模型，可以清晰地划分微服务的逻辑边界和物理边界。可以说，在DDD的实践中，好的领域模型直接关乎微服务的设计水平。因此，我认为DDD的战略设计是比战术设计更为重要的，也正是这个原因，我们的内容会更侧重于战略设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12 | 领域建模：如何用事件风暴构建领域模型？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1021766522.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="12 | 领域建模：如何用事件风暴构建领域模型？你好，我是欧创新。 还记得我在 [第01讲] 中说过，微服务设计为什么要选择DDD吗？其中有一个非常重要的原因，就是采用DDD方法建立的领域模型，可以清晰地划分微服务的逻辑边界和物理边界。可以说，在DDD的实践中，好的领域模型直接关乎微服务的设计水平。因此，我认为DDD的战略设计是比战术设计更为重要的，也正是这个原因，我们的内容会更侧重于战略设计。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T18:02:59.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:07.672Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1021766522"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '12 | 领域建模：如何用事件风暴构建领域模型？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">12 | 领域建模：如何用事件风暴构建领域模型？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="12-领域建模：如何用事件风暴构建领域模型？"><a href="#12-领域建模：如何用事件风暴构建领域模型？" class="headerlink" title="12 | 领域建模：如何用事件风暴构建领域模型？"></a>12 | 领域建模：如何用事件风暴构建领域模型？</h1><p>你好，我是欧创新。</p>
+<p>还记得我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/149943">[第01讲]</a> 中说过，微服务设计为什么要选择DDD吗？其中有一个非常重要的原因，就是采用DDD方法建立的领域模型，可以清晰地划分微服务的逻辑边界和物理边界。可以说，在DDD的实践中，好的领域模型直接关乎微服务的设计水平。因此，我认为DDD的战略设计是比战术设计更为重要的，也正是这个原因，我们的内容会更侧重于战略设计。</p>
+<p>那么我们该采用什么样的方法，才能从错综复杂的业务领域中分析并构建领域模型呢？</p>
+<p>它就是我在前面多次提到的事件风暴。事件风暴是一项团队活动，领域专家与项目团队通过头脑风暴的形式，罗列出领域中所有的领域事件，整合之后形成最终的领域事件集合，然后对每一个事件，标注出导致该事件的命令，再为每一个事件标注出命令发起方的角色。命令可以是用户发起，也可以是第三方系统调用或者定时器触发等，最后对事件进行分类，整理出实体、聚合、聚合根以及限界上下文。而事件风暴正是DDD战略设计中经常使用的一种方法，它可以快速分析和分解复杂的业务领域，完成领域建模。</p>
+<p>那到底怎么做事件风暴呢？事件风暴需要提前准备些什么？又如何用事件风暴来构建领域模型呢？今天我们就来重点解决这些问题，深入了解事件风暴的全过程。</p>
+<h2 id="事件风暴需要准备些什么？"><a href="#事件风暴需要准备些什么？" class="headerlink" title="事件风暴需要准备些什么？"></a>事件风暴需要准备些什么？</h2><h3 id="1-事件风暴的参与者"><a href="#1-事件风暴的参与者" class="headerlink" title="1. 事件风暴的参与者"></a>1. 事件风暴的参与者</h3><p>事件风暴采用工作坊的方式，将项目团队和领域专家聚集在一起，通过可视化、高互动的方式一步一步将领域模型设计出来。领域专家是事件风暴中必不可少的核心参与者。很多公司可能并没有这个角色，那我们该寻找什么样的人来担当领域专家呢？</p>
+<p>领域专家就是对业务或问题域有深刻见解的主题专家，他们非常了解业务和系统是怎么做的，同时也深刻理解为什么要这样设计。如果你的公司里并没有这个角色，那也没关系，你可以从业务人员、需求分析人员、产品经理或者在这个领域有多年经验的开发人员里，按照这个标准去选择合适的人选。</p>
+<p>除了领域专家，事件风暴的其他参与者可以是DDD专家、架构师、产品经理、项目经理、开发人员和测试人员等项目团队成员。</p>
+<p>领域建模是统一团队语言的过程，因此项目团队应尽早地参与到领域建模中，这样才能高效建立起团队的通用语言。到了微服务建设时，领域模型也更容易和系统架构保持一致。</p>
+<h3 id="2-事件风暴要准备的材料"><a href="#2-事件风暴要准备的材料" class="headerlink" title="2. 事件风暴要准备的材料"></a>2. 事件风暴要准备的材料</h3><p>事件风暴参与者会将自己的想法和意见写在即时贴上，并将贴纸贴在墙上的合适位置，我们戏称这个过程是“刷墙”。所以即时贴和水笔是必备材料，另外，你还可以准备一些胶带或者磁扣，以便贴纸随时能更换位置。</p>
+<p>值得提醒一下的是，在这个过程中，我们要用不同颜色的贴纸区分领域行为。如下图，我们可以用蓝色表示命令，用绿色表示实体，橙色表示领域事件，黄色表示补充信息等。补充信息主要用来说明注意事项，比如外部依赖等。颜色并不固定，这只是我的习惯，团队内统一才是重点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/3a80b8e7648440a49b809d945e6439f8.jpg"></p>
+<h3 id="3-事件风暴的场地"><a href="#3-事件风暴的场地" class="headerlink" title="3. 事件风暴的场地"></a>3. 事件风暴的场地</h3><p>什么样的场地适合做事件风暴呢？是不是需要跟组织会议一样，准备会议室、投影，还有椅子？这些都不需要！你只需要一堵足够长的墙和足够大的空间就可以了。墙是用来贴纸的，大空间可以让人四处走动，方便合作。撤掉会议桌和椅子的事件风暴，你会发现参与者们的效率更高。</p>
+<p>事件风暴的发明者曾经建议要准备八米长的墙，这样设计就不会受到空间的限制了。当然，这个不是必要条件，看各自的现实条件吧，不要让思维受限就好。</p>
+<h3 id="4-事件风暴分析的关注点"><a href="#4-事件风暴分析的关注点" class="headerlink" title="4. 事件风暴分析的关注点"></a>4. 事件风暴分析的关注点</h3><p>在领域建模的过程中，我们需要重点关注这类业务的语言和行为。比如某些业务动作或行为（事件）是否会触发下一个业务动作，这个动作（事件）的输入和输出是什么？是谁（实体）发出的什么动作（命令），触发了这个动作（事件）…我们可以从这些暗藏的词汇中，分析出领域模型中的事件、命令和实体等领域对象。</p>
+<h2 id="如何用事件风暴构建领域模型？"><a href="#如何用事件风暴构建领域模型？" class="headerlink" title="如何用事件风暴构建领域模型？"></a>如何用事件风暴构建领域模型？</h2><p>领域建模的过程主要包括产品愿景、业务场景分析、领域建模和微服务拆分与设计这几个重要阶段。下面我以用户中台为例，介绍一下如何用事件风暴构建领域模型。</p>
+<h3 id="1-产品愿景"><a href="#1-产品愿景" class="headerlink" title="1. 产品愿景"></a>1. 产品愿景</h3><p>产品愿景的主要目的是对产品顶层价值的设计，使产品目标用户、核心价值、差异化竞争点等信息达成一致，避免产品偏离方向。</p>
+<p>产品愿景的参与角色：领域专家、业务需求方、产品经理、项目经理和开发经理。</p>
+<p>在建模之前，项目团队要思考这样两点：</p>
+<ul>
+<li>用户中台到底能够做什么？</li>
+<li>它的业务范围、目标用户、核心价值和愿景，与其它同类产品的差异和优势在哪里？</li>
+</ul>
+<p>这个过程也是明确用户中台建设方向和统一团队思想的过程。参与者要对每一个点（下图最左侧列的内容）发表意见，用水笔写在贴纸上，贴在黄色贴纸的位置。这个过程会让参与者充分发表意见，最后会将发散的意见统一为通用语言，建立如下图的产品愿景墙。如果你的团队的产品愿景和目标已经很清晰了，那这个步骤你可以忽略。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b85983fa6a8c877e77387fdafe1598c4.jpg"></p>
+<h3 id="2-业务场景分析"><a href="#2-业务场景分析" class="headerlink" title="2. 业务场景分析"></a>2. 业务场景分析</h3><p>场景分析是从用户视角出发的，根据业务流程或用户旅程，采用用例和场景分析，探索领域中的典型场景，找出领域事件、实体和命令等领域对象，支撑领域建模。事件风暴参与者要尽可能地遍历所有业务细节，充分发表意见，不要遗漏业务要点。</p>
+<p>场景分析的参与角色：领域专家、产品经理、需求分析人员、架构师、项目经理、开发经理和测试经理。</p>
+<p>用户中台有这样三个典型的业务场景：</p>
+<ul>
+<li>第一个是系统和岗位设置，设置系统中岗位的菜单权限；</li>
+<li>第二个是用户权限配置，为用户建立账户和密码，设置用户岗位；</li>
+<li>第三个是用户登录系统和权限校验，生成用户登录和操作日志。</li>
+</ul>
+<p>我们可以按照业务流程，一步一步搜寻用户业务流程中的关键领域事件，比如岗位已创建，用户已创建等事件。再找出什么行为会引起这些领域事件，这些行为可能是一个或若干个命令组合在一起产生的，比如创建用户时，第一个命令是从公司HR系统中获取用户信息，第二个命令是根据HR的员工信息在用户中台创建用户，创建完用户后就会产生用户已创建的领域事件。当然这个领域事件可能会触发下一步的操作，比如发布到邮件系统通知用户已创建，但也可能到此就结束了，你需要根据具体情况来分析是否还有下一步的操作。</p>
+<p>场景分析时会产生很多的命令和领域事件。我用蓝色来表示命令，用橙色表示领域事件，用黄色表示补充信息，比如用户信息数据来源于HR系统的说明。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/e2f91189e25bbaa81307d1fea694aee4.jpg"></p>
+<h3 id="3-领域建模"><a href="#3-领域建模" class="headerlink" title="3. 领域建模"></a>3. 领域建模</h3><p>领域建模时，我们会根据场景分析过程中产生的领域对象，比如命令、事件等之间关系，找出产生命令的实体，分析实体之间的依赖关系组成聚合，为聚合划定限界上下文，建立领域模型以及模型之间的依赖。领域模型利用限界上下文向上可以指导微服务设计，通过聚合向下可以指导聚合根、实体和值对象的设计。</p>
+<p>领域建模的参与角色：领域专家、产品经理、需求分析人员、架构师、项目经理、开发经理和测试经理。</p>
+<p>具体可以分为这样三步。</p>
+<p>第一步：从命令和事件中提取产生这些行为的实体。用绿色贴纸表示实体。通过分析用户中台的命令和事件等行为数据，提取了产生这些行为的用户、账户、认证票据、系统、菜单、岗位和用户日志七个实体。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/cf35a9437319169784db9e5aab97b1fd.jpg"></p>
+<p>第二步：根据聚合根的管理性质从七个实体中找出聚合根，比如，用户管理用户相关实体以及值对象，系统可以管理与系统相关的菜单等实体等，可以找出用户和系统等聚合根。然后根据业务依赖和业务内聚原则，将聚合根以及它关联的实体和值对象组合为聚合，比如系统和菜单实体可以组合为“系统功能”聚合。按照上述方法，用户中台就有了系统功能、岗位、用户信息、用户日志、账户和认证票据六个聚合。</p>
+<p>第三步：划定限界上下文，根据上下文语义将聚合归类。根据用户域的上下文语境，用户基本信息和用户日志信息这两个聚合共同构成用户信息域，分别管理用户基本信息、用户登录和操作日志。认证票据和账户这两个聚合共同构成认证域，分别实现不同方式的登录和认证。系统功能和岗位这两个聚合共同构成权限域，分别实现系统和菜单管理以及系统的岗位配置。根据业务边界，我们可以将用户中台划分为三个限界上下文：用户信息、认证和权限。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/d0191d4e4c51ff91dc830bf38c0e7ae1.jpg"></p>
+<p>到这里我们就完成了用户中台领域模型的构建了。那由于领域建模的过程中产生的领域对象实在太多了，我们可以借助表格来记录。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/04893881bfc410fac43ba5462f3be92c.jpg"></p>
+<h3 id="4-微服务拆分与设计"><a href="#4-微服务拆分与设计" class="headerlink" title="4. 微服务拆分与设计"></a>4. 微服务拆分与设计</h3><p>我们在基础篇讲过，原则上一个领域模型就可以设计为一个微服务，但由于领域建模时只考虑了业务因素，没有考虑微服务落地时的技术、团队以及运行环境等非业务因素，因此在微服务拆分与设计时，我们不能简单地将领域模型作为拆分微服务的唯一标准，它只能作为微服务拆分的一个重要依据。</p>
+<p>微服务的设计还需要考虑服务的粒度、分层、边界划分、依赖关系和集成关系。除了考虑业务职责单一外，我们还需要考虑将敏态与稳态业务的分离、非功能性需求（如弹性伸缩要求、安全性等要求）、团队组织和沟通效率、软件包大小以及技术异构等非业务因素。</p>
+<p>微服务设计建议参与的角色：领域专家、产品经理、需求分析人员、架构师、项目经理、开发经理和测试经理。</p>
+<p>用户中台微服务设计如果不考虑非业务因素，我们完全可以按照领域模型与微服务一对一的关系来设计，将用户中台设计为：用户、认证和权限三个微服务。但如果用户日志数据量巨大，大到需要采用大数据技术来实现，这时用户信息聚合与用户日志聚合就会有技术异构。虽然在领域建模时，我们将他们放在一个了领域模型内，但如果考虑技术异构，这两个聚合就不适合放到同一个微服务里了。我们可以以聚合作为拆分单位，将用户基本信息管理和用户日志管理拆分为两个技术异构的微服务，分别用不同的技术来实现它们。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我们讲了事件风暴的设计方法以及如何用事件风暴来构建领域模型。事件风暴是一种不同于传统需求分析和系统设计的方法，最好的学习方法就是找几个业务场景多做几次。</p>
+<p>综合我的经验，一般来说一个中型规模的项目，领域建模的时间大概在两周左右，这与我们传统的需求分析和系统设计的时间基本差不多。但是如果在领域建模的过程中，团队成员全员参与，在项目开发之前就建立了共同语言，这对于后续的微服务设计与开发是很有帮助的，时间成本也可以视情况降低。</p>
+<p>其实我也了解到了，很多开发人员在初次学习DDD时，似乎并不太关心领域建模，而只是想学学DDD的战术设计思想，快速上手，开发微服务。我想这是对DDD的一个误解，这已经偏离了DDD的核心设计思想，即先有边界清晰的领域模型，才能设计出清晰的微服务边界，这两个阶段一前一后是刚需，我们不能忽略。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>请找一个你擅长的业务领域，试着用事件风暴来构建一下领域模型。</p>
+<p>欢迎留言分享，期待你的打卡！</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7b1a917aff0ec923b78a54e81ed90733.jpg" alt="unpreview"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#12-%E9%A2%86%E5%9F%9F%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E7%94%A8%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E6%9E%84%E5%BB%BA%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">12 | 领域建模：如何用事件风暴构建领域模型？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E4%BA%9B%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">事件风暴需要准备些什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E7%9A%84%E5%8F%82%E4%B8%8E%E8%80%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 事件风暴的参与者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E6%9D%90%E6%96%99"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 事件风暴要准备的材料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E7%9A%84%E5%9C%BA%E5%9C%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 事件风暴的场地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E5%88%86%E6%9E%90%E7%9A%84%E5%85%B3%E6%B3%A8%E7%82%B9"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 事件风暴分析的关注点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4%E6%9E%84%E5%BB%BA%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">如何用事件风暴构建领域模型？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%A7%E5%93%81%E6%84%BF%E6%99%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 产品愿景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 业务场景分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%A2%86%E5%9F%9F%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 领域建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E4%B8%8E%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 微服务拆分与设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

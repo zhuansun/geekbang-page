@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="geekbang">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/page/104/index.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/page/104/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'geekbang',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-18 11:15:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1761534330.html" title="01 | 领域驱动设计：微服务设计为什么要选择DDD？">01 | 领域驱动设计：微服务设计为什么要选择DDD？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">01 | 领域驱动设计：微服务设计为什么要选择DDD？你好，我是欧创新。
+我们知道，微服务设计过程中往往会面临边界如何划定的问题，我经常看到项目团队为微服务到底应该拆多小而争得面红耳赤。不同的人会根据自己对微服务的理解而拆分出不同的微服务，于是大家各执一词，谁也说服不了谁，都觉得自己很有道理。
+那在实际落地过程中，我也确实见过不少项目在面临这种微服务设计困惑时，是靠拍脑袋硬完成的，上线后运维的压力就可想而知了。那是否有合适的理论或设计方法来指导微服务设计呢？当你看到这一讲的题目时，我想你已经知道答案了。
+没错，就是DDD。那么今天我就给你详细讲解下：“微服务设计为什么要选择领域驱动设计？”
+软件架构模式的演进在进入今天的主题之前，我们先来了解下背景。
+我们知道，这些年来随着设备和新技术的发展，软件的架构模式发生了很大的变化。软件架构模式大体来说经历了从单机、集中式到分布式微服务架构三个阶段的演进。随着分布式技术的快速兴起，我们已经进入到了微服务架构时代。
+
+我们先来分析一下软件架构模式演进的三个阶段。
+第一阶段是单机架构： 采用面向过程的设计方法，系统包括客户端UI层和数据库两层，采用C&#x2F;S架构模式，整个系统围绕数据库驱动设计和开发，并且总是从设计数据库和字段开始。
+第二阶段是集中式架构： 采用面向对象的设计方法，系统包括业务接入层、业务逻辑层和数据库层，采用经典的三层架 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1701176850.html" title="05 | 聚合和聚合根：怎样设计聚合？">05 | 聚合和聚合根：怎样设计聚合？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">05 | 聚合和聚合根：怎样设计聚合？你好，我是欧创新。今天我们来学习聚合（Aggregate）和聚合根（AggregateRoot）。
+我们先回顾下上一讲，在事件风暴中，我们会根据一些业务操作和行为找出实体（Entity）或值对象（ValueObject），进而将业务关联紧密的实体和值对象进行组合，构成聚合，再根据业务语义将多个聚合划定到同一个限界上下文（Bounded Context）中，并在限界上下文内完成领域建模。
+那你知道为什么要在限界上下文和实体之间增加聚合和聚合根这两个概念吗？它们的作用是什么？怎么设计聚合？这就是我们这一讲重点要关注的问题。
+聚合在DDD中，实体和值对象是很基础的领域对象。实体一般对应业务对象，它具有业务属性和业务行为；而值对象主要是属性集合，对实体的状态和特征进行描述。但实体和值对象都只是个体化的对象，它们的行为表现出来的是个体的能力。
+那聚合在其中起什么作用呢？
+举个例子。社会是由一个个的个体组成的，象征着我们每一个人。随着社会的发展，慢慢出现了社团、机构、部门等组织，我们开始从个人变成了组织的一员，大家可以协同一致的工作，朝着一个最大的目标前进，发挥出更大的力量。
+领域模型内的实体和值对象就好比个体，而能让实体和值对象协同工作的组织就是聚合，它用来确保这些领域对象在实现共同的业务逻辑时，能保证数据的一致性。
+你可以这么理解，聚合就是由业务和逻辑 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1881236147.html" title="04 | 实体和值对象：从领域模型的基础单元看系统设计">04 | 实体和值对象：从领域模型的基础单元看系统设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">04 | 实体和值对象：从领域模型的基础单元看系统设计你好，我是欧创新。今天我们来学习DDD战术设计中的两个重要概念：实体和值对象。
+这两个概念都是领域模型中的领域对象。它们在领域模型中起什么作用，战术设计时如何将它们映射到代码和数据模型中去？就是我们这一讲重点要关注的问题。
+另外，在战略设计向战术设计过渡的这个过程中，理解和区分实体和值对象在不同阶段的形态是很重要的，毕竟阶段不同，它们的形态也会发生变化，这与我们的设计和代码实现密切相关。
+接下来，我们就分别看看实体和值对象的这些问题，从中找找答案。
+实体我们先来看一下实体是什么东西？
+在DDD中有这样一类对象，它们拥有唯一标识符，且标识符在历经各种状态变更后仍能保持一致。对这些对象而言，重要的不是其属性，而是其延续性和标识，对象的延续性和标识会跨越甚至超出软件的生命周期。我们把这样的对象称为实体。没理解？没关系！请继续阅读。
+1. 实体的业务形态在DDD不同的设计过程中，实体的形态是不同的。在战略设计时，实体是领域模型的一个重要对象。领域模型中的实体是多个属性、操作或行为的载体。在事件风暴中，我们可以根据命令、操作或者事件，找出产生这些行为的业务实体对象，进而按照一定的业务规则将依存度高和业务关联紧密的多个实体对象和值对象进行聚类，形成聚合。你可以这么理解，实体和值对象是组成领域模型的基础单元。
+2. 实体的代码形态在代码模型中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3374715519.html" title="06 | 领域事件：解耦微服务的关键">06 | 领域事件：解耦微服务的关键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">06 | 领域事件：解耦微服务的关键你好，我是欧创新。今天我们来聊一聊“领域事件（Domain Event）”。
+在事件风暴（Event Storming）时，我们发现除了命令和操作等业务行为以外，还有一种非常重要的事件，这种事件发生后通常会导致进一步的业务操作，在DDD中这种事件被称为领域事件。
+这只是最简单的定义，并不能让我们真正理解它。那到底什么是领域事件？领域事件的技术实现机制是怎样的？这一讲，我们就重点解决这两个大的问题。
+领域事件领域事件是领域模型中非常重要的一部分，用来表示领域中发生的事件。一个领域事件将导致进一步的业务操作，在实现业务解耦的同时，还有助于形成完整的业务闭环。
+举例来说的话，领域事件可以是业务流程的一个步骤，比如投保业务缴费完成后，触发投保单转保单的动作；也可能是定时批处理过程中发生的事件，比如批处理生成季缴保费通知单，触发发送缴费邮件通知操作；或者一个事件发生后触发的后续动作，比如密码连续输错三次，触发锁定账户的动作。
+那如何识别领域事件呢？
+很简单，和刚才讲的定义是强关联的。在做用户旅程或者场景分析时，我们要捕捉业务、需求人员或领域专家口中的关键词：“如果发生……，则……”“当做完……的时候，请通知……”“发生……时，则……”等。在这些场景中，如果发生某种事件后，会触发进一步的操作，那么这个事件很可能就是领域事件。
+那领域事件为什么要用最终一致性， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1914916918.html" title="07 | DDD分层架构：有效降低层与层之间的依赖">07 | DDD分层架构：有效降低层与层之间的依赖</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">07 | DDD分层架构：有效降低层与层之间的依赖你好，我是欧创新。前面我们讲了DDD的一些重要概念以及领域模型的设计理念。今天我们来聊聊“DDD分层架构”。
+微服务架构模型有好多种，例如整洁架构、CQRS和六边形架构等等。每种架构模式虽然提出的时代和背景不同，但其核心理念都是为了设计出“高内聚低耦合”的架构，轻松实现架构演进。而DDD分层架构的出现，使架构边界变得越来越清晰，它在微服务架构模型中，占有非常重要的位置。
+那DDD分层架构到底长什么样？DDD分层架构如何推动架构演进？我们该怎么转向DDD分层架构？这就是我们这一讲重点要解决的问题。
+什么是DDD分层架构？DDD的分层架构在不断发展。最早是传统的四层架构；后来四层架构有了进一步的优化，实现了各层对基础层的解耦；再后来领域层和应用层之间增加了上下文环境（Context）层，五层架构（DCI）就此形成了。
+
+我们看一下上面这张图，在最早的传统四层架构中，基础层是被其它层依赖的，它位于最核心的位置，那按照分层架构的思想，它应该就是核心，但实际上领域层才是软件的核心，所以这种依赖是有问题的。后来我们采用了依赖倒置（Dependency inversion principle,DIP）的设计，优化了传统的四层架构，实现了各层对基础层的解耦。
+我们今天讲的DDD分层架构就是优化后的四层架构。在下面这张图中，从上到下依次是：用户接口层 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2037462706.html" title="08 | 微服务架构模型：几种常见模型的对比和分析">08 | 微服务架构模型：几种常见模型的对比和分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">08 | 微服务架构模型：几种常见模型的对比和分析你好，我是欧创新。
+在上一讲中我重点介绍了DDD分层架构，同时我也提到了微服务架构模型其实还有好多种，不知道你注意到了没？这些架构模型在我们的实际应用中都具有很高的借鉴价值。
+那么今天我们就把DDD分层架构（详情介绍如有遗忘可回看 [第07讲] ）、整洁架构、六边形架构这三种架构模型放到一起，对比分析，看看如何利用好它们，帮助我们设计出高内聚低耦合的中台以及微服务架构。
+整洁架构整洁架构又名“洋葱架构”。为什么叫它洋葱架构？看看下面这张图你就明白了。整洁架构的层就像洋葱片一样，它体现了分层的设计思想。
+在整洁架构里，同心圆代表应用软件的不同部分，从里到外依次是领域模型、领域服务、应用服务和最外围的容易变化的内容，比如用户界面和基础设施。
+整洁架构最主要的原则是依赖原则，它定义了各层的依赖关系，越往里依赖越低，代码级别越高，越是核心能力。外圆代码依赖只能指向内圆，内圆不需要知道外圆的任何情况。
+
+在洋葱架构中，各层的职能是这样划分的：
+
+领域模型实现领域内核心业务逻辑，它封装了企业级的业务规则。领域模型的主体是实体，一个实体可以是一个带方法的对象，也可以是一个数据结构和方法集合。
+领域服务实现涉及多个实体的复杂业务逻辑。
+应用服务实现与用户操作相关的服务组合与编排，它包含了应用特有的业务流程规则，封装和实现了系统所有用例。
+最外层主要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/727648486.html" title="10 | DDD、中台和微服务：它们是如何协作的？">10 | DDD、中台和微服务：它们是如何协作的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">10 | DDD、中台和微服务：它们是如何协作的？你好，我是欧创新。今天我一起来聊聊DDD、中台和微服务的关系。
+DDD和微服务来源于西方，而中台诞生于中国的阿里巴巴。DDD在二十多年前提出后一直默默前行，中台和微服务的理念近几年才出现，提出后就非常火爆。这三者看似风马牛不相及，实则缘分匪浅。中台是抽象出来的业务模型，微服务是业务模型的系统实现，DDD作为方法论可以同时指导中台业务建模和微服务建设，三者相辅相成，完美结合。
+你可能会问：凭什么DDD可以指导中台和微服务建设，究竟起到了什么作用呢？
+DDD有两把利器，那就是它的战略设计和战术设计方法。
+中台在企业架构上更多偏向业务模型，形成中台的过程实际上也是业务领域不断细分的过程。在这个过程中我们会将同类通用的业务能力进行聚合和业务重构，再根据限界上下文和业务内聚的原则建立领域模型。而DDD的战略设计最擅长的就是领域建模。
+那在中台完成领域建模后，我们就需要通过微服务来完成系统建设。此时，DDD的战术设计又恰好可以与微服务的设计完美结合。可以说，中台和微服务正是DDD实战的最佳场景。
+DDD的本质我们先简单回顾一下DDD领域、子域、核心域、通用域和支撑域等概念，后面会用到。
+在研究和解决业务问题时，DDD会按照一定的规则将业务领域进行细分，领域细分到一定的程度后，DDD会将问题范围限定在特定的边界内，并在这个边界内建立领域模型，进而 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/230894678.html" title="09 | 中台：数字转型后到底应该共享什么？">09 | 中台：数字转型后到底应该共享什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">09 | 中台：数字转型后到底应该共享什么？你好，我是欧创新。
+在上一讲中我们了解了分层架构的设计思想，并提到了这种设计思想对中台建设十分有利，那么今天我就来讲一讲中台。
+中台是数字化转型的一个热门话题。继阿里提出中台概念后，很多人又提出了各种各样的中台。今天我们主要讨论业务中台和数据中台。作为企业数字化中台转型的整体，我也会顺带聊一聊前台和后台的一些设计思路。
+不少企业其实在很多年前就有了建大平台的实践经验，那在中台被热议时，我相信你一定听过很多质疑声。比如，有人说：“中台就是个怪名词，它不就是已经做了好多年的平台吗？”确实，中台源于平台，但它的战略高度要比平台高很多。
+学完这一讲，你就会清楚地知道平台与中台的差异在什么地方？中台到底是什么？传统企业的中台建设方式是否应该和阿里一样…
+平台到底是不是中台？阿里提出中台战略后，很多企业开始拿着自己的系统与阿里的中台对标。有的企业在十多年前就完成了大一统的集中式系统拆分，实现了从传统大单体应用向大平台的演进，他们将公共能力和核心能力分开建设，解决了公共模块重复投入和重复建设的问题。
+那这是不是阿里所说的中台呢？在回答这个问题之前，我们不妨先了解一下阿里的中台到底是什么样的。
+阿里业务中台的前身是共享平台，而原来的共享平台更多的被当作资源团队，他们承接各业务方的需求，并为业务方在基础服务上做定制开发。 阿里业务中台的目标是把核心服务链路 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/379649493.html" title="11 | DDD实践：如何用DDD重构中台业务模型？">11 | DDD实践：如何用DDD重构中台业务模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">11 | DDD实践：如何用DDD重构中台业务模型？你好，我是欧创新。
+进入两千年后，随着互联网应用的快速发展，很多传统企业开始触网，建设自己的互联网电商平台。后来又随着微信和App等移动互联应用的兴起，又形成了新一轮的移动应用热潮。这些移动互联应用大多面向个人或者第三方，市场和需求变化快，需要以更敏捷的速度适应市场变化，为了保持快速响应能力和频繁发版的要求，很多时候这些移动互联网应用是独立于传统核心系统建设的，但两者承载的业务大部分又都是同质的，因此很容易出现业务能力重叠的问题。
+阿里巴巴过去带动了传统企业向互联网电商转型。而如今又到了一个新的历史时期，在阿里巴巴提出中台战略后，很多企业又紧跟它的步伐，高举中台大旗，轰轰烈烈地开始了数字化转型之路。
+那么传统企业在中台转型时，该如何从错综复杂的业务中构建中台业务模型呢？今天我就用一个传统企业中台建模的案例，带你一起用DDD的设计思想来构建中台业务模型。
+传统企业应用分析互联网电商平台和传统核心应用，两者面向的渠道和客户不一样，但销售的产品却很相似，它们之间的业务模型既有相同的地方，又有不同的地方。
+现在我拿保险行业的互联网电商和传统核心应用来做个对比分析。我们看一下下面这张图，这两者在业务功能上会有很多相似和差异，这种相似和差异主要体现在四个方面。
+
+1. 核心能力的重复建设。 由于销售同质保险产品，二者在核心业务流程和功能上必然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1021766522.html" title="12 | 领域建模：如何用事件风暴构建领域模型？">12 | 领域建模：如何用事件风暴构建领域模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">12 | 领域建模：如何用事件风暴构建领域模型？你好，我是欧创新。
+还记得我在 [第01讲] 中说过，微服务设计为什么要选择DDD吗？其中有一个非常重要的原因，就是采用DDD方法建立的领域模型，可以清晰地划分微服务的逻辑边界和物理边界。可以说，在DDD的实践中，好的领域模型直接关乎微服务的设计水平。因此，我认为DDD的战略设计是比战术设计更为重要的，也正是这个原因，我们的内容会更侧重于战略设计。
+那么我们该采用什么样的方法，才能从错综复杂的业务领域中分析并构建领域模型呢？
+它就是我在前面多次提到的事件风暴。事件风暴是一项团队活动，领域专家与项目团队通过头脑风暴的形式，罗列出领域中所有的领域事件，整合之后形成最终的领域事件集合，然后对每一个事件，标注出导致该事件的命令，再为每一个事件标注出命令发起方的角色。命令可以是用户发起，也可以是第三方系统调用或者定时器触发等，最后对事件进行分类，整理出实体、聚合、聚合根以及限界上下文。而事件风暴正是DDD战略设计中经常使用的一种方法，它可以快速分析和分解复杂的业务领域，完成领域建模。
+那到底怎么做事件风暴呢？事件风暴需要提前准备些什么？又如何用事件风暴来构建领域模型呢？今天我们就来重点解决这些问题，深入了解事件风暴的全过程。
+事件风暴需要准备些什么？1. 事件风暴的参与者事件风暴采用工作坊的方式，将项目团队和领域专家聚集在一起，通过可视化、高互 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/103/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/#content-inner">103</a><span class="page-number current">104</span><a class="page-number" href="/page/105/#content-inner">105</a><a class="page-number" href="/page/106/#content-inner">106</a><a class="extend next" rel="next" href="/page/105/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">AI大模型之美</span><span class="card-category-list-count">31</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/"><span class="card-category-list-name">AI技术内参</span><span class="card-category-list-count">166</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">DDD实战课</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/"><span class="card-category-list-name">Java核心技术面试精讲</span><span class="card-category-list-count">44</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/"><span class="card-category-list-name">LangChain实战课</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/"><span class="card-category-list-name">从0开始学架构</span><span class="card-category-list-count">66</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/"><span class="card-category-list-name">分布式协议与算法实战</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/"><span class="card-category-list-name">左耳听风</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"><span class="card-category-list-name">成为AI产品经理</span><span class="card-category-list-count">41</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"><span class="card-category-list-name">技术与商业案例解读</span><span class="card-category-list-count">163</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/"><span class="card-category-list-name">朱赟的技术管理课</span><span class="card-category-list-count">39</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">深入浅出计算机组成原理</span><span class="card-category-list-count">62</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/"><span class="card-category-list-name">程序员进阶攻略</span><span class="card-category-list-count">65</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/"><span class="card-category-list-name">设计模式之美</span><span class="card-category-list-count">113</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"><span class="card-category-list-name">趣谈网络协议</span><span class="card-category-list-count">51</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/"><span class="card-category-list-name">零基础GPT应用入门课</span><span class="card-category-list-count">19</span></a></li>
+            </ul></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["有志者事竟成。——曹操","读书破万卷，下笔如有神。——杜甫","成功源于不懈的努力。——爱迪生","机会只对进取有为的人开放。——林肯","人生没有彩排，每天都是现场直播。——佚名","活到老学到老。——毛泽东","知之者不如好之者，好之者不如乐之者。——孔子","天行健，君子以自强不息；地势坤，君子以厚德载物。——《易经》","己所不欲勿施于人。——《论语》","成功是一种态度，而不是一种结果。——亨利·福特","人生没有后悔药可吃。——佚名","世上无难事，只怕有心人。——陶行知","一寸光阴一寸金，寸金难买寸光阴。——俗语","成功路上充满荆棘，只有坚持不懈才能到达终点。——华罗庚","机会永远留给那些有准备的人。——路易斯·帕斯特尔","失败乃成功之母。——俗语","人生就像一杯茶，不会苦一辈子，但总会苦一阵子。——佚名","没有口水与汗水，就没有成功的泪水。——科比·布莱恩特","生活不是等待风暴过去，而是学会在雨中跳舞。——维维安·格林","一个人最大的破产是绝望，最大的资产是希望。——肯尼迪","成功的关键不在于避免失败，而在于从失败中学习。——比尔·坎贝尔","人生就像骑自行车，要保持平衡就得往前走。——爱因斯坦","没有付出就没有收获。——佚名","成功需要付出代价，不成功则需要付出更高的代价。——欧内斯特·海明威","成功不是终点，失败也不是终结，只有勇气才是永恒。——温斯顿·丘吉尔","做你自己，别人已经有人在做了。——奥斯卡·王尔德","人生最大的成就是成为一个好人。——马丁·路德·金","成功的秘诀在于坚持到底，即使没有人相信你。——温斯顿·丘吉尔","机会只对进取有为的人开放。——林肯","人生的意义不在于拥有一切，而在于成为一切。——阿尔伯特·爱因斯坦"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '有志者事竟成。——曹操'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

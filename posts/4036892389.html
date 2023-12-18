@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？上几节课我们讲到了Spring框架，剖析了背后蕴含的一些通用设计思想，以及用到的十几种设计模式。从今天开始，我们再剖析另外一个Java项目开发中经常用到的框架：MyBatis。因为内容比较多，同样，我们也分三节课来讲解。  第一节课，我们分析MyBatis如何权衡代码的易用性、性能和灵活性。 第二节课，我们学习如何利用职责链与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4036892389.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？上几节课我们讲到了Spring框架，剖析了背后蕴含的一些通用设计思想，以及用到的十几种设计模式。从今天开始，我们再剖析另外一个Java项目开发中经常用到的框架：MyBatis。因为内容比较多，同样，我们也分三节课来讲解。  第一节课，我们分析MyBatis如何权衡代码的易用性、性能和灵活性。 第二节课，我们学习如何利用职责链与">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.380Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4036892389"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="87-开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？"><a href="#87-开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？" class="headerlink" title="87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？"></a>87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？</h1><p>上几节课我们讲到了Spring框架，剖析了背后蕴含的一些通用设计思想，以及用到的十几种设计模式。从今天开始，我们再剖析另外一个Java项目开发中经常用到的框架：MyBatis。因为内容比较多，同样，我们也分三节课来讲解。</p>
+<ul>
+<li>第一节课，我们分析MyBatis如何权衡代码的易用性、性能和灵活性。</li>
+<li>第二节课，我们学习如何利用职责链与代理模式实现MyBatis Plugin。</li>
+<li>第三节课，我们总结罗列一下MyBatis框架中用到的十几种设计模式。</li>
+</ul>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="Mybatis和ORM框架介绍"><a href="#Mybatis和ORM框架介绍" class="headerlink" title="Mybatis和ORM框架介绍"></a>Mybatis和ORM框架介绍</h2><p>熟悉Java的同学应该知道，MyBatis是一个ORM（Object Relational Mapping，对象-关系映射）框架。ORM框架主要是根据类和数据库表之间的映射关系，帮助程序员自动实现对象与数据库中数据之间的互相转化。说得更具体点就是，ORM负责将程序中的对象存储到数据库中、将数据库中的数据转化为程序中的对象。实际上，Java中的ORM框架有很多，除了刚刚提到的MyBatis之外，还有Hibernate、TopLink等。</p>
+<p>在剖析Spring框架的时候，我们讲到，如果用一句话来总结框架作用的话，那就是简化开发。MyBatis框架也不例外。它简化的是数据库方面的开发。那MyBatis是如何简化数据库开发的呢？我们结合 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/212802">第59讲</a> 中的JdbcTemplate的例子来说明一下。</p>
+<p>在第59讲中，我们讲到，Java提供了JDBC类库来封装不同类型的数据库操作。不过，直接使用JDBC来进行数据库编程，还是有点麻烦的。于是，Spring提供了JdbcTemplate，对JDBC进一步封装，来进一步简化数据库编程。</p>
+<p>使用JdbcTemplate进行数据库编程，我们只需要编写跟业务相关的代码（比如，SQL语句、数据库中数据与对象之间的互相转化的代码），其他流程性质的代码（比如，加载驱动、创建数据库连接、创建statement、关闭连接、关闭statement等）都封装在了JdbcTemplate类中，不需要我们重复编写。</p>
+<p>当时，为了展示使用JdbcTemplate是如何简化数据库编程的，我们还举了一个查询数据库中用户信息的例子。还是同样这个例子，我再来看下，使用MyBatis该如何实现，是不是比使用JdbcTemplate更加简单。</p>
+<p>因为MyBatis依赖JDBC驱动，所以，在项目中使用MyBatis，除了需要引入MyBatis框架本身（mybatis.jar）之外，还需要引入JDBC驱动（比如，访问MySQL的JDBC驱动实现类库mysql-connector-java.jar）。将两个jar包引入项目之后，我们就可以开始编程了。使用MyBatis来访问数据库中用户信息的代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 1. 定义UserDO
+public class UserDo &#123;
+  private long id;
+  private String name;
+  private String telephone;
+  &#x2F;&#x2F; 省略setter&#x2F;getter方法
+&#125;
+
+&#x2F;&#x2F; 2. 定义访问接口
+public interface UserMapper &#123;
+  public UserDo selectById(long id);
+&#125;
+
+&#x2F;&#x2F; 3. 定义映射关系：UserMapper.xml
+&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE mapper PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;
+        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot; &gt;
+&lt;mapper namespace&#x3D;&quot;cn.xzg.cd.a87.repo.mapper.UserMapper&quot;&gt;
+    &lt;select id&#x3D;&quot;selectById&quot; resultType&#x3D;&quot;cn.xzg.cd.a87.repo.UserDo&quot;&gt;
+        select * from user where id&#x3D;#&#123;id&#125;
+    &lt;&#x2F;select&gt;
+&lt;&#x2F;mapper&gt;
+
+&#x2F;&#x2F; 4. 全局配置文件: mybatis.xml
+&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Config 3.0&#x2F;&#x2F;EN&quot;
+        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-config.dtd&quot;&gt;
+&lt;configuration&gt;
+    &lt;environments default&#x3D;&quot;dev&quot;&gt;
+        &lt;environment id&#x3D;&quot;dev&quot;&gt;
+            &lt;transactionManager type&#x3D;&quot;JDBC&quot;&gt;&lt;&#x2F;transactionManager&gt;
+            &lt;dataSource type&#x3D;&quot;POOLED&quot;&gt;
+                &lt;property name&#x3D;&quot;driver&quot; value&#x3D;&quot;com.mysql.jdbc.Driver&quot; &#x2F;&gt;
+                &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;test?useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&quot; &#x2F;&gt;
+                &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;root&quot; &#x2F;&gt;
+                &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;...&quot; &#x2F;&gt;
+            &lt;&#x2F;dataSource&gt;
+        &lt;&#x2F;environment&gt;
+    &lt;&#x2F;environments&gt;
+    &lt;mappers&gt;
+        &lt;mapper resource&#x3D;&quot;mapper&#x2F;UserMapper.xml&quot;&#x2F;&gt;
+    &lt;&#x2F;mappers&gt;
+&lt;&#x2F;configuration&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>需要注意的是，在UserMapper.xml配置文件中，我们只定义了接口和SQL语句之间的映射关系，并没有显式地定义类（UserDo）字段与数据库表（user）字段之间的映射关系。实际上，这就体现了“约定优于配置”的设计原则。类字段与数据库表字段之间使用了默认映射关系：类字段跟数据库表中拼写相同的字段一一映射。当然，如果没办法做到一一映射，我们也可以自定义它们之间的映射关系。</p>
+<p>有了上面的代码和配置，我们就可以像下面这样来访问数据库中的用户信息了。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class MyBatisDemo &#123;
+  public static void main(String[] args) throws IOException &#123;
+    Reader reader &#x3D; Resources.getResourceAsReader(&quot;mybatis.xml&quot;);
+    SqlSessionFactory sessionFactory &#x3D; new SqlSessionFactoryBuilder().build(reader);
+    SqlSession session &#x3D; sessionFactory.openSession();
+    UserMapper userMapper &#x3D; session.getMapper(UserMapper.class);
+    UserDo userDo &#x3D; userMapper.selectById(8);
+    &#x2F;&#x2F;...
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从代码中，我们可以看出，相对于使用JdbcTemplate的实现方式，使用MyBatis的实现方式更加灵活。在使用JdbcTemplate的实现方式中，对象与数据库中数据之间的转化代码、SQL语句，是硬编码在业务代码中的。而在使用MyBatis的实现方式中，类字段与数据库字段之间的映射关系、接口与SQL之间的映射关系，是写在XML配置文件中的，是跟代码相分离的，这样会更加灵活、清晰，维护起来更加方便。</p>
+<h2 id="如何平衡易用性、性能和灵活性？"><a href="#如何平衡易用性、性能和灵活性？" class="headerlink" title="如何平衡易用性、性能和灵活性？"></a>如何平衡易用性、性能和灵活性？</h2><p>刚刚我们对MyBatis框架做了简单介绍，接下来，我们再对比一下另外两个框架：JdbcTemplate和Hibernate。通过对比我们来看，MyBatis是如何权衡代码的易用性、性能和灵活性的。</p>
+<p>我们先来看JdbcTemplate。相对于MyBatis来说，JdbcTemplate更加轻量级。因为它对JDBC只做了很简单的封装，所以性能损耗比较少。相对于其他两个框架来说，它的性能最好。但是，它的缺点也比较明显，那就是SQL与代码耦合在一起，而且不具备ORM的功能，需要自己编写代码，解析对象跟数据库中的数据之间的映射关系。所以，在易用性上它不及其他两个框架。</p>
+<p>我们再来看Hibernate。相对于MyBatis来说，Hibernate更加重量级。Hibernate提供了更加高级的映射功能，能够根据业务需求自动生成SQL语句。我们不需要像使用MyBatis那样自己编写SQL。因此，有的时候，我们也把MyBatis称作半自动化的ORM框架，把Hibernate称作全自动化的ORM框架。不过，虽然自动生成SQL简化了开发，但是毕竟是自动生成的，没有针对性的优化。在性能方面，这样得到的SQL可能没有程序员编写得好。同时，这样也丧失了程序员自己编写SQL的灵活性。</p>
+<p>实际上，不管用哪种实现方式，从数据库中取出数据并且转化成对象，这个过程涉及的代码逻辑基本是一致的。不同实现方式的区别，只不过是哪部分代码逻辑放到了哪里。有的框架提供的功能比较强大，大部分代码逻辑都由框架来完成，程序员只需要实现很小的一部分代码就可以了。这样框架的易用性就更好些。但是，框架集成的功能越多，为了处理逻辑的通用性，就会引入更多额外的处理代码。比起针对具体问题具体编程，这样性能损耗就相对大一些。</p>
+<p>所以，粗略地讲，有的时候，框架的易用性和性能成对立关系。追求易用性，那性能就差一些。相反，追求性能，易用性就差一些。除此之外，使用起来越简单，那灵活性就越差。这就好比我们用的照相机。傻瓜相机按下快门就能拍照，但没有复杂的单反灵活。</p>
+<p>实际上，JdbcTemplate、MyBatis、Hibernate这几个框架也体现了刚刚说的这个规律。</p>
+<p>JdbcTemplate提供的功能最简单，易用性最差，性能损耗最少，用它编程性能最好。Hibernate提供的功能最完善，易用性最好，但相对来说性能损耗就最高了。MyBatis介于两者中间，在易用性、性能、灵活性三个方面做到了权衡。它支撑程序员自己编写SQL，能够延续程序员对SQL知识的积累。相对于完全黑盒子的Hibernate，很多程序员反倒是更加喜欢MyBatis这种半透明的框架。这也提醒我们，过度封装，提供过于简化的开发方式，也会丧失开发的灵活性。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>如果你熟悉Java和MyBatis，那你应该掌握今天讲到JDBC、JdbcTemplate、MyBatis、Hibernate之间的区别。JDBC是Java访问数据库的开发规范，提供了一套抽象的统一的开发接口，隐藏不同数据库的访问细节。</p>
+<p>JdbcTemplate、MyBatis、Hibernate都是对JDBC的二次封装，为的是进一步简化数据库开发。其中，JdbcTemplate不能算得上是ORM框架，因为还需要程序员自己编程来实现对象和数据库数据之间的互相转化。相对于Hibernate这种连SQL都不用程序员自己写的全自动ORM框架，MyBatis算是一种半自动化的ORM框架。</p>
+<p>如果你不熟悉Java和MyBatis，作为背景介绍，那你简单了解一下MyBatis和ORM就可以了。不过，在你熟悉的语言中，应该也有相应的ORM框架，你也可以对比着去分析一下。</p>
+<p>今天的内容除了起到对MyBatis做背景介绍之外，我们还学习了代码的易用性、性能、灵活性之间的关系。一般来讲，提供的高级功能越多，那性能损耗就会越大些；用起来越简单，提供越简化的开发方式，那灵活性也就相对越低。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>在你的项目开发中，有没有用过哪些框架，能够切实地提高开发效率，减少不必要的体力劳动？</p>
+<p>欢迎留言和我分享你的想法。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#87-%E5%BC%80%E6%BA%90%E5%AE%9E%E6%88%98%E4%BA%94%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9AMyBatis%E5%A6%82%E4%BD%95%E6%9D%83%E8%A1%A1%E6%98%93%E7%94%A8%E6%80%A7%E3%80%81%E6%80%A7%E8%83%BD%E5%92%8C%E7%81%B5%E6%B4%BB%E6%80%A7%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">87 | 开源实战五（上）：MyBatis如何权衡易用性、性能和灵活性？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis%E5%92%8CORM%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">Mybatis和ORM框架介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%B9%B3%E8%A1%A1%E6%98%93%E7%94%A8%E6%80%A7%E3%80%81%E6%80%A7%E8%83%BD%E5%92%8C%E7%81%B5%E6%B4%BB%E6%80%A7%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">如何平衡易用性、性能和灵活性？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.3.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

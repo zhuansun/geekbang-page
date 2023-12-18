@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块上几节课，我们拿Unix这个超级大型开源软件的开发作为引子，从代码设计编写和研发管理两个角度，讲了如何应对大型复杂项目的开发。接下来，我们再讲一下Google开源的Java开发库Google Guava。 Google Guava是一个非常成功、非常受欢迎的开源项目。它在GitHub上由近3.7万的stars。在Jav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4275811223.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块上几节课，我们拿Unix这个超级大型开源软件的开发作为引子，从代码设计编写和研发管理两个角度，讲了如何应对大型复杂项目的开发。接下来，我们再讲一下Google开源的Java开发库Google Guava。 Google Guava是一个非常成功、非常受欢迎的开源项目。它在GitHub上由近3.7万的stars。在Jav">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.368Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4275811223"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="81-开源实战三（上）：借Google-Guava学习发现和开发通用功能模块"><a href="#81-开源实战三（上）：借Google-Guava学习发现和开发通用功能模块" class="headerlink" title="81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块"></a>81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块</h1><p>上几节课，我们拿Unix这个超级大型开源软件的开发作为引子，从代码设计编写和研发管理两个角度，讲了如何应对大型复杂项目的开发。接下来，我们再讲一下Google开源的Java开发库Google Guava。</p>
+<p>Google Guava是一个非常成功、非常受欢迎的开源项目。它在GitHub上由近3.7万的stars。在Java项目开发中应用很广泛。当然，我们并不会讲解其中的每个类、接口如何使用，而是重点讲解其背后蕴含的设计思想、使用的设计模式。内容比较多，我分三节课来讲解。</p>
+<ul>
+<li>第一节课，我们对Google Guava做一个简单介绍，并借此讲一下如何开发一个通用的功能模块。</li>
+<li>第二节课，我们讲Google Guava中用到的几种设计模式，会补充讲解之前没有讲到的Immutable模式。</li>
+<li>第三节课，我们借Google Guava补充讲解三大编程范式中的最后一个：函数式编程。</li>
+</ul>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="Google-Guava介绍"><a href="#Google-Guava介绍" class="headerlink" title="Google Guava介绍"></a>Google Guava介绍</h2><p>考虑到你可能不熟悉Google Guava，我先对它做下简单的介绍。</p>
+<p>Google Guava是Google公司内部Java开发工具库的开源版本。Google内部的很多Java项目都在使用它。它提供了一些JDK没有提供的功能，以及对JDK已有功能的增强功能。其中就包括：集合（Collections）、缓存（Caching）、原生类型支持（Primitives Support）、并发库（Concurrency Libraries）、通用注解（Common Annotation）、字符串处理（Strings Processing）、数学计算（Math）、I&#x2F;O、事件总线（EventBus）等等。</p>
+<p>我截取了Google Guava的包结构图，贴到了这里，你看起来更加直观些。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/1ce23ffd03045dadf2bad7e126337045.png"></p>
+<p>我们知道，JDK的全称是Java Development Kit。它本身就是Java提供的工具类库。那现在请你思考一下，既然有了JDK，为什么Google还要开发一套新的类库Google Guava？是否是重复早轮子？两者的差异化在哪里？</p>
+<p>带着这个问题，结合Google Guava，我们来学习如何在业务开发中，发现通用的功能模块，以及如何将它开发成类库、框架或者功能组件。等到学习完之后，我希望你能自己回答这个问题。</p>
+<h2 id="如何发现通用的功能模块？"><a href="#如何发现通用的功能模块？" class="headerlink" title="如何发现通用的功能模块？"></a>如何发现通用的功能模块？</h2><p>很多人觉得做业务开发没有挑战，实际上，做业务开发也会涉及很多非业务功能的开发，比如我们前面讲到的ID生成器、性能计数器、EventBus、DI容器，以及后面会讲到的限流框架、幂等框架、灰度组件。关键在于，我们要有善于发现、善于抽象的能力，并且具有扎实的设计、开发能力，能够发现这些非业务的、可复用的功能点，并且从业务逻辑中将其解耦抽象出来，设计并开发成独立的功能模块。</p>
+<p>在我看来，在业务开发中，跟业务无关的通用功能模块，常见的一般有三类：类库（library）、框架（framework）、功能组件（component）等。</p>
+<p>其中，Google Guava属于类库，提供一组API接口。EventBus、DI容器属于框架，提供骨架代码，能让业务开发人员聚焦在业务开发部分，在预留的扩展点里填充业务代码。ID生成器、性能计数器属于功能组件，提供一组具有某一特殊功能的API接口，有点类似类库，但更加聚焦和重量级，比如，ID生成器有可能会依赖Redis等外部系统，不像类库那么简单。</p>
+<p>前面提到的限流、幂等、灰度，到底是属于框架还是功能组件，我们要视具体情况而定。如果业务代码嵌套在它们里面开发，那就可以称它们为框架。如果它们只是开放API接口，供业务系统调用，那就可以称它们为组件。不过，叫什么没有太大关系，不必太深究概念。</p>
+<p>那我们如何发现项目中的这些通用的功能模块呢？</p>
+<p>实际上，不管是类库、框架还是功能组件，这些通用功能模块有两个最大的特点：复用和业务无关。Google Guava就是一个典型的例子。</p>
+<p>如果没有复用场景，那也就没有了抽离出来，设计成独立模块的必要了。如果与业务有关又可复用，大部分情况下会设计成独立的系统（比如微服务），而不是类库、框架或功能组件。所以，如果你负责开发的代码，与业务无关并且可能会被复用，那你就可以考虑将它独立出来，开发成类库、框架、功能组件等通用功能模块。</p>
+<p>稍微补充一下，我们这里讲的是，在业务开发中，如何发现通用的功能模块。除了业务开发团队之外，很多公司还有一些基础架构团队、架构开发团队，他们除了开发类库、框架、功能组件之外，也会开发一些通用的系统、中间件，比如，Google MapReduce、Kafka消息中间件、监控系统、分布式调用链追踪系统等。</p>
+<h2 id="如何开发通用的功能模块？"><a href="#如何开发通用的功能模块？" class="headerlink" title="如何开发通用的功能模块？"></a>如何开发通用的功能模块？</h2><p>当我们发现了通用功能模块的开发需求之后，如何将它设计开发成一个优秀的类库、框架或功能组件呢？今天，我们不讲具体的开发技巧，具体的开发技巧在后面Spring开源实战那部分，我们会讲到一些，我今天打算先讲一些更普适的开发思想。我觉得先有了这些，你应该更容易理解后面的内容。</p>
+<p>作为通用的类库、框架、功能组件，我们希望开发出来之后，不仅仅是自己项目使用，还能用在其他团队的项目中，甚至可以开源出来供更多人所用，这样才能发挥它更大的价值，构建自己的影响力。</p>
+<p>所以，对于这些类库、框架、功能组件的开发，我们不能闭门造车，要把它们当作“产品”来开发。这个产品是一个“技术产品”，我们的目标用户是“程序员”，解决的是他们的“开发痛点”。我们要多换位思考，站在用户的角度上，来想他们到底想要什么样的功能。</p>
+<p>对于一个技术产品来说，尽管Bug少、性能好等技术指标至关重要，但是否易用、易集成、易插拔、文档是否全面、是否容易上手等，这些产品素质也非常重要，甚至还能起到决定性作用。往往就是这些很容易忽视、不被重视的东西，会决定一个技术产品是否能在众多的同类中脱颖而出。</p>
+<p>具体到Google Guava，它是一个开发类库，目标用户是Java开发工程师，解决用户主要痛点是，相对于JDK，提供更多的工具类，简化代码编写，比如，它提供了用来判断null值的Preconditions类；Splitter、Joiner、CharMatcher字符串处理类；Multisets、Multimaps、Tables等更丰富的Collections类等等。</p>
+<p>它的优势有这样几点：第一，由Google管理、长期维护，经过充分的单元测试，代码质量有保证；第二，可靠、性能好、高度优化，比如Google Guava提供的Immutable Collections要比JDK的unmodifiableCollection性能好；第三，全面、完善的文档，容易上手，学习成本低，你可以去看下它的Github Wiki。</p>
+<p>刚刚讲的是“产品意识”，我们再来讲讲“服务意识”。我经常在团队中说，如果你开发的东西是提供给其他团队用的，你一定要有“服务意识”。对于程序员来说，这点可能比“产品意识”更加欠缺。</p>
+<p>首先，从心态上，别的团队使用我们开发出来的技术产品，我们要学会感谢。这点很重要。心态不同了，做起事来就会有微妙的不同。其次，除了写代码，我们还要有抽出大量时间答疑、充当客服角色的心理准备。有了这个心理准备，别的团队的人在问你问题的时候，你也就不会很烦了。</p>
+<p>相对于业务代码来说，开发这种被多处复用的通用代码，对代码质量的要求更高些，因为这些项目的影响面更大，一旦出现bug，会牵连很多系统或其他项目。特别是如果你要把项目开源，影响就更大了。所以，这类项目的代码质量一般都很好，开发这类项目对代码能力的锻炼更有大。这也是我经常推荐别人通过阅读著名开源项目代码、参与开源项目来提高技术的原因。</p>
+<p>具体到Google Guava，它是Google员工开发的，单元测试很完善，注释写得很规范，代码写得也很好，可以说是学习Google开发经验的一手资料，建议你如果有时间的话，可以认真阅读一下它的代码。</p>
+<p>尽管开发这些通用功能模块更加锻炼技术，但我们也不要重复造轮子，能复用的尽量复用。而且，在项目中，如果你想把所有的通用功能都开发为独立的类库、框架、功能组件，这就有点大动干戈了，有可能会得不到领导的支持。毕竟从项目中将这部分通用功能独立出来开发，比起作为项目的一部分来开发，会更加耗时。</p>
+<p>所以，权衡一下的话，我建议初期先把这些通用的功能作为项目的一部分来开发。不过，在开发的时候，我们做好模块化工作，将它们尽量跟其他模块划清界限，通过接口、扩展点等松耦合的方式跟其他模式交互。等到时机成熟了，我们再将它从项目中剥离出来。因为之前模块化做的好，耦合程度低，剥离出来的成本也就不会很高。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>做业务开发也会涉及很多非业务功能的开发。我们要有善于发现、善于抽象的能力，并且具有扎实的设计、开发能力，能够发现这些非业务的、可复用的功能点，并且从业务逻辑中将其解耦抽象出来，设计并开发成独立的功能模块，比如类库、框架、功能组件。</p>
+<p>实际上，不管是类库、框架还是功能组件，这些通用功能模块最大的两个特点就是复用和业务无关。如果你开发的这块代码，业务无关并且可能会被复用，那就可以考虑将它独立出来，开发成类库、框架、功能组件等。</p>
+<p>当我们发现了通用功能模块的开发需求之后，如何将它设计开发成一个优秀的类库、框架或功能组件呢？这里我们讲了一些更普适的开发思想，比如产品意识、服务意识、代码质量意识、不要重复造轮子等。</p>
+<p>除此之外，我特别建议你去阅读一下Google Guava的开源代码。它的代码不复杂，很容易读懂，不会有太大阅读负担，但它是你获取Google公司开发经验的一手资料，特别是在单元测试、编码规范方面。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>针对你正在参与开发的项目，思考一下，有哪些通用的功能模块可以抽象出来，设计开发成独立的类库、框架、功能组件？它们都可能会包括哪些功能点呢？试着自己设计一下吧！</p>
+<p>欢迎留言和我分享你的想法，如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#81-%E5%BC%80%E6%BA%90%E5%AE%9E%E6%88%98%E4%B8%89%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E5%80%9FGoogle-Guava%E5%AD%A6%E4%B9%A0%E5%8F%91%E7%8E%B0%E5%92%8C%E5%BC%80%E5%8F%91%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">81 | 开源实战三（上）：借Google Guava学习发现和开发通用功能模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Guava%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">Google Guava介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0%E9%80%9A%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">如何发现通用的功能模块？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E9%80%9A%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">如何开发通用的功能模块？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.4.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.5.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

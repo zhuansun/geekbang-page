@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式到今天为止，理论部分和实战部分都已经讲完了，整个专栏也接近尾声了。我这里用两节课的时间，带你一块复习一下前面学到的知识点。跟前面的讲解相对应，这两节课分别是针对理论部分和实战部分进行回顾总结。 今天，我先来带你回顾一下整个专栏的知识体系。我们整个专栏围绕着编写高质量代码展开，涵盖了代码设计的方方面面，主要包括面向对象、设计原则、编码规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/326387842.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式到今天为止，理论部分和实战部分都已经讲完了，整个专栏也接近尾声了。我这里用两节课的时间，带你一块复习一下前面学到的知识点。跟前面的讲解相对应，这两节课分别是针对理论部分和实战部分进行回顾总结。 今天，我先来带你回顾一下整个专栏的知识体系。我们整个专栏围绕着编写高质量代码展开，涵盖了代码设计的方方面面，主要包括面向对象、设计原则、编码规范">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.404Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/326387842"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="99-总结回顾：在实际软件开发中常用的设计思想、原则和模式"><a href="#99-总结回顾：在实际软件开发中常用的设计思想、原则和模式" class="headerlink" title="99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式"></a>99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式</h1><p>到今天为止，理论部分和实战部分都已经讲完了，整个专栏也接近尾声了。我这里用两节课的时间，带你一块复习一下前面学到的知识点。跟前面的讲解相对应，这两节课分别是针对理论部分和实战部分进行回顾总结。</p>
+<p>今天，我先来带你回顾一下整个专栏的知识体系。我们整个专栏围绕着编写高质量代码展开，涵盖了代码设计的方方面面，主要包括面向对象、设计原则、编码规范、重构技巧、设计模式这五个部分。我们就从这五个方面，带你一块把之前学过的知识点串一遍。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f3262ef8152517d3b11bfc3f2d2b12d3.png"></p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>相对于面向过程、函数式编程，面向对象是现在最主流的编程范式。纯面向过程的编程方法，现在已经不多见了，而新的函数式编程，因为它的应用场景比较局限，所以大多作为面向对象编程的一种补充，用在科学计算、大数据处理等特殊领域。</p>
+<p>它提供了丰富的特性，比如封装、抽象、继承、多态，有助于实现复杂的设计思路，是很多设计原则、设计模式等编程实现的基础。</p>
+<p>在面向对象这一部分，我们要重点掌握面向对象的四大特性：封装、抽象、继承、多态，以及面向对象编程与面向过程编程的区别。需要特别注意的是，在平时的面向对象编程开发中，我们要避免编写出面向过程风格的代码。</p>
+<p>除此之外，我们还重点学习了面向对象分析（OOA）、设计（OOD）、编程（OOP）。其中，面向对象分析就是需求分析，面向对象设计是代码层面的设计，输出的设计结果是类。面向对象编程就是将设计的结果翻译成代码的过程。</p>
+<p>在专栏中，我们重点讲解了面向对象设计这一部分。我们可以把面向对象设计分为四个环节：划分职责并识别出有哪些类、定义类及其属性和方法、定义类之间的交互关系、组装类并提供执行入口。我们通过几个项目案例，带你实战了一下设计过程，希望你能面对开发需求的时候，不会无从下手，做到有章可循，按照我们的给出的步骤，有条不紊地完成设计。</p>
+<p>在面向对象这一部分，我们还额外讲到了两个设计思想：基于接口而非实现的设计思想、多用组合少用继承的设计思想。这两个设计思想虽然简单，但非常实用，应用它们能让代码更加灵活，更加容易扩展，所以，这两个设计思想几乎贯穿在我们整个专栏的代码实现中。</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>在专栏的最开始，我们总结了一套评判代码质量的标准，比如可读性、可维护性、可扩展性、复用性等，这是从代码整体质量的角度来评判的。但是，落实到具体的细节，我们往往从是否符合设计原则，来对代码设计进行评判。比如，我们说这段代码的可扩展性比较差，主要原因是违背了开闭原则。这也就是说，相对于可读性、可维护性、可扩展性等代码整体质量的评判标准，设计原则更加具体，能够更加明确地指出代码存在的问题。</p>
+<p>在专栏中，我们重点讲解了一些经典的设计原则，大部分都耳熟能详。它们分别是SOLID原则、DRY原则、KISS原则、YAGNI原则、LOD原则。这些原则的定义描述都很简单，看似都很好理解，但也都比较抽象，比较难落地指导具体的编程。所以，学习的重点是透彻理解它们的设计初衷，掌握它们能解决哪些编程问题，有哪些常用的应用场景。</p>
+<p>SOLID原则并非一个原则。它包含：单一职责原则（SRP）、开闭原则（OCP）、里氏替换原则（LSP）、接口隔离原则（ISP）、依赖倒置原则（DIP）。其中，里氏替换和接口隔离这两个设计原则并不那么常用，稍微了解就可以了。我们重点学习了单一职责、开闭、依赖倒置这三个原则。</p>
+<p>单一职责原则是类职责划分的重要参考依据，是保证代码”高内聚“的有效手段，是面向对象设计前两步（划分职责并识别出有哪些类、定义类及其属性和方法）的主要指导原则。单一职责原则的难点在于，对代码职责是否足够单一的判定。这要根据具体的场景来具体分析。同一个类的设计，在不同的场景下，对职责是否单一的判定，可能是不同的。</p>
+<p>开闭原则是保证代码可扩展性的重要指导原则，是对代码扩展性的具体解读。很多设计模式诞生的初衷都是为了提高代码的扩展性，都是以满足开闭原则为设计目的的。实际上，尽管开闭原则描述为对扩展开放、对修改关闭，但也并不是说杜绝一切代码修改，正确的理解是以最小化修改代价来完成新功能的添加。实际上，在平时的开发中，我们要时刻思考，目前的设计在以后应对新功能扩展的时候，是否能做到不需要大的代码修改（比如调整代码结构）就能完成。</p>
+<p>依赖倒置原则主要用来指导框架层面的设计。高层模块不依赖低层模块，它们共同依赖同一个抽象。深挖一下的话，我们要把它跟控制反转、依赖注入、依赖注入框架做区分。实际上，比依赖倒置原则更加常用的是依赖注入。它用来指导如何编写可测试性代码，换句话说，编写可测试代码的诀窍就是应用依赖注入。</p>
+<p>KISS、YAGNI可以说是两个万金油原则，小到代码、大到架构、产品，很多场景都能套用这两条原则。其中，YAGNI原则表示暂时不需要的就不要做，KISS原则表示要做就要尽量保持简单。跟单一职责原则类似，掌握这两个原则的难点也是在于，对代码是否符合KISS、YAGNI原则的判定。这也需要根据具体的场景来具体分析，在某个时间点、某个场景下，某段代码符合KISS、YAGNI原则，换个时间点、换个场景，可能就不符合了。</p>
+<p>DRY原则主要是提醒你不要写重复的代码，这个倒是不难掌握。LOD原则又叫最小知道原则，不该有直接依赖关系的类之间，不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口。如果说单一职责原则是为了实现“高内聚”， 那这个原则就是为了实现“松耦合”。</p>
+<h2 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h2><p>编码规范很重要，特别是对于初入职、开发经验不多的程序员，遵从好的编码规范，能让你写出来的代码至少不会太烂。而且，编码规范都比较具体，不像设计原则、模式、思想那样，比较抽象，需要融入很多个人的理解和思考，需要根据具体的场景具体分析，所以，它落地执行起来更加容易。</p>
+<p>虽然我们讲了很多设计思想、原则、模式，但是，大部分代码都不需要用到这么复杂的设计，即便用到，可能也就只是用到极个别的知识点，而且用的也不会很频繁。但是，编码规范就不一样了。编码规范影响到你写的每个类、函数、变量。你编写每行代码的时候都要思考是否符合编码规范。</p>
+<p>除此之外，编程规范主要解决代码的可读性问题。我个人觉得，在编写代码的时候，我们要把可读性放到首位。只有在代码可读性比较好的情况下，我们再去考虑代码的扩展性、灵活性等。一般来说，一个可读性比较好的代码，对它修改、扩展、重构都不是难事，因为这些工作的前提都是先读懂代码。</p>
+<p>不过，专栏中只是总结了一些最常用的、最能明显改善代码质量的编码规范，更进一步的学习你可以参考《重构》《代码大全》《代码整洁之道》等书籍，或者参看你公司内部的编码规范。</p>
+<h2 id="重构技巧"><a href="#重构技巧" class="headerlink" title="重构技巧"></a>重构技巧</h2><p>重构作为保持代码质量不腐化的有效手段，利用的就是面向对象、设计原则、设计模式、编码规范这些理论。在重构的过程中，我们用代码质量评判标准来评判代码的整体质量，然后对照设计原则来发现代码存在的具体问题，最后用设计模式或者编码规范对存在的问题进行改善。</p>
+<p>持续重构除了能保证代码质量不腐化之外，还能有效避免过度设计。有了持续重构意识，我们就不会因为担心设计不足而过度设计。我们先按照最简单的思路来设计，然后在后续的开发过程中逐步迭代重构。</p>
+<p>在专栏中，我们还对重构进行了粗略的分类，分为大规模高层次的重构和小规模低层次的重构。不管哪种重构，保证重构不出错，除了熟悉代码之外，还有就是完善的单元测试。</p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p>如果说设计原则相当于编程心法，那设计模式相当于具体的招式。设计模式是针对软件开发中经常遇到的一些设计问题，总结出来的一套解决方案或者设计思路。我们用设计原则来评判代码设计哪里有问题，然后再通过具体的设计模式来改善。相对于其他部分来讲，设计模式是最容易学习的，但也是最容易被滥用的，所以，我们在第75讲中还专门讲了如何避免过度设计。</p>
+<p>经典的设计模式有23种，分三种类型：创建型、结构型和行为型。其中，创建型设计模式主要解决“对象的创建”问题，结构型设计模式主要解决“类或对象的组合”问题，行为型设计模式主要解决“类或对象之间的交互”问题。</p>
+<p>虽然专栏中讲到的设计模式有很多种，但常用的并不多，主要有：单例、工厂、建造者、代理、装饰器、适配器、观察者、模板、策略、职责链、迭代器这11种，所以，你只要集中精力，把这11种搞明白就可以了，剩下的那12种稍微了解，混个眼熟，等到真正用到的时候，再深入地去研究学习就可以了。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>很多人反映学了就忘，对于上面的这些知识点，你记住了百分之多少呢？你是怎么克服学了就忘的问题的呢？</p>
+<p>欢迎留言和我分享你的想法，如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#99-%E6%80%BB%E7%BB%93%E5%9B%9E%E9%A1%BE%EF%BC%9A%E5%9C%A8%E5%AE%9E%E9%99%85%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E3%80%81%E5%8E%9F%E5%88%99%E5%92%8C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">设计原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-number">1.3.</span> <span class="toc-text">编码规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E6%8A%80%E5%B7%A7"><span class="toc-number">1.4.</span> <span class="toc-text">重构技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.6.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

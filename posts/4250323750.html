@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>第16讲 | synchronized底层如何实现？什么是锁的升级、降级？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第16讲 | synchronized底层如何实现？什么是锁的升级、降级？我在 上一讲 对比和分析了synchronized和ReentrantLock，算是专栏进入并发编程阶段的热身，相信你已经对线程安全，以及如何使用基本的同步机制有了基础，今天我们将深入了解synchronize底层机制，分析其他锁实现和应用场景。 今天我要问你的问题是 ，synchronized底层如何实现？什么是锁的升级、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第16讲 | synchronized底层如何实现？什么是锁的升级、降级？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4250323750.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="第16讲 | synchronized底层如何实现？什么是锁的升级、降级？我在 上一讲 对比和分析了synchronized和ReentrantLock，算是专栏进入并发编程阶段的热身，相信你已经对线程安全，以及如何使用基本的同步机制有了基础，今天我们将深入了解synchronize底层机制，分析其他锁实现和应用场景。 今天我要问你的问题是 ，synchronized底层如何实现？什么是锁的升级、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:39:35.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:07.729Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4250323750"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第16讲 | synchronized底层如何实现？什么是锁的升级、降级？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">第16讲 | synchronized底层如何实现？什么是锁的升级、降级？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:39:35.000Z" title="发表于 2023-12-18 17:39:35">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="第16讲-synchronized底层如何实现？什么是锁的升级、降级？"><a href="#第16讲-synchronized底层如何实现？什么是锁的升级、降级？" class="headerlink" title="第16讲 | synchronized底层如何实现？什么是锁的升级、降级？"></a>第16讲 | synchronized底层如何实现？什么是锁的升级、降级？</h1><p>我在 <a target="_blank" rel="noopener" href="http://time.geekbang.org/column/article/8799">上一讲</a> 对比和分析了synchronized和ReentrantLock，算是专栏进入并发编程阶段的热身，相信你已经对线程安全，以及如何使用基本的同步机制有了基础，今天我们将深入了解synchronize底层机制，分析其他锁实现和应用场景。</p>
+<p>今天我要问你的问题是 ，synchronized底层如何实现？什么是锁的升级、降级？</p>
+<h2 id="典型回答"><a href="#典型回答" class="headerlink" title="典型回答"></a>典型回答</h2><p>在回答这个问题前，先简单复习一下上一讲的知识点。synchronized代码块是由一对儿monitorenter&#x2F;monitorexit指令实现的，Monitor对象是同步的基本实现 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jls/se10/html/jls-8.html#d5e13622">单元</a>。</p>
+<p>在Java 6之前，Monitor的实现完全是依靠操作系统内部的互斥锁，因为需要进行用户态到内核态的切换，所以同步操作是一个无差别的重量级操作。</p>
+<p>现代的（Oracle）JDK中，JVM对此进行了大刀阔斧地改进，提供了三种不同的Monitor实现，也就是常说的三种不同的锁：偏斜锁（Biased Locking）、轻量级锁和重量级锁，大大改进了其性能。</p>
+<p>所谓锁的升级、降级，就是JVM优化synchronized运行的机制，当JVM检测到不同的竞争状况时，会自动切换到适合的锁实现，这种切换就是锁的升级、降级。</p>
+<p>当没有竞争出现时，默认会使用偏斜锁。JVM会利用CAS操作（ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Compare-and-swap">compare and swap</a>），在对象头上的Mark Word部分设置线程ID，以表示这个对象偏向于当前线程，所以并不涉及真正的互斥锁。这样做的假设是基于在很多应用场景中，大部分对象生命周期中最多会被一个线程锁定，使用偏斜锁可以降低无竞争开销。</p>
+<p>如果有另外的线程试图锁定某个已经被偏斜过的对象，JVM就需要撤销（revoke）偏斜锁，并切换到轻量级锁实现。轻量级锁依赖CAS操作Mark Word来试图获取锁，如果重试成功，就使用普通的轻量级锁；否则，进一步升级为重量级锁。</p>
+<p>我注意到有的观点认为Java不会进行锁降级。实际上据我所知，锁降级确实是会发生的，当JVM进入安全点（ <a target="_blank" rel="noopener" href="http://blog.ragozin.info/2012/10/safepoints-in-hotspot-jvm.html">SafePoint</a>）的时候，会检查是否有闲置的Monitor，然后试图进行降级。</p>
+<h2 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h2><p>今天的问题主要是考察你对Java内置锁实现的掌握，也是并发的经典题目。我在前面给出的典型回答，涵盖了一些基本概念。如果基础不牢，有些概念理解起来就比较晦涩，我建议还是尽量理解和掌握，即使有不懂的也不用担心，在后续学习中还会逐步加深认识。</p>
+<p>我个人认为，能够基础性地理解这些概念和机制，其实对于大多数并发编程已经足够了，毕竟大部分工程师未必会进行更底层、更基础的研发，很多时候解决的是知道与否，真正的提高还要靠实践踩坑。</p>
+<p>后面我会进一步分析：</p>
+<ul>
+<li><p>从源码层面，稍微展开一些synchronized的底层实现，并补充一些上面答案中欠缺的细节，有同学反馈这部分容易被问到。如果你对Java底层源码有兴趣，但还没有找到入手点，这里可以成为一个切入点。</p>
+</li>
+<li><p>理解并发包中java.util.concurrent.lock提供的其他锁实现，毕竟Java可不是只有ReentrantLock一种显式的锁类型，我会结合代码分析其使用。</p>
+</li>
+</ul>
+<h2 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h2><p>我在 <a target="_blank" rel="noopener" href="http://time.geekbang.org/column/article/8799">上一讲</a> 提到过synchronized是JVM内部的Intrinsic Lock，所以偏斜锁、轻量级锁、重量级锁的代码实现，并不在核心类库部分，而是在JVM的代码中。</p>
+<p>Java代码运行可能是解释模式也可能是编译模式（如果不记得，请复习 <a target="_blank" rel="noopener" href="http://time.geekbang.org/column/article/6845">专栏第1讲</a>），所以对应的同步逻辑实现，也会分散在不同模块下，比如，解释器版本就是：</p>
+<p><a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/jdk/jdk/file/6659a8f57d78/src/hotspot/share/interpreter/interpreterRuntime.cpp">src&#x2F;hotspot&#x2F;share&#x2F;interpreter&#x2F;interpreterRuntime.cpp</a></p>
+<p>为了简化便于理解，我这里会专注于通用的基类实现：</p>
+<p><a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/jdk/jdk/file/6659a8f57d78/src/hotspot/share/runtime/">src&#x2F;hotspot&#x2F;share&#x2F;runtime&#x2F;</a></p>
+<p>另外请注意，链接指向的是最新JDK代码库，所以可能某些实现与历史版本有所不同。</p>
+<p>首先，synchronized的行为是JVM runtime的一部分，所以我们需要先找到Runtime相关的功能实现。通过在代码中查询类似“monitor_enter”或“Monitor Enter”，很直观的就可以定位到：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/jdk/jdk/file/6659a8f57d78/src/hotspot/share/runtime/sharedRuntime.cpp">sharedRuntime.cpp</a>&#x2F;hpp，它是解释器和编译器运行时的基类。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://hg.openjdk.java.net/jdk/jdk/file/896e80158d35/src/hotspot/share/runtime/synchronizer.cpp">synchronizer.cpp</a>&#x2F;hpp，JVM同步相关的各种基础逻辑。</p>
+</li>
+</ul>
+<p>在sharedRuntime.cpp中，下面代码体现了synchronized的主要逻辑。</p>
+<pre class="line-numbers language-none"><code class="language-none">Handle h_obj(THREAD, obj);
+  if (UseBiasedLocking) &#123;
+    &#x2F;&#x2F; Retry fast entry if bias is revoked to avoid unnecessary inflation
+    ObjectSynchronizer::fast_enter(h_obj, lock, true, CHECK);
+  &#125; else &#123;
+    ObjectSynchronizer::slow_enter(h_obj, lock, CHECK);
+  &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其实现可以简单进行分解：</p>
+<ul>
+<li>UseBiasedLocking是一个检查，因为，在JVM启动时，我们可以指定是否开启偏斜锁。</li>
+</ul>
+<p>偏斜锁并不适合所有应用场景，撤销操作（revoke）是比较重的行为，只有当存在较多不会真正竞争的synchronized块儿时，才能体现出明显改善。实践中对于偏斜锁的一直是有争议的，有人甚至认为，当你需要大量使用并发类库时，往往意味着你不需要偏斜锁。从具体选择来看，我还是建议需要在实践中进行测试，根据结果再决定是否使用。</p>
+<p>还有一方面是，偏斜锁会延缓JIT 预热的进程，所以很多性能测试中会显式地关闭偏斜锁，命令如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">-XX:-UseBiasedLocking
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>fast_enter是我们熟悉的完整锁获取路径，slow_enter则是绕过偏斜锁，直接进入轻量级锁获取逻辑。</li>
+</ul>
+<p>那么fast_enter是如何实现的呢？同样是通过在代码库搜索，我们可以定位到synchronizer.cpp。 类似fast_enter这种实现，解释器或者动态编译器，都是拷贝这段基础逻辑，所以如果我们修改这部分逻辑，要保证一致性。这部分代码是非常敏感的，微小的问题都可能导致死锁或者正确性问题。</p>
+<pre class="line-numbers language-none"><code class="language-none">void ObjectSynchronizer::fast_enter(Handle obj, BasicLock* lock,
+                                	bool attempt_rebias, TRAPS) &#123;
+  if (UseBiasedLocking) &#123;
+    if (!SafepointSynchronize::is_at_safepoint()) &#123;
+      BiasedLocking::Condition cond &#x3D; BiasedLocking::revoke_and_rebias(obj, attempt_rebias, THREAD);
+      if (cond &#x3D;&#x3D; BiasedLocking::BIAS_REVOKED_AND_REBIASED) &#123;
+        return;
+      &#125;
+	&#125; else &#123;
+      assert(!attempt_rebias, &quot;can not rebias toward VM thread&quot;);
+      BiasedLocking::revoke_at_safepoint(obj);
+	&#125;
+    assert(!obj-&gt;mark()-&gt;has_bias_pattern(), &quot;biases should be revoked by now&quot;);
+  &#125;
+
+  slow_enter(obj, lock, THREAD);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我来分析下这段逻辑实现：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/jdk/jdk/file/6659a8f57d78/src/hotspot/share/runtime/biasedLocking.cpp">biasedLocking</a> 定义了偏斜锁相关操作，revoke_and_rebias是获取偏斜锁的入口方法，revoke_at_safepoint则定义了当检测到安全点时的处理逻辑。</p>
+</li>
+<li><p>如果获取偏斜锁失败，则进入slow_enter。</p>
+</li>
+<li><p>这个方法里面同样检查是否开启了偏斜锁，但是从代码路径来看，其实如果关闭了偏斜锁，是不会进入这个方法的，所以算是个额外的保障性检查吧。</p>
+</li>
+</ul>
+<p>另外，如果你仔细查看 <a target="_blank" rel="noopener" href="https://hg.openjdk.java.net/jdk/jdk/file/896e80158d35/src/hotspot/share/runtime/synchronizer.cpp">synchronizer.cpp</a> 里，会发现不仅仅是synchronized的逻辑，包括从本地代码，也就是JNI，触发的Monitor动作，全都可以在里面找到（jni_enter&#x2F;jni_exit）。</p>
+<p>关于 <a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/jdk/jdk/file/6659a8f57d78/src/hotspot/share/runtime/biasedLocking.cpp">biasedLocking</a> 的更多细节我就不展开了，明白它是通过CAS设置Mark Word就完全够用了，对象头中Mark Word的结构，可以参考下图：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/b1221c308d2aaf13d0d677033ee406fc.png"></p>
+<p>顺着锁升降级的过程分析下去，偏斜锁到轻量级锁的过程是如何实现的呢？</p>
+<p>我们来看看slow_enter到底做了什么。</p>
+<pre class="line-numbers language-none"><code class="language-none">void ObjectSynchronizer::slow_enter(Handle obj, BasicLock* lock, TRAPS) &#123;
+  markOop mark &#x3D; obj-&gt;mark();
+ if (mark-&gt;is_neutral()) &#123;
+       &#x2F;&#x2F; 将目前的Mark Word复制到Displaced Header上
+	lock-&gt;set_displaced_header(mark);
+	&#x2F;&#x2F; 利用CAS设置对象的Mark Word
+    if (mark &#x3D;&#x3D; obj()-&gt;cas_set_mark((markOop) lock, mark)) &#123;
+      TEVENT(slow_enter: release stacklock);
+      return;
+    &#125;
+    &#x2F;&#x2F; 检查存在竞争
+  &#125; else if (mark-&gt;has_locker() &amp;&amp;
+             THREAD-&gt;is_lock_owned((address)mark-&gt;locker())) &#123;
+	&#x2F;&#x2F; 清除
+    lock-&gt;set_displaced_header(NULL);
+    return;
+  &#125;
+
+  &#x2F;&#x2F; 重置Displaced Header
+  lock-&gt;set_displaced_header(markOopDesc::unused_mark());
+  ObjectSynchronizer::inflate(THREAD,
+                          	obj(),
+                              inflate_cause_monitor_enter)-&gt;enter(THREAD);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>请结合我在代码中添加的注释，来理解如何从试图获取轻量级锁，逐步进入锁膨胀的过程。你可以发现这个处理逻辑，和我在这一讲最初介绍的过程是十分吻合的。</p>
+<ul>
+<li><p>设置Displaced Header，然后利用cas_set_mark设置对象Mark Word，如果成功就成功获取轻量级锁。</p>
+</li>
+<li><p>否则Displaced Header，然后进入锁膨胀阶段，具体实现在inflate方法中。</p>
+</li>
+</ul>
+<p>今天就不介绍膨胀的细节了，我这里提供了源代码分析的思路和样例，考虑到应用实践，再进一步增加源代码解读意义不大，有兴趣的同学可以参考我提供的 <a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/jdk/jdk/file/896e80158d35/src/hotspot/share/runtime/synchronizer.cpp">synchronizer.cpp</a> 链接，例如：</p>
+<ul>
+<li><p><strong>deflate_idle_monitors</strong> 是分析 <strong>锁降级</strong> 逻辑的入口，这部分行为还在进行持续改进，因为其逻辑是在安全点内运行，处理不当可能拖长JVM停顿（STW，stop-the-world）的时间。</p>
+</li>
+<li><p>fast_exit或者slow_exit是对应的锁释放逻辑。</p>
+</li>
+</ul>
+<p>前面分析了synchronized的底层实现，理解起来有一定难度，下面我们来看一些相对轻松的内容。 我在上一讲对比了synchronized和ReentrantLock，Java核心类库中还有其他一些特别的锁类型，具体请参考下面的图。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/f5753a4695fd771f8178120858086811.png"></p>
+<p>你可能注意到了，这些锁竟然不都是实现了Lock接口，ReadWriteLock是一个单独的接口，它通常是代表了一对儿锁，分别对应只读和写操作，标准类库中提供了再入版本的读写锁实现（ReentrantReadWriteLock），对应的语义和ReentrantLock比较相似。</p>
+<p>StampedLock竟然也是个单独的类型，从类图结构可以看出它是不支持再入性的语义的，也就是它不是以持有锁的线程为单位。</p>
+<p>为什么我们需要读写锁（ReadWriteLock）等其他锁呢？</p>
+<p>这是因为，虽然ReentrantLock和synchronized简单实用，但是行为上有一定局限性，通俗点说就是“太霸道”，要么不占，要么独占。实际应用场景中，有的时候不需要大量竞争的写操作，而是以并发读取为主，如何进一步优化并发操作的粒度呢？</p>
+<p>Java并发包提供的读写锁等扩展了锁的能力，它所基于的原理是多个读操作是不需要互斥的，因为读操作并不会更改数据，所以不存在互相干扰。而写操作则会导致并发一致性的问题，所以写线程之间、读写线程之间，需要精心设计的互斥逻辑。</p>
+<p>下面是一个基于读写锁实现的数据结构，当数据量较大，并发读多、并发写少的时候，能够比纯同步版本凸显出优势。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class RWSample &#123;
+	private final Map&lt;String, String&gt; m &#x3D; new TreeMap&lt;&gt;();
+	private final ReentrantReadWriteLock rwl &#x3D; new ReentrantReadWriteLock();
+	private final Lock r &#x3D; rwl.readLock();
+	private final Lock w &#x3D; rwl.writeLock();
+	public String get(String key) &#123;
+    	r.lock();
+    	System.out.println(&quot;读锁锁定！&quot;);
+    	try &#123;
+        	return m.get(key);
+    	&#125; finally &#123;
+        	r.unlock();
+    	&#125;
+	&#125;
+
+	public String put(String key, String entry) &#123;
+    	w.lock();
+	System.out.println(&quot;写锁锁定！&quot;);
+	    	try &#123;
+	        	return m.put(key, entry);
+	    	&#125; finally &#123;
+	        	w.unlock();
+	    	&#125;
+		&#125;
+	&#x2F;&#x2F; …
+	&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在运行过程中，如果读锁试图锁定时，写锁是被某个线程持有，读锁将无法获得，而只好等待对方操作结束，这样就可以自动保证不会读取到有争议的数据。</p>
+<p>读写锁看起来比synchronized的粒度似乎细一些，但在实际应用中，其表现也并不尽如人意，主要还是因为相对比较大的开销。</p>
+<p>所以，JDK在后期引入了StampedLock，在提供类似读写锁的同时，还支持优化读模式。优化读基于假设，大多数情况下读操作并不会和写操作冲突，其逻辑是先试着读，然后通过validate方法确认是否进入了写模式，如果没有进入，就成功避免了开销；如果进入，则尝试获取读锁。请参考我下面的样例代码。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class StampedSample &#123;
+	private final StampedLock sl &#x3D; new StampedLock();
+
+	void mutate() &#123;
+    	long stamp &#x3D; sl.writeLock();
+    	try &#123;
+        	write();
+    	&#125; finally &#123;
+        	sl.unlockWrite(stamp);
+    	&#125;
+	&#125;
+
+	Data access() &#123;
+    	long stamp &#x3D; sl.tryOptimisticRead();
+    	Data data &#x3D; read();
+    	if (!sl.validate(stamp)) &#123;
+        	stamp &#x3D; sl.readLock();
+        	try &#123;
+            	data &#x3D; read();
+        	&#125; finally &#123;
+            	sl.unlockRead(stamp);
+        	&#125;
+    	&#125;
+    	return data;
+	&#125;
+	&#x2F;&#x2F; …
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意，这里的writeLock和unLockWrite一定要保证成对调用。</p>
+<p>你可能很好奇这些显式锁的实现机制，Java并发包内的各种同步工具，不仅仅是各种Lock，其他的如 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/10/docs/api/java/util/concurrent/Semaphore.html">Semaphore</a>、 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/10/docs/api/java/util/concurrent/CountDownLatch.html">CountDownLatch</a>，甚至是早期的 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/10/docs/api/java/util/concurrent/FutureTask.html">FutureTask</a> 等，都是基于一种 <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/10/docs/api/java/util/concurrent/locks/AbstractQueuedSynchronizer.html">AQS</a> 框架。</p>
+<p>今天，我全面分析了synchronized相关实现和内部运行机制，简单介绍了并发包中提供的其他显式锁，并结合样例代码介绍了其使用方法，希望对你有所帮助。</p>
+<h2 id="一课一练"><a href="#一课一练" class="headerlink" title="一课一练"></a>一课一练</h2><p>关于今天我们讨论的你做到心中有数了吗？思考一个问题，你知道“自旋锁”是做什么的吗？它的使用场景是什么？</p>
+<p>请你在留言区写写你对这个问题的思考，我会选出经过认真思考的留言，送给你一份学习奖励礼券，欢迎你与我一起讨论。</p>
+<p>你的朋友是不是也在准备面试呢？你可以“请朋友读”，把今天的题目分享给好友，或许你能帮到他。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC16%E8%AE%B2-synchronized%E5%BA%95%E5%B1%82%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E9%94%81%E7%9A%84%E5%8D%87%E7%BA%A7%E3%80%81%E9%99%8D%E7%BA%A7%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">第16讲 | synchronized底层如何实现？什么是锁的升级、降级？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E5%9B%9E%E7%AD%94"><span class="toc-number">1.1.</span> <span class="toc-text">典型回答</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%83%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">考点分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95"><span class="toc-number">1.3.</span> <span class="toc-text">知识扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%AF%BE%E4%B8%80%E7%BB%83"><span class="toc-number">1.4.</span> <span class="toc-text">一课一练</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

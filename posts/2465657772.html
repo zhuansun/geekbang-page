@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>94 | 项目实战二：设计实现一个通用的接口幂等框架（设计） | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）上一节课，我们介绍了幂等框架的一个重要需求场景，接口超时重试。为了避免同一业务被多次重复执行，接口需要支持幂等特性。同时，我们还对功能性需求和非功能性需求做了梳理。今天，我们来讲解幂等框架的设计思路。 跟限流框架类似，幂等框架的功能性需求也比较简单，但要考虑处理的异常情况有很多，比如业务代码异常、业务系统宕机、幂等框架异常。今天，我们重点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2465657772.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）上一节课，我们介绍了幂等框架的一个重要需求场景，接口超时重试。为了避免同一业务被多次重复执行，接口需要支持幂等特性。同时，我们还对功能性需求和非功能性需求做了梳理。今天，我们来讲解幂等框架的设计思路。 跟限流框架类似，幂等框架的功能性需求也比较简单，但要考虑处理的异常情况有很多，比如业务代码异常、业务系统宕机、幂等框架异常。今天，我们重点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:02.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.394Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2465657772"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="94-项目实战二：设计实现一个通用的接口幂等框架（设计）"><a href="#94-项目实战二：设计实现一个通用的接口幂等框架（设计）" class="headerlink" title="94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）"></a>94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）</h1><p>上一节课，我们介绍了幂等框架的一个重要需求场景，接口超时重试。为了避免同一业务被多次重复执行，接口需要支持幂等特性。同时，我们还对功能性需求和非功能性需求做了梳理。今天，我们来讲解幂等框架的设计思路。</p>
+<p>跟限流框架类似，幂等框架的功能性需求也比较简单，但要考虑处理的异常情况有很多，比如业务代码异常、业务系统宕机、幂等框架异常。今天，我们重点讲解如何应对这些异常情况，设计一个高度容错的幂等框架。</p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="幂等处理正常流程"><a href="#幂等处理正常流程" class="headerlink" title="幂等处理正常流程"></a>幂等处理正常流程</h2><p>调用方从发起接口请求到接收到响应，一般要经过三个阶段。第一个阶段是调用方发送请求并被实现方接收，第二个阶段是执行接口对应的业务逻辑，第三个阶段是将执行结果返回给调用方。为了实现接口幂等，我们需要将幂等相关的逻辑，添加在这三个阶段中。</p>
+<p>正常情况下，幂等号随着请求传递到接口实现方之后，接口实现方将幂等号解析出来，传递给幂等框架。幂等框架先去数据库（比如Redis）中查找这个幂等号是否已经存在。如果存在，说明业务逻辑已经或者正在执行，就不要重复执行了。如果幂等号不存在，就将幂等号存储在数据库中，然后再执行相应的业务逻辑。</p>
+<p>正常情况下，幂等处理流程是非常简单的，难点在于如何应对异常情况。在这三个阶段中，如果第一个阶段出现异常，比如发送请求失败或者超时，幂等号还没有记录下来，重试请求会被执行，符合我们的预期。如果第三个阶段出现异常，业务逻辑执行完成了，只是在发送结果给调用方的时候，失败或者超时了，这个时候，幂等号已经记录下来，重试请求不会被执行，也符合我们的预期。也就是说，第一、第三阶段出现异常，上述的幂等处理逻辑都可以正确应对。</p>
+<p>但是，如果第二个阶段业务执行的过程出现异常，处理起来就复杂多了。接下来，我们就看下幂等框架该如何应对这一阶段的各种异常。我分了三类异常来讲解，它们分别是业务代码异常、业务系统宕机、幂等框架异常。</p>
+<h2 id="业务代码异常处理"><a href="#业务代码异常处理" class="headerlink" title="业务代码异常处理"></a>业务代码异常处理</h2><p>当业务代码在执行过程中抛出异常的时候，我们是否应该认定为业务处理失败，然后将已经记录的幂等号删除，允许重新执行业务逻辑呢？</p>
+<p>对于这个问题，我们要分业务异常和系统异常来区分对待。那什么是业务异常？什么是系统异常呢？我举个例子解释一下。比如，A用户发送消息给B用户，但是查询B用户不存在，抛出UserNotExisting异常，我们把这种业务上不符合预期叫做业务异常。因为数据库挂掉了，业务代码访问数据库时，就会报告数据库异常，我们把这种非业务层面的、系统级的异常，叫做系统异常。</p>
+<p>遇到业务异常（比如UserNotExisting异常），我们不删除已经记录的幂等号，不允许重新执行同样的业务逻辑，因为再次重新执行也是徒劳的，还是会报告异常。相反，遇到系统异常（比如数据库访问异常），我们将已经记录的幂等号删除，允许重新执行这段业务逻辑。因为在系统级问题修复之后（比如数据库恢复了），重新执行之前失败的业务逻辑，就有可能会成功。</p>
+<p>实际上，为了让幂等框架尽可能的灵活，低侵入业务逻辑，发生异常（不管是业务异常还是系统异常），是否允许再重试执行业务逻辑，交给开发这块业务的工程师来决定是最合适的了，毕竟他最清楚针对每个异常该如何处理。而幂等框架本身不参与这个决定，它只需要提供删除幂等号的接口，由业务工程师来决定遇到异常的时候，是否需要调用这个删除接口，删除已经记录的幂等号。</p>
+<h2 id="业务系统宕机处理"><a href="#业务系统宕机处理" class="headerlink" title="业务系统宕机处理"></a>业务系统宕机处理</h2><p>刚刚分析的是代码异常，我们再来看下，如果在业务处理的过程中，业务系统宕机了（你可以简单理解为部署了业务系统的机器宕机了），幂等框架是否还能正确工作呢？</p>
+<p>如果幂等号已经记录下了，但是因为机器宕机，业务还没来得及执行，按照刚刚的幂等框架的处理流程，即便机器重启，业务也不会再被触发执行了，这个时候该怎么办呢？除此之外，如果记录幂等号成功了，但是在捕获到系统异常之后，要删除幂等号之前，机器宕机了，这个时候又该怎么办？</p>
+<p>如果希望幂等号的记录和业务的执行完全一致，我们就要把它们放到一个事务中。执行成功，必然会记录幂等号；执行失败，幂等号记录也会被自动回滚。因为幂等框架和业务系统各自使用独立的数据库来记录数据，所以，这里涉及的事务属于分布式事务。如果为了解决这个问题，引入分布式事务，那幂等框架的开发难度提高了很多，并且框架使用起来也复杂了很多，性能也会有所损失。</p>
+<p>针对这个问题，我们还有另外一种解决方案。那就是，在存储业务数据的业务数据库（ 比如MySQL）中，建一张表来记录幂等号。幂等号先存储到业务数据库中，然后再同步给幂等框架的Redis数据库。这样做的好处是，我们不需要引入分布式事务框架，直接利用业务数据库本身的事务属性，保证业务数据和幂等号的写入操作，要么都成功，要么都失败。不过，这个解决方案会导致幂等逻辑，跟业务逻辑没有完全解耦，不符合我们之前讲到的低侵入、松耦合的设计思想。</p>
+<p>实际上，做工程不是做理论。对于这种极少发生的异常，在工程中，我们能够做到，在出错时能及时发现问题、能够根据记录的信息人工修复就可以了。虽然看起来解决方案不优雅，不够智能，不够自动化，但是，这比编写一大坨复杂的代码逻辑来解决，要好使得多。所以，我们建议业务系统记录SQL的执行日志，在日志中附加上幂等号。这样我们就能在机器宕机时，根据日志来判断业务执行情况和幂等号的记录是否一致。</p>
+<h2 id="幂等框架异常处理"><a href="#幂等框架异常处理" class="headerlink" title="幂等框架异常处理"></a>幂等框架异常处理</h2><p>我们前面提到，限流框架本身的异常，不能导致接口响应异常。那对于幂等框架来说，是否也适用这条设计原则呢？</p>
+<p>对于限流来说，限流框架执行异常（比如，Redis访问超时或者访问失败），我们可以触发服务降级，让限流功能暂时不起作用，接口还能正常执行。如果大量的限流接口调用异常，在具有完善监控的情况下，这些异常很快就会被运维发现并且修复，所以，短暂的限流失效，也不会对业务系统产生太多影响。毕竟限流只是一个针对突发情况的保护机制，平时并不起作用。如果偶尔的极个别的限流接口调用异常，本不应该被放过的几个接口请求，因为限流的暂时失效被放过了，对于这种情况，绝大部分业务场景都是可以接受的。毕竟限流不可能做到非常精确，多放过一两个接口请求几乎没影响。</p>
+<p>对于幂等来说，尽管它应对的也是超时重试等特殊场景，但是，如果本不应该重新执行的业务逻辑，因为幂等功能的暂时失效，被重复执行了，就会导致业务出错（比如，多次执行转账，钱多转了）。对于这种情况，绝大部分业务场景都是无法接受的。所以，在幂等逻辑执行异常时，我们选择让接口请求也失败，相应的业务逻辑就不会被重复执行了。毕竟接口请求失败（比如转钱没转成功），比业务执行出错（比如多转了钱），修复的成本要低很多。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>今天，我们讲解了幂等框架的设计思路。在正常情况下，幂等框架的处理流程是比较简单的，调用方生成幂等号，传递给实现方，实现方记录幂等号或者用幂等号判重。但是，幂等框架要处理的异常情况很多，这也是设计的复杂之处和难点之处。</p>
+<p>我们针对三种不同类型的异常，讲解了幂等框架的应对思路。</p>
+<p>对于业务代码异常，为了让幂等框架尽可能的灵活，低侵入业务逻辑，发生异常（不管是业务异常还是系统异常），是否允许再重试执行业务逻辑，交给开发这块业务的工程师来决定。</p>
+<p>对于业务系统宕机，对于这种极少发生的异常，在工程中，我们能够做到，在出错时能及时发现问题、能够根据记录的信息人工修复，就可以了。所以，我们建议业务系统记录SQL的执行日志，在日志中附加上幂等号。这样我们就能在机器宕机时，根据日志来判断业务执行情况和幂等号的记录是否一致。</p>
+<p>对于幂等框架异常，跟限流框架异常处理对策不同，在幂等逻辑执行异常时，我们选择让接口请求也失败，相应的业务逻辑就不会被重复执行了，业务就不会出错。毕竟接口请求失败，比业务执行出错，修复的成本要低很多。</p>
+<p>虽然幂等框架要处理的异常很多，但考虑到开发成本以及简单易用性，我们对某些异常的处理在工程上做了妥协，交由业务系统或者人工介入处理。这样就大大简化了幂等框架开发的复杂度和难度。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>我常说，异常情况考虑是否全面，处理是否得当，很能体现一个程序员的逻辑思维能力、工程能力。除了我们今天讲到的异常，在幂等框架中，你还能想到有哪些其他异常情况会发生？又该如何应对呢？</p>
+<p>欢迎留言和我分享你的想法。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#94-%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E4%BA%8C%EF%BC%9A%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E6%A1%86%E6%9E%B6%EF%BC%88%E8%AE%BE%E8%AE%A1%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">94 | 项目实战二：设计实现一个通用的接口幂等框架（设计）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%82%E7%AD%89%E5%A4%84%E7%90%86%E6%AD%A3%E5%B8%B8%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">幂等处理正常流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">业务代码异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E5%AE%95%E6%9C%BA%E5%A4%84%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">业务系统宕机处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%82%E7%AD%89%E6%A1%86%E6%9E%B6%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">幂等框架异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.5.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.6.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

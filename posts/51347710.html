@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？在我们的职业生涯中，很少有机会可以从零开发一个项目，大部分都是接手别人的代码继续开发，或者做些维护性开发。而且，对于大部分业务系统来说，因为业务导向，需求倒逼，开发工期紧，团队往往都不是很重视代码质量，快速上线是第一要务。所以，很多团队的代码质量一般都不怎么高。埋坑无数、没有文档、也没有注释，代码读不懂、也不敢改，这对于新人来说，会非常苦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/51347710.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？在我们的职业生涯中，很少有机会可以从零开发一个项目，大部分都是接手别人的代码继续开发，或者做些维护性开发。而且，对于大部分业务系统来说，因为业务导向，需求倒逼，开发工期紧，团队往往都不是很重视代码质量，快速上线是第一要务。所以，很多团队的代码质量一般都不怎么高。埋坑无数、没有文档、也没有注释，代码读不懂、也不敢改，这对于新人来说，会非常苦">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.421Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/51347710"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="加餐十-如何接手一坨烂业务代码？如何在烂业务代码中成长？"><a href="#加餐十-如何接手一坨烂业务代码？如何在烂业务代码中成长？" class="headerlink" title="加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？"></a>加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？</h1><p>在我们的职业生涯中，很少有机会可以从零开发一个项目，大部分都是接手别人的代码继续开发，或者做些维护性开发。而且，对于大部分业务系统来说，因为业务导向，需求倒逼，开发工期紧，团队往往都不是很重视代码质量，快速上线是第一要务。所以，很多团队的代码质量一般都不怎么高。埋坑无数、没有文档、也没有注释，代码读不懂、也不敢改，这对于新人来说，会非常苦恼。今天，我们就聊一聊，如何接手一坨烂业务代码，以及如在烂业务代码中的成长？</p>
+<p>话不多说，让我们正式开始今天的内容吧！</p>
+<h2 id="如何接手一坨烂业务代码？"><a href="#如何接手一坨烂业务代码？" class="headerlink" title="如何接手一坨烂业务代码？"></a>如何接手一坨烂业务代码？</h2><p>在我过去10年的工作经历中，我接手过很多个代码质量比较烂的项目。这些项目都有很多共性的特点，大部分都已经维护了两三年，甚至五六年之久，代码量很大，有十几万行以上，并且大部分代码都没有任何注释，业务功能非常庞杂，也没有对应的业务文档。</p>
+<p>除此之外，代码中还充斥着各种临时解决方案（Workaround）、硬编码（Hard Code）、遗留代码（Legacy Code），还有很多匪夷所思的设计。对于有些设计来说，我们称之为“反人类”设计或者“故意挖坑”，一点都不为过。如果没有老员工给你解释上下文，你万万都想不到它为什么这么设计和实现。</p>
+<p>实际上， <strong>要想接手一个业务系统，前提是要读懂代码，而读懂代码的关键，是要熟悉业务。</strong> 只要业务搞清楚了，代码只不过是对业务的翻译，对照着业务看代码实现，看懂并不是件难事。不过，我所接手的这几个项目，基本上都是零文档，所有的业务知识都是靠口口相传。所以，搞清楚业务，就成了接手项目最难的事情了。</p>
+<p>面对如此庞大的项目代码，没有文档，几乎就是两眼一抹黑。原来参与这个项目开发的老同事，有的离职，有的去做其他新项目，一直问他们也不好意思，所以，大部分情况下，我都只能硬着头皮，通过阅读代码反推业务功能。</p>
+<p>如果代码质量比较高，模块划分清晰，命名规范，那通过读代码反推业务，也并非不可能的事情。但真实的情况往往事与愿违，就像我们前面提到的，代码中充斥着临时解决方案、硬编码、遗留代码等各种坑，这就使反推业务变得非常困难。对于代码中的这些坑，尽管我不想一直麻烦同事，但也只有多问才能最快速地解决。</p>
+<p>在读代码的过程中，我非常重视知识的文档化，我会把读懂的每个业务都写到文档中。当然，这其中也包括前面提到的各种坑。对于复杂的业务流程，我还会画一些流程图。读代码的过程非常痛苦，花了好几个月，我才有信心说，自己几乎把所有代码都搞清楚了。同时，我也做了一件过去几年都没有人做的事情，那就是补充完整了技术文档和业务文档，之后再有新同事加入，看了我的文档，就可以很快了解代码、了解业务，很快就能上手开发代码。</p>
+<p>总结一下，即便代码再烂，只要有完善的业务文档，先理解业务，再去看代码，几乎就没啥难度了。对于零文档的项目，大部分情况下，我们只能通过代码来反推业务。当然，对于有些坑来说，必要的情况下，我们也要询问前辈来搞定。在读代码的过程中，我们要将得到的知识文档化，这也是对公司和团队来说最有价值的部分。</p>
+<h2 id="如何在烂业务代码中成长？"><a href="#如何在烂业务代码中成长？" class="headerlink" title="如何在烂业务代码中成长？"></a>如何在烂业务代码中成长？</h2><p>有人一遇到这种烂业务代码，就觉得很心烦，我反倒不一样。恰恰相反，相比接手好代码，我觉得接手烂代码，虽然过程更加痛苦，但同时也会给我更多施展才华的空间、锻炼技术的机会，我的成长也会更多。</p>
+<p>除此之外，很多人觉得做偏底层的开发（基础架构、框架、中间件等开发）才锻炼技术，做业务系统没有挑战，技术上没有成长，对此非常苦恼。实际上，我觉得这种看法是比较片面的。做业务开发的难度不亚于底层开发，做好也不是件容易的事情，同样可以积累技术、锻炼能力。</p>
+<p>偏底层的开发更加考验程序员在某一细分领域的技术深度，偏业务的开发更加考验程序员的能力，比如沟通能力、分析问题解决问题能力、权衡取舍能力、架构能力等，毕竟业务多种多样，问题千奇百怪，单一细分领域的经验很难应对所有问题。</p>
+<p><strong>实际上，业务系统的开发难度一般来自两个方面：高性能要求和业务复杂。</strong></p>
+<p>解决性能问题，你需要具备一定的架构能力，有一定的技术广度，需要对各种基础架构、框架、中间件都有所了解。光了解还不够，还要有一定的技术深度，最好能对原理甚至是源码有所研究。除此之外，还要有一定的使用经验。广度、深度、经验三者配合，这样才能做到恰到好处组合这些技术搭建架构，解决性能问题，并且在出现问题之后才能快速地解决。</p>
+<p>应对大型项目的业务复杂性，要想让项目代码一直在你的掌控范围内，你需要有很强的业务建模能力、复杂逻辑的抽象能力、代码翻译能力等。对于一个人的基本素质、基础能力的要求要更高。实际上，对于复杂业务系统来说，对业务的熟悉也能成为你的竞争壁垒，成为升职加薪的砝码。我前面也讲到，低级别的晋升靠技术，比如升阿里的P7，高级别的晋升靠业务，比如升阿里的P8、P9，或者换个说法，高级别的晋升，靠业务比单纯靠技术，更容易一些。</p>
+<p>如果你参与的项目，性能要求高、业务也复杂，那恭喜你，好好干就成了。如果你参与的项目，在性能和复杂度上，只兼具其中一点，那也不错，值得一做。如果你参与的项目，既没有性能压力、业务也不复杂，那也别太着急，走着瞧，实在不行再跳槽。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>在过往的项目经历中，你有没有像我一样，接手过代码质量比较差的代码？你又是如何顺利接手的呢？</p>
+<p>欢迎留言和我分享你的想法。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E9%A4%90%E5%8D%81-%E5%A6%82%E4%BD%95%E6%8E%A5%E6%89%8B%E4%B8%80%E5%9D%A8%E7%83%82%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%EF%BC%9F%E5%A6%82%E4%BD%95%E5%9C%A8%E7%83%82%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%88%90%E9%95%BF%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">加餐十 | 如何接手一坨烂业务代码？如何在烂业务代码中成长？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8E%A5%E6%89%8B%E4%B8%80%E5%9D%A8%E7%83%82%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">如何接手一坨烂业务代码？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E7%83%82%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%88%90%E9%95%BF%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">如何在烂业务代码中成长？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.3.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

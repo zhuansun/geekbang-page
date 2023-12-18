@@ -1,0 +1,494 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？上一节课，我们学习了命令模式。命令模式将请求封装成对象，方便作为函数参数传递和赋值给变量。它主要的应用场景是给命令的执行附加功能，换句话说，就是控制命令的执行，比如，排队、异步、延迟执行命令、给命令执行记录日志、撤销重做命令等等。总体上来讲，命令模式的应用范围并不广。 今天，我们来学习解释器模式，它用来描述如何构建一个简单的“语言”解释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/679507140.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？上一节课，我们学习了命令模式。命令模式将请求封装成对象，方便作为函数参数传递和赋值给变量。它主要的应用场景是给命令的执行附加功能，换句话说，就是控制命令的执行，比如，排队、异步、延迟执行命令、给命令执行记录日志、撤销重做命令等等。总体上来讲，命令模式的应用范围并不广。 今天，我们来学习解释器模式，它用来描述如何构建一个简单的“语言”解释">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.349Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/679507140"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="72-解释器模式：如何设计实现一个自定义接口告警规则功能？"><a href="#72-解释器模式：如何设计实现一个自定义接口告警规则功能？" class="headerlink" title="72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？"></a>72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？</h1><p>上一节课，我们学习了命令模式。命令模式将请求封装成对象，方便作为函数参数传递和赋值给变量。它主要的应用场景是给命令的执行附加功能，换句话说，就是控制命令的执行，比如，排队、异步、延迟执行命令、给命令执行记录日志、撤销重做命令等等。总体上来讲，命令模式的应用范围并不广。</p>
+<p>今天，我们来学习解释器模式，它用来描述如何构建一个简单的“语言”解释器。比起命令模式，解释器模式更加小众，只在一些特定的领域会被用到，比如编译器、规则引擎、正则表达式。所以，解释器模式也不是我们学习的重点，你稍微了解一下就可以了。</p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="解释器模式的原理和实现"><a href="#解释器模式的原理和实现" class="headerlink" title="解释器模式的原理和实现"></a>解释器模式的原理和实现</h2><p>解释器模式的英文翻译是Interpreter Design Pattern。在GoF的《设计模式》一书中，它是这样定义的：</p>
+<blockquote>
+<p>Interpreter pattern is used to defines a grammatical representation for a language and provides an interpreter to deal with this grammar.</p>
+</blockquote>
+<p>翻译成中文就是：解释器模式为某个语言定义它的语法（或者叫文法）表示，并定义一个解释器用来处理这个语法。</p>
+<p>看了定义，你估计会一头雾水，因为这里面有很多我们平时开发中很少接触的概念，比如“语言”“语法”“解释器”。实际上，这里的“语言”不仅仅指我们平时说的中、英、日、法等各种语言。从广义上来讲，只要是能承载信息的载体，我们都可以称之为“语言”，比如，古代的结绳记事、盲文、哑语、摩斯密码等。</p>
+<p>要想了解“语言”表达的信息，我们就必须定义相应的语法规则。这样，书写者就可以根据语法规则来书写“句子”（专业点的叫法应该是“表达式”），阅读者根据语法规则来阅读“句子”，这样才能做到信息的正确传递。而我们要讲的解释器模式，其实就是用来实现根据语法规则解读“句子”的解释器。</p>
+<p>为了让你更好地理解定义，我举一个比较贴近生活的例子来解释一下。</p>
+<p>实际上，理解这个概念，我们可以类比中英文翻译。我们知道，把英文翻译成中文是有一定规则的。这个规则就是定义中的“语法”。我们开发一个类似Google Translate这样的翻译器，这个翻译器能够根据语法规则，将输入的中文翻译成英文。这里的翻译器就是解释器模式定义中的“解释器”。</p>
+<p>刚刚翻译器这个例子比较贴近生活，现在，我们再举个更加贴近编程的例子。</p>
+<p>假设我们定义了一个新的加减乘除计算“语言”，语法规则如下：</p>
+<ul>
+<li>运算符只包含加、减、乘、除，并且没有优先级的概念；</li>
+<li>表达式（也就是前面提到的“句子”）中，先书写数字，后书写运算符，空格隔开；</li>
+<li>按照先后顺序，取出两个数字和一个运算符计算结果，结果重新放入数字的最头部位置，循环上述过程，直到只剩下一个数字，这个数字就是表达式最终的计算结果。</li>
+</ul>
+<p>我们举个例子来解释一下上面的语法规则。</p>
+<p>比如“ 8 3 2 4 - + * ”这样一个表达式，我们按照上面的语法规则来处理，取出数字“8 3”和“-”运算符，计算得到5，于是表达式就变成了“ 5 2 4 + * ”。然后，我们再取出“ 5 2 ”和“ + ”运算符，计算得到7，表达式就变成了“ 7 4 * ”。最后，我们取出“ 7 4”和“ * ”运算符，最终得到的结果就是28。</p>
+<p>看懂了上面的语法规则，我们将它用代码实现出来，如下所示。代码非常简单，用户按照上面的规则书写表达式，传递给interpret()函数，就可以得到最终的计算结果。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class ExpressionInterpreter &#123;
+  private Deque&lt;Long&gt; numbers &#x3D; new LinkedList&lt;&gt;();
+
+  public long interpret(String expression) &#123;
+    String[] elements &#x3D; expression.split(&quot; &quot;);
+    int length &#x3D; elements.length;
+    for (int i &#x3D; 0; i &lt; (length+1)&#x2F;2; ++i) &#123;
+      numbers.addLast(Long.parseLong(elements[i]));
+    &#125;
+
+    for (int i &#x3D; (length+1)&#x2F;2; i &lt; length; ++i) &#123;
+      String operator &#x3D; elements[i];
+      boolean isValid &#x3D; &quot;+&quot;.equals(operator) || &quot;-&quot;.equals(operator)
+              || &quot;*&quot;.equals(operator) || &quot;&#x2F;&quot;.equals(operator);
+      if (!isValid) &#123;
+        throw new RuntimeException(&quot;Expression is invalid: &quot; + expression);
+      &#125;
+
+      long number1 &#x3D; numbers.pollFirst();
+      long number2 &#x3D; numbers.pollFirst();
+      long result &#x3D; 0;
+      if (operator.equals(&quot;+&quot;)) &#123;
+        result &#x3D; number1 + number2;
+      &#125; else if (operator.equals(&quot;-&quot;)) &#123;
+        result &#x3D; number1 - number2;
+      &#125; else if (operator.equals(&quot;*&quot;)) &#123;
+        result &#x3D; number1 * number2;
+      &#125; else if (operator.equals(&quot;&#x2F;&quot;)) &#123;
+        result &#x3D; number1 &#x2F; number2;
+      &#125;
+      numbers.addFirst(result);
+    &#125;
+
+    if (numbers.size() !&#x3D; 1) &#123;
+      throw new RuntimeException(&quot;Expression is invalid: &quot; + expression);
+    &#125;
+
+    return numbers.pop();
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在上面的代码实现中，语法规则的解析逻辑（第23、25、27、29行）都集中在一个函数中，对于简单的语法规则的解析，这样的设计就足够了。但是，对于复杂的语法规则的解析，逻辑复杂，代码量多，所有的解析逻辑都耦合在一个函数中，这样显然是不合适的。这个时候，我们就要考虑拆分代码，将解析逻辑拆分到独立的小类中。</p>
+<p>该怎么拆分呢？我们可以借助解释器模式。</p>
+<p>解释器模式的代码实现比较灵活，没有固定的模板。我们前面也说过，应用设计模式主要是应对代码的复杂性，实际上，解释器模式也不例外。它的代码实现的核心思想，就是将语法解析的工作拆分到各个小类中，以此来避免大而全的解析类。一般的做法是，将语法规则拆分成一些小的独立的单元，然后对每个单元进行解析，最终合并为对整个语法规则的解析。</p>
+<p>前面定义的语法规则有两类表达式，一类是数字，一类是运算符，运算符又包括加减乘除。利用解释器模式，我们把解析的工作拆分到NumberExpression、AdditionExpression、SubstractionExpression、MultiplicationExpression、DivisionExpression这样五个解析类中。</p>
+<p>按照这个思路，我们对代码进行重构，重构之后的代码如下所示。当然，因为加减乘除表达式的解析比较简单，利用解释器模式的设计思路，看起来有点过度设计。不过呢，这里我主要是为了解释原理，你明白意思就好，不用过度细究这个例子。</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface Expression &#123;
+  long interpret();
+&#125;
+
+public class NumberExpression implements Expression &#123;
+  private long number;
+
+  public NumberExpression(long number) &#123;
+    this.number &#x3D; number;
+  &#125;
+
+  public NumberExpression(String number) &#123;
+    this.number &#x3D; Long.parseLong(number);
+  &#125;
+
+  @Override
+  public long interpret() &#123;
+    return this.number;
+  &#125;
+&#125;
+
+public class AdditionExpression implements Expression &#123;
+  private Expression exp1;
+  private Expression exp2;
+
+  public AdditionExpression(Expression exp1, Expression exp2) &#123;
+    this.exp1 &#x3D; exp1;
+    this.exp2 &#x3D; exp2;
+  &#125;
+
+  @Override
+  public long interpret() &#123;
+    return exp1.interpret() + exp2.interpret();
+  &#125;
+&#125;
+&#x2F;&#x2F; SubstractionExpression&#x2F;MultiplicationExpression&#x2F;DivisionExpression与AdditionExpression代码结构类似，这里就省略了
+
+public class ExpressionInterpreter &#123;
+  private Deque&lt;Expression&gt; numbers &#x3D; new LinkedList&lt;&gt;();
+
+  public long interpret(String expression) &#123;
+    String[] elements &#x3D; expression.split(&quot; &quot;);
+    int length &#x3D; elements.length;
+    for (int i &#x3D; 0; i &lt; (length+1)&#x2F;2; ++i) &#123;
+      numbers.addLast(new NumberExpression(elements[i]));
+    &#125;
+
+    for (int i &#x3D; (length+1)&#x2F;2; i &lt; length; ++i) &#123;
+      String operator &#x3D; elements[i];
+      boolean isValid &#x3D; &quot;+&quot;.equals(operator) || &quot;-&quot;.equals(operator)
+              || &quot;*&quot;.equals(operator) || &quot;&#x2F;&quot;.equals(operator);
+      if (!isValid) &#123;
+        throw new RuntimeException(&quot;Expression is invalid: &quot; + expression);
+      &#125;
+
+      Expression exp1 &#x3D; numbers.pollFirst();
+      Expression exp2 &#x3D; numbers.pollFirst();
+      Expression combinedExp &#x3D; null;
+      if (operator.equals(&quot;+&quot;)) &#123;
+        combinedExp &#x3D; new AdditionExpression(exp1, exp2);
+      &#125; else if (operator.equals(&quot;-&quot;)) &#123;
+        combinedExp &#x3D; new AdditionExpression(exp1, exp2);
+      &#125; else if (operator.equals(&quot;*&quot;)) &#123;
+        combinedExp &#x3D; new AdditionExpression(exp1, exp2);
+      &#125; else if (operator.equals(&quot;&#x2F;&quot;)) &#123;
+        combinedExp &#x3D; new AdditionExpression(exp1, exp2);
+      &#125;
+      long result &#x3D; combinedExp.interpret();
+      numbers.addFirst(new NumberExpression(result));
+    &#125;
+
+    if (numbers.size() !&#x3D; 1) &#123;
+      throw new RuntimeException(&quot;Expression is invalid: &quot; + expression);
+    &#125;
+
+    return numbers.pop().interpret();
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="解释器模式实战举例"><a href="#解释器模式实战举例" class="headerlink" title="解释器模式实战举例"></a>解释器模式实战举例</h2><p>接下来，我们再来看一个更加接近实战的例子，也就是咱们今天标题中的问题：如何实现一个自定义接口告警规则功能？</p>
+<p>在我们平时的项目开发中，监控系统非常重要，它可以时刻监控业务系统的运行情况，及时将异常报告给开发者。比如，如果每分钟接口出错数超过100，监控系统就通过短信、微信、邮件等方式发送告警给开发者。</p>
+<p>一般来讲，监控系统支持开发者自定义告警规则，比如我们可以用下面这样一个表达式，来表示一个告警规则，它表达的意思是：每分钟API总出错数超过100或者每分钟API总调用数超过10000就触发告警。</p>
+<pre class="line-numbers language-none"><code class="language-none">api_error_per_minute &gt; 100 || api_count_per_minute &gt; 10000
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在监控系统中，告警模块只负责根据统计数据和告警规则，判断是否触发告警。至于每分钟API接口出错数、每分钟接口调用数等统计数据的计算，是由其他模块来负责的。其他模块将统计数据放到一个Map中（数据的格式如下所示），发送给告警模块。接下来，我们只关注告警模块。</p>
+<pre class="line-numbers language-none"><code class="language-none">Map&lt;String, Long&gt; apiStat &#x3D; new HashMap&lt;&gt;();
+apiStat.put(&quot;api_error_per_minute&quot;, 103);
+apiStat.put(&quot;api_count_per_minute&quot;, 987);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>为了简化讲解和代码实现，我们假设自定义的告警规则只包含“||、&amp;&amp;、&gt;、&lt;、&#x3D;&#x3D;”这五个运算符，其中，“&gt;、&lt;、&#x3D;&#x3D;”运算符的优先级高于“||、&amp;&amp;”运算符，“&amp;&amp;”运算符优先级高于“||”。在表达式中，任意元素之间需要通过空格来分隔。除此之外，用户可以自定义要监控的key，比如前面的api_error_per_minute、api_count_per_minute。</p>
+<p>那如何实现上面的需求呢？我写了一个骨架代码，如下所示，其中的核心的实现我没有给出，你可以当作面试题，自己试着去补全一下，然后再看我的讲解。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class AlertRuleInterpreter &#123;
+
+  &#x2F;&#x2F; key1 &gt; 100 &amp;&amp; key2 &lt; 1000 || key3 &#x3D;&#x3D; 200
+  public AlertRuleInterpreter(String ruleExpression) &#123;
+    &#x2F;&#x2F;TODO:由你来完善
+  &#125;
+
+  &#x2F;&#x2F;&lt;String, Long&gt; apiStat &#x3D; new HashMap&lt;&gt;();
+  &#x2F;&#x2F;apiStat.put(&quot;key1&quot;, 103);
+  &#x2F;&#x2F;apiStat.put(&quot;key2&quot;, 987);
+  public boolean interpret(Map&lt;String, Long&gt; stats) &#123;
+    &#x2F;&#x2F;TODO:由你来完善
+  &#125;
+
+&#125;
+
+public class DemoTest &#123;
+  public static void main(String[] args) &#123;
+    String rule &#x3D; &quot;key1 &gt; 100 &amp;&amp; key2 &lt; 30 || key3 &lt; 100 || key4 &#x3D;&#x3D; 88&quot;;
+    AlertRuleInterpreter interpreter &#x3D; new AlertRuleInterpreter(rule);
+    Map&lt;String, Long&gt; stats &#x3D; new HashMap&lt;&gt;();
+    stats.put(&quot;key1&quot;, 101l);
+    stats.put(&quot;key3&quot;, 121l);
+    stats.put(&quot;key4&quot;, 88l);
+    boolean alert &#x3D; interpreter.interpret(stats);
+    System.out.println(alert);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实际上，我们可以把自定义的告警规则，看作一种特殊“语言”的语法规则。我们实现一个解释器，能够根据规则，针对用户输入的数据，判断是否触发告警。利用解释器模式，我们把解析表达式的逻辑拆分到各个小类中，避免大而复杂的大类的出现。按照这个实现思路，我把刚刚的代码补全，如下所示，你可以拿你写的代码跟我写的对比一下。</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface Expression &#123;
+  boolean interpret(Map&lt;String, Long&gt; stats);
+&#125;
+
+public class GreaterExpression implements Expression &#123;
+  private String key;
+  private long value;
+
+  public GreaterExpression(String strExpression) &#123;
+    String[] elements &#x3D; strExpression.trim().split(&quot;\\s+&quot;);
+    if (elements.length !&#x3D; 3 || !elements[1].trim().equals(&quot;&gt;&quot;)) &#123;
+      throw new RuntimeException(&quot;Expression is invalid: &quot; + strExpression);
+    &#125;
+    this.key &#x3D; elements[0].trim();
+    this.value &#x3D; Long.parseLong(elements[2].trim());
+  &#125;
+
+  public GreaterExpression(String key, long value) &#123;
+    this.key &#x3D; key;
+    this.value &#x3D; value;
+  &#125;
+
+  @Override
+  public boolean interpret(Map&lt;String, Long&gt; stats) &#123;
+    if (!stats.containsKey(key)) &#123;
+      return false;
+    &#125;
+    long statValue &#x3D; stats.get(key);
+    return statValue &gt; value;
+  &#125;
+&#125;
+
+&#x2F;&#x2F; LessExpression&#x2F;EqualExpression跟GreaterExpression代码类似，这里就省略了
+
+public class AndExpression implements Expression &#123;
+  private List&lt;Expression&gt; expressions &#x3D; new ArrayList&lt;&gt;();
+
+  public AndExpression(String strAndExpression) &#123;
+    String[] strExpressions &#x3D; strAndExpression.split(&quot;&amp;&amp;&quot;);
+    for (String strExpr : strExpressions) &#123;
+      if (strExpr.contains(&quot;&gt;&quot;)) &#123;
+        expressions.add(new GreaterExpression(strExpr));
+      &#125; else if (strExpr.contains(&quot;&lt;&quot;)) &#123;
+        expressions.add(new LessExpression(strExpr));
+      &#125; else if (strExpr.contains(&quot;&#x3D;&#x3D;&quot;)) &#123;
+        expressions.add(new EqualExpression(strExpr));
+      &#125; else &#123;
+        throw new RuntimeException(&quot;Expression is invalid: &quot; + strAndExpression);
+      &#125;
+    &#125;
+  &#125;
+
+  public AndExpression(List&lt;Expression&gt; expressions) &#123;
+    this.expressions.addAll(expressions);
+  &#125;
+
+  @Override
+  public boolean interpret(Map&lt;String, Long&gt; stats) &#123;
+    for (Expression expr : expressions) &#123;
+      if (!expr.interpret(stats)) &#123;
+        return false;
+      &#125;
+    &#125;
+    return true;
+  &#125;
+
+&#125;
+
+public class OrExpression implements Expression &#123;
+  private List&lt;Expression&gt; expressions &#x3D; new ArrayList&lt;&gt;();
+
+  public OrExpression(String strOrExpression) &#123;
+    String[] andExpressions &#x3D; strOrExpression.split(&quot;\\|\\|&quot;);
+    for (String andExpr : andExpressions) &#123;
+      expressions.add(new AndExpression(andExpr));
+    &#125;
+  &#125;
+
+  public OrExpression(List&lt;Expression&gt; expressions) &#123;
+    this.expressions.addAll(expressions);
+  &#125;
+
+  @Override
+  public boolean interpret(Map&lt;String, Long&gt; stats) &#123;
+    for (Expression expr : expressions) &#123;
+      if (expr.interpret(stats)) &#123;
+        return true;
+      &#125;
+    &#125;
+    return false;
+  &#125;
+&#125;
+
+public class AlertRuleInterpreter &#123;
+  private Expression expression;
+
+  public AlertRuleInterpreter(String ruleExpression) &#123;
+    this.expression &#x3D; new OrExpression(ruleExpression);
+  &#125;
+
+  public boolean interpret(Map&lt;String, Long&gt; stats) &#123;
+    return expression.interpret(stats);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>解释器模式为某个语言定义它的语法（或者叫文法）表示，并定义一个解释器用来处理这个语法。实际上，这里的“语言”不仅仅指我们平时说的中、英、日、法等各种语言。从广义上来讲，只要是能承载信息的载体，我们都可以称之为“语言”，比如，古代的结绳记事、盲文、哑语、摩斯密码等。</p>
+<p>要想了解“语言”要表达的信息，我们就必须定义相应的语法规则。这样，书写者就可以根据语法规则来书写“句子”（专业点的叫法应该是“表达式”），阅读者根据语法规则来阅读“句子”，这样才能做到信息的正确传递。而我们要讲的解释器模式，其实就是用来实现根据语法规则解读“句子”的解释器。</p>
+<p>解释器模式的代码实现比较灵活，没有固定的模板。我们前面说过，应用设计模式主要是应对代码的复杂性，解释器模式也不例外。它的代码实现的核心思想，就是将语法解析的工作拆分到各个小类中，以此来避免大而全的解析类。一般的做法是，将语法规则拆分一些小的独立的单元，然后对每个单元进行解析，最终合并为对整个语法规则的解析。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>1.在你过往的项目经历或阅读源码的时候，有没有用到或者见过解释器模式呢？</p>
+<p>2.在告警规则解析的例子中，如果我们要在表达式中支持括号“（）”，那如何对代码进行重构呢？你可以把它当作练习，试着编写一下代码。</p>
+<p>欢迎留言和我分享你的想法。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#72-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">解释器模式的原理和实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%E5%AE%9E%E6%88%98%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">解释器模式实战举例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.3.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

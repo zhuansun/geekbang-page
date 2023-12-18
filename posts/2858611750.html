@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？结构型设计模式就快要讲完了，还剩下两个不那么常用的：组合模式和享元模式。今天，我们来讲一下 组合模式（Composite Design Pattern）。 组合模式跟我们之前讲的面向对象设计中的“组合关系（通过组合来组装两个类）”，完全是两码事。这里讲的“组合模式”，主要是用来处理树形结构数据。这里的“数据”，你可以简单理解为一组对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2858611750.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？结构型设计模式就快要讲完了，还剩下两个不那么常用的：组合模式和享元模式。今天，我们来讲一下 组合模式（Composite Design Pattern）。 组合模式跟我们之前讲的面向对象设计中的“组合关系（通过组合来组装两个类）”，完全是两码事。这里讲的“组合模式”，主要是用来处理树形结构数据。这里的“数据”，你可以简单理解为一组对">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.311Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2858611750"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="53-组合模式：如何设计实现支持递归遍历的文件系统目录树结构？"><a href="#53-组合模式：如何设计实现支持递归遍历的文件系统目录树结构？" class="headerlink" title="53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？"></a>53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？</h1><p>结构型设计模式就快要讲完了，还剩下两个不那么常用的：组合模式和享元模式。今天，我们来讲一下 <strong>组合模式</strong>（Composite Design Pattern）。</p>
+<p>组合模式跟我们之前讲的面向对象设计中的“组合关系（通过组合来组装两个类）”，完全是两码事。这里讲的“组合模式”，主要是用来处理树形结构数据。这里的“数据”，你可以简单理解为一组对象集合，待会我们会详细讲解。</p>
+<p>正因为其应用场景的特殊性，数据必须能表示成树形结构，这也导致了这种模式在实际的项目开发中并不那么常用。但是，一旦数据满足树形结构，应用这种模式就能发挥很大的作用，能让代码变得非常简洁。</p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="组合模式的原理与实现"><a href="#组合模式的原理与实现" class="headerlink" title="组合模式的原理与实现"></a>组合模式的原理与实现</h2><p>在GoF的《设计模式》一书中，组合模式是这样定义的：</p>
+<blockquote>
+<p>Compose objects into tree structure to represent part-whole hierarchies.Composite lets client treat individual objects and compositions of objects uniformly.</p>
+</blockquote>
+<p>翻译成中文就是：将一组对象组织（Compose）成树形结构，以表示一种“部分-整体”的层次结构。组合让客户端（在很多设计模式书籍中，“客户端”代指代码的使用者。）可以统一单个对象和组合对象的处理逻辑。</p>
+<p>接下来，对于组合模式，我举个例子来给你解释一下。</p>
+<p>假设我们有这样一个需求：设计一个类来表示文件系统中的目录，能方便地实现下面这些功能：</p>
+<ul>
+<li>动态地添加、删除某个目录下的子目录或文件；</li>
+<li>统计指定目录下的文件个数；</li>
+<li>统计指定目录下的文件总大小。</li>
+</ul>
+<p>我这里给出了这个类的骨架代码，如下所示。其中的核心逻辑并未实现，你可以试着自己去补充完整，再来看我的讲解。在下面的代码实现中，我们把文件和目录统一用FileSystemNode类来表示，并且通过isFile属性来区分。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class FileSystemNode &#123;
+  private String path;
+  private boolean isFile;
+  private List&lt;FileSystemNode&gt; subNodes &#x3D; new ArrayList&lt;&gt;();
+
+  public FileSystemNode(String path, boolean isFile) &#123;
+    this.path &#x3D; path;
+    this.isFile &#x3D; isFile;
+  &#125;
+
+  public int countNumOfFiles() &#123;
+    &#x2F;&#x2F; TODO:...
+  &#125;
+
+  public long countSizeOfFiles() &#123;
+    &#x2F;&#x2F; TODO:...
+  &#125;
+
+  public String getPath() &#123;
+    return path;
+  &#125;
+
+  public void addSubNode(FileSystemNode fileOrDir) &#123;
+    subNodes.add(fileOrDir);
+  &#125;
+
+  public void removeSubNode(FileSystemNode fileOrDir) &#123;
+    int size &#x3D; subNodes.size();
+    int i &#x3D; 0;
+    for (; i &lt; size; ++i) &#123;
+      if (subNodes.get(i).getPath().equalsIgnoreCase(fileOrDir.getPath())) &#123;
+        break;
+      &#125;
+    &#125;
+    if (i &lt; size) &#123;
+      subNodes.remove(i);
+    &#125;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实际上，如果你看过我的《数据结构与算法之美》专栏，想要补全其中的countNumOfFiles()和countSizeOfFiles()这两个函数，并不是件难事，实际上这就是树上的递归遍历算法。对于文件，我们直接返回文件的个数（返回1）或大小。对于目录，我们遍历目录中每个子目录或者文件，递归计算它们的个数或大小，然后求和，就是这个目录下的文件个数和文件大小。</p>
+<p>我把两个函数的代码实现贴在下面了，你可以对照着看一下。</p>
+<pre class="line-numbers language-none"><code class="language-none">public int countNumOfFiles() &#123;
+  if (isFile) &#123;
+    return 1;
+  &#125;
+  int numOfFiles &#x3D; 0;
+  for (FileSystemNode fileOrDir : subNodes) &#123;
+    numOfFiles +&#x3D; fileOrDir.countNumOfFiles();
+  &#125;
+  return numOfFiles;
+&#125;
+
+public long countSizeOfFiles() &#123;
+  if (isFile) &#123;
+    File file &#x3D; new File(path);
+    if (!file.exists()) return 0;
+    return file.length();
+  &#125;
+  long sizeofFiles &#x3D; 0;
+  for (FileSystemNode fileOrDir : subNodes) &#123;
+    sizeofFiles +&#x3D; fileOrDir.countSizeOfFiles();
+  &#125;
+  return sizeofFiles;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>单纯从功能实现角度来说，上面的代码没有问题，已经实现了我们想要的功能。但是，如果我们开发的是一个大型系统，从扩展性（文件或目录可能会对应不同的操作）、业务建模（文件和目录从业务上是两个概念）、代码的可读性（文件和目录区分对待更加符合人们对业务的认知）的角度来说，我们最好对文件和目录进行区分设计，定义为File和Directory两个类。</p>
+<p>按照这个设计思路，我们对代码进行重构。重构之后的代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public abstract class FileSystemNode &#123;
+  protected String path;
+
+  public FileSystemNode(String path) &#123;
+    this.path &#x3D; path;
+  &#125;
+
+  public abstract int countNumOfFiles();
+  public abstract long countSizeOfFiles();
+
+  public String getPath() &#123;
+    return path;
+  &#125;
+&#125;
+
+public class File extends FileSystemNode &#123;
+  public File(String path) &#123;
+    super(path);
+  &#125;
+
+  @Override
+  public int countNumOfFiles() &#123;
+    return 1;
+  &#125;
+
+  @Override
+  public long countSizeOfFiles() &#123;
+    java.io.File file &#x3D; new java.io.File(path);
+    if (!file.exists()) return 0;
+    return file.length();
+  &#125;
+&#125;
+
+public class Directory extends FileSystemNode &#123;
+  private List&lt;FileSystemNode&gt; subNodes &#x3D; new ArrayList&lt;&gt;();
+
+  public Directory(String path) &#123;
+    super(path);
+  &#125;
+
+  @Override
+  public int countNumOfFiles() &#123;
+    int numOfFiles &#x3D; 0;
+    for (FileSystemNode fileOrDir : subNodes) &#123;
+      numOfFiles +&#x3D; fileOrDir.countNumOfFiles();
+    &#125;
+    return numOfFiles;
+  &#125;
+
+  @Override
+  public long countSizeOfFiles() &#123;
+    long sizeofFiles &#x3D; 0;
+    for (FileSystemNode fileOrDir : subNodes) &#123;
+      sizeofFiles +&#x3D; fileOrDir.countSizeOfFiles();
+    &#125;
+    return sizeofFiles;
+  &#125;
+
+  public void addSubNode(FileSystemNode fileOrDir) &#123;
+    subNodes.add(fileOrDir);
+  &#125;
+
+  public void removeSubNode(FileSystemNode fileOrDir) &#123;
+    int size &#x3D; subNodes.size();
+    int i &#x3D; 0;
+    for (; i &lt; size; ++i) &#123;
+      if (subNodes.get(i).getPath().equalsIgnoreCase(fileOrDir.getPath())) &#123;
+        break;
+      &#125;
+    &#125;
+    if (i &lt; size) &#123;
+      subNodes.remove(i);
+    &#125;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>文件和目录类都设计好了，我们来看，如何用它们来表示一个文件系统中的目录树结构。具体的代码示例如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Demo &#123;
+  public static void main(String[] args) &#123;
+    &#x2F;**
+     * &#x2F;
+     * &#x2F;wz&#x2F;
+     * &#x2F;wz&#x2F;a.txt
+     * &#x2F;wz&#x2F;b.txt
+     * &#x2F;wz&#x2F;movies&#x2F;
+     * &#x2F;wz&#x2F;movies&#x2F;c.avi
+     * &#x2F;xzg&#x2F;
+     * &#x2F;xzg&#x2F;docs&#x2F;
+     * &#x2F;xzg&#x2F;docs&#x2F;d.txt
+     *&#x2F;
+    Directory fileSystemTree &#x3D; new Directory(&quot;&#x2F;&quot;);
+    Directory node_wz &#x3D; new Directory(&quot;&#x2F;wz&#x2F;&quot;);
+    Directory node_xzg &#x3D; new Directory(&quot;&#x2F;xzg&#x2F;&quot;);
+    fileSystemTree.addSubNode(node_wz);
+    fileSystemTree.addSubNode(node_xzg);
+
+    File node_wz_a &#x3D; new File(&quot;&#x2F;wz&#x2F;a.txt&quot;);
+    File node_wz_b &#x3D; new File(&quot;&#x2F;wz&#x2F;b.txt&quot;);
+    Directory node_wz_movies &#x3D; new Directory(&quot;&#x2F;wz&#x2F;movies&#x2F;&quot;);
+    node_wz.addSubNode(node_wz_a);
+    node_wz.addSubNode(node_wz_b);
+    node_wz.addSubNode(node_wz_movies);
+
+    File node_wz_movies_c &#x3D; new File(&quot;&#x2F;wz&#x2F;movies&#x2F;c.avi&quot;);
+    node_wz_movies.addSubNode(node_wz_movies_c);
+
+    Directory node_xzg_docs &#x3D; new Directory(&quot;&#x2F;xzg&#x2F;docs&#x2F;&quot;);
+    node_xzg.addSubNode(node_xzg_docs);
+
+    File node_xzg_docs_d &#x3D; new File(&quot;&#x2F;xzg&#x2F;docs&#x2F;d.txt&quot;);
+    node_xzg_docs.addSubNode(node_xzg_docs_d);
+
+    System.out.println(&quot;&#x2F; files num:&quot; + fileSystemTree.countNumOfFiles());
+    System.out.println(&quot;&#x2F;wz&#x2F; files num:&quot; + node_wz.countNumOfFiles());
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们对照着这个例子，再重新看一下组合模式的定义：“将一组对象（文件和目录）组织成树形结构，以表示一种‘部分-整体’的层次结构（目录与子目录的嵌套结构）。组合模式让客户端可以统一单个对象（文件）和组合对象（目录）的处理逻辑（递归遍历）。”</p>
+<p>实际上，刚才讲的这种组合模式的设计思路，与其说是一种设计模式，倒不如说是对业务场景的一种数据结构和算法的抽象。其中，数据可以表示成树这种数据结构，业务需求可以通过在树上的递归遍历算法来实现。</p>
+<h2 id="组合模式的应用场景举例"><a href="#组合模式的应用场景举例" class="headerlink" title="组合模式的应用场景举例"></a>组合模式的应用场景举例</h2><p>刚刚我们讲了文件系统的例子，对于组合模式，我这里再举一个例子。搞懂了这两个例子，你基本上就算掌握了组合模式。在实际的项目中，遇到类似的可以表示成树形结构的业务场景，你只要“照葫芦画瓢”去设计就可以了。</p>
+<p>假设我们在开发一个OA系统（办公自动化系统）。公司的组织结构包含部门和员工两种数据类型。其中，部门又可以包含子部门和员工。在数据库中的表结构如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/5b19dc0c296f728328794eab1f16a38b.jpg"></p>
+<p>我们希望在内存中构建整个公司的人员架构图（部门、子部门、员工的隶属关系），并且提供接口计算出部门的薪资成本（隶属于这个部门的所有员工的薪资和）。</p>
+<p>部门包含子部门和员工，这是一种嵌套结构，可以表示成树这种数据结构。计算每个部门的薪资开支这样一个需求，也可以通过在树上的遍历算法来实现。所以，从这个角度来看，这个应用场景可以使用组合模式来设计和实现。</p>
+<p>这个例子的代码结构跟上一个例子的很相似，代码实现我直接贴在了下面，你可以对比着看一下。其中，HumanResource是部门类（Department）和员工类（Employee）抽象出来的父类，为的是能统一薪资的处理逻辑。Demo中的代码负责从数据库中读取数据并在内存中构建组织架构图。</p>
+<pre class="line-numbers language-none"><code class="language-none">public abstract class HumanResource &#123;
+  protected long id;
+  protected double salary;
+
+  public HumanResource(long id) &#123;
+    this.id &#x3D; id;
+  &#125;
+
+  public long getId() &#123;
+    return id;
+  &#125;
+
+  public abstract double calculateSalary();
+&#125;
+
+public class Employee extends HumanResource &#123;
+  public Employee(long id, double salary) &#123;
+    super(id);
+    this.salary &#x3D; salary;
+  &#125;
+
+  @Override
+  public double calculateSalary() &#123;
+    return salary;
+  &#125;
+&#125;
+
+public class Department extends HumanResource &#123;
+  private List&lt;HumanResource&gt; subNodes &#x3D; new ArrayList&lt;&gt;();
+
+  public Department(long id) &#123;
+    super(id);
+  &#125;
+
+  @Override
+  public double calculateSalary() &#123;
+    double totalSalary &#x3D; 0;
+    for (HumanResource hr : subNodes) &#123;
+      totalSalary +&#x3D; hr.calculateSalary();
+    &#125;
+    this.salary &#x3D; totalSalary;
+    return totalSalary;
+  &#125;
+
+  public void addSubNode(HumanResource hr) &#123;
+    subNodes.add(hr);
+  &#125;
+&#125;
+
+&#x2F;&#x2F; 构建组织架构的代码
+public class Demo &#123;
+  private static final long ORGANIZATION_ROOT_ID &#x3D; 1001;
+  private DepartmentRepo departmentRepo; &#x2F;&#x2F; 依赖注入
+  private EmployeeRepo employeeRepo; &#x2F;&#x2F; 依赖注入
+
+  public void buildOrganization() &#123;
+    Department rootDepartment &#x3D; new Department(ORGANIZATION_ROOT_ID);
+    buildOrganization(rootDepartment);
+  &#125;
+
+  private void buildOrganization(Department department) &#123;
+    List&lt;Long&gt; subDepartmentIds &#x3D; departmentRepo.getSubDepartmentIds(department.getId());
+    for (Long subDepartmentId : subDepartmentIds) &#123;
+      Department subDepartment &#x3D; new Department(subDepartmentId);
+      department.addSubNode(subDepartment);
+      buildOrganization(subDepartment);
+    &#125;
+    List&lt;Long&gt; employeeIds &#x3D; employeeRepo.getDepartmentEmployeeIds(department.getId());
+    for (Long employeeId : employeeIds) &#123;
+      double salary &#x3D; employeeRepo.getEmployeeSalary(employeeId);
+      department.addSubNode(new Employee(employeeId, salary));
+    &#125;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们再拿组合模式的定义跟这个例子对照一下：“将一组对象（员工和部门）组织成树形结构，以表示一种‘部分-整体’的层次结构（部门与子部门的嵌套结构）。组合模式让客户端可以统一单个对象（员工）和组合对象（部门）的处理逻辑（递归遍历）。”</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>组合模式的设计思路，与其说是一种设计模式，倒不如说是对业务场景的一种数据结构和算法的抽象。其中，数据可以表示成树这种数据结构，业务需求可以通过在树上的递归遍历算法来实现。</p>
+<p>组合模式，将一组对象组织成树形结构，将单个对象和组合对象都看做树中的节点，以统一处理逻辑，并且它利用树形结构的特点，递归地处理每个子树，依次简化代码实现。使用组合模式的前提在于，你的业务场景必须能够表示成树形结构。所以，组合模式的应用场景也比较局限，它并不是一种很常用的设计模式。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>在文件系统那个例子中，countNumOfFiles()和countSizeOfFiles()这两个函数实现的效率并不高，因为每次调用它们的时候，都要重新遍历一遍子树。有没有什么办法可以提高这两个函数的执行效率呢（注意：文件系统还会涉及频繁的删除、添加文件操作，也就是对应Directory类中的addSubNode()和removeSubNode()函数）？</p>
+<p>欢迎留言和我分享你的想法。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#53-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9B%AE%E5%BD%95%E6%A0%91%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">组合模式的原理与实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">组合模式的应用场景举例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.3.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？在 加餐六 中，我们讲到，对于程序员的编程能力，我们一般从数据结构和算法、设计模式这两个方面来考察。加餐六重点讲到了如何考察数据结构和算法，今天，我们重点讲讲，如何考察设计模式。 除此之外，很多人反映，在面试中被问到设计模式问题的时候，一般都没有什么思路，基本都是想到哪说到哪。今天，我就总结一下回答设计模式相关面试题的一些套路，希望能让你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2965169334.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？在 加餐六 中，我们讲到，对于程序员的编程能力，我们一般从数据结构和算法、设计模式这两个方面来考察。加餐六重点讲到了如何考察数据结构和算法，今天，我们重点讲讲，如何考察设计模式。 除此之外，很多人反映，在面试中被问到设计模式问题的时候，一般都没有什么思路，基本都是想到哪说到哪。今天，我就总结一下回答设计模式相关面试题的一些套路，希望能让你">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.411Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2965169334"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="加餐九-作为面试官或候选人，如何面试或回答设计模式问题？"><a href="#加餐九-作为面试官或候选人，如何面试或回答设计模式问题？" class="headerlink" title="加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？"></a>加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？</h1><p>在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/255697">加餐六</a> 中，我们讲到，对于程序员的编程能力，我们一般从数据结构和算法、设计模式这两个方面来考察。加餐六重点讲到了如何考察数据结构和算法，今天，我们重点讲讲，如何考察设计模式。</p>
+<p>除此之外，很多人反映，在面试中被问到设计模式问题的时候，一般都没有什么思路，基本都是想到哪说到哪。今天，我就总结一下回答设计模式相关面试题的一些套路，希望能让你在今后的面试中有章可循。</p>
+<p>话不多说，让我们正式开始今天的内容吧！</p>
+<h2 id="作为面试官，如何面试设计模式问题？"><a href="#作为面试官，如何面试设计模式问题？" class="headerlink" title="作为面试官，如何面试设计模式问题？"></a>作为面试官，如何面试设计模式问题？</h2><p>有些面试官喜欢让候选人手写常用的设计模式，比如单例模式、工厂模式，以此来考察候选人对设计模式的掌握程度。实际上，对于比较常用的设计模式，盲写的要求并不过分，毕竟在开发中，徒手写个单例模式、工厂模式，也是常有的事情。</p>
+<p>不过，这种偏向记忆的面试题目，实际上是一种应试考试的面试方式。一方面，它没有区分度，另一方面，候选人容易突击准备。这往往考察不出候选人真正的代码设计和实现能力。我们学习设计模式的初衷是提高代码质量。学习设计模式的重点，是掌握应用场景、能解决哪些问题，而非记忆定义、代码实现。所以，我面试时有个原则，不直接问记忆性问题和过于理论性问题。</p>
+<p>筛选候选人就是筛选将来与你共事的人。我们面试的最终目的，还是希望能在短短的1小时内，粗略地看出候选人在今后工作中的表现。相对应的，在面试中考察候选人设计模式相关的知识，是看他在今后的项目中，能否写出易读、易扩展、易维护的高质量代码。</p>
+<p>为了更准确地反映候选人在以后的工作中的表现，最好的面试方式是拿真实项目来考察，而且最好是候选人入职之后要参加的项目。当然，这个要求稍微有点高了。一般来讲，其实只要比较贴近真实项目就可以了。</p>
+<p><strong>对设计和代码能力的考察，我一般有两种面试思路。</strong></p>
+<p>第一种，给候选人一个功能需求，让他去做代码设计和实现，然后，基于他的代码实现，讨论代码的可读性、扩展性等代码质量方面的问题，然后让候选人继续优化，直到满意为止。第二种是，给候选人一段有质量问题的代码，让他去做Code Review，找出代码存在的问题，然后做代码重构。实际上，在我们的专栏中，很多文章中的例子，都符合刚刚两种面试思路。比如第 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/179644">25</a>、 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/179673">26</a>、 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/193221">39</a>、 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/193555">40</a> 讲， <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/190979">34</a>、 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/191621">35</a> 讲， <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/191642">36</a>、 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/191647">37</a> 讲。你可以回过头去再看下。</p>
+<p>这里我要重点强调一下，这种代码设计实现问题，本身没有标准答案，背景又过于复杂开放，如果只是丢给候选人回答，中间没有任何交流和引导，候选人很难抓住重点，展现出你心里期望的表现。所以，面试的过程切忌像笔试一样，一问一答单向沟通。相反，我们要把面试当做一场与未来同事的技术讨论，在讨论的过程中去感受候选人的技术实力。</p>
+<p>当候选人写完代码之后，如果面试官一个问题都不提，然后就跳到其他面试题目，这种体验，不管是对候选人，还是面试官来说，都不是很好。相反，如果面试官能一语中的地提出设计中的缺陷，深入地跟候选人去讨论，这样一方面能给候选人充分发挥的机会，另一方面，也会赢来候选人对公司技术的认可。</p>
+<h2 id="作为候选人，如何回答设计模式问题？"><a href="#作为候选人，如何回答设计模式问题？" class="headerlink" title="作为候选人，如何回答设计模式问题？"></a>作为候选人，如何回答设计模式问题？</h2><p>刚刚我们从面试官的角度，讲解了如何面试设计模式相关的问题。现在，我们再从候选人的角度，讲下如何回答设计模式相关的问题。</p>
+<p>刚刚我讲到，很多面试官喜欢让候选人手写常用设计模式的代码实现，虽然我本身比较讨厌这种面试方式，但保不齐有些面试官喜欢。应对这种面试问题，你只能面试前突击复习一下了。</p>
+<p>刚刚我也讲到，我个人比较喜欢拿真实的功能需求和代码来面试候选人。一种面试题是给功能需求，让候选人写代码，另一种面试题是给代码，让候选人做Code Review和代码重构。针对这两种类型的面试题，我分别讲讲应该如何应对。</p>
+<p>对于第一种面试题目，我们首先要明确需求。大部分情况下，面试官给出的功能需求，都是比较笼统、模糊的，这本身就是为了考察你的沟通能力、分析能力，是否能通过挖掘、假设、取舍，搞清楚具体的需求，梳理出可以执行落地的需求列表。</p>
+<p>跟面试官确定好需求之后，就可以开始设计和实现了。前面也提到，面试的目的是考察候选人在真实项目开发中的表现。在工作中，我们都是从最简单的设计和实现方案做起，所以，回答这种设计面试题，也不要一下子就搞得太复杂，为了设计而设计，非得用些比较复杂的设计模式。</p>
+<p>不过，在用最简单方式实现之后，你可以再讲一下，如何基于某某设计模式，进一步对代码进行解耦，进一步提高代码的扩展性。基于这种最简单的代码，再行讨论优化，这样跟面试官讨论起来，也会更加言之有物。这也能体现你的代码演进思维，以及具体问题具体分析的能力。更加详细的回答套路，你可以参看第 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/171760">13</a>、 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/171767">14</a> 讲。</p>
+<p>比起第一种题目，第二种面试题目会更加明确、具体。你就把它当作一次真实的Code Review来回答就好了。对于如何进行Code Review，你可以回过头去再看下 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/190979">第34讲</a>，里面有罗列一些Code Review的checklist。</p>
+<p>实际上，回答这种没有固定答案的开放性问题，你要跟面试官多问多沟通，不要觉得问多了就是自己理解能力不够，就会导致面试官反感。相反，面试官不仅不会反感，反倒会觉得你是一个思路开阔、有想法的人。如果你只是自己闷头写代码，面试官有可能会觉得你不善沟通。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>作为面试官，你是如何考察候选人的代码设计和实现能力的呢？作为候选人，你遇到过最想吐槽的设计模式相关的面试题是什么样的？</p>
+<p>欢迎留言和我分享，如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E9%A4%90%E4%B9%9D-%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E6%88%96%E5%80%99%E9%80%89%E4%BA%BA%EF%BC%8C%E5%A6%82%E4%BD%95%E9%9D%A2%E8%AF%95%E6%88%96%E5%9B%9E%E7%AD%94%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">加餐九 | 作为面试官或候选人，如何面试或回答设计模式问题？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%8C%E5%A6%82%E4%BD%95%E9%9D%A2%E8%AF%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">作为面试官，如何面试设计模式问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E5%80%99%E9%80%89%E4%BA%BA%EF%BC%8C%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">作为候选人，如何回答设计模式问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.3.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>17 | 从后端到前端：微服务后，前端如何设计？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="17 | 从后端到前端：微服务后，前端如何设计？你好，我是欧创新。 微服务架构通常采用前后端分离的设计方式。作为企业级的中台，在完成单体应用拆分和微服务建设后，前端项目团队会同时面对多个中台微服务项目团队，这时候的前端人员就犹如维修电工一样了。 面对如此多的微服务暴露出来的API服务，如何进行正确的连接和拼装，才能保证不出错？这显然不是一件很容易的事情。而当服务出现变更时，又如何通知所有受影响的项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17 | 从后端到前端：微服务后，前端如何设计？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2462621485.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="17 | 从后端到前端：微服务后，前端如何设计？你好，我是欧创新。 微服务架构通常采用前后端分离的设计方式。作为企业级的中台，在完成单体应用拆分和微服务建设后，前端项目团队会同时面对多个中台微服务项目团队，这时候的前端人员就犹如维修电工一样了。 面对如此多的微服务暴露出来的API服务，如何进行正确的连接和拼装，才能保证不出错？这显然不是一件很容易的事情。而当服务出现变更时，又如何通知所有受影响的项">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T18:02:59.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:07.683Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2462621485"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '17 | 从后端到前端：微服务后，前端如何设计？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">17 | 从后端到前端：微服务后，前端如何设计？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="17-从后端到前端：微服务后，前端如何设计？"><a href="#17-从后端到前端：微服务后，前端如何设计？" class="headerlink" title="17 | 从后端到前端：微服务后，前端如何设计？"></a>17 | 从后端到前端：微服务后，前端如何设计？</h1><p>你好，我是欧创新。</p>
+<p>微服务架构通常采用前后端分离的设计方式。作为企业级的中台，在完成单体应用拆分和微服务建设后，前端项目团队会同时面对多个中台微服务项目团队，这时候的前端人员就犹如维修电工一样了。</p>
+<p>面对如此多的微服务暴露出来的API服务，如何进行正确的连接和拼装，才能保证不出错？这显然不是一件很容易的事情。而当服务出现变更时，又如何通知所有受影响的项目团队，这里面的沟通成本相信也不小。</p>
+<p>相应的，要从一定程度上解决上述问题，我们是不是可以考虑先有效降低前端集成的复杂度呢？先做到前端聚合，后端解耦——这是一个很有意思的话题。今天我们就一起来聊聊微前端（Micro Frontend）的设计思想，探讨一下中台微服务后，前后端的设计和集成方式。</p>
+<h2 id="单体前端的困境"><a href="#单体前端的困境" class="headerlink" title="单体前端的困境"></a>单体前端的困境</h2><p>传统企业在完成中台转型后，虽然后台的业务完成了微服务架构的升级，但前端仍然是单体模式，由一个团队创建并维护一个前端应用。随着时间推移和业务发展，前端会变得越来越臃肿，越来越难维护。而随着5G和移动互联技术的应用，企业业务活动将会进一步移动化和线上化。过去很多企业的做法是为不同的业务开发出独立的APP。但很显然用户并不想装那么多的APP！</p>
+<p>为了提高用户体验，实现统一运营，很多企业开始缩减和整合APP，将企业内所有的业务能力都尽量集中到一个APP中。试想如果仍然沿用单体前端的设计模式。前端项目团队将面对多个中台微服务团队，需要集成成千上万的API服务，这就需要相当高的沟通成本和技术要求。这绝对会是一场灾难。</p>
+<p>相对互联网企业而言，传统企业的渠道应用更加多样化，有面向内部人员的门店类应用、面向外部客户的互联网电商平台或移动APP，还有面向第三方的API集成。由于渠道的差异，前端将更加多样化和复杂化。那如何有效降低前端集成的复杂度呢？</p>
+<h2 id="从单体前端到微前端"><a href="#从单体前端到微前端" class="headerlink" title="从单体前端到微前端"></a>从单体前端到微前端</h2><p>为了解决单体前端的问题，我们可以借鉴微服务的设计思想，引入微前端概念。将微服务理念扩展到前端，解决中台微服务化后，前端由于仍为单体而存在的逻辑复杂和臃肿的问题。</p>
+<p>在前端设计时我们需要遵循单一职责和复用原则，按照领域模型和微服务边界，将前端页面进行拆分。同时构建多个可以独立部署、完全自治、松耦合的页面组合，其中每个组合只负责特定业务单元的UI元素和功能，这些页面组合就是微前端。</p>
+<p>微前端与微服务一样，都是希望将单体应用，按照规则拆分，并重组为多个可以独立开发、独立测试、独立部署和独立运维，松耦合的微前端或者微服务。以适应业务快速变化及分布式多团队并行开发的要求。</p>
+<p>微前端页面只包括业务单元前端操作必需的页面要素，它只是企业级完整业务流程中的一个业务拼图块，不包含页面导航等内容。微前端除了可以实现前端页面的解耦外，还可实现页面复用，这也与中台服务共享理念是一脉相承的。</p>
+<h2 id="业务单元的组合形态"><a href="#业务单元的组合形态" class="headerlink" title="业务单元的组合形态"></a>业务单元的组合形态</h2><p>我们可以参照领域模型和微服务边界，建立与微服务对应的前端操作界面，将它与微服务组成业务单元，以业务组件的方式对外提供服务。业务单元包括微前端和微服务，可以独立开发、测试、部署和运维，可以自包含地完成领域模型中部分或全部的业务功能。</p>
+<p>我们看一下下面这个图。一个虚框就是一个业务单元，微前端和微服务独立部署，业务单元内的微前端和微服务已完成前后端集成。你可以将这个业务单元理解为一个特定业务领域的组件。业务单元可以有多种组合方式，以实现不同的业务目标。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/35d5b6465f6978b16a5ddfa49a910d6f.jpg"></p>
+<h3 id="1-单一业务单元"><a href="#1-单一业务单元" class="headerlink" title="1. 单一业务单元"></a>1. 单一业务单元</h3><p>一个微前端和一个微服务组成单一业务单元。微前端和微服务分别实现同一个领域模型从前端到后端的功能。</p>
+<h3 id="2-组合业务单元"><a href="#2-组合业务单元" class="headerlink" title="2. 组合业务单元"></a>2. 组合业务单元</h3><p>一个微前端与多个微服务组成组合业务单元。微前端具有多个微服务的前端功能，完成较复杂的页面和操作。多个微服务实现各自领域模型的功能，向微前端提供可组合的服务。</p>
+<p>记住一点：微前端不宜与过多的微服务组合，否则容易变成单体前端。</p>
+<h3 id="3-通用共享业务单元"><a href="#3-通用共享业务单元" class="headerlink" title="3. 通用共享业务单元"></a>3. 通用共享业务单元</h3><p>一个微前端与一个或多个通用中台微服务组合为通用共享业务单元。通用共享微前端以共享页面的方式与其它微前端页面协作，完成业务流程。很多通用中台微服务的微前端是共享的，比如订单和支付等微服务对应的订单和支付微前端界面。</p>
+<p>所有业务单元的功能都应该自包含，业务单元之间的边界清晰。业务单元之间要避免功能交叉而出现耦合，一旦出现就会影响项目团队职责边界，进而影响到业务单元独立开发、测试、部署和运维等。</p>
+<h2 id="微前端的集成方式"><a href="#微前端的集成方式" class="headerlink" title="微前端的集成方式"></a>微前端的集成方式</h2><p>我们看一下下面这个图，微前端位于前端主页面和微服务之间，它需要与两者完成集成。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/44a99543af27faabeda4f7fa959b875a.jpg"></p>
+<h3 id="1-微前端与前端主页面的集成"><a href="#1-微前端与前端主页面的集成" class="headerlink" title="1. 微前端与前端主页面的集成"></a>1. 微前端与前端主页面的集成</h3><p>前端主页面是企业级的前端页面，微前端是业务单元的前端页面。微前端通过主页面的微前端加载器，利用页面路由和动态加载等技术，将特定业务单元的微前端页面动态加载到前端主页面，实现前端主页面与微前端页面的“拼图式”集成。</p>
+<p>微前端完成开发、集成和部署后，在前端主页面完成微前端注册以及页面路由配置，即可实现动态加载微前端页面。</p>
+<h3 id="2-微前端与微服务的集成"><a href="#2-微前端与微服务的集成" class="headerlink" title="2. 微前端与微服务的集成"></a>2. 微前端与微服务的集成</h3><p>微前端与微服务独立开发，独立部署。在微前端注册到前端主页面前，微前端需要与微服务完成集成。它的集成方式与传统前后端分离的集成方式没有差异。微服务将服务发布到API网关，微前端调用发布在API网关中的服务，即完成业务单元内的前后端集成。</p>
+<h2 id="团队职责边界"><a href="#团队职责边界" class="headerlink" title="团队职责边界"></a>团队职责边界</h2><p>当你采用业务单元化的开发方式后，前后端项目团队职责和应用边界会更清晰，可以降低前后端集成的复杂度。我们看一下前中台团队的职责分工。</p>
+<p>前端项目团队专注于前端集成主页面与微前端的集成，完成前端主页面的企业级主流程的页面和流程编排以及微前端页面的动态加载，确保主流程业务逻辑和流程正确。前端项目除了要负责企业内页面风格的整体风格设计、业务流程的流转和控制外，还需要负责微前端页面动态加载、微前端注册、页面路由和页面数据共享等前端技术的实现。</p>
+<p>中台项目团队完成业务单元组件的开发、测试和集成，确保业务单元内的业务逻辑、页面和流程正确，向外提供包含页面逻辑和业务逻辑的业务单元组件。</p>
+<p>这样，前端项目团队只需要完成企业级前端主页面与业务单元的融合，前端只关注前端主页面与微前端页面之间的集成。这样就可以降低前端团队的技术敏感度、团队的沟通成本和集成复杂度，提高交付效率和用户体验。</p>
+<p>中台项目团队关注业务单元功能的完整性和自包含能力，完成业务单元内微服务和微前端开发、集成和部署，提供业务单元组件。这样，业务单元的微前端与微服务的集成就会由一个中台团队完成，熟悉的人干熟悉的事情，可以降低集成过程中的沟通和技术成本，加快开发效率。</p>
+<h2 id="一个有关保险微前端设计的案例"><a href="#一个有关保险微前端设计的案例" class="headerlink" title="一个有关保险微前端设计的案例"></a>一个有关保险微前端设计的案例</h2><p>保险公司有很多面向不同场景的保险产品，由于业务场景不同，其核心领域模型就会有差异，在页面要素、业务规则和流程等方面前端界面也会不同。为了避免领域模型差异较大的产品之间的相互影响和干扰，我们可以将相似的领域模型的保险产品聚合在一起，完成核心中台设计。</p>
+<p>那有的保险集团为了统一运营，会实现寿险、财险等集团化的全险种销售。这样前端项目团队就需要用一个前端应用，集成非常多的不同产品的核心中台微服务，前端应用与中台微服务之间的集成将会更复杂。</p>
+<p><strong>如果仍然采用传统的单体前端模式，将会面临比较大的困难。</strong></p>
+<p>第一是前端页面开发和设计的复杂性。以录单前端为例，如果用一个前端页面来适配全险种，由于不同产品的前端页面要素不同，需要妥协并兼容所有产品界面的差异，这会增加前端开发的复杂度，也影响用户体验。而如果为每类产品开发不同的前端，前端项目团队需要在页面开发和设计上，投入巨大的工作量。</p>
+<p>第二是前端与微服务集成的复杂性。在前端与微服务集成时，前端项目团队需要了解所有产品的API详细信息，完成前端与微服务的集成，还要根据主页面流程，实现不同产品的API服务路由。大量的API服务集成和服务路由，会增加系统集成的复杂度和出错的概率。</p>
+<p>第三是前后端软件版本的协同发布。关联的应用多了以后，一旦某一个中台微服务的API服务出现重大调整，就需要协调所有受影响的应用同时完成版本发布，频繁的版本发布会影响不同产品的正常运营。</p>
+<p>那如何用一个前端应用实现全险种产品销售呢？怎样设计才能降低集成的复杂度，实现前端界面融合，后端中台解耦呢？</p>
+<p>我们看一下下面这个图。我们借鉴了电商的订单模式实现保险产品的全险种订单化销售，在一个前端主页面可以将所有业务流程和业务操作无缝串联起来。虽然后端有很多业务单元（包含微服务和微前端），但用户始终感觉是在一个前端应用中操作。</p>
+<p>要在一个前端应用中实现全险种销售，需要完成以下内容的设计。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7d0eff75e60913a01aadfc7c6b24dad4.jpg"></p>
+<h3 id="1-微服务"><a href="#1-微服务" class="headerlink" title="1. 微服务"></a>1. 微服务</h3><p>微服务分为两类，一类是核心中台微服务，包括：投保微服务，实现核心出单业务逻辑；另一类是通用中台微服务，包括如：商品、订单、购物车和支付等微服务，实现通用共享业务逻辑。</p>
+<h3 id="2-微前端"><a href="#2-微前端" class="headerlink" title="2. 微前端"></a>2. 微前端</h3><p>每个微服务都有自己的微前端页面，实现领域模型的微服务前端页面操作。核心中台投保微服务有出单微前端。订单、商品以及支付微服务都有自己的微前端页面。</p>
+<h3 id="3-业务单元"><a href="#3-业务单元" class="headerlink" title="3. 业务单元"></a>3. 业务单元</h3><p>微服务与微前端组合为一个业务单元。由一个中台团队完成业务单元的开发、集成、测试和部署，确保业务单元内页面操作和业务逻辑正确。比如：投保微服务和出单微前端组合为投保业务单元，独立完成保险产品从前端到后端的投保业务。</p>
+<h3 id="4-前端主页面"><a href="#4-前端主页面" class="headerlink" title="4. 前端主页面"></a>4. 前端主页面</h3><p>前端主页面类似门户，包括页面导航以及部分通用的常驻主页面的共享页面，比如购物车。前端主页面和所有微前端应统一界面风格，符合统一的前端集成规范。按照正确的业务逻辑和规则，动态加载不同业务单元的微前端页面。前端主页面作为一个整体，协调核心和通用业务单元的微前端页面，完成业务操作和业务流程，提供全险种销售接触界面，包括商品目录、录单、购物车、订单、支付等操作。</p>
+<h3 id="5-业务流程说明"><a href="#5-业务流程说明" class="headerlink" title="5. 业务流程说明"></a>5. 业务流程说明</h3><p>我来简要说明一下用户在前端主页面的投保的主要业务流程。</p>
+<ul>
+<li>第1步：用户在前端主页面，从商品目录微前端页面，选择保险产品。</li>
+<li>第2步：前端主页面根据选择的产品，从主页面配置数据中，获取产品出单微前端路由地址。加载出单微前端页面，完成录单，投保微服务实现投保业务逻辑，在业务单元内生成投保单。</li>
+<li>第3步：加载购物车微前端，将投保单加入购物车。</li>
+<li>第4步：重复1-3步，生成多个投保单。</li>
+<li>第5步：从购物车微前端中选择多个投保单，加载订单微前端，生成订单。</li>
+<li>第6步：加载支付微前端，完成支付。</li>
+<li>第7步：在投保微服务中，将订单中的投保单生成保单。</li>
+</ul>
+<p>虽然后端有很多业务单元在支持，但用户所有的页面操作和流转是在一个前端主页面完成的。在进行全险种的订单化销售时，用户始终感觉是在操作一个系统。这种设计方式很好地体现了前端的融合和中台的解耦。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我们主要探讨了微前端的设计方法。虽然微前端和微服务也采用前后端分离的设计方式，但在业务单元内，它们是在同一个领域模型下，分别实现前端和后端的业务逻辑，对外提供组件化的服务。</p>
+<p>微前端和业务单元化的设计模式可以减轻企业级中台，前后端应用开发和集成的复杂度，真正实现前端融合和中台解耦。它的主要价值和意义如下：</p>
+<p><strong>1. 前端集成简单：</strong> 前端项目只需关注前端集成主页面与微前端的集成，实现模块化集成和拼图式的开发，降低前端集成的复杂度和成本。</p>
+<p><strong>2. 项目职责专一：</strong> 中台项目从数据库、中台微服务到微前端界面，端到端地完成领域逻辑功能开发，以业务组件的方式整体提供服务。在业务单元内，由团队自己完成前后端集成，可以降低开发和集成团队的沟通成本和集成复杂度。</p>
+<p><strong>3. 隔离和依赖性：</strong> 业务单元在代码、逻辑和物理边界都是隔离的，可降低应用之间的依赖性。出现问题时可快速定位和修复，问题可以控制在一个业务单元内。业务单元之间相互无影响。</p>
+<p><strong>4. 降低沟通和测试成本：</strong> 中台团队实现从微前端页面到中台微服务的业务单元逻辑，实现业务单元的开发、测试、集成和部署的全流程和全生命周期管理，降低前后端集成的测试和沟通成本。</p>
+<p><strong>5. 更敏捷地发布：</strong> 业务单元之间有很好的隔离性和依赖性低，业务单元的变化都可以被控制在业务单元内。项目团队可以独立按照自己的步调进行迭代开发，实现更快的发布周期。版本发布时不会影响其它业务单元的正常运行。</p>
+<p><strong>6. 降低技术敏感性：</strong> 前端项目关注前端主页面与微前端的集成。降低了前端项目团队对中台微服务技术的敏感性。中台项目团队可以更独立地尝试新技术和架构，实现架构的演进。</p>
+<p><strong>7. 高度复用性：</strong> 微前端和中台微服务都有高度的复用性。微前端可快速加载到多个APP，还可以将一个微前端直接发布为APP或微信小程序，实现灵活的前端组合、复用和快速发布。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>结合你公司的业务场景，思考一下是否可以采用微前端的设计，降低前后端集成的复杂度？期待你的分享！</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/7b1a917aff0ec923b78a54e81ed90733.jpg" alt="unpreview"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#17-%E4%BB%8E%E5%90%8E%E7%AB%AF%E5%88%B0%E5%89%8D%E7%AB%AF%EF%BC%9A%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%90%8E%EF%BC%8C%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">17 | 从后端到前端：微服务后，前端如何设计？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BD%93%E5%89%8D%E7%AB%AF%E7%9A%84%E5%9B%B0%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">单体前端的困境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%8D%95%E4%BD%93%E5%89%8D%E7%AB%AF%E5%88%B0%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.2.</span> <span class="toc-text">从单体前端到微前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E5%8D%95%E5%85%83%E7%9A%84%E7%BB%84%E5%90%88%E5%BD%A2%E6%80%81"><span class="toc-number">1.3.</span> <span class="toc-text">业务单元的组合形态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%95%E4%B8%80%E4%B8%9A%E5%8A%A1%E5%8D%95%E5%85%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 单一业务单元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%84%E5%90%88%E4%B8%9A%E5%8A%A1%E5%8D%95%E5%85%83"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 组合业务单元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%80%9A%E7%94%A8%E5%85%B1%E4%BA%AB%E4%B8%9A%E5%8A%A1%E5%8D%95%E5%85%83"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 通用共享业务单元</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E9%9B%86%E6%88%90%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">微前端的集成方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BE%AE%E5%89%8D%E7%AB%AF%E4%B8%8E%E5%89%8D%E7%AB%AF%E4%B8%BB%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%9B%86%E6%88%90"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 微前端与前端主页面的集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BE%AE%E5%89%8D%E7%AB%AF%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%9B%86%E6%88%90"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 微前端与微服务的集成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E8%81%8C%E8%B4%A3%E8%BE%B9%E7%95%8C"><span class="toc-number">1.5.</span> <span class="toc-text">团队职责边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%9C%89%E5%85%B3%E4%BF%9D%E9%99%A9%E5%BE%AE%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%A1%88%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">一个有关保险微前端设计的案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 微前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%9A%E5%8A%A1%E5%8D%95%E5%85%83"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 业务单元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%89%8D%E7%AB%AF%E4%B8%BB%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.6.4.</span> <span class="toc-text">4. 前端主页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E8%AF%B4%E6%98%8E"><span class="toc-number">1.6.5.</span> <span class="toc-text">5. 业务流程说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.8.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？从今天起，我们开始学习状态模式。在实际的软件开发中，状态模式并不是很常用，但是在能够用到的场景里，它可以发挥很大的作用。从这一点上来看，它有点像我们之前讲到的组合模式。 状态模式一般用来实现状态机，而状态机常用在游戏、工作流引擎等系统开发中。不过，状态机的实现方式有多种，除了状态模式，比较常用的还有分支逻辑法和查表法。今天，我们就详细">
+<meta property="og:type" content="article">
+<meta property="og:title" content="64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/206657527.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？从今天起，我们开始学习状态模式。在实际的软件开发中，状态模式并不是很常用，但是在能够用到的场景里，它可以发挥很大的作用。从这一点上来看，它有点像我们之前讲到的组合模式。 状态模式一般用来实现状态机，而状态机常用在游戏、工作流引擎等系统开发中。不过，状态机的实现方式有多种，除了状态模式，比较常用的还有分支逻辑法和查表法。今天，我们就详细">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.333Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/206657527"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="64-状态模式：游戏、工作流引擎中常用的状态机是如何实现的？"><a href="#64-状态模式：游戏、工作流引擎中常用的状态机是如何实现的？" class="headerlink" title="64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？"></a>64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？</h1><p>从今天起，我们开始学习状态模式。在实际的软件开发中，状态模式并不是很常用，但是在能够用到的场景里，它可以发挥很大的作用。从这一点上来看，它有点像我们之前讲到的组合模式。</p>
+<p>状态模式一般用来实现状态机，而状态机常用在游戏、工作流引擎等系统开发中。不过，状态机的实现方式有多种，除了状态模式，比较常用的还有分支逻辑法和查表法。今天，我们就详细讲讲这几种实现方式，并且对比一下它们的优劣和应用场景。</p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="什么是有限状态机？"><a href="#什么是有限状态机？" class="headerlink" title="什么是有限状态机？"></a>什么是有限状态机？</h2><p>有限状态机，英文翻译是Finite State Machine，缩写为FSM，简称为状态机。状态机有3个组成部分：状态（State）、事件（Event）、动作（Action）。其中，事件也称为转移条件（Transition Condition）。事件触发状态的转移及动作的执行。不过，动作不是必须的，也可能只转移状态，不执行任何动作。</p>
+<p>对于刚刚给出的状态机的定义，我结合一个具体的例子，来进一步解释一下。</p>
+<p>“超级马里奥”游戏不知道你玩过没有？在游戏中，马里奥可以变身为多种形态，比如小马里奥（Small Mario）、超级马里奥（Super Mario）、火焰马里奥（Fire Mario）、斗篷马里奥（Cape Mario）等等。在不同的游戏情节下，各个形态会互相转化，并相应的增减积分。比如，初始形态是小马里奥，吃了蘑菇之后就会变成超级马里奥，并且增加100积分。</p>
+<p>实际上，马里奥形态的转变就是一个状态机。其中，马里奥的不同形态就是状态机中的“状态”，游戏情节（比如吃了蘑菇）就是状态机中的“事件”，加减积分就是状态机中的“动作”。比如，吃蘑菇这个事件，会触发状态的转移：从小马里奥转移到超级马里奥，以及触发动作的执行（增加100积分）。</p>
+<p>为了方便接下来的讲解，我对游戏背景做了简化，只保留了部分状态和事件。简化之后的状态转移如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/5aa0310b9b3ea08794cfc2f376c8f96c.jpg"></p>
+<p>我们如何编程来实现上面的状态机呢？换句话说，如何将上面的状态转移图翻译成代码呢？</p>
+<p>我写了一个骨架代码，如下所示。其中，obtainMushRoom()、obtainCape()、obtainFireFlower()、meetMonster()这几个函数，能够根据当前的状态和事件，更新状态和增减积分。不过，具体的代码实现我暂时并没有给出。你可以把它当做面试题，试着补全一下，然后再来看我下面的讲解，这样你的收获会更大。</p>
+<pre class="line-numbers language-none"><code class="language-none">public enum State &#123;
+  SMALL(0),
+  SUPER(1),
+  FIRE(2),
+  CAPE(3);
+
+  private int value;
+
+  private State(int value) &#123;
+    this.value &#x3D; value;
+  &#125;
+
+  public int getValue() &#123;
+    return this.value;
+  &#125;
+&#125;
+
+public class MarioStateMachine &#123;
+  private int score;
+  private State currentState;
+
+  public MarioStateMachine() &#123;
+    this.score &#x3D; 0;
+    this.currentState &#x3D; State.SMALL;
+  &#125;
+
+  public void obtainMushRoom() &#123;
+    &#x2F;&#x2F;TODO
+  &#125;
+
+  public void obtainCape() &#123;
+    &#x2F;&#x2F;TODO
+  &#125;
+
+  public void obtainFireFlower() &#123;
+    &#x2F;&#x2F;TODO
+  &#125;
+
+  public void meetMonster() &#123;
+    &#x2F;&#x2F;TODO
+  &#125;
+
+  public int getScore() &#123;
+    return this.score;
+  &#125;
+
+  public State getCurrentState() &#123;
+    return this.currentState;
+  &#125;
+&#125;
+
+public class ApplicationDemo &#123;
+  public static void main(String[] args) &#123;
+    MarioStateMachine mario &#x3D; new MarioStateMachine();
+    mario.obtainMushRoom();
+    int score &#x3D; mario.getScore();
+    State state &#x3D; mario.getCurrentState();
+    System.out.println(&quot;mario score: &quot; + score + &quot;; state: &quot; + state);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="状态机实现方式一：分支逻辑法"><a href="#状态机实现方式一：分支逻辑法" class="headerlink" title="状态机实现方式一：分支逻辑法"></a>状态机实现方式一：分支逻辑法</h2><p>对于如何实现状态机，我总结了三种方式。其中，最简单直接的实现方式是，参照状态转移图，将每一个状态转移，原模原样地直译成代码。这样编写的代码会包含大量的if-else或switch-case分支判断逻辑，甚至是嵌套的分支判断逻辑，所以，我把这种方法暂且命名为分支逻辑法。</p>
+<p>按照这个实现思路，我将上面的骨架代码补全一下。补全之后的代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class MarioStateMachine &#123;
+  private int score;
+  private State currentState;
+
+  public MarioStateMachine() &#123;
+    this.score &#x3D; 0;
+    this.currentState &#x3D; State.SMALL;
+  &#125;
+
+  public void obtainMushRoom() &#123;
+    if (currentState.equals(State.SMALL)) &#123;
+      this.currentState &#x3D; State.SUPER;
+      this.score +&#x3D; 100;
+    &#125;
+  &#125;
+
+  public void obtainCape() &#123;
+    if (currentState.equals(State.SMALL) || currentState.equals(State.SUPER) ) &#123;
+      this.currentState &#x3D; State.CAPE;
+      this.score +&#x3D; 200;
+    &#125;
+  &#125;
+
+  public void obtainFireFlower() &#123;
+    if (currentState.equals(State.SMALL) || currentState.equals(State.SUPER) ) &#123;
+      this.currentState &#x3D; State.FIRE;
+      this.score +&#x3D; 300;
+    &#125;
+  &#125;
+
+  public void meetMonster() &#123;
+    if (currentState.equals(State.SUPER)) &#123;
+      this.currentState &#x3D; State.SMALL;
+      this.score -&#x3D; 100;
+      return;
+    &#125;
+
+    if (currentState.equals(State.CAPE)) &#123;
+      this.currentState &#x3D; State.SMALL;
+      this.score -&#x3D; 200;
+      return;
+    &#125;
+
+    if (currentState.equals(State.FIRE)) &#123;
+      this.currentState &#x3D; State.SMALL;
+      this.score -&#x3D; 300;
+      return;
+    &#125;
+  &#125;
+
+  public int getScore() &#123;
+    return this.score;
+  &#125;
+
+  public State getCurrentState() &#123;
+    return this.currentState;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于简单的状态机来说，分支逻辑这种实现方式是可以接受的。但是，对于复杂的状态机来说，这种实现方式极易漏写或者错写某个状态转移。除此之外，代码中充斥着大量的if-else或者switch-case分支判断逻辑，可读性和可维护性都很差。如果哪天修改了状态机中的某个状态转移，我们要在冗长的分支逻辑中找到对应的代码进行修改，很容易改错，引入bug。</p>
+<h2 id="状态机实现方式二：查表法"><a href="#状态机实现方式二：查表法" class="headerlink" title="状态机实现方式二：查表法"></a>状态机实现方式二：查表法</h2><p>实际上，上面这种实现方法有点类似hard code，对于复杂的状态机来说不适用，而状态机的第二种实现方式查表法，就更加合适了。接下来，我们就一块儿来看下，如何利用查表法来补全骨架代码。</p>
+<p>实际上，除了用状态转移图来表示之外，状态机还可以用二维表来表示，如下所示。在这个二维表中，第一维表示当前状态，第二维表示事件，值表示当前状态经过事件之后，转移到的新状态及其执行的动作。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/4f4ea3787bd955918578181e18173491.jpg"></p>
+<p>相对于分支逻辑的实现方式，查表法的代码实现更加清晰，可读性和可维护性更好。当修改状态机时，我们只需要修改transitionTable和actionTable两个二维数组即可。实际上，如果我们把这两个二维数组存储在配置文件中，当需要修改状态机时，我们甚至可以不修改任何代码，只需要修改配置文件就可以了。具体的代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public enum Event &#123;
+  GOT_MUSHROOM(0),
+  GOT_CAPE(1),
+  GOT_FIRE(2),
+  MET_MONSTER(3);
+
+  private int value;
+
+  private Event(int value) &#123;
+    this.value &#x3D; value;
+  &#125;
+
+  public int getValue() &#123;
+    return this.value;
+  &#125;
+&#125;
+
+public class MarioStateMachine &#123;
+  private int score;
+  private State currentState;
+
+  private static final State[][] transitionTable &#x3D; &#123;
+          &#123;SUPER, CAPE, FIRE, SMALL&#125;,
+          &#123;SUPER, CAPE, FIRE, SMALL&#125;,
+          &#123;CAPE, CAPE, CAPE, SMALL&#125;,
+          &#123;FIRE, FIRE, FIRE, SMALL&#125;
+  &#125;;
+
+  private static final int[][] actionTable &#x3D; &#123;
+          &#123;+100, +200, +300, +0&#125;,
+          &#123;+0, +200, +300, -100&#125;,
+          &#123;+0, +0, +0, -200&#125;,
+          &#123;+0, +0, +0, -300&#125;
+  &#125;;
+
+  public MarioStateMachine() &#123;
+    this.score &#x3D; 0;
+    this.currentState &#x3D; State.SMALL;
+  &#125;
+
+  public void obtainMushRoom() &#123;
+    executeEvent(Event.GOT_MUSHROOM);
+  &#125;
+
+  public void obtainCape() &#123;
+    executeEvent(Event.GOT_CAPE);
+  &#125;
+
+  public void obtainFireFlower() &#123;
+    executeEvent(Event.GOT_FIRE);
+  &#125;
+
+  public void meetMonster() &#123;
+    executeEvent(Event.MET_MONSTER);
+  &#125;
+
+  private void executeEvent(Event event) &#123;
+    int stateValue &#x3D; currentState.getValue();
+    int eventValue &#x3D; event.getValue();
+    this.currentState &#x3D; transitionTable[stateValue][eventValue];
+    this.score +&#x3D; actionTable[stateValue][eventValue];
+  &#125;
+
+  public int getScore() &#123;
+    return this.score;
+  &#125;
+
+  public State getCurrentState() &#123;
+    return this.currentState;
+  &#125;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="状态机实现方式三：状态模式"><a href="#状态机实现方式三：状态模式" class="headerlink" title="状态机实现方式三：状态模式"></a>状态机实现方式三：状态模式</h2><p>在查表法的代码实现中，事件触发的动作只是简单的积分加减，所以，我们用一个int类型的二维数组actionTable就能表示，二维数组中的值表示积分的加减值。但是，如果要执行的动作并非这么简单，而是一系列复杂的逻辑操作（比如加减积分、写数据库，还有可能发送消息通知等等），我们就没法用如此简单的二维数组来表示了。这也就是说，查表法的实现方式有一定局限性。</p>
+<p>虽然分支逻辑的实现方式不存在这个问题，但它又存在前面讲到的其他问题，比如分支判断逻辑较多，导致代码可读性和可维护性不好等。实际上，针对分支逻辑法存在的问题，我们可以使用状态模式来解决。</p>
+<p>状态模式通过将事件触发的状态转移和动作执行，拆分到不同的状态类中，来避免分支判断逻辑。我们还是结合代码来理解这句话。</p>
+<p>利用状态模式，我们来补全MarioStateMachine类，补全后的代码如下所示。</p>
+<p>其中，IMario是状态的接口，定义了所有的事件。SmallMario、SuperMario、CapeMario、FireMario是IMario接口的实现类，分别对应状态机中的4个状态。原来所有的状态转移和动作执行的代码逻辑，都集中在MarioStateMachine类中，现在，这些代码逻辑被分散到了这4个状态类中。</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface IMario &#123; &#x2F;&#x2F;所有状态类的接口
+  State getName();
+  &#x2F;&#x2F;以下是定义的事件
+  void obtainMushRoom();
+  void obtainCape();
+  void obtainFireFlower();
+  void meetMonster();
+&#125;
+
+public class SmallMario implements IMario &#123;
+  private MarioStateMachine stateMachine;
+
+  public SmallMario(MarioStateMachine stateMachine) &#123;
+    this.stateMachine &#x3D; stateMachine;
+  &#125;
+
+  @Override
+  public State getName() &#123;
+    return State.SMALL;
+  &#125;
+
+  @Override
+  public void obtainMushRoom() &#123;
+    stateMachine.setCurrentState(new SuperMario(stateMachine));
+    stateMachine.setScore(stateMachine.getScore() + 100);
+  &#125;
+
+  @Override
+  public void obtainCape() &#123;
+    stateMachine.setCurrentState(new CapeMario(stateMachine));
+    stateMachine.setScore(stateMachine.getScore() + 200);
+  &#125;
+
+  @Override
+  public void obtainFireFlower() &#123;
+    stateMachine.setCurrentState(new FireMario(stateMachine));
+    stateMachine.setScore(stateMachine.getScore() + 300);
+  &#125;
+
+  @Override
+  public void meetMonster() &#123;
+    &#x2F;&#x2F; do nothing...
+  &#125;
+&#125;
+
+public class SuperMario implements IMario &#123;
+  private MarioStateMachine stateMachine;
+
+  public SuperMario(MarioStateMachine stateMachine) &#123;
+    this.stateMachine &#x3D; stateMachine;
+  &#125;
+
+  @Override
+  public State getName() &#123;
+    return State.SUPER;
+  &#125;
+
+  @Override
+  public void obtainMushRoom() &#123;
+    &#x2F;&#x2F; do nothing...
+  &#125;
+
+  @Override
+  public void obtainCape() &#123;
+    stateMachine.setCurrentState(new CapeMario(stateMachine));
+    stateMachine.setScore(stateMachine.getScore() + 200);
+  &#125;
+
+  @Override
+  public void obtainFireFlower() &#123;
+    stateMachine.setCurrentState(new FireMario(stateMachine));
+    stateMachine.setScore(stateMachine.getScore() + 300);
+  &#125;
+
+  @Override
+  public void meetMonster() &#123;
+    stateMachine.setCurrentState(new SmallMario(stateMachine));
+    stateMachine.setScore(stateMachine.getScore() - 100);
+  &#125;
+&#125;
+
+&#x2F;&#x2F; 省略CapeMario、FireMario类...
+
+public class MarioStateMachine &#123;
+  private int score;
+  private IMario currentState; &#x2F;&#x2F; 不再使用枚举来表示状态
+
+  public MarioStateMachine() &#123;
+    this.score &#x3D; 0;
+    this.currentState &#x3D; new SmallMario(this);
+  &#125;
+
+  public void obtainMushRoom() &#123;
+    this.currentState.obtainMushRoom();
+  &#125;
+
+  public void obtainCape() &#123;
+    this.currentState.obtainCape();
+  &#125;
+
+  public void obtainFireFlower() &#123;
+    this.currentState.obtainFireFlower();
+  &#125;
+
+  public void meetMonster() &#123;
+    this.currentState.meetMonster();
+  &#125;
+
+  public int getScore() &#123;
+    return this.score;
+  &#125;
+
+  public State getCurrentState() &#123;
+    return this.currentState.getName();
+  &#125;
+
+  public void setScore(int score) &#123;
+    this.score &#x3D; score;
+  &#125;
+
+  public void setCurrentState(IMario currentState) &#123;
+    this.currentState &#x3D; currentState;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的代码实现不难看懂，我只强调其中的一点，即MarioStateMachine和各个状态类之间是双向依赖关系。MarioStateMachine依赖各个状态类是理所当然的，但是，反过来，各个状态类为什么要依赖MarioStateMachine呢？这是因为，各个状态类需要更新MarioStateMachine中的两个变量，score和currentState。</p>
+<p>实际上，上面的代码还可以继续优化，我们可以将状态类设计成单例，毕竟状态类中不包含任何成员变量。但是，当将状态类设计成单例之后，我们就无法通过构造函数来传递MarioStateMachine了，而状态类又要依赖MarioStateMachine，那该如何解决这个问题呢？</p>
+<p>实际上，在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/194068">第42讲</a> 单例模式的讲解中，我们提到过几种解决方法，你可以回过头去再查看一下。在这里，我们可以通过函数参数将MarioStateMachine传递进状态类。根据这个设计思路，我们对上面的代码进行重构。重构之后的代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface IMario &#123;
+  State getName();
+  void obtainMushRoom(MarioStateMachine stateMachine);
+  void obtainCape(MarioStateMachine stateMachine);
+  void obtainFireFlower(MarioStateMachine stateMachine);
+  void meetMonster(MarioStateMachine stateMachine);
+&#125;
+
+public class SmallMario implements IMario &#123;
+  private static final SmallMario instance &#x3D; new SmallMario();
+  private SmallMario() &#123;&#125;
+  public static SmallMario getInstance() &#123;
+    return instance;
+  &#125;
+
+  @Override
+  public State getName() &#123;
+    return State.SMALL;
+  &#125;
+
+  @Override
+  public void obtainMushRoom(MarioStateMachine stateMachine) &#123;
+    stateMachine.setCurrentState(SuperMario.getInstance());
+    stateMachine.setScore(stateMachine.getScore() + 100);
+  &#125;
+
+  @Override
+  public void obtainCape(MarioStateMachine stateMachine) &#123;
+    stateMachine.setCurrentState(CapeMario.getInstance());
+    stateMachine.setScore(stateMachine.getScore() + 200);
+  &#125;
+
+  @Override
+  public void obtainFireFlower(MarioStateMachine stateMachine) &#123;
+    stateMachine.setCurrentState(FireMario.getInstance());
+    stateMachine.setScore(stateMachine.getScore() + 300);
+  &#125;
+
+  @Override
+  public void meetMonster(MarioStateMachine stateMachine) &#123;
+    &#x2F;&#x2F; do nothing...
+  &#125;
+&#125;
+
+&#x2F;&#x2F; 省略SuperMario、CapeMario、FireMario类...
+
+public class MarioStateMachine &#123;
+  private int score;
+  private IMario currentState;
+
+  public MarioStateMachine() &#123;
+    this.score &#x3D; 0;
+    this.currentState &#x3D; SmallMario.getInstance();
+  &#125;
+
+  public void obtainMushRoom() &#123;
+    this.currentState.obtainMushRoom(this);
+  &#125;
+
+  public void obtainCape() &#123;
+    this.currentState.obtainCape(this);
+  &#125;
+
+  public void obtainFireFlower() &#123;
+    this.currentState.obtainFireFlower(this);
+  &#125;
+
+  public void meetMonster() &#123;
+    this.currentState.meetMonster(this);
+  &#125;
+
+  public int getScore() &#123;
+    return this.score;
+  &#125;
+
+  public State getCurrentState() &#123;
+    return this.currentState.getName();
+  &#125;
+
+  public void setScore(int score) &#123;
+    this.score &#x3D; score;
+  &#125;
+
+  public void setCurrentState(IMario currentState) &#123;
+    this.currentState &#x3D; currentState;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实际上，像游戏这种比较复杂的状态机，包含的状态比较多，我优先推荐使用查表法，而状态模式会引入非常多的状态类，会导致代码比较难维护。相反，像电商下单、外卖下单这种类型的状态机，它们的状态并不多，状态转移也比较简单，但事件触发执行的动作包含的业务逻辑可能会比较复杂，所以，更加推荐使用状态模式来实现。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>好了，今天的内容到此就讲完了。我们一块来总结回顾一下，你需要重点掌握的内容。</p>
+<p>今天我们讲解了状态模式。虽然网上有各种状态模式的定义，但是你只要记住状态模式是状态机的一种实现方式即可。状态机又叫有限状态机，它有3个部分组成：状态、事件、动作。其中，事件也称为转移条件。事件触发状态的转移及动作的执行。不过，动作不是必须的，也可能只转移状态，不执行任何动作。</p>
+<p>针对状态机，今天我们总结了三种实现方式。</p>
+<p>第一种实现方式叫分支逻辑法。利用if-else或者switch-case分支逻辑，参照状态转移图，将每一个状态转移原模原样地直译成代码。对于简单的状态机来说，这种实现方式最简单、最直接，是首选。</p>
+<p>第二种实现方式叫查表法。对于状态很多、状态转移比较复杂的状态机来说，查表法比较合适。通过二维数组来表示状态转移图，能极大地提高代码的可读性和可维护性。</p>
+<p>第三种实现方式叫状态模式。对于状态并不多、状态转移也比较简单，但事件触发执行的动作包含的业务逻辑可能比较复杂的状态机来说，我们首选这种实现方式。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>状态模式的代码实现还存在一些问题，比如，状态接口中定义了所有的事件函数，这就导致，即便某个状态类并不需要支持其中的某个或者某些事件，但也要实现所有的事件函数。不仅如此，添加一个事件到状态接口，所有的状态类都要做相应的修改。针对这些问题，你有什么解决方法吗？</p>
+<p>欢迎留言和我分享你的想法。如果有收获，欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#64-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%EF%BC%9A%E6%B8%B8%E6%88%8F%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是有限状态机？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E5%88%86%E6%94%AF%E9%80%BB%E8%BE%91%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">状态机实现方式一：分支逻辑法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E6%9F%A5%E8%A1%A8%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">状态机实现方式二：查表法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">状态机实现方式三：状态模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.5.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.6.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

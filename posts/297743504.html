@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？在上一节课中，我们学习了单一职责原则。今天，我们来学习SOLID中的第二个原则：开闭原则。我个人觉得，开闭原则是SOLID中最难理解、最难掌握，同时也是最有用的一条原则。 之所以说这条原则难理解，那是因为，“怎样的代码改动才被定义为‘扩展’？怎样的代码改动才被定义为‘修改’？怎么才算满足或违反‘开闭原则’？修改代码就一定意味着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/297743504.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？在上一节课中，我们学习了单一职责原则。今天，我们来学习SOLID中的第二个原则：开闭原则。我个人觉得，开闭原则是SOLID中最难理解、最难掌握，同时也是最有用的一条原则。 之所以说这条原则难理解，那是因为，“怎样的代码改动才被定义为‘扩展’？怎样的代码改动才被定义为‘修改’？怎么才算满足或违反‘开闭原则’？修改代码就一定意味着">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.231Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/297743504"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="16-理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？"><a href="#16-理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？" class="headerlink" title="16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？"></a>16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？</h1><p>在上一节课中，我们学习了单一职责原则。今天，我们来学习SOLID中的第二个原则：开闭原则。我个人觉得，开闭原则是SOLID中最难理解、最难掌握，同时也是最有用的一条原则。</p>
+<p>之所以说这条原则难理解，那是因为，“怎样的代码改动才被定义为‘扩展’？怎样的代码改动才被定义为‘修改’？怎么才算满足或违反‘开闭原则’？修改代码就一定意味着违反‘开闭原则’吗？”等等这些问题，都比较难理解。</p>
+<p>之所以说这条原则难掌握，那是因为，“如何做到‘对扩展开放、修改关闭’？如何在项目中灵活地应用‘开闭原则’，以避免在追求扩展性的同时影响到代码的可读性？”等等这些问题，都比较难掌握。</p>
+<p>之所以说这条原则最有用，那是因为，扩展性是代码质量最重要的衡量标准之一。在23种经典设计模式中，大部分设计模式都是为了解决代码的扩展性问题而存在的，主要遵从的设计原则就是开闭原则。</p>
+<p>所以说，今天的内容非常重要，希望你能集中精力，跟上我的思路，将开闭原则理解透彻，这样才能更好地理解后面章节的内容。话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="如何理解“对扩展开放、修改关闭”？"><a href="#如何理解“对扩展开放、修改关闭”？" class="headerlink" title="如何理解“对扩展开放、修改关闭”？"></a>如何理解“对扩展开放、修改关闭”？</h2><p>开闭原则的英文全称是Open Closed Principle，简写为OCP。它的英文描述是：software entities (modules, classes, functions, etc.) should be open for extension , but closed for modification。我们把它翻译成中文就是：软件实体（模块、类、方法等）应该“对扩展开放、对修改关闭”。</p>
+<p>这个描述比较简略，如果我们详细表述一下，那就是，添加一个新的功能应该是，在已有代码基础上扩展代码（新增模块、类、方法等），而非修改已有代码（修改模块、类、方法等）。</p>
+<p>为了让你更好地理解这个原则，我举一个例子来进一步解释一下。这是一段API接口监控告警的代码。</p>
+<p>其中，AlertRule存储告警规则，可以自由设置。Notification是告警通知类，支持邮件、短信、微信、手机等多种通知渠道。NotificationEmergencyLevel表示通知的紧急程度，包括SEVERE（严重）、URGENCY（紧急）、NORMAL（普通）、TRIVIAL（无关紧要），不同的紧急程度对应不同的发送渠道。关于API接口监控告警这部分，更加详细的业务需求分析和设计，我们会在后面的设计模式模块再拿出来进一步讲解，这里你只要简单知道这些，就够我们今天用了。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Alert &#123;
+  private AlertRule rule;
+  private Notification notification;
+
+  public Alert(AlertRule rule, Notification notification) &#123;
+    this.rule &#x3D; rule;
+    this.notification &#x3D; notification;
+  &#125;
+
+  public void check(String api, long requestCount, long errorCount, long durationOfSeconds) &#123;
+    long tps &#x3D; requestCount &#x2F; durationOfSeconds;
+    if (tps &gt; rule.getMatchedRule(api).getMaxTps()) &#123;
+      notification.notify(NotificationEmergencyLevel.URGENCY, &quot;...&quot;);
+    &#125;
+    if (errorCount &gt; rule.getMatchedRule(api).getMaxErrorCount()) &#123;
+      notification.notify(NotificationEmergencyLevel.SEVERE, &quot;...&quot;);
+    &#125;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面这段代码非常简单，业务逻辑主要集中在check()函数中。当接口的TPS超过某个预先设置的最大值时，以及当接口请求出错数大于某个最大允许值时，就会触发告警，通知接口的相关负责人或者团队。</p>
+<p>现在，如果我们需要添加一个功能，当每秒钟接口超时请求个数，超过某个预先设置的最大阈值时，我们也要触发告警发送通知。这个时候，我们该如何改动代码呢？主要的改动有两处：第一处是修改check()函数的入参，添加一个新的统计数据timeoutCount，表示超时接口请求数；第二处是在check()函数中添加新的告警逻辑。具体的代码改动如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Alert &#123;
+  &#x2F;&#x2F; ...省略AlertRule&#x2F;Notification属性和构造函数...
+
+  &#x2F;&#x2F; 改动一：添加参数timeoutCount
+  public void check(String api, long requestCount, long errorCount, long timeoutCount, long durationOfSeconds) &#123;
+    long tps &#x3D; requestCount &#x2F; durationOfSeconds;
+    if (tps &gt; rule.getMatchedRule(api).getMaxTps()) &#123;
+      notification.notify(NotificationEmergencyLevel.URGENCY, &quot;...&quot;);
+    &#125;
+    if (errorCount &gt; rule.getMatchedRule(api).getMaxErrorCount()) &#123;
+      notification.notify(NotificationEmergencyLevel.SEVERE, &quot;...&quot;);
+    &#125;
+    &#x2F;&#x2F; 改动二：添加接口超时处理逻辑
+    long timeoutTps &#x3D; timeoutCount &#x2F; durationOfSeconds;
+    if (timeoutTps &gt; rule.getMatchedRule(api).getMaxTimeoutTps()) &#123;
+      notification.notify(NotificationEmergencyLevel.URGENCY, &quot;...&quot;);
+    &#125;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样的代码修改实际上存在挺多问题的。一方面，我们对接口进行了修改，这就意味着调用这个接口的代码都要做相应的修改。另一方面，修改了check()函数，相应的单元测试都需要修改（关于单元测试的内容我们在重构那部分会详细介绍）。</p>
+<p>上面的代码改动是基于“修改”的方式来实现新功能的。如果我们遵循开闭原则，也就是“对扩展开放、对修改关闭”。那如何通过“扩展”的方式，来实现同样的功能呢？</p>
+<p>我们先重构一下之前的Alert代码，让它的扩展性更好一些。重构的内容主要包含两部分：</p>
+<ul>
+<li>第一部分是将check()函数的多个入参封装成ApiStatInfo类；</li>
+<li>第二部分是引入handler的概念，将if判断逻辑分散在各个handler中。</li>
+</ul>
+<p>具体的代码实现如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Alert &#123;
+  private List&lt;AlertHandler&gt; alertHandlers &#x3D; new ArrayList&lt;&gt;();
+
+  public void addAlertHandler(AlertHandler alertHandler) &#123;
+    this.alertHandlers.add(alertHandler);
+  &#125;
+
+  public void check(ApiStatInfo apiStatInfo) &#123;
+    for (AlertHandler handler : alertHandlers) &#123;
+      handler.check(apiStatInfo);
+    &#125;
+  &#125;
+&#125;
+
+public class ApiStatInfo &#123;&#x2F;&#x2F;省略constructor&#x2F;getter&#x2F;setter方法
+  private String api;
+  private long requestCount;
+  private long errorCount;
+  private long durationOfSeconds;
+&#125;
+
+public abstract class AlertHandler &#123;
+  protected AlertRule rule;
+  protected Notification notification;
+  public AlertHandler(AlertRule rule, Notification notification) &#123;
+    this.rule &#x3D; rule;
+    this.notification &#x3D; notification;
+  &#125;
+  public abstract void check(ApiStatInfo apiStatInfo);
+&#125;
+
+public class TpsAlertHandler extends AlertHandler &#123;
+  public TpsAlertHandler(AlertRule rule, Notification notification) &#123;
+    super(rule, notification);
+  &#125;
+
+  @Override
+  public void check(ApiStatInfo apiStatInfo) &#123;
+    long tps &#x3D; apiStatInfo.getRequestCount()&#x2F; apiStatInfo.getDurationOfSeconds();
+    if (tps &gt; rule.getMatchedRule(apiStatInfo.getApi()).getMaxTps()) &#123;
+      notification.notify(NotificationEmergencyLevel.URGENCY, &quot;...&quot;);
+    &#125;
+  &#125;
+&#125;
+
+public class ErrorAlertHandler extends AlertHandler &#123;
+  public ErrorAlertHandler(AlertRule rule, Notification notification)&#123;
+    super(rule, notification);
+  &#125;
+
+  @Override
+  public void check(ApiStatInfo apiStatInfo) &#123;
+    if (apiStatInfo.getErrorCount() &gt; rule.getMatchedRule(apiStatInfo.getApi()).getMaxErrorCount()) &#123;
+      notification.notify(NotificationEmergencyLevel.SEVERE, &quot;...&quot;);
+    &#125;
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的代码是对Alert的重构，我们再来看下，重构之后的Alert该如何使用呢？具体的使用代码我也写在这里了。</p>
+<p>其中，ApplicationContext是一个单例类，负责Alert的创建、组装（alertRule和notification的依赖注入）、初始化（添加handlers）工作。</p>
+<pre class="line-numbers language-none"><code class="language-none">public class ApplicationContext &#123;
+  private AlertRule alertRule;
+  private Notification notification;
+  private Alert alert;
+
+  public void initializeBeans() &#123;
+    alertRule &#x3D; new AlertRule(&#x2F;*.省略参数.*&#x2F;); &#x2F;&#x2F;省略一些初始化代码
+    notification &#x3D; new Notification(&#x2F;*.省略参数.*&#x2F;); &#x2F;&#x2F;省略一些初始化代码
+    alert &#x3D; new Alert();
+    alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
+    alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));
+  &#125;
+  public Alert getAlert() &#123; return alert; &#125;
+
+  &#x2F;&#x2F; 饿汉式单例
+  private static final ApplicationContext instance &#x3D; new ApplicationContext();
+  private ApplicationContext() &#123;
+    initializeBeans();
+  &#125;
+  public static ApplicationContext getInstance() &#123;
+    return instance;
+  &#125;
+&#125;
+
+public class Demo &#123;
+  public static void main(String[] args) &#123;
+    ApiStatInfo apiStatInfo &#x3D; new ApiStatInfo();
+    &#x2F;&#x2F; ...省略设置apiStatInfo数据值的代码
+    ApplicationContext.getInstance().getAlert().check(apiStatInfo);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在，我们再来看下，基于重构之后的代码，如果再添加上面讲到的那个新功能，每秒钟接口超时请求个数超过某个最大阈值就告警，我们又该如何改动代码呢？主要的改动有下面四处。</p>
+<ul>
+<li>第一处改动是：在ApiStatInfo类中添加新的属性timeoutCount。</li>
+<li>第二处改动是：添加新的TimeoutAlertHander类。</li>
+<li>第三处改动是：在ApplicationContext类的initializeBeans()方法中，往alert对象中注册新的timeoutAlertHandler。</li>
+<li>第四处改动是：在使用Alert类的时候，需要给check()函数的入参apiStatInfo对象设置timeoutCount的值。</li>
+</ul>
+<p>改动之后的代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Alert &#123; &#x2F;&#x2F; 代码未改动... &#125;
+public class ApiStatInfo &#123;&#x2F;&#x2F;省略constructor&#x2F;getter&#x2F;setter方法
+  private String api;
+  private long requestCount;
+  private long errorCount;
+  private long durationOfSeconds;
+  private long timeoutCount; &#x2F;&#x2F; 改动一：添加新字段
+&#125;
+public abstract class AlertHandler &#123; &#x2F;&#x2F;代码未改动... &#125;
+public class TpsAlertHandler extends AlertHandler &#123;&#x2F;&#x2F;代码未改动...&#125;
+public class ErrorAlertHandler extends AlertHandler &#123;&#x2F;&#x2F;代码未改动...&#125;
+&#x2F;&#x2F; 改动二：添加新的handler
+public class TimeoutAlertHandler extends AlertHandler &#123;&#x2F;&#x2F;省略代码...&#125;
+
+public class ApplicationContext &#123;
+  private AlertRule alertRule;
+  private Notification notification;
+  private Alert alert;
+
+  public void initializeBeans() &#123;
+    alertRule &#x3D; new AlertRule(&#x2F;*.省略参数.*&#x2F;); &#x2F;&#x2F;省略一些初始化代码
+    notification &#x3D; new Notification(&#x2F;*.省略参数.*&#x2F;); &#x2F;&#x2F;省略一些初始化代码
+    alert &#x3D; new Alert();
+    alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
+    alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));
+    &#x2F;&#x2F; 改动三：注册handler
+    alert.addAlertHandler(new TimeoutAlertHandler(alertRule, notification));
+  &#125;
+  &#x2F;&#x2F;...省略其他未改动代码...
+&#125;
+
+public class Demo &#123;
+  public static void main(String[] args) &#123;
+    ApiStatInfo apiStatInfo &#x3D; new ApiStatInfo();
+    &#x2F;&#x2F; ...省略apiStatInfo的set字段代码
+    apiStatInfo.setTimeoutCount(289); &#x2F;&#x2F; 改动四：设置tiemoutCount值
+    ApplicationContext.getInstance().getAlert().check(apiStatInfo);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>重构之后的代码更加灵活和易扩展。如果我们要想添加新的告警逻辑，只需要基于扩展的方式创建新的handler类即可，不需要改动原来的check()函数的逻辑。而且，我们只需要为新的handler类添加单元测试，老的单元测试都不会失败，也不用修改。</p>
+<h2 id="修改代码就意味着违背开闭原则吗？"><a href="#修改代码就意味着违背开闭原则吗？" class="headerlink" title="修改代码就意味着违背开闭原则吗？"></a>修改代码就意味着违背开闭原则吗？</h2><p>看了上面重构之后的代码，你可能还会有疑问：在添加新的告警逻辑的时候，尽管改动二（添加新的handler类）是基于扩展而非修改的方式来完成的，但改动一、三、四貌似不是基于扩展而是基于修改的方式来完成的，那改动一、三、四不就违背了开闭原则吗？</p>
+<p><strong>我们先来分析一下改动一：往ApiStatInfo类中添加新的属性timeoutCount。</strong></p>
+<p>实际上，我们不仅往ApiStatInfo类中添加了属性，还添加了对应的getter&#x2F;setter方法。那这个问题就转化为：给类中添加新的属性和方法，算作“修改”还是“扩展”？</p>
+<p>我们再一块回忆一下开闭原则的定义：软件实体（模块、类、方法等）应该“对扩展开放、对修改关闭”。从定义中，我们可以看出，开闭原则可以应用在不同粒度的代码中，可以是模块，也可以类，还可以是方法（及其属性）。同样一个代码改动，在粗代码粒度下，被认定为“修改”，在细代码粒度下，又可以被认定为“扩展”。比如，改动一，添加属性和方法相当于修改类，在类这个层面，这个代码改动可以被认定为“修改”；但这个代码改动并没有修改已有的属性和方法，在方法（及其属性）这一层面，它又可以被认定为“扩展”。</p>
+<p>实际上，我们也没必要纠结某个代码改动是“修改”还是“扩展”，更没必要太纠结它是否违反“开闭原则”。我们回到这条原则的设计初衷：只要它没有破坏原有的代码的正常运行，没有破坏原有的单元测试，我们就可以说，这是一个合格的代码改动。</p>
+<p><strong>我们再来分析一下改动三和改动四：在ApplicationContext类的initializeBeans()方法中，往alert对象中注册新的timeoutAlertHandler；在使用Alert类的时候，需要给check()函数的入参apiStatInfo对象设置timeoutCount的值。</strong></p>
+<p>这两处改动都是在方法内部进行的，不管从哪个层面（模块、类、方法）来讲，都不能算是“扩展”，而是地地道道的“修改”。不过，有些修改是在所难免的，是可以被接受的。为什么这么说呢？我来解释一下。</p>
+<p>在重构之后的Alert代码中，我们的核心逻辑集中在Alert类及其各个handler中，当我们在添加新的告警逻辑的时候，Alert类完全不需要修改，而只需要扩展一个新handler类。如果我们把Alert类及各个handler类合起来看作一个“模块”，那模块本身在添加新的功能的时候，完全满足开闭原则。</p>
+<p>而且，我们要认识到，添加一个新功能，不可能任何模块、类、方法的代码都不“修改”，这个是做不到的。类需要创建、组装、并且做一些初始化操作，才能构建成可运行的的程序，这部分代码的修改是在所难免的。我们要做的是尽量让修改操作更集中、更少、更上层，尽量让最核心、最复杂的那部分逻辑代码满足开闭原则。</p>
+<h2 id="如何做到“对扩展开放、修改关闭”？"><a href="#如何做到“对扩展开放、修改关闭”？" class="headerlink" title="如何做到“对扩展开放、修改关闭”？"></a>如何做到“对扩展开放、修改关闭”？</h2><p>在刚刚的例子中，我们通过引入一组handler的方式来实现支持开闭原则。如果你没有太多复杂代码的设计和开发经验，你可能会有这样的疑问：这样的代码设计思路我怎么想不到呢？你是怎么想到的呢？</p>
+<p>先给你个结论，之所以我能想到，靠的就是理论知识和实战经验，这些需要你慢慢学习和积累。对于如何做到“对扩展开放、修改关闭”，我们也有一些指导思想和具体的方法论，我们一块来看一下。</p>
+<p>实际上，开闭原则讲的就是代码的扩展性问题，是判断一段代码是否易扩展的“金标准”。如果某段代码在应对未来需求变化的时候，能够做到“对扩展开放、对修改关闭”，那就说明这段代码的扩展性比较好。所以，问如何才能做到“对扩展开放、对修改关闭”，也就粗略地等同于在问，如何才能写出扩展性好的代码。</p>
+<p><strong>在讲具体的方法论之前，我们先来看一些更加偏向顶层的指导思想。为了尽量写出扩展性好的代码，我们要时刻具备扩展意识、抽象意识、封装意识。这些“潜意识”可能比任何开发技巧都重要。</strong></p>
+<p>在写代码的时候后，我们要多花点时间往前多思考一下，这段代码未来可能有哪些需求变更、如何设计代码结构，事先留好扩展点，以便在未来需求变更的时候，不需要改动代码整体结构、做到最小代码改动的情况下，新的代码能够很灵活地插入到扩展点上，做到“对扩展开放、对修改关闭”。</p>
+<p>还有，在识别出代码可变部分和不可变部分之后，我们要将可变部分封装起来，隔离变化，提供抽象化的不可变接口，给上层系统使用。当具体的实现发生变化的时候，我们只需要基于相同的抽象接口，扩展一个新的实现，替换掉老的实现即可，上游系统的代码几乎不需要修改。</p>
+<p><strong>刚刚我们讲了实现开闭原则的一些偏向顶层的指导思想，现在我们再来看下，支持开闭原则的一些更加具体的方法论。</strong></p>
+<p>我们前面讲到，代码的扩展性是代码质量评判的最重要的标准之一。实际上，我们整个专栏的大部分知识点都是围绕扩展性问题来讲解的。专栏中讲到的很多设计原则、设计思想、设计模式，都是以提高代码的扩展性为最终目的的。特别是23种经典设计模式，大部分都是为了解决代码的扩展性问题而总结出来的，都是以开闭原则为指导原则的。</p>
+<p>在众多的设计原则、思想、模式中，最常用来提高代码扩展性的方法有：多态、依赖注入、基于接口而非实现编程，以及大部分的设计模式（比如，装饰、策略、模板、职责链、状态等）。设计模式这一部分内容比较多，后面课程中我们能会详细讲到，这里就不展开了。今天我重点讲一下，如何利用多态、依赖注入、基于接口而非实现编程，来实现“对扩展开放、对修改关闭”。</p>
+<p>实际上，多态、依赖注入、基于接口而非实现编程，以及前面提到的抽象意识，说的都是同一种设计思路，只是从不同的角度、不同的层面来阐述而已。这也体现了“很多设计原则、思想、模式都是相通的”这一思想。</p>
+<p>接下来，我就通过一个例子来解释一下，如何利用这几个设计思想或原则来实现“对扩展开放、对修改关闭”。注意，依赖注入后面会讲到，如果你对这块不了解，可以暂时先忽略这个概念，只关注多态、基于接口而非实现编程以及抽象意识。</p>
+<p>比如，我们代码中通过Kafka来发送异步消息。对于这样一个功能的开发，我们要学会将其抽象成一组跟具体消息队列（Kafka）无关的异步消息接口。所有上层系统都依赖这组抽象的接口编程，并且通过依赖注入的方式来调用。当我们要替换新的消息队列的时候，比如将Kafka替换成RocketMQ，可以很方便地拔掉老的消息队列实现，插入新的消息队列实现。具体代码如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 这一部分体现了抽象意识
+public interface MessageQueue &#123; &#x2F;&#x2F;... &#125;
+public class KafkaMessageQueue implements MessageQueue &#123; &#x2F;&#x2F;... &#125;
+public class RocketMQMessageQueue implements MessageQueue &#123;&#x2F;&#x2F;...&#125;
+
+public interface MessageFromatter &#123; &#x2F;&#x2F;... &#125;
+public class JsonMessageFromatter implements MessageFromatter &#123;&#x2F;&#x2F;...&#125;
+public class ProtoBufMessageFromatter implements MessageFromatter &#123;&#x2F;&#x2F;...&#125;
+
+public class Demo &#123;
+  private MessageQueue msgQueue; &#x2F;&#x2F; 基于接口而非实现编程
+  public Demo(MessageQueue msgQueue) &#123; &#x2F;&#x2F; 依赖注入
+    this.msgQueue &#x3D; msgQueue;
+  &#125;
+
+  &#x2F;&#x2F; msgFormatter：多态、依赖注入
+  public void sendNotification(Notification notification, MessageFormatter msgFormatter) &#123;
+    &#x2F;&#x2F;...
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于如何写出扩展性好的代码、如何实现“对扩展开放、对修改关闭”这个问题，我今天只是比较笼统地总结了一下，详细的知识我们在后面的章节中慢慢学习。</p>
+<h2 id="如何在项目中灵活应用开闭原则？"><a href="#如何在项目中灵活应用开闭原则？" class="headerlink" title="如何在项目中灵活应用开闭原则？"></a>如何在项目中灵活应用开闭原则？</h2><p>前面我们提到，写出支持“对扩展开放、对修改关闭”的代码的关键是预留扩展点。那问题是如何才能识别出所有可能的扩展点呢？</p>
+<p>如果你开发的是一个业务导向的系统，比如金融系统、电商系统、物流系统等，要想识别出尽可能多的扩展点，就要对业务有足够的了解，能够知道当下以及未来可能要支持的业务需求。如果你开发的是跟业务无关的、通用的、偏底层的系统，比如，框架、组件、类库，你需要了解“它们会被如何使用？今后你打算添加哪些功能？使用者未来会有哪些更多的功能需求？”等问题。</p>
+<p>不过，有一句话说得好，“唯一不变的只有变化本身”。即便我们对业务、对系统有足够的了解，那也不可能识别出所有的扩展点，即便你能识别出所有的扩展点，为这些地方都预留扩展点，这样做的成本也是不可接受的。我们没必要为一些遥远的、不一定发生的需求去提前买单，做过度设计。</p>
+<p>最合理的做法是，对于一些比较确定的、短期内可能就会扩展，或者需求改动对代码结构影响比较大的情况，或者实现成本不高的扩展点，在编写代码的时候之后，我们就可以事先做些扩展性设计。但对于一些不确定未来是否要支持的需求，或者实现起来比较复杂的扩展点，我们可以等到有需求驱动的时候，再通过重构代码的方式来支持扩展的需求。</p>
+<p>而且，开闭原则也并不是免费的。有些情况下，代码的扩展性会跟可读性相冲突。比如，我们之前举的Alert告警的例子。为了更好地支持扩展性，我们对代码进行了重构，重构之后的代码要比之前的代码复杂很多，理解起来也更加有难度。很多时候，我们都需要在扩展性和可读性之间做权衡。在某些场景下，代码的扩展性很重要，我们就可以适当地牺牲一些代码的可读性；在另一些场景下，代码的可读性更加重要，那我们就适当地牺牲一些代码的可扩展性。</p>
+<p>在我们之前举的Alert告警的例子中，如果告警规则并不是很多、也不复杂，那check()函数中的if语句就不会很多，代码逻辑也不复杂，代码行数也不多，那最初的第一种代码实现思路简单易读，就是比较合理的选择。相反，如果告警规则很多、很复杂，check()函数的if语句、代码逻辑就会很多、很复杂，相应的代码行数也会很多，可读性、可维护性就会变差，那重构之后的第二种代码实现思路就是更加合理的选择了。总之，这里没有一个放之四海而皆准的参考标准，全凭实际的应用场景来决定。</p>
+<h2 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h2><p>今天的内容到此就讲完了。我们一块来总结回顾一下，你需要掌握的的重点内容。</p>
+<p><strong>1.如何理解“对扩展开放、对修改关闭”？</strong></p>
+<p>添加一个新的功能，应该是通过在已有代码基础上扩展代码（新增模块、类、方法、属性等），而非修改已有代码（修改模块、类、方法、属性等）的方式来完成。关于定义，我们有两点要注意。第一点是，开闭原则并不是说完全杜绝修改，而是以最小的修改代码的代价来完成新功能的开发。第二点是，同样的代码改动，在粗代码粒度下，可能被认定为“修改”；在细代码粒度下，可能又被认定为“扩展”。</p>
+<p><strong>2.如何做到“对扩展开放、修改关闭”？</strong></p>
+<p>我们要时刻具备扩展意识、抽象意识、封装意识。在写代码的时候，我们要多花点时间思考一下，这段代码未来可能有哪些需求变更，如何设计代码结构，事先留好扩展点，以便在未来需求变更的时候，在不改动代码整体结构、做到最小代码改动的情况下，将新的代码灵活地插入到扩展点上。</p>
+<p>很多设计原则、设计思想、设计模式，都是以提高代码的扩展性为最终目的的。特别是23种经典设计模式，大部分都是为了解决代码的扩展性问题而总结出来的，都是以开闭原则为指导原则的。最常用来提高代码扩展性的方法有：多态、依赖注入、基于接口而非实现编程，以及大部分的设计模式（比如，装饰、策略、模板、职责链、状态）。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>学习设计原则，要多问个为什么。不能把设计原则当真理，而是要理解设计原则背后的思想。搞清楚这个，比单纯理解原则讲的是啥，更能让你灵活应用原则。所以，今天课堂讨论的话题是，为什么我们要“对扩展开放、对修改关闭”？</p>
+<p>欢迎在留言区写下你的答案，和同学一起交流和分享。如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#16-%E7%90%86%E8%AE%BA%E4%BA%8C%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E2%80%9C%E5%AF%B9%E6%89%A9%E5%B1%95%E5%BC%80%E6%94%BE%E3%80%81%E4%BF%AE%E6%94%B9%E5%85%B3%E9%97%AD%E2%80%9D%EF%BC%9F%E6%89%A9%E5%B1%95%E5%92%8C%E4%BF%AE%E6%94%B9%E5%90%84%E6%8C%87%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">16 | 理论二：如何做到“对扩展开放、修改关闭”？扩展和修改各指什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E2%80%9C%E5%AF%B9%E6%89%A9%E5%B1%95%E5%BC%80%E6%94%BE%E3%80%81%E4%BF%AE%E6%94%B9%E5%85%B3%E9%97%AD%E2%80%9D%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">如何理解“对扩展开放、修改关闭”？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E5%B0%B1%E6%84%8F%E5%91%B3%E7%9D%80%E8%BF%9D%E8%83%8C%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99%E5%90%97%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">修改代码就意味着违背开闭原则吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E2%80%9C%E5%AF%B9%E6%89%A9%E5%B1%95%E5%BC%80%E6%94%BE%E3%80%81%E4%BF%AE%E6%94%B9%E5%85%B3%E9%97%AD%E2%80%9D%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">如何做到“对扩展开放、修改关闭”？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%81%B5%E6%B4%BB%E5%BA%94%E7%94%A8%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">如何在项目中灵活应用开闭原则？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.5.</span> <span class="toc-text">重点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.6.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

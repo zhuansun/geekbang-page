@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>100 | 如何将设计思想、原则、模式等理论知识应用到项目中？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="100 | 如何将设计思想、原则、模式等理论知识应用到项目中？上一节课，我们对整个专栏的理论知识点做了串讲复习，不知道你掌握得如何？对于上节课总结的重点内容，我希望你能多花点时间搞透彻，对于一些不那么重要的内容，我建议你把专栏当作工具资料，用到的时候随手查阅，再深入学习研究。 实际上，很多小伙伴反应，虽然理论掌握得差不多，专栏也很贴近实战，每个知识点的讲解都有结合实际的代码案例，并且最后还有集中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="100 | 如何将设计思想、原则、模式等理论知识应用到项目中？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2988412926.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="100 | 如何将设计思想、原则、模式等理论知识应用到项目中？上一节课，我们对整个专栏的理论知识点做了串讲复习，不知道你掌握得如何？对于上节课总结的重点内容，我希望你能多花点时间搞透彻，对于一些不那么重要的内容，我建议你把专栏当作工具资料，用到的时候随手查阅，再深入学习研究。 实际上，很多小伙伴反应，虽然理论掌握得差不多，专栏也很贴近实战，每个知识点的讲解都有结合实际的代码案例，并且最后还有集中的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2023-12-18T17:50:03.000Z">
+<meta property="article:modified_time" content="2023-12-18T11:15:09.218Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2988412926"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '100 | 如何将设计思想、原则、模式等理论知识应用到项目中？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-18 11:15:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1054</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">100 | 如何将设计思想、原则、模式等理论知识应用到项目中？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="100-如何将设计思想、原则、模式等理论知识应用到项目中？"><a href="#100-如何将设计思想、原则、模式等理论知识应用到项目中？" class="headerlink" title="100 | 如何将设计思想、原则、模式等理论知识应用到项目中？"></a>100 | 如何将设计思想、原则、模式等理论知识应用到项目中？</h1><p>上一节课，我们对整个专栏的理论知识点做了串讲复习，不知道你掌握得如何？对于上节课总结的重点内容，我希望你能多花点时间搞透彻，对于一些不那么重要的内容，我建议你把专栏当作工具资料，用到的时候随手查阅，再深入学习研究。</p>
+<p>实际上，很多小伙伴反应，虽然理论掌握得差不多，专栏也很贴近实战，每个知识点的讲解都有结合实际的代码案例，并且最后还有集中的项目实战，但落实到自己写代码的时候，还是无法将学到的理论知识很好地应用到其中。今天，我们就再聊一聊，如何将设计思想、原则、模式等理论知识应用到实际的项目开发中。</p>
+<p>话不多说，让我们正式开始今天的学习吧！</p>
+<h2 id="吃透理论、先把书读厚再把书读薄"><a href="#吃透理论、先把书读厚再把书读薄" class="headerlink" title="吃透理论、先把书读厚再把书读薄"></a>吃透理论、先把书读厚再把书读薄</h2><p>把理论知识灵活地应用到实践的前提是，对理论有透彻、无盲点的理解。如果我们对理论知识掌握得似懂非懂，在实际软件开发中，遇到跟专栏中讲过的问题类似，我们可以照葫芦画瓢去解决，但是，如果问题背景稍有改变，我们就会比较难联想到对应的理论知识，更难灵活地应用理论去解决。</p>
+<p>要想透彻理解专栏中的每个知识点，一个是要多看几遍，二是要有死磕精神。虽然这两个方法可能已经是老生常谈了，听起来也没有什么高大上的，但从我自身的学习经验来讲，它们确实很有用。</p>
+<p><strong>书读百遍其义自见。</strong> 有的时候，对某个知识点，如果看一遍看不懂，你就硬着头皮多看几遍，或者隔几天再回过头来看一遍，你会发现原来很多看不懂的地方，自然而然就懂了。</p>
+<p><strong>慢就是快，快就是慢。</strong> 专栏涉及的内容很多，但我们花一年把所有的知识点学透彻，实际上是件一劳永逸的事情。这个过程虽然看似漫长，但收益却很多。对比而言，如果你只是为了追求结课速度，花一两个月、甚至一两个礼拜，把课程学完。这看似很快，但实际上收获会很少。</p>
+<p><strong>先把书读厚，再把书读薄。</strong> 反复地学、持续地看。先把书读厚，等到你把所有的知识点都理解透彻，并且在脑子里建立起清晰的知识体系之后，你会发现，实际上专栏的内容也就那么点东西，并不难记忆。前提是你先要花时间把书读厚，然后才能做到把书读薄。</p>
+<p>虽然这里我们讲到书读百遍其义自见，也讲到死磕精神，但是，我必须强调一下，有的时候，对于某个知识点，我们看了很多遍、死磕了很长时间，如果还是没法透彻理解，我们也不要过于钻牛角尖，非得“现在立刻马上就要”把它拿下。我们可以先把这个知识点放一放，先看看后面的内容，隔一段时间，让知识沉淀、消化一下，再回过头来看也是可以的。</p>
+<h2 id="在实战中反复学习、模仿和借鉴"><a href="#在实战中反复学习、模仿和借鉴" class="headerlink" title="在实战中反复学习、模仿和借鉴"></a>在实战中反复学习、模仿和借鉴</h2><p>很多人说，理论的知识学了就忘，忘了是不是就等于白学了呢？实际上不是的，起码对于我们这个专栏的内容来说，并非如此。在专栏中，几乎每个知识点，我都结合具体的案例和代码来讲解，目的就是为了让你在实战中学习。所以，你学习的重点不是理论知识，而是跟随我的思维逻辑，学习如何分析代码问题，解决代码问题。通过专栏，经过上百个代码案例的剖析学习，即便理论知识你有可能会忘记，但这种潜移默化的能力锻炼，是不会丢掉的。</p>
+<p>对于新手来说，最好的学习方法之一就是“模仿”。我之前在《数据结构和算法之美》专栏中，也曾经讲过，如果你是一名算法或者编程初学者，自己编写代码实现各种数据结构和算法，可能会比较困难。在这种情况下，你就可以先从“照抄”开始，把所有的代码都抄一遍或者抄几遍，然后再慢慢地过渡到自己去默写。</p>
+<p>对于我们这个专栏来说，如果你项目经验不多，要想把理论一下子就灵活地应用到项目中，实际上这个要求也有点过高了。同样，你也可以先从模仿开始，对于项目中遇到的跟专栏中相似的开发场景，你可以借鉴专栏中的设计思路、代码实现。实际上，除了专栏中的案例之外，我们还有很多借鉴的来源，比如我们前面剖析过的经典开源项目（Spring、MyBatis），还有项目中大牛同事写的代码等等。</p>
+<p>有人为了刷LeetCode、刷算法题，会积累一些算法模板，对于相似的问题，套用算法模板来快速解决。同样的，我们也可以积累设计模板、代码模板，对于相似的功能需求，我们可以套路设计模板、代码模板来解决。比如，在前面讲到的限流框架、灰度组件中，加载配置文件这样一个常用功能的设计和实现，我们就可以抽象成模板。对于其他项目中类似的功能需求，直接套用就可以，不用从零开始设计和实现了。</p>
+<h2 id="刻意思考、刻意训练、追求极致"><a href="#刻意思考、刻意训练、追求极致" class="headerlink" title="刻意思考、刻意训练、追求极致"></a>刻意思考、刻意训练、追求极致</h2><p>要想把理论知识应用到项目中，并且做到润物细无声、融会贯通、无招胜有招，我们需要经过漫长的刻意思考和刻意训练。</p>
+<p>拿到一个功能需求的时候，我们先去思考一下如何设计，而不是上来就写代码。写代码时，我们也要时刻思考代码是否遵循了经典的设计思想、设计原则，比如是否足够可扩展、是否满足SOLID原则、可读性如何等等。</p>
+<p>写完代码之后，我们再思考一下，代码是否有进一步优化的空间。做Code Review的时候，看到别人的优秀的代码，我们就去思考一下，有哪些值得借鉴的地方。</p>
+<p>总之，在平时的开发中，我们要刻意的去做这种跟代码质量、代码设计相关的思考训练。时间长了，这种思考就能成为习惯和本能反应，慢慢地，你的代码能力也就不自觉地提高了。</p>
+<p>刻意训练的过程在前期会比较痛苦。为了尽可能写出高质量的代码，为了刻意训练在代码中应用理论知识，原本半天就能写好的代码，可能需要好几天才能完成。在最开始的时候，我建议你把专栏中讲到的经典的设计思想、原则、模式，打印出来贴在电脑旁，每次写代码的时候，对照着每个知识点，一个一个去审视代码。</p>
+<p>跟前面讲到的花很多时间把理论知识搞透彻的道理一样，刻意训练虽然在前期需要投入更多的时间和精力，但也是一件一劳永逸的事情。等到训练到一定程度之后，你就会发现，在不依赖这个知识点列表的情况下，你开始不自主地考虑代码质量问题、设计问题，不经意写出的代码，就完全符合高质量代码的要求了，而且，写出好的代码并不会花费更多的时间了。相反，如果不愿意为刻意训练付出时间和精力，每次写代码都马马虎虎，代码质量永远都提高不了，也永远都达不到灵活应用理论知识到项目中。</p>
+<p>我经常说，多花点心思和时间把一段代码写好、优化到极致，比写十段凑活能用的代码，对提高代码能力更有效。实际上，这就好比刷LeetCode算法题，对于一些经典算法的经典题目，我们一定要刻意地多花点时间搞清楚，死磕一下。虽然死磕的过程很痛苦，可能会花掉你很多时间，但一旦搞明白之后，其他类似的题目都可以很快解决。相反，如果看到不会的问题，连思考都不思考，就去看答案，那做十道题，也还是没有太多长进，看到题目不看答案还是写不出来。</p>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><p>关于如何将设计思想、原则、模式等理论知识应用到项目中，除了我分享的这些经验之外，你还有哪些经验可以分享给大家呢？另外，经过这么长的学习和训练，在自己参与的项目中，你是否开始关注代码质量问题，代码能力是否有提升了呢？</p>
+<p>欢迎留言和我分享你的想法，如果有收获，也欢迎你把这篇文章分享给你的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#100-%E5%A6%82%E4%BD%95%E5%B0%86%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E3%80%81%E5%8E%9F%E5%88%99%E3%80%81%E6%A8%A1%E5%BC%8F%E7%AD%89%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86%E5%BA%94%E7%94%A8%E5%88%B0%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">100 | 如何将设计思想、原则、模式等理论知识应用到项目中？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%83%E9%80%8F%E7%90%86%E8%AE%BA%E3%80%81%E5%85%88%E6%8A%8A%E4%B9%A6%E8%AF%BB%E5%8E%9A%E5%86%8D%E6%8A%8A%E4%B9%A6%E8%AF%BB%E8%96%84"><span class="toc-number">1.1.</span> <span class="toc-text">吃透理论、先把书读厚再把书读薄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%AE%9E%E6%88%98%E4%B8%AD%E5%8F%8D%E5%A4%8D%E5%AD%A6%E4%B9%A0%E3%80%81%E6%A8%A1%E4%BB%BF%E5%92%8C%E5%80%9F%E9%89%B4"><span class="toc-number">1.2.</span> <span class="toc-text">在实战中反复学习、模仿和借鉴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%BB%E6%84%8F%E6%80%9D%E8%80%83%E3%80%81%E5%88%BB%E6%84%8F%E8%AE%AD%E7%BB%83%E3%80%81%E8%BF%BD%E6%B1%82%E6%9E%81%E8%87%B4"><span class="toc-number">1.3.</span> <span class="toc-text">刻意思考、刻意训练、追求极致</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E8%AE%A8%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">课堂讨论</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
