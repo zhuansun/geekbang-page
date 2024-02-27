@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>放学别走 | 如何画好领域分层图？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="放学别走 | 如何画好领域分层图？你好，我是华仔。 在 第19讲 中，我为你介绍了用于提升技术深度的 链式学习法。链式学习法的第一步，就是要明确一项技术的深度可以分为哪些层，并画出 领域分层图 和 细节分层图。 其中细节分层图基本上可以按照固定的模板去画（接口设计、设计原理、设计方案和实现源码），但是领域分层图并没有统一的模板，因为不同技术领域的分层方式可能会有很大差异。 我之前没有详细讲解领域分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="放学别走 | 如何画好领域分层图？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3668631187.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="放学别走 | 如何画好领域分层图？你好，我是华仔。 在 第19讲 中，我为你介绍了用于提升技术深度的 链式学习法。链式学习法的第一步，就是要明确一项技术的深度可以分为哪些层，并画出 领域分层图 和 细节分层图。 其中细节分层图基本上可以按照固定的模板去画（接口设计、设计原理、设计方案和实现源码），但是领域分层图并没有统一的模板，因为不同技术领域的分层方式可能会有很大差异。 我之前没有详细讲解领域分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-01-09T11:54:25.000Z">
+<meta property="article:modified_time" content="2024-02-27T07:30:58.334Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3668631187"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '放学别走 | 如何画好领域分层图？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-27 07:30:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1098</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">放学别走 | 如何画好领域分层图？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="放学别走-如何画好领域分层图？"><a href="#放学别走-如何画好领域分层图？" class="headerlink" title="放学别走 | 如何画好领域分层图？"></a>放学别走 | 如何画好领域分层图？</h1><p>你好，我是华仔。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/331463">第19讲</a> 中，我为你介绍了用于提升技术深度的 <strong>链式学习法</strong>。链式学习法的第一步，就是要明确一项技术的深度可以分为哪些层，并画出 <strong>领域分层图</strong> 和 <strong>细节分层图</strong>。</p>
+<p>其中细节分层图基本上可以按照固定的模板去画（接口设计、设计原理、设计方案和实现源码），但是领域分层图并没有统一的模板，因为不同技术领域的分层方式可能会有很大差异。</p>
+<p>我之前没有详细讲解领域分层图的画法，而是跟你说“尝试画图本身就是一个梳理结构、强化认知的过程”。</p>
+<p>因为我想强调的是： <strong>画图本身的技巧和效率并没有那么重要，对你成长帮助最大的，是为了画出这张图而去整理、思考和探索的过程。</strong></p>
+<h2 id="不用担心画得不准确"><a href="#不用担心画得不准确" class="headerlink" title="不用担心画得不准确"></a>不用担心画得不准确</h2><p>你可能会担心，如果领域分层图画得不准确怎么办？</p>
+<p><strong>首先，领域分层图本来就是需要迭代优化的，很少有人一开始就能画得非常准确。</strong></p>
+<p>实际的情况是，你先画一个初稿，然后通过整理、思考和探索，对相关技术的理解更加深刻和全面，发现原来存在的一些问题，比如分层关系不合理、某一层遗漏了一些技术点等，然后再进行修改，经过不断地迭代优化，最终得到比较准确的版本。</p>
+<p><strong>其次，领域分层图就算画得不够准确，你学习的过程也没有白费。</strong></p>
+<p>一般情况下，你不会错得太离谱，你学到的内容就算跟当前想学的技术关联没有那么强，但下次提升另一项技术的深度时，很可能就用上了。而且随着你积累的经验越来越丰富，以后再画领域分层图的时候就会越来越熟练。</p>
+<p>当然，你可能过几个月就要参加晋升了，没有多少时间用来慢慢试错迭代；或者你真的对自己的探索能力没什么把握，必须掌握一个具体可靠的画图方法才能放心。</p>
+<p>考虑到这些情况，这一讲我就分享一下画领域分层图的具体经验吧。</p>
+<h2 id="拿来主义"><a href="#拿来主义" class="headerlink" title="拿来主义"></a>拿来主义</h2><p>最简单的方法当然就是 <strong>拿来主义</strong>，你可以找团队内部熟悉某项技术的高手来帮你画，也可以根据网上搜到的相关文章或者思维导图来整理。</p>
+<p>这种方法的好处是耗时少，也不会走偏，但是它也有缺点。</p>
+<p>首先， <strong>你自己的理解深度还是不够</strong>，因为你缺少了自己去探索的过程。</p>
+<p>其次， <strong>对外界的依赖太高</strong>，你并不是刚好每次都能找到这样的高手，而网上的资料也存在不完整、老旧过时甚至错误的风险。</p>
+<p>最后， <strong>这种方法往往只适合热门、成熟的技术领域</strong>，而对于冷门、新兴的技术领域，你能拿来的内容非常少，还是得靠自己去产出。</p>
+<h2 id="画领域分层图的步骤"><a href="#画领域分层图的步骤" class="headerlink" title="画领域分层图的步骤"></a>画领域分层图的步骤</h2><p>那么，假设你对某个技术完全不了解，团队里也没有人熟悉，在网上又只能找到非常基础的资料，这个时候，你要怎么画领域分层图呢？</p>
+<p>以下是我最近学习ClickHouse时的画图过程，供你参考。</p>
+<p><strong>第一步，搜集资料。</strong></p>
+<p>有官方文档的情况下，先看官方文档是最保险的，比如我看的就是ClickHouse的英文 <a target="_blank" rel="noopener" href="https://clickhouse.tech/docs/en/">官方文档</a>，它已经很全面了。</p>
+<p>你可能会有疑问，如果我想学的技术不像ClickHouse这样有比较成熟的官方文档，该怎么办呢？</p>
+<p>我的想法是，成熟的项目一定有成熟的文档。如果一个项目没有官方文档或者官方文档很烂，只能靠你自己看代码去摸索，那么我建议你先不要去学。</p>
+<p>首先，这样学效率太低了；其次，这说明项目本身就有问题，要么是还不成熟，容易误导你，要么就是没什么人维护，出了问题也没人管你，无论哪种情况你都很容易踩坑。</p>
+<p>当然，不同的学习对象有不同形式的资料，但不管什么类型的资料，我推荐你首先都要看权威资料，包括官方文档、经典书籍、研究论文等，比如ClickHouse的官方文档、《UNIX环境编程》《TCP&#x2F;IP详解》和谷歌的大数据论文等，都属于各自领域的权威资料。</p>
+<p><strong>第二步，挖掘技术点。</strong></p>
+<p>我根据 <a target="_blank" rel="noopener" href="https://clickhouse.tech/docs/en/">官方文档</a> 中的内容，挖掘出了一些相关的技术点。</p>
+<blockquote>
+<p>ClickHouse® is a <strong>column-oriented database</strong> management system (DBMS) for online analytical processing of queries ( <strong>OLAP</strong>).</p>
+</blockquote>
+<blockquote>
+<p>Why Column-Oriented Databases Work Better in the <strong>OLAP</strong> Scenario？</p>
+<p>Column-oriented databases are better suited to OLAP scenarios: they are at least 100 times faster in processing most queries.</p>
+</blockquote>
+<p>这两段话涉及两个技术点， <strong>列式数据库</strong>（Column-Oriented Database）和 <strong>OLAP</strong>。</p>
+<blockquote>
+<p>There are two ways to do this:</p>
+<ol>
+<li>A <strong>vector</strong> engine. All operations are written for vectors, instead of for separate values. This means you don’t need to call operations very often, and dispatching costs are negligible. Operation code contains an optimized internal cycle.</li>
+<li><strong>Code generation</strong>. The code generated for the query has all the indirect calls in it.</li>
+</ol>
+</blockquote>
+<p>而这段话又涉及两个技术点， <strong>矢量计算</strong>（Vector）和 <strong>代码生成</strong>（Code Generation）。</p>
+<p>你可以看到，光是简单的一篇ClickHouse介绍文档，我已经挖掘出了至少4个关联的技术点。</p>
+<p><strong>第三步，针对技术点学习。</strong></p>
+<p>比如你已经挖出了列式数据库这个技术点，但是没有相关的积累，那么你可以立刻开始先学跟它相关的内容，也可以初步看完ClickHouse的资料之后再来学习。具体采用哪种方式，根据你的个人习惯来选择就行了。</p>
+<p>我看到列式数据库这个技术点之后，就在网上找到了一篇不错的 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35622907">文章</a>，里面又引出了HBase、NSM、DSM等相关的概念。当然，只看这一篇文章肯定是不够的，我会结合多篇资料，最后形成综合的理解。</p>
+<p><strong>第四步，画出初稿。</strong></p>
+<p><strong>学习了解了这些重要的技术点之后</strong>，我尝试整理了ClickHouse领域分层图的初稿，如下所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202401/82fd120a404391bc495653ac7ea3c51b.jpg"></p>
+<p><strong>第五步，迭代优化。</strong></p>
+<p>你可能会觉得这张图好像比较简单。不过没关系，在阅读资料和思考的过程中，我会继续 <strong>迭代优化</strong> 这张图，比如之后还可能加上矢量计算相关的CPU结构。</p>
+<p>即使是这张简单的领域分层图，内容已经足够我学上几个星期了，我会以这张图为基础先开始学，学习的过程又会拓展我对这个领域的认识，促使我继续迭代优化。</p>
+<p>当我把图片上的内容学完之后，我可以通过培训的方式给团队讲解ClickHouse，回答他们的疑问，借助群众的力量来帮助自己加深理解，进一步迭代优化这张图。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>现在，我们回顾一下这一讲的重点内容。</p>
+<ol>
+<li>画领域分层图的技巧和效率并没有那么重要，对你成长帮助最大的，是为了画出这张图而去整理、思考和探索的过程。</li>
+<li>画领域分层图最简单的方式是拿来主义，找团队内部熟悉某项技术的高手来帮你画，或者根据网上搜到的相关文章或者思维导图来整理。</li>
+<li>如果拿来主义不能满足你的需求，或者你对自己有更高的要求，可以通过5个步骤来画领域分层图：搜集资料，挖掘技术点，针对技术点学习，画出初稿，迭代优化。</li>
+</ol>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>这就是今天的全部内容，最后留一道课后思考题给你吧。参考这一讲的方法，你能够把自己最近想提升的一项技术的领域分层图画出来吗？</p>
+<p>你可以用文字的形式在留言区分享出来，让我来帮你把把关。相信经过深度思考的回答，也会让你对知识的理解更加深刻。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202401/6ced1462d2d48df3d44d856ef4eca5c2.jpeg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%BE%E5%AD%A6%E5%88%AB%E8%B5%B0-%E5%A6%82%E4%BD%95%E7%94%BB%E5%A5%BD%E9%A2%86%E5%9F%9F%E5%88%86%E5%B1%82%E5%9B%BE%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">放学别走 | 如何画好领域分层图？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%E6%8B%85%E5%BF%83%E7%94%BB%E5%BE%97%E4%B8%8D%E5%87%86%E7%A1%AE"><span class="toc-number">1.1.</span> <span class="toc-text">不用担心画得不准确</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%BF%E6%9D%A5%E4%B8%BB%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">拿来主义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%BB%E9%A2%86%E5%9F%9F%E5%88%86%E5%B1%82%E5%9B%BE%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.3.</span> <span class="toc-text">画领域分层图的步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
