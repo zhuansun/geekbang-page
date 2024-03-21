@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>12｜实战项目（二）：动手训练一个你自己的扩散模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="12｜实战项目（二）：动手训练一个你自己的扩散模型你好，我是南柯。 前面几讲，我们已经了解了扩散模型的算法原理和组成模块，学习了Stable Diffusion模型新增的CLIP和VAE模块。掌握了这些知识，相信你也一定跃跃欲试，想要训练一个属于自己的AI绘画模型。 这一讲，我们会将前几讲的知识串联起来，从全局的视角讨论扩散模型如何训练和使用。我们将通过实战的形式，一起训练一个标准扩散模型，并微调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12｜实战项目（二）：动手训练一个你自己的扩散模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2507520493.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="12｜实战项目（二）：动手训练一个你自己的扩散模型你好，我是南柯。 前面几讲，我们已经了解了扩散模型的算法原理和组成模块，学习了Stable Diffusion模型新增的CLIP和VAE模块。掌握了这些知识，相信你也一定跃跃欲试，想要训练一个属于自己的AI绘画模型。 这一讲，我们会将前几讲的知识串联起来，从全局的视角讨论扩散模型如何训练和使用。我们将通过实战的形式，一起训练一个标准扩散模型，并微调">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.060Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2507520493"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '12｜实战项目（二）：动手训练一个你自己的扩散模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">12｜实战项目（二）：动手训练一个你自己的扩散模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="12｜实战项目（二）：动手训练一个你自己的扩散模型"><a href="#12｜实战项目（二）：动手训练一个你自己的扩散模型" class="headerlink" title="12｜实战项目（二）：动手训练一个你自己的扩散模型"></a>12｜实战项目（二）：动手训练一个你自己的扩散模型</h1><p>你好，我是南柯。</p>
+<p>前面几讲，我们已经了解了扩散模型的算法原理和组成模块，学习了Stable Diffusion模型新增的CLIP和VAE模块。掌握了这些知识，相信你也一定跃跃欲试，想要训练一个属于自己的AI绘画模型。</p>
+<p>这一讲，我们会将前几讲的知识串联起来，从全局的视角讨论扩散模型如何训练和使用。我们将通过实战的形式，一起训练一个标准扩散模型，并微调一个Stable Diffusion模型，帮你进一步加深对知识的理解。学完这一讲，我们就迈出了模型自由的关键一步。</p>
+<h2 id="关键知识串联"><a href="#关键知识串联" class="headerlink" title="关键知识串联"></a>关键知识串联</h2><p>在实战之前，我想请你思考一个问题：想要把标准的扩散模型升级为Stable Diffusion，需要几步操作？</p>
+<p>答案是两步。</p>
+<p>我们通过 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/681276">第6讲</a> 已经知道，标准扩散模型的训练过程包含6个步骤，分别是随机选取训练图像、随机选择时间步t、随机生成高斯噪声、一步计算第t步加噪图、使用UNet预测噪声值和计算噪声数值误差。</p>
+<p>Stable Diffusion在此基础上，增加了VAE模块和CLIP模块。VAE模块的作用是降低输入图像的维度，从而加快模型训练、给GPU腾腾地方；CLIP模块的作用则是将文本描述通过交叉注意力机制注入到UNet模块，让AI绘画模型做到言出法随。</p>
+<p>我们不妨再翻出Stable Diffusion的算法框架图回忆一下。图中最左侧粉色区域便是VAE模块，最右侧的条件控制模块便可以是CLIP（也可以是其他控制条件），而中间UNet部分展示的QKV模块，便是prompt通过交叉注意力机制引导图像生成。到此为止，是不是一切都串联起来了？</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/4431b947bb93aafba67c8f731de29b5a.jpg"></p>
+<p>事实上，在Stable Diffusion中，还有很多其他黑魔法，比如无条件引导控制（Classifier-Free Guidance）、引导强度（Guidance Scale）等，我们会在下一章进一步探讨。</p>
+<p>知道了这些，我们不妨继续思考一个问题：训练一个标准扩散模型和Stable Diffusion模型，需要准备哪些“原材料”呢？</p>
+<p>首先，我们需要GPU，显存越大越好。没有英伟达显卡的同学，可以使用Colab免费的15G T4显卡。在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/684612">第10讲</a> 中我们详细讨论了Colab GPU环境的用法，不熟悉的话你可以通过超链接回顾。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/2a35be37dce07657b1e4229376388bec.png"></p>
+<p>然后，我们需要训练数据。对于标准扩散模型而言，我们只需要纯粹的图片数据即可；对于Stable Diffusion，由于我们需要文本引导，就需要用到图片数据对应的文本描述。这里的文本描述既可以是像CLIP训练数据那种对应的文本描述，也可以是使用各种图片描述（image caption）模型获取的文本描述。</p>
+<p>如果你要训练的是Stable Diffusion，在第1讲中我们估算过，从头开始训练的成本差不多是几套海淀学区房的价格，所以我们最好是基于某个开源预训练模型进行针对性微调。事实上，开源社区里大多数模型都是微调出来的。</p>
+<p>此外，对于Stable Diffusion，我们还需要准备好预先训练好的CLIP模型和VAE模型。</p>
+<p>关于训练数据、开源预训练模型、CLIP和VAE，你都不必担心。后面的代码环节我会说明获取方法。现在你只需要准备好GPU资源即可。</p>
+<p>这一讲的实战部分，所有操作你都可以通过点开我提供的 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/NightWalker888/ai_painting_journey/blob/main/lesson12/train_diffusion_v2.ipynb">Colab链接</a> 来完成。当然，我更推荐你新建全新的Colab，对照我提供的原始Colab逐步写代码来完成。这样有助于你加深对训练过程的理解。</p>
+<h2 id="训练扩散模型"><a href="#训练扩散模型" class="headerlink" title="训练扩散模型"></a>训练扩散模型</h2><p>这里我们通过两种方式来训练扩散模型。</p>
+<p>第一种是使用denoising_diffusion_pytorch这个高度集成的工具包，第二种则是基于diffusers这种更多开发者使用的工具包。对于专业的算法同学而言，我更推荐使用diffusers来训练。原因是diffusers工具包在实际的AI绘画项目中用得更多，并且也更易于我们修改代码逻辑，实现定制化功能。</p>
+<h3 id="认识基础模块"><a href="#认识基础模块" class="headerlink" title="认识基础模块"></a>认识基础模块</h3><p>先看第一种训练方式，我们先按照下面的方式，在Colab里安装对应工具包。你可以直接点开我的 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/NightWalker888/ai_painting_journey/blob/main/lesson12/train_diffusion_v2.ipynb">Colab链接</a>，点击播放按键逐步操作。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> denoising_diffusion_pytorch
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个工具包中提供了UNet和扩散模型两个封装好的模块，你可以通过两行指令创建UNet，并基于创建好的UNet创建一个完整的扩散模型，同时指定了图像分辨率和总的加噪步数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> denoising_diffusion_pytorch <span class="token keyword">import</span> Unet<span class="token punctuation">,</span> GaussianDiffusion
+<span class="token keyword">import</span> torch
+
+model <span class="token operator">=</span> Unet<span class="token punctuation">(</span>
+    dim <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">,</span>
+    dim_mults <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+diffusion <span class="token operator">=</span> GaussianDiffusion<span class="token punctuation">(</span>
+    model<span class="token punctuation">,</span>
+    image_size <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">,</span>
+    timesteps <span class="token operator">=</span> <span class="token number">1000</span>   <span class="token comment"># number of steps</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>训练过程也非常清爽，为了帮你更好地理解一次训练的过程是怎样的。我们结合代码例子看一下，比如我们随机初始化八张图片，便可以通过后面这两行代码完成扩散模型的一次训练。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 使用随机初始化的图片进行一次训练</span>
+training_images <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span>
+loss <span class="token operator">=</span> diffusion<span class="token punctuation">(</span>training_images<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果你想用自己本地的图像，而非随机初始化的图像，可以参考下面的代码。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>transforms <span class="token keyword">as</span> transforms
+<span class="token keyword">import</span> torch
+<span class="token comment"># 预设一个变换操作，将PIL Image转换为PyTorch Tensor，并对其进行归一化</span>
+transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment"># 我们认为你有个列表包含了8张图像的路径</span>
+image_paths <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'path_to_your_image1'</span><span class="token punctuation">,</span> <span class="token string">'path_to_your_image2'</span><span class="token punctuation">,</span> <span class="token string">'path_to_your_image3'</span><span class="token punctuation">,</span> <span class="token string">'path_to_your_image4'</span><span class="token punctuation">,</span>
+               <span class="token string">'path_to_your_image5'</span><span class="token punctuation">,</span> <span class="token string">'path_to_your_image6'</span><span class="token punctuation">,</span> <span class="token string">'path_to_your_image7'</span><span class="token punctuation">,</span> <span class="token string">'path_to_your_image8'</span><span class="token punctuation">]</span>
+<span class="token comment"># 使用List comprehension读取并处理这些图片</span>
+images <span class="token operator">=</span> <span class="token punctuation">[</span>transform<span class="token punctuation">(</span>Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>image_path<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> image_path <span class="token keyword">in</span> image_paths<span class="token punctuation">]</span>
+<span class="token comment"># 将处理好的图像List转化为一个4D Tensor，注意torch.stack能够自动处理3D Tensor到4D Tensor的转换</span>
+training_images <span class="token operator">=</span> torch<span class="token punctuation">.</span>stack<span class="token punctuation">(</span>images<span class="token punctuation">)</span>
+<span class="token comment"># 现在training_images应该有8张3x128x128的图像</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>training_images<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>  <span class="token comment"># torch.Size([8, 3, 128, 128])</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>训练完成后，可以直接使用得到的模型来生成图像。由于我们的模型只训练了一步，模型的输出也是纯粹的噪声图。这里只是为了让你找一下手感。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">sampled_images <span class="token operator">=</span> diffusion<span class="token punctuation">.</span>sample<span class="token punctuation">(</span>batch_size <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/2a5b3f82bca2a0a01272f81e6b1bbd9f.jpg"></p>
+<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><p>理解完基本流程，我们使用真实数据进行一次训练。我们以 <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/nelorth/oxford-flowers">oxford-flowers</a> 这个数据集为例，首先需要安装datasets这个工具包。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> datasets
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们使用后面的代码就可以下载这个数据集，并将数据集中所有的图片单独存储成png格式，用png格式更方便我们查看。全部处理完大概有8000张图片。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">from PIL <span class="token function">import</span> Image
+from io <span class="token function">import</span> BytesIO
+from datasets <span class="token function">import</span> load_dataset
+<span class="token function">import</span> os
+from tqdm <span class="token function">import</span> tqdm
+
+dataset <span class="token operator">=</span> load_dataset<span class="token punctuation">(</span><span class="token string">"nelorth/oxford-flowers"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 创建一个用于保存图片的文件夹</span>
+images_dir <span class="token operator">=</span> <span class="token string">"./oxford-datasets/raw-images"</span>
+os.makedirs<span class="token punctuation">(</span>images_dir, <span class="token assign-left variable">exist_ok</span><span class="token operator">=</span>True<span class="token punctuation">)</span>
+
+<span class="token comment"># 遍历所有图片并保存，针对oxford-flowers，整个过程要持续15分钟左右</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">split</span> <span class="token keyword">in</span> dataset.keys<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    <span class="token keyword">for</span> index, item <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>tqdm<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span>split<span class="token punctuation">]</span><span class="token punctuation">))</span>:
+        image <span class="token operator">=</span> item<span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">]</span>
+        image.save<span class="token punctuation">(</span>os.path.join<span class="token punctuation">(</span>images_dir, f<span class="token string">"&#123;split&#125;_image_&#123;index&#125;.png"</span><span class="token punctuation">))</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>你也可以在 <a target="_blank" rel="noopener" href="https://huggingface.co/">Hugging Face</a> 上挑选你喜欢的图像数据集，挑选和使用方法可以参考后面的截图。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/960f48e7fd26e3236c84a548cf1c7237.png"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/2yyf8bd9eebe1f8e8a2d04542d34805a.png"></p>
+<p>点击数据集使用后，通过下面两行代码即可完成数据集的下载和读取。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/3f68f0e2f579aacf001c053ffcd84812.png"></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> datasets <span class="token keyword">import</span> load_dataset
+dataset <span class="token operator">=</span> load_dataset<span class="token punctuation">(</span><span class="token string">"nelorth/oxford-flowers"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>比方说上图展示的这个数据集，里面都是一些不同的花朵。我们课程里就选择这个花朵数据集，训练的目的就是得到一个扩散模型，这个模型可以从噪声出发，逐步去噪得到一朵花。</p>
+<h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><p>准备工作完成，我们便可以通过以下代码来进行完整训练。如果你的GPU不够强大，可以根据实际情况调整训练的batch_size大小。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">from</span> denoising_diffusion_pytorch <span class="token keyword">import</span> Unet<span class="token punctuation">,</span> GaussianDiffusion<span class="token punctuation">,</span> Trainer
+
+model <span class="token operator">=</span> Unet<span class="token punctuation">(</span>
+    dim <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">,</span>
+    dim_mults <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+diffusion <span class="token operator">=</span> GaussianDiffusion<span class="token punctuation">(</span>
+    model<span class="token punctuation">,</span>
+    image_size <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">,</span>
+    timesteps <span class="token operator">=</span> <span class="token number">1000</span>   <span class="token comment"># 加噪总步数</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+trainer <span class="token operator">=</span> Trainer<span class="token punctuation">(</span>
+    diffusion<span class="token punctuation">,</span>
+    <span class="token string">'./oxford-datasets/raw-images'</span><span class="token punctuation">,</span>
+    train_batch_size <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">,</span>
+    train_lr <span class="token operator">=</span> <span class="token number">2e-5</span><span class="token punctuation">,</span>
+    train_num_steps <span class="token operator">=</span> <span class="token number">20000</span><span class="token punctuation">,</span>          <span class="token comment"># 总共训练20000步</span>
+    gradient_accumulate_every <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>    <span class="token comment"># 梯度累积步数</span>
+    ema_decay <span class="token operator">=</span> <span class="token number">0.995</span><span class="token punctuation">,</span>                <span class="token comment"># 指数滑动平均decay参数</span>
+    amp <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span>                       <span class="token comment"># 使用混合精度训练加速</span>
+    calculate_fid <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span>            <span class="token comment"># 我们关闭FID评测指标计算（比较耗时）。FID用于评测生成质量。</span>
+    save_and_sample_every <span class="token operator">=</span> <span class="token number">2000</span>      <span class="token comment"># 每隔2000步保存一次模型</span>
+<span class="token punctuation">)</span>
+
+trainer<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里分享一个小技巧，如果在使用GPU的时候报错提示显存不足，可以通过后面的命令手工释放不再使用的GPU显存。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gc
+
+<span class="token keyword">del</span> old_model <span class="token comment"># 这里的old_model是指已经不会再用到的模型</span>
+gc<span class="token punctuation">.</span>collect<span class="token punctuation">(</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>empty_cache<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于16G的V100显卡而言，整个任务的训练要持续3至4个小时。在整个训练过程中，每次间隔2000个训练步，我们会保存一次模型权重，并利用当前权重进行图像的生成。</p>
+<p>你可以参考后面的图片，能看出，随着训练步数的增多，这个扩散模型的图像生成能力在逐渐变强。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/840c6c627e2539d79326ab7a926bee2d.gif" alt="图片"></p>
+<h3 id="进阶到diffusers训练"><a href="#进阶到diffusers训练" class="headerlink" title="进阶到diffusers训练"></a>进阶到diffusers训练</h3><p>对于我们提到的第二种扩散模型训练方式，基于diffusers工具包的训练，我们要写的代码就会多得多，并且可调节的参数也会多很多。</p>
+<p>这里我放一个 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/NightWalker888/ai_painting_journey/blob/main/lesson12/diffusers_training_example_annotated.ipynb">Colab的链接</a>，包含完整的训练代码。我来带你一起拆解下其中的关键部分。</p>
+<p>首先，我们看数据集的使用。通过datasets工具包加载数据集，与denoising_diffusion_pytorch的训练不同，在diffusers训练模式下，我们不需要将数据集再转为本地图片格式。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">from</span> datasets <span class="token keyword">import</span> load_dataset
+
+<span class="token comment"># 加载数据集</span>
+config<span class="token punctuation">.</span>dataset_name <span class="token operator">=</span> <span class="token string">"huggan/smithsonian_butterflies_subset"</span>
+dataset <span class="token operator">=</span> load_dataset<span class="token punctuation">(</span>config<span class="token punctuation">.</span>dataset_name<span class="token punctuation">,</span> split<span class="token operator">=</span><span class="token string">"train"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 封装成训练用的格式</span>
+train_dataloader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> batch_size<span class="token operator">=</span>config<span class="token punctuation">.</span>train_batch_size<span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为了提升模型的性能，我们可以对图像数据进行数据增广。所谓数据增广，就是对图像做一些随机左右翻转、随机颜色扰动等操作，目的是增强训练数据的多样性。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms
+
+preprocess <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+        transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>image_size<span class="token punctuation">,</span> config<span class="token punctuation">.</span>image_size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        transforms<span class="token punctuation">.</span>RandomHorizontalFlip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0.5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后我们看UNet结构。按照下图的结构搭建UNet模块，比如图中输入和输出的分辨率都是128x128，在实际UNet搭建中你可以任意指定。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/5dde838e4acda1e2603e3a6dd86f127e.png"></p>
+<p>我们可以通过下面的代码来创建UNet结构。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> diffusers <span class="token keyword">import</span> UNet2DModel
+
+model <span class="token operator">=</span> UNet2DModel<span class="token punctuation">(</span>
+    sample_size<span class="token operator">=</span>config<span class="token punctuation">.</span>image_size<span class="token punctuation">,</span>  <span class="token comment"># 目标图像的分辨率</span>
+    in_channels<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>  <span class="token comment"># 输入通道的数量，对于RGB图像为3</span>
+    out_channels<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>  <span class="token comment"># 输出通道的数量</span>
+    layers_per_block<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>  <span class="token comment"># 每个UNet块中使用的ResNet层的数量</span>
+    block_out_channels<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 每个UNet块的输出通道数量</span>
+    down_block_types<span class="token operator">=</span><span class="token punctuation">(</span>
+        <span class="token string">"DownBlock2D"</span><span class="token punctuation">,</span>  <span class="token comment"># 常规的ResNet下采样块</span>
+        <span class="token string">"DownBlock2D"</span><span class="token punctuation">,</span>
+        <span class="token string">"DownBlock2D"</span><span class="token punctuation">,</span>
+        <span class="token string">"DownBlock2D"</span><span class="token punctuation">,</span>
+        <span class="token string">"AttnDownBlock2D"</span><span class="token punctuation">,</span>  <span class="token comment"># 具有空间自注意力的ResNet下采样块</span>
+        <span class="token string">"DownBlock2D"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    up_block_types<span class="token operator">=</span><span class="token punctuation">(</span>
+        <span class="token string">"UpBlock2D"</span><span class="token punctuation">,</span>  <span class="token comment"># 常规的ResNet上采样块</span>
+        <span class="token string">"AttnUpBlock2D"</span><span class="token punctuation">,</span>  <span class="token comment"># 具有空间自注意力的ResNet上采样块</span>
+        <span class="token string">"UpBlock2D"</span><span class="token punctuation">,</span>
+        <span class="token string">"UpBlock2D"</span><span class="token punctuation">,</span>
+        <span class="token string">"UpBlock2D"</span><span class="token punctuation">,</span>
+        <span class="token string">"UpBlock2D"</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，使用diffusers创建UNet的步骤要比denoising_diffusion_pytorch复杂很多，好处是给工程师带来了更大的灵活性。</p>
+<p>接下来我们看采样器的用法。这里需要确定我们加噪用的采样器，帮助我们通过一步计算得到第t步的加噪结果。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> diffusers <span class="token keyword">import</span> DDPMScheduler
+
+noise_scheduler <span class="token operator">=</span> DDPMScheduler<span class="token punctuation">(</span>num_train_timesteps<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 一步加噪的计算</span>
+noise <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>sample_image<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+timesteps <span class="token operator">=</span> torch<span class="token punctuation">.</span>LongTensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+noisy_image <span class="token operator">=</span> noise_scheduler<span class="token punctuation">.</span>add_noise<span class="token punctuation">(</span>sample_image<span class="token punctuation">,</span> noise<span class="token punctuation">,</span> timesteps<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接着通过模型预测噪声，并计算损失函数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+
+noise_pred <span class="token operator">=</span> model<span class="token punctuation">(</span>noisy_image<span class="token punctuation">,</span> timesteps<span class="token punctuation">)</span><span class="token punctuation">.</span>sample
+loss <span class="token operator">=</span> F<span class="token punctuation">.</span>mse_loss<span class="token punctuation">(</span>noise_pred<span class="token punctuation">,</span> noise<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后，我们将这些模块串联起来，便可以得到基于diffusers训练扩散模型的核心代码。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> step<span class="token punctuation">,</span> batch <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>train_dataloader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        clean_images <span class="token operator">=</span> batch<span class="token punctuation">[</span><span class="token string">'images'</span><span class="token punctuation">]</span>
+        <span class="token comment"># 对应于扩散模型训练过程：随机采样噪声</span>
+        noise <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>clean_images<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>clean_images<span class="token punctuation">.</span>device<span class="token punctuation">)</span>
+        bs <span class="token operator">=</span> clean_images<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+        <span class="token comment"># 对应于扩散模型训练过程：对于batch中的每张图，随机选取时间步t</span>
+        timesteps <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> noise_scheduler<span class="token punctuation">.</span>num_train_timesteps<span class="token punctuation">,</span> <span class="token punctuation">(</span>bs<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> device<span class="token operator">=</span>clean_images<span class="token punctuation">.</span>device<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">long</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 对应于扩散模型训练过程：一步计算加噪结果</span>
+        noisy_images <span class="token operator">=</span> noise_scheduler<span class="token punctuation">.</span>add_noise<span class="token punctuation">(</span>clean_images<span class="token punctuation">,</span> noise<span class="token punctuation">,</span> timesteps<span class="token punctuation">)</span>
+
+        <span class="token keyword">with</span> accelerator<span class="token punctuation">.</span>accumulate<span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment"># 对应于扩散模型训练过程：预测噪声值并计算损失函数</span>
+            noise_pred <span class="token operator">=</span> model<span class="token punctuation">(</span>noisy_images<span class="token punctuation">,</span> timesteps<span class="token punctuation">,</span> return_dict<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+            loss <span class="token operator">=</span> F<span class="token punctuation">.</span>mse_loss<span class="token punctuation">(</span>noise_pred<span class="token punctuation">,</span> noise<span class="token punctuation">)</span>
+            accelerator<span class="token punctuation">.</span>backward<span class="token punctuation">(</span>loss<span class="token punctuation">)</span>
+            optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="微调Stable-Diffusion"><a href="#微调Stable-Diffusion" class="headerlink" title="微调Stable Diffusion"></a>微调Stable Diffusion</h2><p>搞定了扩散模型的训练，我们可以再挑战一下Stable Diffusion模型的微调。我们可以直接参考diffusers官方提供的 <a target="_blank" rel="noopener" href="https://github.com/huggingface/diffusers/blob/main/examples/text_to_image/train_text_to_image.py">训练代码</a>，别看这个代码有接近1100行，其实相比于上面提到的标准扩散模型训练，核心也只是多了VAE和CLIP的部分。</p>
+<p>这里我节选了VAE和CLIP部分的代码，目的是让你了解这两个模块是如何加载使用的。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">tokenizer <span class="token operator">=</span> CLIPTokenizer<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span>
+    args<span class="token punctuation">.</span>pretrained_model_name_or_path<span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"tokenizer"</span><span class="token punctuation">,</span> revision<span class="token operator">=</span>args<span class="token punctuation">.</span>revision
+<span class="token punctuation">)</span>
+
+text_encoder <span class="token operator">=</span> CLIPTextModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span>
+    args<span class="token punctuation">.</span>pretrained_model_name_or_path<span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"text_encoder"</span><span class="token punctuation">,</span> revision<span class="token operator">=</span>args<span class="token punctuation">.</span>revision
+<span class="token punctuation">)</span>
+
+vae <span class="token operator">=</span> AutoencoderKL<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span>
+    args<span class="token punctuation">.</span>pretrained_model_name_or_path<span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"vae"</span><span class="token punctuation">,</span> revision<span class="token operator">=</span>args<span class="token punctuation">.</span>revision
+<span class="token punctuation">)</span>
+
+unet <span class="token operator">=</span> UNet2DConditionModel<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span>
+    args<span class="token punctuation">.</span>pretrained_model_name_or_path<span class="token punctuation">,</span> subfolder<span class="token operator">=</span><span class="token string">"unet"</span><span class="token punctuation">,</span> revision<span class="token operator">=</span>args<span class="token punctuation">.</span>non_ema_revision
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 将vae 和 text_encoder的参数冻结，训练过程中权重不更新</span>
+vae<span class="token punctuation">.</span>requires_grad_<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+text_encoder<span class="token punctuation">.</span>requires_grad_<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>你可能在代码中发现了一个tokenizer变量。它的作用便是我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/682762">第7讲</a> 中提到的，对我们输入的prompt进行分词后获取token_id。有了token_id，我们便可以获取模型可用的词嵌入向量。CLIP模型的文本编码器（text_encoder）基于词嵌入向量，便可以提取文本特征。VAE模块和CLIP模块都不需要权重更新，因此上面的代码中将梯度（grad）设置为False。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/4e1130cf6424d94f0yyff14a97812a6b.jpg"></p>
+<p>这里我需要指出，在一些情况下，比如训练DreamBooth和LoRA模型时，CLIP文本编码器的参数也可以学习和更新，这能帮我们提升模型的效果。</p>
+<p>最后，我们再看看Stable Diffusion训练的核心代码。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_train_epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> step<span class="token punctuation">,</span> batch <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>train_dataloader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        <span class="token comment"># VAE模块将图像编码到潜在空间</span>
+        latents <span class="token operator">=</span> vae<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>batch<span class="token punctuation">[</span><span class="token string">"pixel_values"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>weight_dtype<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>latent_dist<span class="token punctuation">.</span>sample<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 随机噪声 &amp; 加噪到第t步</span>
+        noise <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn_like<span class="token punctuation">(</span>latents<span class="token punctuation">)</span>
+        timesteps <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> noise_scheduler<span class="token punctuation">.</span>config<span class="token punctuation">.</span>num_train_timesteps<span class="token punctuation">)</span>
+        noisy_latents <span class="token operator">=</span> noise_scheduler<span class="token punctuation">.</span>add_noise<span class="token punctuation">(</span>latents<span class="token punctuation">,</span> noise<span class="token punctuation">,</span> timesteps<span class="token punctuation">)</span>
+
+        <span class="token comment"># 使用CLIP将文本描述作为输入</span>
+        encoder_hidden_states <span class="token operator">=</span> text_encoder<span class="token punctuation">(</span>batch<span class="token punctuation">[</span><span class="token string">"input_ids"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        target <span class="token operator">=</span> noise
+
+        <span class="token comment"># 预测噪声并计算loss</span>
+        model_pred <span class="token operator">=</span> unet<span class="token punctuation">(</span>noisy_latents<span class="token punctuation">,</span> timesteps<span class="token punctuation">,</span> encoder_hidden_states<span class="token punctuation">)</span><span class="token punctuation">.</span>sample
+        loss <span class="token operator">=</span> F<span class="token punctuation">.</span>mse_loss<span class="token punctuation">(</span>model_pred<span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">"mean"</span><span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>相信你在上面的代码中看到了很多熟悉的名词，VAE、潜在空间、CLIP、文本描述等，这些都是Stable Diffusion比标准扩散模型多出来的东西。如果你想进一步确认文本描述如何通过交叉注意力机制起作用，我推荐你去看看 <a target="_blank" rel="noopener" href="https://github.com/huggingface/diffusers/blob/v0.19.3/src/diffusers/models/unet_2d_condition.py#L66">UNet2DConditionModel</a> 这个模块的代码，加深理解。</p>
+<h2 id="如何调用各种SD模型？"><a href="#如何调用各种SD模型？" class="headerlink" title="如何调用各种SD模型？"></a>如何调用各种SD模型？</h2><p>其实我们可以在Hugging Face中找到各种现成的模型，我们只需通过模型的model_id，便可以直接在Colab中调用这些模型，我们这就实战练习一下。</p>
+<p>比如我们可以使用 <a target="_blank" rel="noopener" href="https://huggingface.co/gsdf/Counterfeit-V2.5">Counterfeit-V2.5</a> 这个模型，首先获取到它的model_id。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/ccc132a8a8069879869f8e8aec42a5d7.png"></p>
+<p>之后，我们通过后面的代码下载并加载模型。第四行的模型ID可以灵活调整，你可以切换成你心仪的模型。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">from</span> diffusers <span class="token keyword">import</span> DiffusionPipeline
+<span class="token keyword">from</span> diffusers <span class="token keyword">import</span> DDIMScheduler<span class="token punctuation">,</span> DPMSolverMultistepScheduler<span class="token punctuation">,</span> EulerAncestralDiscreteScheduler
+pipeline <span class="token operator">=</span> DiffusionPipeline<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"gsdf/Counterfeit-V2.5"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后用下面代码完成切换采样器，prompt设置等操作，便可以随心所欲地创作了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 切换为DPM采样器</span>
+pipeline<span class="token punctuation">.</span>scheduler <span class="token operator">=</span> DPMSolverMultistepScheduler<span class="token punctuation">.</span>from_config<span class="token punctuation">(</span>pipeline<span class="token punctuation">.</span>scheduler<span class="token punctuation">.</span>config<span class="token punctuation">)</span>
+
+prompt <span class="token operator">=</span> <span class="token string">"((masterpiece,best quality)),1girl, solo, animal ears, rabbit"</span>
+negative_prompt <span class="token operator">=</span> <span class="token string">"EasyNegative, extra fingers,fewer fingers,"</span>
+images <span class="token operator">=</span> pipeline<span class="token punctuation">(</span>prompt<span class="token punctuation">,</span> width <span class="token operator">=</span> <span class="token number">512</span><span class="token punctuation">,</span> height <span class="token operator">=</span> <span class="token number">512</span><span class="token punctuation">,</span> num_inference_steps<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> guidance_scale<span class="token operator">=</span><span class="token number">7.5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>images
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>你可以点开我的 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/NightWalker888/ai_painting_journey/blob/main/lesson12/%E5%BC%80%E6%BA%90AI%E7%BB%98%E7%94%BB%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8.ipynb">Colab链接</a> 进行操作。可以在Hugging Face中调一些你喜欢的AI绘画模型，试试自己动手创作一些作品。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>今天我们通过实战的形式加深了对扩散模型和Stable Diffusion模型的认识。在扩散模型部分，我们从数据准备开始，使用两种不同的形式从头开始进行模型训练，最终殊途同归，都能得到“不听话”的AI画师。</p>
+<p>为了进一步调优，我们又引入VAE和CLIP模块，在开源Stable Diffusion模型的基础上，微调属于我们自己的SD模型，并深入探讨了其中的代码细节。我们也探索了如果通过代码直接使用开源社区提供的SD模型，通过短短几行代码就能实现AI绘画。</p>
+<p>在我看来，以扩散模型为主的AI绘画，与此前GAN时代最大的不同之处便是“不可小觑的开源社区”。2022年之前，各种有趣的GAN模型和特效更多像是企业才“玩得动”的技术，而如今的AI绘画则是在放大每一个爱好者的创造力。</p>
+<p>当前，企业会选择当前效果最好的开源模型，比如SDXL、AnythingV5漫画模型等，进一步构造海量的高质量数据，去微调这些SD模型。技术方案和我们今天实战部分微调SD模型是一样的，只不过企业有更多的GPU、图片数据和标注员。</p>
+<p>即便如此，为什么开源社区的模型仍旧有如此抢眼的表现呢？我个人觉得，相比很多企业的KPI驱动，开源社区兴趣驱动更容易做出垂类精品。如果你也有类似的感觉，那么期待你和我一起，去做一些有意思的AI绘画模型。</p>
+<p>这一讲的重点，你可以点开下面的导图进行知识回顾。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/878d608159bf4a358245e0d1d33050aa.jpg"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>这一讲是我们的实战课。我们留一个实战任务。在Hugging Face中选择一个你喜欢的基础模型，通过写代码的方式生成一组你喜欢的图片。</p>
+<p>期待你在留言区和我交流互动，也推荐你把今天的内容分享给身边的小伙伴，一起创造更有个性的AI绘画模型。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#12%EF%BD%9C%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%89%8B%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">12｜实战项目（二）：动手训练一个你自己的扩散模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%9F%A5%E8%AF%86%E4%B8%B2%E8%81%94"><span class="toc-number">1.1.</span> <span class="toc-text">关键知识串联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">训练扩散模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.1.</span> <span class="toc-text">认识基础模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">1.2.2.</span> <span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-number">1.2.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E5%88%B0diffusers%E8%AE%AD%E7%BB%83"><span class="toc-number">1.2.4.</span> <span class="toc-text">进阶到diffusers训练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E8%B0%83Stable-Diffusion"><span class="toc-number">1.3.</span> <span class="toc-text">微调Stable Diffusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8%E5%90%84%E7%A7%8DSD%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">如何调用各种SD模型？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.5.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>18 | 消息投递：如何保证消息仅仅被消费一次？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="18 | 消息投递：如何保证消息仅仅被消费一次？你好，我是唐扬。 通过上一节课，我们在电商系统中增加了消息队列对峰值写流量做削峰填谷，对次要的业务逻辑做异步处理，对不同的系统模块做解耦合。因为业务逻辑从同步代码中移除了，所以我们也要有相应的队列处理程序来处理消息、执行业务逻辑， 这时你的系统架构变成了下面的样子：  这是一个简化版的架构图，实际上，随着业务逻辑越来越复杂，会引入更多的外部系统和服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18 | 消息投递：如何保证消息仅仅被消费一次？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/854839128.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="18 | 消息投递：如何保证消息仅仅被消费一次？你好，我是唐扬。 通过上一节课，我们在电商系统中增加了消息队列对峰值写流量做削峰填谷，对次要的业务逻辑做异步处理，对不同的系统模块做解耦合。因为业务逻辑从同步代码中移除了，所以我们也要有相应的队列处理程序来处理消息、执行业务逻辑， 这时你的系统架构变成了下面的样子：  这是一个简化版的架构图，实际上，随着业务逻辑越来越复杂，会引入更多的外部系统和服务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:10:53.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:24.199Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/854839128"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '18 | 消息投递：如何保证消息仅仅被消费一次？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">18 | 消息投递：如何保证消息仅仅被消费一次？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="18-消息投递：如何保证消息仅仅被消费一次？"><a href="#18-消息投递：如何保证消息仅仅被消费一次？" class="headerlink" title="18 | 消息投递：如何保证消息仅仅被消费一次？"></a>18 | 消息投递：如何保证消息仅仅被消费一次？</h1><p>你好，我是唐扬。</p>
+<p>通过上一节课，我们在电商系统中增加了消息队列对峰值写流量做削峰填谷，对次要的业务逻辑做异步处理，对不同的系统模块做解耦合。因为业务逻辑从同步代码中移除了，所以我们也要有相应的队列处理程序来处理消息、执行业务逻辑， <strong>这时你的系统架构变成了下面的样子：</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/c9f44acbc4025b2ff1f0a4b9fd0941a6.jpg"></p>
+<p>这是一个简化版的架构图，实际上，随着业务逻辑越来越复杂，会引入更多的外部系统和服务来解决业务上的问题。比如我们会引入Elasticsearch来解决商品和店铺搜索的问题，也会引入审核系统对售卖的商品、用户的评论做自动的和人工的审核，你会越来越多地使用消息队列与外部系统解耦合以及提升系统性能。</p>
+<p>比如你的电商系统需要上一个新的红包功能：用户在购买一定数量的商品之后，由你的系统给用户发一个现金的红包鼓励用户消费。由于发放红包的过程不应该在购买商品的主流程之内，所以你考虑使用消息队列来异步处理。 <strong>这时你发现了一个问题：</strong> 如果消息在投递的过程中发生丢失，那么用户就会因为没有得到红包而投诉。相反，如果消息在投递的过程中出现了重复，你的系统就会因为发送两个红包而损失。</p>
+<p>那么我们如何保证产生的消息一定会被消费到并且只被消费一次呢？这个问题虽然听起来很浅显、很好理解，但是实际上却藏着很多玄机，本节课我就带你深入探讨。</p>
+<h2 id="消息为什么会丢失"><a href="#消息为什么会丢失" class="headerlink" title="消息为什么会丢失"></a>消息为什么会丢失</h2><p>如果要保证消息只被消费一次，首先就要保证消息不会丢失。那么消息从被写入到消息队列到被消费者消费完成，这个链路上会有哪些地方存在丢失消息的可能呢？其实主要存在三个场景：</p>
+<ul>
+<li>消息从生产者写入到消息队列的过程；</li>
+<li>消息在消息队列中的存储场景；</li>
+<li>消息被消费者消费的过程。</li>
+</ul>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/876fe51e24a49b9751588cc0f8e106ea.png"></p>
+<p>接下来我就针对每一个场景详细地剖析一下，这样你可以针对不同的场景选择合适的减少消息丢失的解决方案。</p>
+<h4 id="1-在消息生产的过程中丢失消息"><a href="#1-在消息生产的过程中丢失消息" class="headerlink" title="1.在消息生产的过程中丢失消息"></a>1.在消息生产的过程中丢失消息</h4><p>在这个环节中主要有两种情况。</p>
+<p>首先，消息的生产者一般是我们的业务服务器，消息队列是独立部署在单独的服务器上的。两者之间的网络虽然是内网但是也会存在抖动的可能，而一旦发生抖动，消息就有可能因为网络的错误而丢失。</p>
+<p><strong>针对这种情况，我建议你采用的方案是消息重传。</strong> 也就是当你发现发送超时后就将消息重新发一次，但也不能无限制地重传消息。一般来说，如果不是消息队列发生故障或者是到消息队列的网络断开了，重试2～3次就可以了。</p>
+<p>不过这种方案可能会造成消息的重复，从而在消费的时候重复消费同样的消息。比方说消息生产时由于消息队列处理慢或者网络的抖动，导致虽然最终写入消息队列成功但在生产端却超时了，生产者重传这条消息就会形成重复的消息，针对上面的例子，直观显示在你面前的就会是你收到了两个现金红包。</p>
+<p>那么消息发送到了消息队列之后是否就万无一失了呢？当然不是， <strong>在消息队列中消息仍然有丢失的风险。</strong></p>
+<h4 id="2-在消息队列中丢失消息"><a href="#2-在消息队列中丢失消息" class="headerlink" title="2.在消息队列中丢失消息"></a>2.在消息队列中丢失消息</h4><p>拿Kafka举例，消息在Kafka中是存储在本地磁盘上的，而为了减少消息存储时对磁盘的随机I&#x2F;O，我们一般会将消息先写入到操作系统的Page Cache中，然后再找合适的时机刷新到磁盘上。</p>
+<p>比如Kafka可以配置当达到某一时间间隔或者累积一定的消息数量的时候再刷盘， <strong>也就是所说的异步刷盘。</strong></p>
+<p>来看一个形象的比喻：假如你经营一个图书馆，读者每还一本书你都要去把图书归位，不仅工作量大而且效率低下，但是如果你可以选择每隔3小时或者图书达到一定数量的时候再把图书归位，这样可以把同一类型的书一起归位，节省了查找图书位置的时间，可以提高效率。</p>
+<p>不过如果发生机器掉电或者机器异常重启，Page Cache中还没有来得及刷盘的消息就会丢失了。 <strong>那么怎么解决呢？</strong></p>
+<p>你可能会把刷盘的间隔设置很短或者设置累积一条消息就就刷盘，但这样频繁刷盘会对性能有比较大的影响，而且从经验来看，出现机器宕机或者掉电的几率也不高， <strong>所以我不建议你这样做。</strong></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/6c667c8c21baf27468c314105e522243.jpg"></p>
+<p>如果你的电商系统对消息丢失的容忍度很低， <strong>你可以考虑以集群方式部署Kafka服务，通过部署多个副本备份数据保证消息尽量不丢失。</strong></p>
+<p>那么它是怎么实现的呢？</p>
+<p>Kafka集群中有一个Leader负责消息的写入和消费，可以有多个Follower负责数据的备份。Follower中有一个特殊的集合叫做ISR（in-sync replicas），当Leader故障时，新选举出来的Leader会从ISR中选择，默认Leader的数据会异步地复制给Follower，这样在Leader发生掉电或者宕机时，Kafka会从Follower中消费消息，减少消息丢失的可能。</p>
+<p>由于默认消息是异步地从Leader复制到Follower的，所以一旦Leader宕机，那些还没有来得及复制到Follower的消息还是会丢失。为了解决这个问题，Kafka为生产者提供一个选项叫做“acks”，当这个选项被设置为“all”时，生产者发送的每一条消息除了发给Leader外还会发给所有的ISR，并且必须得到Leader和所有ISR的确认后才被认为发送成功。这样，只有Leader和所有的ISR都挂了消息才会丢失。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/648951000b3c7e969f8d04e42da6ac3f.jpg"></p>
+<p>从上面这张图来看，当设置“acks&#x3D;all”时，需要同步执行1、3、4三个步骤，对于消息生产的性能来说也是有比较大的影响的，所以你在实际应用中需要仔细地权衡考量。 <strong>我给你的建议是：</strong></p>
+<p>1.如果你需要确保消息一条都不能丢失，那么建议不要开启消息队列的同步刷盘，而是用集群的方式来解决，可以配置当所有ISR Follower都接收到消息才返回成功。</p>
+<p>2.如果对消息的丢失有一定的容忍度，那么建议不部署集群，即使以集群方式部署，也建议配置只发送给一个Follower就可以返回成功了。</p>
+<p>3.我们的业务系统一般对于消息的丢失有一定的容忍度，比如说以上面的红包系统为例，如果红包消息丢失了，我们只要后续给没有发送红包的用户补发红包就好了。</p>
+<h4 id="3-在消费的过程中存在消息丢失的可能"><a href="#3-在消费的过程中存在消息丢失的可能" class="headerlink" title="3.在消费的过程中存在消息丢失的可能"></a>3.在消费的过程中存在消息丢失的可能</h4><p>我还是以Kafka为例来说明。一个消费者消费消息的进度是记录在消息队列集群中的，而消费的过程分为三步：接收消息、处理消息、更新消费进度。</p>
+<p>这里面接收消息和处理消息的过程都可能会发生异常或者失败，比如消息接收时网络发生抖动，导致消息并没有被正确地接收到；处理消息时可能发生一些业务的异常导致处理流程未执行完成，这时如果更新消费进度，这条失败的消息就永远不会被处理了，也可以认为是丢失了。</p>
+<p><strong>所以，在这里你需要注意的是，</strong> 一定要等到消息接收和处理完成后才能更新消费进度，但是这也会造成消息重复的问题，比方说某一条消息在处理之后消费者恰好宕机了，那么因为没有更新消费进度，所以当这个消费者重启之后还会重复地消费这条消息。</p>
+<h2 id="如何保证消息只被消费一次"><a href="#如何保证消息只被消费一次" class="headerlink" title="如何保证消息只被消费一次"></a>如何保证消息只被消费一次</h2><p>从上面的分析中你能发现，为了避免消息丢失我们需要付出两方面的代价：一方面是性能的损耗，一方面可能造成消息重复消费。</p>
+<p>性能的损耗我们还可以接受，因为一般业务系统只有在写请求时才会有发送消息队列的操作，而一般系统的写请求的量级并不高，但是消息一旦被重复消费就会造成业务逻辑处理的错误。那么我们要如何避免消息的重复呢？</p>
+<p>想要完全地避免消息重复的发生是很难做到的，因为网络的抖动、机器的宕机和处理的异常都是比较难以避免的，在工业上并没有成熟的方法，因此我们会把要求放宽，只要保证即使消费到了重复的消息，从消费的最终结果来看和只消费一次是等同的就好了，也就是保证在消息的生产和消费的过程是“幂等”的。</p>
+<h4 id="1-什么是幂等"><a href="#1-什么是幂等" class="headerlink" title="1.什么是幂等"></a>1.什么是幂等</h4><p>幂等是一个数学上的概念，它的含义是多次执行同一个操作和执行一次操作，最终得到的结果是相同的，说起来可能有些抽象，我给你举个例子：</p>
+<p>比如，男生和女生吵架，女生抓住一个点不放，传递“你不在乎我了吗？”（生产消息）的信息。那么当多次抱怨“你不在乎我了吗？”的时候（多次生产相同消息），她不知道的是，男生的耳朵（消息处理）会自动把N多次的信息屏蔽，就像只听到一次一样，这就是幂等性。</p>
+<p>如果我们消费一条消息的时候，要给现有的库存数量减1，那么如果消费两条相同的消息就会给库存数量减2，这就不是幂等的。而如果消费一条消息后处理逻辑是将库存的数量设置为0，或者是如果当前库存数量是10时则减1，这样在消费多条消息时所得到的结果就是相同的， <strong>这就是幂等的。</strong></p>
+<p><strong>说白了，你可以这么理解“幂等”：</strong> 一件事儿无论做多少次都和做一次产生的结果是一样的，那么这件事儿就具有幂等性。</p>
+<h4 id="2-在生产、消费过程中增加消息幂等性的保证"><a href="#2-在生产、消费过程中增加消息幂等性的保证" class="headerlink" title="2.在生产、消费过程中增加消息幂等性的保证"></a>2.在生产、消费过程中增加消息幂等性的保证</h4><p>消息在生产和消费的过程中都可能会产生重复，所以你要做的是在生产过程和消费过程中增加消息幂等性的保证，这样就可以认为从“最终结果上来看”消息实际上是只被消费了一次的。</p>
+<p><strong>在消息生产过程中，</strong> 在Kafka0.11版本和Pulsar中都支持“producer idempotency”的特性，翻译过来就是生产过程的幂等性，这种特性保证消息虽然可能在生产端产生重复，但是最终在消息队列存储时只会存储一份。</p>
+<p>它的做法是给每一个生产者一个唯一的ID，并且为生产的每一条消息赋予一个唯一ID，消息队列的服务端会存储&lt;生产者ID，最后一条消息ID&gt;的映射。当某一个生产者产生新的消息时，消息队列服务端会比对消息ID是否与存储的最后一条ID一致，如果一致就认为是重复的消息，服务端会自动丢弃。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/aab832cee23258972c41e03493b8e0bd.jpg"></p>
+<p><strong>而在消费端，幂等性的保证会稍微复杂一些，你可以从通用层和业务层</strong> 两个层面来考虑。</p>
+<p>在通用层面，你可以在消息被生产的时候使用发号器给它生成一个全局唯一的消息ID，消息被处理之后把这个ID存储在数据库中，在处理下一条消息之前先从数据库里面查询这个全局ID是否被消费过，如果被消费过就放弃消费。</p>
+<p>你可以看到，无论是生产端的幂等性保证方式还是消费端通用的幂等性保证方式，它们的共同特点都是为每一个消息生成一个唯一的ID，然后在使用这个消息的时候，先比对这个ID是否已经存在，如果存在则认为消息已经被使用过。所以这种方式是一种标准的实现幂等的方式， <strong>你在项目之中可以拿来直接使用，</strong> 它在逻辑上的伪代码就像下面这样：</p>
+<pre class="line-numbers language-none"><code class="language-none">boolean isIDExisted &#x3D; selectByID(ID); &#x2F;&#x2F; 判断ID是否存在
+if(isIDExisted) &#123;
+  return; &#x2F;&#x2F;存在则直接返回
+&#125; else &#123;
+  process(message); &#x2F;&#x2F;不存在，则处理消息
+  saveID(ID);   &#x2F;&#x2F;存储ID
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>不过这样会有一个问题：</strong> 如果消息在处理之后，还没有来得及写入数据库，消费者宕机了重启之后发现数据库中并没有这条消息，还是会重复执行两次消费逻辑，这时你就需要引入事务机制，保证消息处理和写入数据库必须同时成功或者同时失败，但是这样消息处理的成本就更高了，所以如果对于消息重复没有特别严格的要求，可以直接使用这种通用的方案，而不考虑引入事务。</p>
+<p><strong>在业务层面怎么处理呢？</strong> 这里有很多种处理方式，其中有一种是增加乐观锁的方式。比如你的消息处理程序需要给一个人的账号加钱，那么你可以通过乐观锁的方式来解决。</p>
+<p><strong>具体的操作方式是这样的：</strong> 你给每个人的账号数据中增加一个版本号的字段，在生产消息时先查询这个账户的版本号，并且将版本号连同消息一起发送给消息队列。消费端在拿到消息和版本号后，在执行更新账户金额SQL的时候带上版本号，类似于执行：</p>
+<pre class="line-numbers language-none"><code class="language-none">update user set amount &#x3D; amount + 20, version&#x3D;version+1 where userId&#x3D;1 and version&#x3D;1;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>你看，我们在更新数据时给数据加了乐观锁，这样在消费第一条消息时，version值为1，SQL可以执行成功，并且同时把version值改为了2；在执行第二条相同的消息时，由于version值不再是1，所以这条SQL不能执行成功，也就保证了消息的幂等性。</p>
+<h2 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h2><p>本节课，我主要带你了解了在消息队列中消息可能会发生丢失的场景和应对方法，以及在消息重复的场景下，你要如何保证尽量不影响消息最终的处理结果。我想强调的重点是：</p>
+<ul>
+<li><p>消息的丢失可以通过生产端的重试、消息队列配置集群模式以及消费端合理处理消费进度三种方式来解决；</p>
+</li>
+<li><p>为了解决消息的丢失通常会造成性能上的问题以及消息的重复问题；</p>
+</li>
+<li><p>通过保证消息处理的幂等性可以解决消息的重复问题。</p>
+</li>
+</ul>
+<p>虽然我讲了很多应对消息丢失的方法，但并不是说消息丢失一定不能被接受，毕竟你可以看到在允许消息丢失的情况下，消息队列的性能更好，方案实现的复杂度也最低。比如像是日志处理的场景，日志存在的意义在于排查系统的问题，而系统出现问题的几率不高，偶发的丢失几条日志是可以接受的。</p>
+<p><strong>所以方案设计看场景，这是一切设计的原则，</strong> 你不能把所有的消息队列都配置成防止消息丢失的方式，也不能要求所有的业务处理逻辑都要支持幂等性，这样会给开发和运维带来额外的负担。</p>
+<h2 id="一课一思"><a href="#一课一思" class="headerlink" title="一课一思"></a>一课一思</h2><p>我提到了消息队列在生产和消费端需要保证消息处理的幂等性，那么你还了解哪些保证消息处理幂等性的方法呢？欢迎在留言区与我分享你的经验。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#18-%E6%B6%88%E6%81%AF%E6%8A%95%E9%80%92%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%BB%85%E4%BB%85%E8%A2%AB%E6%B6%88%E8%B4%B9%E4%B8%80%E6%AC%A1%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">18 | 消息投递：如何保证消息仅仅被消费一次？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E4%B8%A2%E5%A4%B1"><span class="toc-number">1.1.</span> <span class="toc-text">消息为什么会丢失</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9C%A8%E6%B6%88%E6%81%AF%E7%94%9F%E4%BA%A7%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%B8%A2%E5%A4%B1%E6%B6%88%E6%81%AF"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">1.在消息生产的过程中丢失消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9C%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%B8%AD%E4%B8%A2%E5%A4%B1%E6%B6%88%E6%81%AF"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">2.在消息队列中丢失消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%9C%A8%E6%B6%88%E8%B4%B9%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%AD%98%E5%9C%A8%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1%E7%9A%84%E5%8F%AF%E8%83%BD"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">3.在消费的过程中存在消息丢失的可能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E5%8F%AA%E8%A2%AB%E6%B6%88%E8%B4%B9%E4%B8%80%E6%AC%A1"><span class="toc-number">1.2.</span> <span class="toc-text">如何保证消息只被消费一次</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%82%E7%AD%89"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">1.什么是幂等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9C%A8%E7%94%9F%E4%BA%A7%E3%80%81%E6%B6%88%E8%B4%B9%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%A2%9E%E5%8A%A0%E6%B6%88%E6%81%AF%E5%B9%82%E7%AD%89%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">2.在生产、消费过程中增加消息幂等性的保证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">课程小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%AF%BE%E4%B8%80%E6%80%9D"><span class="toc-number">1.4.</span> <span class="toc-text">一课一思</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

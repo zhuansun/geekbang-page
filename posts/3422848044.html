@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>开篇词 | 为什么你要学习高并发系统设计？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="开篇词 | 为什么你要学习高并发系统设计？你好，我是唐扬，现在在美图公司任职技术专家，负责美图秀秀社区的研发、优化和运行维护工作。从业十年，我一直在从事社区系统研发、架构设计、系统优化的工作，期间参与研发过三个DAU过千万的大型高并发系统。在这三个项目中，我参与了业务系统的开发和改造，也参与和主导过像RPC框架、分布式消息系统、注册中心等中间件系统的研发，对于高并发系统设计的各个方面都有所涉猎。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开篇词 | 为什么你要学习高并发系统设计？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3422848044.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="开篇词 | 为什么你要学习高并发系统设计？你好，我是唐扬，现在在美图公司任职技术专家，负责美图秀秀社区的研发、优化和运行维护工作。从业十年，我一直在从事社区系统研发、架构设计、系统优化的工作，期间参与研发过三个DAU过千万的大型高并发系统。在这三个项目中，我参与了业务系统的开发和改造，也参与和主导过像RPC框架、分布式消息系统、注册中心等中间件系统的研发，对于高并发系统设计的各个方面都有所涉猎。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:10:53.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:24.259Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3422848044"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '开篇词 | 为什么你要学习高并发系统设计？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">开篇词 | 为什么你要学习高并发系统设计？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="开篇词-为什么你要学习高并发系统设计？"><a href="#开篇词-为什么你要学习高并发系统设计？" class="headerlink" title="开篇词 | 为什么你要学习高并发系统设计？"></a>开篇词 | 为什么你要学习高并发系统设计？</h1><p>你好，我是唐扬，现在在美图公司任职技术专家，负责美图秀秀社区的研发、优化和运行维护工作。从业十年，我一直在从事社区系统研发、架构设计、系统优化的工作，期间参与研发过三个DAU过千万的大型高并发系统。在这三个项目中，我参与了业务系统的开发和改造，也参与和主导过像RPC框架、分布式消息系统、注册中心等中间件系统的研发，对于高并发系统设计的各个方面都有所涉猎。</p>
+<p>我见证了系统从初期构建，到承接高并发大流量的全过程，并在其中积累了大量的系统演进经验。我认为，虽说每家公司所处的行业不同，业务场景不同，但是设计和优化的思想却是万变不离其宗。</p>
+<p>这些经验是一个个的“小套路”，它们相互联系，形成一套指引我们进行高并发系统设计的知识体系，其中包括了理论知识的讲解、问题场景的介绍、问题分析的过程，以及解决问题的思路。当你掌握这些“套路”之后，就能明确地知道，系统处于某一个阶段时，可能会面临的问题，然后及时找到架构升级优化的思路解决这些问题，提升系统性能。</p>
+<p>从今天起，我会在“极客时间”上分享这些“套路”，和你一起分析问题原因，探讨解决方案，让你学有所用！</p>
+<h2 id="为什么要学习高并发系统设计？"><a href="#为什么要学习高并发系统设计？" class="headerlink" title="为什么要学习高并发系统设计？"></a>为什么要学习高并发系统设计？</h2><p>在解答“为什么要学习高并发系统设计”之前，我想让你思考几个问题：</p>
+<ul>
+<li>在微博中，明星动辄拥有几千万甚至上亿的粉丝，你要怎么保证明星发布的内容让粉丝实时地看到呢？</li>
+<li>淘宝双十一，当你和上万人一起抢购一件性价比超高的衣服时，怎么保证衣服不会超卖？</li>
+<li>春运时我们都会去12306订购火车票，以前在抢票时经常遇到页面打不开的情况，那么如果你来设计12306系统，要如何保证在千万人访问的同时也能支持正常抢票呢？</li>
+</ul>
+<p>这些问题是你在设计和实现高并发系统时经常会遇到的痛点问题，都涉及如何在高并发场景下做到高性能和高可用，掌握这些内容，你开发的产品可以为用户提供更好的使用体验，你的技术能力也能有一个质的变化。</p>
+<h3 id="高并发系统设计知识，是你获取大厂Offer必不可少的利器"><a href="#高并发系统设计知识，是你获取大厂Offer必不可少的利器" class="headerlink" title="高并发系统设计知识，是你获取大厂Offer必不可少的利器"></a>高并发系统设计知识，是你获取大厂Offer必不可少的利器</h3><p>不可否认的是，目前的经济形势不好，很多公司（比如阿里、腾讯、今日头条）一方面在减少招聘的人员数量，另一方面也期望花费了人力成本之后可以给公司带来更大的价值。那么对于公司来说，仅仅懂得CRUD的程序员就不如有高并发系统设计经验的程序员有吸引力了。</p>
+<p>所以当你去面试时，面试官会要求你有高并发设计经验，有的面试官会询问你的系统在遭遇百万并发时可能有哪些瓶颈点，以及有什么优化思路等问题，为的就是检验你是否真的了解这方面的内容。</p>
+<p>那么进不了大厂，没有高并发的场景，这些设计的经验又要从何处来呢？这就是鸡生蛋蛋生鸡的问题了。我能肯定的是，当你学习这门课程，掌握了这方面的技术之后，大厂的Offer将不再遥不可及。</p>
+<h3 id="不要囿于公司现有的业务场景，你的能力，绝不止于此"><a href="#不要囿于公司现有的业务场景，你的能力，绝不止于此" class="headerlink" title="不要囿于公司现有的业务场景，你的能力，绝不止于此"></a>不要囿于公司现有的业务场景，你的能力，绝不止于此</h3><p>那你可能会说：“我在小公司工作，小公司的系统并发不高，流量也不大，学习高并发系统设计似乎有些多此一举。”但我想说的是， <strong>公司业务流量平稳，并不表示不会遇到一些高并发的需求场景。</strong></p>
+<p>就拿电商系统中的下单流程设计技术方案为例。在每秒只有一次调用的系统中，你只需要关注业务逻辑本身就好了：查询库存是否充足，如果充足，就可以到数据库中生成订单，成功后锁定库存，然后进入支付流程。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/2d95823d39676e18a43ab3328ce0d0f3.jpg"></p>
+<p>这个流程非常清晰，实现也简单，但如果要做一次秒杀的活动，配合一些运营的推广，你会发现下单操作的调用量可能达到每秒10000次！</p>
+<p>10000次请求同时查询库存，是否会把库存系统拖垮？如果请求全部通过，那么就要同时生成10000次订单，数据库能否抗住？如果抗不住，我们要如何做？这些问题都可能出现，并让之前的方案不再适用，此时你就需要设计新的方案。</p>
+<p>除此之外，同样是缓存的使用，在低并发下你只需要了解基本的使用方式，但在高并发场景下你需要关注缓存命中率，如何应对缓存穿透，如何避免雪崩，如何解决缓存一致性等问题，这就增加了设计方案的复杂度，对设计者能力的要求也会更高。 <strong>所以，为了避免遇到问题时手忙脚乱，你有必要提前储备足够多的高并发知识，从而具备随时应对可能出现的高并发需求场景的能力。</strong></p>
+<p>我身边有很多在小公司打拼闯荡，小有建树的朋友，他们无一不经历过低谷期，又一一开拓了一片天地，究其原因，是因为他们没有将目光放在现有的业务场景中，而是保持着对于新技术的好奇心，时刻关注业界新技术的实现原理，思考如何使用技术来解决业务上的问题。</p>
+<p>他们虽然性格很不同，但不甘于现状，突破自己的信念却是一致的。我相信，你也一定如此。 <strong>所以完成业务需求，解决产品问题不应该是你最终的目标，提升技术能力和技术视野才应是你始终不变的追求。</strong></p>
+<h3 id="计算机领域里虽然知识点庞杂，但很多核心思想都是相通的"><a href="#计算机领域里虽然知识点庞杂，但很多核心思想都是相通的" class="headerlink" title="计算机领域里虽然知识点庞杂，但很多核心思想都是相通的"></a>计算机领域里虽然知识点庞杂，但很多核心思想都是相通的</h3><p>举个例子，消息队列是高并发系统中常见的一种组件，它可以将消息生产方和消费方解耦，减少突发流量对于系统的冲击。但如果你的系统没有那么高的流量，你就永远不会使用消息队列了吗？当然不是。</p>
+<p>系统模块要做到高内聚、低耦合，这是系统的基本设计思想，和是否高并发无关，而消息队列作为主要的系统解耦方式，应该是你技术百宝囊中一件不可或缺的制胜法宝。</p>
+<p>又比如，缓存技术蕴含的是空间换时间的思想；压缩体现的是时间换空间的思想；分布式思想也最初体现在CPU的设计和实现上……这些内容，都是高并发系统设计中的内容，而我希望在这个课程中，帮你把握这些核心思想，让你触类旁通，举一反三。</p>
+<p>所以，高并发系统设计无论是对于初入职场的工程师了解基本系统设计思想，还是对于有一定工作经验的同学完善自身技能树，为未来可能遇见的系统问题做好技术储备，都有很大的帮助。</p>
+<p>也许你会担心知识点不成体系；担心只讲理论，没有实际的场景；担心只有空洞的介绍，没有干货。放心！我同样考虑了这些问题并在反复思考之后， <strong>决定以一个虚拟的系统为主线，讲解在流量和并发不断提升的情况下如何一步步地优化它，</strong> 并在这个过程中穿插着讲解知识点，这样通过场景、原理、实践相结合的方式，来帮助你更快、更深入地理解和消化。</p>
+<p>总体来说，学完这次课程，你会有三个收获：</p>
+<ul>
+<li>掌握高并发系统设计的“套路”；</li>
+<li>理解基本的系统设计思想，对新的知识触类旁通，举一反三；</li>
+<li>突破技术的瓶颈，突破所处平台的限制，具备一个优秀架构师的资质。</li>
+</ul>
+<h2 id="课程设计"><a href="#课程设计" class="headerlink" title="课程设计"></a>课程设计</h2><p>我将课程划分了三个模块来讲解，分别是：基础篇、演进篇和实战篇。</p>
+<p><strong>基础篇</strong> 主要是一些基本的高并发架构设计理念，你可以把它看作整个课程的一个总纲，建立对高并发系统的初步认识。</p>
+<p><strong>演进篇</strong> 是整个课程的核心，主要讲解系统支持高并发的方法。我会用一个虚拟的系统，带你分析当随着前端并发增加，这个系统的变化，以及你会遇到的一系列痛点问题。比如数据查询的性能瓶颈，缓存的高可用问题，然后从数据库、缓存、消息队列、分布式服务和维护这五个角度来展开，针对问题寻找解决方案， <strong>让你置身其中，真真切切地走一遍系统演进的道路。</strong></p>
+<p><strong>实战篇</strong> 将以两个实际案例，带你应用学到的知识应对高并发大流量的冲击。</p>
+<p>一个案例是 <strong>如何设计承担每秒几十万次用户未读数请求的系统。</strong> 之所以选择它，是因为在大部分的系统中未读数都会是请求量最大、并发最高的服务，在微博时QPS会达到每秒50万次。同时，未读数系统的业务逻辑比较简单，在你了解设计方案的时候也不需要预先对业务逻辑有深入了解； <strong>另一个例子是信息流系统的设计，</strong> 它是社区社交产品中的核心系统，业务逻辑复杂且请求量大，方案中几乎涉及高并发系统设计的全部内容。</p>
+<p>下面是这个课程的目录，你能快速了解整个课程的知识体系。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/d3c0bc67109122412ab5e5c1c112128f.jpg"></p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>课程从原理到实战，以案例作为主线，涵盖了高并发系统设计的整个知识体系。只要你一步一步地坚持学习，课后多加思考，多练习，相信你的系统设计能力一定能够得到很大的提升，职业发展路径也会走得愈加宽阔。</p>
+<p>最后，欢迎你在留言区和我说一说自己的情况，想要了解高并发的哪些内容，或者在高并发方面存在的一些困惑，一是方便我在后面的讲解中有所侧重地展开介绍，一是希望你在跟着我一起学完这个课程后，再回顾此前的问题，能够发现自己切实地成长与提高，这是我最希望看到的。</p>
+<p>期待你的留言，也感谢你的信任，未来的三个月里，我们一起沟通、探讨、进步。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E7%AF%87%E8%AF%8D-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E8%A6%81%E5%AD%A6%E4%B9%A0%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">开篇词 | 为什么你要学习高并发系统设计？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">为什么要学习高并发系统设计？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9F%A5%E8%AF%86%EF%BC%8C%E6%98%AF%E4%BD%A0%E8%8E%B7%E5%8F%96%E5%A4%A7%E5%8E%82Offer%E5%BF%85%E4%B8%8D%E5%8F%AF%E5%B0%91%E7%9A%84%E5%88%A9%E5%99%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">高并发系统设计知识，是你获取大厂Offer必不可少的利器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%9B%BF%E4%BA%8E%E5%85%AC%E5%8F%B8%E7%8E%B0%E6%9C%89%E7%9A%84%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%EF%BC%8C%E4%BD%A0%E7%9A%84%E8%83%BD%E5%8A%9B%EF%BC%8C%E7%BB%9D%E4%B8%8D%E6%AD%A2%E4%BA%8E%E6%AD%A4"><span class="toc-number">1.1.2.</span> <span class="toc-text">不要囿于公司现有的业务场景，你的能力，绝不止于此</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A2%86%E5%9F%9F%E9%87%8C%E8%99%BD%E7%84%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%BA%9E%E6%9D%82%EF%BC%8C%E4%BD%86%E5%BE%88%E5%A4%9A%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E9%83%BD%E6%98%AF%E7%9B%B8%E9%80%9A%E7%9A%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">计算机领域里虽然知识点庞杂，但很多核心思想都是相通的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">课程设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">1.3.</span> <span class="toc-text">写在最后</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

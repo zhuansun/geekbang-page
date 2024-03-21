@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？我在Intel工作期间，曾经接手过一个大数据SQL引擎的开发工作（ 如何自己开发一个大数据SQL引擎？）。我接手的时候，这个项目已经完成了早期的技术验证和架构设计，能够处理较为简单的标准SQL语句。后续公司打算成立一个专门的小组，开发支持完整的标准SQL语法的大数据引擎，然后进一步将这个产品商业化。 我接手后打开项目一看，吓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/907669913.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？我在Intel工作期间，曾经接手过一个大数据SQL引擎的开发工作（ 如何自己开发一个大数据SQL引擎？）。我接手的时候，这个项目已经完成了早期的技术验证和架构设计，能够处理较为简单的标准SQL语句。后续公司打算成立一个专门的小组，开发支持完整的标准SQL语法的大数据引擎，然后进一步将这个产品商业化。 我接手后打开项目一看，吓">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:44.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.843Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/907669913"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="14-软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？"><a href="#14-软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？" class="headerlink" title="14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？"></a>14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？</h1><p>我在Intel工作期间，曾经接手过一个大数据SQL引擎的开发工作（ <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/71634">如何自己开发一个大数据SQL引擎？</a>）。我接手的时候，这个项目已经完成了早期的技术验证和架构设计，能够处理较为简单的标准SQL语句。后续公司打算成立一个专门的小组，开发支持完整的标准SQL语法的大数据引擎，然后进一步将这个产品商业化。</p>
+<p>我接手后打开项目一看，吓出一身冷汗，这个项目只有几个类组成，其中最大的一个类，负责SQL语法的处理，有近万行代码。代码中充斥着大量的switch&#x2F;case，if&#x2F;else代码，而且方法之间互相调用，各种全局变量传递。</p>
+<p>只有输入测试SQL语句的时候，在debug状态下才能理解每一行代码的意思。而这样的代码有1万行，现在只实现了不到10%的SQL语法特性。如果将SQL的全部语法特性都实现了，那么这个类该有多么大！逻辑有多么复杂！维护有多么困难！而且还要准备一个团队来合作开发！想想看，几个人在这样一个大文件里提交代码，想想都酸爽。</p>
+<p>这是当时这个SQL语法处理类中的一个方法，而这样的方法有上百个。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;**
+ * Digest all Not Op and merge into subq or normal filter semantics
+ * After this process there should not be any NOT FB in the FB tree.
+ *&#x2F;
+private void digestNotOp(FilterBlockBase fb, FBPrepContext ctx) &#123;
+  &#x2F;&#x2F; recursively digest the not op in a top down manner
+  if (fb.getType() &#x3D;&#x3D; FilterBlockBase.Type.LOGIC_NOT) &#123;
+    FilterBlockBase child &#x3D; fb.getOnlyChild();
+    FilterBlockBase newOp &#x3D; null;
+    switch (child.getType()) &#123;
+    case LOGIC_AND:
+    case LOGIC_OR: &#123;
+      &#x2F;&#x2F; not (a and b) -&gt; (not a) or (not b)
+      newOp &#x3D; (child.getType() &#x3D;&#x3D; Type.LOGIC_AND) ? new OpORFilterBlock()
+          : new OpANDFilterBlock();
+      FilterBlockBase lhsNot &#x3D; new OpNOTFilterBlock();
+      FilterBlockBase rhsNot &#x3D; new OpNOTFilterBlock();
+      lhsNot.setOnlyChild(child.getLeftChild());
+      rhsNot.setOnlyChild(child.getRightChild());
+      newOp.setLeftChild(lhsNot);
+      newOp.setRightChild(rhsNot);
+      break;
+    &#125;
+    case LOGIC_NOT:
+      newOp &#x3D; child.getOnlyChild();
+      break;
+    case SUBQ: &#123;
+      switch (((SubQFilterBlock) child).getOpType()) &#123;
+      case ALL: &#123;
+        ((SubQFilterBlock) child).setOpType(OPType.SOMEANY);
+        SqlASTNode op &#x3D; ((SubQFilterBlock) child).getOp();
+        &#x2F;&#x2F; Note: here we directly change the original SqlASTNode
+        revertRelationalOp(op);
+        break;
+      &#125;
+      case SOMEANY: &#123;
+        ((SubQFilterBlock) child).setOpType(OPType.ALL);
+        SqlASTNode op &#x3D; ((SubQFilterBlock) child).getOp();
+        &#x2F;&#x2F; Note: here we directly change the original SqlASTNode
+        revertRelationalOp(op);
+        break;
+      &#125;
+      case RELATIONAL: &#123;
+        SqlASTNode op &#x3D; ((SubQFilterBlock) child).getOp();
+        &#x2F;&#x2F; Note: here we directly change the original SqlASTNode
+        revertRelationalOp(op);
+        break;
+      &#125;
+      case EXISTS:
+        ((SubQFilterBlock) child).setOpType(OPType.NOTEXISTS);
+        break;
+      case NOTEXISTS:
+        ((SubQFilterBlock) child).setOpType(OPType.EXISTS);
+        break;
+      case IN:
+        ((SubQFilterBlock) child).setOpType(OPType.NOTIN);
+        break;
+      case NOTIN:
+        ((SubQFilterBlock) child).setOpType(OPType.IN);
+        break;
+      case ISNULL:
+        ((SubQFilterBlock) child).setOpType(OPType.ISNOTNULL);
+        break;
+      case ISNOTNULL:
+        ((SubQFilterBlock) child).setOpType(OPType.ISNULL);
+        break;
+      default:
+        &#x2F;&#x2F; should not come here
+        assert (false);
+      &#125;
+      newOp &#x3D; child;
+      break;
+    &#125;
+    case NORMAL:
+      &#x2F;&#x2F; we know all normal filters are either UnCorrelated or
+      &#x2F;&#x2F; correlated, don&#39;t have both case at present
+      NormalFilterBlock nf &#x3D; (NormalFilterBlock) child;
+      assert (nf.getCorrelatedFilter() &#x3D;&#x3D; null || nf.getUnCorrelatedFilter() &#x3D;&#x3D; null);
+      CorrelatedFilter cf &#x3D; nf.getCorrelatedFilter();
+      UnCorrelatedFilter ucf &#x3D; nf.getUnCorrelatedFilter();
+      &#x2F;&#x2F; It&#39;s not likely to result in chaining SqlASTNode
+      &#x2F;&#x2F; as any chaining NOT FB has been collapsed from top down
+      if (cf !&#x3D; null) &#123;
+        cf.setRawFilterExpr(
+            SqlXlateUtil.revertFilter(cf.getRawFilterExpr(), false));
+      &#125;
+      if (ucf !&#x3D; null) &#123;
+        ucf.setRawFilterExpr(
+            SqlXlateUtil.revertFilter(ucf.getRawFilterExpr(), false));
+      &#125;
+      newOp &#x3D; child;
+      break;
+    default:
+    &#125;
+    fb.getParent().replaceChildTree(fb, newOp);
+  &#125;
+  if (fb.hasLeftChild()) &#123;
+    digestNotOp(fb.getLeftChild(), ctx);
+  &#125;
+  if (fb.hasRightChild()) &#123;
+    digestNotOp(fb.getRightChild(), ctx);
+  &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我当时就觉得，我太难了。</p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>软件设计有两个基本准则：低耦合和高内聚。我在前面讲到过的设计原则和后面将要讲的设计模式大多数都是关于如何进行低耦合设计的。而内聚性主要研究组成一个模块或者类的内部元素的功能相关性。</p>
+<p>设计类的时候，我们应该把强相关的元素放在一个类里，而弱相关性的元素放在类的外边。保持类的高内聚性。具体设计时应该遵循这样一个设计原则：</p>
+<p><strong>一个类，应该只有一个引起它变化的原因</strong>。</p>
+<p>这就是软件设计的单一职责原则。如果一个类承担的职责太多，就等于把这些职责都耦合在一起。这种耦合会导致类很脆弱：当变化发生的时候，会引起类不必要的修改，进而导致bug出现。</p>
+<p>职责太多，还会导致类的代码太多。一个类太大，它就很难保证满足开闭原则，如果不得不打开类文件进行修改，大堆大堆的代码呈现在屏幕上，一不小心就会引出不必要的错误。</p>
+<p>所以关于编程有这样一个最佳实践：一个类文件打开后，最好不要超过屏幕的一屏。这样做的好处是，一方面代码少，职责单一，可以更容易地进行复用和扩展，更符合开闭原则。另一方面，阅读简单，维护方便。</p>
+<h2 id="一个违反单一职责原则的例子"><a href="#一个违反单一职责原则的例子" class="headerlink" title="一个违反单一职责原则的例子"></a>一个违反单一职责原则的例子</h2><p>如何判断一个类的职责是否单一，就是看这个类是否只有一个引起它变化的原因。</p>
+<p>我们看这样一个设计：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/ef2ff1193e0f61c6d8312489011247da.png"></p>
+<p>正方形类Rectangle有两个方法，一个是绘图方法draw()，一个是计算面积方法area()。有两个应用需要依赖这个Rectangle类，一个是几何计算应用，一个是图形界面应用。</p>
+<p>绘图的时候，程序需要计算面积，但是计算面积的时候呢，程序又不需要绘图。而在计算机屏幕上绘图又是一件非常麻烦的事情，所以需要依赖一个专门的GUI组件包。</p>
+<p>这样就会出现一个尴尬的情形：当我需要开发一个几何计算应用程序的时候，我需要依赖Rectangle类，而Rectangle类又依赖了GUI包，一个GUI包可能有几十M甚至数百M。本来几何计算程序作为一个纯科学计算程序，主要是一些数学计算代码，现在程序打包完，却不得不把一个不相关的GUI包也打包进来。本来程序包可能只有几百K，现在变成了几百M。</p>
+<p>Rectangle类的设计就违反了单一职责原则。Rectangle承担了两个职责，一个是几何形状的计算，一个是在屏幕上绘制图形。也就是说，Rectangle类有两个引起它变化的原因，这种不必要的耦合不仅会导致科学计算应用程序庞大，而且当图形界面应用程序不得不修改Rectangle类的时候，还得重新编译几何计算应用程序。</p>
+<p>比较好的设计是将这两个职责分离开来，将Rectangle类拆分成两个类：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/bf407bc21f9edfff9ae4e2b538d3797c.png"></p>
+<p>将几何面积计算方法拆分到一个独立的类GeometricRectangle，这个类负责图形面积计算area()。Rectangle只保留单一绘图职责draw()，现在绘制长方形的时候可以使用计算面积的方法，而几何计算应用程序则不需要依赖一个不相关的绘图方法以及一大堆的GUI组件。</p>
+<h2 id="从Web应用架构演进看单一职责原则"><a href="#从Web应用架构演进看单一职责原则" class="headerlink" title="从Web应用架构演进看单一职责原则"></a>从Web应用架构演进看单一职责原则</h2><p>事实上，Web应用技术的发展、演化过程，也是一个不断进行职责分离，实现单一职责原则的过程。在十几年前，互联网应用早期的时候，业务简单，技术落后，通常是一个类负责处理一个请求处理。</p>
+<p>以Java为例，就是一个Servlet完成一个请求处理。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/4de49567e455ef44ab6e77e63f07bcf5.png"></p>
+<p>这种技术方案有一个比较大的问题是，请求处理以及响应的全部操作都在Servlet里，Servlet获取请求数据，进行逻辑处理，访问数据库，得到处理结果，根据处理结果构造返回的HTML。这些职责全部都在一个类里完成，特别是输出HTML，需要在Servlet中一行一行输出HTML字符串，类似这样：</p>
+<pre class="line-numbers language-none"><code class="language-none">response.getWriter().println(&quot;&lt;html&gt; &lt;head&gt; &lt;title&gt;servlet程序&lt;&#x2F;title&gt; &lt;&#x2F;head&gt;&quot;);
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这就比较痛苦了，一个HMTL文件可能会很大，在代码中一点一点拼字符串，编程困难、维护困难，总之就是各种困难。</p>
+<p>于是后来就有了JSP，如果说Servlet是在程序中输出HTML，那么JSP就是在HTML调用程序。使用JSP开发Web程序大概是这样的：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/01cc4d72b8a3afcea6552c8624230ed1.png"></p>
+<p>用户请求提交给JSP，而JSP会依赖业务模型进行逻辑处理，并将模型的处理结果包装在HTML里面，构造成一个动态页面返回给用户。</p>
+<p>使用JSP技术比Servlet更容易开发一点，至少不用再痛苦地进行HTML字符串拼接了，通常基于JSP开发的Web程序在职责上也会进行了一些最基本的分离：构造页面的JSP和处理逻辑的业务模型分离。但是这种分离藕断丝连，JSP中依然存在大量的业务逻辑代码，代码和HTML标签耦合在一起，职责分离得并不彻底。</p>
+<p>真正将视图和模型分离的是后来出现的各种MVC框架，MVC框架通过控制器将视图与模型彻底分离。视图中只包含HTML标签和模板引擎的占位符，业务模型则专门负责进行业务处理。正是这种分离，使得前后端开发成为两个不同的工种，前端工程师只做视图模板开发，后端工程师只做业务开发，彼此之间没有直接的依赖和耦合，各自独立开发、维护自己的代码。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/e3333324d165146ff1d338e1ec507a75.png"></p>
+<p>有了MVC，就可以顺理成章地将复杂的业务模型进行分层了。通过分层方式，将业务模型分为业务层、服务层、数据持久层，使各层职责进一步分离，更符合单一职责原则。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/1a327f9b9c8a36365d90473bb34633ed.png"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>让我们回到文章的标题，类的职责应该是单一的，也就是引起类变化的原因应该只有一个，这样类的代码通常也是比较少的。在开发实践中，一个类文件在IDE打开，最好不要超过一屏。</p>
+<p>文章开头那个大数据SQL引擎的例子中，SQL语法处理类的主要问题是，太多功能职责被放在一个类里了。我在研读了原型代码，并和开发原型的同事讨论后，把这个类的职责从两个维度进行切分。一个维度是处理过程，整个处理过程可以分为语法定义、语法变形和语法生成这三个环节，每个SQL语句都需要依赖这三个环节。此外，我在第一个模块的 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/172000">第6篇文章</a> 中讲到，每个SQL语句在处理的时候都要生成一个SQL语法树，而树是由很多节点组成的。从这个角度讲，每个语法树节点都应该由一个单一职责的类处理。</p>
+<p>我从这两个维度将原来有着近万行代码的类进行职责拆分，拆分出几百个类，每个类的职责都比较单一，只负责一个语法树节点的一个处理过程。很多小的类只有几行代码，打开后只占IDE中一小部分，在显示器上一目了然，阅读、维护都很轻松。类之间没有耦合，而是在运行期，根据SQL语法树将将这些代表语法节点的类构造成一颗树，然后用设计模式中的 <strong>组合模式</strong> 进行遍历即可。</p>
+<p>后续参与进来开发的同事，只需要针对还不支持的SQL语法功能点，开发相对应的语法转换器Transformer和语法树生成器Generator就可以了，不需要对原来的类再进行修改，甚至不需要调用原来的类。程序运行期，在语法处理的时候遇到对应的语法节点，交给相关的类处理就好了。</p>
+<p>重构后虽然类的数量扩展了几百倍，但是代码总行数却少了很多，这是重构后的部分代码截图：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/530bacb39d2548271fa972c26544b082.png"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你在软件开发中有哪些可以用单一职责原则改进的设计呢？</p>
+<p>欢迎你在评论区写下你的思考，也欢迎把这篇文章分享给你的朋友或者同事，一起交流一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#14-%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E4%B8%80%E4%B8%AA%E7%B1%BB%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E6%9C%80%E5%A5%BD%E4%B8%8D%E8%A6%81%E8%B6%85%E8%BF%87%E4%B8%80%E5%B1%8F%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">14 | 软件设计的单一职责原则：为什么说一个类文件打开最好不要超过一屏？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">单一职责原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E8%BF%9D%E5%8F%8D%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.</span> <span class="toc-text">一个违反单一职责原则的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8EWeb%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E7%9C%8B%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="toc-number">1.3.</span> <span class="toc-text">从Web应用架构演进看单一职责原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

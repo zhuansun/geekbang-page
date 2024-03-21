@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>02 数学基础 | 月有阴晴圆缺，此事古难全：概率论 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="02 数学基础 | 月有阴晴圆缺，此事古难全：概率论除了线性代数之外，概率论（probability theory）也是人工智能研究中必备的数学基础。随着连接主义学派的兴起，概率统计已经取代了数理逻辑，成为人工智能研究的主流工具。在数据爆炸式增长和计算力指数化增强的今天，概率论已经在机器学习中扮演了核心角色。 同线性代数一样，概率论也代表了一种看待世界的方式， 其关注的焦点是无处不在的可能性。对随">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02 数学基础 | 月有阴晴圆缺，此事古难全：概率论">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/557825753.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="02 数学基础 | 月有阴晴圆缺，此事古难全：概率论除了线性代数之外，概率论（probability theory）也是人工智能研究中必备的数学基础。随着连接主义学派的兴起，概率统计已经取代了数理逻辑，成为人工智能研究的主流工具。在数据爆炸式增长和计算力指数化增强的今天，概率论已经在机器学习中扮演了核心角色。 同线性代数一样，概率论也代表了一种看待世界的方式， 其关注的焦点是无处不在的可能性。对随">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:17:18.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.431Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/557825753"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '02 数学基础 | 月有阴晴圆缺，此事古难全：概率论',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">02 数学基础 | 月有阴晴圆缺，此事古难全：概率论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="02-数学基础-月有阴晴圆缺，此事古难全：概率论"><a href="#02-数学基础-月有阴晴圆缺，此事古难全：概率论" class="headerlink" title="02 数学基础 | 月有阴晴圆缺，此事古难全：概率论"></a>02 数学基础 | 月有阴晴圆缺，此事古难全：概率论</h1><p>除了线性代数之外，概率论（probability theory）也是人工智能研究中必备的数学基础。随着连接主义学派的兴起，概率统计已经取代了数理逻辑，成为人工智能研究的主流工具。在数据爆炸式增长和计算力指数化增强的今天，概率论已经在机器学习中扮演了核心角色。</p>
+<p>同线性代数一样，概率论也代表了一种看待世界的方式， <strong>其关注的焦点是无处不在的可能性</strong>。对随机事件发生的可能性进行规范的数学描述就是概率论的公理化过程。概率的公理化结构体现出的是对概率本质的一种认识。</p>
+<p>将同一枚硬币抛掷10次，其正面朝上的次数既可能一次没有，也可能全部都是，换算成频率就分别对应着0%和100%。频率本身显然会随机波动，但随着重复试验的次数不断增加，特定事件出现的频率值就会呈现出稳定性，逐渐趋近于某个常数。</p>
+<p>从事件发生的频率认识概率的方法被称为“频率学派”（frequentist probability），频率学派口中的“概率”，其实是一个可独立重复的随机实验中单个结果出现频率的极限。因为稳定的频率是统计规律性的体现，因而通过大量的独立重复试验计算频率，并用它来表征事件发生的可能性是一种合理的思路。</p>
+<p>在概率的定量计算上，频率学派依赖的基础是古典概率模型。在古典概率模型中，试验的结果只包含有限个基本事件，且每个基本事件发生的可能性相同。如此一来，假设所有基本事件的数目为n，待观察的随机事件A中包含的基本事件数目为k，则古典概率模型下事件概率的计算公式为</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/image-20240304214324900.png" alt="image-20240304214324900"></p>
+<p>从这一基本公式就可以推导出复杂的随机事件的概率。</p>
+<p>前文中的概率定义针对都是单个随机事件，可如果要刻画两个随机事件之间的关系，这个定义就不够看了。在一场足球比赛中，球队1:0取胜和在0:2落后的情况下3:2翻盘的概率显然是不一样的。这就需要引入条件概率的概念。</p>
+<p>条件概率（conditional probability）是根据已有信息对样本空间进行调整后得到的新的概率分布。假定有两个随机事件A和B，条件概率就是指事件A在事件B已经发生的条件下发生的概率，用以下公式表示</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/image-20240304214334607.png" alt="image-20240304214334607"></p>
+<p>上式中的$P(AB)$称为联合概率（joint probability），表示的是A和B两个事件共同发生的概率。如果联合概率等于两个事件各自概率的乘积，即$P(AB) &#x3D; P(A) ⋅ P(B)$，说明这两个事件的发生互不影响，即两者相互独立。对于相互独立的事件，条件概率就是自身的概率，即$P(A|B) &#x3D; P(A)$。</p>
+<p>基于条件概率可以得出全概率公式（law of total probability）。全概率公式的作用在于将复杂事件的概率求解转化为在不同情况下发生的简单事件的概率求和，即</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/image-20240304214444563.png" alt="image-20240304214444563"></p>
+<p>全概率公式代表了频率学派解决概率问题的思路，即先做出一些假设（$P(B_i)$），再在这些假设下讨论随机事件的概率（$P(A|B_i)$）。</p>
+<p>对全概率公式稍作整理，就演化出了求解“逆概率”这一重要问题。 <strong>所谓“逆概率”解决的是在事件结果已经确定的条件下（$P(A)$），推断各种假设发生的可能性（$P(B_i|A)$）</strong>。由于这套理论首先由英国牧师托马斯·贝叶斯提出，因而其通用的公式形式被称为贝叶斯公式：</p>
+<p>$$P(B_i|A)&#x3D;\frac{P(A|B_i)\cdot P(B_i)}{\sum _{j&#x3D;1}^{N} P(A|B_j)\cdot P(B_j)}$$</p>
+<p>贝叶斯公式可以进一步抽象为贝叶斯定理（Bayes’ theorem）：</p>
+<p>$$P(H|D) &#x3D; \dfrac{P(D|H) \cdot P(H)}{P(D)}$$</p>
+<p>式中的$P(H)$被称为先验概率（prior probability），即预先设定的假设成立的概率；$P(D|H)$被称为似然概率（likelihood function），是在假设成立的前提下观测到结果的概率；$P(H|D)$被称为后验概率（posterior probability），即在观测到结果的前提下假设成立的概率。</p>
+<p>从科学研究的方法论来看，贝叶斯定理提供了一种全新的逻辑。它根据观测结果寻找合理的假设，或者说根据观测数据寻找最佳的理论解释，其关注的焦点在于后验概率。概率论的贝叶斯学派（Bayesian probability）正是诞生于这种理念。</p>
+<p>在贝叶斯学派眼中，概率描述的是随机事件的可信程度。如果手机里的天气预报应用给出明天下雨的概率是85%，这就不能从频率的角度来解释了，而是意味着明天下雨这个事件的可信度是85%。</p>
+<p><strong>频率学派认为假设是客观存在且不会改变的，即存在固定的先验分布，只是作为观察者的我们无从知晓</strong>。因而在计算具体事件的概率时，要先确定概率分布的类型和参数，以此为基础进行概率推演。</p>
+<p>相比之下， <strong>贝叶斯学派则认为固定的先验分布是不存在的，参数本身也是随机数</strong>。换言之，假设本身取决于观察结果，是不确定并且可以修正的。数据的作用就是对假设做出不断的修正，使观察者对概率的主观认识更加接近客观实际。</p>
+<p>概率论是线性代数之外，人工智能的另一个理论基础，多数机器学习模型采用的都是基于概率论的方法。但由于实际任务中可供使用的训练数据有限，因而需要对概率分布的参数进行估计，这也是机器学习的核心任务。</p>
+<p><strong>概率的估计有两种方法：最大似然估计法（maximum likelihood estimation）和最大后验概率法（maximum a posteriori estimation），两者分别体现出频率学派和贝叶斯学派对概率的理解方式</strong>。</p>
+<p>最大似然估计法的思想是使训练数据出现的概率最大化，依此确定概率分布中的未知参数，估计出的概率分布也就最符合训练数据的分布。最大后验概率法的思想则是根据训练数据和已知的其他条件，使未知参数出现的可能性最大化，并选取最可能的未知参数取值作为估计值。在估计参数时，最大似然估计法只需要使用训练数据，最大后验概率法除了数据外还需要额外的信息，就是贝叶斯公式中的先验概率。</p>
+<p>从理论的角度来说，频率学派和贝叶斯学派各有千秋，都发挥着不可替代的作用。但具体到人工智能这一应用领域，基于贝叶斯定理的各种方法与人类的认知机制吻合度更高，在机器学习等领域中也扮演着更加重要的角色。</p>
+<p>概率论的一个重要应用是描述随机变量（random variable）。根据取值空间的不同，随机变量可以分成两类：离散型随机变量（discrete random variable）和连续型随机变量（continuous random variable）。在实际应用中，需要对随机变量的每个可能取值的概率进行描述。</p>
+<p>离散变量的每个可能的取值都具有大于0的概率，取值和概率之间一一对应的关系就是离散型随机变量的分布律，也叫 <strong>概率质量函数</strong>（probability mass function）。概率质量函数在连续型随机变量上的对应就是概率密度函数（probability density function）。</p>
+<p>需要说明的是， <strong>概率密度函数体现的并非连续型随机变量的真实概率，而是不同取值可能性之间的相对关系</strong>。对连续型随机变量来说，其可能取值的数目为不可列无限个，当归一化的概率被分配到这无限个点上时，每个点的概率都是个无穷小量，取极限的话就等于零。而概率密度函数的作用就是对这些无穷小量加以区分。虽然在$x \rightarrow \infty$时，$1 &#x2F; x$和$2 &#x2F; x$都是无穷小量，但后者永远是前者的2倍。这类相对意义而非绝对意义上的差别就可以被概率密度函数所刻画。对概率密度函数进行积分，得到的才是连续型随机变量的取值落在某个区间内的概率。</p>
+<p>定义了概率质量函数与概率密度函数后，就可以给出一些重要分布的特性。重要的离散分布包括两点分布、二项分布和泊松分布，重要的连续分布则包括均匀分布、指数分布和正态分布。</p>
+<ul>
+<li><strong>两点分布</strong>（Bernoulli distribution）：适用于随机试验的结果是二进制的情形，事件发生&#x2F;不发生的概率分别为$p&#x2F;(1 - p)$。任何只有两个结果的随机试验都可以用两点分布描述，抛掷一次硬币的结果就可以视为等概率的两点分布。</li>
+<li><strong>二项分布</strong>（Binomial distribution）：将满足参数为p的两点分布的随机试验独立重复n次，事件发生的次数即满足参数为(n,p)的二项分布。二项分布的表达式可以写成$P(X &#x3D; k) &#x3D; C^n_k \cdot p ^ k \cdot (1 - p) ^ {(n - k)}, 0 \le k \le n$。</li>
+<li><strong>泊松分布</strong>（Poisson distribution）：放射性物质在规定时间内释放出的粒子数所满足的分布，参数为$\lambda$的泊松分布表达式为$P(X &#x3D; k) &#x3D; \lambda ^ k \cdot e ^ {-\lambda} &#x2F; (k!)$。当二项分布中的n很大且p很小时，其概率值可以由参数为$\lambda &#x3D; np$的泊松分布的概率值近似。</li>
+<li><strong>均匀分布</strong>（uniform distribution）：在区间(a, b)上满足均匀分布的连续型随机变量，其概率密度函数为1 &#x2F; (b - a)，这个变量落在区间(a, b)内任意等长度的子区间内的可能性是相同的。</li>
+<li><strong>指数分布</strong>（exponential distribution）：满足参数为$\theta$指数分布的随机变量只能取正值，其概率密度函数为$e ^ {-x &#x2F; \theta} &#x2F; \theta, x &gt; 0$。指数分布的一个重要特征是无记忆性：即P(X &gt; s + t | X &gt; s) &#x3D; P(X &gt; t)。</li>
+<li><strong>正态分布</strong>（normal distribution）：参数为正态分布的概率密度函数为</li>
+</ul>
+<p>$$ f(x) &#x3D; \dfrac{1}{\sqrt{2\pi}\sigma} \cdot e ^ {-\frac{(x - \mu) ^ 2}{2\sigma ^ 2}}$$</p>
+<p>当$\mu &#x3D; 0, \sigma &#x3D; 1$时，上式称为标准正态分布。正态分布是最常见最重要的一种分布，自然界中的很多现象都近似地服从正态分布。</p>
+<p>除了概率质量函数&#x2F;概率密度函数之外，另一类描述随机变量的参数是其数字特征。 <strong>数字特征是用于刻画随机变量某些特性的常数，包括数学期望（expected value）、方差（variance）和协方差（covariance）</strong>。</p>
+<p>数学期望即均值，体现的是随机变量可能取值的加权平均，即根据每个取值出现的概率描述作为一个整体的随机变量的规律。方差表示的则是随机变量的取值与其数学期望的偏离程度。方差较小意味着随机变量的取值集中在数学期望附近，方差较大则意味着随机变量的取值比较分散。</p>
+<p>数学期望和方差描述的都是单个随机变量的数字特征，如果要描述两个随机变量之间的相互关系，就需要用到协方差和相关系数。协方差度量了两个随机变量之间的线性相关性，即变量Y能否表示成以另一个变量X为自变量的$aX+b$的形式。</p>
+<p>根据协方差可以进一步求出相关系数（correlation coefficient），相关系数是一个绝对值不大于1的常数，它等于1意味着两个随机变量满足完全正相关，等于-1意味着两者满足完全负相关，等于0则意味着两者不相关。需要说明的是，无论是协方差还是相关系数，刻画的都是线性相关的关系。如果随机变量之间的关系满足$Y &#x3D; X ^ 2$，这样的非线性相关性就超出了协方差的表达能力。</p>
+<p>今天我和你分享了人工智能必备的概率论基础，着重于抽象概念的解释而非具体的数学公式，其要点如下：</p>
+<ul>
+<li>概率论关注的是生活中的不确定性或可能性；</li>
+<li>频率学派认为先验分布是固定的，模型参数要靠最大似然估计计算；</li>
+<li>贝叶斯学派认为先验分布是随机的，模型参数要靠后验概率最大化计算；</li>
+<li>正态分布是最重要的一种随机变量的分布。</li>
+</ul>
+<p>在今天的机器学习中，大量任务是根据已有的数据预测可能出现的情况，因而贝叶斯定理得到了广泛应用。那么在生活中，你能想到哪些实例，是从已有的观测结果反过来推演假设成立的呢？</p>
+<p>欢迎发表你的观点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/60dfa8c61a5847be616f08d18b36a587.jpg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#02-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E6%9C%88%E6%9C%89%E9%98%B4%E6%99%B4%E5%9C%86%E7%BC%BA%EF%BC%8C%E6%AD%A4%E4%BA%8B%E5%8F%A4%E9%9A%BE%E5%85%A8%EF%BC%9A%E6%A6%82%E7%8E%87%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">02 数学基础 | 月有阴晴圆缺，此事古难全：概率论</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

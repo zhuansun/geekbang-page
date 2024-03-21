@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程我在面试的时候，喜欢问一个问题：“你比较熟悉哪些设计模式？”得到的回答很多时候是“单例”和“工厂”。老实说，这个回答不能让人满意。因为在我看来，单例和工厂固然是两种经典的设计模式，但是，这些创建类的设计模式并不能代表设计模式的精髓。 设计模式的精髓在于对面向对象编程特性之一——多态的灵活应用，而多态正是面向对象编程的本质所在。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2168524785.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程我在面试的时候，喜欢问一个问题：“你比较熟悉哪些设计模式？”得到的回答很多时候是“单例”和“工厂”。老实说，这个回答不能让人满意。因为在我看来，单例和工厂固然是两种经典的设计模式，但是，这些创建类的设计模式并不能代表设计模式的精髓。 设计模式的精髓在于对面向对象编程特性之一——多态的灵活应用，而多态正是面向对象编程的本质所在。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:45.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.846Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2168524785"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="16-设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程"><a href="#16-设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程" class="headerlink" title="16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程"></a>16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程</h1><p>我在面试的时候，喜欢问一个问题：“你比较熟悉哪些设计模式？”得到的回答很多时候是“单例”和“工厂”。老实说，这个回答不能让人满意。因为在我看来，单例和工厂固然是两种经典的设计模式，但是，这些创建类的设计模式并不能代表设计模式的精髓。</p>
+<p>设计模式的精髓在于对面向对象编程特性之一——多态的灵活应用，而多态正是面向对象编程的本质所在。</p>
+<h2 id="面向对象编程的本质是多态"><a href="#面向对象编程的本质是多态" class="headerlink" title="面向对象编程的本质是多态"></a>面向对象编程的本质是多态</h2><p>我在面试时，有时候会问“什么是对象”，得到的回答各种各样：“对象是数据与方法的组合。”“对象是领域的抽象。”“一切都是对象。”“对象的特性就是封装、继承、多态。”</p>
+<p>这是一个比较开放的问题，这些回答可以说都是对的，都描述了对象的某个方面。那么，面向对象的本质是什么？面向对象编程和此前的面向过程编程的核心区别是什么？</p>
+<p>我们常说，面向对象编程的主要特性是封装、继承和多态。那么这三个特性是否是面向对象编程区别于其他编程技术的关键呢？</p>
+<p>我们先看封装，面向对象编程语言都提供了类的定义。通过类，我们可以将类的成员变量和成员方法封装起来，还可以通过访问控制符，private、protected、public控制成员变量和成员方法的可见性。</p>
+<p>面向对象设计最基本的设计粒度就是类。类通过封装数据和方法，构成一个相对独立的实体。类之间通过访问控制的约束互相调用，这样就完成了面向对象的编程。但是，封装并不是面向对象编程语言独有的。面向过程的编程语言，比如C语言，也可以实现封装特性，在头文件.h里面定义方法，而在实现文件.c文件里定义具体的结构体和方法实现，从而使依赖.h头文件的外部程序只能够访问头文件里定义过的方法，这样同样实现了变量和函数的封装，以及访问权限的控制。</p>
+<p>继承似乎是面向对象编程语言才有的特性，事实上，C语言也可以实现继承。如果A结构体包含B结构体的定义，那么就可以理解成A继承了B，定义在B结构上的方法可以直接（通过强制类型转换）执行A结构体的数据。</p>
+<p>作为一种编程技巧，这种通过定义结构体从而实现继承特性的方法，在面向对象编程语言出现以前就已经经常被开发者使用了。</p>
+<p>我们再来看多态，因为有指向函数的指针，多态事实上在C语言中也可以实现。但是使用指向函数的指针实现多态是非常危险的，因为这种多态没有语法和编译方面的约束，只能靠程序员之间约定，一旦出现bug，调试非常痛苦。因此在面向过程语言的开发中，这种多态并不能频繁使用。</p>
+<p>而在面向对象的编程语言中，多态非常简单：子类实现父类或者接口的抽象方法，程序使用抽象父类或者接口编程，运行期注入不同的子类，程序就表现出不同的形态，是为多态。</p>
+<p>这样做最大的好处就是软件编程时的实现无关性，程序针对接口和抽象类编程，而不需要关心具体实现是什么。你应该还记得我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/177870">第10篇</a> 中讲到的案例：对于一个从输入设备拷贝字符到输出设备的程序，如果具体的设备实现和拷贝程序是耦合在一起的，那么当我们想要增加任何输入设备或者输出设备的时候，都必须要修改程序代码，最后这个拷贝程序将会变得越来越复杂、难于使用和理解。</p>
+<p>而通过使用接口，我们定义了Reader和Writer两个接口，分别描述输入设备和输出设备，拷贝程序只需要针对这两个接口编程，而无需关心具体设备是什么，程序可以保持稳定，并且易于复用。具体设备在程序运行期创建，然后传给拷贝程序，传入什么具体设备，就在什么具体设备上操作拷贝逻辑，具体设备可以像插件一样，灵活插拔，使程序呈现多态的特性。</p>
+<p>多态还颠覆了程序模块间的依赖关系。在习惯的编程思维中，如果A模块调用B模块，那么A模块必须依赖B模块，也就是说，在A模块的代码中必须import或者using B模块的代码。但是通过使用多态的特性，我们可以将这个依赖关系倒置，也就是：A模块调用B模块，A模块却可以不依赖B模块，反而是B模块依赖A模块。</p>
+<p>这就是我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/179282">第12篇</a> 中提到的依赖倒置原则。准确地说，B模块也没有依赖A模块，而是依赖A模块定义的抽象接口。A模块针对抽象接口编程，调用抽象接口，B模块实现抽象接口。在程序运行期将B模块注入A模块，就使得A模块调用B模块，却没有依赖B模块。</p>
+<p>多态常常使面向对象编程表现出神奇的特性，而多态正是面向对象编程的本质所在。正是多态，使得面向对象编程和以往的编程方式有了巨大的不同。</p>
+<h2 id="设计模式的精髓是对多态的使用"><a href="#设计模式的精髓是对多态的使用" class="headerlink" title="设计模式的精髓是对多态的使用"></a>设计模式的精髓是对多态的使用</h2><p>但是就算知道了面向对象编程的多态特性，也很难利用好多态的特性，开发出强大的面向对象程序。到底如何利用好多态特性呢？人们通过不断的编程实践，总结了一系列的设计原则和设计模式。</p>
+<p>我们前面几篇文章都是讨论设计原则的：</p>
+<ol>
+<li>开闭原则：软件类、模块应该是对修改关闭的，而对扩展是开放的。通俗地说，就是要不修改代码就是实现需求的变更。</li>
+<li>依赖倒置原则：高层模块不应该依赖低层模块，低层模块也不应该依赖高层模块，他们应该都依赖抽象，而这个抽象是高层定义的，逻辑上属于高层。</li>
+<li>里氏替换原则：所有能够使用父类的地方，应该都可以用它的子类替换。但要注意的是，能不能替换是要看应用场景的，所以在设计继承的时候就要考虑运行期的场景，而不是仅仅考虑父类和子类的静态关系。</li>
+<li>单一职责原则：一个类应该只有一个引起它变化的原因。实践中，就是类文件尽量不要太大，最好不要超过一屏。</li>
+<li>接口隔离原则：不要强迫调用者依赖他们不需要的方法。方法主要是通过对接口的多重继承，一个类实现多个接口，不同接口服务不同调用者，不同调用者看到不同方法。</li>
+</ol>
+<p>这些设计原则大部分都是和多态有关的，不过这些设计原则更多时候是具有指导性，编程的时候还需要依赖更具体的编程设计方法，这些方法就是设计模式。</p>
+<p><strong>模式是可重复的解决方案</strong>，人们在编程实践中发现，有些问题是重复出现的，虽然场景各有不同，但是问题的本质是一样的，而解决这些问题的方法也是可以重复使用的。人们把这些可以重复使用的编程方法称为设计模式。 <strong>设计模式的精髓就是对多态的灵活应用</strong>。</p>
+<p>我们以装饰模式为例，看一下如何灵活应用多态特性。我们先定义一个接口AnyThing，包含一个exe方法。</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface AnyThing &#123;
+	void exe();
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>然后多个类实现这个接口，装饰模式最大的特点是，通过类的构造函数传入一个同类对象，也就是每个类实现的接口和构造函数传入的对象是同一个接口。我们创建了三个类，如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Moon implements AnyThing &#123;
+	private AnyThing a;
+	public Moon(AnyThing a) &#123;
+		this.a &#x3D; a;
+	&#125;
+	public void exe() &#123;
+		System.out.print(&quot;明月装饰了&quot;);
+		a.exe();
+	&#125;
+&#125;
+
+public class Dream implements AnyThing &#123;
+	private AnyThing a;
+	public Dream(AnyThing a) &#123;
+		this.a&#x3D;a;
+	&#125;
+	public void exe() &#123;
+		System.out.print(&quot;梦装饰了&quot;);
+		a.exe();
+	&#125;
+&#125;
+
+public class You implements AnyThing &#123;
+	private AnyThing a;
+	public You(AnyThing a) &#123;
+		this.a &#x3D; a;
+	&#125;
+	public void exe() &#123;
+		System.out.print(&quot;你&quot;);
+	&#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>设计这个几个类的时候，它们之间没有任何耦合，但是在创建对象的时候，我们通过构造函数的不同次序，可以使这几个类互相调用，从而呈现不同的装饰结果。</p>
+<pre class="line-numbers language-none"><code class="language-none">AnyThing t &#x3D; new Moon(new Dream(new You(null)));
+t.exe();
+
+输出：明月装饰了梦装饰了你
+
+AnyThing t &#x3D; new Dream(new Moon(new You(null)));
+t.exe();
+
+输出：梦装饰了明月装饰了你
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>多态的迷人之处就在于，你单独看类的代码的时候，这些代码似乎平淡无奇，但是一旦运行起来，就会表现出纷繁复杂的特性。所以多态有时候也会带来一些代码阅读方面的困扰，让面向对象编程的新手望而却步，这也正是设计模式的作用，这时候你仅仅通过类的名字，比如Observer、Adapter，你就能知道设计者在使用什么模式，从而更快速理解代码。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>如果你只是使用面向对象编程语言进行编程，其实并不能说明你就掌握了面向对象编程。只有灵活应用设计模式，使程序呈现多态的特性，进而使程序健壮、灵活、清晰、易于维护和复用，这才是真正掌握了面向对象编程。</p>
+<p>所以，下次再有面试官让你“聊聊设计模式”，也许你可以这样回答：“除了单例和工厂，我更喜欢适配器和观察者，还有，组合模式在处理树形结构的时候也非常有用。”适配器和观察者模式我在前面已经讲到。</p>
+<p>设计模式是一个非常注重实践的编程技能，通过学习设计模式，我们可以体会到面向对象编程的种种精妙。真正掌握设计模式，需要在实践中不断使用它，让自己的程序更加健壮、灵活、清晰、易于复用和扩展。这个时候，面试聊设计模式更好的回答是：“我在工作中比较喜欢用模板模式和策略模式，上个项目中，为了解决不同用户使用不同推荐算法的问题，我……”</p>
+<p>事实上，设计模式不仅仅包括《设计模式》这本书里讲到的23种设计模式，只要可重复用于解决某个问题场景的设计方案都可以被称为设计模式。关于设计模式还有一句很著名的话“精通设计模式，就是忘了设计模式”，有点像张无忌学太极。如果真正对设计模式融会贯通，你的程序中无处不是设计模式，也许你在三五行代码里，就用了两三个设计模式。你自己就是设计模式的大师，甚至还可以创建一些自己的设计模式。这个时候，再去面试的时候，面试官也不会再问你设计模式的问题了，如果问了，那么你说什么都是对的。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/167938">第2篇文章</a> 和本篇中都提到了可以使用组合模式遍历树，那么如何用组合模式遍历树呢？</p>
+<p>欢迎你在评论区写下你的思考，也欢迎把这篇文章分享给你的朋友或者同事，一起交流一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%B8%8D%E4%BC%9A%E7%81%B5%E6%B4%BB%E5%BA%94%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%BD%A0%E5%B0%B1%E6%B2%A1%E6%9C%89%E6%8E%8C%E6%8F%A1%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">16 | 设计模式基础：不会灵活应用设计模式，你就没有掌握面向对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E5%A4%9A%E6%80%81"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象编程的本质是多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%B2%BE%E9%AB%93%E6%98%AF%E5%AF%B9%E5%A4%9A%E6%80%81%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">设计模式的精髓是对多态的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
 <meta property="article:published_time" content="2023-10-20T09:48:40.000Z">
-<meta property="article:modified_time" content="2024-02-27T07:30:57.868Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.270Z">
 <meta property="article:author" content="码农张三">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1285040136"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -52,7 +52,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-02-27 07:30:57'
+  postUpdate: '2024-03-21 07:44:22'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,7 +142,7 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1098</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统"><a href="#02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统" class="headerlink" title="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统"></a>02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</h1><p>你好，我是黄佳，欢迎来到LangChain实战课！</p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统"><a href="#02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统" class="headerlink" title="02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统"></a>02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</h1><p>你好，我是黄佳，欢迎来到LangChain实战课！</p>
 <p>在深入讲解LangChain的每一个具体组件之前，我想带着你从头完成一个很实用、很有意义的实战项目。目的就是让你直观感受一下LangChain作为一个基于大语言模型的应用开发框架，功能到底有多么强大。好的，现在就开始！</p>
 <h2 id="项目及实现框架"><a href="#项目及实现框架" class="headerlink" title="项目及实现框架"></a>项目及实现框架</h2><p>我们先来整体了解一下这个项目。</p>
 <p><strong>项目名称</strong>：“易速鲜花”内部员工知识库问答系统。</p>
@@ -175,29 +175,29 @@
 <p>我们首先用LangChain中的document_loaders来加载各种格式的文本文件。（这些文件我把它放在OneFlower这个目录中了，如果你创建自己的文件夹，就要调整一下代码中的目录。）</p>
 <p>在这一步中，我们从 pdf、word 和 txt 文件中加载文本，然后将这些文本存储在一个列表中。（注意：可能需要安装PyPDF、Docx2txt等库）</p>
 <p>代码如下：</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">import os
-os.environ["OPENAI_API_KEY"] = '你的Open AI API Key'
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
+os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'你的Open AI API Key'</span>
 
-# 1.Load 导入Document Loaders
-from langchain.document_loaders import PyPDFLoader
-from langchain.document_loaders import Docx2txtLoader
-from langchain.document_loaders import TextLoader
+<span class="token comment"># 1.Load 导入Document Loaders</span>
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> PyPDFLoader
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> Docx2txtLoader
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> TextLoader
 
-# 加载Documents
-base_dir = '.\OneFlower' # 文档的存放目录
-documents = []
-for file in os.listdir(base_dir):
-    # 构建完整的文件路径
-    file_path = os.path.join(base_dir, file)
-    if file.endswith('.pdf'):
-        loader = PyPDFLoader(file_path)
-        documents.extend(loader.load())
-    elif file.endswith('.docx'):
-        loader = Docx2txtLoader(file_path)
-        documents.extend(loader.load())
-    elif file.endswith('.txt'):
-        loader = TextLoader(file_path)
-        documents.extend(loader.load())
+<span class="token comment"># 加载Documents</span>
+base_dir <span class="token operator">=</span> <span class="token string">'.\OneFlower'</span> <span class="token comment"># 文档的存放目录</span>
+documents <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>base_dir<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 构建完整的文件路径</span>
+    file_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>base_dir<span class="token punctuation">,</span> <span class="token builtin">file</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token builtin">file</span><span class="token punctuation">.</span>endswith<span class="token punctuation">(</span><span class="token string">'.pdf'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        loader <span class="token operator">=</span> PyPDFLoader<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span>
+        documents<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> <span class="token builtin">file</span><span class="token punctuation">.</span>endswith<span class="token punctuation">(</span><span class="token string">'.docx'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        loader <span class="token operator">=</span> Docx2txtLoader<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span>
+        documents<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> <span class="token builtin">file</span><span class="token punctuation">.</span>endswith<span class="token punctuation">(</span><span class="token string">'.txt'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        loader <span class="token operator">=</span> TextLoader<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span>
+        documents<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这里我们首先导入了OpenAI的API Key。因为后面我们需要利用Open AI的两种不同模型做以下两件事：</p>
@@ -208,10 +208,10 @@ for file in os.listdir(base_dir):
 <p>当然了，LangChain所支持的大模型绝不仅仅是Open AI而已，你完全可以遵循这个框架，把Embedding模型和负责生成回答的语言模型都替换为其他的开源模型。</p>
 <p>在运行上面的程序时，除了要导入正确的Open AI Key之外，还要注意的是工具包的安装。使用LangChain时，根据具体的任务，往往需要各种不同的工具包（比如上面的代码需要PyPDF和Docx2txt工具）。它们安装起来都非常简单，如果程序报错缺少某个包，只要通过 <code>pip install</code> 安装相关包即可。</p>
 <h2 id="文本的分割"><a href="#文本的分割" class="headerlink" title="文本的分割"></a>文本的分割</h2><p>接下来需要将加载的文本分割成更小的块，以便进行嵌入和向量存储。这个步骤中，我们使用 LangChain中的RecursiveCharacterTextSplitter 来分割文本。</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 2.Split 将Documents切分成块以便后续进行嵌入和向量存储
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=10)
-chunked_documents = text_splitter.split_documents(documents)
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 2.Split 将Documents切分成块以便后续进行嵌入和向量存储</span>
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> RecursiveCharacterTextSplitter
+text_splitter <span class="token operator">=</span> RecursiveCharacterTextSplitter<span class="token punctuation">(</span>chunk_size<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">,</span> chunk_overlap<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+chunked_documents <span class="token operator">=</span> text_splitter<span class="token punctuation">.</span>split_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>现在，我们的文档被切成了一个个200字符左右的文档块。这一步，是为把它们存储进下面的向量数据库做准备。</p>
@@ -234,14 +234,14 @@ chunked_documents = text_splitter.split_documents(documents)
 <p>向量数据库有很多种，比如Pinecone、Chroma和Qdrant，有些是收费的，有些则是开源的。</p>
 <p>LangChain中支持很多向量数据库，这里我们选择的是开源向量数据库Qdrant。（注意，需要安装qdrant-client）</p>
 <p>具体实现代码如下：</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 3.Store 将分割嵌入并存储在矢量数据库Qdrant中
-from langchain.vectorstores import Qdrant
-from langchain.embeddings import OpenAIEmbeddings
-vectorstore = Qdrant.from_documents(
-    documents=chunked_documents, # 以分块的文档
-    embedding=OpenAIEmbeddings(), # 用OpenAI的Embedding Model做嵌入
-    location=":memory:",  # in-memory 存储
-    collection_name="my_documents",) # 指定collection_name
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 3.Store 将分割嵌入并存储在矢量数据库Qdrant中</span>
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>vectorstores <span class="token keyword">import</span> Qdrant
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>embeddings <span class="token keyword">import</span> OpenAIEmbeddings
+vectorstore <span class="token operator">=</span> Qdrant<span class="token punctuation">.</span>from_documents<span class="token punctuation">(</span>
+    documents<span class="token operator">=</span>chunked_documents<span class="token punctuation">,</span> <span class="token comment"># 以分块的文档</span>
+    embedding<span class="token operator">=</span>OpenAIEmbeddings<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># 用OpenAI的Embedding Model做嵌入</span>
+    location<span class="token operator">=</span><span class="token string">":memory:"</span><span class="token punctuation">,</span>  <span class="token comment"># in-memory 存储</span>
+    collection_name<span class="token operator">=</span><span class="token string">"my_documents"</span><span class="token punctuation">,</span><span class="token punctuation">)</span> <span class="token comment"># 指定collection_name</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>目前，易速鲜花的所有内部文档，都以“文档块嵌入片”的格式被存储在向量数据库里面了。那么，我们只需要查询这个向量数据库，就可以找到大体上相关的信息了。</p>
@@ -254,81 +254,81 @@ vectorstore = Qdrant.from_documents(
 <p>这两种方法都被广泛应用于各种机器学习和人工智能任务中，选择哪一种方法取决于具体的应用场景。</p>
 <p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202312/32db77431433da86d9f818037752bd7a.png"></p>
 <p>当然这里你肯定会问了，那么到底什么时候选择欧式距离，什么时候选择余弦相似度呢？</p>
-<p>简单来说，关心数量等大小差异时用欧氏距离，关心文本等语义差异时用余弦相似度。</p>
+<p>简单来说，<strong>关心数量等大小差异时用欧氏距离，关心文本等语义差异时用余弦相似度。</strong></p>
 <p>具体来说，欧氏距离度量的是绝对距离，它能很好地反映出向量的绝对差异。当我们关心数据的绝对大小，例如在物品推荐系统中，用户的购买量可能反映他们的偏好强度，此时可以考虑使用欧氏距离。同样，在数据集中各个向量的大小相似，且数据分布大致均匀时，使用欧氏距离也比较适合。</p>
 <p>余弦相似度度量的是方向的相似性，它更关心的是两个向量的角度差异，而不是它们的大小差异。在处理文本数据或者其他高维稀疏数据的时候，余弦相似度特别有用。比如在信息检索和文本分类等任务中，文本数据往往被表示为高维的词向量，词向量的方向更能反映其语义相似性，此时可以使用余弦相似度。</p>
 <p>在这里，我们正在处理的是文本数据，目标是建立一个问答系统，需要从语义上理解和比较问题可能的答案。因此，我建议使用余弦相似度作为度量标准。通过比较问题和答案向量在语义空间中的方向，可以找到与提出的问题最匹配的答案。</p>
 <p>在这一步的代码部分，我们会创建一个聊天模型。然后需要创建一个 RetrievalQA 链，它是一个检索式问答模型，用于生成问题的答案。</p>
-<p>在RetrievalQA 链中有下面两大重要组成部分。</p>
+<p>在 RetrievalQA 链中有下面两大重要组成部分。</p>
 <ul>
 <li>LLM是大模型，负责回答问题。</li>
 <li>retriever（vectorstore.as_retriever()）负责根据问题检索相关的文档，找到具体的“嵌入片”。这些“嵌入片”对应的“文档块”就会作为知识信息，和问题一起传递进入大模型。本地文档中检索而得的知识很重要，因为 <strong>从互联网信息中训练而来的大模型不可能拥有“易速鲜花”作为一个私营企业的内部知识</strong>。</li>
 </ul>
 <p>具体代码如下：</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 4. Retrieval 准备模型和Retrieval链
-import logging # 导入Logging工具
-from langchain.chat_models import ChatOpenAI # ChatOpenAI模型
-from langchain.retrievers.multi_query import MultiQueryRetriever # MultiQueryRetriever工具
-from langchain.chains import RetrievalQA # RetrievalQA链
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 4. Retrieval 准备模型和Retrieval链</span>
+<span class="token keyword">import</span> logging <span class="token comment"># 导入Logging工具</span>
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chat_models <span class="token keyword">import</span> ChatOpenAI <span class="token comment"># ChatOpenAI模型</span>
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>retrievers<span class="token punctuation">.</span>multi_query <span class="token keyword">import</span> MultiQueryRetriever <span class="token comment"># MultiQueryRetriever工具</span>
+<span class="token keyword">from</span> langchain<span class="token punctuation">.</span>chains <span class="token keyword">import</span> RetrievalQA <span class="token comment"># RetrievalQA链</span>
 
-# 设置Logging
-logging.basicConfig()
-logging.getLogger('langchain.retrievers.multi_query').setLevel(logging.INFO)
+<span class="token comment"># 设置Logging</span>
+logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span><span class="token string">'langchain.retrievers.multi_query'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>setLevel<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>INFO<span class="token punctuation">)</span>
 
-# 实例化一个大模型工具 - OpenAI的GPT-3.5
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+<span class="token comment"># 实例化一个大模型工具 - OpenAI的GPT-3.5</span>
+llm <span class="token operator">=</span> ChatOpenAI<span class="token punctuation">(</span>model_name<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
 
-# 实例化一个MultiQueryRetriever
-retriever_from_llm = MultiQueryRetriever.from_llm(retriever=vectorstore.as_retriever(), llm=llm)
+<span class="token comment"># 实例化一个MultiQueryRetriever</span>
+retriever_from_llm <span class="token operator">=</span> MultiQueryRetriever<span class="token punctuation">.</span>from_llm<span class="token punctuation">(</span>retriever<span class="token operator">=</span>vectorstore<span class="token punctuation">.</span>as_retriever<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> llm<span class="token operator">=</span>llm<span class="token punctuation">)</span>
 
-# 实例化一个RetrievalQA链
-qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm)
+<span class="token comment"># 实例化一个RetrievalQA链</span>
+qa_chain <span class="token operator">=</span> RetrievalQA<span class="token punctuation">.</span>from_chain_type<span class="token punctuation">(</span>llm<span class="token punctuation">,</span>retriever<span class="token operator">=</span>retriever_from_llm<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>现在我们已经为后续的步骤做好了准备，下一步就是接收来自系统用户的具体问题，并根据问题检索信息，生成回答。</p>
 <h2 id="生成回答并展示"><a href="#生成回答并展示" class="headerlink" title="生成回答并展示"></a>生成回答并展示</h2><p>这一步是问答系统应用的主要UI交互部分，这里会创建一个 Flask 应用（需要安装Flask包）来接收用户的问题，并生成相应的答案，最后通过 index.html 对答案进行渲染和呈现。</p>
 <p>在这个步骤中，我们使用了之前创建的 RetrievalQA 链来获取相关的文档和生成答案。然后，将这些信息返回给用户，显示在网页上。</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain"># 5. Output 问答系统的UI实现
-from flask import Flask, request, render_template
-app = Flask(__name__) # Flask APP
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 5. Output 问答系统的UI实现</span>
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> request<span class="token punctuation">,</span> render_template
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span> <span class="token comment"># Flask APP</span>
 
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    if request.method == 'POST':
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">home</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
 
-        # 接收用户输入作为问题
-        question = request.form.get('question')
+        <span class="token comment"># 接收用户输入作为问题</span>
+        question <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'question'</span><span class="token punctuation">)</span>
 
-        # RetrievalQA链 - 读入问题，生成答案
-        result = qa_chain(&#123;"query": question&#125;)
+        <span class="token comment"># RetrievalQA链 - 读入问题，生成答案</span>
+        result <span class="token operator">=</span> qa_chain<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"query"</span><span class="token punctuation">:</span> question<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 
-        # 把大模型的回答结果返回网页进行渲染
-        return render_template('index.html', result=result)
+        <span class="token comment"># 把大模型的回答结果返回网页进行渲染</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'index.html'</span><span class="token punctuation">,</span> result<span class="token operator">=</span>result<span class="token punctuation">)</span>
 
-    return render_template('index.html')
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'index.html'</span><span class="token punctuation">)</span>
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0',debug=True,port=5000)
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'0.0.0.0'</span><span class="token punctuation">,</span>debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>port<span class="token operator">=</span><span class="token number">5000</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>相关HTML网页的关键代码如下：</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">&lt;body>
-    &lt;div class="container">
-        &lt;div class="header">
-            &lt;h1>易速鲜花内部问答系统&lt;/h1>
-            &lt;img src="&#123;&#123; url_for('static', filename='flower.png') &#125;&#125;" alt="flower logo" width="200">
-        &lt;/div>
-        &lt;form method="POST">
-            &lt;label for="question">Enter your question:&lt;/label>&lt;br>
-            &lt;input type="text" id="question" name="question">&lt;br>
-            &lt;input type="submit" value="Submit">
-        &lt;/form>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>易速鲜花内部问答系统<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; url_for('static', filename='flower.png') &#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flower logo<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>question<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Enter your question:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>question<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>question<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
         &#123;% if result is defined %&#125;
-            &lt;h2>Answer&lt;/h2>
-            &lt;p>&#123;&#123; result.result &#125;&#125;&lt;/p>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>Answer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>&#123;&#123; result.result &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
         &#123;% endif %&#125;
-    &lt;/div>
-&lt;/body>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这个项目的目录结构如下：</p>
@@ -353,7 +353,8 @@ if __name__ == "__main__":
 <li>HuggingFace官网上的 <a target="_blank" rel="noopener" href="https://huggingface.co/tasks/document-question-answering">文档问答</a> 资源</li>
 <li>论文 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.10439">开放式表格与文本问题回答</a>，Chen, W., Chang, M.-W., Schlinger, E., Wang, W., &amp; Cohen, W. W. (2021). Open Question Answering over Tables and Text. ICLR 2021.</li>
 </ol>
-</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#02%EF%BD%9C%E7%94%A8LangChain%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%9F%BA%E4%BA%8E%E2%80%9C%E6%98%93%E9%80%9F%E9%B2%9C%E8%8A%B1%E2%80%9D%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">项目及实现框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%86%E5%A4%87%E5%92%8C%E8%BD%BD%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text">数据的准备和载入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%9A%84%E5%88%86%E5%89%B2"><span class="toc-number">1.3.</span> <span class="toc-text">文本的分割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.</span> <span class="toc-text">向量数据库存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-number">1.5.</span> <span class="toc-text">相关信息的获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%9B%9E%E7%AD%94%E5%B9%B6%E5%B1%95%E7%A4%BA"><span class="toc-number">1.6.</span> <span class="toc-text">生成回答并展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.7.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.8.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="toc-number">1.9.</span> <span class="toc-text">延伸阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+<hr>
+<iframe width="100%"  frameborder=1 height=500px src="https://time.geekbang.org/comment/nice/699436" > </iframe></article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#02%EF%BD%9C%E7%94%A8LangChain%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%9F%BA%E4%BA%8E%E2%80%9C%E6%98%93%E9%80%9F%E9%B2%9C%E8%8A%B1%E2%80%9D%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">02｜用LangChain快速构建基于“易速鲜花”本地知识库的智能问答系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%8F%8A%E5%AE%9E%E7%8E%B0%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">项目及实现框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%86%E5%A4%87%E5%92%8C%E8%BD%BD%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text">数据的准备和载入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%9A%84%E5%88%86%E5%89%B2"><span class="toc-number">1.3.</span> <span class="toc-text">文本的分割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.</span> <span class="toc-text">向量数据库存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-number">1.5.</span> <span class="toc-text">相关信息的获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%9B%9E%E7%AD%94%E5%B9%B6%E5%B1%95%E7%A4%BA"><span class="toc-number">1.6.</span> <span class="toc-text">生成回答并展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.7.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.8.</span> <span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="toc-number">1.9.</span> <span class="toc-text">延伸阅读</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {
     getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')

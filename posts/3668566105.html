@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？你好，我是南柯。 今天开始，我们正式进入AI绘画理论阶段的学习。我会带你理解图像生成模型背后的算法原理，掌握AI绘画主流算法方案背后通用的算法模块，并带你从零到一训练一个扩散模型。 基于扩散模型的AI绘画技术是我们这门课的主题，但其实在22年以前，GAN才是业界公认的AI绘画技术首选。在老一辈的AI画图中，GAN（生成对抗网络）可以说是唯一的选择。相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3668566105.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？你好，我是南柯。 今天开始，我们正式进入AI绘画理论阶段的学习。我会带你理解图像生成模型背后的算法原理，掌握AI绘画主流算法方案背后通用的算法模块，并带你从零到一训练一个扩散模型。 基于扩散模型的AI绘画技术是我们这门课的主题，但其实在22年以前，GAN才是业界公认的AI绘画技术首选。在老一辈的AI画图中，GAN（生成对抗网络）可以说是唯一的选择。相">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.034Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3668566105"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="05｜-旧画师GAN：天生有缺陷还是学艺不精湛？"><a href="#05｜-旧画师GAN：天生有缺陷还是学艺不精湛？" class="headerlink" title="05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？"></a>05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？</h1><p>你好，我是南柯。</p>
+<p>今天开始，我们正式进入AI绘画理论阶段的学习。我会带你理解图像生成模型背后的算法原理，掌握AI绘画主流算法方案背后通用的算法模块，并带你从零到一训练一个扩散模型。</p>
+<p>基于扩散模型的AI绘画技术是我们这门课的主题，但其实在22年以前，GAN才是业界公认的AI绘画技术首选。在老一辈的AI画图中，GAN（生成对抗网络）可以说是唯一的选择。相信你也在各种社交软件上见到过各种变小孩、变老、性别变换的视觉特效，这类效果通常就是靠GAN完成的。</p>
+<p>然而，随着22年DALL-E 2、Stable Diffusion的推出，扩散模型技术逐渐成为了AI绘画的主流技术。无论是绘画细节的精致度还是内容的多样性，扩散模型似乎都要优于GAN。</p>
+<p>即便如此，对于入门AI绘画知识体系而言，GAN仍然是绕不开的话题，值得我们深入了解。因为搞懂了GAN的长处和短板，才能理解后来扩散模型解决了GAN的哪些痛点。而且今天我们要学的各种算法模型，也是面试中常常会问到的。</p>
+<p>在正式探索基于扩散模型的AI绘画技术之前，我们用这一讲来重温旧画师GAN，探讨GAN如何从兴起到高光，并简要回顾GAN发展史上那些里程碑式的技术。</p>
+<h2 id="GAN的起源"><a href="#GAN的起源" class="headerlink" title="GAN的起源"></a>GAN的起源</h2><p>下面我放了两张例子。第一个例子是张大千模仿石涛的画作，第二个例子是贝特莱奇14岁时仿照毕加索的画作。假如你是艺术鉴赏家，能否发现这些仿作的破绽呢？</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b90db198yy2937a8e5a697006d5e2930.jpg"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/fdfaae42d842f7cf88e0d2efe4750dc4.jpg"></p>
+<p>事实上，名画伪造家和艺术鉴赏家之间的较量，酷似GAN中生成器与判别器之间的对抗。接下来，就让我们一起揭开GAN背后的奥秘。</p>
+<p>故事还要从“遥远”的2014年说起。那时候，Ian Goodfellow等人提出了生成对抗网络——也就是GAN这个全新的概念。</p>
+<p>当时的深度神经网络通常需要收集图像样本和目标标签，比如分类任务的标签就是类别信息、年龄回归任务的标签就是年龄数值。通常通过交叉熵损失来训练分类任务，通过数值误差损失（比如L1损失和L2损失）来训练回归任务。</p>
+<p>而GAN的思路则完全不同。GAN模型由两个模块构成，也就是常说的生成器（Generator）和判别器（Discriminator）。可以这样类比，生成器是一位名画伪造家，目标是创作出逼真的艺术品，判别器是一位艺术鉴赏家，目标是从细节中找出伪造破绽。生成器与判别器在模型训练的过程中持续更新与对抗，最终达到平衡。</p>
+<p>你可以看下面的伪代码，加深对GAN这种对抗训练思想的理解。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> batch_data <span class="token keyword">in</span> data_loader<span class="token punctuation">:</span>
+        <span class="token comment"># 更新判别器</span>
+        real_images <span class="token operator">=</span> batch_data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        z <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span> latent_dim<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        fake_images <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        d_loss_real <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>real_images<span class="token punctuation">)</span>
+        d_loss_fake <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>fake_images<span class="token punctuation">)</span>
+        <span class="token comment"># 判别器损失</span>
+        d_loss <span class="token operator">=</span> <span class="token operator">-</span><span class="token punctuation">(</span>torch<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>d_loss_real<span class="token punctuation">)</span> <span class="token operator">-</span> torch<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>d_loss_fake<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        discriminator<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        d_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        discriminator_optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 更新生成器</span>
+        z <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span> latent_dim<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        fake_images <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">)</span>
+        g_loss <span class="token operator">=</span> <span class="token operator">-</span>torch<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>fake_images<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        generator<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        g_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        generator_optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在每个训练周期内，对于每个批次的数据是这样处理的。</p>
+<p>1.首先更新判别器，将真实图像和生成器生成的假图像输入到判别器中，计算真实图像的损失和生成图像的损失。通过反向传播更新判别器的参数，也就是利用梯度下降类的算法更新模型的权重。</p>
+<p>2.接着更新生成器。生成一批随机噪声输入到生成器中生成图像，再将生成的图像输入到判别器中计算损失，之后反向传播更新生成器的参数。</p>
+<p>3.重复以上步骤进行多个训练周期，直到达到预定的训练次数。</p>
+<p>在上面代码中，关于判别器损失的计算你可能会有疑问，我这就为你解释一下。我们已经知道，判别器的目标是区分真实图像和生成图像，因此损失函数的设计是通过 <strong>最大化真实图像的损失（d_loss_real）和最小化生成图像的损失（d_loss_fake）</strong> 来实现的。</p>
+<p>torch.mean(d_loss_real)计算了真实图像的平均损失，而torch.mean(d_loss_fake)计算了生成图像的平均损失。在这里，我们用减号将两个损失相减，是为了实现最大化真实图像损失和最小化生成图像损失的效果。通过这样的设计，我们希望判别器能够更好地区分真实图像和生成图像，从而提高生成器生成逼真图像的能力。</p>
+<p>GAN最初的故事咱们就说到这里，它的精髓在于对抗训练思想。GAN通过生成器和判别器的竞争和学习，使得生成的图像逐渐趋近于真实图像。在现实世界中，GAN的应用场景广泛，包括图像合成、图像修复、图像风格转换等。</p>
+<h2 id="走向高光的GAN"><a href="#走向高光的GAN" class="headerlink" title="走向高光的GAN"></a>走向高光的GAN</h2><p>最初的GAN并没有走进大众的视野，主要是因为GAN模型存在一些问题，比如同时训练生成器和判别器的过程并不稳定，最初的生成器生成内容不能被指定，生成的图像分辨率较低，模型推理在手机等设备上用时过长等等。</p>
+<p>从14年GAN被提出以来，随着上面提到的这些问题逐一得到解决，GAN的发展经历了一系列的重要改进，终于迎来了它的高光时刻。那GAN是如何从平凡到卓越的呢？我们这就来看看。</p>
+<h3 id="图像生成能力的进化：DCGAN-CGAN-WGAN"><a href="#图像生成能力的进化：DCGAN-CGAN-WGAN" class="headerlink" title="图像生成能力的进化：DCGAN&#x2F;CGAN&#x2F;WGAN"></a>图像生成能力的进化：DCGAN&#x2F;CGAN&#x2F;WGAN</h3><p>最初的GAN模型使用全连接神经网络，对于图像生成任务来说，学习图像的空间结构和局部特征是非常困难的。</p>
+<p>但2015年由Radford等人提出的 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1511.06434.pdf">深度卷积GAN（DCGAN）</a> 给GAN带来了进化可能。主要创新就是引入卷积神经网络（CNN）结构，通过卷积层和反卷积层替代全连接层，使得生成器和判别器能够感知和利用图像的局部关系，更好地处理图像数据，从而生成更逼真的图像。</p>
+<p>DCGAN的优点在于它的稳定性和生成效果。通过使用卷积神经网络，DCGAN能够更好地保持图像的空间结构和细节信息，生成的图像质量更高。此外，DCGAN的架构设计也为后续的GAN改进工作提供了重要的基础。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/9e670cdc2d08d1409e10a5e9df656258.jpg"></p>
+<p><a target="_blank" rel="noopener" href="https://readpaper.com/pdf-annotate/note?pdfId=4500170052153794561&noteId=1848651293424178944">条件GAN</a>，简称cGAN，允许我们在生成图像的过程中引入额外的条件信息。这样一来，我们可以控制生成图像的特征，比如生成特定类别的图像。比如在上面的数字图中，普通的GAN无法提前指定生成的数字是0到9中的哪一个，而cGAN便可以轻松控制要生成的数字是几。</p>
+<p><a target="_blank" rel="noopener" href="https://readpaper.com/pdf-annotate/note?pdfId=4665126035419840513&noteId=1848652981780710144">Wasserstein GAN</a>，简称wGAN，是另一个重要的改进，它通过使用Wasserstein距离（瓦瑟斯坦距离，也被称为地面距离）来衡量生成图像和真实图像之间的差异，这样就能提升训练的稳定性和生成图像的质量。</p>
+<p>Wasserstein距离用于比较两个概率分布之间的差异，量化了将一个分布转换为另一个分布所需的最小工作量。</p>
+<p>这么说有点抽象，我再举个形象的例子帮你理解，假设我们有两堆沙子，一堆沙子分布在一个地方，另一堆沙子分布在另一个地方。现在我们想将第一堆沙子移动到第二堆沙子的位置，但我们只能以一定的速度和固定的容器大小来移动沙子。Wasserstein距离就是将第一堆沙子移动到第二堆沙子所需的最小总移动成本。在wGAN中，这两堆沙子就是真实数据分布和生成数据分布。</p>
+<p>cGAN和wGAN生成图像的分辨率很低，分辨率提升是图像生成领域一个持续研究的方向，后来的 <a target="_blank" rel="noopener" href="https://readpaper.com/pdf-annotate/note?pdfId=4500186031072108545&noteId=1848670213424382720">PGGAN</a>、 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1809.11096">BigGAN</a>、 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1812.04948">StyleGAN</a> 等工作，将生成图像的分辨率提高了1024x1024分辨率之上。这个我们之后再讲。</p>
+<h3 id="手机端实时特效：从Pix2Pix到CycleGAN"><a href="#手机端实时特效：从Pix2Pix到CycleGAN" class="headerlink" title="手机端实时特效：从Pix2Pix到CycleGAN"></a>手机端实时特效：从Pix2Pix到CycleGAN</h3><p><a target="_blank" rel="noopener" href="https://readpaper.com/pdf-annotate/note?pdfId=4500178853162541057&noteId=1848681503787931392">Pix2Pix</a> 系列工作延续了cGAN的思想，将cGAN的条件换成了与原图尺寸大小相同的图片，可以实现类似轮廓图转真实图片、黑白图转彩色图等效果。是不是听起来很熟悉？没错，就是GAN时代的ControlNet！</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/ebe7925deea4ff2f11063a35600fc598.jpg"></p>
+<p>Pix2Pix最大的缺点就是训练需要大量目标图像与输入图像的图像对，优点是模型可以做到很轻很快，甚至能在很低端的手机上也能达到实时效果。从18年至今，我们在短视频平台上看到的各种实时变脸特效，比如年龄转换、性别编辑等特效，都是基于这个技术。</p>
+<p>那么问题来了，获取成对的数据是困难且耗时的，那大量成对数据该怎么来呢？答案就是大名鼎鼎的 <a target="_blank" rel="noopener" href="https://junyanz.github.io/CycleGAN/">CycleGAN</a>。2017年Jun-Yan Zhu等人提出了CycleGAN，也就是循环一致性生成对抗网络。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/56927b7896feb8fe104d95da335f20a2.jpg"></p>
+<p>CycleGAN的核心要点就是让两个不同领域的图像可以互相转换。它有两个生成器，分别是G（A→B）和G（B→A），它们的任务是把A领域的图像变成B领域的，反之亦然。同时，还有两个判别器，D_A和D_B，负责分辨A和B领域里的真实图像和生成的图像。</p>
+<p>CycleGAN的关键点在于循环一致性损失。这个方法把原图像转换到目标领域，然后再转换回原来的领域，就可以确保生成的图像跟原图像差别不大。这种循环一致性约束让图像转换有了双向的一致性。我举个例子你就明白了，先把马变成斑马，再恢复成马，最后的图像应该跟原来的马图像很相似。</p>
+<p>CycleGAN的优势是不需要成对的训练数据便可以实现图像转换，在很多图像转换任务上都表现得非常出色，比如风景、动物、风格等转换。再加上Pix2Pix，CycleGAN简直是制作短视频特效的神器。</p>
+<h3 id="高分辨率的生成：StyleGAN系列工作"><a href="#高分辨率的生成：StyleGAN系列工作" class="headerlink" title="高分辨率的生成：StyleGAN系列工作"></a>高分辨率的生成：StyleGAN系列工作</h3><p>之后，英伟达在2018年提出的生成对抗网络模型StyleGAN，彻底改变了GAN在图像合成和风格迁移方面的应用前景。与传统的GAN模型相比，StyleGAN在图像生成的质量、多样性和可控性方面取得了显著的突破。</p>
+<p>StyleGAN的核心思想是用风格向量来控制生成图像的各种属性特点，并通过自适应实例归一化（AdaIN）把风格向量和生成器的特征图结合在一起。另外，用渐进式的生成器结构逐渐提高分辨率，这样可以提高训练的稳定性和生成图像的质量。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/9d9e2667a3a45e692aac942884f13bd2.jpg"></p>
+<p>StyleGAN的应用非常广泛。它不仅可以用于生成高分辨率的逼真图像，还可以用于风格迁移、图像编辑和人脸合成等任务。StyleGAN生成的图像质量非常高，具有细致的纹理、自然的细节和丰富的变化，可用于各种创作、设计和研究领域。</p>
+<p>StyleGAN 2和StyleGAN 3是StyleGAN的改进版本。它在StyleGAN的基础上引入了一系列重要的改进，进一步提升了图像生成的质量、稳定性和控制性。</p>
+<p>另外还有一种叫做超分辨率生成对抗网络（SRGAN）的模型，它的目标是将低分辨率图像转换成高分辨率的图像。</p>
+<p>讲到这估计你也发现了，GAN类型的生成模型非常多，我这里给你分享的是最有影响力的模型，对于其他GAN模型，有兴趣的话你可以了解下BigGAN、StarGAN、Progressive GAN等模型。</p>
+<h2 id="GAN的应用场景"><a href="#GAN的应用场景" class="headerlink" title="GAN的应用场景"></a>GAN的应用场景</h2><p>无论过去还是现在，在图像生成、编辑和风格化领域，GAN都占据着非常重要的地位，而且是生成模型发展的重要里程碑。</p>
+<h3 id="图像生成"><a href="#图像生成" class="headerlink" title="图像生成"></a>图像生成</h3><p>GAN可以生成各种类型的图像，包括自然风景、人脸、动物等。通过训练生成器网络，GAN能够从随机噪声中生成逼真的图像，为艺术创作、虚拟场景生成、游戏开发等领域提供了强大的工具。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/66f88e6b6968e006549b4b7610466938.jpg"></p>
+<h3 id="图像局部编辑"><a href="#图像局部编辑" class="headerlink" title="图像局部编辑"></a>图像局部编辑</h3><p>GAN可以通过生成器网络实现对图像局部的编辑。通过将输入图像和编辑向量结合，可以精确地控制生成器网络，在特定区域编辑图像，比如改变图像的颜色、纹理或形状。这为图像编辑和修复提供了一种更加灵活和高效的方式。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/4cf074db7468143ca084518d39ed0041.jpg"></p>
+<h3 id="图像风格化"><a href="#图像风格化" class="headerlink" title="图像风格化"></a>图像风格化</h3><p>GAN可以将图像转换为具有不同艺术风格的图像。通过训练一个生成器网络，可以将输入图像转换为特定风格的图像，如印象派、油画、水彩画等。这种图像风格化技术，广泛应用于艺术创作、图像处理和社交媒体滤镜等领域。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/25104ece4c97c9c0ef27e0351100b4f8.jpg"></p>
+<h3 id="老照片修复"><a href="#老照片修复" class="headerlink" title="老照片修复"></a>老照片修复</h3><p>另外，GAN可以用于修复老照片中的损坏或模糊的部分。通过训练生成器网络，GAN可以学习恢复损坏图像的细节和纹理，并生成高质量的修复结果。这在数字文化遗产保护和历史文档修复等领域具有重要的应用意义。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b52acb79c9d887790a176eac55cbcb75.jpg"></p>
+<h2 id="与扩散模型狭路相逢"><a href="#与扩散模型狭路相逢" class="headerlink" title="与扩散模型狭路相逢"></a>与扩散模型狭路相逢</h2><p>尽管GAN逐渐走向高光，高分辨率生成、可控编辑能力等问题也得到了解决，GAN仍然存在着局限性。GAN的局限性主要表现在训练不稳定性、生成图像模糊、难以评估和控制生成质量等问题。此外，在图像风格化、图像编辑等任务中，通常是每个任务一个GAN。训练成本、数据需求量、使用场景局限性都是实际工作中的痛点。</p>
+<p>而扩散模型在很大程度上解决了GAN的痛点。其实扩散模型并不是这两年的新鲜事，实际上，早在2015年就有人提出了图像扩散模型的概念。而GAN是2014年！二者几乎是前后脚同时提出的。</p>
+<p>2021年之前GAN一直在图像生成领域处于制霸地位，直到2021年10月，一篇名为“ <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2105.05233">扩散模型在图像生成领域击败了GAN</a>” 的文章横空出世，扩散模型在图像生成领域的潜力才广为人知。</p>
+<p>后来OpenAI的Glide、DALL-E 2，Google的Imagen、Parti，还有广为人知的Stable Diffusion、Midjourney，更是把基于扩散模型的AI绘画推向了新的高度。关于扩散模型，下一讲我们再深入探讨。</p>
+<h2 id="GAN能否东山再起？"><a href="#GAN能否东山再起？" class="headerlink" title="GAN能否东山再起？"></a>GAN能否东山再起？</h2><p>有意思的是，热衷于GAN的研究人员并没有放弃。就在2023年3月，Adobe的学者提出了GigaGAN, 一个新的GAN架构。一听这个名字，就有一种大模型的味道。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/4f06153da946ec53e171353d56bac3f0.jpg"></p>
+<p>GigaGAN是一种具有突破性的GAN模型，它通过扩大模型规模，在多个方面展现了卓越的优势。比如，对于512分辨率图像的合成，仅需要0.13秒的推理速度，这比现有的工作在推理速度上高出了一个数量级。并且GigaGAN可以合成更高分辨率的图像，生成1600万像素的图像仅需3.66秒。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/503238a43497e42ce61039e5c7a552c2.jpg"></p>
+<p>我们再来看看GAN领域的另一位明星——DragGAN。实际上，DragGAN是一种交互式图像操作方法，为各种GAN开发提供了一种神奇的功能，我们用鼠标简单拉伸图像，就能够生成全新的图像。</p>
+<p>使用DragGAN非常简单，用户只需要设置一个起始点、一个目标点，以及希望修改的区域。接下来，模型会进行运动监督和点跟踪这两个步骤的迭代，然后修改原始图像。这种交互式的操作方式让图像的编辑变得非常直观和有趣。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>这一讲，我们认识了生成对抗网络（GAN），了解了GAN的基本算法原理，还学习了经典的GAN算法和它的应用场景，比如图像生成、局部编辑、图像风格化、老照片修复等。</p>
+<p>之后我们也探讨了GAN的局限性，这对我们后续学习和理解扩散模型也很有帮助。即便在扩散模型风靡的今天，GAN的改进版例如GigaGAN和DragGAN仍展示出令人惊叹的创新和功能。在AI绘画这个快速发展的领域中，我们也期待GAN技术能够取得更大的突破和进步，为我们带来更加出色的图像生成和编辑能力。</p>
+<p>我把今天的重点内容梳理成了知识导图，供你参考复习。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/7117a324d7fc5902a3edeb10228213c9.jpg"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>在基于扩散模型的AI绘画时代到来之前，你还见过哪些有意思的GAN的应用？背后的技术原理是怎样的？</p>
+<p>欢迎你在留言区和我交流互动，如果这一讲对你有启发，别忘了分享给身边更多朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#05%EF%BD%9C-%E6%97%A7%E7%94%BB%E5%B8%88GAN%EF%BC%9A%E5%A4%A9%E7%94%9F%E6%9C%89%E7%BC%BA%E9%99%B7%E8%BF%98%E6%98%AF%E5%AD%A6%E8%89%BA%E4%B8%8D%E7%B2%BE%E6%B9%9B%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">1.1.</span> <span class="toc-text">GAN的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B0%E5%90%91%E9%AB%98%E5%85%89%E7%9A%84GAN"><span class="toc-number">1.2.</span> <span class="toc-text">走向高光的GAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E8%83%BD%E5%8A%9B%E7%9A%84%E8%BF%9B%E5%8C%96%EF%BC%9ADCGAN-CGAN-WGAN"><span class="toc-number">1.2.1.</span> <span class="toc-text">图像生成能力的进化：DCGAN&#x2F;CGAN&#x2F;WGAN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E7%AB%AF%E5%AE%9E%E6%97%B6%E7%89%B9%E6%95%88%EF%BC%9A%E4%BB%8EPix2Pix%E5%88%B0CycleGAN"><span class="toc-number">1.2.2.</span> <span class="toc-text">手机端实时特效：从Pix2Pix到CycleGAN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87%E7%9A%84%E7%94%9F%E6%88%90%EF%BC%9AStyleGAN%E7%B3%BB%E5%88%97%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.2.3.</span> <span class="toc-text">高分辨率的生成：StyleGAN系列工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.3.</span> <span class="toc-text">GAN的应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">图像生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%B1%80%E9%83%A8%E7%BC%96%E8%BE%91"><span class="toc-number">1.3.2.</span> <span class="toc-text">图像局部编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E5%8C%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">图像风格化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%81%E7%85%A7%E7%89%87%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.3.4.</span> <span class="toc-text">老照片修复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%8B%AD%E8%B7%AF%E7%9B%B8%E9%80%A2"><span class="toc-number">1.4.</span> <span class="toc-text">与扩散模型狭路相逢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN%E8%83%BD%E5%90%A6%E4%B8%9C%E5%B1%B1%E5%86%8D%E8%B5%B7%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">GAN能否东山再起？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.6.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

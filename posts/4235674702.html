@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>11 | NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="11 |   NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？你好，我是唐扬。 前几节课，我带你了解了在你的垂直电商项目中，如何将传统的关系型数据库改造成分布式存储服务，以抵抗高并发和大流量的冲击。 对于存储服务来说，我们一般会从两个方面对它做改造： 1.提升它的读写性能，尤其是读性能，因为我们面对的多是一些读多写少的产品。比方说，你离不开的微信朋友圈、微博和淘宝，都是查询QPS远远大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11 | NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/4235674702.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="11 |   NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？你好，我是唐扬。 前几节课，我带你了解了在你的垂直电商项目中，如何将传统的关系型数据库改造成分布式存储服务，以抵抗高并发和大流量的冲击。 对于存储服务来说，我们一般会从两个方面对它做改造： 1.提升它的读写性能，尤其是读性能，因为我们面对的多是一些读多写少的产品。比方说，你离不开的微信朋友圈、微博和淘宝，都是查询QPS远远大">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:10:53.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:24.188Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/4235674702"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '11 | NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">11 | NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="11-NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？"><a href="#11-NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？" class="headerlink" title="11 |   NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？"></a>11 |   NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？</h1><p>你好，我是唐扬。</p>
+<p>前几节课，我带你了解了在你的垂直电商项目中，如何将传统的关系型数据库改造成分布式存储服务，以抵抗高并发和大流量的冲击。</p>
+<p>对于存储服务来说，我们一般会从两个方面对它做改造：</p>
+<p>1.提升它的读写性能，尤其是读性能，因为我们面对的多是一些读多写少的产品。比方说，你离不开的微信朋友圈、微博和淘宝，都是查询QPS远远大于写入QPS。</p>
+<p>2.增强它在存储上的扩展能力，从而应对大数据量的存储需求。</p>
+<p>我之前带你学习的读写分离和分库分表就是从这两方面出发，改造传统的关系型数据库的，但仍有一些问题无法解决。</p>
+<p>比如，在微博项目中关系的数据量达到了千亿，那么即使分隔成1024个库表，每张表的数据量也达到了亿级别，并且关系的数据量还在以极快的速度增加，即使你分隔成再多的库表，数据量也会很快增加到瓶颈。这个问题用传统数据库很难根本解决，因为它在扩展性方面是很弱的，这时，就可以利用NoSQL，因为它有着天生分布式的能力，能够提供优秀的读写性能，可以很好地补充传统关系型数据库的短板。那么它是如何做到的呢？</p>
+<p>这节课，我就还是以你的垂直电商系统为例，带你掌握如何用NoSQL数据库和关系型数据库互补，共同承担高并发和大流量的冲击。</p>
+<p>首先，我们先来了解一下NoSQL数据库。</p>
+<h2 id="NoSQL，No-SQL？"><a href="#NoSQL，No-SQL？" class="headerlink" title="NoSQL，No SQL？"></a>NoSQL，No SQL？</h2><p>NoSQL想必你很熟悉，它指的是不同于传统的关系型数据库的其他数据库系统的统称，它不使用SQL作为查询语言，提供优秀的横向扩展能力和读写性能，非常契合互联网项目高并发大数据的特点。所以一些大厂，比如小米、微博、陌陌都很倾向使用它来作为高并发大容量的数据存储服务。</p>
+<p>NoSQL数据库发展到现在，十几年间，出现了多种类型，我来给你举几个例子：</p>
+<ul>
+<li><p>Redis、LevelDB这样的KV存储。这类存储相比于传统的数据库的优势是极高的读写性能，一般对性能有比较高的要求的场景会使用。</p>
+</li>
+<li><p>Hbase、Cassandra这样的列式存储数据库。这种数据库的特点是数据不像传统数据库以行为单位来存储，而是以列来存储，适用于一些离线数据统计的场景。</p>
+</li>
+<li><p>像MongoDB、CouchDB这样的文档型数据库。这种数据库的特点是Schema Free（模式自由），数据表中的字段可以任意扩展，比如说电商系统中的商品有非常多的字段，并且不同品类的商品的字段也都不尽相同，使用关系型数据库就需要不断增加字段支持，而用文档型数据库就简单很多了。</p>
+</li>
+</ul>
+<p>在NoSQL数据库刚刚被应用时，它被认为是可以替代关系型数据库的银弹，在我看来，也许因为以下几个方面的原因：</p>
+<ul>
+<li>弥补了传统数据库在性能方面的不足；</li>
+<li>数据库变更方便，不需要更改原先的数据结构；</li>
+<li>适合互联网项目常见的大数据量的场景；</li>
+</ul>
+<p>不过，这种看法是个误区，因为慢慢地我们发现在业务开发的场景下还是需要利用SQL语句的强大的查询功能以及传统数据库事务和灵活的索引等功能，NoSQL只能作为一些场景的补充。</p>
+<p>那么接下来，我就带你了解 <strong>NoSQL数据库是如何做到与关系数据库互补的。</strong> 了解这部分内容，你可以在实际项目中更好地使用NoSQL数据库补充传统数据库的不足。</p>
+<p>首先，我们来关注一下数据库的写入性能。</p>
+<h2 id="使用NoSQL提升写入性能"><a href="#使用NoSQL提升写入性能" class="headerlink" title="使用NoSQL提升写入性能"></a>使用NoSQL提升写入性能</h2><p>数据库系统大多使用的是传统的机械磁盘，对于机械磁盘的访问方式有两种：一种是随机IO；另一种是顺序IO。随机IO就需要花费时间做昂贵的磁盘寻道，一般来说，它的读写效率要比顺序IO小两到三个数量级，所以我们想要提升写入的性能就要尽量减少随机IO。</p>
+<p>以MySQL的InnoDB存储引擎来说，更新binlog、redolog、undolog都是在做顺序IO，而更新datafile和索引文件则是在做随机IO，而为了减少随机IO的发生，关系数据库已经做了很多的优化，比如说写入时先写入内存，然后批量刷新到磁盘上，但是随机IO还是会发生。</p>
+<p>索引在InnoDB引擎中是以B+树（ <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/146454">上一节课</a> 提到了B+树，你可以回顾一下）方式来组织的，而MySQL主键是聚簇索引（一种索引类型，数据与索引数据放在一起），既然数据和索引数据放在一起，那么在数据插入或者更新的时候，我们需要找到要插入的位置，再把数据写到特定的位置上，这就产生了随机的IO。而且一旦发生了页分裂，就不可避免会做数据的移动，也会极大地损耗写入性能。</p>
+<p><strong>NoSQL数据库是怎么解决这个问题的呢？</strong></p>
+<p>它们有多种的解决方式，这里我给你讲一种最常见的方案，就是很多NoSQL数据库都在使用的 <strong>基于LSM树的存储引擎，</strong> 这种算法使用最多，所以在这里着重剖析一下。</p>
+<p>LSM树（Log-Structured Merge Tree）牺牲了一定的读性能来换取写入数据的高性能，Hbase、Cassandra、LevelDB都是用这种算法作为存储的引擎。</p>
+<p>它的思想很简单，数据首先会写入到一个叫做MemTable的内存结构中，在MemTable中数据是按照写入的Key来排序的。为了防止MemTable里面的数据因为机器掉电或者重启而丢失，一般会通过写Write Ahead Log的方式将数据备份在磁盘上。</p>
+<p>MemTable在累积到一定规模时，它会被刷新生成一个新的文件，我们把这个文件叫做SSTable（Sorted String Table）。当SSTable达到一定数量时，我们会将这些SSTable合并，减少文件的数量，因为SSTable都是有序的，所以合并的速度也很快。</p>
+<p>当从LSM树里面读数据时，我们首先从MemTable中查找数据，如果数据没有找到，再从SSTable中查找数据。因为存储的数据都是有序的，所以查找的效率是很高的，只是因为数据被拆分成多个SSTable，所以读取的效率会低于B+树索引。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/b4c9c93f22edae091740fa1606d109eb.jpg"></p>
+<p>和LSM树类似的算法有很多，比如说TokuDB使用的名为Fractal tree的索引结构，它们的核心思想就是将随机IO变成顺序的IO，从而提升写入的性能。</p>
+<p>在后面的缓存篇中，我也将给你着重介绍我们是如何使用KV型NoSQL存储来提升读性能的。所以你看，NoSQL数据库补充关系型数据库的第一种方式就是提升读写性能。</p>
+<h2 id="场景补充"><a href="#场景补充" class="headerlink" title="场景补充"></a>场景补充</h2><p>除了可以提升性能之外，NoSQL数据库还可以在某些场景下作为传统关系型数据库的补充，来看一个具体的例子。</p>
+<p>假设某一天，CEO找到你并且告诉你，他正在为你的垂直电商项目规划搜索的功能，需要支持按照商品的名称模糊搜索到对应的商品，希望你尽快调研出解决方案。</p>
+<p>一开始，你认为这非常的简单，不就是在数据库里面执行一条类似：“select * from product where name like ‘%***%’”的语句吗？可是在实际执行的过程中，却发现了问题。</p>
+<p>你发现这类语句并不是都能使用到索引，只有后模糊匹配的语句才能使用索引。比如语句“select * from product where name like ‘%电冰箱’”就没有使用到字段“name”上的索引，而“select * from product where name like ‘索尼%’”就使用了“name”上的索引。而一旦没有使用索引就会扫描全表的数据，在性能上是无法接受的。</p>
+<p>于是你在谷歌上搜索了一下解决方案，发现大家都在使用开源组件Elasticsearch来支持搜索的请求，它本身是基于“倒排索引”来实现的， <strong>那么什么是倒排索引呢？</strong></p>
+<p>倒排索引是指将记录中的某些列做分词，然后形成的分词与记录ID之间的映射关系。比如说，你的垂直电商项目里面有以下记录：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/201ffbb6da51e04894d8dee7eaeb5d57.jpg"></p>
+<p>那么，我们将商品名称做简单的分词，然后建立起分词和商品ID的对应关系，就像下面展示的这样：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/c919944bcdfd1f1ce576790fc496a62f.jpg"></p>
+<p>这样，如果用户搜索电冰箱，就可以给他展示商品ID为1和3的两件商品了。</p>
+<p>而Elasticsearch作为一种常见的NoSQL数据库， <strong>就以倒排索引作为核心技术原理，为你提供了分布式的全文搜索服务，这在传统的关系型数据库中使用SQL语句是很难实现的。</strong> 所以你看，NoSQL可以在某些业务场景下代替传统数据库提供数据存储服务。</p>
+<h2 id="提升扩展性"><a href="#提升扩展性" class="headerlink" title="提升扩展性"></a>提升扩展性</h2><p>另外，在扩展性方面，很多NoSQL数据库也有着先天的优势。还是以你的垂直电商系统为例，你已经为你的电商系统增加了评论系统，开始你的评估比较乐观，觉得电商系统的评论量级不会增长很快，所以就为它分了8个库，每个库拆分成16张表。</p>
+<p>但是评论系统上线之后，存储量级增长的异常迅猛，你不得不将数据库拆分成更多的库表，而数据也要重新迁移到新的库表中，过程非常痛苦，而且数据迁移的过程也非常容易出错。</p>
+<p>这时，你考虑是否可以考虑使用NoSQL数据库来彻底解决扩展性的问题，经过调研你发现它们在设计之初就考虑到了分布式和大数据存储的场景， <strong>比如像MongoDB就有三个扩展性方面的特性。</strong></p>
+<ul>
+<li><p>其一是Replica，也叫做副本集，你可以理解为主从分离，也就是通过将数据拷贝成多份来保证当主挂掉后数据不会丢失。同时呢，Replica还可以分担读请求。Replica中有主节点来承担写请求，并且把数据变动记录到oplog里（类似于binlog）；从节点接收到oplog后就会修改自身的数据以保持和主节点的一致。一旦主节点挂掉，MongoDB会从从节点中选取一个节点成为主节点，可以继续提供写数据服务。</p>
+</li>
+<li><p>其二是Shard，也叫做分片，你可以理解为分库分表，即将数据按照某种规则拆分成多份，存储在不同的机器上。MongoDB的Sharding特性一般需要三个角色来支持，一个是Shard Server，它是实际存储数据的节点，是一个独立的Mongod进程；二是Config Server，也是一组Mongod进程，主要存储一些元信息，比如说哪些分片存储了哪些数据等；最后是Route Server，它不实际存储数据，仅仅作为路由使用，它从Config Server中获取元信息后，将请求路由到正确的Shard Server中。</p>
+</li>
+</ul>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/e8cb47c8cc556fce058f7c5cf06d4780.jpg"></p>
+<ul>
+<li>其三是负载均衡，就是当MongoDB发现Shard之间数据分布不均匀，会启动Balancer进程对数据做重新的分配，最终让不同Shard Server的数据可以尽量的均衡。当我们的Shard Server存储空间不足需要扩容时，数据会自动被移动到新的Shard Server上，减少了数据迁移和验证的成本。</li>
+</ul>
+<p>你可以看到，NoSQL数据库中内置的扩展性方面的特性可以让我们不再需要对数据库做分库分表和主从分离，也是对传统数据库一个良好的补充。</p>
+<p>你可能会觉得，NoSQL已经成熟到可以代替关系型数据库了，但是就目前来看，NoSQL只能作为传统关系型数据库的补充而存在，弥补关系型数据库在性能、扩展性和某些场景下的不足，所以你在使用或者选择时要结合自身的场景灵活地运用。</p>
+<h2 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h2><p>本节课我带你了解了NoSQL数据库在性能、扩展性上的优势，以及它的一些特殊功能特性，主要有以下几点：</p>
+<p>1.在性能方面，NoSQL数据库使用一些算法将对磁盘的随机写转换成顺序写，提升了写的性能；</p>
+<p>2.在某些场景下，比如全文搜索功能，关系型数据库并不能高效地支持，需要NoSQL数据库的支持；</p>
+<p>3.在扩展性方面，NoSQL数据库天生支持分布式，支持数据冗余和数据分片的特性。</p>
+<p>这些都让它成为传统关系型数据库的良好的补充，你需要了解的是， <strong>NoSQL可供选型的种类很多，每一个组件都有各自的特点。你在做选型的时候需要对它的实现原理有比较深入的了解，最好在运维方面对它有一定的熟悉，这样在出现问题时才能及时找到解决方案。</strong> 否则，盲目跟从地上了一个新的NoSQL数据库，最终可能导致会出了故障无法解决，反而成为整体系统的拖累。</p>
+<p>我在之前的项目中曾经使用Elasticsearch作为持久存储，支撑社区的feed流功能，初期开发的时候确实很爽，你可以针对feed中的任何字段做灵活高效地查询，业务功能迭代迅速，代码也简单易懂。可是到了后期流量上来之后，由于缺少对于Elasticsearch成熟的运维能力，造成故障频出，尤其到了高峰期就会出现节点不可用的问题，而由于业务上的巨大压力又无法分出人力和精力对Elasticsearch深入的学习和了解，最后不得不做大的改造切回熟悉的MySQL。 <strong>所以，对于开源组件的使用，不能只停留在只会“hello world”的阶段，而应该对它有足够的运维上的把控能力。</strong></p>
+<h2 id="一课一思"><a href="#一课一思" class="headerlink" title="一课一思"></a>一课一思</h2><p>NoSQL数据库是可以与传统的关系型数据库配合，一起解决数据存储问题的，那么在日常工作中，你用到了哪些NoSQL数据库呢？在选型的时候是基于什么样的考虑呢？欢迎在留言区与我分享你的经验。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#11-NoSQL%EF%BC%9A%E5%9C%A8%E9%AB%98%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF%E4%B8%8B%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8CNoSQL%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E4%BA%92%E8%A1%A5%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">11 |   NoSQL：在高并发场景下，数据库和NoSQL如何做到互补？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL%EF%BC%8CNo-SQL%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">NoSQL，No SQL？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8NoSQL%E6%8F%90%E5%8D%87%E5%86%99%E5%85%A5%E6%80%A7%E8%83%BD"><span class="toc-number">1.2.</span> <span class="toc-text">使用NoSQL提升写入性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E8%A1%A5%E5%85%85"><span class="toc-number">1.3.</span> <span class="toc-text">场景补充</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8D%87%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-number">1.4.</span> <span class="toc-text">提升扩展性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">课程小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%AF%BE%E4%B8%80%E6%80%9D"><span class="toc-number">1.6.</span> <span class="toc-text">一课一思</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

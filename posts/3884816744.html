@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>21 人工神经网络 | 水无至清，人莫至察：模糊神经网络 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="21 人工神经网络 | 水无至清，人莫至察：模糊神经网络模糊神经网络是一类特殊的神经网络，它是神经网络和模糊逻辑结合形成的混合智能系统，通过将模糊系统的类人推理方式与神经网络的学习和连接结构相融合来协同这两种技术。简单来说， 模糊神经网络（fuzzy neural network）就是将常规的神经网络赋予模糊输入信号和模糊权值，其作用在于利用神经网络结构来实现模糊逻辑推理。 在生活中，我们在臧否人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21 人工神经网络 | 水无至清，人莫至察：模糊神经网络">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3884816744.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="21 人工神经网络 | 水无至清，人莫至察：模糊神经网络模糊神经网络是一类特殊的神经网络，它是神经网络和模糊逻辑结合形成的混合智能系统，通过将模糊系统的类人推理方式与神经网络的学习和连接结构相融合来协同这两种技术。简单来说， 模糊神经网络（fuzzy neural network）就是将常规的神经网络赋予模糊输入信号和模糊权值，其作用在于利用神经网络结构来实现模糊逻辑推理。 在生活中，我们在臧否人">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:17:18.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.480Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3884816744"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '21 人工神经网络 | 水无至清，人莫至察：模糊神经网络',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">21 人工神经网络 | 水无至清，人莫至察：模糊神经网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="21-人工神经网络-水无至清，人莫至察：模糊神经网络"><a href="#21-人工神经网络-水无至清，人莫至察：模糊神经网络" class="headerlink" title="21 人工神经网络 | 水无至清，人莫至察：模糊神经网络"></a>21 人工神经网络 | 水无至清，人莫至察：模糊神经网络</h1><p>模糊神经网络是一类特殊的神经网络，它是神经网络和模糊逻辑结合形成的混合智能系统，通过将模糊系统的类人推理方式与神经网络的学习和连接结构相融合来协同这两种技术。简单来说， <strong>模糊神经网络（fuzzy neural network）就是将常规的神经网络赋予模糊输入信号和模糊权值，其作用在于利用神经网络结构来实现模糊逻辑推理</strong>。</p>
+<p>在生活中，我们在臧否人物时很少给出非黑即白的二元评价。这是因为每个人在生活中都扮演着复杂的多重角色，不是好人就是坏人的评判方式显然有失客观。这就是模糊理论在生活中最直接的体现。正如美国加州大学伯克利分校的洛特菲·扎戴所说：“当系统的复杂性增加时，我们使它精确化的能力将减小。直到达到一个阈值，一旦超越这个阈值，复杂性和精确性将相互排斥。”</p>
+<p>1965年，正是这位洛特菲·扎戴提出了与模糊数学相关的一系列理论，并由此衍生出模糊系统的概念。1988年，供职于日本松下电气的高木秀幸和小林功提出了将神经网络与模糊逻辑结合的想法，这标志着神经模糊系统（Neuro-fuzzy system）的诞生。神经模糊系统的基础是 <strong>模糊集合</strong> 和一组“如果……那么……”形式的 <strong>模糊规则</strong>，利用神经网络的非线性和学习机制获得类人的推理能力。1993年，意大利帕多瓦大学的乔万尼·波尔托兰提出了将多层前馈神经网络模糊化的思路，这就是这里所讨论的模糊神经网络。</p>
+<p>需要说明的是，模糊神经网络和神经模糊系统是不同的。神经模糊系统的输入和输出都是确定对象。因此在神经模糊系统中，必备的结构是模糊化层和去模糊化层。模糊化层用于将输入的确定对象模糊化，去模糊化层则用于将输出的模糊对象转化为确定对象。相比之下，模糊神经网络的输入和输出都是模糊对象，完成的也是模糊推理的功能。</p>
+<p>在介绍模糊神经网络之前，有必要对一些基本概念加以解释。模糊理论中最基本的概念是 <strong>模糊集合</strong>。在不模糊的集合里，每个元素和集合之间的隶属关系是明确的，也就是要么属于集合，要么不属于集合，两者之间泾渭分明。可 <strong>在模糊集合中，元素和集合之间的关系不是非此即彼的明确定性关系，而是用一个叫做隶属度的函数定量表示</strong>。在现实中评判某个人物的时候，通常会说他“七分功三分过”或是“三分功七分过”，这里的三七开就可以看成是隶属函数。</p>
+<p><strong>模糊集合是对“对象和集合之间关系”的描述，模糊数描述的则是对象本身</strong>。“人到中年”是很多人愿意用来自嘲的一句话，可中年到底是个什么范围呢？利用排除法可以轻松确定25岁算不上中年，55岁也算不上中年，可要是对中年给出一个明确的正向定义就困难了。因而如果把“中年”看作一个数的话，它就是个模糊数。模糊数在数学上的严格定义是根据模糊集合推导出来的，是个归一化的模糊集合，但通俗地说， <strong>模糊数就是只有取值范围而没有精确数值的数</strong>。</p>
+<p>模糊数可以用来构造模糊数据，对模糊数据进行运算时，依赖的规则叫做 <strong>扩展原理</strong>。对两个确定的数做运算，得到的结果肯定还是一个确定的数。可一旦模糊数参与到运算中来，得到的结果也将变成一个模糊数。扩展原理及其引申得到的模糊算术，定义的就是运算给模糊数的模糊程度带来的变化，这当然也是一个通俗的说法。在模糊算术中，传统的加减乘和内积等运算都被改造成对模糊集合的运算。</p>
+<p>有了这些概念，就可以进一步解释模糊神经网络。模糊神经网络的拓扑与架构和传统的多层前馈神经网络相同，但其输入信号和权重系数都是模糊集合，因而其输出信号同样是模糊集合。而在网络内部，处理输入信号和权重系数的则是模糊数学，隐藏神经元表示的就是隶属函数和模糊规则。模糊化的处理必然会影响神经网络的特性，因而学习算法的设计和通用逼近特性的保持就成为模糊神经网络要解决的核心问题。</p>
+<p><strong>构成模糊神经网络的基本单元是模糊化的神经元</strong>。模糊神经元的输入信号和权重系数都是模糊数，传递函数也需要对模糊集合上的加权结果进行处理。模糊神经元的组合形成模糊神经网络。模糊神经网络的训练方式同传统的神经网络类似，即定义一个误差函数并使其最小化。但由于模糊数不能进行微积分的计算，因此不能直接对模糊的权重系数使用反向传播，需要在处理误差时需要针对模糊数的特性提出新的方法。两种常用的方法是 <strong>基于水平集的方法</strong> 和 <strong>基于遗传算法的方法</strong>。</p>
+<p>基于水平集的方法采用的是直接推导的方式，通过确定模糊集合的水平集对模糊数中的元素加以筛选。假如一个模糊数中包含三个元素x、y和z，其参数分别是0.3、0.6和0.7，那么当截断点等于0.5时，这个模糊数的0.5水平集就会把参数为0.3的元素x过滤掉，只保留参数大于0.5的y和z。在神经网络的训练中，训练算法的作用就是通过计算偏导数和应用反向传播算法，优化每个水平集的截断点，从而确定模糊权值。</p>
+<p>水平集方法的致命缺陷在于缺乏理论依据，这严重限制了它的应用。一个不加任何限制的模糊数肯定不能用有限个参数来描述，因而要基于水平集方法来设计通用的模糊神经网络学习算法是不可能的。当模糊数被限制为三角形或者梯形时，算法可以得到一定的简化。</p>
+<p>在模糊神经网络的训练中，如果保持学习率参数不变，误差函数就难以快速收敛。即使收敛也可能陷入局部最小值上，在不同的学习率参数下得到不同的局部最小值。为了处理这个问题，模糊神经网络引入了一种叫做“ <strong>共轭梯度（conjugate gradient）”的机制</strong>，使训练过程能够找到全局最优解。而要确定最优的学习率，就要借助 <strong>遗传算法</strong>（genetic algorithm）。</p>
+<p>共轭梯度方法比较复杂，在这里不做展开。相比基于水平集的方法，基于遗传算法的方法是摸着石头过河，通过迭代逐步找到误差函数的最小值，从而确定权重系数。但它并没有解决水平集方法的本质问题，适用范围仍然被局限在三角形和梯形这类特殊的模糊数上，纯属换汤不换药的做法。</p>
+<p>除了学习算法之外， <strong>逼近性能也是模糊神经网络设计中的核心问题</strong>。传统神经网络可以通过引入少量隐藏层实现对任意问题的逼近，但模糊神经网络能不能达到这个要求尚需证明。受学习算法的限制，对逼近性能的考察也只能针对特定类型的模糊神经网络进行。研究结果表明，当输入和权值都被限定为实数时，四层的前馈网络就足以逼近任意形式的模糊取值函数。这意味着模糊神经网络和传统神经网络的性能是相同的，因为抛去输入层和输出层之外，四层网络就只剩两个隐藏层了。</p>
+<p><strong>模糊神经网络是一种混合智能系统，能够同时处理语言信息和数据信息，因而是研究非线性复杂系统的有效工具，也是软计算的核心研究内容之一，在模式识别、系统分析和信号处理等领域都有成功应用的实例</strong>。但相对于打了翻身仗的传统神经网络，摆在模糊神经网络面前的依然是雄关如铁的境地。</p>
+<p>今天我和你分享了模糊神经网络的基本概念，其要点如下：</p>
+<ul>
+<li>模糊神经网络是神经网络和模糊逻辑结合形成的混合智能系统；</li>
+<li>模糊神经网络的输入信号、权重系数和输出信号全都是模糊集合；</li>
+<li>模糊神经网络的主要学习算法包括基于水平集的方法和基于遗传算法的方法；</li>
+<li>模糊神经网络具有和传统神经网络类似的通用逼近特性。</li>
+</ul>
+<p>模糊理论代表了一种思维方式，它更接近于人类的思考习惯。那么融合了定性和定量的模糊理论会给用于规则推演的人工智能带来什么样的启发呢？</p>
+<p>欢迎发表你的观点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/5d8c880ee0e5dd330df08e9db32558e1.jpg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#21-%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E6%B0%B4%E6%97%A0%E8%87%B3%E6%B8%85%EF%BC%8C%E4%BA%BA%E8%8E%AB%E8%87%B3%E5%AF%9F%EF%BC%9A%E6%A8%A1%E7%B3%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.</span> <span class="toc-text">21 人工神经网络 | 水无至清，人莫至察：模糊神经网络</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>14｜挑战者Imagen：为什么会后来居上？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="14｜挑战者Imagen：为什么会后来居上？你好，我是南柯。 上一讲我们一起探索了OpenAI推出的DALL-E 2背后的技术原理。仅仅过去一个月，在2022年5月， Google便发布了自己的AI绘画模型Imagen。Imagen在效果上显著优于DALL-E 2，并且通过实验证明，只要文本模型足够大，就不再需要扩散先验模型。 一年之后，2023年的4月28日，后来者StabilityAI，也就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14｜挑战者Imagen：为什么会后来居上？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3126414570.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="14｜挑战者Imagen：为什么会后来居上？你好，我是南柯。 上一讲我们一起探索了OpenAI推出的DALL-E 2背后的技术原理。仅仅过去一个月，在2022年5月， Google便发布了自己的AI绘画模型Imagen。Imagen在效果上显著优于DALL-E 2，并且通过实验证明，只要文本模型足够大，就不再需要扩散先验模型。 一年之后，2023年的4月28日，后来者StabilityAI，也就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.067Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3126414570"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '14｜挑战者Imagen：为什么会后来居上？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">14｜挑战者Imagen：为什么会后来居上？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="14｜挑战者Imagen：为什么会后来居上？"><a href="#14｜挑战者Imagen：为什么会后来居上？" class="headerlink" title="14｜挑战者Imagen：为什么会后来居上？"></a>14｜挑战者Imagen：为什么会后来居上？</h1><p>你好，我是南柯。</p>
+<p>上一讲我们一起探索了OpenAI推出的DALL-E 2背后的技术原理。仅仅过去一个月，在2022年5月， <strong>Google便发布了自己的AI绘画模型Imagen。Imagen在效果上显著优于DALL-E 2</strong>，并且通过实验证明，只要文本模型足够大，就不再需要扩散先验模型。</p>
+<p>一年之后，2023年的4月28日，后来者StabilityAI，也就是搞出来Stable Diffusion这个模型的公司，发布了DeepFloyd模型。这个模型完美地解决了DALL-E 2不能在生成图像中指定文字内容的问题，是当下公认的效果最好的AI绘画模型之一。并且， <strong>DeepFloyd模型的技术方案，恰恰就是我们今天要讲的主角Imagen</strong>。</p>
+<p>今天这一讲我们来探讨Imagen背后的技术，主要搞清楚以下几个问题。</p>
+<p>第一，相比DALL-E 2，Imagen在能力上有哪些优势？</p>
+<p>第二，Imagen的工作原理是怎样的？</p>
+<p>第三，DeepFloyd又在Imagen的基础上做了哪些改进？</p>
+<p>明白了这些，你会对AI绘画技术的发展趋势理解更深刻，在选择AI绘画模型时也会更加得心应手。让我们开始吧！</p>
+<h2 id="初识Imagen"><a href="#初识Imagen" class="headerlink" title="初识Imagen"></a>初识Imagen</h2><p>我们先来看看Imagen模型在AI绘画这个任务上的表现，建立一个直观感受。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/7b3460c3a775dff031fc640cdece6f92.png"></p>
+<p>Imagen可以在生成的图像中指定写入的文字，之后我们简称这个能力为“Text-in-Image”。这项能力上，DALL-E 2和Imagen的效果对比如下图所示。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/3d793180411dd1436e11e8d2cef27660.png"></p>
+<p>另外，上一讲我们说过DALL-E 2不擅长处理逻辑关系，而Imagen在这个问题上明显表现得更好。下面这幅图对比了DALL-E 2和Imagen处理逻辑关系类prompt的生成效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/598203bd4872772cb3a6582dyy108644.png"></p>
+<p>在Imagen的论文中，作者认为Imagen的两个核心优势是：图像真实感（photorealism）和更强的语言理解能力（language understanding）。我们结合前面这些例子也能看出 ，Imagen生成的图像在真实感、文本理解这两项能力上的表现确实非常惊艳。</p>
+<p>前面我们说的DeepFloyd模型也是基于Imagen架构训练得到的，这个模型的AI绘画效果你可以参考下图。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/d163db819f85873da150bb2f35ef5063.jpg"></p>
+<p>可以看到，Imagen及其后来者都拥有强大的AI绘画能力。那挑战者Imagen为什么能够后来居上？这就不得不说到Imagen背后的工作原理了。</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>我们先来看一下原论文中给出的Imagen整体方案流程。详情你可以参考 <a target="_blank" rel="noopener" href="https://imagen.research.google/">项目官网</a> 的链接。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/92f381fcf0ea03de1e7b13039c4eea60.png"></p>
+<p>可以看到，文本描述经过文本编码器得到文本表征（Text Embedding），该文本表征不仅用于引导低分辨率图像的扩散生成，也用于指导连续的两个超分模块发挥作用。和我们前面学的DALL-E 2类似，Imagen首先会生成64x64分辨率的低分辨率图像，然后经过连续两次基于扩散模型的超分模块，将图像分辨率提升至256x256、1024x1024。</p>
+<p>训练过程中，首先要将文本表征、初始噪声作为扩散模型的输入，去噪后的图像作为目标输出，就得到了低分辨率扩散模型；然后将低分辨率图像、文本表征作为输入，去噪后的图像作为目标输出，得到更高分辨率的扩散模型。</p>
+<p>这么说有点抽象，你可以对照下面的过程示意图来加深理解。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/f6fe6c4662yy483ba8dc187aebbfd1e4.png"></p>
+<p>你可能会问，Imagen相比于DALL-E 2，好像差不多？事实上，Imagen相比于DALL- E 2在方法上主要有三点不同。</p>
+<p>第一，Imagen没有使用CLIP的文本编码器和图像编码器，而是直接使用纯文本大模型T5来完成文本编码任务。</p>
+<p>这里做一个对比，Imagen用到的T5模型（T5-XXL）参数量共计110亿，CLIP的文本编码器参数量约为6300万。也就是说，Imagen的文本编码器参数量大约是DALL-E 2的200倍左右，这意味着Imagen拥有更强大的文本描述理解能力。站在语言模型的角度看，参数量越大，文本理解能力越强。我们熟悉的ChatGPT背后的GPT-3语言模型，有1750亿参数。</p>
+<p>第二，Imagen没有使用unCLIP结构，而是直接把文本表征输入给图像解码器，生成目标图像。</p>
+<p>第三，Imagen对扩散模型预测的噪声使用了动态阈值的策略，提升了AI绘画效果的稳定性。这一点我们稍后解释。</p>
+<p>正是基于这样的方案改进，Imagen模型才能处理更复杂的文本描述，生成惊艳的绘画效果。为了让你更深入地理解Imagen，我们接下来便深入分析下这三个改进点。</p>
+<h3 id="T5模型提取文本表征"><a href="#T5模型提取文本表征" class="headerlink" title="T5模型提取文本表征"></a>T5模型提取文本表征</h3><p>我们先看第一个改进点，为什么要选择T5模型， <strong>和CLIP相比T5的优势是什么？</strong></p>
+<p>要回答这个问题，就需要明白T5模型是怎么训练的。T5模型源自于2020年Google发布的一篇论文，使用Transformer结构，将翻译、问答、文本相似度估计等任务统一到一个模型中。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/18881ea57764956d0dfa8b4461370a30.jpg"></p>
+<p>关于T5模型的统一训练方案，我们结合例子会更好理解。</p>
+<p>对于翻译类任务，训练数据的输入部分需要加上一句指令，比如 “translate English to German”。以前面图示里翻译的句子为例，模型的输入是 “translate English to German: That is good.”，模型输出应该是翻译后的德文 “Das ist gut.”。</p>
+<p>对于情感分析任务，训练数据的输入部分应该添加的指令为 “sentiment”，比如模型的输入可以是 “sentiment: This music is perfect.”, 模型输出的结果应该是 “positive”。</p>
+<p>需要注意的是， <strong>T5模型的训练使用的是纯文本语料，而不是像CLIP那样需要使用文本-图像数据对。</strong> 如果你想了解关于T5模型的更多细节，可以点击链接访问 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10683">项目官网</a>。</p>
+<p>对于CLIP的训练过程，训练目标是对应的图像、文本描述的特征向量的余弦距离越大，让不对应的图像、文本描述之间的余弦距离尽可能小。这个过程必须要用成对的图文数据。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/1e4d877f43b309600de9e5771ed5babc.png"></p>
+<p>比起图像-文本成对数据，纯文本数据要更容易获得。图像-文本成对数据常用的Laion-5B数据集，也只包含50亿成对数据。而我们熟悉的大语言模型ChatGPT的训练语料又何止百亿规模。</p>
+<p>由此，我们可以得到两个推测。</p>
+<p>第一，由于训练数据的规模不同，T5相比于CLIP，拥有更强的文本信息提取能力。</p>
+<p>第二，相比于大语言模型，AI绘画模型在数据规模上还有很长的路要走，大力仍能出奇迹。</p>
+<p><strong>从实验的结果看，T5模型确实能够更好地提取文本信息，“Text-in-Image” 类的效果就足以说明这个问题。</strong></p>
+<h3 id="从文本表征到图像"><a href="#从文本表征到图像" class="headerlink" title="从文本表征到图像"></a>从文本表征到图像</h3><p><strong>那么，T5模型提取的文本表征如何指导扩散模型生成高清图像呢？为什么说Imagen不是unCLIP的方案？</strong></p>
+<p>要回答这个问题，还要从扩散模型的训练说起。我们已经知道，扩散模型的主要功能是从噪声通过多步去噪的过程，得到一张清晰的图像。你可以先回顾下这个过程的图解，再听我继续分析Imagen算法背后的原理。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b4867697a62fd466dd7a2d6998edb91d.jpg"></p>
+<p>扩散模型生成图片的过程需要多个采样步，每一步都使用权重共享的UNet结构。对于文生图任务来说，UNet的输入信息包括当前带噪声的图像、时间步编码、文本表征编码。对于扩散模型细节感兴趣的同学可以复习 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/681276">第6讲</a>。</p>
+<p>在Imagen项目中，图像解码器使用的同样是扩散模型。扩散过程需要多步来完成，逐渐从噪声得到清晰图像。对于每一步去噪，Imagen都会将当前带噪声图像、时间步编码、文本表征编码进行求和，作为UNet模型的输入信息，如下图所示。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/5ce96f86b7002a1fe624b774e037fe12.jpg"></p>
+<p>通过这种方式，T5模型提取的文本表征就能直接用来指导图像的生成了。细心的你应该已经发现了，这个过程既没有用到CLIP，也没有文本表征到图像表征的显式转换，自然就不是unCLIP的方案了。</p>
+<h3 id="巧用动态阈值策略"><a href="#巧用动态阈值策略" class="headerlink" title="巧用动态阈值策略"></a>巧用动态阈值策略</h3><p>讨论完文本编码器，我们再来看看 <strong>动态阈值（Dynamic Threshold）策略为什么能生成更真实的图像。</strong></p>
+<p>在扩散模型生成图像的过程中，每一步都会预测一个噪声值，然后基于采样器去除这个噪声。Imagen的作者发现，预测的噪声如果在数值上不做约束（比如限制到-1到1的范围），最终可能会生成纯黑图像。静态阈值策略可以用于缓解这个问题。</p>
+<p>它的做法是把UNet预测的噪声超过1的部分全部设置为1，小于-1的部分全部设置为-1。静态阈值是一种常见的噪声图数值处理方法。作者实验发现使用静态阈值虽然有效果，但还是会产生图像过度饱和的问题。</p>
+<p>在已有静态阈值的基础上，作者又提出了动态阈值的策略，解决了AI绘画过程中的黑图、过饱和等问题。</p>
+<p>具体就是先确定一个百分比，比如90%。对于每一步去噪，都可以计算出一个数值s，噪声图中90%的元素都位于-s到s的范围内。小于-s的部分全部设置为-s，大于s的部分全部设置为s。然后对于所有元素都除以s，将最终噪声图标归一化到-1到1的范围。</p>
+<p>这种策略可以有效地动态约束每一步去噪过程的数值范围，提升文生图过程的稳定性。</p>
+<h2 id="DeepFloyd-IF"><a href="#DeepFloyd-IF" class="headerlink" title="DeepFloyd IF"></a>DeepFloyd IF</h2><p>讲完Imagen的技术原理，我们再来研究StabilityAI最新推出的DeepFloyd IF模型时，就更好理解了。该模型的整体结构是后面这样，你有没有觉得它很眼熟？</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/a6c38191e913db87c47f85c1a8009e2c.jpg"></p>
+<p>没错，它和Imagen的结构一模一样。然而，DeepFloyd IF这个模型，在生成图像的效果上显著优于原始的Imagen。</p>
+<p>DeepFloyd的作者对各个生成模型的效果做了评测，表格中Zero-shot FID-30K表示生成图像的真实感分数，该数值越低越好。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/d5f14f5a96d2e709ae8e6a3c2aa3d567.png"></p>
+<p>DeepFloyd IF模型能有这样的生成能力，主要源于这两个原因。</p>
+<ol>
+<li>扩散模型解码器IF-I-XL的参数量达到43亿，大力出奇迹。</li>
+<li>DeepFloyd使用的是和Imagen一样的T5模型，但对T5得到的文本表征设计了一个叫 <a target="_blank" rel="noopener" href="https://github.com/deep-floyd/IF/blob/ffc8163891682beaca0c5eb6b9077860a3bc6509/deepfloyd_if/model/nn.py#L54">最优注意力池化</a> 的模块。</li>
+</ol>
+<p>与常见的最大值池化、均值池化这种预定义的池化方法相比，注意力池化是一种可学习的池化方法。感兴趣的同学可以到DeepFloyd的 <a target="_blank" rel="noopener" href="https://deepfloyd.ai/deepfloyd-if">官网</a> 了解更多的算法细节，接下来我们一起来探索一下DeepFloyd IF模型的使用代码。</p>
+<p>首先，要在你的jupyter环境中登录Hugging Face账号，确保能下载到模型文件。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> huggingface_hub <span class="token keyword">import</span> login
+login<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后，我们依次加载三个不同分辨率生成阶段的扩散模型。如果你的本地环境不包含这些模型，这段代码会自动请求在Hugging Face的服务器上，下载原始模型文件。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> diffusers <span class="token keyword">import</span> DiffusionPipeline
+<span class="token keyword">from</span> diffusers<span class="token punctuation">.</span>utils <span class="token keyword">import</span> pt_to_pil
+<span class="token keyword">import</span> torch
+<span class="token comment"># stage 1</span>
+stage_1 <span class="token operator">=</span> DiffusionPipeline<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"DeepFloyd/IF-I-XL-v1.0"</span><span class="token punctuation">,</span> variant<span class="token operator">=</span><span class="token string">"fp16"</span><span class="token punctuation">,</span> torch_dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+stage_1<span class="token punctuation">.</span>enable_xformers_memory_efficient_attention<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># remove line if torch.__version__ >= 2.0.0</span>
+stage_1<span class="token punctuation">.</span>enable_model_cpu_offload<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># stage 2</span>
+stage_2 <span class="token operator">=</span> DiffusionPipeline<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span>
+    <span class="token string">"DeepFloyd/IF-II-L-v1.0"</span><span class="token punctuation">,</span> text_encoder<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> variant<span class="token operator">=</span><span class="token string">"fp16"</span><span class="token punctuation">,</span> torch_dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float16
+<span class="token punctuation">)</span>
+stage_2<span class="token punctuation">.</span>enable_xformers_memory_efficient_attention<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># remove line if torch.__version__ >= 2.0.0</span>
+stage_2<span class="token punctuation">.</span>enable_model_cpu_offload<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># stage 3</span>
+safety_modules <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"feature_extractor"</span><span class="token punctuation">:</span> stage_1<span class="token punctuation">.</span>feature_extractor<span class="token punctuation">,</span> <span class="token string">"safety_checker"</span><span class="token punctuation">:</span> stage_1<span class="token punctuation">.</span>safety_checker<span class="token punctuation">,</span> <span class="token string">"watermarker"</span><span class="token punctuation">:</span> stage_1<span class="token punctuation">.</span>watermarker<span class="token punctuation">&#125;</span>
+stage_3 <span class="token operator">=</span> DiffusionPipeline<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"stabilityai/stable-diffusion-x4-upscaler"</span><span class="token punctuation">,</span> <span class="token operator">**</span>safety_modules<span class="token punctuation">,</span> torch_dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+stage_3<span class="token punctuation">.</span>enable_xformers_memory_efficient_attention<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># remove line if torch.__version__ >= 2.0.0</span>
+stage_3<span class="token punctuation">.</span>enable_model_cpu_offload<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来，我们就可以提供文本描述来绘画创作了。这里我要求DeepFloyd画的是 “一只长着鹿角的彩虹色柯基犬”。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">prompt <span class="token operator">=</span> <span class="token string">'ultra close-up color photo portrait of rainbow corgi with deer horns in the woods'</span>
+<span class="token comment"># text embeds</span>
+prompt_embeds<span class="token punctuation">,</span> negative_embeds <span class="token operator">=</span> stage_1<span class="token punctuation">.</span>encode_prompt<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+generator <span class="token operator">=</span> torch<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment"># stage 1</span>
+image <span class="token operator">=</span> stage_1<span class="token punctuation">(</span>prompt_embeds<span class="token operator">=</span>prompt_embeds<span class="token punctuation">,</span> negative_prompt_embeds<span class="token operator">=</span>negative_embeds<span class="token punctuation">,</span> generator<span class="token operator">=</span>generator<span class="token punctuation">,</span> output_type<span class="token operator">=</span><span class="token string">"pt"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>images
+pt_to_pil<span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"./if_stage_I.png"</span><span class="token punctuation">)</span>
+<span class="token comment"># stage 2</span>
+image <span class="token operator">=</span> stage_2<span class="token punctuation">(</span>
+    image<span class="token operator">=</span>image<span class="token punctuation">,</span> prompt_embeds<span class="token operator">=</span>prompt_embeds<span class="token punctuation">,</span> negative_prompt_embeds<span class="token operator">=</span>negative_embeds<span class="token punctuation">,</span> generator<span class="token operator">=</span>generator<span class="token punctuation">,</span> output_type<span class="token operator">=</span><span class="token string">"pt"</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span>images
+pt_to_pil<span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"./if_stage_II.png"</span><span class="token punctuation">)</span>
+<span class="token comment"># stage 3</span>
+image <span class="token operator">=</span> stage_3<span class="token punctuation">(</span>prompt<span class="token operator">=</span>prompt<span class="token punctuation">,</span> image<span class="token operator">=</span>image<span class="token punctuation">,</span> generator<span class="token operator">=</span>generator<span class="token punctuation">,</span> noise_level<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">.</span>images
+image<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"./if_stage_III.png"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/09178a0b5d5a96e96f5a03bc0d6104de.jpg"></p>
+<p>我们可以再体验一下DeepFloyd模型的Text-in-Image能力，比如我们要求其绘制这样一幅画：一个飞行在天空的热气球，挂着一个边缘镶嵌满鲜花的木板，木板上写着“Geekbang”。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/84b0bc07c035e345b94d70c26beb5849.jpg"></p>
+<p>运行上面这段代码，需要至少20G以上的显存。如果需要降低显存占用，可以用xFormer优化Transformer的计算效率，或者释放已经完成推理的模型资源等。</p>
+<p>这里我们仅仅展示了DeepFloyd的文生图功能，事实上，你还可以使用官方提供的 <a target="_blank" rel="noopener" href="https://github.com/deep-floyd/IF">deepfloyd_if</a> 模块，直接调用其超分、绘画补全等功能，感兴趣的同学可以访问DeepFloyd官网，获取更多使用信息。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>总结一下，今天我们学习了Google的Imagen，这个AI 绘画模型比DALL-E 2晚一个月推出，在效果上明显优于DALL-E 2，颇有后来居上的气势。</p>
+<p>我们先讨论了Imagen的技术原理，了解到Imagen使用纯粹的大语言模型T5作为文本编码器，以及文本信息如何有效指导扩散模型生成图像。之后，我们进一步学习了Imagen动态阈值策略，这个策略可以用于抑制模型输出黑图和过饱和图片。</p>
+<p>最新的DeepFloyd模型仅仅扩展了Imagen模型，就成为了当下生成效果最好的模型之一。相比于Imagen，DeepFloyd使用更大的UNet，用于第一阶段图像生成的UNet便包含4.3B参数。同时，DeepFloyd引入一种可学习的最优注意力池化机制。这些技巧都可以提升AI绘画的效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/8deb1caeecb329eb9442f7ef0b3ffed8.jpg"></p>
+<p>非常鼓励你课后去读读 <a target="_blank" rel="noopener" href="https://imagen.research.google/">原始论文</a>、看一些开源代码实现来加深对Imagen的理解。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>在课程的最后，我给你布置了一道思考题。除了我们今天学习的Google T5模型，你还知道哪些优秀的大语言模型，可以用于AI绘画模型的文本编码？</p>
+<p>欢迎你在评论区里记录自己的思考或者疑问，我们可以一起留言讨论，共同进步！</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#14%EF%BD%9C%E6%8C%91%E6%88%98%E8%80%85Imagen%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%90%8E%E6%9D%A5%E5%B1%85%E4%B8%8A%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">14｜挑战者Imagen：为什么会后来居上？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86Imagen"><span class="toc-number">1.1.</span> <span class="toc-text">初识Imagen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#T5%E6%A8%A1%E5%9E%8B%E6%8F%90%E5%8F%96%E6%96%87%E6%9C%AC%E8%A1%A8%E5%BE%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">T5模型提取文本表征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%96%87%E6%9C%AC%E8%A1%A8%E5%BE%81%E5%88%B0%E5%9B%BE%E5%83%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">从文本表征到图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A7%E7%94%A8%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">巧用动态阈值策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DeepFloyd-IF"><span class="toc-number">1.3.</span> <span class="toc-text">DeepFloyd IF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.4.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

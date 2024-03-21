@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>12 | 有一亿个keys要统计，应该用哪种集合？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="12 | 有一亿个keys要统计，应该用哪种集合？你好，我是蒋德钧。 在Web和移动应用的业务场景中，我们经常需要保存这样一种信息：一个key对应了一个数据集合。我举几个例子。  手机App中的每天的用户登录信息：一天对应一系列用户ID或移动设备ID； 电商网站上商品的用户评论列表：一个商品对应了一系列的评论； 用户在手机App上的签到打卡信息：一天对应一系列用户的签到记录； 应用网站上的网页访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12 | 有一亿个keys要统计，应该用哪种集合？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2047725300.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="12 | 有一亿个keys要统计，应该用哪种集合？你好，我是蒋德钧。 在Web和移动应用的业务场景中，我们经常需要保存这样一种信息：一个key对应了一个数据集合。我举几个例子。  手机App中的每天的用户登录信息：一天对应一系列用户ID或移动设备ID； 电商网站上商品的用户评论列表：一个商品对应了一系列的评论； 用户在手机App上的签到打卡信息：一天对应一系列用户的签到记录； 应用网站上的网页访问">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-04T22:10:14.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.357Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2047725300"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '12 | 有一亿个keys要统计，应该用哪种集合？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">12 | 有一亿个keys要统计，应该用哪种集合？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="12-有一亿个keys要统计，应该用哪种集合？"><a href="#12-有一亿个keys要统计，应该用哪种集合？" class="headerlink" title="12 | 有一亿个keys要统计，应该用哪种集合？"></a>12 | 有一亿个keys要统计，应该用哪种集合？</h1><p>你好，我是蒋德钧。</p>
+<p>在Web和移动应用的业务场景中，我们经常需要保存这样一种信息：一个key对应了一个数据集合。我举几个例子。</p>
+<ul>
+<li>手机App中的每天的用户登录信息：一天对应一系列用户ID或移动设备ID；</li>
+<li>电商网站上商品的用户评论列表：一个商品对应了一系列的评论；</li>
+<li>用户在手机App上的签到打卡信息：一天对应一系列用户的签到记录；</li>
+<li>应用网站上的网页访问信息：一个网页对应一系列的访问点击。</li>
+</ul>
+<p>我们知道，Redis集合类型的特点就是一个键对应一系列的数据，所以非常适合用来存取这些数据。但是，在这些场景中，除了记录信息，我们往往还需要对集合中的数据进行统计，例如：</p>
+<ul>
+<li>在移动应用中，需要统计每天的新增用户数和第二天的留存用户数；</li>
+<li>在电商网站的商品评论中，需要统计评论列表中的最新评论；</li>
+<li>在签到打卡中，需要统计一个月内连续打卡的用户数；</li>
+<li>在网页访问记录中，需要统计独立访客（Unique Visitor，UV）量。</li>
+</ul>
+<p>通常情况下，我们面临的用户数量以及访问量都是巨大的，比如百万、千万级别的用户数量，或者千万级别、甚至亿级别的访问信息。所以，我们必须要选择能够非常高效地统计大量数据（例如亿级）的集合类型。</p>
+<p><strong>要想选择合适的集合，我们就得了解常用的集合统计模式。</strong> 这节课，我就给你介绍集合类型常见的四种统计模式，包括聚合统计、排序统计、二值状态统计和基数统计。我会以刚刚提到的这四个场景为例，和你聊聊在这些统计模式下，什么集合类型能够更快速地完成统计，而且还节省内存空间。掌握了今天的内容，之后再遇到集合元素统计问题时，你就能很快地选出合适的集合类型了。</p>
+<h2 id="聚合统计"><a href="#聚合统计" class="headerlink" title="聚合统计"></a>聚合统计</h2><p>我们先来看集合元素统计的第一个场景：聚合统计。</p>
+<p>所谓的聚合统计，就是指统计多个集合元素的聚合结果，包括：统计多个集合的共有元素（交集统计）；把两个集合相比，统计其中一个集合独有的元素（差集统计）；统计多个集合的所有元素（并集统计）。</p>
+<p>在刚才提到的场景中，统计手机App每天的新增用户数和第二天的留存用户数，正好对应了聚合统计。</p>
+<p>要完成这个统计任务，我们可以用一个集合记录所有登录过App的用户ID，同时，用另一个集合记录每一天登录过App的用户ID。然后，再对这两个集合做聚合统计。我们来看下具体的操作。</p>
+<p>记录所有登录过App的用户ID还是比较简单的，我们可以直接使用Set类型，把key设置为user:id，表示记录的是用户ID，value就是一个Set集合，里面是所有登录过App的用户ID，我们可以把这个Set叫作累计用户Set，如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/990e56babf199d9a7fa4c7343167ecca.jpg"></p>
+<p>需要注意的是，累计用户Set中没有日期信息，我们是不能直接统计每天的新增用户的。所以，我们还需要把每一天登录的用户ID，记录到一个新集合中，我们把这个集合叫作每日用户Set，它有两个特点：</p>
+<ol>
+<li>key是 user:id 以及当天日期，例如 user:id:20200803；</li>
+<li>value是Set集合，记录当天登录的用户ID。</li>
+</ol>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/a63dd95d5e44bf538fe960e67761b59e.jpg"></p>
+<p>在统计每天的新增用户时，我们只用计算每日用户Set和累计用户Set的差集就行。</p>
+<p>我借助一个具体的例子来解释一下。</p>
+<p>假设我们的手机App在2020年8月3日上线，那么，8月3日前是没有用户的。此时，累计用户Set是空集，当天登录的用户ID会被记录到 key为user:id:20200803的Set中。所以，user:id:20200803这个Set中的用户就是当天的新增用户。</p>
+<p>然后，我们计算累计用户Set和user:id:20200803 Set的并集结果，结果保存在user:id这个累计用户Set中，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">SUNIONSTORE  user:id  user:id  user:id:20200803
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>此时，user:id这个累计用户Set中就有了8月3日的用户ID。等到8月4日再统计时，我们把8月4日登录的用户ID记录到user:id:20200804 的Set中。接下来，我们执行SDIFFSTORE命令计算累计用户Set和user:id:20200804 Set的差集，结果保存在key为user:new的Set中，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">SDIFFSTORE  user:new  user:id:20200804 user:id
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到，这个差集中的用户ID在user:id:20200804 的Set中存在，但是不在累计用户Set中。所以，user:new这个Set中记录的就是8月4日的新增用户。</p>
+<p>当要计算8月4日的留存用户时，我们只需要再计算user:id:20200803 和 user:id:20200804两个Set的交集，就可以得到同时在这两个集合中的用户ID了，这些就是在8月3日登录，并且在8月4日留存的用户。执行的命令如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">SINTERSTORE user:id:rem user:id:20200803 user:id:20200804
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当你需要对多个集合进行聚合计算时，Set类型会是一个非常不错的选择。不过，我要提醒你一下，这里有一个潜在的风险。</p>
+<p>Set的差集、并集和交集的计算复杂度较高，在数据量较大的情况下，如果直接执行这些计算，会导致Redis实例阻塞。所以，我给你分享一个小建议： <strong>你可以从主从集群中选择一个从库，让它专门负责聚合计算，或者是把数据读取到客户端，在客户端来完成聚合统计</strong>，这样就可以规避阻塞主库实例和其他从库实例的风险了。</p>
+<h2 id="排序统计"><a href="#排序统计" class="headerlink" title="排序统计"></a>排序统计</h2><p>接下来，我们再来聊一聊应对集合元素排序需求的方法。我以在电商网站上提供最新评论列表的场景为例，进行讲解。</p>
+<p>最新评论列表包含了所有评论中的最新留言， <strong>这就要求集合类型能对元素保序</strong>，也就是说，集合中的元素可以按序排列，这种对元素保序的集合类型叫作有序集合。</p>
+<p>在Redis常用的4个集合类型中（List、Hash、Set、Sorted Set），List和Sorted Set就属于有序集合。</p>
+<p><strong>List是按照元素进入List的顺序进行排序的，而Sorted Set可以根据元素的权重来排序</strong>，我们可以自己来决定每个元素的权重值。比如说，我们可以根据元素插入Sorted Set的时间确定权重值，先插入的元素权重小，后插入的元素权重大。</p>
+<p>看起来好像都可以满足需求，我们该怎么选择呢？</p>
+<p>我先说说用List的情况。每个商品对应一个List，这个List包含了对这个商品的所有评论，而且会按照评论时间保存这些评论，每来一个新评论，就用LPUSH命令把它插入List的队头。</p>
+<p>在只有一页评论的时候，我们可以很清晰地看到最新的评论，但是，在实际应用中，网站一般会分页显示最新的评论列表，一旦涉及到分页操作，List就可能会出现问题了。</p>
+<p>假设当前的评论List是{A, B, C, D, E, F}（其中，A是最新的评论，以此类推，F是最早的评论），在展示第一页的3个评论时，我们可以用下面的命令，得到最新的三条评论A、B、C：</p>
+<pre class="line-numbers language-none"><code class="language-none">LRANGE product1 0 2
+1) &quot;A&quot;
+2) &quot;B&quot;
+3) &quot;C&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，再用下面的命令获取第二页的3个评论，也就是D、E、F。</p>
+<pre class="line-numbers language-none"><code class="language-none">LRANGE product1 3 5
+1) &quot;D&quot;
+2) &quot;E&quot;
+3) &quot;F&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是，如果在展示第二页前，又产生了一个新评论G，评论G就会被LPUSH命令插入到评论List的队头，评论List就变成了{G, A, B, C, D, E, F}。此时，再用刚才的命令获取第二页评论时，就会发现，评论C又被展示出来了，也就是C、D、E。</p>
+<pre class="line-numbers language-none"><code class="language-none">LRANGE product1 3 5
+1) &quot;C&quot;
+2) &quot;D&quot;
+3) &quot;E&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之所以会这样，关键原因就在于，List是通过元素在List中的位置来排序的，当有一个新元素插入时，原先的元素在List中的位置都后移了一位，比如说原来在第1位的元素现在排在了第2位。所以，对比新元素插入前后，List相同位置上的元素就会发生变化，用LRANGE读取时，就会读到旧元素。</p>
+<p>和List相比，Sorted Set就不存在这个问题，因为它是根据元素的实际权重来排序和获取数据的。</p>
+<p>我们可以按评论时间的先后给每条评论设置一个权重值，然后再把评论保存到Sorted Set中。Sorted Set的ZRANGEBYSCORE命令就可以按权重排序后返回元素。这样的话，即使集合中的元素频繁更新，Sorted Set也能通过ZRANGEBYSCORE命令准确地获取到按序排列的数据。</p>
+<p>假设越新的评论权重越大，目前最新评论的权重是N，我们执行下面的命令时，就可以获得最新的10条评论：</p>
+<pre class="line-numbers language-none"><code class="language-none">ZRANGEBYSCORE comments N-9 N
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>所以，在面对需要展示最新列表、排行榜等场景时，如果数据更新频繁或者需要分页显示，建议你优先考虑使用Sorted Set。</p>
+<h2 id="二值状态统计"><a href="#二值状态统计" class="headerlink" title="二值状态统计"></a>二值状态统计</h2><p>现在，我们再来分析下第三个场景：二值状态统计。这里的二值状态就是指集合元素的取值就只有0和1两种。在签到打卡的场景中，我们只用记录签到（1）或未签到（0），所以它就是非常典型的二值状态，</p>
+<p>在签到统计时，每个用户一天的签到用1个bit位就能表示，一个月（假设是31天）的签到情况用31个bit位就可以，而一年的签到也只需要用365个bit位，根本不用太复杂的集合类型。这个时候，我们就可以选择Bitmap。这是Redis提供的扩展数据类型。我来给你解释一下它的实现原理。</p>
+<p>Bitmap本身是用String类型作为底层数据结构实现的一种统计二值状态的数据类型。String类型是会保存为二进制的字节数组，所以，Redis就把字节数组的每个bit位利用起来，用来表示一个元素的二值状态。你可以把Bitmap看作是一个bit数组。</p>
+<p>Bitmap提供了GETBIT&#x2F;SETBIT操作，使用一个偏移值offset对bit数组的某一个bit位进行读和写。不过，需要注意的是，Bitmap的偏移量是从0开始算的，也就是说offset的最小值是0。当使用SETBIT对一个bit位进行写操作时，这个bit位会被设置为1。Bitmap还提供了BITCOUNT操作，用来统计这个bit数组中所有“1”的个数。</p>
+<p>那么，具体该怎么用Bitmap进行签到统计呢？我还是借助一个具体的例子来说明。</p>
+<p>假设我们要统计ID 3000的用户在2020年8月份的签到情况，就可以按照下面的步骤进行操作。</p>
+<p>第一步，执行下面的命令，记录该用户8月3号已签到。</p>
+<pre class="line-numbers language-none"><code class="language-none">SETBIT uid:sign:3000:202008 2 1
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>第二步，检查该用户8月3日是否签到。</p>
+<pre class="line-numbers language-none"><code class="language-none">GETBIT uid:sign:3000:202008 2
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>第三步，统计该用户在8月份的签到次数。</p>
+<pre class="line-numbers language-none"><code class="language-none">BITCOUNT uid:sign:3000:202008
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样，我们就知道该用户在8月份的签到情况了，是不是很简单呢？接下来，你可以再思考一个问题：如果记录了1亿个用户10天的签到情况，你有办法统计出这10天连续签到的用户总数吗？</p>
+<p>在介绍具体的方法之前，我们要先知道，Bitmap支持用BITOP命令对多个Bitmap按位做“与”“或”“异或”的操作，操作的结果会保存到一个新的Bitmap中。</p>
+<p>我以按位“与”操作为例来具体解释一下。从下图中，可以看到，三个Bitmap bm1、bm2和bm3，对应bit位做“与”操作，结果保存到了一个新的Bitmap中（示例中，这个结果Bitmap的key被设为“resmap”）。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/4151af42513cf5f7996fe86c6064f97a.jpg"></p>
+<p>回到刚刚的问题，在统计1亿个用户连续10天的签到情况时，你可以把每天的日期作为key，每个key对应一个1亿位的Bitmap，每一个bit对应一个用户当天的签到情况。</p>
+<p>接下来，我们对10个Bitmap做“与”操作，得到的结果也是一个Bitmap。在这个Bitmap中，只有10天都签到的用户对应的bit位上的值才会是1。最后，我们可以用BITCOUNT统计下Bitmap中的1的个数，这就是连续签到10天的用户总数了。</p>
+<p>现在，我们可以计算一下记录了10天签到情况后的内存开销。每天使用1个1亿位的Bitmap，大约占12MB的内存（10^8&#x2F;8&#x2F;1024&#x2F;1024），10天的Bitmap的内存开销约为120MB，内存压力不算太大。不过，在实际应用时，最好对Bitmap设置过期时间，让Redis自动删除不再需要的签到记录，以节省内存开销。</p>
+<p>所以，如果只需要统计数据的二值状态，例如商品有没有、用户在不在等，就可以使用Bitmap，因为它只用一个bit位就能表示0或1。在记录海量数据时，Bitmap能够有效地节省内存空间。</p>
+<h2 id="基数统计"><a href="#基数统计" class="headerlink" title="基数统计"></a>基数统计</h2><p>最后，我们再来看一个统计场景：基数统计。基数统计就是指统计一个集合中不重复的元素个数。对应到我们刚才介绍的场景中，就是统计网页的UV。</p>
+<p>网页UV的统计有个独特的地方，就是需要去重，一个用户一天内的多次访问只能算作一次。在Redis的集合类型中，Set类型默认支持去重，所以看到有去重需求时，我们可能第一时间就会想到用Set类型。</p>
+<p>我们来结合一个例子看一看用Set的情况。</p>
+<p>有一个用户user1访问page1时，你把这个信息加到Set中：</p>
+<pre class="line-numbers language-none"><code class="language-none">SADD page1:uv user1
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>用户1再来访问时，Set的去重功能就保证了不会重复记录用户1的访问次数，这样，用户1就算是一个独立访客。当你需要统计UV时，可以直接用SCARD命令，这个命令会返回一个集合中的元素个数。</p>
+<p>但是，如果page1非常火爆，UV达到了千万，这个时候，一个Set就要记录千万个用户ID。对于一个搞大促的电商网站而言，这样的页面可能有成千上万个，如果每个页面都用这样的一个Set，就会消耗很大的内存空间。</p>
+<p>当然，你也可以用Hash类型记录UV。</p>
+<p>例如，你可以把用户ID作为Hash集合的key，当用户访问页面时，就用HSET命令（用于设置Hash集合元素的值），对这个用户ID记录一个值“1”，表示一个独立访客，用户1访问page1后，我们就记录为1个独立访客，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">HSET page1:uv user1 1
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>即使用户1多次访问页面，重复执行这个HSET命令，也只会把user1的值设置为1，仍然只记为1个独立访客。当要统计UV时，我们可以用HLEN命令统计Hash集合中的所有元素个数。</p>
+<p>但是，和Set类型相似，当页面很多时，Hash类型也会消耗很大的内存空间。那么，有什么办法既能完成统计，还能节省内存吗？</p>
+<p>这时候，就要用到Redis提供的HyperLogLog了。</p>
+<p>HyperLogLog是一种用于统计基数的数据集合类型，它的最大优势就在于，当集合元素数量非常多时，它计算基数所需的空间总是固定的，而且还很小。</p>
+<p>在Redis中，每个 HyperLogLog只需要花费 12 KB 内存，就可以计算接近 2^64 个元素的基数。你看，和元素越多就越耗费内存的Set和Hash类型相比，HyperLogLog就非常节省空间。</p>
+<p>在统计UV时，你可以用PFADD命令（用于向HyperLogLog中添加新元素）把访问页面的每个用户都添加到HyperLogLog中。</p>
+<pre class="line-numbers language-none"><code class="language-none">PFADD page1:uv user1 user2 user3 user4 user5
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来，就可以用PFCOUNT命令直接获得page1的UV值了，这个命令的作用就是返回HyperLogLog的统计结果。</p>
+<pre class="line-numbers language-none"><code class="language-none">PFCOUNT page1:uv
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关于HyperLogLog的具体实现原理，你不需要重点掌握，不会影响到你的日常使用，我就不多讲了。如果你想了解一下，课下可以看看 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/HyperLogLog">这条链接</a>。</p>
+<p>不过，有一点需要你注意一下，HyperLogLog的统计规则是基于概率完成的，所以它给出的统计结果是有一定误差的，标准误算率是0.81%。这也就意味着，你使用HyperLogLog统计的UV是100万，但实际的UV可能是101万。虽然误差率不算大，但是，如果你需要精确统计结果的话，最好还是继续用Set或Hash类型。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这节课，我们结合统计新增用户数和留存用户数、最新评论列表、用户签到数以及网页独立访客量这4种典型场景，学习了集合类型的4种统计模式，分别是聚合统计、排序统计、二值状态统计和基数统计。为了方便你掌握，我把Set、Sorted Set、Hash、List、Bitmap、HyperLogLog的支持情况和优缺点汇总在了下面的表格里，希望你把这张表格保存下来，时不时地复习一下。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/c0bb35d0d91a62ef4ca1bd939a9b136e.jpg"></p>
+<p>可以看到，Set和Sorted Set都支持多种聚合统计，不过，对于差集计算来说，只有Set支持。Bitmap也能做多个Bitmap间的聚合计算，包括与、或和异或操作。</p>
+<p>当需要进行排序统计时，List中的元素虽然有序，但是一旦有新元素插入，原来的元素在List中的位置就会移动，那么，按位置读取的排序结果可能就不准确了。而Sorted Set本身是按照集合元素的权重排序，可以准确地按序获取结果，所以建议你优先使用它。</p>
+<p>如果我们记录的数据只有0和1两个值的状态，Bitmap会是一个很好的选择，这主要归功于Bitmap对于一个数据只用1个bit记录，可以节省内存。</p>
+<p>对于基数统计来说，如果集合元素量达到亿级别而且不需要精确统计时，我建议你使用HyperLogLog。</p>
+<p>当然，Redis的应用场景非常多，这张表中的总结不一定能覆盖到所有场景。我建议你也试着自己画一张表，把你遇到的其他场景添加进去。长久积累下来，你一定能够更加灵活地把集合类型应用到合适的实践项目中。</p>
+<h2 id="每课一问"><a href="#每课一问" class="headerlink" title="每课一问"></a>每课一问</h2><p>依照惯例，我给你留个小问题。这节课，我们学习了4种典型的统计模式，以及各种集合类型的支持情况和优缺点，我想请你聊一聊，你还遇到过其他的统计场景吗？用的是怎样的集合类型呢？</p>
+<p>欢迎你在留言区写下你的思考和答案，和我交流讨论。如果你身边还有需要解决这些统计问题的朋友或同事，也欢迎你把今天的内容分享给他&#x2F;她，我们下节课见。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#12-%E6%9C%89%E4%B8%80%E4%BA%BF%E4%B8%AAkeys%E8%A6%81%E7%BB%9F%E8%AE%A1%EF%BC%8C%E5%BA%94%E8%AF%A5%E7%94%A8%E5%93%AA%E7%A7%8D%E9%9B%86%E5%90%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">12 | 有一亿个keys要统计，应该用哪种集合？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">聚合统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">排序统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%80%BC%E7%8A%B6%E6%80%81%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">二值状态统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%95%B0%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">基数统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E8%AF%BE%E4%B8%80%E9%97%AE"><span class="toc-number">1.6.</span> <span class="toc-text">每课一问</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>21 | 缓冲区：一个可能引发“惨案”的地方 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="21 | 缓冲区：一个可能引发“惨案”的地方你好，我是蒋德钧。今天，我们一起来学习下Redis中缓冲区的用法。 缓冲区的功能其实很简单，主要就是用一块内存空间来暂时存放命令数据，以免出现因为数据和命令的处理速度慢于发送速度而导致的数据丢失和性能问题。但因为缓冲区的内存空间有限，如果往里面写入数据的速度持续地大于从里面读取数据的速度，就会导致缓冲区需要越来越多的内存来暂存数据。当缓冲区占用的内存超出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21 | 缓冲区：一个可能引发“惨案”的地方">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3309845710.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="21 | 缓冲区：一个可能引发“惨案”的地方你好，我是蒋德钧。今天，我们一起来学习下Redis中缓冲区的用法。 缓冲区的功能其实很简单，主要就是用一块内存空间来暂时存放命令数据，以免出现因为数据和命令的处理速度慢于发送速度而导致的数据丢失和性能问题。但因为缓冲区的内存空间有限，如果往里面写入数据的速度持续地大于从里面读取数据的速度，就会导致缓冲区需要越来越多的内存来暂存数据。当缓冲区占用的内存超出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-04T22:10:14.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.374Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3309845710"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '21 | 缓冲区：一个可能引发“惨案”的地方',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">21 | 缓冲区：一个可能引发“惨案”的地方</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="21-缓冲区：一个可能引发“惨案”的地方"><a href="#21-缓冲区：一个可能引发“惨案”的地方" class="headerlink" title="21 | 缓冲区：一个可能引发“惨案”的地方"></a>21 | 缓冲区：一个可能引发“惨案”的地方</h1><p>你好，我是蒋德钧。今天，我们一起来学习下Redis中缓冲区的用法。</p>
+<p>缓冲区的功能其实很简单，主要就是用一块内存空间来暂时存放命令数据，以免出现因为数据和命令的处理速度慢于发送速度而导致的数据丢失和性能问题。但因为缓冲区的内存空间有限，如果往里面写入数据的速度持续地大于从里面读取数据的速度，就会导致缓冲区需要越来越多的内存来暂存数据。当缓冲区占用的内存超出了设定的上限阈值时，就会出现缓冲区溢出。</p>
+<p>如果发生了溢出，就会丢数据了。那是不是不给缓冲区的大小设置上限，就可以了呢？显然不是，随着累积的数据越来越多，缓冲区占用内存空间越来越大，一旦耗尽了Redis实例所在机器的可用内存，就会导致Redis实例崩溃。</p>
+<p>所以毫不夸张地说，缓冲区是用来避免请求或数据丢失的惨案的，但也只有用对了，才能真正起到“避免”的作用。</p>
+<p>我们知道，Redis是典型的client-server架构，所有的操作命令都需要通过客户端发送给服务器端。所以，缓冲区在Redis中的一个主要应用场景，就是在客户端和服务器端之间进行通信时，用来暂存客户端发送的命令数据，或者是服务器端返回给客户端的数据结果。此外，缓冲区的另一个主要应用场景，是在主从节点间进行数据同步时，用来暂存主节点接收的写命令和数据。</p>
+<p>这节课，我们就分别聊聊服务器端和客户端、主从集群间的缓冲区溢出问题，以及应对方案。</p>
+<h2 id="客户端输入和输出缓冲区"><a href="#客户端输入和输出缓冲区" class="headerlink" title="客户端输入和输出缓冲区"></a>客户端输入和输出缓冲区</h2><p>我们先来看看服务器端和客户端之间的缓冲区。</p>
+<p>为了避免客户端和服务器端的请求发送和处理速度不匹配，服务器端给每个连接的客户端都设置了一个输入缓冲区和输出缓冲区，我们称之为客户端输入缓冲区和输出缓冲区。</p>
+<p>输入缓冲区会先把客户端发送过来的命令暂存起来，Redis主线程再从输入缓冲区中读取命令，进行处理。当Redis主线程处理完数据后，会把结果写入到输出缓冲区，再通过输出缓冲区返回给客户端，如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/b86be61e91bd7ca207989c220991fce4.jpg"></p>
+<p>下面，我们就分别学习下输入缓冲区和输出缓冲区发生溢出的情况，以及相应的应对方案。</p>
+<h3 id="如何应对输入缓冲区溢出？"><a href="#如何应对输入缓冲区溢出？" class="headerlink" title="如何应对输入缓冲区溢出？"></a>如何应对输入缓冲区溢出？</h3><p>我们前面已经分析过了，输入缓冲区就是用来暂存客户端发送的请求命令的，所以可能导致溢出的情况主要是下面两种：</p>
+<ul>
+<li>写入了bigkey，比如一下子写入了多个百万级别的集合类型数据；</li>
+<li>服务器端处理请求的速度过慢，例如，Redis主线程出现了间歇性阻塞，无法及时处理正常发送的请求，导致客户端发送的请求在缓冲区越积越多。</li>
+</ul>
+<p>接下来，我们就从 <strong>如何查看输入缓冲区的内存使用情况，以及如何避免溢出</strong> 这两个问题出发，来继续学习吧。</p>
+<p>要查看和服务器端相连的每个客户端对输入缓冲区的使用情况，我们可以 <strong>使用CLIENT LIST命令</strong>：</p>
+<pre class="line-numbers language-none"><code class="language-none">CLIENT LIST
+id&#x3D;5 addr&#x3D;127.0.0.1:50487 fd&#x3D;9 name&#x3D; age&#x3D;4 idle&#x3D;0 flags&#x3D;N db&#x3D;0 sub&#x3D;0 psub&#x3D;0 multi&#x3D;-1 qbuf&#x3D;26 qbuf-free&#x3D;32742 obl&#x3D;0 oll&#x3D;0 omem&#x3D;0 events&#x3D;r cmd&#x3D;client
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>CLIENT命令返回的信息虽然很多，但我们只需要重点关注两类信息就可以了。</p>
+<p>一类是与服务器端连接的客户端的信息。这个案例展示的是一个客户端的输入缓冲区情况，如果有多个客户端，输出结果中的addr会显示不同客户端的IP和端口号。</p>
+<p>另一类是与输入缓冲区相关的三个参数：</p>
+<ul>
+<li>cmd，表示客户端最新执行的命令。这个例子中执行的是CLIENT命令。</li>
+<li>qbuf，表示输入缓冲区已经使用的大小。这个例子中的CLIENT命令已使用了26字节大小的缓冲区。</li>
+<li>qbuf-free，表示输入缓冲区尚未使用的大小。这个例子中的CLIENT命令还可以使用32742字节的缓冲区。qbuf和qbuf-free的总和就是，Redis服务器端当前为已连接的这个客户端分配的缓冲区总大小。这个例子中总共分配了 26 + 32742 &#x3D; 32768字节，也就是32KB的缓冲区。</li>
+</ul>
+<p>有了CLIENT LIST命令，我们就可以通过输出结果来判断客户端输入缓冲区的内存占用情况了。如果qbuf很大，而同时qbuf-free很小，就要引起注意了，因为这时候输入缓冲区已经占用了很多内存，而且没有什么空闲空间了。此时，客户端再写入大量命令的话，就会引起客户端输入缓冲区溢出，Redis的处理办法就是把客户端连接关闭，结果就是业务程序无法进行数据存取了。</p>
+<p>通常情况下，Redis服务器端不止服务一个客户端，当多个客户端连接占用的内存总量，超过了Redis的maxmemory配置项时（例如4GB），就会触发Redis进行数据淘汰。一旦数据被淘汰出Redis，再要访问这部分数据，就需要去后端数据库读取，这就降低了业务应用的访问性能。此外，更糟糕的是，如果使用多个客户端，导致Redis内存占用过大，也会导致内存溢出（out-of-memory）问题，进而会引起Redis崩溃，给业务应用造成严重影响。</p>
+<p>所以，我们必须得想办法避免输入缓冲区溢出。 <strong>我们可以从两个角度去考虑如何避免，一是把缓冲区调大，二是从数据命令的发送和处理速度入手。</strong></p>
+<p>我们先看看，到底有没有办法通过参数调整输入缓冲区的大小呢？答案是没有。</p>
+<p>Redis的客户端输入缓冲区大小的上限阈值，在代码中就设定为了1GB。也就是说，Redis服务器端允许为每个客户端最多暂存1GB的命令和数据。1GB的大小，对于一般的生产环境已经是比较合适的了。一方面，这个大小对于处理绝大部分客户端的请求已经够用了；另一方面，如果再大的话，Redis就有可能因为客户端占用了过多的内存资源而崩溃。</p>
+<p>所以，Redis并没有提供参数让我们调节客户端输入缓冲区的大小。如果要避免输入缓冲区溢出，那我们就只能从数据命令的发送和处理速度入手，也就是前面提到的避免客户端写入bigkey，以及避免Redis主线程阻塞。</p>
+<p>接下来，我们再来看看输出缓冲区的溢出问题。</p>
+<h3 id="如何应对输出缓冲区溢出？"><a href="#如何应对输出缓冲区溢出？" class="headerlink" title="如何应对输出缓冲区溢出？"></a>如何应对输出缓冲区溢出？</h3><p>Redis的输出缓冲区暂存的是Redis主线程要返回给客户端的数据。一般来说，主线程返回给客户端的数据，既有简单且大小固定的OK响应（例如，执行SET命令）或报错信息，也有大小不固定的、包含具体数据的执行结果（例如，执行HGET命令）。</p>
+<p>因此，Redis为每个客户端设置的输出缓冲区也包括两部分：一部分，是一个大小为16KB的固定缓冲空间，用来暂存OK响应和出错信息；另一部分，是一个可以动态增加的缓冲空间，用来暂存大小可变的响应结果。</p>
+<p><strong>那什么情况下会发生输出缓冲区溢出呢？</strong> 我为你总结了三种：</p>
+<ul>
+<li>服务器端返回bigkey的大量结果；</li>
+<li>执行了MONITOR命令；</li>
+<li>缓冲区大小设置得不合理。</li>
+</ul>
+<p>其中，bigkey原本就会占用大量的内存空间，所以服务器端返回的结果包含bigkey，必然会影响输出缓冲区。接下来，我们就重点看下，执行MONITOR命令和设置缓冲区大小这两种情况吧。</p>
+<p>MONITOR命令是用来监测Redis执行的。执行这个命令之后，就会持续输出监测到的各个命令操作，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">MONITOR
+OK
+1600617456.437129 [0 127.0.0.1:50487] &quot;COMMAND&quot;
+1600617477.289667 [0 127.0.0.1:50487] &quot;info&quot; &quot;memory&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到这里，你有没有看出什么问题呢？MONITOR的输出结果会持续占用输出缓冲区，并越占越多，最后的结果就是发生溢出。所以，我要给你一个小建议： <strong>MONITOR命令主要用在调试环境中，不要在线上生产环境中持续使用MONITOR</strong>。当然，如果在线上环境中偶尔使用MONITOR检查Redis的命令执行情况，是没问题的。</p>
+<p><strong>接下来，我们看下输出缓冲区大小设置的问题</strong>。和输入缓冲区不同，我们可以通过client-output-buffer-limit配置项，来设置缓冲区的大小。具体设置的内容包括两方面：</p>
+<ul>
+<li>设置缓冲区大小的上限阈值；</li>
+<li>设置输出缓冲区持续写入数据的数量上限阈值，和持续写入数据的时间的上限阈值。</li>
+</ul>
+<p>在具体使用client-output-buffer-limit来设置缓冲区大小的时候，我们需要先区分下客户端的类型。</p>
+<p>对于和Redis实例进行交互的应用程序来说，主要使用两类客户端和Redis服务器端交互，分别是常规和Redis服务器端进行读写命令交互的普通客户端，以及订阅了Redis频道的订阅客户端。此外，在Redis主从集群中，主节点上也有一类客户端（从节点客户端）用来和从节点进行数据同步，我会在介绍主从集群中的缓冲区时，向你具体介绍。</p>
+<p>当我们给普通客户端设置缓冲区大小时，通常可以在Redis配置文件中进行这样的设置：</p>
+<pre class="line-numbers language-none"><code class="language-none">client-output-buffer-limit normal 0 0 0
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中，normal表示当前设置的是普通客户端，第1个0设置的是缓冲区大小限制，第2个0和第3个0分别表示缓冲区持续写入量限制和持续写入时间限制。</p>
+<p>对于普通客户端来说，它每发送完一个请求，会等到请求结果返回后，再发送下一个请求，这种发送方式称为阻塞式发送。在这种情况下，如果不是读取体量特别大的bigkey，服务器端的输出缓冲区一般不会被阻塞的。</p>
+<p>所以，我们通常把普通客户端的缓冲区大小限制，以及持续写入量限制、持续写入时间限制都设置为0，也就是不做限制。</p>
+<p>对于订阅客户端来说，一旦订阅的Redis频道有消息了，服务器端都会通过输出缓冲区把消息发给客户端。所以，订阅客户端和服务器间的消息发送方式，不属于阻塞式发送。不过，如果频道消息较多的话，也会占用较多的输出缓冲区空间。</p>
+<p>因此，我们会给订阅客户端设置缓冲区大小限制、缓冲区持续写入量限制，以及持续写入时间限制，可以在Redis配置文件中这样设置：</p>
+<pre class="line-numbers language-none"><code class="language-none">client-output-buffer-limit pubsub 8mb 2mb 60
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中，pubsub参数表示当前是对订阅客户端进行设置；8mb表示输出缓冲区的大小上限为8MB，一旦实际占用的缓冲区大小要超过8MB，服务器端就会直接关闭客户端的连接；2mb和60表示，如果连续60秒内对输出缓冲区的写入量超过2MB的话，服务器端也会关闭客户端连接。</p>
+<p>好了，我们来总结下如何应对输出缓冲区溢出：</p>
+<ul>
+<li>避免bigkey操作返回大量数据结果；</li>
+<li>避免在线上环境中持续使用MONITOR命令。</li>
+<li>使用client-output-buffer-limit设置合理的缓冲区大小上限，或是缓冲区连续写入时间和写入量上限。</li>
+</ul>
+<p>以上就是关于客户端缓冲区，我们要重点掌握的内容了。我们继续看看在主从集群间使用缓冲区，需要注意什么问题。</p>
+<h2 id="主从集群中的缓冲区"><a href="#主从集群中的缓冲区" class="headerlink" title="主从集群中的缓冲区"></a>主从集群中的缓冲区</h2><p>主从集群间的数据复制包括全量复制和增量复制两种。全量复制是同步所有数据，而增量复制只会把主从库网络断连期间主库收到的命令，同步给从库。无论在哪种形式的复制中，为了保证主从节点的数据一致，都会用到缓冲区。但是，这两种复制场景下的缓冲区，在溢出影响和大小设置方面并不一样。所以，我们分别来学习下吧。</p>
+<h3 id="复制缓冲区的溢出问题"><a href="#复制缓冲区的溢出问题" class="headerlink" title="复制缓冲区的溢出问题"></a>复制缓冲区的溢出问题</h3><p>在全量复制过程中，主节点在向从节点传输RDB文件的同时，会继续接收客户端发送的写命令请求。这些写命令就会先保存在复制缓冲区中，等RDB文件传输完成后，再发送给从节点去执行。主节点上会为每个从节点都维护一个复制缓冲区，来保证主从节点间的数据同步。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/a39cd9a9f62c547e2069e6977239de7a.jpg"></p>
+<p>所以，如果在全量复制时，从节点接收和加载RDB较慢，同时主节点接收到了大量的写命令，写命令在复制缓冲区中就会越积越多，最终导致溢出。</p>
+<p>其实，主节点上的复制缓冲区，本质上也是一个用于和从节点连接的客户端（我们称之为从节点客户端），使用的输出缓冲区。复制缓冲区一旦发生溢出，主节点也会直接关闭和从节点进行复制操作的连接，导致全量复制失败。那如何避免复制缓冲区发生溢出呢？</p>
+<p>一方面，我们可以控制主节点保存的数据量大小。按通常的使用经验，我们会把主节点的数据量控制在2~4GB，这样可以让全量同步执行得更快些，避免复制缓冲区累积过多命令。</p>
+<p>另一方面，我们可以使用client-output-buffer-limit配置项，来设置合理的复制缓冲区大小。设置的依据，就是主节点的数据量大小、主节点的写负载压力和主节点本身的内存大小。</p>
+<p>我们通过一个具体的例子，来学习下具体怎么设置。在主节点执行如下命令：</p>
+<pre class="line-numbers language-none"><code class="language-none">config set client-output-buffer-limit slave 512mb 128mb 60
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中，slave参数表明该配置项是针对复制缓冲区的。512mb代表将缓冲区大小的上限设置为512MB；128mb和60代表的设置是，如果连续60秒内的写入量超过128MB的话，也会触发缓冲区溢出。</p>
+<p>我们再继续看看这个设置对我们有啥用。假设一条写命令数据是1KB，那么，复制缓冲区可以累积512K条（512MB&#x2F;1KB &#x3D; 512K）写命令。同时，主节点在全量复制期间，可以承受的写命令速率上限是2000条&#x2F;s（128MB&#x2F;1KB&#x2F;60 约等于2000）。</p>
+<p>这样一来，我们就得到了一种方法：在实际应用中设置复制缓冲区的大小时，可以根据写命令数据的大小和应用的实际负载情况（也就是写命令速率），来粗略估计缓冲区中会累积的写命令数据量；然后，再和所设置的复制缓冲区大小进行比较，判断设置的缓冲区大小是否足够支撑累积的写命令数据量。</p>
+<p>关于复制缓冲区，我们还会遇到一个问题。主节点上复制缓冲区的内存开销，会是每个从节点客户端输出缓冲区占用内存的总和。如果集群中的从节点数非常多的话，主节点的内存开销就会非常大。所以，我们还必须得控制和主节点连接的从节点个数，不要使用大规模的主从集群。</p>
+<p>好了，我们先总结一下这部分的内容。为了避免复制缓冲区累积过多命令造成溢出，引发全量复制失败，我们可以控制主节点保存的数据量大小，并设置合理的复制缓冲区大小。同时，我们需要控制从节点的数量，来避免主节点中复制缓冲区占用过多内存的问题。</p>
+<h3 id="复制积压缓冲区的溢出问题"><a href="#复制积压缓冲区的溢出问题" class="headerlink" title="复制积压缓冲区的溢出问题"></a>复制积压缓冲区的溢出问题</h3><p>接下来，我们再来看下增量复制时使用的缓冲区，这个缓冲区称为复制积压缓冲区。</p>
+<p>主节点在把接收到的写命令同步给从节点时，同时会把这些写命令写入复制积压缓冲区。一旦从节点发生网络闪断，再次和主节点恢复连接后，从节点就会从复制积压缓冲区中，读取断连期间主节点接收到的写命令，进而进行增量同步，如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/aedc9b41b31860e283c5d140bdb3318f.jpg"></p>
+<p>看到这里你是不是感觉有些熟悉？没错，我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/272852">第6讲</a> 时已经学过复制积压缓冲区了，只不过我当时告诉你的是它的英文名字repl_backlog_buffer。所以这一讲，我们从缓冲区溢出的角度再来回顾下两个重点：复制积压缓冲区溢出的影响，以及如何应对复制积压缓冲区的溢出问题。</p>
+<p>首先，复制积压缓冲区是一个大小有限的环形缓冲区。当主节点把复制积压缓冲区写满后，会覆盖缓冲区中的旧命令数据。如果从节点还没有同步这些旧命令数据，就会造成主从节点间重新开始执行全量复制。</p>
+<p>其次，为了应对复制积压缓冲区的溢出问题，我们可以调整复制积压缓冲区的大小，也就是设置repl_backlog_size这个参数的值。具体的调整依据，你可以再看下 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/272852">第6讲</a> 中提供的repl_backlog_size大小的计算依据。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这节课，我们一起学习了Redis中使用的缓冲区。使用缓冲区以后，当命令数据的接收方处理速度跟不上发送方的发送速度时，缓冲区可以避免命令数据的丢失。</p>
+<p>按照缓冲区的用途，例如是用于客户端通信还是用于主从节点复制，我把缓冲区分成了客户端的输入和输出缓冲区，以及主从集群中主节点上的复制缓冲区和复制积压缓冲区。这样学习的好处是，你可以很清楚Redis中到底有哪些地方使用了缓冲区，那么在排查问题的时候，就可以快速找到方向——从客户端和服务器端的通信过程以及主从节点的复制过程中分析原因。</p>
+<p>现在，从缓冲区溢出对Redis的影响的角度，我再把这四个缓冲区分成两类做个总结。</p>
+<ul>
+<li>缓冲区溢出导致网络连接关闭：普通客户端、订阅客户端，以及从节点客户端，它们使用的缓冲区，本质上都是Redis客户端和服务器端之间，或是主从节点之间为了传输命令数据而维护的。这些缓冲区一旦发生溢出，处理机制都是直接把客户端和服务器端的连接，或是主从节点间的连接关闭。网络连接关闭造成的直接影响，就是业务程序无法读写Redis，或者是主从节点全量同步失败，需要重新执行。</li>
+<li>缓冲区溢出导致命令数据丢失：主节点上的复制积压缓冲区属于环形缓冲区，一旦发生溢出，新写入的命令数据就会覆盖旧的命令数据，导致旧命令数据的丢失，进而导致主从节点重新进行全量复制。</li>
+</ul>
+<p>从本质上看，缓冲区溢出，无非就是三个原因：命令数据发送过快过大；命令数据处理较慢；缓冲区空间过小。明白了这个，我们就可以有针对性地拿出应对策略了。</p>
+<ul>
+<li>针对命令数据发送过快过大的问题，对于普通客户端来说可以避免bigkey，而对于复制缓冲区来说，就是避免过大的RDB文件。</li>
+<li>针对命令数据处理较慢的问题，解决方案就是减少Redis主线程上的阻塞操作，例如使用异步的删除操作。</li>
+<li>针对缓冲区空间过小的问题，解决方案就是使用client-output-buffer-limit配置项设置合理的输出缓冲区、复制缓冲区和复制积压缓冲区大小。当然，我们不要忘了，输入缓冲区的大小默认是固定的，我们无法通过配置来修改它，除非直接去修改Redis源码。</li>
+</ul>
+<p>有了上面这些应对方法，我相信你在实际应用时，就可以避免缓冲区溢出带来的命令数据丢失、Redis崩溃的这些“惨案”了。</p>
+<h2 id="每课一问"><a href="#每课一问" class="headerlink" title="每课一问"></a>每课一问</h2><p>最后，我给你提个小问题吧。</p>
+<p>在这节课上，我们提到Redis采用了client-server架构，服务器端会为每个客户端维护输入、输出缓冲区。那么，应用程序和Redis实例交互时，应用程序中使用的客户端需要使用缓冲区吗？如果使用的话，对Redis的性能和内存使用会有影响吗？</p>
+<p>欢迎在留言区写下你的思考和答案，我们一起交流讨论。如果你觉得今天的内容对你有所帮助，也欢迎你分享给你的朋友或同事，我们下节课见。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#21-%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%83%BD%E5%BC%95%E5%8F%91%E2%80%9C%E6%83%A8%E6%A1%88%E2%80%9D%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">1.</span> <span class="toc-text">21 | 缓冲区：一个可能引发“惨案”的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">客户端输入和输出缓冲区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E8%BE%93%E5%85%A5%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%EF%BC%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">如何应对输入缓冲区溢出？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E8%BE%93%E5%87%BA%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">如何应对输出缓冲区溢出？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-number">1.2.</span> <span class="toc-text">主从集群中的缓冲区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.1.</span> <span class="toc-text">复制缓冲区的溢出问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%A7%AF%E5%8E%8B%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E6%BA%A2%E5%87%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.2.</span> <span class="toc-text">复制积压缓冲区的溢出问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E8%AF%BE%E4%B8%80%E9%97%AE"><span class="toc-number">1.4.</span> <span class="toc-text">每课一问</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

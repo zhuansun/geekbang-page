@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>19 | 组件设计原则：组件的边界在哪里？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="19 | 组件设计原则：组件的边界在哪里？软件的复杂度和它的规模成 指数 关系，一个复杂度为100的软件系统，如果能拆分成两个互不相关、同等规模的子系统，那么每个子系统的复杂度应该是25，而不是50。软件开发这个行业很久之前就形成了一个共识，应该将复杂的软件系统进行拆分，拆成多个更低复杂度的子系统，子系统还可以继续拆分成更小粒度的组件。也就是说，软件需要进行模块化、组件化设计。 事实上，早在打孔纸">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19 | 组件设计原则：组件的边界在哪里？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/55030151.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="19 | 组件设计原则：组件的边界在哪里？软件的复杂度和它的规模成 指数 关系，一个复杂度为100的软件系统，如果能拆分成两个互不相关、同等规模的子系统，那么每个子系统的复杂度应该是25，而不是50。软件开发这个行业很久之前就形成了一个共识，应该将复杂的软件系统进行拆分，拆成多个更低复杂度的子系统，子系统还可以继续拆分成更小粒度的组件。也就是说，软件需要进行模块化、组件化设计。 事实上，早在打孔纸">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:45.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.851Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/55030151"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '19 | 组件设计原则：组件的边界在哪里？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">19 | 组件设计原则：组件的边界在哪里？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="19-组件设计原则：组件的边界在哪里？"><a href="#19-组件设计原则：组件的边界在哪里？" class="headerlink" title="19 | 组件设计原则：组件的边界在哪里？"></a>19 | 组件设计原则：组件的边界在哪里？</h1><p>软件的复杂度和它的规模成 <strong>指数</strong> 关系，一个复杂度为100的软件系统，如果能拆分成两个互不相关、同等规模的子系统，那么每个子系统的复杂度应该是25，而不是50。软件开发这个行业很久之前就形成了一个共识，应该将复杂的软件系统进行拆分，拆成多个更低复杂度的子系统，子系统还可以继续拆分成更小粒度的组件。也就是说，软件需要进行模块化、组件化设计。</p>
+<p>事实上，早在打孔纸带编程时代，程序员们就开始尝试进行软件的组件化设计。那些相对独立，可以被复用的程序被打在纸带卡片上，放在一个盒子里。当某个程序需要复用这个程序组件的时候，就把这一摞纸带卡片从盒子里拿出来，放在要运行的其他纸带的前面或者后面，被光电读卡器一起扫描，一起执行。</p>
+<p>其实我们现在的组件开发与复用跟这个也差不多。比如我们用Java开发，会把独立的组件编译成一个一个的jar包，相当于这些组件被封装在一个一个的盒子里。需要复用的时候，程序只需要依赖这些jar包，运行的时候，只需要把这些依赖的jar包放在 <code>classpath</code> 路径下，最后被JVM统一装载，一起执行。</p>
+<p>现在，稍有规模的软件系统一定被拆分成很多组件。正是因为组件化设计，我们才能开发出复杂的系统。</p>
+<p>那么如何进行组件的设计呢？组件的粒度应该多大？如何对组件的功能进行划分？组件的边界又在哪里？</p>
+<p>我们之前说过，软件设计的核心目标就是 <strong>高内聚、低耦合</strong>。那么今天我们从这两个维度，看组件的设计原则。</p>
+<h2 id="组件内聚原则"><a href="#组件内聚原则" class="headerlink" title="组件内聚原则"></a>组件内聚原则</h2><p><strong>组件内聚原则</strong> 主要讨论哪些类应该聚合在同一个组件中，以便组件既能提供相对完整的功能，又不至于太过庞大。在具体设计中，可以遵循以下三个原则。</p>
+<h3 id="复用发布等同原则"><a href="#复用发布等同原则" class="headerlink" title="复用发布等同原则"></a>复用发布等同原则</h3><p>复用发布等同原则是说， <strong>软件复用的最小粒度应该等同于其发布的最小粒度</strong>。也就是说，如果你希望别人以怎样的粒度复用你的软件，你就应该以怎样的粒度发布你的软件。这其实就是组件的定义了，组件是软件复用和发布的最小粒度软件单元。这个粒度既是复用的粒度，也是发布的粒度。</p>
+<p>同时，如果你发布的组件会不断变更，那么你就应该用版本号做好组件的版本管理，以使组件的使用者能够知道自己是否需要升级组件版本，以及是否会出现组件不兼容的情况。因此，组件的版本号应该遵循一些大家都接受的约定。</p>
+<p>这里有一个版本号约定建议供你参考，版本号格式：主版本号.次版本号.修订号。比如1.3.12，在这个版本号中，主版本号是1，次版本号是3，修订号是12。主版本号升级，表示组件发生了不向前兼容的重大修订；次版本号升级，表示组件进行了重要的功能修订或者bug修复，但是组件是向前兼容的；修订号升级，表示组件进行了不重要的功能修订或者bug修复。</p>
+<h3 id="共同封闭原则"><a href="#共同封闭原则" class="headerlink" title="共同封闭原则"></a>共同封闭原则</h3><p>共同封闭原则是说， <strong>我们应该将那些会同时修改，并且为了相同目的而修改的类放到同一个组件中</strong>。而将不会同时修改，并且不会为了相同目的而修改的类放到不同的组件中。</p>
+<p>组件的目的虽然是为了复用，然而开发中常常引发问题的，恰恰在于组件本身的可维护性。如果组件在自己的生命周期中必须经历各种变更，那么最好不要涉及其他组件，相关的变更都在同一个组件中。这样，当变更发生的时候，只需要重新发布这个组件就可以了，而不是一大堆组件都受到牵连。</p>
+<p>也许将某些类放入这个组件中对于复用是便利的、合理的，但如果组件的复用与维护发生冲突，比如这些类将来的变更和整个组件将来的变更是不同步的，不会由于相同的原因发生变更，那么为了可维护性，应该谨慎考虑，是不是应该将这些类和组件放在一起。</p>
+<h3 id="共同复用原则"><a href="#共同复用原则" class="headerlink" title="共同复用原则"></a>共同复用原则</h3><p>共同复用原则是说， <strong>不要强迫一个组件的用户依赖他们不需要的东西</strong>。</p>
+<p>这个原则一方面是说，我们应该将互相依赖，共同复用的类放在一个组件中。比如说，一个数据结构容器组件，提供数组、Hash表等各种数据结构容器，那么对数据结构遍历的类、排序的类也应该放在这个组件中，以使这个组件中的类共同对外提供服务。</p>
+<p>另一方面，这个原则也说明，如果不是被共同依赖的类，就不应该放在同一个组件中。如果不被依赖的类发生变更，就会引起组件变更，进而引起使用组件的程序发生变更。这样就会导致组件的使用者产生不必要的困扰，甚至讨厌使用这样的组件，也造成了组件复用的困难。</p>
+<p>其实，以上三个组件内聚原则相互之间也存在一些冲突，比如共同复用原则和共同闭包原则，一个强调易复用，一个强调易维护，而这两者是有冲突的。因此这些原则可以用来指导组件设计时的考量，但要想真正做出正确的设计决策，还需要架构师自己的经验和对场景的理解，对这些原则进行权衡。</p>
+<h2 id="组件耦合原则"><a href="#组件耦合原则" class="headerlink" title="组件耦合原则"></a>组件耦合原则</h2><p>组件内聚原则讨论的是组件应该包含哪些功能和类，而组件耦合原则讨论组件之间的耦合关系应该如何设计。组件耦合关系设计也应该遵循三个原则。</p>
+<h3 id="无循环依赖原则"><a href="#无循环依赖原则" class="headerlink" title="无循环依赖原则"></a>无循环依赖原则</h3><p>无循环依赖原则说， <strong>组件依赖关系中不应该出现环</strong>。如果组件A依赖组件B，组件B依赖组件C，组件C又依赖组件A，就形成了循环依赖。</p>
+<p>很多时候，循环依赖是在组件的变更过程中逐渐形成的，组件A版本1.0依赖组件B版本1.0，后来组件B升级到1.1，升级的某个功能依赖组件A的1.0版本，于是形成了循环依赖。如果组件设计的边界不清晰，组件开发设计缺乏评审，开发者只关注自己开发的组件，整个项目对组件依赖管理没有统一的规则，很有可能出现循环依赖。</p>
+<p>而一旦系统内出现组件循环依赖，系统就会变得非常不稳定。一个微小的bug都可能导致连锁反应，在其他地方出现莫名其妙的问题，有时候甚至什么都没做，头一天还好好的系统，第二天就启动不了了。</p>
+<p>在有严重循环依赖的系统内开发代码，整个技术团队就好像在焦油坑里编程，什么也不敢动，也动不了，只有焦躁和沮丧。</p>
+<h3 id="稳定依赖原则"><a href="#稳定依赖原则" class="headerlink" title="稳定依赖原则"></a>稳定依赖原则</h3><p>稳定依赖原则说， <strong>组件依赖关系必须指向更稳定的方向</strong>。很少有变更的组件是稳定的，也就是说，经常变更的组件是不稳定的。根据稳定依赖原则，不稳定的组件应该依赖稳定的组件，而不是反过来。</p>
+<p>反过来说，如果一个组件被更多组件依赖，那么它需要相对是稳定的，因为想要变更一个被很多组件依赖的组件，本身就是一件困难的事。相对应的，如果一个组件依赖了很多的组件，那么它相对也是不稳定的，因为它依赖的任何组件变更，都可能导致自己的变更。</p>
+<p>稳定依赖原则通俗地说就是， <strong>组件不应该依赖一个比自己还不稳定的组件</strong>。</p>
+<h3 id="稳定抽象原则"><a href="#稳定抽象原则" class="headerlink" title="稳定抽象原则"></a>稳定抽象原则</h3><p>稳定抽象原则说， <strong>一个组件的抽象化程度应该与其稳定性程度一致</strong>。也就是说，一个稳定的组件应该是抽象的，而不稳定的组件应该是具体的。</p>
+<p>这个原则对具体开发的指导意义就是：如果你设计的组件是具体的、不稳定的，那么可以为这个组件对外提供服务的类设计一组接口，并把这组接口封装在一个专门的组件中，那么这个组件相对就比较抽象、稳定。</p>
+<p>在具体实践中，这个抽象接口的组件设计，也应该遵循前面专栏讲到的 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/179282">依赖倒置原则</a>。也就是说，抽象的接口组件不应该由低层具体实现组件定义，而应该由高层使用组件定义。高层使用组件依赖接口组件进行编程，而低层实现组件实现接口组件。</p>
+<p>Java中的JDBC就是这样一个例子，在JDK中定义JDBC接口组件，这个接口组件位于 <code>java.sql</code> 包，我们开发应用程序的时候只需要使用JDBC的接口编程就可以了。而发布应用的时候，我们指定具体的实现组件，可以是MySQL实现的JDBC组件，也可以是Oracle实现的JDBC组件。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>组件的边界与依赖关系划分，不仅需要考虑技术问题，也要考虑业务场景问题。易变与稳定，依赖与被依赖，都需要放在业务场景中去考察。有的时候，甚至不只是技术和业务的问题，还需要考虑人的问题，在一个复杂的组织中，组件的依赖与设计需要考虑人的因素，如果组件的功能划分涉及到部门的职责边界，甚至会和公司内的政治关联起来。</p>
+<p>因此，公司的技术沉淀与实力，公司的业务情况，部门与团队的人情世故，甚至公司的过往历史，都可能会对组件的设计产生影响。而能够深刻了解这些情况的，通常都是公司的一些“老人”。所以，年龄大的程序员并不一定要和年轻程序员拼技术甚至拼体力，应该发挥自己的所长，去做一些对自己、对公司更有价值的事。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>在稳定抽象原则里，类似JDBC的例子还有很多，你能举几个吗？</p>
+<p>欢迎你在评论区写下你的思考，也欢迎把这篇文章分享给你的朋友或者同事，一起交流一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#19-%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%EF%BC%9A%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BE%B9%E7%95%8C%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">19 | 组件设计原则：组件的边界在哪里？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%86%85%E8%81%9A%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">组件内聚原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E7%94%A8%E5%8F%91%E5%B8%83%E7%AD%89%E5%90%8C%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">复用发布等同原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E5%90%8C%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.2.</span> <span class="toc-text">共同封闭原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E5%90%8C%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.3.</span> <span class="toc-text">共同复用原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%80%A6%E5%90%88%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">组件耦合原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.1.</span> <span class="toc-text">无循环依赖原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E4%BE%9D%E8%B5%96%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.2.</span> <span class="toc-text">稳定依赖原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%8A%BD%E8%B1%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.3.</span> <span class="toc-text">稳定抽象原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

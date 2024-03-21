@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>06 | 颠覆者扩散模型：直观去理解加噪与去噪 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="06 | 颠覆者扩散模型：直观去理解加噪与去噪你好，我是南柯。 上一讲我们结识了旧画师GAN，提到了扩散模型在内容精致度、风格多样性和通用编辑等能力上弥补了GAN的不足之处。如果说GAN是旧画师，扩散模型无疑就是当下最受追捧的新画师。DALL-E 2、Imagen、Stable Diffusion这些大名鼎鼎的模型，它们背后的魔术师都是扩散模型。 用过Midjourney的同学也许都注意过这样的现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06 | 颠覆者扩散模型：直观去理解加噪与去噪">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2812310114.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="06 | 颠覆者扩散模型：直观去理解加噪与去噪你好，我是南柯。 上一讲我们结识了旧画师GAN，提到了扩散模型在内容精致度、风格多样性和通用编辑等能力上弥补了GAN的不足之处。如果说GAN是旧画师，扩散模型无疑就是当下最受追捧的新画师。DALL-E 2、Imagen、Stable Diffusion这些大名鼎鼎的模型，它们背后的魔术师都是扩散模型。 用过Midjourney的同学也许都注意过这样的现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.038Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2812310114"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '06 | 颠覆者扩散模型：直观去理解加噪与去噪',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">06 | 颠覆者扩散模型：直观去理解加噪与去噪</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="06-颠覆者扩散模型：直观去理解加噪与去噪"><a href="#06-颠覆者扩散模型：直观去理解加噪与去噪" class="headerlink" title="06 | 颠覆者扩散模型：直观去理解加噪与去噪"></a>06 | 颠覆者扩散模型：直观去理解加噪与去噪</h1><p>你好，我是南柯。</p>
+<p>上一讲我们结识了旧画师GAN，提到了扩散模型在内容精致度、风格多样性和通用编辑等能力上弥补了GAN的不足之处。如果说GAN是旧画师，扩散模型无疑就是当下最受追捧的新画师。DALL-E 2、Imagen、Stable Diffusion这些大名鼎鼎的模型，它们背后的魔术师都是扩散模型。</p>
+<p>用过Midjourney的同学也许都注意过这样的现象，随着图像生成的进度条推进，图像也是从模糊到清晰。你可以点开下面的图片查看这个过程。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/403f88e39646693d91080699af3ac84d.jpg"></p>
+<p>聪明的你应该猜到了，这背后的技巧大概率也是扩散模型！之所以说大概，是因为Midjourney并没有对外公布其背后的算法原理，后面我们会用专门的一讲带你推测Midjourney背后的技术方案，这里先卖个关子。</p>
+<p>那么，扩散模型的工作原理是怎样的呢？算法优化目标是什么？与GAN相比有哪些异同？这一讲我们便从这些基础问题出发，开始今天的扩散模型学习之旅。</p>
+<h2 id="初识扩散模型"><a href="#初识扩散模型" class="headerlink" title="初识扩散模型"></a>初识扩散模型</h2><p>扩散模型的灵感源自热力学。我们可以想象一下这样的过程，朝着一杯清水中滴入一滴有色碘伏，然后观察这杯水。</p>
+<p>你会发现，碘伏在水中会有一个扩散的过程，最终完全在水中呈现出均匀的状态。扩散效应代表从有序到混乱的过程。比如下面这张图，把一滴红色的液体滴入清水中，颜色会逐渐扩散开，最终整杯水都变为红色。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b9a441bdc01880f9fa52b70f7cfe1fbf.jpg"></p>
+<p>AI绘画中的扩散模型和上面的例子类似，对于一张图片，逐渐加入噪声，最终图像将变成一张均匀的噪声图。我在下面放了一张图例，展示了这个过程。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/63e3c220ab0c9cff5f2f525e0cb422c4.jpg"></p>
+<p>如果把这个过程反过来，从一个随机噪声图出发，逐步去除噪声，可以生成一张高质量的图片，这便达成了AI绘画的目的。 <strong>基于扩散模型实现AI绘画的精髓就在于，如何实现这个逐步去除噪声的过程</strong>。在每一步的去噪过程中，起作用的是一个需要训练的神经网络，也就是一个UNet。UNet的细节我们下一讲再展开，这里你可以先把它当成一个黑盒子。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/6624807c268f8a1d76e0ccc0b17c09b1.jpg"></p>
+<p>从上面的过程我们可以知道，基于扩散模型实现AI绘画包括两个过程——加噪过程和去噪过程。</p>
+<p>无论是把一张图片加噪到纯噪声（即全是噪点的图片），还是把纯噪声做去噪处理，生成一张干净的图片，都需要多次操作。为了衡量转化过程到底需要多少步操作，就要引入一个时间步t的概念。t的取值为1-1000中的一个整数，代表加噪声的步数。</p>
+<p>实验中整个加噪过程中需要1000次加噪操作。直觉上，从纯噪声去噪得到图像也需要1000次去噪操作来完成。不过，实际使用中，通过数学推导的方式可以证明并不需要1000步，比如我们第1讲中用到的Eular采样器，只需要20~30步去噪，便可以从纯噪声去噪得到清晰的图片。</p>
+<p>对于Diffusion模型的加噪过程，每一步加噪依赖于时间步t。t越接近0，当前加噪结果越靠近原始图像；t越接近1000，当前加噪结果越靠近纯噪声。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/5d7d09834f4215fd6e6bf1d2917641e7.jpg"></p>
+<p>当我们通过训练得到神经网络UNet后，从原始噪声图出发，时间步取1000，UNet便可以预测第一次要去除的噪声值。然后，采样器便可以根据原始噪声图去除当前噪声值得到一张清晰一点儿的带噪声图像。反复重复这个过程，便完成了AI绘画的过程。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/8be4e96813e1ac816c964376b50297d3.jpg"></p>
+<p>你可能已经注意到了，每一步的加噪结果仅依赖于上一步的加噪结果和一个加噪过程，而这个加噪过程依赖于当前时间步t，因此整个加噪过程可以看成参数化的马尔科夫链。</p>
+<p>马尔可夫链是一种数学模型，用于描述随机事件的序列，其中每个事件的概率仅取决于上一个事件的状态，而与过去的事件无关。关于马尔可夫链的更多知识，你可以点开 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Markov_chain">链接</a> 了解。</p>
+<h2 id="细节探究"><a href="#细节探究" class="headerlink" title="细节探究"></a>细节探究</h2><p>理解了扩散模型的整体思路，我们再来探究下加噪和去噪的算法细节。</p>
+<h3 id="加噪过程"><a href="#加噪过程" class="headerlink" title="加噪过程"></a>加噪过程</h3><p>对于加噪过程，每一步的加噪结果是可以根据上一步的加噪结果和当前时间步t计算得到的，计算公式如下所示。</p>
+<p>$$x_t &#x3D; \sqrt{\alpha_t}x_{t-1} + \sqrt{1-\alpha_t}\epsilon$$</p>
+<p>公式中，$x_t$表示第t步的加噪结果；$x_{t-1}$表示第t-1步的加噪结果；$\alpha_t$是一个预先设置的超参数，用于控制随时间步的加噪强弱，你可以理解为预先设定从$\alpha_1$到$\alpha_{1000}$ 1000个参数；$\epsilon$表示一个随机的高斯噪声。</p>
+<p>经过数学推导，$x_t$也可以从原始图像$x_0$一次计算得到，你可以看下面的公式。</p>
+<p>$$x_t &#x3D; \sqrt{\hat\alpha_t}x_{0} + \sqrt{1-\hat\alpha_t}\epsilon$$</p>
+<p>公式中$x_0$表示原始干净的图像，$\hat\alpha_t$表示从$\alpha_1$到$\alpha_t$的乘积。</p>
+<p>如果你对推导过程感兴趣，可以 <a target="_blank" rel="noopener" href="https://readpaper.com/pdf-annotate/note?pdfId=4557071478495911937&noteId=1833652073759793152">点击链接</a> 去看看原始论文。到这里，你只需要记住一个事情， <strong>对于一张干净的图像，可以通过一次计算得到任意t步加噪声的结果</strong>。</p>
+<h3 id="去噪过程"><a href="#去噪过程" class="headerlink" title="去噪过程"></a>去噪过程</h3><p>学习完加噪的过程，我们再来看看去噪。去噪的过程包括两层含义。</p>
+<p>第一，如何根据当前时间步的噪声图预测上一步加入的噪声？</p>
+<p>第二，如何在当前时间步的噪声图上去除这些噪声？</p>
+<p>先看第一层含义，如何根据加噪结果和时间步t预测噪声呢？这里深度学习模型就能派上用场了！我们希望得到这样一个模型，输入第t步加噪结果和时间步t，预测从第t-1步到第t步噪声值。</p>
+<p>主流的方法是训练一个UNet模型来预测噪声图。因为噪声值和输入图的分辨率是一致的，而UNet模型常用于图像分割任务，输入输出的分辨率相同，使用UNet来完成这个任务再合适不过了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/4ec9ef7434a0bedd19699e4318bfeaba.jpg"></p>
+<p>接下来是第二层含义。假定我们能够成功预测出这个噪声图，又如何去除噪声呢？</p>
+<p>答案是采样器，你可能已经从WebUI中见到过各种各样的采样器，比如DDIM、Eular A等。采样器的作用便是根据加噪结果和噪声值，准确地去除噪声。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/9f9547b04ac5935165d1abb59f9baafb.jpg"></p>
+<h3 id="训练和推理"><a href="#训练和推理" class="headerlink" title="训练和推理"></a>训练和推理</h3><p>知道了加噪和去噪的过程，我们再来看看扩散模型的训练和推理环节，这里的训练针对的是刚刚提到的UNet黑盒，推理环节指的是从一个高斯噪声出发得到一张干净的图片。</p>
+<p>你可以点开下面的图片查看原始论文中给出的总结，图片中推理环节对应的采样器为DDPM采样器，我们用这个采样器来帮助我们理解算法原理。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/d5bb89b63d4e2d9779528c3db6a173cd.png"></p>
+<p>这个总结是不是看着有点懵？我来为你稍作解释。</p>
+<p>首先对于训练过程，假定我们已经收集了一个用于训练扩散模型的训练集，整个训练过程便是不断重复下面这六个步骤。</p>
+<ol>
+<li>每次从数据集中随机抽取一张图片。</li>
+<li>随机从1至1000中选择一个时间步t。</li>
+<li>随机生成一个高斯噪声。</li>
+<li>根据上述加噪环节的公式，一次计算直接得到第t步加噪的结果图像。</li>
+<li>将时间步t和加噪图像作为UNet的输入去预测一个噪声值。</li>
+<li>使用第五步预测的噪声值和第三步随机生成的噪声值，计算数值误差，并回传梯度。</li>
+</ol>
+<p>计算数值误差的公式如下图所示，细心的你一定已经发现了，这里用到的正是L2损失。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b7736ea921b8f0b6c2462a38cef12338.png" alt="图片"></p>
+<p>当我们反复循环上面的过程，直到UNet的损失函数逐渐收敛到较小的数值时，比如观测一段时间，损失函数的数值不再降低，就代表我们的扩散模型就训练完成了！</p>
+<p>训练过程的理论学完以后，我们不妨趁热打铁，再看一下训练的代码，加深理解。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> i<span class="token punctuation">,</span> <span class="token punctuation">(</span>x_0<span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>tqdm_data_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 将数据加载至相应的运行设备(device)</span>
+    x_0 <span class="token operator">=</span> x_0<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+
+    <span class="token comment"># 对每一张图片随机在1~T的扩散步中进行采样</span>
+    t <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> T<span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token punctuation">(</span>x_0<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> device<span class="token operator">=</span>device<span class="token punctuation">)</span>
+
+    <span class="token comment"># 取得不同t下的 根号下alpha_t的连乘</span>
+    sqrt_alpha_t_bar <span class="token operator">=</span> torch<span class="token punctuation">.</span>gather<span class="token punctuation">(</span>sqrt_alphas_bar<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> index<span class="token operator">=</span>t<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 取得不同t下的 根号下的一减alpha_t的连乘</span>
+    sqrt_one_minus_alpha_t_bar <span class="token operator">=</span> torch<span class="token punctuation">.</span>gather<span class="token punctuation">(</span>sqrt_one_minus_alphas_bar<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> index<span class="token operator">=</span>t<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 从标准正态分布中采样得到 \epsilon</span>
+    noise <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn_like<span class="token punctuation">(</span>x_0<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+
+    <span class="token comment"># 计算x_t</span>
+    x_t <span class="token operator">=</span> sqrt_alpha_t_bar <span class="token operator">*</span> x_0 <span class="token operator">+</span> sqrt_one_minus_alpha_t_bar <span class="token operator">*</span> noise
+
+    <span class="token comment"># 将x_t输入模型 unet，得到输出</span>
+    out <span class="token operator">=</span> net_model<span class="token punctuation">(</span>x_t<span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+
+    loss <span class="token operator">=</span> loss_function<span class="token punctuation">(</span>out<span class="token punctuation">,</span> noise<span class="token punctuation">)</span> <span class="token comment"># 将模型的输出，同添加的噪声做损失</span>
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 优化器的梯度清零</span>
+    loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 由损失反向求导</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 优化器更新参数</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>训练好了UNet模型以后，我们就可以用它来进行推理了，也就是从噪声开始生成图像。一次去噪过程包括三步。</p>
+<ol>
+<li>我们随机生成一个高斯噪声，作为第1000步加噪之后的结果。</li>
+<li>将这个噪声和时间步1000作为已经训练好的UNet的输入，预测第999步引入的噪声。</li>
+<li>使用采样器在步骤1的高斯噪声中去除步骤2预测的噪声，得到一张干净一点的图像。</li>
+</ol>
+<p>这样我们就完成了一次去噪，然后以刚得到的干净一点的图像作为起点，重复第二步、第三步，便可以得到进一步去噪的图像。对于DDPM这个“黑盒”采样器来说，将上述过程重复1000次，我们便完成了从高斯噪声得到清晰图片的过程。</p>
+<p>我们看一下推理的代码。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> t_step <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 从T开始向零迭代</span>
+    t <span class="token operator">=</span> t_step
+    t <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+    <span class="token comment"># 如果t大于零，则采样自标准正态分布，否则为零</span>
+    z <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn_like<span class="token punctuation">(</span>x_t<span class="token punctuation">,</span>device<span class="token operator">=</span>device<span class="token punctuation">)</span> <span class="token keyword">if</span> t_step <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token number">0</span>
+
+    <span class="token triple-quoted-string string">"""这里作为示例，按照DDPM采样器公式计算"""</span>
+    x_t_minus_one <span class="token operator">=</span> torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span>alphas<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">*</span>
+           <span class="token punctuation">(</span>x_t<span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>alphas<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">*</span>model<span class="token punctuation">(</span>x_t<span class="token punctuation">,</span> t<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span>torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>alphas_bar<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+           <span class="token operator">+</span>torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>betas<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">*</span>z
+
+    x_t <span class="token operator">=</span> x_t_minus_one
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到此为止，我们已经知道了扩散模型的算法原理。</p>
+<h2 id="扩散模型-vs-GAN"><a href="#扩散模型-vs-GAN" class="headerlink" title="扩散模型 vs GAN"></a>扩散模型 vs GAN</h2><p>你可以参考后面的对比图，来理解扩散模型和GAN的原理。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b4e35e9a2e18e733b49b26efd3c20b8a.jpg"></p>
+<p>GAN是通过生成器、判别器对抗训练的方式来实现图像生成能力的，本质上是神经网络的左右互搏。而这一讲的扩散模型，则是通过学习一个去除噪声的过程来实现图像生成的。</p>
+<p>通过对比的方式进行学习有助于我们加深理解，整合知识。所以我们这就来从多个维度，对比一下GAN和扩散模型的特点，你可以参考后面的表格。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/eefcc0a4732d493306059ca6e670087f.jpg"></p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>这一讲，我们从热力学中的扩散过程出发，理论结合实践，建立起对图像扩散模型的整体认识。</p>
+<p>加噪过程的是通过参数化马尔可夫链将干净的图片逐步变为纯噪声；去噪的过程就是从噪声出发，逐步预测噪声并去除噪声。神经网络UNet被用于预测噪声，各式各样的采样器则用于去除噪声。</p>
+<p>之后我们一起探究了扩散模型的算法细节，包括如何从干净图片通过一步计算到达任意步数的噪声图，如何通过DDPM采样器将噪声去除。之后还了解了如何训练一个扩散模型，以及如何使用扩散模型进行推理的过程。后面第12讲里，我们还会一起动手，从头开始训练一个扩散模型，这里先埋个伏笔。</p>
+<p>课程最后，我们结合上一讲的内容，对于扩散模型和GAN做了对比，现在你应该对新旧两代画师各自的优缺点有了更深的认识。这里我还想提示你一下，在学习扩散模型的学习过程中，如果有不懂的概念，这时我非常鼓励你去和ChatGPT聊一聊！</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/54fc3a5cd8dc7b3a8eb37ac30de52269.jpg"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>扩散模型生成速度慢是当前的痛点之一。了解了扩散模型的整体思路，你认为扩散模型的推理可以怎样加速呢？</p>
+<p>欢迎你在留言区和我交流互动，也推荐你把这节课分享给有需要的朋友，说不定就能帮他更好地理解扩散模型。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#06-%E9%A2%A0%E8%A6%86%E8%80%85%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%EF%BC%9A%E7%9B%B4%E8%A7%82%E5%8E%BB%E7%90%86%E8%A7%A3%E5%8A%A0%E5%99%AA%E4%B8%8E%E5%8E%BB%E5%99%AA"><span class="toc-number">1.</span> <span class="toc-text">06 | 颠覆者扩散模型：直观去理解加噪与去噪</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">初识扩散模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%86%E8%8A%82%E6%8E%A2%E7%A9%B6"><span class="toc-number">1.2.</span> <span class="toc-text">细节探究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%99%AA%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">加噪过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%BB%E5%99%AA%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">去噪过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E5%92%8C%E6%8E%A8%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">训练和推理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B-vs-GAN"><span class="toc-number">1.3.</span> <span class="toc-text">扩散模型 vs GAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.4.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

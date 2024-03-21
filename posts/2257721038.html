@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>06 数学基础 | 明日黄花迹难寻：形式逻辑 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="06 数学基础 | 明日黄花迹难寻：形式逻辑1956年召开的达特茅斯会议宣告了人工智能的诞生。在人工智能的襁褓期，各位奠基者们，包括约翰·麦卡锡、赫伯特·西蒙、马文·明斯基等未来的图灵奖得主，他们的愿景是让“具备抽象思考能力的程序解释合成的物质如何能够拥有人类的心智”。 通俗地说，理想的人工智能应该具备抽象意义上的学习、推理与归纳能力，其通用性将远远强于解决国际象棋或是围棋这些具体问题的算法。 要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06 数学基础 | 明日黄花迹难寻：形式逻辑">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2257721038.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="06 数学基础 | 明日黄花迹难寻：形式逻辑1956年召开的达特茅斯会议宣告了人工智能的诞生。在人工智能的襁褓期，各位奠基者们，包括约翰·麦卡锡、赫伯特·西蒙、马文·明斯基等未来的图灵奖得主，他们的愿景是让“具备抽象思考能力的程序解释合成的物质如何能够拥有人类的心智”。 通俗地说，理想的人工智能应该具备抽象意义上的学习、推理与归纳能力，其通用性将远远强于解决国际象棋或是围棋这些具体问题的算法。 要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:17:18.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.441Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2257721038"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '06 数学基础 | 明日黄花迹难寻：形式逻辑',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">06 数学基础 | 明日黄花迹难寻：形式逻辑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="06-数学基础-明日黄花迹难寻：形式逻辑"><a href="#06-数学基础-明日黄花迹难寻：形式逻辑" class="headerlink" title="06 数学基础 | 明日黄花迹难寻：形式逻辑"></a>06 数学基础 | 明日黄花迹难寻：形式逻辑</h1><p>1956年召开的达特茅斯会议宣告了人工智能的诞生。在人工智能的襁褓期，各位奠基者们，包括约翰·麦卡锡、赫伯特·西蒙、马文·明斯基等未来的图灵奖得主，他们的愿景是让“具备抽象思考能力的程序解释合成的物质如何能够拥有人类的心智”。</p>
+<p>通俗地说，理想的人工智能应该具备抽象意义上的学习、推理与归纳能力，其通用性将远远强于解决国际象棋或是围棋这些具体问题的算法。</p>
+<p>要实现这样的人工智能，不可或缺的基础是形式逻辑。人工智能的早期研究者认为人类认知和思维的基本单元是符号，而认知过程就是对符号的逻辑运算，这样一来，人类抽象的逻辑思维就可以通过计算机中逻辑门的运算模拟，进而实现机械化的人类认知。</p>
+<p>反过来，形式逻辑也是智能行为的描述方式，任何能够将某些物理模式或符号转化成其他模式或符号的系统都有可能产生智能的行为，也就是人工智能。</p>
+<p>人工智能能够模拟智能行为的基础是具有知识，但知识本身也是抽象的概念，需要用计算机能够理解的方式表示出来。</p>
+<p><strong>在人工智能中，常用的知识表示方法包括数据结构和处理算法。数据结构用于静态存储待解决的问题、问题的中间解答、问题的最终解答以及解答中涉及的知识；处理算法则用于在已有问题和知识之间进行动态交互，两者共同构成完整的知识表示体系</strong>。</p>
+<p>在人工智能的研究中，用形式逻辑实现知识表示是一种普遍的方法。形式逻辑可谓包罗万象，其最简单的实例就是由古希腊哲学家亚里士多德提出并流传至今的 <strong>三段论</strong>，它由两个前提和一个结论构成：</p>
+<ul>
+<li>科学是不断发展的；</li>
+<li>人工智能是科学；</li>
+<li>所以，人工智能是不断发展的。</li>
+</ul>
+<p>亚里士多德的贡献不仅在于证明了人工智能的不断发展，更在于确定了在大前提和小前提的基础上推导出一个结论的形式化过程，这个过程完全摆脱了内容的限制。 <strong>由此诞生的符号推理给数理逻辑的研究带来了深远的影响</strong>。</p>
+<p>在人工智能中应用的主要是 <strong>一阶谓词逻辑</strong>。谓词逻辑是最基本的逻辑系统，也是形式逻辑的根本部分。谓词逻辑的一个特例是 <strong>命题逻辑</strong>。在命题逻辑中，命题是逻辑处理的基本单位，只能对其真伪做出判断。</p>
+<p>但命题这种表示法的局限性在于无法把其描述对象的结构及逻辑特征反映出来，也不能体现出不同事物的共同特征。假如单独给定命题“老李是小李的父亲”，在没有上下文时就无法确定老李和小李之间的关系，这个命题的真伪也就没有意义。</p>
+<p>为了扩展形式逻辑的表示能力，在命题逻辑的基础上又诞生了谓词逻辑。谓词逻辑将命题拆分为个体词、谓词和量词，三者的意义如下：</p>
+<ul>
+<li>个体词是可以独立存在的具体或抽象的描述对象，比如前文例子中的“老李”和“小李”；</li>
+<li>谓词用于描述个体词的属性与相互关系，比如前文例子中的“是…的父亲”；</li>
+<li>量词用于描述个体词的数量关系，包括全称量词$\forall$ 和存在量词$\exists$。</li>
+</ul>
+<p>以上三种元素可以共同构成命题。不同的命题之间则可以用逻辑联结词建立联系，由简单命题形成复合命题。按照优先级由高到低排列，逻辑联结词包括以下五种。</p>
+<ul>
+<li><strong>否定</strong>($\neg$)：复合命题$\neg P$表示否定命题P的真值的命题，即“非P” 。</li>
+<li><strong>合取</strong>($\wedge$)：复合命题$P \wedge Q$表示命题P和命题Q的合取，即“P且Q”。</li>
+<li><strong>析取</strong>($\vee$)：复合命题$P \vee Q$表示命题P或命题Q的析取，即“P或Q”。</li>
+<li><strong>蕴涵</strong>($\to$)：复合命题$P \to Q$表示命题P是命题Q的条件，即“如果P，那么Q”。</li>
+<li><strong>等价</strong>($\leftrightarrow$)：复合命题$P \leftrightarrow Q$表示命题P和命题Q相互蕴涵，即“如果P，那么Q且如果Q，那么P”。</li>
+</ul>
+<p>在谓词逻辑中出现的不只有常量符号，变量符号也是合法的，同时还可以出现函数符号。变量和函数的引入拓展了谓词逻辑的表示范围，也提升了其普适性。 <strong>谓词逻辑既可以用于表示事物的概念、状态、属性等事实性知识，也可以用于表示事物间具有确定因果关系的规则性知识</strong>。</p>
+<p>事实性知识通常使用析取与合取符号连接起来的谓词公式表示，规则性知识则通常使用由蕴涵符号连接起来的谓词公式来表示。在一般意义上，使用谓词逻辑进行知识表示的步骤如下：</p>
+<ul>
+<li>定义谓词及个体，确定每个谓词及每个个体的确切含义；</li>
+<li>根据所要表达的事物或概念，为每个谓词中的变量赋以特定的值；</li>
+<li>根据所要表达的知识的语义，用适当的逻辑联结词将各个谓词连接起来。</li>
+</ul>
+<p>经过以上步骤的处理后，抽象意义上的知识就能够转化为计算机可以识别并处理的数据结构。</p>
+<p>例如，如果要使用谓词逻辑对“所有自然数都是大于零的整数”进行知识表示，首先要将所有关系定义为相应的谓词。谓词N(x)表示x是自然数，P(x)表示x大于零，I(x)表示x是整数，再将这些谓词按照语义进行连接就可以得到谓词公式：</p>
+<p>$$ (\forall x)(N(x) \to P(x) \wedge I(x)) $$</p>
+<p>使用形式逻辑进行知识表示只是手段，其目的是让人工智能在知识的基础上实现自动化的推理、归纳与演绎，以得到新结论与新知识。就现阶段而言，人类智能与人工智能的主要区别就体现在推理能力上。</p>
+<p>人类的判断方式绝非一头扎进浩如烟海的数据中学习，而是基于少量数据的特征进行归纳与推理，以得出的一般性规律作为判断的基础。在数字图像中稍微添加一点干扰就可以让神经网络将海龟误认为步枪，这点伎俩却不能欺骗具有思考能力的人类，其原因也在于此。</p>
+<p><strong>人工智能实现自动推理的基础是产生式系统</strong>。产生式系统以产生式的规则描述符号串来替代运算，把推理和行为的过程用产生式规则表示，其机制类似人类的认知过程，因而被早年间大多数专家系统所使用。</p>
+<p>产生式规则通常用于表示事物之间的因果关系，其基本形式为$P \to Q$。它既可以用来表示在前提P下得到结论Q，也可以表示在条件P下实施动作Q。这里的P称为规则前件，它既可以是简单条件，也可以是由多个简单条件通过联结词形成的复合条件；Q则称为规则后件。</p>
+<p>当一组产生式规则相互配合、协同作用时，一个产生式规则生成的结论就可以为另一个产生式规则作为已知的前提或条件使用，以进一步解决更加复杂的问题，这样的系统就是产生式系统。</p>
+<p>一般说来， <strong>产生式系统包括规则库、事实库和推理机三个基本部分</strong>。</p>
+<p><strong>规则库</strong> 是专家系统的核心与基础，存储着以产生式形式表示的规则集合，其中规则的完整性、准确性和合理性都将对系统性能产生直接的影响。</p>
+<p><strong>事实库</strong> 存储的是输入事实、中间结果与最终结果，当规则库中的某条产生式的前提可与事实库中的某些已知事实匹配时，该产生式就被激活，其结论也就可以作为已知事实存储在事实库中。</p>
+<p><strong>推理机</strong> 则是用于控制和协调规则库与事实库运行的程序，包括了推理方式和控制策略。</p>
+<p>具体而言， <strong>推理的方式可以分为三种：正向推理、反向推理和双向推理</strong>。</p>
+<p><strong>正向推理</strong> 采用的是自底向上的方式，即从已知事实出发，通过在规则库中不断选择匹配的规则前件，得到匹配规则的后件，进而推演出目标结论。</p>
+<p><strong>反向推理</strong> 采用的是自顶向下的方式，即从目标假设出发，通过不断用规则库中规则的后件与已知事实匹配，选择出匹配的规则前件，进而回溯已知事实。</p>
+<p><strong>双向推理</strong> 则是综合利用正向推理和反向推理，使推理从自顶向下和自底向上两个方向进行，直到在某个中间点汇合，这种方式具有更高的效率。</p>
+<p><strong>自动推理虽然在数学定理的证明上显示出强大的能力，可解决日常生活中的问题时却远远谈不上智能，其原因在于常识的缺失</strong>。对于人类而言，常识的建立是通过社会化的成长过程实现的。</p>
+<p>可计算机没办法像人类一样在成长中达成理解，因而常识这一智能的先决条件只能以形式化的方式被灌输到硬盘与内存之中。这要求将一般成年人的知识和信念进行显式的表达，并加以灵活的组织和运用。</p>
+<p>可几乎尽人皆知的是，对常识性知识的表达和组织存在着难以想象的困难。从“张三捡起足球”和“张三在运动场上”这两个命题推断出“足球在运动场上”对人工智能来说就已经不可想象，更不用说道德观世界观这些复杂概念。</p>
+<p>没有对常识和信念的清晰表达，人工智能就必然陷入混乱的泥沼而无法自拔，获得通用性和适应性较强的智能行为也只能是痴人说梦。</p>
+<p>谈论人工智能中的形式逻辑，最终的不可回避的本质问题在于 <strong>哥德尔不完备性定理</strong>。</p>
+<p>1900年，德国数学家大卫·希尔伯特在巴黎国际数学家代表大会上提出了20世纪23个最重要的数学问题，其中的第二问题便是算术公理系统的无矛盾性。</p>
+<p>1931年，奥地利数学家库尔特·哥德尔对这个问题给出了否定的答案，即 <strong>第一不完备性定理</strong>：</p>
+<p>$$\text{在任何包含初等数论的形式系统中，}$$</p>
+<p>$$\text{都必定存在一个不可判定命题。} $$</p>
+<p>通过这个定理，哥德尔证明了公理化系统的阿喀琉斯之踵在于对自指的无能为力，下面的语句就是个典型的自指语句：</p>
+<p>$$ \text{本数学命题不可以被证明。} $$</p>
+<p>首先，这个数学命题所讨论的对象不是别的，恰恰是它自己。“本数学命题”就是对整个命题的指代。其次，该命题给出了一个逻辑判断，即这条命题是不可以被证明的。</p>
+<p>哥德尔证明了这个命题既不能被证实也不能被证伪，无情戳破了数学公理化系统同时具备一致性和完备性的黄粱一梦。</p>
+<p><strong>不完备性定理对人工智能的影响在于对“认知的本质是计算”这一理论基础的理解</strong>。从“认知即计算”的角度出发，基于计算机的人工智能如果想要达到近似人类的思维能力，也必须建立起“自我”的概念，这就无疑会导致自指的出现，也将成为不完备性定理的活靶子。</p>
+<p>如果计算机能在运算中制造出一个代表自身的符号，那么哥德尔制造悖论的方式就可以在计算机中造出不可证实也不可证伪的飘渺幻境。</p>
+<p>在哥德尔不完备性定理的阴影下，基于图灵可计算概念的“认知可计算主义”研究纲领已经显示出其极大的局限。今天，依靠人工神经网络逐渐崛起的连接主义学派大放异彩，与此同时，以形式逻辑为依据的符号主义学派则已经走向没落。</p>
+<p>但抛开学术路径的不同，人类智能与人工智能的本质区别到底在哪里，也许这才是不完备性定理留给我们的最大谜团。</p>
+<p>今天我和你分享了人工智能必备的形式逻辑基础，以及采用形式逻辑进行自动推理的基本原理，其要点如下：</p>
+<ul>
+<li>如果将认知过程定义为对符号的逻辑运算，人工智能的基础就是形式逻辑；</li>
+<li>谓词逻辑是知识表示的主要方法；</li>
+<li>基于谓词逻辑系统可以实现具有自动推理能力的人工智能；</li>
+<li>不完备性定理向“认知的本质是计算”这一人工智能的基本理念提出挑战。</li>
+</ul>
+<p>虽然问题多多，但符号主义的思路依然是更接近于人类认知的思路。对形式逻辑的处理能否成为未来依赖小数据学习的人工智能的核心技术呢？</p>
+<p>欢迎发表你的观点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/d4e00273015088b3d813ddb59fc4f659.jpg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#06-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E6%98%8E%E6%97%A5%E9%BB%84%E8%8A%B1%E8%BF%B9%E9%9A%BE%E5%AF%BB%EF%BC%9A%E5%BD%A2%E5%BC%8F%E9%80%BB%E8%BE%91"><span class="toc-number">1.</span> <span class="toc-text">06 数学基础 | 明日黄花迹难寻：形式逻辑</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

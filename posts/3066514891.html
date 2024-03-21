@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>19｜ 实战项目（三）：动手做一个自己的LoRA模型 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="19｜ 实战项目（三）：动手做一个自己的LoRA模型你好，我是南柯。 上一讲我们已经学习了LoRA的算法原理，搞懂了引入LoRA技术减少可学习参数的技巧。 如今LoRA几乎家喻户晓，我们在Civitai或者Hugging Face上，也能找到各种各样的LoRA模型。这些LoRA模型既可以代表人物形象、动物形象或者某个特定物体，也可以代表水彩风、油画风这种特定的风格。 这一讲我们不妨自己动手，从零开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19｜ 实战项目（三）：动手做一个自己的LoRA模型">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3066514891.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="19｜ 实战项目（三）：动手做一个自己的LoRA模型你好，我是南柯。 上一讲我们已经学习了LoRA的算法原理，搞懂了引入LoRA技术减少可学习参数的技巧。 如今LoRA几乎家喻户晓，我们在Civitai或者Hugging Face上，也能找到各种各样的LoRA模型。这些LoRA模型既可以代表人物形象、动物形象或者某个特定物体，也可以代表水彩风、油画风这种特定的风格。 这一讲我们不妨自己动手，从零开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.084Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3066514891"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '19｜ 实战项目（三）：动手做一个自己的LoRA模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">19｜ 实战项目（三）：动手做一个自己的LoRA模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="19｜-实战项目（三）：动手做一个自己的LoRA模型"><a href="#19｜-实战项目（三）：动手做一个自己的LoRA模型" class="headerlink" title="19｜ 实战项目（三）：动手做一个自己的LoRA模型"></a>19｜ 实战项目（三）：动手做一个自己的LoRA模型</h1><p>你好，我是南柯。</p>
+<p>上一讲我们已经学习了LoRA的算法原理，搞懂了引入LoRA技术减少可学习参数的技巧。</p>
+<p>如今LoRA几乎家喻户晓，我们在Civitai或者Hugging Face上，也能找到各种各样的LoRA模型。这些LoRA模型既可以代表人物形象、动物形象或者某个特定物体，也可以代表水彩风、油画风这种特定的风格。</p>
+<p>这一讲我们不妨自己动手，从零开始训练自己的LoRA模型。我们会以宝可梦生成和彩铅风格生成为例，完成两个模型的训练，借此探索LoRA模型表达内容和表达风格的能力如何实现。</p>
+<h2 id="如何训练一个LoRA"><a href="#如何训练一个LoRA" class="headerlink" title="如何训练一个LoRA"></a>如何训练一个LoRA</h2><p>在我们动手训练LoRA前，我先为你预告一下整个流程。</p>
+<p>对于LoRA的训练，我们首先需要考虑两个问题：数据集获取和基础模型选择。幸运的是，我们已经熟悉了 <a target="_blank" rel="noopener" href="https://huggingface.co/models">Hugging Face</a> 和 <a target="_blank" rel="noopener" href="https://civitai.com/">Civitai</a> 这两个强大的开源社区，可以免费获取到海量数据集和基础模型。</p>
+<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><p>我们可以使用 <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/lambdalabs/pokemon-blip-captions">Hugging Face</a> 上现有的数据集，完成宝可梦的生成任务。这个数据集中包含800多张训练图片。从后面的数据集说明中你可以看到，每一张图，我们都可以获取到它对应的prompt。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/857851382cf9e59969c4dd85a8ab55f3.png"></p>
+<p>首先，我们可以通过后面这两行代码下载并加载数据集。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> datasets <span class="token keyword">import</span> load_dataset
+
+dataset <span class="token operator">=</span> load_dataset<span class="token punctuation">(</span><span class="token string">"lambdalabs/pokemon-blip-captions"</span><span class="token punctuation">,</span> split<span class="token operator">=</span><span class="token string">"train"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>接着，我们便可以通过后面这几行代码，可视化数据集中的图片和对应prompt。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+
+width<span class="token punctuation">,</span> height <span class="token operator">=</span> <span class="token number">360</span><span class="token punctuation">,</span> <span class="token number">360</span>
+new_image <span class="token operator">=</span> Image<span class="token punctuation">.</span>new<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>width<span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+new_image<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+new_image<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>width<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+new_image<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+new_image<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"image"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> idx <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>dataset<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+display<span class="token punctuation">(</span>new_image<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/a55e4011d73560e40fe87d9c743b3c39.png"></p>
+<p>当然，你也可以使用自己手中的图片做一个原创LoRA。如果你是一个插画师，那么你可以用自己曾经的作品，来训练一个贴近你自己风格的专属LoRA模型，帮助你进行创作。</p>
+<p>SD模型的微调需要同时使用图片和prompt。 <strong>如果我们手中的图片没有prompt，那么还需要使用一些方法为图片生成prompt</strong>，这里我们选择使用名为 <a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/model_doc/blip">BLIP</a> 的模型完成这个任务。</p>
+<p>提到BLIP这个名字，你难免会联想到我们已经学过的CLIP。虽然名字差不多，但它们还是不一样的。你可以这样来区分记忆，CLIP模型提取图像和文本表征，用于跨模态理解任务。而BLIP从图像生成prompt，用于跨模态生成任务。</p>
+<p>我以Hugging Face上的 <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/litmonster0521/pencildrawing">彩铅风格数据</a> 为例，说明一下怎么用BLIP为每一张彩铅图片生成prompt。后面的图展示的就是这批彩铅图像的样例。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/847yy9251b9597355bb1fb5a33eb97c1.jpg"></p>
+<p>我们要在彩铅模型训练的Colab中，运行make_captions.py这个脚本，并指定原始图片的路径。这样脚本就会自动下载好BLIP模型，并针对提供的每张图依次进行模型推理生成prompt。你可以点开图像查看prompt的生成效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/618abbae5b55cca44b99d45f0074f857.png"></p>
+<p>到此为止，我们已经完成了本次实战课两个数据集的准备工作。你可以根据自己想要完成的LoRA训练任务，参考上面的过程准备训练数据。</p>
+<h3 id="基础模型选择"><a href="#基础模型选择" class="headerlink" title="基础模型选择"></a>基础模型选择</h3><p>搞定了训练数据，我们再来看怎么选基础模型。想要训练出理想的LoRA效果， <strong>选择一个与训练目标风格接近的基础模型，会大大降低训练难度</strong>。</p>
+<p>比如说我们要训练某个二次元形象的LoRA模型，选择擅长动漫生成的Anything系列模型，相比于选择擅长写实人像风格生成的Chilloutmix模型而言，就是更好的选择。</p>
+<p>这一讲我们的目标是宝可梦和彩铅风格这两个任务，我们可以选择 <a target="_blank" rel="noopener" href="https://civitai.com/models/9409">Anything V5模型</a> 作为基础模型。你可以在 <a target="_blank" rel="noopener" href="https://civitai.com/models/9409">Civitai</a> 中找到这个模型的权重，按照下面图中展示的方法把模型下载到本地，或者右键复制链接地址。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/a6829343f7fc27bcbd19bbd0e297e6f8.jpeg"></p>
+<p>我们运行后面这条指令便可以完成基础模型的下载。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># -O 用于制定文件的存储路径</span>
+<span class="token operator">!</span>wget <span class="token parameter variable">-c</span> https://civitai.com/api/download/models/90854 <span class="token parameter variable">-O</span> anything_v5.safetensors
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>你也可以在Civitai或者Hugging Face中找到其他模型的下载路径，替换上面脚本中的下载链接即可完成基础模型下载的任务。比如，如果你想下载 <a target="_blank" rel="noopener" href="https://huggingface.co/Linaqruf/stolen/tree/main/pruned-models">ChilloutMix模型</a>，就可以使用后面这行指令。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># -O 用于制定文件的存储路径</span>
+<span class="token operator">!</span>wget <span class="token parameter variable">-c</span> https://huggingface.co/Linaqruf/stolen/resolve/main/pruned-models/chillout_mix-pruned.safetensors <span class="token parameter variable">-O</span> chillout_mix-pruned.safetensors
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="LoRA训练过程"><a href="#LoRA训练过程" class="headerlink" title="LoRA训练过程"></a>LoRA训练过程</h3><p>准备好数据和基础模型之后，我们再来看一下训练LoRA模型的核心代码逻辑。我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/685751">第12讲</a> 已经学过如何微调一个Stable Diffusion模型，这里我们来回顾一下SD训练的核心代码。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_train_epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> step<span class="token punctuation">,</span> batch <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>train_dataloader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        <span class="token comment"># VAE模块将图像编码到潜在空间</span>
+        latents <span class="token operator">=</span> vae<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>batch<span class="token punctuation">[</span><span class="token string">"pixel_values"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>weight_dtype<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>latent_dist<span class="token punctuation">.</span>sample<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 随机噪声 &amp; 加噪到第t步</span>
+        noise <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn_like<span class="token punctuation">(</span>latents<span class="token punctuation">)</span>
+        timesteps <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> noise_scheduler<span class="token punctuation">.</span>config<span class="token punctuation">.</span>num_train_timesteps<span class="token punctuation">)</span>
+        noisy_latents <span class="token operator">=</span> noise_scheduler<span class="token punctuation">.</span>add_noise<span class="token punctuation">(</span>latents<span class="token punctuation">,</span> noise<span class="token punctuation">,</span> timesteps<span class="token punctuation">)</span>
+
+        <span class="token comment"># 使用CLIP将文本描述作为输入</span>
+        encoder_hidden_states <span class="token operator">=</span> text_encoder<span class="token punctuation">(</span>batch<span class="token punctuation">[</span><span class="token string">"input_ids"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        target <span class="token operator">=</span> noise
+
+        <span class="token comment"># 预测噪声并计算loss</span>
+        model_pred <span class="token operator">=</span> unet<span class="token punctuation">(</span>noisy_latents<span class="token punctuation">,</span> timesteps<span class="token punctuation">,</span> encoder_hidden_states<span class="token punctuation">)</span><span class="token punctuation">.</span>sample
+        loss <span class="token operator">=</span> F<span class="token punctuation">.</span>mse_loss<span class="token punctuation">(</span>model_pred<span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">"mean"</span><span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其实这也正是训练一个LoRA模型的核心代码。这里该怎么理解呢？</p>
+<p>我带你回顾一下SD模型的几个关键模块：VAE、CLIP文本编码器、UNet，通常只有UNet的权重是需要更新的。在使用LoRA微调SD的过程中，LoRA模型影响的是UNet中注意力模块的投影层权重，也就是后面示例代码中的W_Q、W_K和W_V。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 从同一个输入序列产生Q、K和V向量。</span>
+Q <span class="token operator">=</span> X <span class="token operator">*</span> W_Q
+K <span class="token operator">=</span> X <span class="token operator">*</span> W_K
+V <span class="token operator">=</span> X <span class="token operator">*</span> W_V
+
+<span class="token comment"># 计算Q和K向量之间的点积，得到注意力分数。</span>
+Scaled_Dot_Product <span class="token operator">=</span> <span class="token punctuation">(</span>Q <span class="token operator">*</span> K<span class="token operator">^</span>T<span class="token punctuation">)</span> <span class="token operator">/</span> sqrt<span class="token punctuation">(</span>d_k<span class="token punctuation">)</span>
+
+<span class="token comment"># 应用Softmax函数对注意力分数进行归一化处理，获得注意力权重。</span>
+Attention_Weights <span class="token operator">=</span> Softmax<span class="token punctuation">(</span>Scaled_Dot_Product<span class="token punctuation">)</span>
+
+<span class="token comment"># 将注意力权重与V向量相乘，得到输出向量。</span>
+Output <span class="token operator">=</span> Attention_Weights <span class="token operator">*</span> V
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们以UNet模型中某一层的某一个交叉注意力模块投影矩阵为例来看看。我们已经知道，prompt的文本表征通过交叉注意力模块完成信息注入，用于计算得到对应的K、V向量，而Q向量源自带噪声的图像潜在表示。</p>
+<p>下面图片展示的就是这个过程，红框中的部分就是我们要训练的LoRA模型权重。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/46194ef5e13f9533e320c7fd88306fb2.jpg"></p>
+<p>W原始投影矩阵的权重，维度是dxd。根据我们预先设置矩阵的秩r，我们可以得到随机初始化的权重矩阵A和权重矩阵B，把它们作为要训练的LoRA模型，维度分别是dxr和rxd。</p>
+<p>在训练过程中，W保持固定，要优化的部分是矩阵A和矩阵B。如果X作为输入，Y作为模型输出，使用LoRA的情况下，计算过程大致是后面这个公式。</p>
+<p>$$Y &#x3D; （W + A\cdot B）\cdot X$$</p>
+<p>在UNet模型中，有几十处这样的注意力模块投影矩阵，我们需要逐一优化对应数量的权重矩阵A和权重矩阵B。当LoRA模型训练完成后，我们只需要保存这里的几十处LoRA权重即可，这些权重参数一般只占用几十M的存储空间。</p>
+<p>如果前面的公式推理你暂时没法理解也不要紧，你只需要记住： <strong>训练LoRA的过程仍旧是更新UNet模块，只不过代码中注意力模块的投影层权重会保持不变，更新的是对应的LoRA模型权重</strong>。</p>
+<h3 id="LoRA权重作用"><a href="#LoRA权重作用" class="headerlink" title="LoRA权重作用"></a>LoRA权重作用</h3><p>了解了LoRA的训练，我们再来看看LoRA模型使用时候的技巧。你也许还记得，在WebUI中，我们会给LoRA模型设置一个权重值，比如0.7。这个权重值会直接决定LoRA模型发挥作用的强弱，你可以参考后面截图，红框里就是这个参数的位置。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/6ec86c8d7e8d68f38d4d534946yye09a.png"></p>
+<p>那么，这个参数是如何起作用的呢？我们来看下面的公式。公式中的weight就是LoRA与基础模型组合时的权重（比如前面WebUI截图红框中的1），A和B代表的是LoRA模型的权重参数。</p>
+<p>$$Y &#x3D; （W + weight * A\cdot B）\cdot X$$</p>
+<p>如果我们同时使用多个模型，本质上就是下面这种计算方式。</p>
+<p>$$Y &#x3D; （W + weight_{1} * A_{1}\cdot B_{1} + weight_{2} * A_{2}\cdot B_{2} + weight_{n} * A_{n}\cdot B_{n}）\cdot X$$</p>
+<p>这样一来，你是否就了解了多个LoRA组合的算法原理了呢？比方说，三个LoRA同时用，就相当于模型要听“三个上司”的话，每个上司都会影响输出结果Y，很可能这些影响会相互干扰。</p>
+<p>没错，我们实际操作时，如果发现多个LoRA混用生成的图像效果并不好，其实是因为各个LoRA模型的权重值都被加到了基础模型上，导致最终AI绘画模型参数有点“四不像”。</p>
+<h2 id="代码实战"><a href="#代码实战" class="headerlink" title="代码实战"></a>代码实战</h2><p>搞懂了上面的知识，我们这就来来实战演练一下，开始LoRA训练任务。GitHub上有不少LoRA训练的代码仓，比如 <a target="_blank" rel="noopener" href="https://github.com/huggingface/diffusers/blob/main/examples/text_to_image/train_text_to_image_lora.py">diffusers 的 LoRA 训练</a> 代码量较少，阅读起来压力小，适合初学者作为参考。</p>
+<h3 id="一次完整的训练"><a href="#一次完整的训练" class="headerlink" title="一次完整的训练"></a>一次完整的训练</h3><p>使用这个代码仓的训练也非常简单，但需要你拥有独立的GPU环境。没有独立GPU的同学也不用担心，我后面会讲解怎么用Colab完成训练。</p>
+<p>首先，你需要先在你的命令行环境下，登录Hugging Face账号，保证你的代码能够访问到Hugging Face服务器上的数据和基础模型。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">huggingface-cli login
+<span class="token comment"># 密码在你的Hugging Face账号Setting页面获取</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后你只需要将上面的 <a target="_blank" rel="noopener" href="https://github.com/huggingface/diffusers/blob/main/examples/text_to_image/train_text_to_image_lora.py">训练代码</a> 拷贝到你的机器上，然后创建一个run.sh文件，写下后面的启动指令。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MODEL_NAME</span><span class="token operator">=</span><span class="token string">"CompVis/stable-diffusion-v1-4"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DATASET_NAME</span><span class="token operator">=</span><span class="token string">"lambdalabs/pokemon-blip-captions"</span>
+
+accelerate launch <span class="token parameter variable">--mixed_precision</span><span class="token operator">=</span><span class="token string">"fp16"</span> train_text_to_image_lora.py <span class="token punctuation">\</span>
+  <span class="token parameter variable">--pretrained_model_name_or_path</span><span class="token operator">=</span><span class="token variable">$MODEL_NAME</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--dataset_name</span><span class="token operator">=</span><span class="token variable">$DATASET_NAME</span> <span class="token parameter variable">--caption_column</span><span class="token operator">=</span><span class="token string">"text"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--resolution</span><span class="token operator">=</span><span class="token number">512</span> <span class="token parameter variable">--random_flip</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--train_batch_size</span><span class="token operator">=</span><span class="token number">1</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--num_train_epochs</span><span class="token operator">=</span><span class="token number">10</span> <span class="token parameter variable">--checkpointing_steps</span><span class="token operator">=</span><span class="token number">5000</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--learning_rate</span><span class="token operator">=</span>1e-04 <span class="token parameter variable">--lr_scheduler</span><span class="token operator">=</span><span class="token string">"constant"</span> <span class="token parameter variable">--lr_warmup_steps</span><span class="token operator">=</span><span class="token number">0</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--seed</span><span class="token operator">=</span><span class="token number">42</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--output_dir</span><span class="token operator">=</span><span class="token string">"sd-pokemon-model-lora"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--validation_prompt</span><span class="token operator">=</span><span class="token string">"cute dragon creature"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后我们运行这个启动脚本，便可以完成宝可梦的LoRA模型训练。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sh</span> run.sh
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>需要注意，上面启动脚本中的基础模型是SD1.4，你可以在Hugging Face中获取其他基础模型的model_id进行替换。比如可以通过一行代码，把基础模型替换为Anything V5模型。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MODEL_NAME</span><span class="token operator">=</span> <span class="token string">"stablediffusionapi/anything-v5"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>耐心等待20分钟，我们就完成了LoRA模型的训练。</p>
+<p>接着，我们不妨使用我们训练好LoRA生成图片，看看效果如何。你可以参考后面的代码完成这一步。第七行代码的prompt你可以按自己的想法灵活更换。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> diffusers <span class="token keyword">import</span> StableDiffusionPipeline
+<span class="token keyword">import</span> torch
+model_path <span class="token operator">=</span> <span class="token string">"你的LoRA路径/sd-model-finetuned-lora-t4"</span>
+pipe <span class="token operator">=</span> StableDiffusionPipeline<span class="token punctuation">.</span>from_pretrained<span class="token punctuation">(</span><span class="token string">"stablediffusionapi/anything-v5"</span><span class="token punctuation">,</span> torch_dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+pipe<span class="token punctuation">.</span>unet<span class="token punctuation">.</span>load_attn_procs<span class="token punctuation">(</span>model_path<span class="token punctuation">)</span>
+pipe<span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">"cuda"</span><span class="token punctuation">)</span>
+prompt <span class="token operator">=</span> <span class="token string">"A pokemon with green eyes and red legs."</span>
+<span class="token comment"># prompt = "Girl with a pearl earring"</span>
+image <span class="token operator">=</span> pipe<span class="token punctuation">(</span>prompt<span class="token punctuation">,</span> num_inference_steps<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">,</span> guidance_scale<span class="token operator">=</span><span class="token number">7.5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>images<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+image<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"pokemon.png"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在，你可以点开图片查看我们LoRA模型的生成效果，可以看到，我们的LoRA模型学到了宝可梦风格的“精髓之处”，图片的配色和线条都和宝可梦风格相似。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/374d8835203aee394ecb3b1fab3a6eb5.jpg"></p>
+<h3 id="推荐一个Colab"><a href="#推荐一个Colab" class="headerlink" title="推荐一个Colab"></a>推荐一个Colab</h3><p>除了diffusers官方的LoRA实现，GitHub上有一些效果更好的LoRA实现。这里我推荐一个可调参数更多的 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/Linaqruf/kohya-trainer/blob/main/kohya-LoRA-finetuner.ipynb">Colab链接</a>。根据我们这一讲要完成的LoRA任务，我对原始的Colab进行了一些定制化的改造。</p>
+<p>宝可梦风格的LoRA训练任务，你可以点开这个 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/NightWalker888/ai_painting_journey/blob/main/lesson19/LoRA_train_pokemon.ipynb">Colab链接</a> 做练习。</p>
+<p>而彩铅风格的LoRA训练任务，你可以点开这个 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/NightWalker888/ai_painting_journey/blob/main/lesson19/LoRA_train_pencil_drawing.ipynb">Colab链接</a> 来练习。在彩铅风格的Colab代码中，我们会使用BLIP模型给每一张图片生成prompt。</p>
+<p>为了方便你体验效果，在配置好Colab的GPU环境后，你可以直接点击全部运行，这样就能“一键”完成LoRA的训练。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/1d3b6f340f6e8283412f70d03e571202.png"></p>
+<p>耐心等待LoRA训练完成后，我们便可以看到LoRA模型的生成效果。以宝可梦的效果为例，能直观的感受到，在相同的测试prompt下，我们Colab的生成效果要优于使用diffusers代码仓的训练效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/3f0ebdbbd66a924421705c8fbd9d6fd4.jpg"></p>
+<p>这里我们用到的prompt信息如下。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Prompt：A pokemon with green eyes and red legs
+Prompt：Girl with a pearl earring
+Negative Prompt：lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry
+采样器：Eular a
+随机种子：1025
+采样步数：20
+分辨率：512x512
+CFG Scale: 7
+LoRA：pokemon.safetensors [使用Colab训练]
+LoRA weight：1.0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以再感受下彩铅LoRA的效果。从后面两张的图片可以看出，我们的LoRA模型学到了一种 “2D感” 的铅笔画风格。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/f3131b2dc6a6b1c3c7b3134f3991e260.jpg"></p>
+<p>这里这里我们用到的prompt信息如下。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Prompt：A drawing of a beautiful girl
+Prompt：Girl with a pearl earring
+Negative Prompt：lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry
+采样器：Eular a
+随机种子：1025
+采样步数：20
+分辨率：512x512
+CFG Scale: 7
+LoRA：pencil.safetensors [使用Colab训练]
+LoRA weight：1.0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以彩铅风格为例，我在Colab代码中为你增加了一些注释，来辅助你理解每个模块都负责做哪些事情，建议你课后阅读一下。如果你需要更换自己的训练数据，只需要替换掉代码中的训练图像拷贝部分即可。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 将我们的训练数据拷贝到训练路径下</span>
+<span class="token comment"># 如果你需要使用自己准备的图片，需要将你的数据拷贝到</span>
+<span class="token comment"># /content/LoRA/train_data/custom_data路径下</span>
+os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">"cp -r /content/caiqian_style/* /content/LoRA/train_data/custom_data"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="配合WebUI使用"><a href="#配合WebUI使用" class="headerlink" title="配合WebUI使用"></a>配合WebUI使用</h2><p>搞定了LoRA模型的训练，咱们再把它加入到WebUI上试试效果。</p>
+<p>我们可以将训练得到的LoRA模型下载到本地，放在WebUI的LoRA文件夹中，然后就可以在WebUI直接使用我们刚刚训练的LoRA模型了。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># LoRA模型放置路径为：</span>
+/你的WebUI安装路径/extensions/sd-webui-additional-networks/models/lora
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>把模型放到相应位置后，别忘了刷新WebUI的LoRA模型库，加载我们刚刚放置的LoRA模型。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/c9c9c9b8d82f633ac54c2fabdd9097c3.png"></p>
+<p>一切准备完毕，我们这就来测试下WebUI的使用效果，可以使用下面这组prompt来测试宝可梦模型。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">Prompt：A pokemon with red eyes, big ears
+Negative Prompt：lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry
+采样器：Eular a
+随机种子：1025
+采样步数：20
+分辨率：512x512
+CFG Scale: 7
+LoRA：pokemon.safetensors [使用Colab训练]
+LoRA weight：1.0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>后面的图片就是对应的生成结果，一只有点模糊的“宝可梦”呈现在我们眼前。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/f7c79f2cb07e53a251c04fda7444979f.png"></p>
+<p>效果还可以，但清晰度不够。这时我们可以利用WebUI的超分模块，得到更高清的图片。你可以点开图片查看超分后的宝可梦精灵效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/bfa48fa38c01dd11b05b508d74185d7c.png"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/8b3d5ee4f8735e49b94d1e6c5ce090d6.png"></p>
+<p>到此为止，我们已经走通了准备训练数据、图像prompt生成、基础模型选择、LoRA训练、LoRA本地使用、超分功能修复生成效果的完整流程。</p>
+<p>关于LoRA模型，我们还可以做两个有意思的效果测试。第一个测试是将我们得到的两个LoRA模型组合使用。你可以在WebUI中按照图中的方式进行操作。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/f861677398de0ae32ea4082a045684a6.png"></p>
+<p>我们使用后面的prompt信息进行测试。</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">prompt: A pokemon with red eyes, big ears
+prompt: a drawing of a beautiful girl
+Negative Prompt：lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry
+采样器：Eular a
+随机种子：1025
+采样步数：20
+分辨率：512x512
+CFG Scale: 7
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>得到的效果是下面这个样子。可以看到，左面的宝可梦同时带上了彩铅的风格，右面的女孩子带上了宝可梦的“画风”。通过不同的LoRA权重配比，我们就能“调制出”我们心仪的风格。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/eebcf4019d52b49491fec5e8e19a2afe.jpg"></p>
+<p>第二个测试是将LoRA与其他基础模型搭配使用。比如我们训练宝可梦LoRA和彩铅风格LoRA的基础模型是Anything V5，我们可以试试将这两个LoRA与Realistic V3.0模型搭配使用。你可以点开图片查看结果，可以看到，生成效果并不符合我们预期的风格。这个测试说明， <strong>LoRA模型与其他基础模型搭配使用时需要谨慎处理</strong>。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/0a8f12a8805821165327030c94894887.jpg"></p>
+<p>其实我们常用的各种基础模型，通常都是基于各种SD模型微调来的，有的模型甚至是基于微调后的模型再次微调。因此，我们可以将这些基础模型想象成一个大家族，不同模型之间存在一定的亲缘关系。也正是因为这个原因，我们训练得到的LoRA模型，和亲缘关系近的基础模型组合往往更容易实现预期的效果。</p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>今天我们通过实战的形式加深了对LoRA模型的认识。我们从零到一，完成了宝可梦LoRA和彩铅LoRA两个模型的训练。</p>
+<p>训练LoRA有两个基本前提：图文数据和基础模型。对于图文数据，我们可以从Hugging Face上直接获取，也可以用BLIP模型对我们自己的数据进行prompt打标。而基础模型，我们可以从Hugging Face或者Civitai上按需选择。</p>
+<p>之后我们分析了在SD模型中LoRA权重的作用位置，也就是UNet模型的注意力模块，并进一步了解了LoRA权重的作用机理。然后，我们分别使用diffusers官方LoRA代码仓和一个改造后的Colab，完成了我们的LoRA训练任务。这部分的重点是理解Colab中的LoRA代码实现。</p>
+<p>最后，我们将训练得到的LoRA模型导入WebUI，完成了图像生成、图像超分、多LoRA组合、更换基础模型测试等任务。建议你课后自己多练习，也可以将自己训练的LoRA模型发布到开源社区，供其他朋友体验和分享，这样学习效果会更好。</p>
+<p>这一讲的重点，你可以点开下面的导图复习回顾。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/566185db89f38848d1a04945d26e8637.jpg"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>选择你一个你喜欢的物体或者一种你喜欢的风格，使用diffusers代码仓或者我们的Colab链接，完成你自己的LoRA模型训练。</p>
+<p>期待你在留言区和我交流讨论，也推荐你把今天的内容分享给身边更多朋友，和他一起尝试训练LoRA模型。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#19%EF%BD%9C-%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%89%8B%E5%81%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84LoRA%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">19｜ 实战项目（三）：动手做一个自己的LoRA模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AALoRA"><span class="toc-number">1.1.</span> <span class="toc-text">如何训练一个LoRA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">1.1.1.</span> <span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="toc-number">1.1.2.</span> <span class="toc-text">基础模型选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoRA%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">LoRA训练过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoRA%E6%9D%83%E9%87%8D%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.4.</span> <span class="toc-text">LoRA权重作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98"><span class="toc-number">1.2.</span> <span class="toc-text">代码实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="toc-number">1.2.1.</span> <span class="toc-text">一次完整的训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AAColab"><span class="toc-number">1.2.2.</span> <span class="toc-text">推荐一个Colab</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E5%90%88WebUI%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">配合WebUI使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.4.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

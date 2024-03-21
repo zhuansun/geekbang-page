@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？你好，我是南柯。 之前我们解锁了Web UI的七大特色功能，如果拿烹饪来做比喻，前一讲的内容大概只是把菜做熟的程度，还无法产出“色香味”俱全的图像作品。实际应用的时候，你很可能遇到后面这些困扰。  图生图如何优化，如何生成具有特定特征或内容的图像？ 输入了提示词，但AI模型不太“听话”，要怎么做参数调优？ 怎样生成多样风格的图像作品？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2876167085.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？你好，我是南柯。 之前我们解锁了Web UI的七大特色功能，如果拿烹饪来做比喻，前一讲的内容大概只是把菜做熟的程度，还无法产出“色香味”俱全的图像作品。实际应用的时候，你很可能遇到后面这些困扰。  图生图如何优化，如何生成具有特定特征或内容的图像？ 输入了提示词，但AI模型不太“听话”，要怎么做参数调优？ 怎样生成多样风格的图像作品？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.022Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2876167085"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？"><a href="#02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？" class="headerlink" title="02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？"></a>02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？</h1><p>你好，我是南柯。</p>
+<p>之前我们解锁了Web UI的七大特色功能，如果拿烹饪来做比喻，前一讲的内容大概只是把菜做熟的程度，还无法产出“色香味”俱全的图像作品。实际应用的时候，你很可能遇到后面这些困扰。</p>
+<ul>
+<li>图生图如何优化，如何生成具有特定特征或内容的图像？</li>
+<li>输入了提示词，但AI模型不太“听话”，要怎么做参数调优？</li>
+<li>怎样生成多样风格的图像作品？</li>
+</ul>
+<p>这一讲我们就来解决这些问题，学习影响图像风格、内容和质量的重要参数。熟练掌握应用和优化这些参数的技巧以后，你就可以随心所欲地控制AI绘画的构图、内容和风格，制作出更符合自己心意的专属内容了。</p>
+<h2 id="WebUI咒语指南：prompt入门"><a href="#WebUI咒语指南：prompt入门" class="headerlink" title="WebUI咒语指南：prompt入门"></a>WebUI咒语指南：prompt入门</h2><p>想要控制 <strong>Stable Diffusion</strong> 创作我们喜好的图像，熟练运用 <strong>prompt</strong>（提示词）至关重要。在开源社区中，prompt甚至因为对AI绘画的神秘影响，被赋予了“咒语”或“魔法”的称号。</p>
+<p>不过prompt其实并没那么玄乎，学完它的使用方法和实用技巧以后，你也能成为AI绘画界的杰出“魔法师”。</p>
+<h3 id="初阶咒语：直接描述"><a href="#初阶咒语：直接描述" class="headerlink" title="初阶咒语：直接描述"></a>初阶咒语：直接描述</h3><p>prompt最简单且常见的用法，就是直接在prompt区域描述我们想要创作的图像，例如输入 <code>a happy dog and a cute girl</code>。通过这样的描述，我们可以生成后面这样的图像。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/e542c7f24b8510a9bc829afed3e1fb87.jpg"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/c887acb346b312d25fcec77d31aa58c8.jpg"></p>
+<p>如果你想生成和我相同的图像，请记得将SD基础模型选择为realv1.3，固定随机种子设为10。采样方法选择Euler a，步数选择20，CFG Scale为7。目前你可能还不熟悉这些参数的含义，不必担心，我们将逐步了解它们。</p>
+<p>紧接着，我们可以通过修改prompt来赋予创作图像不同的风格化效果。例如，我们可以使用以下修改后的prompt： <code>a happy dog and a cute girl, watercolor style</code>。这样生成的图像会呈现水彩风格的效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/6b3ef7eb2c2c4ffc946633b8abdae478.jpg"></p>
+<p>通过添加两个描述单词，我们可以看到整个画面发生了巨大的变化，图像的风格都变成了水彩风，这正是prompt的魅力所在！</p>
+<h3 id="二阶咒语：巧用标签"><a href="#二阶咒语：巧用标签" class="headerlink" title="二阶咒语：巧用标签"></a>二阶咒语：巧用标签</h3><p>当然，我相信同学们对美的追求是无止境的。现在让我们进一步提升这幅画的质量，方法就是使用标签（tag）继续优化。</p>
+<p>例如，在我们之前的prompt语句中添加 “best quality” 和 “masterpiece”，最终的句子会变成： <code>best quality, masterpiece, a happy dog and a cute girl, watercolor style</code>。这样的修改将进一步提升生成画面的质量。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/8dfc58c4bf9513f3947c73aeea7d4f8c.jpg"></p>
+<p>可以看到，画面变得更美了！SD模型的绘画技巧真是令人惊叹！不过别光顾着开心，我们仔细看一下生成的图片，似乎出现了一些问题。左下角只有小狗，可爱的小女孩似乎不见了。这正是当前SD模型的局限性，它对于prompt语句的表达能力还不够充分。</p>
+<h3 id="三阶咒语：负面提示词"><a href="#三阶咒语：负面提示词" class="headerlink" title="三阶咒语：负面提示词"></a>三阶咒语：负面提示词</h3><p>为了获得更好的创作效果，我们通常需要生成多张样本，然后反复修改我们的prompt语句。社区的朋友们也称这个过程为“抽卡”，我们只能依靠运气来获取满意的图像。但作为专业的魔法师，我们还是有办法挽救这个图像的。这时，我们可以进一步结合 <strong>负向提示词（negative prompt）</strong> 进行创作。</p>
+<p>具体做法就是，在negative prompt区域填入“lowres, bad anatomy, extra digits, low quality”。所谓negative prompt，代表的是我们不想拥有的特性。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/d6f3db7c7f404d81da48fa2ddb3c5fc3.jpg"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/9bbe81658cdbfe3c079dfe42a6195712.jpg"></p>
+<p>上面这个例子可以说明，控制SD模型的确是一项挑战，但也正是这种挑战性赋予了它独特的魅力。正因为SD模型做出来的图像难以预测，才让每一次创作都充满了惊喜和探索的乐趣。</p>
+<p>不过很多情况下，我们还是希望SD模型不要太过自由发挥。这时候就需要用到ControlNet模型。它能够更精确地控制生成的图像，让我们能够更好地实现自己的创作愿景。关于ControlNet的原理和使用技巧，我们后面的课程还会详细展开讲解，这里你先留一个大致印象就行。</p>
+<h3 id="四阶咒语：文本权重调整"><a href="#四阶咒语：文本权重调整" class="headerlink" title="四阶咒语：文本权重调整"></a>四阶咒语：文本权重调整</h3><p>好，言归正传，我们先继续探索prompt的神奇魅力。在没有ControINet的情况下，我们实际上可以通过一些巧妙的语法，让SD模型知道在prompt中要关注的重点。</p>
+<p>这里我们需要用上一种叫做 <code>()</code> 的特殊语法来增强提示词的权重。</p>
+<p>我们还是结合例子来体会这个语法。比方说，我们把prompt语句修改为： <code>best quality, masterpiece, a happy (dog) and a cute girl, watercolor style</code>，那么它将产生后面这样的图像。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/7261b4ee2b6ce6b9529bb5aac8afa304.jpg"></p>
+<p>对比一下前面的作品，是不是挺惊喜的？终于，欢快的小狗和可爱的女孩再次同框了，新咒语生效！</p>
+<p>现在我们总结一下“施法”技巧：在prompt中添加 <code>()</code> ，默认情况下会让对应的单词产生1.1倍的强度。双括号 <code>(())</code> ，则表示1.1 x 1.1 倍的加强。当然，我们也可以直接将数字写上去，例如 <code>(dog:1.2)</code> 。</p>
+<p>正确地运用这种技巧，可以帮助我们更好地控制创作的效果。不过通常情况下，我不建议该权重超过1.3，否则对画面的影响很大，甚至不能产生正常的图像。</p>
+<h3 id="中型法阵：引入LoRA"><a href="#中型法阵：引入LoRA" class="headerlink" title="中型法阵：引入LoRA"></a>中型法阵：引入LoRA</h3><p>除了添加文本和文本强度的变化，我们还可以通过在prompt区域中引入LoRA来实现风格的二次变化。如果前面的还是入门程度的咒语，那LoRA就相当于让作品脱胎换骨的进阶法阵。</p>
+<p>LoRA模型可以看作是原始模型的新特效，你可以这样理解：LoRA相当于给原有模型穿上了“新服饰”一样，能让图像呈现出不同的表现。我们这就来体会一下，在prompt区域中使用LoRA的咒语是什么效果。</p>
+<p>我们需要先了解规范的“念咒”动作，标准写法是  <a href="lora:模型文件名:权重">lora:模型文件名:权重</a>。</p>
+<p>通常权重的范围是0到1，其中0表示LoRA模型完全不起作用。WebUI会自动加载相应的LoRA模型，并根据权重的大小进行应用。这些LoRA文件可以是自己训练的，你也可以从开源社区获取。关于LoRA的神奇之处和制作方法，我们后面的课程里会逐步介绍，敬请期待。</p>
+<p>现在，假设我们已经获取了一个风格化的LoRA模型，例如在Civitai开源社区的 “大概是盲盒” 这个LoRA模型。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/2586e3c91e0905da041844cfa745705d.jpg"></p>
+<p>我们将其下载并放入 stable-diffusion-webui&#x2F;models&#x2F;Lora文件夹，然后就可以在WebUI中看到这个模型了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/46eaab0b8b5545e6e3afcb1cd20c040d.jpg"></p>
+<p>现在，我们将前面学到的技巧融为一体，输入后面这样的指令。</p>
+<ul>
+<li><strong>prompt</strong>： <code>(masterpiece),(best quality),(ultra-detailed), (full body:1.2), 1girl,chibi,cute, smile, flower, outdoors, playing guitar, jacket, blush, shirt, short hair, cherry blossoms, green headwear, blurry, brown hair, blush stickers, long sleeves, bangs, headphones, black hair, pink flower, (beautiful detailed face), (beautiful detailed eyes), &lt;lora:blindbox_v1_mix:1&gt;</code></li>
+<li><strong>negative prompt</strong>： <code>(low quality:1.3), (worst quality:1.3)</code></li>
+</ul>
+<p>这时，我们的新图像也将会变成后面的样式。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/f98d4709d44459c43619690b409ece19.jpg"></p>
+<p>你看，可爱的、盲盒版本的、爱音乐的小女孩就创作出来了。想必你也发现了，相同的模型，在LoRA的加持下，生成的图像会呈现出完全不同的风格。所以，如果能成为prompt的使用高手，你就离成为WebUI的AI绘画大师更近了！</p>
+<p>另外，开源社区还整理了许多相关的 <a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DWHl3am5Zb05QbGVs">魔法法典</a> 供我们参考。你可以借助这些资料，寻找更多指导和灵感，进一步提升自己的技能，在AI绘画的旅程中更上一层楼。</p>
+<h2 id="文生图的引导：CFG-Scale-提示词相关性"><a href="#文生图的引导：CFG-Scale-提示词相关性" class="headerlink" title="文生图的引导：CFG Scale 提示词相关性"></a>文生图的引导：CFG Scale 提示词相关性</h2><p>讲完最基础的prompt语句，下面让我们探讨一些配合prompt起作用的重要参数。</p>
+<p>首先是CFG Scale，也就是我们常说的 “提示词相关性”。CFG Scale在有的教程中也叫Guidance Scale，二者是一回事。我们这就来看看这个参数又会让AI绘画作品出现怎样的奇妙反应。</p>
+<p>在WebUI中，CFG Scale的范围是1-30，默认值为7。我们可以通过调整不同的Scale值来观察图像的变化。以输入prompt语句 “a dog, cartoon style” 为例。如下表所示，不同的Scale值会产生不同的效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/11998c126d622b6f4f317dc1e660bbb8.jpg"></p>
+<p>从下一讲开始，我们便会引入一些具体的代码实操，很多代码运行需要用到GPU资源。对于没有GPU或服务器的同学来说，我们仍然可以充分利用一些免费的服务器资源，其中Google Colab便是一个不错的选择！</p>
+<p>Google Colab是一款强大而便利的云端编程环境，具备许多优势。首先，它无需安装和配置，用户只需拥有浏览器和可靠的网络连接，即可立即开始编写和运行代码，省去了繁琐的安装步骤。其次，Google Colab是免费使用的，为学生、研究人员和开发者提供了免费的实验和学习环境。</p>
+<p>特别提示一下，Google Colab需要用到Google账号！解决这个问题就要发挥你的聪明才智了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/42207797107b024fcb69280f9b243ed5.jpg"></p>
+<h2 id="总结时刻"><a href="#总结时刻" class="headerlink" title="总结时刻"></a>总结时刻</h2><p>这一讲我们学习了AI绘画的很多“施法咒语（prompt技巧）”和重要参数，现在我们来做个总结。</p>
+<p>我们今天重点学习了如何设计巧妙的prompt咒语，比如标签用法、负面提示词、文本权重控制、LoRA用法等。同时，还探索了围绕prompt的关键参数CFG Scale对于最终AI绘画成图效果的影响。</p>
+<p>在使用SD模型进行AI绘画时，正确使用和设计prompt至关重要。prompt可以用来引导模型生成特定风格、内容或特征的图像。通过精心构思和设计prompt，你可以激发模型创造出符合你意愿的艺术作品。</p>
+<p>CFG Scale是文生成图模型中的一个重要参数，它表示输入文本对生成图像的影响程度。较高的CFG Scale值可以使生成图像更贴近prompt的信息，但并非越高越好。通过调整CFG Scale值，你可以控制生成图像与提示之间的相似度，从而获得期望的结果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/ca88d7e916e476c607a25a003b4e7427.jpg"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>如果你想绘制一幅精细化的人物肖像，AI绘画生成的图像在手部和脸部细节存在瑕疵。这种情况下，有哪些方法可以改善这些问题？</p>
+<p>期待你在留言区和我交流讨论，也推荐你把今天学到的内容分享给更多朋友，我们一起探索AI绘画的无限潜力！</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#02%EF%BD%9CPrompt%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9B%B4%E7%B2%BE%E5%87%86%E5%9C%B0%E6%8E%A7%E5%88%B6%E7%BB%98%E7%94%BB%E9%A3%8E%E6%A0%BC%E5%92%8C%E5%86%85%E5%AE%B9%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">02｜Prompt使用技巧：如何更精准地控制绘画风格和内容？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WebUI%E5%92%92%E8%AF%AD%E6%8C%87%E5%8D%97%EF%BC%9Aprompt%E5%85%A5%E9%97%A8"><span class="toc-number">1.1.</span> <span class="toc-text">WebUI咒语指南：prompt入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E9%98%B6%E5%92%92%E8%AF%AD%EF%BC%9A%E7%9B%B4%E6%8E%A5%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">初阶咒语：直接描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E9%98%B6%E5%92%92%E8%AF%AD%EF%BC%9A%E5%B7%A7%E7%94%A8%E6%A0%87%E7%AD%BE"><span class="toc-number">1.1.2.</span> <span class="toc-text">二阶咒语：巧用标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E9%98%B6%E5%92%92%E8%AF%AD%EF%BC%9A%E8%B4%9F%E9%9D%A2%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.1.3.</span> <span class="toc-text">三阶咒语：负面提示词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E9%98%B6%E5%92%92%E8%AF%AD%EF%BC%9A%E6%96%87%E6%9C%AC%E6%9D%83%E9%87%8D%E8%B0%83%E6%95%B4"><span class="toc-number">1.1.4.</span> <span class="toc-text">四阶咒语：文本权重调整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E5%9E%8B%E6%B3%95%E9%98%B5%EF%BC%9A%E5%BC%95%E5%85%A5LoRA"><span class="toc-number">1.1.5.</span> <span class="toc-text">中型法阵：引入LoRA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%94%9F%E5%9B%BE%E7%9A%84%E5%BC%95%E5%AF%BC%EF%BC%9ACFG-Scale-%E6%8F%90%E7%A4%BA%E8%AF%8D%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">文生图的引导：CFG Scale 提示词相关性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%88%BB"><span class="toc-number">1.3.</span> <span class="toc-text">总结时刻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>20 | 领域驱动设计：35岁的程序员应该写什么样的代码？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="20 | 领域驱动设计：35岁的程序员应该写什么样的代码？我在阿里巴巴工作的头一年，坐在我对面的同事负责开发一个公司统一的运维系统。他对这个系统经过谨慎的调研和认真的思考，花费了半年多的时间开发，终于开发完了。然后邀请各个部门的相关同事做发布评审，如果大家没什么意见就发布上线，全公司范围统一推广使用。 结果在这个发布会上，几乎所有部门的同事都提出了不同的意见：虽然这个功能是我们需要的，但是那个特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20 | 领域驱动设计：35岁的程序员应该写什么样的代码？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1918098242.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="20 | 领域驱动设计：35岁的程序员应该写什么样的代码？我在阿里巴巴工作的头一年，坐在我对面的同事负责开发一个公司统一的运维系统。他对这个系统经过谨慎的调研和认真的思考，花费了半年多的时间开发，终于开发完了。然后邀请各个部门的相关同事做发布评审，如果大家没什么意见就发布上线，全公司范围统一推广使用。 结果在这个发布会上，几乎所有部门的同事都提出了不同的意见：虽然这个功能是我们需要的，但是那个特性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:44.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.852Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1918098242"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '20 | 领域驱动设计：35岁的程序员应该写什么样的代码？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">20 | 领域驱动设计：35岁的程序员应该写什么样的代码？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="20-领域驱动设计：35岁的程序员应该写什么样的代码？"><a href="#20-领域驱动设计：35岁的程序员应该写什么样的代码？" class="headerlink" title="20 | 领域驱动设计：35岁的程序员应该写什么样的代码？"></a>20 | 领域驱动设计：35岁的程序员应该写什么样的代码？</h1><p>我在阿里巴巴工作的头一年，坐在我对面的同事负责开发一个公司统一的运维系统。他对这个系统经过谨慎的调研和认真的思考，花费了半年多的时间开发，终于开发完了。然后邀请各个部门的相关同事做发布评审，如果大家没什么意见就发布上线，全公司范围统一推广使用。</p>
+<p>结果在这个发布会上，几乎所有部门的同事都提出了不同的意见：虽然这个功能是我们需要的，但是那个特性却是不能接受的，我们以往不是这样的……</p>
+<p>最糟糕的是，不同部门的这个功能和那个特性又几乎不相同。最终讨论的结果是，这个系统不发布推广，需要重新设计。</p>
+<p>这个同事又花了几个月的时间尝试满足所有部门的不同的需求，最终发现无法统一这些功能需求，于是辞职了……</p>
+<p>他离职后，有次会上我们又讨论起这个项目为什么会失败，其中有个同事的话让我印象深刻，他的话的大意是：如果你对自己要开发的业务领域没有清晰的定义和边界， <strong>没有设计系统的领域模型</strong>，而仅仅跟着所谓的需求不断开发功能，一旦需求来自多个方面，就可能发生需求冲突，或者随着时间的推移，前后功能也会发生冲突，这时你越是试图弥补这些冲突，就越是陷入更大的冲突之中。</p>
+<p>回想一下我经历的各种项目，似乎确实如此。用户或者产品经理的需求零零散散，不断变更。工程师在各处代码中寻找可以实现这些需求变更的代码，修修补补。软件只有需求分析，并没有真正的设计，系统没有一个统一的领域模型维持其内在的逻辑一致性。功能特性并不是按照领域模型内在的逻辑设计，而是按照各色人等自己的主观想象设计。项目时间一长，各种困难重重，需求不断延期，线上bug不断，管理者考虑是不是要推到重来，而程序员则考虑是不是要跑路。</p>
+<h2 id="领域模型模式"><a href="#领域模型模式" class="headerlink" title="领域模型模式"></a>领域模型模式</h2><p>目前企业级应用开发中，业务逻辑的组织方式主要是 <strong>事务脚本</strong> 模式。事务脚本按照业务处理的过程组织业务逻辑，每个过程处理来自客户端的单个请求。客户端的每次请求都包含了一定的业务处理逻辑，而程序则按照每次请求的业务逻辑进行划分。</p>
+<p>事务脚本模式典型的就是Controller→Service→Dao这样的程序设计模式。Controller封装用户请求，根据请求参数构造一些数据对象调用Service，Service里面包含大量的业务逻辑代码，完成对数据的处理，期间可能需要通过Dao从数据库中获取数据，或者将数据写入数据库中。</p>
+<p>比如这样一个业务场景：每个销售合同都包含一个产品，根据销售的不同产品类型计算收入，当用户支付的时候，需要计算合同收入。</p>
+<p>按照事务脚本模式，也就是我们目前习惯的方法，程序设计可能是这样的：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/0f207cfe38ec0bf2fed2a6e7a6517620.png"></p>
+<p>用户发起请求到Controller，Controller调用Service的calculateRecognition方法，并将合同ID传递过去计算确认收入。Service根据合同ID调用Dao查找合同信息，根据合同获得产品类型，再根据产品类型计算收入，然后把确认收入保存到数据库。</p>
+<p>这里一个很大的问题在于，不同产品类型收入的计算方法不同，如果修改计算方法，或者增加新的产品类型，都需要修改这个Service类，随着业务不断复杂，这个类会变得越来越难以维护。</p>
+<p>在这里，Service只是用来放收入计算方法的一个类，并没有什么设计的约束。如果有一天，另一个客户端需要计算另一种产品类型收入，很大可能会重新写一个Service。于是，相同的业务在不同的地方维护，事情变得更加复杂。</p>
+<p>由于事务脚本模式中，Service、Dao这些对象只有方法，没有数值成员变量，而方法调用时传递的数值对象没有方法（或者只有一些getter、setter方法），因此事务脚本又被称作 <strong>贫血模型</strong>。</p>
+<p><strong>领域模型</strong> 模式和事务脚本模式不同。在领域模型模式下，业务逻辑围绕领域模型设计。比如收入确认是和合同强相关的，是合同对象的一个职责，那么合同对象就应该提供一个calculateRecognition方法计算收入。</p>
+<p>领域模型中的对象和事务脚本中的对象有很大的不同，比如事务脚本中也有合同Contract这个对象，但是这个Contract只包含合同的数据信息，不包含和合同有关的计算逻辑，计算逻辑在Service类里。</p>
+<p>而领域模型的对象则包含了对象的数据和计算逻辑，比如合同对象，既包含合同数据，也包含合同相关的计算。因此从面向对象的角度看，领域模型才是真正的面向对象。如果用领域模型设计上面的合同收入确认，是这样的：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/00974ec0e16cb4fa0045303162b95076.png"></p>
+<p>计算收入的请求直接提交给合同对象Contract，这个时候，就无需传递合同ID，因为请求的合同对象就是这个ID的对象。合同对象聚合了一个产品对Product，并调用这个product的calculateRecognition方法，把合同对象传递过去。不同产品关联不同的收入确认策略recognitionStrategy，调用recognitionStrategy的calculateRecognition，完成收入对象revenueRecognition的创建，也就完成了收入计算。</p>
+<p>这里Contract和Product都是领域模型对象， <strong>领域模型是合并了行为和数据的领域的对象模型</strong>。通过领域模型对象的交互完成业务逻辑的实现，也就是说，设计好了领域模型对象，也就设计好了业务逻辑实现。和事务脚本被称作贫血模型相对应的，领域模型也被称为充血模型。</p>
+<p>对于复杂的业务逻辑实现来说，用领域模型模式更有优势。特别是在持续的需求变更和业务迭代过程中，把握好领域模型，对业务逻辑本身也会有更清晰的认识。使用领域模型增加新的产品类型的时候，就不需要修改现有的代码，只需要扩展新的产品类和收入策略类就可以了。</p>
+<p>在需求变更过程中，如果一个需求和领域模型有冲突，和模型的定义以及模型间的交互逻辑不一致，那么很有可能这个需求本身就是伪需求。很多看似合理的需求其实和业务的内在逻辑是有冲突的，这样的需求也不会带来业务的价值，通过领域模型分析，可以识别出这样的伪需求，使系统更好地保持一致性，也可以使开发资源投入到更有价值的地方去。</p>
+<h2 id="领域驱动设计（DDD）"><a href="#领域驱动设计（DDD）" class="headerlink" title="领域驱动设计（DDD）"></a>领域驱动设计（DDD）</h2><p>前面我讲到领域模型模式，那么如何用领域模型模式设计一个完整而复杂的系统，有没有完整的方法和过程指导整个系统的设计？领域驱动设计，即DDD就是用来解决这一问题的。</p>
+<p><strong>领域</strong> 是一个组织所做的事情以及其包含的一切，通俗地说，就是组织的业务范围和做事方式，也是软件开发的目标范围。比如对于淘宝这样一个以电子商务为主要业务的组织，C2C电子商务就是它的领域。 <strong>领域驱动设计就是从领域出发，分析领域内模型及其关系，进而设计软件系统的方法。</strong></p>
+<p>但是如果我们说要对C2C电子商务这个领域进行建模设计，那么这个范围就太大了，不知道该如何下手。所以通常的做法是把整个领域拆分成多个 <strong>子域</strong>，比如用户、商品、订单、库存、物流、发票等。强相关的多个子域组成一个 <strong>限界上下文</strong>，限界上下文是对业务领域范围的描述，对于系统实现而言，可以想象成相当于是一个子系统或者是一个模块。限界上下文和子域共同组成组织的领域，如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/fc05b9e59b857be7eb79fd42d7b4741a.jpg"></p>
+<p>不同的限界上下文，也就是不同的子系统或者模块之间会有各种的交互合作。如何设计这些交互合作呢？DDD使用 <strong>上下文映射图</strong> 来完成，如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/0a802030bd21f0234fe0814a8f4c3fbb.png"></p>
+<p>在DDD中，领域模型对象也被称为 <strong>实体</strong>，每个实体都是唯一的，具有一个唯一标识，一个订单对象是一个实体，一个产品对象也是一个实体，订单ID或者产品ID是它们的唯一标识。实体可能会发生变化，比如订单的状态会变化，但是它们的唯一标识不会变化。</p>
+<p><strong>实体设计</strong> 是DDD的核心所在，首先通过业务分析，识别出实体对象，然后通过相关的业务逻辑设计实体的属性和方法。这里最重要的，是要把握住实体的特征是什么，实体应该承担什么职责，不应该承担什么职责，分析的时候要放在业务场景和限界上下文中，而不是想当然地认为这样的实体就应该承担这样的角色。</p>
+<p>事实上，并不是领域内的对象都应该被设计为实体，DDD推荐尽可能将对象设计为 <strong>值对象</strong>。比如像住址这样的对象就是典型的值对象，也许建在住址上的房子可以被当做一个实体，但是住址仅仅是对房子的一个描述，像这样仅仅用来做度量或描述的对象应该被设计为值对象。</p>
+<p>值对象的一个特点是不变性，一个值对象创建以后就不能再改变了。如果地址改变了，那就是一个新地址，而一个订单实体则可能会经历创建、待支付、已支付、代发货、已发货、待签收、待评价等各种变化。</p>
+<p>领域实体和限界上下文包含了业务的主要逻辑，但是最终如何构建一个系统，如何将领域实体对外暴露，开发出一个完整的系统。事实上，DDD支持各种架构方案，比如典型的 <strong>分层架构</strong>：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/0a2b32ee054a0c9bcc202c6f7c043c1c.png"></p>
+<p>领域实体被放置在领域层，通过应用层对领域实体进行包装，最终提供一组访问接口，通过接口层对外开放。</p>
+<p><strong>六边形架构</strong> 是DDD中比较知名的一种架构方式，领域模型通过应用程序封装成一个相对比较独立的模块，而不同的外部系统则通过不同的适配器和领域模型交互，比如可以通过HTTP接口访问领域模型，也可以通过Web Service或者消息队列访问领域模型，只需要为这些不同的访问接口提供不同的适配器就可以了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/e4506951ed15f90bd4c61c8fe58ef40d.png"></p>
+<p>领域驱动设计的技术体系内还有其他一些方法和概念，但是最核心的还是领域模型本身， <strong>通过领域实体及其交互完成业务逻辑处理才是DDD的核心目标</strong>。至于是不是用了CQRS，是不是事件驱动，有没有事件溯源，并不是DDD的核心。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>回到我们的题目，一个35岁的程序员应该写什么样的代码？如果一个工作十多年的程序员，还是仅仅写一些跟他工作第一年差不多的CRUD代码。那么他迟早会遇到自己的职业危机。公司必然愿意用更年轻、更努力，当然也更低薪水的程序员来代替他。至于学习新技术的能力，其实多年工作经验也并没有太多帮助，有时候也许还是劣势。</p>
+<p>在我看来，35岁的程序员真正有优势的是他在一个业务领域的多年积淀，对业务领域有更深刻的理解和认知。</p>
+<p>那么如何将这些业务沉淀和理解反映到工作中，体现在代码中呢？也许可以尝试探索领域驱动设计。如果一个人有多年的领域经验，那么必然对领域模型设计有更深刻的认识，把握好领域模型在不断的需求变更中的演进，使系统维持更好的活力，并因此体现自己真正的价值。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你觉得大龄程序员的优势是什么？如何在公司保持自己的优势和地位？</p>
+<p>欢迎你在评论区写下你的思考，也欢迎把这篇文章分享给你的朋友或者同事，一起交流一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#20-%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%EF%BC%9A35%E5%B2%81%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E5%86%99%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">20 | 领域驱动设计：35岁的程序员应该写什么样的代码？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">领域模型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%EF%BC%88DDD%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">领域驱动设计（DDD）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

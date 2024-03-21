@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>加餐 | 软件设计文档示例模板 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="加餐 | 软件设计文档示例模板在 第9篇文章 中，我讲了每种UML模型图的画法，以及这些画法分别适用于什么样的设计阶段，我们也可以将不同阶段输出的模型图放在一个文档中，对每张模型图配以适当的文字说明，构成一篇设计文档。 对于规模不太大的软件系统，我们可以将概要设计文档和详细设计文档合并成一个设计文档。这一篇文章中，我会展现一个设计文档示例模板，你可以参考这个模板编写你的设计文档。 文档开头是设计概">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加餐 | 软件设计文档示例模板">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3324870952.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="加餐 | 软件设计文档示例模板在 第9篇文章 中，我讲了每种UML模型图的画法，以及这些画法分别适用于什么样的设计阶段，我们也可以将不同阶段输出的模型图放在一个文档中，对每张模型图配以适当的文字说明，构成一篇设计文档。 对于规模不太大的软件系统，我们可以将概要设计文档和详细设计文档合并成一个设计文档。这一篇文章中，我会展现一个设计文档示例模板，你可以参考这个模板编写你的设计文档。 文档开头是设计概">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:45.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.882Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3324870952"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '加餐 | 软件设计文档示例模板',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">加餐 | 软件设计文档示例模板</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="加餐-软件设计文档示例模板"><a href="#加餐-软件设计文档示例模板" class="headerlink" title="加餐 | 软件设计文档示例模板"></a>加餐 | 软件设计文档示例模板</h1><p>在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/175529">第9篇文章</a> 中，我讲了每种UML模型图的画法，以及这些画法分别适用于什么样的设计阶段，我们也可以将不同阶段输出的模型图放在一个文档中，对每张模型图配以适当的文字说明，构成一篇设计文档。</p>
+<p>对于规模不太大的软件系统，我们可以将概要设计文档和详细设计文档合并成一个设计文档。这一篇文章中，我会展现一个设计文档示例模板，你可以参考这个模板编写你的设计文档。</p>
+<p>文档开头是设计概述，简单描述业务场景要解决的核心问题领域是什么。至于业务场景，应该在专门的需求文档中描述，但是在设计文档中，必须要再简单描述一下，以保证设计文档的完整性，这样，即使脱离需求文档，阅读者也能理解主要的设计。</p>
+<p>此外，在设计概述中，还需要描述设计的非功能约束，比如关于性能、可用性、维护性、安全性，甚至开发和部署成本方面的设计目标。</p>
+<p>然后就是具体的设计了，第一张设计图应该是部署图，通过部署图描述系统整个物理模型蓝图，包括未来系统长什么样。</p>
+<p>如果系统中包含几个子系统，那么还需要描述子系统间的关系，可以通过子系统序列图，子系统活动图进行描述。</p>
+<p>子系统内部的最顶层设计就是组件图，描述子系统由哪些组件组成，不同场景中，组件之间的调用序列图是什么样的。</p>
+<p>每个组件内部，需要用类图进行建模描述，对于不同场景，用时序图描述类之间的动态调用关系，对于有复杂状态的类，用状态图描述其状态转换。</p>
+<p>具体示例模板如下：</p>
+<h2 id="1-设计概述"><a href="#1-设计概述" class="headerlink" title="1 设计概述"></a>1 设计概述</h2><p>……系统是一个……的系统，是公司……战略的核心系统，承担着公司……的目标任务。</p>
+<h3 id="1-1-功能概述"><a href="#1-1-功能概述" class="headerlink" title="1.1 功能概述"></a>1.1 功能概述</h3><p>系统主要功能包括……，使用者包括……。</p>
+<h3 id="1-2-非功能约束"><a href="#1-2-非功能约束" class="headerlink" title="1.2 非功能约束"></a>1.2 非功能约束</h3><p>……系统未来预计一年用户量达到……，日订单量达到……，日PV达到……，图片数量达到 ……。</p>
+<ol>
+<li>查询性能目标：平均响应时间&lt;300ms，95%响应时间&lt;500ms，单机TPS&gt;100；</li>
+<li>下单性能目标：平均响应时间&lt;800ms，95%响应时间&lt;1000ms，单机TPS&gt;30；</li>
+<li>……性能目标：平均响应时间&lt;800ms，95%响应时间&lt;1000ms，单机TPS&gt;30；</li>
+<li>系统核心功能可用性目标：&gt;99.97%；</li>
+<li>系统安全性目标：系统可拦截…… 、……、……攻击，密码数据散列加密，客户端数据HTTPS加密，外部系统间通信对称加密；</li>
+<li>数据持久化目标：&gt;99.99999%。</li>
+</ol>
+<h2 id="2-系统部署图与整体设计"><a href="#2-系统部署图与整体设计" class="headerlink" title="2 系统部署图与整体设计"></a>2 系统部署图与整体设计</h2><p>系统上线时预计部署……台物理机，……个子系统，和公司……系统交互，和外部第三方……个系统交互。</p>
+<h3 id="2-1-系统部署图"><a href="#2-1-系统部署图" class="headerlink" title="2.1 系统部署图"></a>2.1 系统部署图</h3><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/4bb2e603dc9ed6ab9700f29fa5cbb5cb.png"></p>
+<p>子系统1的功能职责为……，部署……台服务器，依赖……和……子系统，实现 ……功能。</p>
+<p>子系统2参照子系统1来写。</p>
+<h3 id="2-2-下单场景子系统序列图"><a href="#2-2-下单场景子系统序列图" class="headerlink" title="2.2 下单场景子系统序列图"></a>2.2 下单场景子系统序列图</h3><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/4022d74c2923e8bf5adc013788e05fac.png"></p>
+<ol>
+<li>下单时，子系统先发送……消息到子系统3，子系统3需要执行……完成……处理，然后发送……消息到财务系统，消息中包含……数据。</li>
+<li>收到……的处理结果……后，子系统1发送……消息到……子系统2……。</li>
+</ol>
+<h3 id="2-3-退款场景子系统序列图"><a href="#2-3-退款场景子系统序列图" class="headerlink" title="2.3 退款场景子系统序列图"></a>2.3 退款场景子系统序列图</h3><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/4022d74c2923e8bf5adc013788e05fac.png"></p>
+<ol>
+<li>退款子系统先发送……消息到子系统3，子系统3需要执行……完成……处理，然后发送……消息到财务系统，消息中包含……数据。</li>
+<li>收到……的处理结果……后，子系统1发送……消息到……子系统2……。</li>
+</ol>
+<h3 id="2-4-退款场景子系统活动图"><a href="#2-4-退款场景子系统活动图" class="headerlink" title="2.4 退款场景子系统活动图"></a>2.4 退款场景子系统活动图</h3><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/375ef48e2f806f42460b1beba71d2ae1.png"></p>
+<p>如图所示：</p>
+<ol>
+<li>退款开始时，子系统1处理XXX，然后判断m的状态，如果m为真，请求子系统3处理ZZZ，如果m为假，子系统继续处理ZZZ并结束。</li>
+<li>子系统3处理ZZZ后，一方面继续处理XYZ，一方面将……消息发送给财务通进行AAA处理。</li>
+<li>子系统在处理完XYZ后，返回子系统继续梳理YYY，然后退款处理结束。</li>
+</ol>
+<h2 id="3-子系统1设计"><a href="#3-子系统1设计" class="headerlink" title="3 子系统1设计"></a>3 子系统1设计</h2><p>子系统1的主要功能职责是……，其中主要包含了……组件。</p>
+<h3 id="3-1-子系统1组件图"><a href="#3-1-子系统1组件图" class="headerlink" title="3.1 子系统1组件图"></a>3.1 子系统1组件图</h3><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/53440aeb1890d9de2234e7392b7fbc51.png"></p>
+<p>子系统1包含6个组件：</p>
+<p>组件1的功能主要是……，需要依赖组件2完成……，是子系统1的核心组件，用户……请求主要通过组件1完成。</p>
+<p>同样的，组件2也可以参照组件1来这样写。</p>
+<h4 id="3-1-1-场景A组件序列图"><a href="#3-1-1-场景A组件序列图" class="headerlink" title="3.1.1 场景A组件序列图"></a>3.1.1 场景A组件序列图</h4><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/15b121ced550eca4913773fc14dcaf89.png"></p>
+<p>对于场景A，首先组件1收到用户消息CCC，然后组件1调用组件2的XXX方法……。</p>
+<h4 id="3-1-2-场景B组件活动图"><a href="#3-1-2-场景B组件活动图" class="headerlink" title="3.1.2 场景B组件活动图"></a>3.1.2 场景B组件活动图</h4><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/c37566e9d6709b5aa75d9fdb7c1a4513.png"></p>
+<p>在场景B中，首先组件收到……消息，开始处理……，然后判断……，如果为true，那么……，如果为false，那么……。</p>
+<h3 id="3-2-组件1设计"><a href="#3-2-组件1设计" class="headerlink" title="3.2 组件1设计"></a>3.2 组件1设计</h3><p>组件1的主要功能职责是……，其中主要包含了……类。</p>
+<h4 id="3-2-1-组件1-类图"><a href="#3-2-1-组件1-类图" class="headerlink" title="3.2.1 组件1 类图"></a>3.2.1 组件1 类图</h4><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/e299191932e2f306dceed924b2915b4d.png"></p>
+<p>Class1实现接口Interface1，主要功能是……，Class1聚合了Class2和Class3，共同对外提供……服务，Class1依赖Class4实现……功能，Class4……。</p>
+<h4 id="3-2-2-场景A-类序列图"><a href="#3-2-2-场景A-类序列图" class="headerlink" title="3.2.2 场景A 类序列图"></a>3.2.2 场景A 类序列图</h4><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/6b7c8d72357d1d7a26159a78378ed602.png"></p>
+<p>在场景A中，当外部应用调用类1的create方法时，类1……。</p>
+<h4 id="3-2-3-对象1状态图"><a href="#3-2-3-对象1状态图" class="headerlink" title="3.2.3 对象1状态图"></a>3.2.3 对象1状态图</h4><p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/bc2c158c13cfb129fba57f1b60aadc2e.png"></p>
+<p>对象1运行时有4种状态，初始状态是状态1，当条件1满足是，状态1转换为状态2，当条件3满足时，状态2转换为状态4……。</p>
+<h3 id="3-3-组件2设计"><a href="#3-3-组件2设计" class="headerlink" title="3.3 组件2设计"></a>3.3 组件2设计</h3><p>重复上面的格式。</p>
+<h2 id="4-子系统2设计"><a href="#4-子系统2设计" class="headerlink" title="4 子系统2设计"></a>4 子系统2设计</h2><p>重复上面的格式。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E9%A4%90-%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.</span> <span class="toc-text">加餐 | 软件设计文档示例模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1 设计概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 功能概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%9D%9E%E5%8A%9F%E8%83%BD%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 非功能约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E5%9B%BE%E4%B8%8E%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">2 系统部署图与整体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E5%9B%BE"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 系统部署图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%B8%8B%E5%8D%95%E5%9C%BA%E6%99%AF%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%BA%8F%E5%88%97%E5%9B%BE"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 下单场景子系统序列图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%80%80%E6%AC%BE%E5%9C%BA%E6%99%AF%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%BA%8F%E5%88%97%E5%9B%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 退款场景子系统序列图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E9%80%80%E6%AC%BE%E5%9C%BA%E6%99%AF%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%B4%BB%E5%8A%A8%E5%9B%BE"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 退款场景子系统活动图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AD%90%E7%B3%BB%E7%BB%9F1%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">3 子系统1设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AD%90%E7%B3%BB%E7%BB%9F1%E7%BB%84%E4%BB%B6%E5%9B%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 子系统1组件图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E5%9C%BA%E6%99%AFA%E7%BB%84%E4%BB%B6%E5%BA%8F%E5%88%97%E5%9B%BE"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">3.1.1 场景A组件序列图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-%E5%9C%BA%E6%99%AFB%E7%BB%84%E4%BB%B6%E6%B4%BB%E5%8A%A8%E5%9B%BE"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">3.1.2 场景B组件活动图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%BB%84%E4%BB%B61%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 组件1设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-%E7%BB%84%E4%BB%B61-%E7%B1%BB%E5%9B%BE"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">3.2.1 组件1 类图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-%E5%9C%BA%E6%99%AFA-%E7%B1%BB%E5%BA%8F%E5%88%97%E5%9B%BE"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">3.2.2 场景A 类序列图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-%E5%AF%B9%E8%B1%A11%E7%8A%B6%E6%80%81%E5%9B%BE"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">3.2.3 对象1状态图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BB%84%E4%BB%B62%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 组件2设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AD%90%E7%B3%BB%E7%BB%9F2%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">4 子系统2设计</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

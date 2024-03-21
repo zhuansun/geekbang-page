@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>23 深度学习 | 前方有路，未来可期：深度前馈网络 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="23 深度学习 | 前方有路，未来可期：深度前馈网络深度前馈网络（Deep Feedforward Network）是具有深度结构的前馈神经网络，可以看成是进化版的多层感知器。与只有一个或两个隐藏层的浅层网络相比，深度前馈网络具有更多的隐藏层数目，从而具备了更强的特征提取能力。 深度前馈网络不考虑输入数据可能具备的任何特定结构，也就是不使用关于数据的先验信息。但特征提取能力增强的代价是运算复杂度的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23 深度学习 | 前方有路，未来可期：深度前馈网络">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3777316228.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="23 深度学习 | 前方有路，未来可期：深度前馈网络深度前馈网络（Deep Feedforward Network）是具有深度结构的前馈神经网络，可以看成是进化版的多层感知器。与只有一个或两个隐藏层的浅层网络相比，深度前馈网络具有更多的隐藏层数目，从而具备了更强的特征提取能力。 深度前馈网络不考虑输入数据可能具备的任何特定结构，也就是不使用关于数据的先验信息。但特征提取能力增强的代价是运算复杂度的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:17:18.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.485Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3777316228"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '23 深度学习 | 前方有路，未来可期：深度前馈网络',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">23 深度学习 | 前方有路，未来可期：深度前馈网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="23-深度学习-前方有路，未来可期：深度前馈网络"><a href="#23-深度学习-前方有路，未来可期：深度前馈网络" class="headerlink" title="23 深度学习 | 前方有路，未来可期：深度前馈网络"></a>23 深度学习 | 前方有路，未来可期：深度前馈网络</h1><p>深度前馈网络（Deep Feedforward Network）是具有深度结构的前馈神经网络，可以看成是进化版的多层感知器。与只有一个或两个隐藏层的浅层网络相比，深度前馈网络具有更多的隐藏层数目，从而具备了更强的特征提取能力。</p>
+<p>深度前馈网络不考虑输入数据可能具备的任何特定结构，也就是不使用关于数据的先验信息。但特征提取能力增强的代价是运算复杂度的提升。因而， <strong>网络架构的建立、损失函数的选择、输出单元和隐藏单元的设计、训练误差的处理等问题就成为深度前馈网络设计中的一系列核心问题</strong>。</p>
+<p><strong>在深度前馈网络的设计中，确定架构是首要考虑的关键问题</strong>。架构决定着网络中包含多少基本单元，以及这些基本单元之间如何相互连接。几乎所有前馈网络采用的都是链式架构，即前一层的输出是后一层的输入。在这样的链式架构中，层的数目和每一层中神经元的数目就是网络的主要变量。</p>
+<p>介绍多层感知器时我曾提到了通用逼近的性质，这个性质的严格形式是通用逼近定理。 <strong>通用逼近定理的内容是如果一个前馈网络具有单个隐藏层，这个隐藏层又有足够但是有限数目的神经元，这个神经网络就可以以任意精度逼近任意连续函数</strong>。虽然在这个定理的初始证明中，隐藏神经元的传递函数是具有“挤压”性质的非线性函数，但定理的成立性实际上并不取决于传递函数的性质，而是由网络的前馈架构所决定的。</p>
+<p>通用逼近定理是一个存在性定理，它说明需要的神经网络是肯定存在的，却并没有指明具体的构造方法。所以在给定一个目标函数时，我们可以确定单隐藏层的感知器一定能够将它表示出来，却对隐藏层需要多少神经元毫无把握。这个数目很可能是个天文数字，这会让网络结构在计算机上根本无法实现。即使能够设计出这么复杂的算法，要对它进行训练和泛化也近乎天方夜谭。</p>
+<p>深度前馈网络的出现克服的正是单隐藏层带来的复杂性问题： <strong>使用深度架构的模型既能减少表示目标函数时所需要的单元数量，也能有效降低泛化误差，在一定程度上抑制过拟合的发生</strong>。深度架构对复杂函数具有更强的表示能力，这一点已经在数学上得到证明。除此之外，深度架构也暗含了这样的假设： <strong>待学习的复杂函数可以视为若干简单函数的层次化结合</strong>。由于深度学习的思想本就借鉴自神经科学，这个假设也就合情合理了。</p>
+<p>在层与层之间，深度架构采用的最常见的方式是 <strong>全连接</strong>，意味着相邻层次中的任意神经元都两两相连。全连接是最简单也最复杂的架构，说它简单是因为连接方式只有一种选择，不需要考虑保留哪些连接或是放弃哪些连接；说它复杂是因为这种方式需要确定的参数最大，给网络训练带来了很大的麻烦。目前也有大量神经网络使用了稀疏的连接方式，这需要结合应用场景具体分析。</p>
+<p><strong>任何机器学习算法都可以看成是对某个预设函数的最优化方法，深度前馈网络也不例外</strong>。与其他神经网络一样，深度前馈网络也利用 <strong>梯度信息</strong> 进行学习，在处理误差时采用的是 <strong>反向传播方法</strong>，利用反向传播求出梯度后再使用 <strong>随机梯度下降法</strong> 寻找损失函数的最小值。但深度网络的非线性特性常常会影响到学习算法的收敛性能，这也是使用非线性函数的神经网络的一个固有特性。</p>
+<p>在学习中，损失函数的选择是深度神经网络设计中另一个重要环节。深度前馈网络选择损失函数的准则与其他机器学习算法并无二致： <strong>回归问题的损失函数通常是最小均方误差，而分类问题的损失函数通常是交叉熵</strong>（Cross-Entropy）。</p>
+<p>交叉熵描述的是真实的数据分布和神经网络输出分布之间的差异性。当我们使用神经网络的输出去预测符合真实分布的测试数据时，网络输出并不能完全消除关于测试数据的不确定性。这部分剩余的不确定性可以由泛化误差体现，在信息论中则由交叉熵来定义。</p>
+<p>如果$p(x)$和$q(x)$是两个离散分布，则两者的交叉熵可以表示为</p>
+<p>$$ H(p, q) &#x3D; - \sum_x p(x) \log q(x) $$</p>
+<p>在深度前馈网络中，损失函数被定义为分类结果$\mathbf{y}$关于训练数据$\mathbf{x}$的条件概率的负对数之和</p>
+<p>$$ J(\mathbf{\theta}) &#x3D; - \sum_k \ln p(\mathbf{y}_k | \mathbf{x}_k)$$</p>
+<p>确定损失函数后，网络的训练过程就是找到使以上表达式最小的参数$\mathbf{\theta}$的过程。 <strong>其实无论是最小均方误差还是交叉熵，体现的都是概率论中最大似然估计的原理</strong>。最小均方误差与最大似然估计的关系在线性回归算法中已有说明，你可以回忆一下。而分类问题中，只要条件概率具有高斯分布的形式，训练数据与模型分布之间的交叉熵的最大化与最小均方误差同样殊途同归。</p>
+<p>使用对数似然作为损失函数的一个优点是它的通用性，概率论上的直观意义使它适用于几乎所有的模型。另一个好处则体现在它可以避免因损失函数饱和造成的梯度消失，这是由于对数操作可以抵消掉大部分传递函数中的指数效果，从而更清晰地展示出变化趋势。</p>
+<p>损失函数的表示与输出单元的选择密切相关，输出单元的传递函数决定了交叉熵的具体表达式。输出层的作用是对隐藏层提取出的特征施加额外的变换以得到输出，变换的形式则有多种选择。最简单的变换形式就是线性变换，它将隐藏特征的线性组合作为输出，简单而实用。</p>
+<p>除了线性变换， <strong>对数几率函数</strong> 也是一种常用的变换函数，其形式在机器学习模块的逻辑回归中已经做过介绍。对数几率函数得到的是一类软输出，因为它能将隐藏特征的线性组合映射到概率之上。将对数几率函数加以推广就可以得到 <strong>softmax函数</strong>，也叫 <strong>柔性最大值函数</strong>。对数几率函数只能解决二分类问题，softmax函数则可以解决多分类问题，也就是每个样本可以同时属于不同的类别。softmax函数的形式同样在逻辑回归中做了介绍，你可以回忆一下。</p>
+<p>前面介绍的三种传递函数是输出单元的常见选择，对大部分机器学习模型是通用的。 <strong>而在深层前馈网络的设计中，一个独有的问题就是隐藏单元的设计，也就是隐藏神经元的传递函数如何选择</strong>。但这个问题目前尚不存在放之四海而皆准的通用准则，关于这个环节的有限知识全都集中在一类常用的激活函数上，也就是 <strong>整流线性单元</strong>（Rectified Linear Unit, ReLU）。</p>
+<p>整流线性单元是隐藏单元理想设计的万金油，当你不知道选择何种激活函数时，那么用它准保没错。整流线性单元的数学表达式是</p>
+<p>$$ {\text{ReLU}}(x) &#x3D; \max { 0, x } $$</p>
+<p>整流线性单元在一半定义域上取值为0，在另一半定义域上则处于激活状态。虽然在0点这个间断点上不满足可微的条件，但在激活的区域上，整流线性单元的一阶导数是常数1，二阶导数则恒等于0。相比于引入二阶效应的其他激活函数，整流线性单元的梯度方向在学习中具有更大的用处。</p>
+<p>整流线性单元的一个缺点是它可能会“杀死”特定的隐藏神经元，因为一旦取值为0，这个函数就不会重新激活。解决这个问题的方法是对原始函数做一些微小的修正，得到的变体包括 <strong>渗漏整流单元</strong>（Leaky ReLU）和 <strong>指数整流单元</strong>（Exponential ReLU），它们的共同点是将原来的0输出替换为一个较小的数值，以避免神经元的失效。</p>
+<p>除了整流线性单元之外， <strong>对数几率函数</strong> 和 <strong>双曲正切函数</strong> 等其他函数也可以用于隐藏神经元中，但并不常见。相比于这些函数，整流线性单元的优势在于它的线性特性，这一性质使得模型更加容易优化，对黑箱中的隐藏神经元而言尤其如此。</p>
+<p>可如果要针对执行特定任务的深度前馈网络选择最优化的隐藏单元，就是个依赖经验的过程。想要预测哪种隐藏单元的性能最佳完全依赖于直觉，至于直觉靠不靠谱，就得通过验证数据集来检验训练效果。从这个角度看，说深度学习是撞大运的炼金术不是没有道理的。</p>
+<p>今天我和你分享了作为学习模型的深度前馈网络存在的一些共性问题，其要点如下：</p>
+<ul>
+<li>深度前馈网络利用深度架构实现工程上可实现的对任意函数的通用逼近；</li>
+<li>深度前馈网络使用梯度下降的方法进行学习；</li>
+<li>深度前馈网络的损失函数通常是交叉熵或最小均方误差；</li>
+<li>深度前馈网络的隐藏神经元通常使用整流线性单元作为传递函数。</li>
+</ul>
+<p>在深度前馈网络中，深度结构是在空间维度上展开的，那么能否在时间维度上引入类似的结构，实现不同时刻之间的信息流动呢？</p>
+<p>欢迎发表你的观点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/069de9897e302f8f9dc372b7459a0ec1.jpg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#23-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%89%8D%E6%96%B9%E6%9C%89%E8%B7%AF%EF%BC%8C%E6%9C%AA%E6%9D%A5%E5%8F%AF%E6%9C%9F%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C"><span class="toc-number">1.</span> <span class="toc-text">23 深度学习 | 前方有路，未来可期：深度前馈网络</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

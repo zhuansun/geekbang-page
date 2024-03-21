@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络多层感知器是一类全局逼近的神经网络，网络的每个权重对任何一个输出都会产生同等程度的影响。因而对于每次训练，网络都要调整全部权值，这就造成全局逼近网络的收敛速度较慢。显然，这是一种牵一发而动全身的 全局作用 方式。 与全局作用对应的是 局部作用。在局部作用中，每个局部神经元只对特定区域的输入产生响应。如果输入在空间上是相近的，对这些输入的反应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3805941978.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络多层感知器是一类全局逼近的神经网络，网络的每个权重对任何一个输出都会产生同等程度的影响。因而对于每次训练，网络都要调整全部权值，这就造成全局逼近网络的收敛速度较慢。显然，这是一种牵一发而动全身的 全局作用 方式。 与全局作用对应的是 局部作用。在局部作用中，每个局部神经元只对特定区域的输入产生响应。如果输入在空间上是相近的，对这些输入的反应">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:17:17.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.475Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3805941978"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:17:17.000Z" title="发表于 2024-02-29 12:17:17">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="19-人工神经网络-各人自扫门前雪：径向基函数神经网络"><a href="#19-人工神经网络-各人自扫门前雪：径向基函数神经网络" class="headerlink" title="19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络"></a>19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络</h1><p>多层感知器是一类全局逼近的神经网络，网络的每个权重对任何一个输出都会产生同等程度的影响。因而对于每次训练，网络都要调整全部权值，这就造成全局逼近网络的收敛速度较慢。显然，这是一种牵一发而动全身的 <strong>全局作用</strong> 方式。</p>
+<p>与全局作用对应的是 <strong>局部作用</strong>。在局部作用中，每个局部神经元只对特定区域的输入产生响应。如果输入在空间上是相近的，对这些输入的反应应该是相似的，那么被这些输入激活的神经元也应该是同一批神经元。进一步推广又可以得到，如果一个输入$A$在另外两个输入$B_1$和$B_2$的空间位置之间，那么响应输入$B_1$和$B_2$的神经元也应该在一定程度上被$A$激活。</p>
+<p>神经元的局部作用原理有它的生理学依据。当你仰望夜空中的点点繁星时，茫茫暗夜中的星光激活的是视觉神经的特定部分。随着地球的自转，星光也会移动，虽然亮度没有变化，但不同位置的星光激活的就是视觉神经中的不同部分，因而产生响应的神经元也会发生变化。有些原本被激活的神经元会因为目标对象的移出而被抑制，有些原本被抑制的神经元则因为目标对象的移入而被激活。</p>
+<p>在神经科学中，这个概念被称为“ <strong>感受野</strong>（receptive field）”。一个感觉神经元的感受野指的是位于这一区域内的适当刺激能够引起该神经元反应的区域。人类神经的感受野的变化方式可以在人工神经网络中以权重系数的形式体现出来，而 <strong>按照感受野的变化规律设置权重系数，得到的就是“径向基函数神经网络”</strong>（Radial Basis Function Network , RBFN）。</p>
+<p><strong>径向基网络通常包含三层：一个输入层、一个隐藏层和一个输出层</strong>。其中 <strong>隐藏层是径向基网络的核心结构</strong>。每个隐藏神经元都选择径向基函数作为传递函数，对输入分量的组合加以处理。需要注意的是，输入节点和隐藏节点之间是直接相连的，权重系数为1。</p>
+<p>径向基函数是只取决于与中心矢量的距离的函数，也就是不管不同的点是在东西还是南北，只要它们和中心点之间的距离相同，其函数值就是相同的。径向基函数的图形会根据确定的中心点呈现圆周对称的性质。如果将欧氏距离作为距离的度量，函数的形式就可以定义为平缓变化的高斯函数，其表达式就是</p>
+<p>$$ \rho (\mathbf{x}, \mathbf{w}_i, \sigma) &#x3D; \exp (\dfrac{- || \mathbf{x} - \mathbf{w}_i || ^ 2}{2\sigma ^ 2}) $$</p>
+<p>式中的每个中心向量$\mathbf{w}_i$都是径向基网络中的权重系数。一般情况下，所有高斯函数会共享同一个带宽$\sigma$，因而将不同隐藏单元区分开来的就是 <strong>中心向量</strong> $\mathbf{w}_i$。每个径向基函数的输出按照参数进行线性组合后，再被送到输出神经元加以处理。输出神经元通常是普通的MP神经元。</p>
+<p>前面介绍的是径向基网络的生理学依据，下面让我们看看这套方法在数学上的意义。隐藏层的作用是实现从输入空间到非显式特征空间的非线性变换，由此，低维空间上的非线性可分数据就被映射到高维空间之中。在一定的条件下，转换后的数据变为线性可分的可能性很高，这一点已经在数学上得到证明。</p>
+<p>看到这里，你是否有似曾相识的感觉呢？没错， <strong>这和支持向量机的思路是一样的</strong>！支持向量机中的核技巧能够把低维空间中的非线性问题映射成高维空间中的线性问题，将低维空间中曲面形式的决策边界转化为高维空间中的超平面，从而降低分类问题的难度。在支持向量机中常用的核函数就包括高斯核函数，回忆一下，它的形式是不是和径向基网络中的高斯函数形式一模一样呢？</p>
+<p><strong>将低维问题投射到高维空间是解决线性不可分问题的通用方法。但是在某些情况下，一个非线性映射就足以在低维空间中解决问题，而不需要升高隐藏空间的维数，提升算法的复杂度</strong>。高斯函数就是这类“杀鸡焉用宰牛刀”的实例。</p>
+<p>还是以异或问题为例。在异或问题中，四个数据点(0, 0), (0, 1), (1, 0), (1, 1)是正方形的四个顶点，处于对角线方向上的两个点属于同一个模式。如果引入高斯函数$\Phi_i (x) &#x3D; \exp(- || \mathbf{x} - \mathbf{u}_i || ^ 2), i &#x3D; 1, 2$，其中$\mathbf{u}_1 &#x3D; [0, 0], \mathbf{u}_2 &#x3D; [1, 1]$，则原始的四个数据点就被变换为(0.1353, 1), (0.3678, 0.3678), (0.3678, 0.3678), (1, 0.1353)。经过高斯函数的变换后，(0, 1)和(1, 0)两个具有相同异或结果的点重合在一起，异或问题也变成了线性可分问题。但在之前的处理中，空间的维数并未增加，问题的转化只用到了非线性的高斯函数。</p>
+<p><strong>另一个理解径向基网络的角度是多变量插值</strong>。整体上看，径向基网络的作用是学习一个高维空间上的超曲面，根据训练数据进行训练的过程就是对超曲面进行拟合的过程。但由于数据中存在噪声，因而训练得到的结果还需要泛化处理，泛化的任务就是在数据点之间进行插值，使插值后的曲面仍然要经过所有数据点。在插值过程中，使用的插值函数就是不同类型的径向基函数。</p>
+<p>训练数据中的每个样本都是新的高维空间中的一个点，插值要做的是把所有离散的点连成一片，形成一个曲面。那么插值操作具体是如何进行的呢？高斯形式的径向基函数将每个训练样本映射为一个连续的函数，函数的中心就是样本点的取值。在整个空间内对所有的高斯函数求和，得到的就是拟合出的曲面。</p>
+<p>当新样本出现时，其在曲面上的映射值就等于所有高斯径向基函数在这个数据点上的函数值之和。感受野理论告诉我们，每个训练数据对曲面的影响都只限于其数据周边的一个小范围内，因而在新样本的插值结果中，贡献较大的是离它比较近的训练数据。如果某些训练数据距离新样本较远，就不会对新样本产生影响。</p>
+<p><strong>在实际应用中，对径向基网络的训练包括两个步骤</strong>。第一步的任务是初始化中心向量$\mathbf{w}_i$的位置，中心向量的位置既可以随机分配，也可以通过 <strong>K均值聚类</strong> 这一无监督学习的方法完成。这个步骤对应的是隐藏层的训练。第二步的任务是用线性模型拟合初始化的隐藏层中的各个中心向量，拟合的损失函数设定为最小均方误差函数，使用 <strong>递归最小二乘法</strong>（Recursive Least Square）使损失函数最小化。这个步骤对应的是对输出层的训练。</p>
+<p>使用K均值算法训练隐藏层时，聚类的数目K决定了隐藏神经元的数目，通过这个参数设计者可以控制径向基网络的性能和计算复杂度。算法的参数确定后，就能够对训练数据进行无监督的分类，计算出的每个聚类的中心就是高斯函数的中心。出于简化设计的考虑，每个高斯函数的带宽都是相同的，并被统一设置为$\sigma &#x3D; d_{\max} &#x2F; \sqrt{2K}$，其中$d_{\max}$是不同中心之间的最大距离。这种带宽的配置符合K均值算法中的中心散布，保证了各个高斯函数既不会太宽也不会太窄。</p>
+<p>隐藏层的训练完成后，就可以开始输出层的训练了。输出层的输入信号是每个隐藏神经元输出信号的线性组合，因而递归最小二乘法是训练权重向量的合适选择。权重向量和隐藏神经元输出之间的关系可以表示为</p>
+<p>$$ \mathbf{R}(n) \mathbf{\hat w}(n) &#x3D; \mathbf{r}(n) $$</p>
+<p>式中的$\mathbf{R}$表示K个隐藏神经元输出之间的相关矩阵，$\mathbf{\hat w}$表示待训练的未知权重向量，$\mathbf{r}$表示期望响应和隐藏单元输出之间的$K \times 1$维互相关向量，自变量n则代表了训练的轮次。递归最小二乘法的作用在于简化逆矩阵$\mathbf{R} ^ {-1}(n)$的求解，其详细的推导过程在此就不介绍了。</p>
+<p>在训练完成后还可以添加额外的一个步骤， <strong>利用反向传播算法对径向基网络的所有参数进行一次微调，以达到更好的训练效果</strong>。这是由于无论是K均值聚类还是递归最小二乘法，都是针对特定层次的优化，反向传播优化的对象则是作为整体的径向基网络，它可以在统计意义上保证了整个系统的最优性。</p>
+<p>与感知器类型的神经网络相比，径向基网络代表的则是局部逼近的工作方式。神经元的输入离径向基函数中心越近，神经元的激活程度就越高。但两者都能够实现 <strong>通用逼近</strong>（universal approximation），也就是对任意非线性函数的逼近。</p>
+<p>今天我和你分享了径向基函数神经网络的基本原理，其要点如下：</p>
+<ul>
+<li>径向基网络采用局部逼近方式，每个神经元只对特定的输入信号产生作用；</li>
+<li>径向基网络的隐藏神经元使用径向基函数作为传递函数，常用的径向基函数是高斯函数；</li>
+<li>径向基函数可以将低维空间上的线性不可分问题转化为高维空间上的线性可分问题；</li>
+<li>使用高斯函数的径向基网络可以用K均值聚类算法结合递归最小二乘法进行训练。</li>
+</ul>
+<p>径向基神经网络是核技巧在神经网络中的应用，那么你还能想到核技巧及其思想的哪些其他应用呢？</p>
+<p>欢迎发表你的观点。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/12b28b058ec981788aabe18881c5781e.jpg"></p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#19-%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%90%84%E4%BA%BA%E8%87%AA%E6%89%AB%E9%97%A8%E5%89%8D%E9%9B%AA%EF%BC%9A%E5%BE%84%E5%90%91%E5%9F%BA%E5%87%BD%E6%95%B0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.</span> <span class="toc-text">19 人工神经网络 | 各人自扫门前雪：径向基函数神经网络</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

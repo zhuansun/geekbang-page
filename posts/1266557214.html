@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>24 | 注册中心：分布式系统如何寻址？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="24 | 注册中心：分布式系统如何寻址？你好，我是唐扬。 上一节课，我带你了解了RPC框架实现中的一些关键的点，你通过RPC框架，能够解决服务之间跨网络通信的问题，这就完成了微服务化改造的基础。 但是在服务拆分之后，你需要维护更多的细粒度的服务，而你需要面对的第一个问题就是如何让RPC客户端知道服务端部署的地址。这就是我们今天要讲到的服务注册与发现的问题。 你所知道的服务发现服务注册和发现不是一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24 | 注册中心：分布式系统如何寻址？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1266557214.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="24 | 注册中心：分布式系统如何寻址？你好，我是唐扬。 上一节课，我带你了解了RPC框架实现中的一些关键的点，你通过RPC框架，能够解决服务之间跨网络通信的问题，这就完成了微服务化改造的基础。 但是在服务拆分之后，你需要维护更多的细粒度的服务，而你需要面对的第一个问题就是如何让RPC客户端知道服务端部署的地址。这就是我们今天要讲到的服务注册与发现的问题。 你所知道的服务发现服务注册和发现不是一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:10:53.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:24.208Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1266557214"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '24 | 注册中心：分布式系统如何寻址？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">24 | 注册中心：分布式系统如何寻址？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="24-注册中心：分布式系统如何寻址？"><a href="#24-注册中心：分布式系统如何寻址？" class="headerlink" title="24 | 注册中心：分布式系统如何寻址？"></a>24 | 注册中心：分布式系统如何寻址？</h1><p>你好，我是唐扬。</p>
+<p>上一节课，我带你了解了RPC框架实现中的一些关键的点，你通过RPC框架，能够解决服务之间跨网络通信的问题，这就完成了微服务化改造的基础。</p>
+<p>但是在服务拆分之后，你需要维护更多的细粒度的服务，而你需要面对的第一个问题就是如何让RPC客户端知道服务端部署的地址。这就是我们今天要讲到的服务注册与发现的问题。</p>
+<h2 id="你所知道的服务发现"><a href="#你所知道的服务发现" class="headerlink" title="你所知道的服务发现"></a>你所知道的服务发现</h2><p>服务注册和发现不是一个新的概念，你在之前的实际项目中也一定了解过，只是你可能没怎么注意罢了。比如说，你知道Nginx是一个反向代理组件，那么Nginx需要知道应用服务器的地址是什么，这样才能够将流量透传到应用服务器上， <strong>这就是服务发现的过程。</strong></p>
+<p><strong>那么Nginx是怎么实现的呢？</strong> 它是把应用服务器的地址配置在了文件中。</p>
+<p>这固然是一种解决的思路，实际上，我在早期的项目中也是这么做的。那时，项目刚刚做了服务化拆分，RPC服务端的地址就是配置在了客户端的代码中，不过，这样做之后出现了几个问题：</p>
+<ul>
+<li>首先在紧急扩容的时候，就需要修改客户端配置后，重启所有的客户端进程，操作时间比较长；</li>
+<li>其次，一旦某一个服务器出现故障时，也需要修改所有客户端配置后重启，无法快速修复，更无法做到自动恢复；</li>
+<li>最后，RPC服务端上线无法做到提前摘除流量，这样在重启服务端的时候，客户端发往被重启服务端的请求还没有返回，会造成慢请求甚至请求失败。</li>
+</ul>
+<p>因此，我们考虑使用 <strong>注册中心</strong> 来解决这些问题。</p>
+<p>目前业界有很多可供你来选择的注册中心组件，比如说老派的ZooKeeper、Kubernetes使用的ETCD、阿里的微服务注册中心Nacos、Spring Cloud的Eureka等等。</p>
+<p>这些注册中心的基本功能有两点：</p>
+<ul>
+<li>其一是提供了服务地址的存储；</li>
+<li>其二是当存储内容发生变化时，可以将变更的内容推送给客户端。</li>
+</ul>
+<p>第二个功能是我们使用注册中心的主要原因。因为无论是当我们需要紧急扩容，还是在服务器发生故障时需要快速摘除节点，都不用重启服务器就可以实现了。使用了注册中心组件之后，RPC的通信过程就变成了下面这个样子：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/3ee52d302f77bf5e61b244094d754d13.jpg"></p>
+<p>从图中你可以看到一个完整的服务注册和发现的过程：</p>
+<ul>
+<li>客户端会与注册中心建立连接，并且告诉注册中心，它对哪一组服务感兴趣；</li>
+<li>服务端向注册中心注册服务后，注册中心会将最新的服务注册信息通知给客户端；</li>
+<li>客户端拿到服务端的地址之后就可以向服务端发起调用请求了。</li>
+</ul>
+<p>从这个过程中可以看出，有了注册中心之后，服务节点的增加和减少对于客户端就是透明的。这样除了可以实现不重启客户端就能动态地变更服务节点以外，还可以 <strong>实现优雅关闭的功能。</strong></p>
+<p>优雅关闭是你在系统研发过程中必须要考虑的问题。因为如果暴力地停止服务，那么已经发送给服务端的请求，来不及处理服务就被删掉了，就会造成这部分请求失败，服务就会有波动。所以服务在退出的时候，都需要先停掉流量再停止服务，这样服务的关闭才会更平滑。比如，消息队列处理器就是要将所有已经从消息队列中读出的消息，处理完之后才能退出。</p>
+<p><strong>对于RPC服务来说，</strong> 我们可以先将RPC服务从注册中心的服务列表中删除掉，然后观察RPC服务端没有流量之后，再将服务端停掉。有了优雅关闭之后，RPC服务端再重启的时候，就会减少对客户端的影响。</p>
+<p>在这个过程中，服务的上线和下线是由服务端主动向注册中心注册和取消注册来实现的，这在正常的流程中是没有问题的。 <strong>可是，如果某一个服务端意外故障，</strong> 比如说机器掉电，网络不通等情况，服务端就没有办法向注册中心通信，将自己从服务列表中删除，那么客户端也就不会得到通知，它就会继续向一个故障的服务端发起请求，也就会有错误发生了。那这种情况如何来避免呢？其实，这种情况是一个服务状态管理的问题。</p>
+<h2 id="服务状态管理如何来做"><a href="#服务状态管理如何来做" class="headerlink" title="服务状态管理如何来做"></a>服务状态管理如何来做</h2><p>针对上面我提到的问题， <strong>我们一般会有两种解决思路。</strong></p>
+<p>第一种思路是主动探测， <strong>方法是这样的：</strong></p>
+<p>你的RPC服务要打开一个端口，然后由注册中心每隔一段时间（比如30秒）探测这些端口是否可用，如果可用就认为服务仍然是正常的，否则就可以认为服务不可用，那么注册中心就可以把服务从列表里面删除了。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/be3edc8206ef630c54e14f429746dea9.jpg"></p>
+<p>微博早期的注册中心就是采用这种方式，但是后面出现的两个问题，让我们不得不对它做改造。</p>
+<p><strong>第一个问题是：</strong> 所有的RPC服务端都需要开放一个统一的端口给注册中心探测，那时候还没有容器化，一台物理机上会混合部署很多的服务，你需要开放的端口很可能已经被占用，这样会造成RPC服务启动失败。</p>
+<p><strong>还有一个问题是：</strong> 如果RPC服务端部署的实例比较多，那么每次探测的成本也会比较高，探测的时间也比较长，这样当一个服务不可用时，可能会有一段时间的延迟，才会被注册中心探测到。</p>
+<p><strong>因此，我们后面把它改造成了心跳模式。</strong></p>
+<p>这也是大部分注册中心提供的检测连接上来的RPC服务端是否存活的方式，比如Eureka、ZooKeeper， <strong>在我来看，这种心跳机制可以这样实现：</strong></p>
+<p>注册中心为每一个连接上来的RPC服务节点记录最近续约的时间，RPC服务节点在启动注册到注册中心后，就按照一定的时间间隔（比如30秒），向注册中心发送心跳包。注册中心在接收到心跳包之后，会更新这个节点的最近续约时间。然后，注册中心会启动一个定时器定期检测当前时间和节点最近续约时间的差值，如果达到一个阈值（比如说90秒），那么认为这个服务节点不可用。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/768494782e63e9dcddd464cb6bdd7e99.jpg"></p>
+<p><strong>在实际的使用中，</strong> 心跳机制相比主动探测的机制，适用范围更广，如果你的服务也需要检测是否存活，那么也可以考虑使用心跳机制来检测。</p>
+<p><strong>接着说回来，</strong> 有了心跳机制之后，注册中心就可以管理注册的服务节点的状态了，也让你的注册中心成为了整体服务最重要的组件，因为一旦它出现问题或者代码出现Bug，那么很可能会导致整个集群的故障，给你举一个真实的案例。</p>
+<p><strong>在我之前的一个项目中，</strong> 工程是以“混合云”的方式部署的，也就是一部分节点部署在自建机房中，一部分节点部署在云服务器上，每一个机房都部署了自研的一套注册中心，每套注册中心中都保存了全部节点的数据。</p>
+<p>这套自研的注册中心使用Redis作为最终的存储，而在自建机房和云服务器上的注册中心，共用同一套Redis存储资源。由于“混合云”还处在测试阶段，所以，所有的流量还都在自建机房，自建机房和云服务器之前的专线带宽还比较小，部署结构如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/b31fa6bc6b383675a80917e7491be209.jpg"></p>
+<p>在测试的过程中系统运行稳定，但是某一天早上五点，我突然发现，所有的服务节点都被摘除了，客户端因为拿不到服务端的节点地址列表全部调用失败，整体服务宕机。经过排查我发现，云服务器上部署的注册中心竟然将所有的服务节点全部删除了！进一步排查之后， <strong>原来是自研注册中心出现了Bug。</strong></p>
+<p>在正常的情况下，无论是自建机房，还是云服务器上的服务节点，都会向各自机房的注册中心注册地址信息，并且发送心跳。而这些地址信息以及服务的最近续约时间，都是存储在Redis主库中，各自机房的注册中心，会读各自机房的从库来获取最近续约时间，从而判断服务节点是否有效。</p>
+<p>Redis的主从同步数据是通过专线来传输的，出现故障之前，专线带宽被占满，导致主从同步延迟。这样一来，云上部署的Redis从库中存储的最近续约时间就没有得到及时更新，随着主从同步延迟越发严重，最终云上部署的注册中心发现了当前时间与最近续约时间的差值超过了摘除的阈值，所以将所有的节点摘除，从而导致了故障。</p>
+<p>有了这次惨痛的教训， <strong>我们给注册中心增加了保护的策略：</strong> 如果摘除的节点占到了服务集群节点数的40%，就停止摘除服务节点，并且给服务的开发同学和运维同学报警处理（这个阈值百分比可以调整，保证了一定的灵活性）。</p>
+<p><strong>据我所知，</strong> Eureka也采用了类似的策略，来避免服务节点被过度摘除，导致服务集群不足以承担流量的问题。如果你使用的是ZooKeeper或者ETCD这种无保护策略的分布式一致性组件，那你可以考虑在客户端，实现保护策略的逻辑，比如说当摘除的节点超过一定比例时，你在RPC客户端就不再处理变更通知，你可以依据自己的实际情况来实现。</p>
+<p>除此之外，在实际项目中，我们还发现注册中心另一个重要的问题就是“通知风暴”。你想一想，变更一个服务的一个节点，会产生多少条推送消息？假如你的服务有100个调用者，有100个节点，那么变更一个节点会推送100 * 100 &#x3D; 10000个节点的数据。那么如果多个服务集群同时上线或者发生波动时，注册中心推送的消息就会更多，会严重占用机器的带宽资源，这就是我所说的“通知风暴”。 <strong>那么怎么解决这个问题呢？</strong> 你可以从以下几个方面来思考：</p>
+<ul>
+<li>首先，要控制一组注册中心管理的服务集群的规模，具体限制多少没有统一的标准，你需要结合你的业务以及注册中心的选型来考虑，主要考察的指标就是注册中心服务器的峰值带宽；</li>
+<li>其次，你也可以通过扩容注册中心节点的方式来解决；</li>
+<li>再次，你可以规范一下对于注册中心的使用方式，如果只是变更某一个节点，那么只需要通知这个节点的变更信息即可；</li>
+<li>最后，如果是自建的注册中心，你也可以在其中加入一些保护策略，比如说如果通知的消息量达到某一个阈值就停止变更通知。</li>
+</ul>
+<p>其实，服务的注册和发现归根结底是服务治理中的一环， <strong>服务治理（service governance），</strong> 其实更直白的翻译应该是服务的管理，也就是解决多个服务节点组成集群的时候产生的一些复杂的问题。为了帮助你理解， <strong>我来做个简单的比喻。</strong></p>
+<p>你可以把集群看作是一个微型的城市，把道路看作是组成集群的服务，把行走在道路上的车看作是流量，那么服务治理就是对于整个城市道路的管理。</p>
+<p>如果你新建了一条街道（相当于启动了一个新的服务节点），那么就要通知所有的车辆（流量）有新的道路可以走了；你关闭了一条街道，你也要通知所有车辆不要从这条路走了， <strong>这就是服务的注册和发现。</strong></p>
+<p>我们在道路上安装监控，监视每条道路的流量情况， <strong>这就是服务的监控。</strong></p>
+<p>道路一旦出现拥堵或者道路需要维修，那么就需要暂时封闭这条道路，由城市来统一调度车辆，走不堵的道路， <strong>这就是熔断以及引流。</strong></p>
+<p>道路之间纵横交错四通八达，一旦在某条道路上出现拥堵，但是又发现这条道路从头堵到尾，说明事故并不是发生在这条道路上，那么就需要从整体链路上来排查事故究竟处在哪个位置， <strong>这就是分布式追踪。</strong></p>
+<p>不同道路上的车辆有多有少，那么就需要有一个警察来疏导，在某一个时间走哪一条路会比较快， <strong>这就是负载均衡。</strong></p>
+<p>而这些问题，我会在后面的课程中针对性地讲解。</p>
+<h2 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h2><p>本节课，我带你了解了在微服务架构中，注册中心是如何实现服务的注册和发现的，以及在实现中遇到的一些坑，除此之外，我还带你了解了服务治理的含义，以及后续我们会讲到的一些技术点。在这节课中，我想让你明确的重点如下：</p>
+<ul>
+<li>注册中心可以让我们动态地变更RPC服务的节点信息，对于动态扩缩容，故障快速恢复，以及服务的优雅关闭都有重要的意义；</li>
+<li>心跳机制是一种常见的探测服务状态的方式，你在实际的项目中也可以考虑使用；</li>
+<li>我们需要对注册中心中管理的节点提供一些保护策略，避免节点被过度摘除导致的服务不可用。</li>
+</ul>
+<p>你看，注册中心虽然是一种简单易懂的分布式组件，但是它在整体架构中的位置至关重要，不容忽视。同时，在它的设计方案中，也蕴含了一些系统设计的技巧，比如上面提到的服务状态检测的方式，还有上面提到的优雅关闭的方式，了解注册中心的原理，会给你之后的研发工作提供一些思路。</p>
+<h2 id="思考时间"><a href="#思考时间" class="headerlink" title="思考时间"></a>思考时间</h2><p>结合你的实际经验，和我说说你们在服务化框架中使用的什么注册中心？当初是基于什么样的考虑来做选型的呢？欢迎在留言区与我分享你的经验。</p>
+<p>最后，感谢你的阅读，如果这篇文章让你有所收获，也欢迎你将它分享给更多的朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#24-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%AF%BB%E5%9D%80%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">24 | 注册中心：分布式系统如何寻址？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">你所知道的服务发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%A6%82%E4%BD%95%E6%9D%A5%E5%81%9A"><span class="toc-number">1.2.</span> <span class="toc-text">服务状态管理如何来做</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">课程小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E6%97%B6%E9%97%B4"><span class="toc-number">1.4.</span> <span class="toc-text">思考时间</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

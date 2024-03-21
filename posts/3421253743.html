@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随” | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”你好，我是南柯。 前面，我们已经掌握了以DreamBooth为代表的定制化图像生成技术，也学习了使用ControlNet控制AI绘画的构图。这两种技术都是从整体上控制图像的生成。 今天，我们来探究微调图像的技术，也就是指令级修图——使用prompt实现对图像的局部修改。这一讲的学习我们将围绕 Prompt2Prompt、 Inst">
+<meta property="og:type" content="article">
+<meta property="og:title" content="22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/3421253743.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”你好，我是南柯。 前面，我们已经掌握了以DreamBooth为代表的定制化图像生成技术，也学习了使用ControlNet控制AI绘画的构图。这两种技术都是从整体上控制图像的生成。 今天，我们来探究微调图像的技术，也就是指令级修图——使用prompt实现对图像的局部修改。这一讲的学习我们将围绕 Prompt2Prompt、 Inst">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-02-29T12:01:07.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.097Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/3421253743"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”"><a href="#22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”" class="headerlink" title="22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”"></a>22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”</h1><p>你好，我是南柯。</p>
+<p>前面，我们已经掌握了以DreamBooth为代表的定制化图像生成技术，也学习了使用ControlNet控制AI绘画的构图。这两种技术都是从整体上控制图像的生成。</p>
+<p>今天，我们来探究微调图像的技术，也就是指令级修图——使用prompt实现对图像的局部修改。这一讲的学习我们将围绕 <a target="_blank" rel="noopener" href="https://prompt-to-prompt.github.io/">Prompt2Prompt</a>、 <a target="_blank" rel="noopener" href="https://www.timothybrooks.com/instruct-pix2pix">InstructPix2Pix</a> 和 <a target="_blank" rel="noopener" href="https://null-text-inversion.github.io/">Null-Text Inversion</a> 这三项技术展开。这三项技术就像是金庸先生笔下的“射雕三部曲”，有着千丝万缕的联系。</p>
+<p>在我看来，头部企业最想拥有的AI绘画能力，无非是媲美Midjourney的AI绘画模型、超越LensaAI的定制化图像生成技术以及指令级修图能力。</p>
+<p>学完今天这一讲，你就能对这些最热门的AI绘画技术有一个清楚的认识。而且你掌握了指令级修图的技术之后 ，就算不会用Photoshop也能随心所欲地编辑图像。</p>
+<h2 id="Prompt2Prompt：用Prompt修图"><a href="#Prompt2Prompt：用Prompt修图" class="headerlink" title="Prompt2Prompt：用Prompt修图"></a>Prompt2Prompt：用Prompt修图</h2><p>我们熟知的DALL-E 2、Imagen和Stable Diffusion等技术虽然可以实现出惊艳的文生图效果，但是用来做图像编辑却很困难。即使是在prompt上做一点细微的改动，得到的结果也会截然不同。这种情况下，如果我们想要做图像局部编辑，就需要使用图像补全的方式，先手工画一个遮罩（mask）区域，然后使用prompt引导图像生成。</p>
+<p>显然，这种方式并不方便。为了更便捷地实现图像编辑，在2022年8月，Google在提出Imagen不久之后，推出了Prompt2Prompt这个技术。</p>
+<p>它的作用非常明确—— <strong>对于一个通过prompt生成的Imagen图像，可以通过修改prompt的方式实现精细化的图像局部编辑</strong>。你可以点开图片感受下效果。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/82yy7b74d2c8a58129047bf1614a7c03.png"></p>
+<p>可以看到第一张图中，我们降低“拥挤”（“crowded”）这个词的权重，图片中的人数明显减少了，从而不再“拥挤”。第二张图中，将prompt中的自行车换成了汽车，猫咪的“座驾”便得到了调整。第三张图中，写实照片变成了儿童的蜡笔画。第四张图则是将蛋糕加上了果冻质感的豆子。</p>
+<p>我们再来看看后面这个例子。通过原始prompt “A car on the side of the street”得到一张图像，然后可以通过修改prompt将汽车变成跑车、报废的车等等。不仅如此，改改prompt甚至可以改变图像的场景和季节，图中的车却保持不变。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/c50bcfb7918a63a1ee105ce37f18be02.png"></p>
+<p>这便是Prompt2Prompt这项技术的神奇之处！也是这一讲“修图三部曲”的开端。那么这种神奇效果背后的原理是怎样的呢？</p>
+<p>我们这就来揭秘。为了方便你理解，我们以Stable Diffusion模型为例，说明Prompt2Prompt是怎样实现的。</p>
+<p>要搞懂Prompt2Prompt，我们需要先回顾一下AI绘画中的交叉注意力机制。在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/682762">第7讲</a> 和 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/689012">第16讲</a> 中我们详细讨论过SD模型的交叉注意力机制，我们知道文本表征会通过交叉注意力的形式，引导AI绘画生成目标内容。</p>
+<p>具体来说，我们通过文本表征计算交叉注意力的K和V矩阵，通过UNet的图像特征计算Q矩阵，然后根据后面的公式来计算交叉注意力。</p>
+<p>$$Attention(Q_{img}, K_{txt}, V_{txt}) &#x3D;AttentionMap(Q_{img}, K_{txt})V_{txt} &#x3D;Softmax(\frac{Q_{img}K_{txt}^T}{\sqrt{d}})V_{txt}$$</p>
+<p>你可以参考后面的伪代码来复习回顾。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 通过文本表征计算交叉注意力的K和V矩阵，通过UNet的图像特征计算Q矩阵</span>
+Q <span class="token operator">=</span> image_sequence <span class="token operator">*</span> W_Q
+K <span class="token operator">=</span> text_sequence <span class="token operator">*</span> W_K
+V <span class="token operator">=</span> text_sequence <span class="token operator">*</span> W_V
+
+<span class="token comment"># 计算Q和K向量之间的点积，得到注意力分数。</span>
+Scaled_Dot_Product <span class="token operator">=</span> <span class="token punctuation">(</span>Q <span class="token operator">*</span> K<span class="token operator">^</span>T<span class="token punctuation">)</span> <span class="token operator">/</span> sqrt<span class="token punctuation">(</span>d_k<span class="token punctuation">)</span>
+
+<span class="token comment"># 应用Softmax函数对注意力分数进行归一化处理，获得注意力权重。</span>
+Attention_Weights <span class="token operator">=</span> Softmax<span class="token punctuation">(</span>Scaled_Dot_Product<span class="token punctuation">)</span>
+
+<span class="token comment"># 将注意力权重与V向量相乘，得到输出向量。</span>
+Output <span class="token operator">=</span> Attention_Weights <span class="token operator">*</span> V
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于SD 1.x模型来说，UNet最初输入到第一个CADB（CrossAttnDownBlock2D）模块的分辨率是64x64x64，作用于CADB模块的文本表征维度为77x768。</p>
+<p>需要指出，这里的77代表prompt的token长度，如果我们输入的prompt很短，算法在预处理时也会补全一些无关紧要的token，来保证文本表征长度的统一。UNet的结构和交叉注意力的作用位置，你以回顾后面这两张图。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/4acfb9c5a2yy94e5d2ee8b619848a9d7.jpg"></p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/b61df15c8476ef0d4fba8746a412bc8e.jpg"></p>
+<p>为了便于理解，我从特征维度的角度，为你解释一下交叉注意力的计算过程。</p>
+<p>对于第一个CADB模块，交叉注意力模块输入的Q矩阵维度是64x64xC，C可以看作是经过ResnetBlock2D后的特征通道数。文本表征得到的Q和V矩阵维度是77xC。接着将Q与K的转置相乘，得到矩阵M的维度是64x64x77。然后再将M矩阵与V矩阵相乘，便得到了与原始图像特征相同维度的输出，也就是交叉注意力模块的输出。</p>
+<p>整个过程你可以看后面的图加深理解。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/17b99f63467278b8bec918c6e692a93e.png"></p>
+<p>理解了这些，我们再来看Prompt2Prompt这个算法就非常简单了。在刚刚的交叉注意力计算过程中，我们得到了一个64x64x77的注意力权重矩阵M，可以看作是77张64x64分辨率的注意力权重图。每张权重图对应prompt中的一个token。</p>
+<p>后面这张图片展示的便是每一个token对应的注意力权重图，为了看得更清楚，作者对所有时间步的注意力权重图计算了平均值。</p>
+<p>最左侧的小熊是模型生成的图像，仔细观察，我们会发现 <strong>每个token的注意力权重图指明了这个token的作用范围</strong>。比如bear和bird的注意力权重图，和最终生成图像中bear和bird的位置是一一对应的。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/ac0bb64c9cc60cc0927b46153ca06187.png"></p>
+<p>上面这些是不是有些复杂？对照前面这张图，我再用大白话说明下Prompt2Prompt的算法原理， <strong>比如我们想把图里的小熊变成一只狗，那就要找到我们提供的prompt中小熊这个词的注意力权重图，然后把这个图换成狗的注意力权重图</strong>。</p>
+<p>了解了这些，我们便可以实现指令级修图了。我们以 “Photo of a cat riding a bicycle” 为例加以说明，我们希望将prompt中的bicycle换成car。该怎么做呢？</p>
+<p>整个过程分四步。</p>
+<p>第一，和常规的文生图任务一样，我们随机生成一个64x64x4的随机噪声$z_{T}$，将原始prompt、时间步t的编码和$z_{T}$输入到UNet，得到注意力权重图$M_{T}$和噪声$z_{T-1}$。</p>
+<p>第二，将目标prompt、时间步t的编码和$z_{T}$输入到UNet，得到注意力权重图$M_{T}^{*}$。</p>
+<p>第三，将$M_{T}$中bicycle对应的注意力权重图替换为$M_{T}^{*}$中car对应的注意力权重图，得到修改后的$\hat{M_{T}}$。</p>
+<p>第四，使用$\hat{M_{T}}$替换第二步中的$M_{T}^{*}$，得到噪声$z_{T-1}^{*}$。</p>
+<p>然后将我们得到的$z_{T-1}$和$z_{T-1}^{*}$作为下一轮去噪的初始值，分别用于原始prompt和目标prompt的图像生成。经过完整的去噪过程和VAE解码器后，我们便可以得到后面两张图像。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/68c9d8d18af228398f81ae24f771aa8b.png" alt="图片"></p>
+<p>这便是Prompt2Prompt这个算法的作用原理。你应该也已经注意到了 <strong>，这种方法有一个局限性，那就是我们只能编辑AI绘画模型根据prompt生成的图像。</strong></p>
+<p>如果是真实图像，比如我们手中的某张自拍照，就无法通过prompt用SD模型来生成，这种情况下，Prompt2Prompt也就无能为力了。该怎么解决这个问题呢？这便引出了“修图三部曲”的第二篇——InstructPix2Pix。</p>
+<h2 id="InstructPix2Pix：用指令修图"><a href="#InstructPix2Pix：用指令修图" class="headerlink" title="InstructPix2Pix：用指令修图"></a>InstructPix2Pix：用指令修图</h2><p>2022年11月UC伯克利的学者提出了InstructPix2Pix这项技术。它的作用非常明确： <strong>用户提供一张图片，然后使用指令（instruction）来进行图像编辑</strong>。你可以点开图片先感受下“指令”的魔力。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/8d74e7d83558cbca544a7f77dc2fdebc.png"></p>
+<p>整个指令级修图的过程，你只需要上传一张图片和一句指令，SD模型经过一次“文生图”的过程，便可以完成修图。这个算法是怎么实现的呢？当我们了解了Prompt2Prompt能达成的效果以后，想要理解InstructPix2Pix就并不困难了。</p>
+<p>实现InstructPix2Pix算法需要两个步骤，分别是合成数据集和训练指令修图模型。我们先来看合成数据集。</p>
+<p>为了训练一个指令修图模型，我们需要准备成对训练数据，也就是原图、指令以及对应的修图效果。作者使用GPT-3这个模型，根据原始prompt和修图指令生成一个目标prompt。</p>
+<p>有了原始prompt和目标prompt以后，怎么构造成对数据呢？答案正是我们刚刚讲过的Prompt2Prompt！通过这种方式，我们可以构造海量的训练数据。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/8f4a8f12fcb5329deedc285d64fb7e4b.png"></p>
+<p>搞定了训练数据，剩下的任务便是对SD1.5这样的开源AI绘画模型进行微调了。这里我们需要对原始UNet的结构做出一些修改。具体来说，原始UNet的输入包括当前时间步的噪声图、时间步t的编码、prompt的文本编码。而InstructPix2Pix的UNet输入新增了原始图像的VAE编码，并且将prompt设置为我们的修图指令。</p>
+<p>这样训练得到的SD模型，便可以帮助我们完成指令级修图的功能。值得一提的是，我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/692228">第20讲</a> 中学习过ControlNet的指令级修图能力，便是基于InstructPix2Pix模型合成的数据训练得到的。</p>
+<h2 id="Null-Text-Inversion：修改你手中的图片"><a href="#Null-Text-Inversion：修改你手中的图片" class="headerlink" title="Null-Text Inversion：修改你手中的图片"></a>Null-Text Inversion：修改你手中的图片</h2><p>InstructPix2Pix通过构造成对训练数据，并重新微调SD模型的方式实现了指令级修图。有没有无需数据构造和模型训练的方式呢？答案是肯定的。</p>
+<p>现在我们来看看“修图三部曲”的第三篇，2022年11月Google提出的Null-Text Inversion。Null-Text Inversion的作用就是 <strong>解决真实图像上，如何运用Prompt2Prompt修图的问题</strong>。</p>
+<p>为了帮你理解这个算法，我们需要先来搞懂Inversion（重演）这个概念。我们熟悉的AI绘画算法比如SD模型，是从噪声生成图像的过程。而Inversion正好相反，是为图像增加噪声的过程，并且要求得到的潜在表示能恢复出原始图像。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/683992">第9讲</a> 学习采样器时，我们提到了采样器背后的数学原理是解决常微分方程或者随机微分方程的求解问题。我们知道，DDPM采样器背后是求解随机微分方程，而DDIM采样器背后是求解常微分方程。</p>
+<p>对于随机微分方程的求解器，从噪声生成图像的过程是一个不确定的过程。既然我们的目标是能够恢复原图，自然需要选择DDIM这种常微分方程求解器。与DDIM采样器配套的Inversion算法，就是Null-Text Inversion中用到的DDIM Inversion。</p>
+<p><strong>一句话概括，DDIM Inversion的目的是得到真实图像加噪后的潜在表示，这个潜在表示配合DDIM采样可以生成出原始图像</strong>。</p>
+<p>搞懂了DDIM Inversion的目的，我们回到真实图像编辑的任务。为了完成Prompt2Prompt图像编辑，我们需要知道真实图像的prompt和扩散模型初始的潜在表示。</p>
+<p>为图像生成prompt这件事情通过前面实战篇的实验，我们已经很熟悉了，可以使用BLIP等模型来完成，或者我们可以自己来编写图像描述。图像初始的潜在表示可以通过DDIM Inversion算法来获得。</p>
+<p>不过，仅仅拿到prompt和初始潜在表示就够了么？你是否还记得，我们在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/688429">第15讲</a> 中学习过无分类器引导（Classifier-Free Guidance）的策略么？我们来回顾下这个公式。</p>
+<p>最终噪声 &#x3D; w * 条件预测 + （1 - w） * 无条件预测</p>
+<p>这个公式中，条件预测的部分用的是prompt文本表征，无条件预测的部分用的是空字符串的文本表征，w是引导权重。DDIM Inversion并没有考虑无条件预测的过程，因此，当引导权重不等于1时，仅仅用上面的prompt和初始潜在表示无法顺利重建出图像。</p>
+<p><strong>而Null-Text Inversion算法的本质就是用DDIM Inversion的输出作为基准条件，优化空字符串对应特征向量（Null-Text Embedding），补偿无分类器引导带来的重建误差。</strong></p>
+<p>对于真实图片，Null-Text Inversion算法可以根据prompt、引导权重、初始潜在表示，计算得到一组替代空字符串对应特征向量的向量表示。这样一来，我们就可以通过prompt和空字符串特征向量这两个输入，配合无分类器引导生成真实图片。搞定了从Prompt到真实图片的生成，我们就可以对prompt稍作修改，利用Prompt2Prompt实现图像局部编辑了。</p>
+<p>你可以点开图片看看后面的例子，我们输入一张原始婴儿图片、一句原始prompt和各种目标prompt，经过Null-Text Inversion和Prompt2Prompt的连续处理，便可以实现有趣的编辑，比如修改婴儿的肤色、背景等。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/627062858a2db9e4aa31b248598b7675.png"></p>
+<p>那么Null-Text Inversion是怎样实现的呢？后面这张图展示了Null-Text Inversion的计算过程。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/80376794ef4232c7dca72d485bbyyf19.png"></p>
+<p>图中标记有 “tuning” 的$\phi_{t}$就是我们要优化的空字符串对应特征向量，两个标记有DM的漏斗表示的是无分类器引导中的条件预测和无条件预测。</p>
+<p>可以看到，对于无分类器引导，仅使用DDIM Inversion得到的潜在表示进行AI绘画，恢复出的图像（第二个婴儿）和原始图像（第一个婴儿）差别还是很大的。这是因为由于无分类器引导的作用，每一个去噪后的潜在表示轨迹发生了“偏移”。</p>
+<p>Null-Text Inversion算法采取的方法就是优化空字符串的特征向量，去纠偏图像的恢复过程。经过反复迭代计算，最终得到优化后的空字符串特征向量$\phi_{t}$。搞定了$\phi_{t}$，即使是无分类器引导，我们也能通过DDIM采样器恢复出原始图像。拿到了prompt、初始潜在表示、引导权重和新的空字符串特征向量$\phi_{t}$，Prompt2Prompt自然能用来完成局部编辑的任务了。</p>
+<h2 id="图像编辑方法对比"><a href="#图像编辑方法对比" class="headerlink" title="图像编辑方法对比"></a>图像编辑方法对比</h2><p>到此为止，我们已经基本了解了图像编辑算法的设计思路。我们学过的的编辑算法包括inpainting图像补全、Prompt2Prompt、InstructPix2Pix、ControlNet的指令级修图、Null-Text Inversion这五种。</p>
+<p>我们可以从后面的四个维度对比这些编辑算法，分别是能否编辑真实图像、是否需要提供待编辑区域的遮罩（mask）、是否需要微调SD模型以及局部编辑的效果。 <strong>理想的编辑算法应该能在无需遮罩、无需微调SD的前提下，实现对于真实图像的局部编辑，并且算法耗时尽可能少</strong>。</p>
+<p>后面我列了个表格，对比了五种算法的整体表现。可以看到，这五种算法各有优劣，Null-Text Inversion除了编辑速度较慢，基本满足我们对于编辑算法的预期。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/59df3242371b5af18e3d79f638fb7fc7.jpg"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天这一讲，我们学习了“修图三部曲”：Prompt2Prompt、InstructPix2Pix和Null-Text Inversion。这一讲比较烧脑，如果具体推导细节你暂时没搞懂也没关系，了解这三个算法能够实现的效果即可。</p>
+<p>Prompt2Prompt可以根据我们提供的两个prompt，生成一张原始图像和一张局部修改后的图像。InstructPix2Pix则会利用GPT-3和Prompt2Prompt来构造“原图、指令到目标图”的成对数据，通过微调SD模型的方式得到了一个能够听指令修图的SD新模型。而Null-Text Inversion则是直接通过求解的方式计算特征向量，使用用户提供的prompt实现目标图像生成，配合Prompt2Prompt完成图像的局部编辑。</p>
+<p>在实际工作中，我们可以使用InstructPix2Pix或ControlNet的指令级修图能力实现“言出法随”效果，对于算法从业者而言，使用Null-Text Inversion和Prompt2Prompt则能提供更大的编辑自由度。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202402/5ccd6c7da4e5ce0d2050999d5344103a.jpg"></p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>假如你手中有一张图片，是一个站着的女孩子抱着一只宠物狗，希望改变女孩子黑发为红发，同时将宠物狗变成猫咪，该如何实现？可以说说你的思路，也可以在评论区贴出你的Colab实验链接。</p>
+<p>欢迎你在留言区记录自己的收获或者疑问，也推荐你把这一讲分享给身边更多朋友。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#22%EF%BD%9CAI%E5%9B%BE%E5%83%8F%E7%BC%96%E8%BE%91%EF%BC%9A%E5%A6%82%E4%BD%95%E7%94%A8Prompt2Prompt%E5%AE%9E%E7%8E%B0%E2%80%9C%E8%A8%80%E5%87%BA%E6%B3%95%E9%9A%8F%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">22｜AI图像编辑：如何用Prompt2Prompt实现“言出法随”</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Prompt2Prompt%EF%BC%9A%E7%94%A8Prompt%E4%BF%AE%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text">Prompt2Prompt：用Prompt修图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InstructPix2Pix%EF%BC%9A%E7%94%A8%E6%8C%87%E4%BB%A4%E4%BF%AE%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">InstructPix2Pix：用指令修图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Null-Text-Inversion%EF%BC%9A%E4%BF%AE%E6%94%B9%E4%BD%A0%E6%89%8B%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87"><span class="toc-number">1.3.</span> <span class="toc-text">Null-Text Inversion：修改你手中的图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%BC%96%E8%BE%91%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-number">1.4.</span> <span class="toc-text">图像编辑方法对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

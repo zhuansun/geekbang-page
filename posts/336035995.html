@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>41 | 第35～40讲课后思考题答案及常见问题答疑 | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="41 |  第35～40讲课后思考题答案及常见问题答疑你好，我是蒋德钧。 今天是我们最后一节答疑课，我会带你一起分析一下第35～40讲的课后思考题。同时，我还会讲解两个典型问题，分别是原子操作使用问题，以及Redis和其他键值数据库的对比情况。 第35讲问题：假设Codis集群中保存的80%的键值对都是Hash类型，每个Hash集合的元素数量在10万~20万个，每个集合元素的大小是2KB。你觉得，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="41 | 第35～40讲课后思考题答案及常见问题答疑">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/336035995.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="41 |  第35～40讲课后思考题答案及常见问题答疑你好，我是蒋德钧。 今天是我们最后一节答疑课，我会带你一起分析一下第35～40讲的课后思考题。同时，我还会讲解两个典型问题，分别是原子操作使用问题，以及Redis和其他键值数据库的对比情况。 第35讲问题：假设Codis集群中保存的80%的键值对都是Hash类型，每个Hash集合的元素数量在10万~20万个，每个集合元素的大小是2KB。你觉得，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-04T22:10:14.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.409Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/336035995"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '41 | 第35～40讲课后思考题答案及常见问题答疑',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">41 | 第35～40讲课后思考题答案及常见问题答疑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="41-第35～40讲课后思考题答案及常见问题答疑"><a href="#41-第35～40讲课后思考题答案及常见问题答疑" class="headerlink" title="41 |  第35～40讲课后思考题答案及常见问题答疑"></a>41 |  第35～40讲课后思考题答案及常见问题答疑</h1><p>你好，我是蒋德钧。</p>
+<p>今天是我们最后一节答疑课，我会带你一起分析一下第35～40讲的课后思考题。同时，我还会讲解两个典型问题，分别是原子操作使用问题，以及Redis和其他键值数据库的对比情况。</p>
+<h2 id="第35讲"><a href="#第35讲" class="headerlink" title="第35讲"></a><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/306548">第35讲</a></h2><p>问题：假设Codis集群中保存的80%的键值对都是Hash类型，每个Hash集合的元素数量在10万~20万个，每个集合元素的大小是2KB。你觉得，迁移这样的Hash集合数据，会对Codis的性能造成影响吗？</p>
+<p>答案：其实影响不大。虽然一个Hash集合数据的总数据量有200MB ~ 400MB（2KB * 0.1M ≈ 200MB到 2KB * 0.2M ≈ 400MB），但是Codis支持异步、分批迁移数据，所以，Codis可以把集合中的元素分多个批次进行迁移，每批次迁移的数据量不大，所以，不会给源实例造成太大影响。</p>
+<h2 id="第36讲"><a href="#第36讲" class="headerlink" title="第36讲"></a><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/307421">第36讲</a></h2><p>问题：假设一个商品的库存量是800，我们使用一个包含了4个实例的切片集群来服务秒杀请求，我们让每个实例各自维护库存量200，把客户端的秒杀请求分发到不同的实例上进行处理，你觉得这是一个好方法吗？</p>
+<p>答案：这个方法是不是能达到一个好的效果，主要取决于， <strong>客户端请求能不能均匀地分发到每个实例上</strong>。如果可以的话，那么，每个实例都可以帮着分担一部分压力，避免压垮单个实例。</p>
+<p>在保存商品库存时，key一般就是商品的ID，所以，客户端在秒杀场景中查询同一个商品的库存时，会向集群请求相同的key，集群就需要把客户端对同一个key的请求均匀地分发到多个实例上。</p>
+<p>为了解决这个问题，客户端和实例间就需要有代理层来完成请求的转发。例如，在Codis中，codis proxy负责转发请求，那么，如果我们让codis proxy收到请求后，按轮询的方式把请求分发到不同实例上（可以对Codis进行修改，增加转发规则），就可以利用多实例来分担请求压力了。</p>
+<p>如果没有代理层的话，客户端会根据key和Slot的映射关系，以及Slot和实例的分配关系，直接把请求发给保存key的唯一实例了。在这种情况下，请求压力就无法由多个实例进行分担了。题目中描述的这个方法也就不能达到好的效果了。</p>
+<h2 id="第37讲"><a href="#第37讲" class="headerlink" title="第37讲"></a><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/308393">第37讲</a></h2><p>问题：当有数据访问倾斜时，如果热点数据突然过期了，假设Redis中的数据是缓存，数据的最终值是保存在后端数据库中的，这样会发生什么问题吗?</p>
+<p>答案：在这种情况下，会发生缓存击穿的问题，也就是热点数据突然失效，导致大量访问请求被发送到数据库，给数据库带来巨大压力。</p>
+<p>我们可以采用 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/296586">第26讲</a> 中介绍的方法，不给热点数据设置过期时间，这样可以避免过期带来的击穿问题。</p>
+<p>除此之外，我们最好在数据库的接入层增加流控机制，一旦监测到有大流量请求访问数据库，立刻开启限流，这样做也是为了避免数据库被大流量压力压垮。因为数据库一旦宕机，就会对整个业务应用带来严重影响。所以，我们宁可在请求接入数据库时，就直接拒接请求访问。</p>
+<h2 id="第38讲"><a href="#第38讲" class="headerlink" title="第38讲"></a><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/310347">第38讲</a></h2><p>问题：如果我们采用跟Codis保存Slot分配信息相类似的方法，把集群实例状态信息和Slot分配信息保存在第三方的存储系统上（例如Zookeeper），这种方法会对集群规模产生什么影响吗？</p>
+<p>答案：假设我们将Zookeeper作为第三方存储系统，保存集群实例状态信息和Slot分配信息，那么，实例只需要和Zookeeper通信交互信息，实例之间就不需要发送大量的心跳消息来同步集群状态了。这种做法可以减少实例之间用于心跳的网络通信量，有助于实现大规模集群。而且，网络带宽可以集中用在服务客户端请求上。</p>
+<p>不过，在这种情况下，实例获取或更新集群状态信息时，都需要和Zookeeper交互，Zookeeper的网络通信带宽需求会增加。所以，采用这种方法的时候，需要给Zookeeper保证一定的网络带宽，避免Zookeeper受限于带宽而无法和实例快速通信。</p>
+<h2 id="第39讲"><a href="#第39讲" class="headerlink" title="第39讲"></a><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/310838">第39讲</a></h2><p>问题：你觉得，Redis 6.0的哪个或哪些新特性会对你有帮助呢？</p>
+<p>答案：这个要根据你们的具体需求来定。从提升性能的角度上来说，Redis 6.0中的多IO线程特性可以缓解Redis的网络请求处理压力。通过多线程增加处理网络请求的能力，可以进一步提升实例的整体性能。业界已经有人评测过，跟6.0之前的单线程Redis相比，6.0的多线程性能的确有提升。所以，这个特性对业务应用会有比较大的帮助。</p>
+<p>另外，基于用户的命令粒度ACL控制机制也非常有用。当Redis以云化的方式对外提供服务时，就会面临多租户（比如多用户或多个微服务）的应用场景。有了ACL新特性，我们就可以安全地支持多租户共享访问Redis服务了。</p>
+<h2 id="第40讲"><a href="#第40讲" class="headerlink" title="第40讲"></a><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/312568">第40讲</a></h2><p>问题：你觉得，有了持久化内存后，还需要Redis主从集群吗？</p>
+<p>答案：持久化内存虽然可以快速恢复数据，但是，除了提供主从故障切换以外，主从集群还可以实现读写分离。所以，我们可以通过增加从实例，让多个从实例共同分担大量的读请求，这样可以提升Redis的读性能。而提升读性能并不是持久化内存能提供的，所以，如果业务层对读性能有高要求时，我们还是需要主从集群的。</p>
+<h2 id="常见问题答疑"><a href="#常见问题答疑" class="headerlink" title="常见问题答疑"></a>常见问题答疑</h2><p>好了，关于思考题的讨论，到这里就告一段落了。接下来，我结合最近收到的一些问题，来和你聊一聊，在进行原子操作开发时，局部变量和全局共享变量导致的差异问题，以及Redis和另外两种常见的键值数据库Memcached、RocksDB的优劣势对比。</p>
+<h3 id="关于原子操作的使用疑问"><a href="#关于原子操作的使用疑问" class="headerlink" title="关于原子操作的使用疑问"></a>关于原子操作的使用疑问</h3><p>在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/299806">第29讲</a> 中，我在介绍原子操作时，提到了一个多线程限流的例子，借助它来解释如何使用原子操作。我们再来回顾下这个例子的代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;获取ip对应的访问次数
+current &#x3D; GET(ip)
+&#x2F;&#x2F;如果超过访问次数超过20次，则报错
+IF current !&#x3D; NULL AND current &gt; 20 THEN
+    ERROR &quot;exceed 20 accesses per second&quot;
+ELSE
+    &#x2F;&#x2F;如果访问次数不足20次，增加一次访问计数
+    value &#x3D; INCR(ip)
+    &#x2F;&#x2F;如果是第一次访问，将键值对的过期时间设置为60s后
+    IF value &#x3D;&#x3D; 1 THEN
+        EXPIRE(ip,60)
+    END
+    &#x2F;&#x2F;执行其他操作
+    DO THINGS
+END
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在分析这个例子的时候，我提到：“第一个线程执行了INCR(ip)操作后，第二个线程紧接着也执行了INCR(ip)，此时，ip对应的访问次数就被增加到了2，我们就不能再对这个ip设置过期时间了。”</p>
+<p>有同学认为，value是线程中的局部变量，所以两个线程在执行时，每个线程会各自判断value是否等于1。判断完value值后，就可以设置ip的过期时间了。因为Redis本身执行INCR可以保证原子性，所以，客户端线程使用局部变量获取ip次数并进行判断时，是可以实现原子性保证的。</p>
+<p>我再进一步解释下这个例子中使用Lua脚本保证原子性的原因。</p>
+<p>在这个例子中，value其实是一个在多线程之间共享的全局变量，所以，多线程在访问这个变量时，就可能会出现一种情况：一个线程执行了INCR(ip)后，第二个线程也执行了INCR(ip)，等到第一个线程再继续执行时，就会发生ip对应的访问次数变成2的情况。而设置过期时间的条件是ip访问次数等于1，这就无法设置过期时间了。在这种情况下，我们就需要用Lua脚本保证计数增加和计数判断操作的原子性。</p>
+<h3 id="Redis和Memcached、RocksDB的对比"><a href="#Redis和Memcached、RocksDB的对比" class="headerlink" title="Redis和Memcached、RocksDB的对比"></a>Redis和Memcached、RocksDB的对比</h3><p>Memcached和RocksDB分别是典型的内存键值数据库和硬盘键值数据库，应用得也非常广泛。和Redis相比，它们有什么优势和不足呢？是否可以替代Redis呢？我们来聊一聊这个问题。</p>
+<h4 id="Redis和Memcached的比较"><a href="#Redis和Memcached的比较" class="headerlink" title="Redis和Memcached的比较"></a>Redis和Memcached的比较</h4><p>和Redis相似，Memcached也经常被当做缓存来使用。不过，Memcached有一个明显的优势， <strong>就是它的集群规模可以很大</strong>。Memcached集群并不是像Redis Cluster或Codis那样，使用Slot映射来分配数据和实例的对应保存关系，而是使用一致性哈希算法把数据分散保存到多个实例上，而一致性哈希的优势就是可以支持大规模的集群。所以，如果我们需要部署大规模缓存集群，Memcached会是一个不错的选择。</p>
+<p>不过，在使用Memcached时，有个地方需要注意，Memcached支持的数据类型比Redis少很多。Memcached只支持String类型的键值对，而Redis可以支持包括String在内的多种数据类型，当业务应用有丰富的数据类型要保存的话，使用Memcached作为替换方案的优势就没有了。</p>
+<p>如果你既需要保存多种数据类型，又希望有一定的集群规模保存大量数据，那么，Redis仍然是一个不错的方案。</p>
+<p>我把Redis和Memcached的对比情况总结在了一张表里，你可以看下。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/9eb06cfea8a3ec6fced6e736e4e9ec29.jpg"></p>
+<h4 id="Redis和RocksDB的比较"><a href="#Redis和RocksDB的比较" class="headerlink" title="Redis和RocksDB的比较"></a>Redis和RocksDB的比较</h4><p>和Redis不同，RocksDB可以把数据直接保存到硬盘上。这样一来，单个RocksDB可以保存的数据量要比Redis多很多，而且数据都能持久化保存下来。</p>
+<p>除此之外，RocksDB还能支持表结构（即列族结构），而Redis的基本数据模型就是键值对。所以，如果你需要一个大容量的持久化键值数据库，并且能按照一定表结构保存数据，RocksDB是一个不错的替代方案。</p>
+<p>不过，RocksDB毕竟是要把数据写入底层硬盘进行保存的，而且在进行数据查询时，如果RocksDB要读取的数据没有在内存中缓存，那么，RocksDB就需要到硬盘上的文件中进行查找，这会拖慢RocksDB的读写延迟，降低带宽。</p>
+<p>在性能方面，RocksDB是比不上Redis的。而且，RocksDB只是一个动态链接库，并没有像Redis那样提供了客户端-服务器端访问模式，以及主从集群和切片集群的功能。所以，我们在使用RocksDB替代Redis时，需要结合业务需求重点考虑替换的可行性。</p>
+<p>我把Redis和RocksDB的对比情况总结了下，如下表所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/7c0a225636f4983cb56a5b7265cf5982.jpg"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>集群是实际业务应用中很重要的一个需求，在课程的最后，我还想再给你提一个小建议。</p>
+<p>集群部署和运维涉及的工作量非常大，所以，我们一定要重视集群方案的选择。</p>
+<p><strong>集群的可扩展性是我们评估集群方案的一个重要维度</strong>，你一定要关注，集群中元数据是用Slot映射表，还是一致性哈希维护的。如果是Slot映射表，那么，是用中心化的第三方存储系统来保存，还是由各个实例来扩散保存，这也是需要考虑清楚的。Redis Cluster、Codis和Memcached采用的方式各不相同。</p>
+<ul>
+<li>Redis Cluster：使用Slot映射表并由实例扩散保存。</li>
+<li>Codis：使用Slot映射表并由第三方存储系统保存。</li>
+<li>Memcached：使用一致性哈希。</li>
+</ul>
+<p>从可扩展性来看，Memcached优于Codis，Codis优于Redis Cluster。所以，如果实际业务需要大规模集群，建议你优先选择Codis或者是基于一致性哈希的Redis切片集群方案。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#41-%E7%AC%AC35%EF%BD%9E40%E8%AE%B2%E8%AF%BE%E5%90%8E%E6%80%9D%E8%80%83%E9%A2%98%E7%AD%94%E6%A1%88%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91"><span class="toc-number">1.</span> <span class="toc-text">41 |  第35～40讲课后思考题答案及常见问题答疑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC35%E8%AE%B2"><span class="toc-number">1.1.</span> <span class="toc-text">第35讲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC36%E8%AE%B2"><span class="toc-number">1.2.</span> <span class="toc-text">第36讲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC37%E8%AE%B2"><span class="toc-number">1.3.</span> <span class="toc-text">第37讲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC38%E8%AE%B2"><span class="toc-number">1.4.</span> <span class="toc-text">第38讲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC39%E8%AE%B2"><span class="toc-number">1.5.</span> <span class="toc-text">第39讲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC40%E8%AE%B2"><span class="toc-number">1.6.</span> <span class="toc-text">第40讲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91"><span class="toc-number">1.7.</span> <span class="toc-text">常见问题答疑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%9A%84%E4%BD%BF%E7%94%A8%E7%96%91%E9%97%AE"><span class="toc-number">1.7.1.</span> <span class="toc-text">关于原子操作的使用疑问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E5%92%8CMemcached%E3%80%81RocksDB%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.7.2.</span> <span class="toc-text">Redis和Memcached、RocksDB的对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis%E5%92%8CMemcached%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">Redis和Memcached的比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis%E5%92%8CRocksDB%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">Redis和RocksDB的比较</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>23 | 异步架构：如何避免互相依赖的系统间耦合？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="23 | 异步架构：如何避免互相依赖的系统间耦合？上一篇文章中我们讨论过，使用缓存架构可以减少不必要的计算，快速响应用户请求。但是缓存只能改善系统的读操作性能，也就是在读取数据的时候，可以不从数据源中读取，而是通过缓存读取，以加速数据读取速度。 但是对于写操作，缓存是无能为力的。虽然缓存的写入速度也很快，但是通常情况下，我们不能把用户提交的数据直接写入缓存中，因为缓存通常被认为是一种不可靠的存储。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23 | 异步架构：如何避免互相依赖的系统间耦合？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/1233199080.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="23 | 异步架构：如何避免互相依赖的系统间耦合？上一篇文章中我们讨论过，使用缓存架构可以减少不必要的计算，快速响应用户请求。但是缓存只能改善系统的读操作性能，也就是在读取数据的时候，可以不从数据源中读取，而是通过缓存读取，以加速数据读取速度。 但是对于写操作，缓存是无能为力的。虽然缓存的写入速度也很快，但是通常情况下，我们不能把用户提交的数据直接写入缓存中，因为缓存通常被认为是一种不可靠的存储。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:45.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.857Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/1233199080"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '23 | 异步架构：如何避免互相依赖的系统间耦合？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">23 | 异步架构：如何避免互相依赖的系统间耦合？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="23-异步架构：如何避免互相依赖的系统间耦合？"><a href="#23-异步架构：如何避免互相依赖的系统间耦合？" class="headerlink" title="23 | 异步架构：如何避免互相依赖的系统间耦合？"></a>23 | 异步架构：如何避免互相依赖的系统间耦合？</h1><p>上一篇文章中我们讨论过，使用缓存架构可以减少不必要的计算，快速响应用户请求。但是缓存只能改善系统的读操作性能，也就是在读取数据的时候，可以不从数据源中读取，而是通过缓存读取，以加速数据读取速度。</p>
+<p>但是对于写操作，缓存是无能为力的。虽然缓存的写入速度也很快，但是通常情况下，我们不能把用户提交的数据直接写入缓存中，因为缓存通常被认为是一种不可靠的存储。缓存通常无法保证数据的持久性和一致性等这些数据存储的基本要求，因此数据写操作还是需要写入到RDBMS或者NoSQL数据库中，但是数据库操作通常都比较慢。</p>
+<p>那么如何提高系统的写操作的性能呢？</p>
+<p>此外，两个应用系统之间需要远程传递数据，常规的做法就是直接进行远程调用，用HTTP或者其他RMI方式进行远程调用。但是这种方式其实是把两个应用耦合起来了，被调用的应用产生了故障或者升级，都可能会引起调用者故障，或者也不得不升级。</p>
+<p>这种系统间的耦合情况又该如何避免呢？</p>
+<p>解决以上问题的主要手段就是使用消息队列的异步架构，有时候也被称为事件驱动架构。</p>
+<h2 id="使用消息队列实现异步架构"><a href="#使用消息队列实现异步架构" class="headerlink" title="使用消息队列实现异步架构"></a>使用消息队列实现异步架构</h2><p>消息队列实现异步架构是目前互联网应用系统中一种典型的架构模式。所谓异步架构是和同步架构相对应的。同步架构是说，当应用程序调用服务的时候，当前程序需要阻塞等待服务完成，返回服务结果后才能继续向下执行。</p>
+<p>如下图例子：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/adf559cc0708403567b5703f733e90a5.png"></p>
+<p>应用程序代码ClintCode需要发送邮件，调用接口服务EmailService，实现了EmailService接口的SmtpEmailAdapter通过SMTP协议与远程服务器通信，远程邮件服务器可能有很多邮件在等待发送，当前邮件可能要等待较长时间才能发送成功，发送成功后再通过远程通信返回结果给应用程序。</p>
+<p>在这个过程中，当远程服务器发送邮件的时候，应用程序必须阻塞等待。准确地说，是执行应用程序代码的线程被阻塞。这种阻塞，一方面导致线程不能释放被占用的系统资源，导致系统资源不足，影响系统性能。另一方面，也导致无法快速给用户返回响应结果，用户体验较差。此外，如果远程服务器出现异常，这个异常会传递给应用程序ClientCode，如果应用程序没有妥善处理好这个异常，就会导致整个请求处理失败。</p>
+<p>事实上，在大部分应用场景下，发送邮件是不需要得到发送结果的，比如用户注册的时候，发送账号激活邮件，无论邮件是否发送成功，都可以给用户返回“激活邮件已经发送，请查收邮件确认激活”。如果发送失败，只需要提示用户“点击重新发送”，再次发送邮件即可。</p>
+<p>那么如何使应用程序不阻塞等待呢？解决方案就是使用消息队列实现异步架构。</p>
+<p>如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/66216c1ebe21493334ae11eb14dec8eb.png"></p>
+<p>应用程序ClientCode调用EmailService的时候，EmailService将调用请求封装成一个邮件发送消息发送给消息队列，然后就直接返回了，应用程序收到返回以后就可以继续执行，快速完成用户响应，释放系统资源。</p>
+<p>而发送给消息队列的邮件发送消息，则会被一个专门的消息队列消费者程序QueueConsumer消费掉，这个消费者通过SmtpEmailAdapter调用远程服务器，完成邮件发送。如果远程服务处理异常，这个异常只会传递给消费者程序QueueConsumer，而不会影响到应用程序。</p>
+<p>典型的消息队列异步架构如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/54655d0542912c741189b99cb3f29968.png"></p>
+<p>消息队列异步架构的主要角色包括消息生产者、消息队列和消息消费者。消息生产者通常就是主应用程序，生产者将调用请求封装成消息发送给消息队列。此外还需要开发一个专门的消息消费者程序，用来从消息队列中获取、消费消息，由消息消费者完成业务逻辑处理。</p>
+<p>消息队列的职责就是缓冲消息，等待消费者消费。根据消息消费方式又分为点对点模式和发布订阅模式两种。</p>
+<p>在点对点模式中，多个消息生产者向消息队列发送消息，多个消息消费者消费消息，每个消息只会被一个消息消费者消费。</p>
+<p>如下图：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/8908d32e5db7313c66e85b3edb1dcec8.png"></p>
+<p>上面举例的发送邮件的场景就是一个典型的点对点模式场景。任何需要发送邮件的应用程序都可以作为消息生产者向消息队列发送邮件消息。而通过SMTP协议，调用远程服务发送邮件的消息消费者程序可以部署在多台服务器上，但是对于任何一个消息，只会被发送给其中的一个消费者服务器。这些服务器可以根据消息的数量动态伸缩，保证邮件能及时发送。如果有某台消费者服务器宕机，既不会影响其他消费者处理消息发送邮件，也不会影响生产者程序正常运行。</p>
+<p>在发布订阅模式中，开发者可以在消息队列中设置主题，消息生产者的消息按照主题进行发送，多个消息消费者可以订阅同一个主题，每个消费者都可以收到这个主题的消息拷贝，然后按照自己的业务逻辑分别进行处理计算。</p>
+<p>如下图：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/1a966517c893fcc19ec8d2c297707393.png"></p>
+<p>消息生产者向消息队列某个主题发布消息m，多个消息消费者订阅该主题，就会分别收到这个消息m。典型场景就是新用户注册，新用户注册的时候一方面需要发送激活邮件，另一方面可能还需要发送欢迎短信，还可能需要将用户信息同步给关联产品，当然还需要将用户信息保存到数据库中。</p>
+<p>这种场景也可以用点对点模式，由应用程序，也就是消息生产者构造发送邮件的消息，发送到邮件消息队列，以及构造短信消息，构造新用户消息，构造数据库消息分别发送到相关的消息队列里，然后由对应的消息消费者程序分别获取消息进行处理。</p>
+<p>但更好的处理方式是使用发布订阅模式。在消息队列中创建“新用户注册”主题，应用程序只需要发布包含新用户注册数据的消息到该主题中，相关消费者再订阅该主题即可。不同的消费者都订阅该主题，得到新用户注册消息，然后根据自己的业务逻辑从消息中获取相关的数据，进行处理。</p>
+<p>如下图所示：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/ee12690c0253c8b094040801f4b0c2fa.png"></p>
+<p>发布订阅模式下，一个主题可以被重复订阅，所以如果需要扩展功能，可以在对当前的生产者和消费者都没有影响的前提下，增加新的消费者订阅同一个主题即可。</p>
+<h2 id="消息队列异步架构的好处"><a href="#消息队列异步架构的好处" class="headerlink" title="消息队列异步架构的好处"></a>消息队列异步架构的好处</h2><p>使用消息队列实现异步架构可以解决文章开篇提出的问题，实现更高的写操作性能以及更低的耦合性。让我们总结一下，使用消息队列的异步架构都有什么好处。</p>
+<h3 id="改善写操作请求的响应时间"><a href="#改善写操作请求的响应时间" class="headerlink" title="改善写操作请求的响应时间"></a>改善写操作请求的响应时间</h3><p>使用消息队列，生产者应用程序只需要将消息发送到消息队列之后，就可以继续向下执行了，无需等待耗时的消息消费处理，也就是说，可以更快速地完成请求处理操作，快速响应用户。</p>
+<h3 id="更容易进行伸缩"><a href="#更容易进行伸缩" class="headerlink" title="更容易进行伸缩"></a>更容易进行伸缩</h3><p>我在 <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/169545">第4篇文章</a> 中说过，应用程序也可以通过负载均衡实现集群伸缩，但是这种集群伸缩是以整个应用服务器为单位的。如果只是其中某些功能有负载压力，比如当用户上传图片，需要对图片进行识别、分析、压缩等一些比较耗时的计算操作时，也需要伸缩整个应用服务器集群。</p>
+<p>事实上，图片处理只是应用的一个相对小的功能，如果因为这个就对应用服务器集群进行伸缩，代价可能会比较大。如果用消息队列，将图片处理相关的操作放在消费者服务器上，那么就可以单独针对图片处理的消费者集群进行伸缩。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/7ab4fd31d3bd76425eeaf797c261ad9f.png"></p>
+<h3 id="削峰填谷"><a href="#削峰填谷" class="headerlink" title="削峰填谷"></a>削峰填谷</h3><p>互联网应用的访问压力随时都在变化，系统的访问高峰和低谷的并发压力可能也有非常大的差距。如果按照压力最大的情况部署服务器集群，那么服务器在绝大部分时间内都处于闲置状态。但利用消息队列，我们可以将需要处理的消息放入消息队列，而消费者可以控制消费速度，因此能够降低系统访问高峰时压力，而在访问低谷的时候还可以继续消费消息队列中未处理的消息，保持系统的资源利用率。</p>
+<h3 id="隔离失败"><a href="#隔离失败" class="headerlink" title="隔离失败"></a>隔离失败</h3><p>使用消息队列，生产者发送消息到消息队列后就继续自己后面的计算，消费者如果在处理消息的过程中失败，不会传递给生产者，应用程序具有更高的可用性。</p>
+<h3 id="降低耦合"><a href="#降低耦合" class="headerlink" title="降低耦合"></a>降低耦合</h3><p>如上面发送邮件的例子所示，如果调用是同步的，那么意味着调用者和被调用者必然存在依赖，一方面是代码上的依赖，应用程序需要依赖发送邮件相关的代码，如果需要修改发送邮件的代码，就必须修改应用程序，而且如果要增加新的功能，比如发送短信，也必须修改应用程序；另一方面是结果的依赖，应用程序必须要等到返回调用结果才能继续执行，如果调用出现异常，应用程序必须要处理这个异常。</p>
+<p>我们知道，耦合会使软件僵硬、笨拙、难以维护，而使用消息队列的异步架构可以降低调用者和被调用者的耦合。调用者发送消息到消息队列，不需要依赖被调用者的代码和处理结果，增加新的功能，也只需要增加新的消费者就可以了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>消息队列实现异步架构是改善互联网应用写操作性能的重要手段，也是一种低耦合、易扩展的分布式应用架构模式。但是使用这种架构有些方面也需要注意。</p>
+<p>比如，消费者程序可能没有完成用户请求的操作，上面发送邮件的例子，消费者程序发送邮件的时候可能会遇到各种问题，从而未完成邮件发送。</p>
+<p>邮件的问题还比较简单，比如可以提示用户：“如果未收到邮件，点击按钮重新发送。”但是如果是提交订单，或者发起支付的话，就需要更复杂的用户交互和处理方法了。比如将订单消息发送到消息队列后，就立即返回，这个时候可以在用户端App展现一个进度条，提示用户“订单处理中”，等消费者程序完成订单处理后，发送消息给用户App，显示最终的订单结果信息。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>异步架构中最主要的技术就是消息队列，目前主要的消息队列产品有哪些？各有什么优缺点？</p>
+<p>欢迎你在评论区说说你对消息队列产品的了解，我会和你一起交流，也欢迎把这篇文章分享给你的朋友或者同事，一起交流一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#23-%E5%BC%82%E6%AD%A5%E6%9E%B6%E6%9E%84%EF%BC%9A%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BA%92%E7%9B%B8%E4%BE%9D%E8%B5%96%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%97%B4%E8%80%A6%E5%90%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">23 | 异步架构：如何避免互相依赖的系统间耦合？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">使用消息队列实现异步架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BC%82%E6%AD%A5%E6%9E%B6%E6%9E%84%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">1.2.</span> <span class="toc-text">消息队列异步架构的好处</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E5%96%84%E5%86%99%E6%93%8D%E4%BD%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="toc-number">1.2.1.</span> <span class="toc-text">改善写操作请求的响应时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E8%BF%9B%E8%A1%8C%E4%BC%B8%E7%BC%A9"><span class="toc-number">1.2.2.</span> <span class="toc-text">更容易进行伸缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8A%E5%B3%B0%E5%A1%AB%E8%B0%B7"><span class="toc-number">1.2.3.</span> <span class="toc-text">削峰填谷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E5%A4%B1%E8%B4%A5"><span class="toc-number">1.2.4.</span> <span class="toc-text">隔离失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E4%BD%8E%E8%80%A6%E5%90%88"><span class="toc-number">1.2.5.</span> <span class="toc-text">降低耦合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

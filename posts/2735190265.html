@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？ | geekbang</title><meta name="author" content="码农张三"><meta name="copyright" content="码农张三"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？我在阿里巴巴工作期间，曾经负责开发一个统一缓存服务。这个服务要求能够根据远程配置中心的配置信息，在运行期动态更改缓存的配置，可能是将本地缓存更改为远程缓存，也可能是更改远程缓存服务器集群的IP地址列表，进而改变应用程序使用的缓存服务。 这就要求缓存服务的客户端SDK必须支持运行期配置更新，而配置更新又会直接影响缓存数据的操作，于是就设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？">
+<meta property="og:url" content="https://zhuansun.github.io/geekbang/posts/2735190265.html">
+<meta property="og:site_name" content="geekbang">
+<meta property="og:description" content="15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？我在阿里巴巴工作期间，曾经负责开发一个统一缓存服务。这个服务要求能够根据远程配置中心的配置信息，在运行期动态更改缓存的配置，可能是将本地缓存更改为远程缓存，也可能是更改远程缓存服务器集群的IP地址列表，进而改变应用程序使用的缓存服务。 这就要求缓存服务的客户端SDK必须支持运行期配置更新，而配置更新又会直接影响缓存数据的操作，于是就设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg">
+<meta property="article:published_time" content="2024-03-01T18:18:44.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:44:22.844Z">
+<meta property="article:author" content="码农张三">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhuansun.github.io/geekbang/posts/2735190265"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-21 07:44:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？"><a href="#15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？" class="headerlink" title="15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？"></a>15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？</h1><p>我在阿里巴巴工作期间，曾经负责开发一个统一缓存服务。这个服务要求能够根据远程配置中心的配置信息，在运行期动态更改缓存的配置，可能是将本地缓存更改为远程缓存，也可能是更改远程缓存服务器集群的IP地址列表，进而改变应用程序使用的缓存服务。</p>
+<p>这就要求缓存服务的客户端SDK必须支持运行期配置更新，而配置更新又会直接影响缓存数据的操作，于是就设计出这样一个缓存服务Client类。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/1a9c02c2cea284dad584de9fd61c1f15.png"></p>
+<p>这个缓存服务Client类的方法主要包含两个部分：一部分是缓存服务方法，get()、put()、delete()这些，这些方法是面向调用者的；另一部分是配置更新方法reBuild()，这个方法主要是给远程配置中心调用的。</p>
+<p>但是问题是，Cache类的调用者如果看到reBuild()方法，并错误地调用了该方法，就可能导致Cache连接被错误重置，导致无法正常使用Cache服务。所以必须要将reBuild()方法向缓存服务的调用者隐藏，而只对远程配置中心的本地代理开放这个方法。</p>
+<p>但是reBuild()方法是一个public方法， <strong>如何对类的调用者隐藏类的公有方法</strong>？</p>
+<h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p>我们可以使用接口隔离原则解决这个问题。接口隔离原则说： <strong>不应该强迫用户依赖他们不需要的方法</strong>。</p>
+<p>那么如果强迫用户依赖他们不需要的方法，会导致什么后果呢？</p>
+<p>一来，用户可以看到这些他们不需要，也不理解的方法，这样无疑会增加他们使用的难度，如果错误地调用了这些方法，就会产生bug。二来，当这些方法如果因为某种原因需要更改的时候，虽然不需要但是依赖这些方法的用户程序也必须做出更改，这是一种不必要的耦合。</p>
+<p>但是如果一个类的几个方法之间本来就是互相关联的，就像我开头举的那个缓存Client SDK的例子，reBuild()方法必须要在Cache类里，这种情况下， 如何做到不强迫用户依赖他们不需要的方法呢？</p>
+<p>我们先看一个简单的例子，Modem类定义了4个主要方法，拨号dail()，挂断hangup()，发送send()和接受recv()。这四个方法互相存在关联，需要定义在一个类里。</p>
+<pre class="line-numbers language-none"><code class="language-none">class Modem &#123;
+    void dial(String pno);
+    void hangup();
+    void send(char c);
+    void recv();
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是对调用者而言，某些方法可能完全不需要，也不应该看到。比如拨号dail()和挂断hangup()，这两个方式是属于专门的网络连接程序的，通过网络连接程序进行拨号上网或者挂断网络。而一般的使用网络的程序，比如网络游戏或者上网浏览器，只需要调用send()和recv()发送和接收数据就可以了。</p>
+<p>强迫只需要上网的程序依赖他们不需要的拨号与挂断方法，只会导致不必要的耦合，带来潜在的系统异常。比如在上网浏览器中不小心调用hangup()方法，就会导致整个机器断网，其他程序都不能连接网络。这显然不是系统想要的。</p>
+<p>这种问题的解决方法就是通过接口进行方法隔离，Modem类实现两个接口，DataChannel接口和Connection接口。</p>
+<p>DataChannel接口对外暴露send()和recv()方法，这个接口只负责网络数据的发送和接收，网络游戏或者网络浏览器只依赖这个接口进行网络数据传输。这些应用程序不需要依赖它们不需要的dail()和hangup()方法，对应用开发者更加友好，也不会导致因错误的调用而引发的程序bug。</p>
+<p>而网络管理程序则可以依赖Connection接口，提供显式的UI让用户拨号上网或者挂断网络，进行网络连接管理。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/10abb120ea68d4406276ee24ccecf961.png"></p>
+<p>通过使用 <strong>接口隔离原则，我们可以将一个实现类的不同方法包装在不同的接口中对外暴露</strong>。应用程序只需要依赖它们需要的方法，而不会看到不需要的方法。</p>
+<h2 id="一个使用接口隔离原则优化的例子"><a href="#一个使用接口隔离原则优化的例子" class="headerlink" title="一个使用接口隔离原则优化的例子"></a>一个使用接口隔离原则优化的例子</h2><p>我们再看一个使用接口隔离原则优化设计的例子。假设我们有个门Door对象，这个Door对象可以锁上，可以解锁，还可以判断门是否打开。</p>
+<pre class="line-numbers language-none"><code class="language-none">class Door &#123;
+    void lock();
+    void unlock();
+    boolean isDoorOpen();
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在我们需要一个TimedDoor，一个有定时功能的门，如果门开着的时间超过预定时间，就会自动锁门。</p>
+<p>我们已经有一个类Timer，和一个接口TimerClient：</p>
+<pre class="line-numbers language-none"><code class="language-none">class Timer &#123;
+    void register(int timeout, TimerClient client);
+&#125;
+
+interface TimerClient &#123;
+    void timeout();
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>TimerClient可以向Timer注册，调用register()方法，设置超时时间。当超时时间到，就会调用TimerClient的timeout()方法。</p>
+<p>那么，我们如何利用现有的Timer和TimerClient将Door改造成一个具有超时自动锁门的TimedDoor？</p>
+<p>比较容易，且直观的办法就是，修改Door类，Door实现TimerClient接口，这样Door就有了timeout()方法，直接将Door注册给Timer，当超时的时候，Timer调用Door的timeout()方法，在Door的timeout()方法里调用lock()方法，就可以实现超时自动锁门的操作。</p>
+<pre class="line-numbers language-none"><code class="language-none">class Door implements TimerClient &#123;
+    void lock();
+    void unlock();
+    boolean isDoorOpen();
+    void timeout()&#123;
+      lock();
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个方法简单直接，也能实现需求，但是问题在于使Door多了一个timeout()方法。如果这个Door类想要复用到其他地方，那么所有使用Door的程序都不得不依赖一个它们可能根本用不着的方法。同时，Door的职责也变得复杂，违反了单一职责原则，维护会变得更加困难。这样的设计显然是有问题的。</p>
+<p>要想解决这些问题，就应该遵循接口隔离原则。事实上，这里有两个互相独立的接口，一个接口是TimerClient，用来供Timer进行超时控制；一个接口是Door，用来控制门的操作。虽然超时锁门的操作是一个完整的动作，但是我们依然可以使用接口使其隔离。</p>
+<p>一种方法是通过委托进行接口隔离，具体方式就是增加一个适配器DoorTimerAdapter，这个适配器继承TimerClient接口实现timeout()方法，并将自己注册给Timer。适配器在自己的timeout()方法中，调用Door的方法实现超时锁门的操作。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/19e4617b2b08eb6f1741274ece852bbd.png"></p>
+<p>这种场合使用的适配器可能会比较重，业务逻辑比较多，如果超时的时候需要执行较多的逻辑操作，那么适配器的timeout()方法就会包含很多业务逻辑，超出了适配器的职责范围。而如果这些逻辑操作还需要使用Door的内部状态，可能还需要迫使Door做出一些修改。</p>
+<p>接口隔离更典型的做法是使用多重继承，跟前面Modem的例子一样，TimedDoor同时实现TimerClient接口和继承Door类，在TimedDoor中实现timeout()方法，并注册到Timer定时器中。</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/cc1d170a4be10f3dfb125291faed6126.png"></p>
+<p>这样，使用Door的程序就不需要被迫依赖timeout()方法，Timer也不会看到Door的方法，程序更加整洁，易于复用。</p>
+<h2 id="接口隔离原则在迭代器设计模式中的应用"><a href="#接口隔离原则在迭代器设计模式中的应用" class="headerlink" title="接口隔离原则在迭代器设计模式中的应用"></a>接口隔离原则在迭代器设计模式中的应用</h2><p>Java的数据结构容器类可以通过for循环直接进行遍历，比如：</p>
+<pre class="line-numbers language-none"><code class="language-none">List&lt;String&gt; ls &#x3D; new ArrayList&lt;String&gt;();
+ls.add(&quot;a&quot;);
+ls.add(&quot;b&quot;);
+for(String s: ls) &#123;
+	System.out.println(s);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>事实上，这种for语法结构并不是标准的Java for语法，标准的for语法在实现上述遍历时应该是这样的：</p>
+<pre class="line-numbers language-none"><code class="language-none">for(Iterator&lt;String&gt; itr&#x3D;ls.iterator();itr.hasNext();) &#123;
+	System.out.println(itr.next());
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>之所以可以写成上面那种简单的形式，就是因为Java提供的语法糖。Java5以后版本对所有实现了Iterable接口的类都可以使用这种简化的for循环进行遍历。而我们上面例子的ArrayList也实现了这个接口。</p>
+<p>Iterable接口定义如下，主要就是构造Iterator迭代器。</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface Iterable&lt;T&gt; &#123;
+    Iterator&lt;T&gt; iterator();
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>在Java5以前，每种容器的遍历方法都不相同，在Java5以后，可以统一使用这种简化的遍历语法实现对容器的遍历。而实现这一特性，主要就在于Java5通过Iterable接口，将容器的遍历访问从容器的其他操作中隔离出来，使Java可以针对这个接口进行优化，提供更加便利、简洁、统一的语法。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们再回到开头那个例子，如何让缓存类的使用者看不到缓存重构的方法，以避免不必要的依赖和方法的误用。答案就是使用接口隔离原则，通过多重继承的方式进行接口隔离。</p>
+<p>Cache实现类BazaCache（Baza是当时开发的统一缓存服务的产品名）同时实现Cache接口和CacheManageable接口，其中Cache接口提供标准的Cache服务方法，应用程序只需要依赖该接口。而CacheManageable接口则对外暴露reBuild()方法，使远程配置服务可以通过自己的本地代理调用这个方法，在运行期远程调整缓存服务的配置，使系统无需重新部署就可以热更新。</p>
+<p>最后的缓存服务SDK核心类设计如下：</p>
+<p><img src="https://note-1252548816.cos.ap-nanjing.myqcloud.com/uPic/202403/6318de0ad618153d520adff4959b169f.jpg"></p>
+<p>当一个类比较大的时候，如果该类的不同调用者被迫依赖类的所有方法，就可能产生不必要的耦合。对这个类的改动也可能会影响到它的不同调用者，引起误用，导致对象被破坏，引发bug。</p>
+<p>使用接口隔离原则，就是定义多个接口，不同调用者依赖不同的接口，只看到自己需要的方法。而实现类则实现这些接口，通过多个接口将类内部不同的方法隔离开来。</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>在你的开发实践中，你看到过哪些地方使用了接口隔离原则？你自己开发的代码，哪些地方可以用接口隔离原则优化？</p>
+<p>欢迎你在评论区写下你的思考，也欢迎把这篇文章分享给你的朋友或者同事，一起交流一下。</p>
+</article><div class="tag_share"><div class="post_share"></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#15%E4%B8%A8%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99%EF%BC%9A%E5%A6%82%E4%BD%95%E5%AF%B9%E7%B1%BB%E7%9A%84%E8%B0%83%E7%94%A8%E8%80%85%E9%9A%90%E8%97%8F%E7%B1%BB%E7%9A%84%E5%85%AC%E6%9C%89%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">15丨软件设计的接口隔离原则：如何对类的调用者隐藏类的公有方法？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">接口隔离原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99%E4%BC%98%E5%8C%96%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.</span> <span class="toc-text">一个使用接口隔离原则优化的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99%E5%9C%A8%E8%BF%AD%E4%BB%A3%E5%99%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">接口隔离原则在迭代器设计模式中的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">思考题</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/10/21/vq13okXnTbxDG2R.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By 码农张三</div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/9.4.0/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
