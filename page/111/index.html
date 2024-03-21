@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,90 +138,90 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/13283363.html" title="03｜进阶应用：图生图技巧与创作社区初探">03｜进阶应用：图生图技巧与创作社区初探</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">03｜进阶应用：图生图技巧与创作社区初探你好，我是南柯。
-上一讲我们学习了很多文生图的AI绘画技巧。如果说文本生图是一种无中生有的绘画形式，那么图像生图无疑是锦上添花的绘画技巧。
-今天这一讲，我会带你探索图生图的功能，了解图生图能力能够帮我们完成哪些任务，并通过控制重绘强度影响图生图的绘画效果。另外，我还会带你了解Civitai和Hugging Face这两个开源社区，用不同风格的模型帮我们进行AI绘画。学完这一讲，你就可以使用开源社区丰富的模型宝库，对自己手中的照片进行魔改了！
-图生图可以做哪些事情？图生图，顾名思义，算法的输入是一张图片，输出也是一张图片。AI绘画给出的图片需要和用户输入的图片之间存在某种关联。这种关联包括后面这些情况。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4007569824.html" title="97 | 高效学习：源头、原理和知识地图">97 | 高效学习：源头、原理和知识地图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">97 | 高效学习：源头、原理和知识地图你好，我是陈皓，网名左耳朵耗子。
+有了上一篇文章中分享的那些观点，我们来看看应该怎么做。下面是我觉得比较不错的一些学习的方法，或者说对我来说最有效的学习方法。我相信，只要你和我一样，做到的话，你的学习效率一定能够提升很快。
+挑选知识和信息源还是我在《程序员练级攻略》中说的那样，英文对于我们来说至关重要，尤其是对于计算机知识来说。如果你觉得用百度搜中文关键词就可以找到自己想要的知识，那么你一定远远落后于这个时代了。如果你用Google英文关键词可以找到自己想要的知识，那么你算是能跟得上这个时代。如果你能在社区里跟社区里的大牛交流得到答案，那么你算是领先于这个时代了。
+所以，我认为你的信息源要有下面几个特质。
 
-输入一张真实拍摄的照片，保持图像构图输出一张风格化的绘画结果。
-输入一张低分辨率的照片，输出一张高分辨率的清晰照片。
-输入一件衣服，输出一个模特穿着这件衣服。
-输入一张局部涂抹的照片，输出一张AI算法补全后的照片。
-输入一张图片，输出这种图片向外延展之后的效果等等。
+应该是第一手资料，不是被别人理解过、消化过的二手资料。尤其对于知识性的东西来说，更是这样。应该是原汁原味的，不应该是被添油加醋的。
+
+应该是有佐证、有数据、有引用的，或是有权威人士或大公司生产系统背书的资料。应该是被时间和实践检验过的，或是小心求证过的，不是拍脑袋野路子或是道听途说出来的资料。
+
+应该是加入了一些自己的经验和思考，可以引发人深思的，是所谓信息的密集很大的文章。
+
+
+顺便说一句，我发现Medium 上的文章质量比较高，很多文章都Google到了Medium上。
+我在《程序员练级攻略 》后期的文章中罗列了很多文章资源，有的读者 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/940987814.html" title="98 | 项目实战三：设计实现一个支持自定义规则的灰度发布组件（实现）">98 | 项目实战三：设计实现一个支持自定义规则的灰度发布组件（实现）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">98 | 项目实战三：设计实现一个支持自定义规则的灰度发布组件（实现）上两节课，我们讲解了灰度组件的需求和设计思路。不管是之前讲过的限流、幂等框架，还是现在正在讲的灰度组件，这些框架、组件、类库的功能性需求都不复杂，相反，非功能性需求是开发的重点、难点。
+今天，我们按照上节课给出的灰度组件的设计思路，讲解如何进行编码实现。不过今天对实现的讲解，跟前面两个实战项目有所不同。在前面两个项目中，我都是手把手地从最基础的MVP代码讲起，然后讲解如何review代码发现问题、重构代码解决问题，最终得到一份还算高质量的代码。考虑到已经有前面两个项目的学习和锻炼了，你应该对开发套路、思考路径很熟悉了，所以，今天我们换个讲法，就不从最基础的讲起了，而是重点讲解实现思路。
+话不多说，让我们正式开始今天的学习吧！
+灰度组件功能需求整理针对上两节课给出的开发需求和设计思路，我们还是按照老套路，从中剥离出V1版本要实现的内容。为了方便我讲解和你查看，我把灰度组件的开发需求和设计思路，重新整理罗列了一下，放到了这里。
+1.灰度规则的格式和存储方式我们希望支持不同格式（JSON、YAML、XML等）、不同存储方式（本地配置文件、Redis、Zookeeper、或者自研配置中心等）的灰度规则配置方式。实际上，这一点跟之前的限流框架中限流规则的格式和存储方式完全一致，代码实现也是相同的，所以在接下来的讲解中，就不 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1867165880.html" title="98 | 高效学习：深度、归纳和坚持实践">98 | 高效学习：深度、归纳和坚持实践</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">98 | 高效学习：深度、归纳和坚持实践你好，我是陈皓，网名左耳朵耗子。
+系统地学习在学习某个技术的时候，我除了会用到上篇文章中提到的知识图，还会问自己很多个为什么。于是，我形成了一个更高层的知识脑图。下面我把这这个方法分享出来。当然学习一门技术时，Go语言也好，Docker也好，我都有一个学习模板。只有把这个学习模板中的内容都填实了，我才罢休。这个模板如下。
+
+这个技术出现的背景、初衷和要达到什么样的目标或是要解决什么样的问题。这个问题非常关键，也就是说，你在学习一个技术的时候，需要知道这个技术的成因和目标，也就是这个技术的灵魂。如果不知道这些的话，那么你会看不懂这个技术的一些设计理念。
+
+这个技术的优势和劣势分别是什么，或者说，这个技术的trade-off是什么。任何技术都有其好坏，在解决一个问题的时候，也会带来新的问题。另外，一般来说，任何设计都有trade-off（要什么和不要什么），所以，你要清楚这个技术的优势和劣势，以及带来的挑战。
+
+这个技术适用的场景。任何技术都有其适用的场景，离开了这个场景，这个技术可能会有很多槽点，所以学习技术不但要知道这个技术是什么，还要知道其适用的场景。没有任何一个技术是普适的。注意，所谓场景一般分别两个，一个是业务场景，一个是技术场景。
+
+技术的组成部分和关键点。这是技术的核心思想和核心组件了，也是这个技术的灵魂所在了。学习技术的核心部分是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/326387842.html" title="99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式">99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">99 | 总结回顾：在实际软件开发中常用的设计思想、原则和模式到今天为止，理论部分和实战部分都已经讲完了，整个专栏也接近尾声了。我这里用两节课的时间，带你一块复习一下前面学到的知识点。跟前面的讲解相对应，这两节课分别是针对理论部分和实战部分进行回顾总结。
+今天，我先来带你回顾一下整个专栏的知识体系。我们整个专栏围绕着编写高质量代码展开，涵盖了代码设计的方方面面，主要包括面向对象、设计原则、编码规范、重构技巧、设计模式这五个部分。我们就从这五个方面，带你一块把之前学过的知识点串一遍。
+
+话不多说，让我们正式开始今天的学习吧！
+面向对象相对于面向过程、函数式编程，面向对象是现在最主流的编程范式。纯面向过程的编程方法，现在已经不多见了，而新的函数式编程，因为它的应用场景比较局限，所以大多作为面向对象编程的一种补充，用在科学计算、大数据处理等特殊领域。
+它提供了丰富的特性，比如封装、抽象、继承、多态，有助于实现复杂的设计思路，是很多设计原则、设计模式等编程实现的基础。
+在面向对象这一部分，我们要重点掌握面向对象的四大特性：封装、抽象、继承、多态，以及面向对象编程与面向过程编程的区别。需要特别注意的是，在平时的面向对象编程开发中，我们要避免编写出面向过程风格的代码。
+除此之外，我们还重点学习了面向对象分析（OOA）、设计（OOD）、编程（OOP）。其中，面向对象分析就是需求分析，面向对象设计 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2201890649.html" title="99 | 高效学习：如何学习和阅读代码？">99 | 高效学习：如何学习和阅读代码？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">99 | 高效学习：如何学习和阅读代码？你好，我是陈皓，网名左耳朵耗子。
+读文档还是读代码杰夫·阿特伍德（Jeff Atwood）说过这么一句话：“ Code Tells You How, Comments Tell You Why”。我把其扩展一下：
+
+代 码 &#x3D;&gt; What, How &amp; Details
+文档&#x2F;书 &#x3D;&gt; What, How &amp; Why
+
+可见， 代码并不会告诉你 Why，看代码只能靠猜测或推导来估计Why，是揣测，不准确，所以会有很多误解。 而且，我们每个人都知道，Why是能让人一通百通的东西，也是能让人醍醐灌顶的东西。
+但是， 代码会告诉你细节，这是书和文档不能给你的。 细节是魔鬼，细节决定成败。这样的话我们不但听过很多，我们做技术的也应该体会过很多。当然，我们也要承认，这些代码细节给人带来的快感毕竟不如知道Why后的快感大（至少对我是这样的）。
+书和文档是人对人说的话，代码是人对机器说的话（注：代码中有一部份逻辑是控制流程的逻辑，不是业务逻辑）。所以：
+
+如果你想知道人为什么要这么搞，那么应该去看书（像Effective C++、Code Complete、Design Pattern、Thinking in Java等）， 看文档。
+
+如果你要知道让机器干了什么？那你应该看代码！（就像Linus去看 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/245128606.html" title="ChatGPT来临，架构师何去何从？">ChatGPT来临，架构师何去何从？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">ChatGPT来临，架构师何去何从？你好，我是李运华。
+最近科技圈大火的事件就是ChatGPT的全球火热流行。这款由OpenAI公司在2022年11月底推出的聊天机器人，创造了史上消费应用最快达成1亿用户的历史，在推出仅仅两个月后，月活跃用户估计已达1亿，成为历史上增长最快的消费应用。与之对比，TikTok达成1亿月活目标耗费了9个月，而Instagram则耗时两年半。
+ChatGPT 因何爆火？ChatGPT为什么会如此火热和流行呢？体验过的朋友应该都有类似的感觉：它的回答内容几乎和真人聊天的感觉类似，聊天的上下文有连贯的逻辑性，尤其让人震撼的是，它能够根据用户的描述直接写一段代码、写论文、写报告。例如：
+
+如此强大的智能能力让ChatGPT成为了现象级的人工智能产品，而上一个如此火热的人工智能产品还是围棋领域的AlphaGo。在击败人类顶尖棋手李世石后，AlphaGo直接带起了人工智能领域的热潮，这次ChatGPT的火热同样会引领人工智能领域一个新的热潮。
+但这次ChatGPT引领的人工智能热潮和上一次相比，出现了一个很大的变化。虽然科技工作者和技术人员对ChatGPT的技术饶有兴趣，资本大佬们对ChatGPT带来的创业机会兴奋不已，但更多的人却开始担心自己会不会被ChatGPT为代表的人工智能取代！尤其是ChatGPT现在的算法模型是GPT-3，已经这么厉害了，据说很快要升级 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2620016201.html" title="FAQ第一期 | 学与不学，知识就在那里，不如就先学好了">FAQ第一期 | 学与不学，知识就在那里，不如就先学好了</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">FAQ第一期 | 学与不学，知识就在那里，不如就先学好了你好，我是徐文浩。专栏上线三个多月，我们已经进入后半段。
+首先，恭喜跟到这里的同学，很快你就可以看到胜利的曙光了。如果你已经掉队了，不要紧，现在继续依然来得及。
+其次，非常感谢同学们的积极留言，看到这么多人因为我的文章受到启发、产生思考，我也感到非常开心。因此，我特意把留言区中非常棒的、值得反复阅读和思考的内容，摘录出来，供你反复阅读学习。
+有些内容你可能已经非常熟悉了，但是随着工作、学习经验的不同，相信你的理解也会不一样；有些内容可能刚好也是你的疑问，但是你还没发现，这里说不定就帮你解决了。
+今天第一期，我们先来聊聊，“学习”这件事。我准备了五个问题，话不多说，一起来看看吧！
+
+Q1：“要不要学”和“学不会怎么办”系列
+专栏已经更新三个多月了，但是我估计很多人还是停留在前面3篇的学习上（我相信，一定有的）。
+我观察了一下，其实很多人并不是真的学不会，而是“不敢学”，往往还没开始就被自己给吓到了。很多优秀的人，并非真的智商有多么高，而是他们敢于尝试，敢于突破自己的舒适区。
+所以说，学习底层知识或者新知识的第一点，就是要“克服恐惧”，其实大部分东西上手了都不难，都很有意思。就像《冰与火之歌》里面，水舞者教导艾莉亚时的情况一样，“恐惧比利剑”更伤人。破除对于基础知识“难”的迷信，是迈向更高水平必经的一步。
+“组成原理可以算是理解计 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2491185343.html" title="FAQ第二期 | 世界上第一个编程语言是怎么来的？">FAQ第二期 | 世界上第一个编程语言是怎么来的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">FAQ第二期 | 世界上第一个编程语言是怎么来的？你好，我是徐文浩，今天是第二期FAQ，我搜集了第3讲到第6讲，大家在留言区问的比较多的问题，来做一次集中解答。
+有些问题，可能你已经知道了答案，不妨看看和我的理解是否一样；如果这些问题刚好你也有，那可要认真看啦！
+希望今天的你，也同样有收获！
+
+Q1：为什么user + sys运行出来会比real time多呢？
+我们知道，实际的计算机运行的过程中，CPU会在多个不同的进程里面切换，分配不同的时间片去执行任务。所以，运行一个程序，在现实中走过的时间，并不是实际CPU运行这个程序所花费的时间。前者在现实中走过的时间，我们叫作real time。有时候叫作wall clock time，也就是墙上挂着的钟走过的时间。
+而实际CPU上所花费的时间，又可以分成在操作系统的系统调用里面花的sys time和用户态的程序所花的user time。如果我们只有一个CPU的话，那real time &gt;&#x3D; sys time + user time 。所以，我当时在文章里给大家看了对应的示例。
+不过，有不少同学运行出来的结果不是这样的。这是因为现在大家都已经用上多核的CPU了。也就是同一时间，有两个CPU可以同时运行任务。
+你在一台多核或者多CPU的机器上运行，seq和wc命令会分配到两个CPU上。虽然seq和wc这两个命令都是单线程运 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2041485187.html" title="一键到达 | 人工神经网络复习课">一键到达 | 人工神经网络复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 人工神经网络复习课今天我们来复习专栏的第三部分内容，人工神经网络。在这个模块里，我们一起学习了神经元、感知器、多层感知器、自组织特征映射、模糊神经网络等内容。
+点击要点卡，直达你最需要复习的那一篇。
 
 
 
-你可以翻看前面的 先导篇，了解更多文生图的效果。那么，如何通过WebUI实现这些神奇的图生图能力呢？
-通过重绘强度控制图生图效果我们选择img2img这个标签，prompt和negative prompt的操作与之前相同（详见第二讲），在下方drop image here区 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/994719567.html" title="04｜实战项目（一）：用LoRA制作一个你自己的漫画故事">04｜实战项目（一）：用LoRA制作一个你自己的漫画故事</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">04｜实战项目（一）：用LoRA制作一个你自己的漫画故事你好，我是南柯。
-前一讲我们学习了如何优化文生图、图生图过程中的关键参数，让AI模型更加听话。但是，如果我们想要进一步展现自己的创意和想象力，比如创作漫画时让AI帮我们生成特定风格和特定人物，又该怎么办呢？
-为了解决这个问题，我们可以考虑在原有模型上引入LoRA技术。引入LoRA（Low-Rank Adaptation），最初只是想把它当成微调大型语言模型的方法。然而，在AI绘画领域，它展现了独特的作用。通俗一点说，我们可以将LoRA比喻为一条在广袤大道上的小路，这两条路径都可以达到目的地，但所见的景色却完全不同。
 
-这一讲我们将使用LoRA技术来制作一个属于你自己的漫画故事。无论是故事情节、角色设计还是画风表现，都可以完全按照你的创意和想象来打造。我们这就来开启精彩作品的创作之旅！
-变化万千的LoRA相比我们前面学到的prompt和其他调参方式，LoRA模型能给我们提供更大的灵活性和控制力，让我们在图像创作上实现更多样化的结果。同样的SD模型，引入不同的LoRA模型后就会呈现变化万千的风格，我们这就来一探究竟。
-风格化的LoRA为了在WebUI中添加LoRA的效果，我们需要下载心仪的LoRA模型。
-我们先打开 Civitai 网站，找到网站右上角类似漏斗的符号，它能帮我们选择不同功能或设置。当你点击这个漏斗并选择LoRA时， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3668566105.html" title="05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？">05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">05｜ 旧画师GAN：天生有缺陷还是学艺不精湛？你好，我是南柯。
-今天开始，我们正式进入AI绘画理论阶段的学习。我会带你理解图像生成模型背后的算法原理，掌握AI绘画主流算法方案背后通用的算法模块，并带你从零到一训练一个扩散模型。
-基于扩散模型的AI绘画技术是我们这门课的主题，但其实在22年以前，GAN才是业界公认的AI绘画技术首选。在老一辈的AI画图中，GAN（生成对抗网络）可以说是唯一的选择。相信你也在各种社交软件上见到过各种变小孩、变老、性别变换的视觉特效，这类效果通常就是靠GAN完成的。
-然而，随着22年DALL-E 2、Stable Diffusion的推出，扩散模型技术逐渐成为了AI绘画的主流技术。无论是绘画细节的精致度还是内容的多样性，扩散模型似乎都要优于GAN。
-即便如此，对于入门AI绘画知识体系而言，GAN仍然是绕不开的话题，值得我们深入了解。因为搞懂了GAN的长处和短板，才能理解后来扩散模型解决了GAN的哪些痛点。而且今天我们要学的各种算法模型，也是面试中常常会问到的。
-在正式探索基于扩散模型的AI绘画技术之前，我们用这一讲来重温旧画师GAN，探讨GAN如何从兴起到高光，并简要回顾GAN发展史上那些里程碑式的技术。
-GAN的起源下面我放了两张例子。第一个例子是张大千模仿石涛的画作，第二个例子是贝特莱奇14岁时仿照毕加索的画作。假如你是艺术鉴赏家，能否发现这些仿作的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2812310114.html" title="06 | 颠覆者扩散模型：直观去理解加噪与去噪">06 | 颠覆者扩散模型：直观去理解加噪与去噪</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">06 | 颠覆者扩散模型：直观去理解加噪与去噪你好，我是南柯。
-上一讲我们结识了旧画师GAN，提到了扩散模型在内容精致度、风格多样性和通用编辑等能力上弥补了GAN的不足之处。如果说GAN是旧画师，扩散模型无疑就是当下最受追捧的新画师。DALL-E 2、Imagen、Stable Diffusion这些大名鼎鼎的模型，它们背后的魔术师都是扩散模型。
-用过Midjourney的同学也许都注意过这样的现象，随着图像生成的进度条推进，图像也是从模糊到清晰。你可以点开下面的图片查看这个过程。
 
-聪明的你应该猜到了，这背后的技巧大概率也是扩散模型！之所以说大概，是因为Midjourney并没有对外公布其背后的算法原理，后面我们会用专门的一讲带你推测Midjourney背后的技术方案，这里先卖个关子。
-那么，扩散模型的工作原理是怎样的呢？算法优化目标是什么？与GAN相比有哪些异同？这一讲我们便从这些基础问题出发，开始今天的扩散模型学习之旅。
-初识扩散模型扩散模型的灵感源自热力学。我们可以想象一下这样的过程，朝着一杯清水中滴入一滴有色碘伏，然后观察这杯水。
-你会发现，碘伏在水中会有一个扩散的过程，最终完全在水中呈现出均匀的状态。扩散效应代表从有序到混乱的过程。比如下面这张图，把一滴红色的液体滴入清水中，颜色会逐渐扩散开，最终整杯水都变为红色。
 
-AI绘画中的扩散模型和上面的例子类似，对于一张图片， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1738621721.html" title="07｜AIGC的核心魔法：搞懂Transformer">07｜AIGC的核心魔法：搞懂Transformer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">07｜AIGC的核心魔法：搞懂Transformer你好，我是南柯。
-前两讲中，我们已经学习了扩散模型的加噪去噪过程，了解了UNet模型用于预测噪声的算法原理。事实上，Stable Diffusion模型在原始的UNet模型中加入了Transformer结构（至于怎么引入的，我们等 下一讲 学完UNet结构便会清楚），这么做可谓一举两得，因为Transformer结构不但能提升噪声去除效果，还是实现prompt控制图像内容的关键技术。
-更重要的是，Transformer结构也是GPT系列工作的核心模块之一。也就是说，我们只有真正理解了Transformer，才算是进入了当下AIGC世界的大门。这一讲，我就为你揭秘Tranformer的算法原理。
-初识Transformer在深度学习中，有很多需要处理时序数据的任务，比如语音识别、文本理解、机器翻译、音乐生成等。不过，经典的卷积神经网络，也就是CNN结构，主要擅长处理空间相关的任务，比如图像分类、目标检测等。
-因此， RNN（循环神经网络）、 LSTM（长短时记忆网络）以及 Transformers 这些解决时序任务的方案便应运而生。
-RNN和LSTM解决序列问题RNN专为处理序列数据而设计，可以灵活地处理不同长度的数据。RNN的主要特点是在处理序列数据时，对前面的信息会产生某种“记忆”，通过这种记忆效果，RNN可以捕捉序列中的时间依 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2014624963.html" title="08｜巧用神经网络：如何用UNet预测噪声">08｜巧用神经网络：如何用UNet预测噪声</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">08｜巧用神经网络：如何用UNet预测噪声你好，我是南柯。
-前面我们已经学习了扩散模型加噪和去噪的过程，也了解了Transformer的基本原理。之前我还埋下了一个伏笔，那便是使用UNet网络预测每一步的噪声。
-今天我就来为你解读UNet的核心知识。在这一讲，我们主要解决后面这三个问题。
 
-UNet模型的工作原理是怎样的？
-在各种AI绘画模型里用到的UNet结构有什么特殊之处？
-UNet与Transformer要如何结合？
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3838183937.html" title="一键到达 | 应用场景复习课">一键到达 | 应用场景复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 应用场景复习课今天我们来复习专栏的最后一部分内容，应用场景。在这个模块里，我们一起学习了人工智能技术在计算机视觉、语音处理、对话系统和机器翻译这四个经典场景的应用。
+点击要点卡，直达你最需要复习的那篇。
 
-搞懂了这些，在你的日常工作中，便可以根据实际需求对预测噪声的模型做各种魔改了，也会为我们之后训练扩散模型的实战课打好基础。
-初识UNet在正式认识UNet之前，我们有必要先了解一下图像分割这个任务。
-图像分割是计算机视觉领域的一种基本任务，它的目标是将图像划分为多个区域，对应于原图中不同的语义内容。比如下面这个例子，就是针对自动驾驶场景的图像分割效果。
 
-图像分割与我们熟悉的图像分类任务目标有所不同，图像分类任务的目标是为整张图像分配一个整体标签，而图像分割任务的目标是为每个像素分配对应的类别标签。
-UNet出现之前，图像分割采用的主要方法是2015年提出的 FCN（全卷积网络）。与传统的CNN（卷积神经网络）不同，FCN去掉了最后的全连接层，而是使用转置卷积层实现上采样的过程。通过这样的操作，FCN可以获得与输入图像相同尺寸的输出。
 
-虽然FCN为图像分割任 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3769512864.html" title="10｜CLIP：让AI绘画模型乖乖听你的话">10｜CLIP：让AI绘画模型乖乖听你的话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">10｜CLIP：让AI绘画模型乖乖听你的话你好，我是南柯。
-今天我们要学习的是OpenAI在2021年提出的CLIP算法。在AI绘画的过程中，CLIP的作用是理解我们给到模型的prompt指令，将prompt指令编码为模型能理解的“语言”。
-但你可能不知道，最早提出CLIP模型并不是帮助AI绘画模型理解prompt指令，而是用于连接图像和文本这两种模态。如今，随着AIGC技术的大爆发，CLIP模型又在AI绘画、多模态大模型等方向发挥了巨大价值。
-这一讲，我们就一起来搞清楚CLIP这个算法背后的奥秘！只有真正理解了CLIP，你才能知道为什么prompt可以控制AI绘画生成的内容。在设计你自己的AI绘画模型的时候，便可以根据你的需求选择各种CLIP模型或者其变体模型，得到更好的绘画效果。
-追本溯源：CLIP的提出背景在学习CLIP之前，我们有必要先理解模态（Modality）的概念。在深度学习领域，模态可以用于描述输入数据的不同形式，比如图像、文本、音频等。不同的模态可以提供不同的特征，使模型能够从更多的角度理解和处理数据。在实践中，通过整合多种模态的信息，通常能够帮助模型获得更好的性能。
-我们常说的NLP（Natural Language Processing），即自然语言处理，解决的就是文本模态的任务，比如文本问答、文本对话、文本情绪分析等任务。
-和它并列的是CV（Computer ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/140459132.html" title="09｜采样器：龟兔赛跑，如何选择更好更快的采样器？">09｜采样器：龟兔赛跑，如何选择更好更快的采样器？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">09｜采样器：龟兔赛跑，如何选择更好更快的采样器？你好，我是南柯。
-热身篇我们学习过WebUI，你会发现里面有多种可供选择的采样器方法，包括Euler a、DPM、DDIM等等。
 
-我们已经多次使用Stable Diffusion进行AI绘画，采样器存在的价值就是从噪声出发，逐步去噪，得到一张清晰的图像。比如下面这张图，展示的便是采样器如何大显神威。
-
-那么，采样器到底是什么？它们是如何运作的？它们之间又存在哪些区别呢？今天这一讲，我们就来详细探讨这些问题，让你对采样器有一个清晰的认识。了解了不同类型的采样器以后，我还会带你做个综合测评，这样你就能结合绘图需求去选择“最佳采样器”了。
-采样器基本原理在 第6讲 扩散模型的学习中我们已经知道，任何图像都可以通过不断添加噪声，变成完全被噪声覆盖的图像。反过来，一张噪声图像通过逐步去除噪声，可以变得清晰可辨。
-在这个去除噪声的过程中，起到关键作用的正是今天课程里的“主角”——采样器。
-为了搞清楚采样器是如何起作用的，我们要先回顾一下第6讲的内容。对于从噪声生成图像的扩散模型，UNet模型负责预测要去除的噪声。UNet模型的输入是时间步 $t$ 对应的噪声图像 $x_t$ 和时间步$t$的编码。UNet的 **输出的不是上一个时间步 $t-1$ 的噪声图像，而是上一个时间步添加的噪声值 $\epsilon_{t-1}$**。
-这时候，我们需 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2277561835.html" title="11｜VAE系列：如何压缩图像给GPU腾腾地方">11｜VAE系列：如何压缩图像给GPU腾腾地方</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">11｜VAE系列：如何压缩图像给GPU腾腾地方你好，我是南柯。
-在前几讲中，我们已经学习了Transformer、UNet、Clip三个关键模块。在Stable Diffusion的知识地图上，还差最后的一环，便是今天的主角VAE模块。
-在Stable Diffusion中，所有的去噪和加噪过程并不是在图像空间直接进行的。VAE模块的作用便是将图像“压缩”到一个特殊的空间，这个空间的“分辨率”要低于图像空间，便于快速地完成加噪和去噪的任务。之后，还能便捷地将特殊空间“解压”到图像空间。
-这一讲，我们将一起了解VAE的基本原理。学完VAE，我们便了解了Stable Diffusion模型的全部核心模块。之后我们训练自己的Stable Diffusion模型时，也会用上VAE这个模块。
-初识VAEVAE的全称是变分自动编码器（Variational Autoencoder），在2013年被提出，是自动编码器（AE，Autoencoder）的一种扩展。你可能听过很多不同的名词，比如AE、VAE、DAE、MAE、VQVAE等。其实这些带 “AE” 的名字，你都可以理解成是一个编码器和一个解码器。
-提到编码器和解码器，你也许会联想到我们在 第7讲 中学过的Transformer结构。这里我需要提醒你注意，尽管术语一样，但是VAE和Transformer中的编码器、解码器解决的是不同类型的问题 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2507520493.html" title="12｜实战项目（二）：动手训练一个你自己的扩散模型">12｜实战项目（二）：动手训练一个你自己的扩散模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">12｜实战项目（二）：动手训练一个你自己的扩散模型你好，我是南柯。
-前面几讲，我们已经了解了扩散模型的算法原理和组成模块，学习了Stable Diffusion模型新增的CLIP和VAE模块。掌握了这些知识，相信你也一定跃跃欲试，想要训练一个属于自己的AI绘画模型。
-这一讲，我们会将前几讲的知识串联起来，从全局的视角讨论扩散模型如何训练和使用。我们将通过实战的形式，一起训练一个标准扩散模型，并微调一个Stable Diffusion模型，帮你进一步加深对知识的理解。学完这一讲，我们就迈出了模型自由的关键一步。
-关键知识串联在实战之前，我想请你思考一个问题：想要把标准的扩散模型升级为Stable Diffusion，需要几步操作？
-答案是两步。
-我们通过 第6讲 已经知道，标准扩散模型的训练过程包含6个步骤，分别是随机选取训练图像、随机选择时间步t、随机生成高斯噪声、一步计算第t步加噪图、使用UNet预测噪声值和计算噪声数值误差。
-Stable Diffusion在此基础上，增加了VAE模块和CLIP模块。VAE模块的作用是降低输入图像的维度，从而加快模型训练、给GPU腾腾地方；CLIP模块的作用则是将文本描述通过交叉注意力机制注入到UNet模块，让AI绘画模型做到言出法随。
-我们不妨再翻出Stable Diffusion的算法框架图回忆一下。图中最左侧粉色区域便是VAE模块，最右侧 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/110/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/#content-inner">110</a><span class="page-number current">111</span><a class="page-number" href="/page/112/#content-inner">112</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/112/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/110/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/110/#content-inner">110</a><span class="page-number current">111</span><a class="page-number" href="/page/112/#content-inner">112</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/112/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

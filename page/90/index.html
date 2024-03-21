@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,125 +138,76 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2688764381.html" title="第26讲 | 如何监控和诊断JVM堆内和堆外内存使用？">第26讲 | 如何监控和诊断JVM堆内和堆外内存使用？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第26讲 | 如何监控和诊断JVM堆内和堆外内存使用？上一讲我介绍了JVM内存区域的划分，总结了相关的一些概念，今天我将结合JVM参数、工具等方面，进一步分析JVM内存结构，包括外部资料相对较少的堆外部分。
-今天我要问你的问题是，如何监控和诊断JVM堆内和堆外内存使用？
-典型回答了解JVM内存的方法有很多，具体能力范围也有区别，简单总结如下：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1862169631.html" title="35 | 编程范式：面向对象编程">35 | 编程范式：面向对象编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">35 | 编程范式：面向对象编程你好，我是陈皓，网名左耳朵耗子。
+前面我们谈了函数式编程，函数式编程总结起来就是把一些功能或逻辑代码通过函数拼装方式来组织的玩法。这其中涉及最多的是函数，也就是编程中的代码逻辑。但我们知道，代码中还是需要处理数据的，这些就是所谓的“状态”，函数式编程需要我们写出无状态的代码。
+而这天下并不存在没有状态没有数据的代码，如果函数式编程不处理状态这些东西，那么，状态会放在什么地方呢？总是需要一个地方放这些数据的。
+对于状态和数据的处理，我们有必要提一下“面向对象编程”（Object-oriented programming，OOP）这个编程范式了。我们知道， 面向对象的编程有三大特性：封装、继承和多态。
+面向对象编程是一种具有对象概念的程序编程范型，同时也是一种程序开发的抽象方针，它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的可重用性、灵活性和可扩展性，对象里的程序可以访问及修改对象相关联的数据。在面向对象编程里，计算机程序会被设计成彼此相关的对象。
+面向对象程序设计可以看作一种在程序中包含各种独立而又互相调用的对象的思想，这与传统的思想刚好相反：传统的程序设计主张将程序看作一系列函数的集合，或者直接就是一系列对计算机下达的指令。面向对象程序设计中的每一个对象都应该能够接受数据、处理数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2505014459.html" title="35 深度学习之外的人工智能 | 授人以鱼不如授人以渔：迁移学习">35 深度学习之外的人工智能 | 授人以鱼不如授人以渔：迁移学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">35 深度学习之外的人工智能 | 授人以鱼不如授人以渔：迁移学习无论是小学还是大学，在教学中都会强调的一个问题就是“举一反三”，将学到的规律灵活地运用到其他相似的场景下。而要想让人工智能学会举一反三，用到的就是 迁移学习技术。
+迁移学习（transfer learning）是运用已学习的知识来求解不同但相关领域问题的新的机器学习方法，目的是让机器“学会学习”。当训练数据和测试数据来自不同的特征空间或遵循不同的概率分布时，如果能够将从训练数据上习得的知识迁移到测试数据上，就可以回避掉复杂的数据标签工作，进而提升学习性能。迁移学习就是解决这个问题的学习框架，它能够对仅有少量甚至没有标签样本进行学习，从而解决目标问题。
+许多机器学习和数据挖掘算法都建立在两个主要假设之上：第一，训练样本和测试数据必须处于相同的特征空间并具有相同的分布；第二，有足够的高质量训练样本作为学习资源。
+遗憾的是，这两个假设在大多数实际应用中难以成立。一方面，训练数据和测试数据在时间上的差异可能导致分布规律的变化；另一方面，对大量数据进行标注不仅费时费力，还容易受到知识产权问题的影响。一旦没有数据，再好的深度学习方法都是无源之水，无本之木，难以发挥作用。
+迁移学习的出现给解决这些问题带来了一丝曙光。其实说到底， 迁移学习可以看作是提升学习算法泛化性能的一种思路。现实世界并非标准化和结构化的数据集，而是杂乱无章的万花 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4044030878.html" title="36 | Redis支撑秒杀场景的关键技术和实践都有哪些？">36 | Redis支撑秒杀场景的关键技术和实践都有哪些？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">36 | Redis支撑秒杀场景的关键技术和实践都有哪些？你好，我是蒋德钧。
+秒杀是一个非常典型的活动场景，比如，在双11、618等电商促销活动中，都会有秒杀场景。秒杀场景的业务特点是 限时限量，业务系统要处理瞬时的大量高并发请求，而Redis就经常被用来支撑秒杀活动。
+不过，秒杀场景包含了多个环节，可以分成秒杀前、秒杀中和秒杀后三个阶段，每个阶段的请求处理需求并不相同，Redis并不能支撑秒杀场景的每一个环节。
+那么，Redis具体是在秒杀场景的哪个环节起到支撑作用的呢？又是如何支持的呢？清楚了这个问题，我们才能知道在秒杀场景中，如何使用Redis来支撑高并发压力，并且做好秒杀场景的应对方案。
+接下来，我们先来了解下秒杀场景的负载特征。
+秒杀场景的负载特征对支撑系统的要求秒杀活动售卖的商品通常价格非常优惠，会吸引大量用户进行抢购。但是，商品库存量却远远小于购买该商品的用户数，而且会限定用户只能在一定的时间段内购买。这就给秒杀系统带来两个明显的负载特征，相应的，也对支撑系统提出了要求，我们来分析下。
+第一个特征是瞬时并发访问量非常高。
+一般数据库每秒只能支撑千级别的并发请求，而Redis的并发处理能力（每秒处理请求数）能达到万级别，甚至更高。所以， 当有大量并发请求涌入秒杀系统时，我们就需要使用Redis先拦截大部分请求，避免大量请求直接发送给数据库，把数据库压垮。
+第二个特征是读 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2021731144.html" title="36 | 如何对更多的工作说“不”">36 | 如何对更多的工作说“不”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:19.000Z" title="发表于 2023-12-13 18:10:19">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">36 | 如何对更多的工作说“不”生活中，我们常常会讲拒绝的艺术，一个人如果不懂拒绝，永远说“ Yes”，一定难以远行。越来越多的“ Yes ”，会让你背上沉重的包袱，无效的社交、超出能力范围的帮助、不合理的要求等等，都会耗尽你的时间和资源。
+大部分人都会说“不”，但要注意拒绝的艺术，维护好关系和礼仪。今天我主要和你聊聊如何说“不”，再具体一点，如何对更多的工作说不。
+在回答这个问题之前，有个更重要的问题是：什么时候我们应该说“不”？
+工作中很多时候我们是很容易说“不”的，比如一个需求评估了之后，发现无论如何在期限内都没法完成，或者技术实现上超越了自己的能力。这时候说“不”并不困难，一来你知道自己有分身也做不出来，另外需求方也能够理解这种悬殊的要求对你来说是不可能完成的任务。
+难的是什么呢？自己觉得加加班，努力跳起来够一够，或许能搞定呢。或者需求方认为这就是你的事，你应该搞定：“这个不难啊，怎么会做不了呢？”碰到这种情况，无论是对自己说“不”，还是对别人说“不”，都困难得多。
+踮起脚尖做事，当然是好事。读库的创始人六哥曾经在访谈和文章中屡次提到“踮起脚尖阅读”这个概念，他说：
 
-可以使用综合性的图形化工具，如JConsole、VisualVM（注意，从Oracle JDK 9开始，VisualVM已经不再包含在JDK安装包中）等。这些工具具体使用起来相对比较直观，直接连接到Java进程，然后就可以在图形化界面里掌握内存使用情况。
+人在青年时期，思维如火山活跃，激情如大雨滂沱，没有成见的束缚，没有物质的负担，没有世俗的压力，想不怀疑人生、批判社会、自己给自己找别扭、思考终极问题都难。在这么好的年龄，就应该读一些踮起脚尖才够得着的书。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2399479355.html" title="36 | 实战二（上）：程序出错该返回啥？NULL、异常、错误码、空对象？">36 | 实战二（上）：程序出错该返回啥？NULL、异常、错误码、空对象？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">36 | 实战二（上）：程序出错该返回啥？NULL、异常、错误码、空对象？我们可以把函数的运行结果分为两类。一类是预期的结果，也就是函数在正常情况下输出的结果。一类是非预期的结果，也就是函数在异常（或叫出错）情况下输出的结果。比如，在上一节课中，获取本机名的函数，在正常情况下，函数返回字符串格式的本机名；在异常情况下，获取本机名失败，函数返回UnknownHostException异常对象。
+在正常情况下，函数返回数据的类型非常明确，但是，在异常情况下，函数返回的数据类型却非常灵活，有多种选择。除了刚刚提到的类似UnknownHostException这样的异常对象之外，函数在异常情况下还可以返回错误码、NULL值、特殊值（比如-1）、空对象（比如空字符串、空集合）等。
+每一种异常返回数据类型，都有各自的特点和适用场景。但有的时候，在异常情况下，函数到底该返回什么样的数据类型，并不那么容易判断。比如，上节课中，在本机名获取失败的时候，ID生成器的generate()函数应该返回什么呢？是异常？空字符？还是NULL值？又或者是其他特殊值（比如null-15293834874-fd3A9KBn，null表示本机名未获取到）呢？
+函数是代码的一个非常重要的编写单元，而函数的异常处理，又是我们在编写函数的时候，时刻都要考虑的。所以，今天我们就聊一聊，如何设计函数在异常情况下的返回数据类型。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/910278738.html" title="36 | 局部性原理：数据库性能跟不上，加个缓存就好了？">36 | 局部性原理：数据库性能跟不上，加个缓存就好了？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:51.000Z" title="发表于 2023-12-13 18:18:51">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">36 | 局部性原理：数据库性能跟不上，加个缓存就好了？平时进行服务端软件开发的时候，我们通常会把数据存储在数据库里。而服务端系统遇到的第一个性能瓶颈，往往就发生在访问数据库的时候。这个时候，大部分工程师和架构师会拿出一种叫作“缓存”的武器，通过使用Redis或者Memcache这样的开源软件，在数据库前面提供一层缓存的数据，来缓解数据库面临的压力，提升服务端的程序性能。
 
-以JConsole为例，其内存页面可以显示常见的 堆内存 和 各种堆外部分 使用状态。
+在数据库前添加数据缓存是常见的性能优化方式
+那么，不知道你有没有想过，这种添加缓存的策略一定是有效的吗？或者说，这种策略在什么情况下是有效的呢？如果从理论角度去分析，添加缓存一定是我们的最佳策略么？进一步地，如果我们对于访问性能的要求非常高，希望数据在1毫秒，乃至100微秒内完成处理，我们还能用这个添加缓存的策略么？
+理解局部性原理我们先来回顾一下，上一讲的这张不同存储器的性能和价目表。可以看到，不同的存储器设备之间，访问速度、价格和容量都有几十乃至上千倍的差异。
 
-也可以使用命令行工具进行运行时查询，如jstat和jmap等工具都提供了一些选项，可以查看堆、方法区等使用数据。
+以上一讲的Intel 8265U的CPU为例，它的L1 Cache只有256K，L2 Cache有个1MB，L3 Cache有12MB。一共13MB的存储空间，如果按照7美元&#x2F;1MB的价格计算，就要91美元。
+我们的内存有8GB，容量是CPU Cache的600多倍，按照表上的价格差不多就是120美元。如果按照今天京东上的价格，恐怕不到4 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3289138178.html" title="36 | 微服务架构最佳实践 - 基础设施篇">36 | 微服务架构最佳实践 - 基础设施篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">36 | 微服务架构最佳实践 - 基础设施篇每项微服务基础设施都是一个平台、一个系统、一个解决方案，如果要自己实现，其过程和做业务系统类似，都需要经过需求分析、架构设计、开发、测试、部署上线等步骤，专栏里我来简单介绍一下每个基础设施的主要作用，更多详细设计你可以参考Spring Cloud的相关资料（ https://projects.spring.io/spring-cloud/）。
+下面进入今天的内容，微服务架构最佳实践的基础设施篇。
+自动化测试微服务将原本大一统的系统拆分为多个独立运行的“微”服务，微服务之间的接口数量大大增加，并且微服务提倡快速交付，版本周期短，版本更新频繁。如果每次更新都靠人工回归整个系统，则工作量大，效率低下，达不到“快速交付”的目的，因此必须通过自动化测试系统来完成绝大部分测试回归的工作。
+自动化测试涵盖的范围包括代码级的单元测试、单个系统级的集成测试、系统间的接口测试，理想情况是每类测试都自动化。如果因为团队规模和人力的原因无法全面覆盖，至少要做到接口测试自动化。
+自动化部署相比大一统的系统，微服务需要部署的节点增加了几倍甚至十几倍，微服务部署的频率也会大幅提升（例如，我们的业务系统70%的工作日都有部署操作），综合计算下来，微服务部署的次数是大一统系统部署次数的几十倍。这么大量的部署操作，如果继续采用人工手工处理，需要投入大量的人力，且容易出错，因 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1729791507.html" title="36 | 核心：安全与效率——工程技术的两个核心维度">36 | 核心：安全与效率——工程技术的两个核心维度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">36 | 核心：安全与效率——工程技术的两个核心维度在“ 修行：由术入道”模块的最后一个主题，我们聊聊工程，不是具体的工程的技术，而是抽象的工程之道。
+做了很多年的工程，开发了各种各样的系统，写了无数的代码，说起这一切，我们都在谈些什么？
+我们谈过程，从需求工程到开发流程，从编码规范到同行评审，从持续集成到自动部署，从敏捷开发到极限编程；我们谈架构，从企业级到互联网，从面向服务架构（SOA）到微服务架构（Microservice）；我们谈复杂性，从高并发到高性能，从高可用到高可靠，从大数据到大容量。
+那么对于这一切，你感觉这里面的核心是什么？
+核心核心，意味着最重要的，一切复杂的工程技术方案都是围绕着它来运转。
+在深入核心之前，我们先讲一个电力行业的故事。虽说电力项目我没做过，但电站大概的工作原理在中学物理课上就已经学过了，原理很简单。虽理论上是这么说，但现实中看到那些大规模的电站后，还是感觉很复杂的。
+故事是这样的：记得有个给我们上课的主讲老师是个须发皆白的老先生，进门后掏出一堆零件放在讲台上。一盏酒精灯、一个小水壶、一个叶片、一个铜光闪闪的小电机、一个小灯泡。老先生往壶里倒了些水，点燃酒精灯，不一会儿水开了，从壶嘴里喷出了蒸汽，带动叶片旋转，然后小灯泡就亮了。
+老先生说：“这就是电厂。如果烧的是煤炭，这就是燃煤电厂；如果烧的天然气，这就是燃气电厂；如果获得热能的方式是核裂变，这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/491488666.html" title="36 | 管理五模式：高手常用的管理模式有哪些？">36 | 管理五模式：高手常用的管理模式有哪些？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">36 | 管理五模式：高手常用的管理模式有哪些？你好，我是华仔。
+上一讲我介绍了管理四象限，帮你明确了管理的工作范畴，带你熟悉了各项工作的关键点。但是在具体开展工作的时候，往往并不是管理者一个人规划好各项工作内容，然后交给团队去执行就可以了。原因有三点：
+第一， 每个人的精力都是有限的。如果你什么事情都自己一肩挑，时间和精力上会顾不过来。
+第二， 没有人是全知全能的。就算你精力旺盛，也会遇到不擅长的事情。比如我就对吃喝玩乐不怎么在行，所以组织团队建设活动的能力就比较差。
+第三， 团队成员的认可度和积极性也很重要。就算你什么都能规划好，但具体工作还是要交给团队成员来执行，如果你的想法不能得到充分理解和积极响应，大家暗地里抵制其实也很容易。
+所以，对于管理四象限涵盖的管理任务，管理者需要发挥团队成员的力量，调动他们的积极性，这样能够达到更好的管理效果。
+管理模式具体怎么做呢？经过不断的学习摸索和长期的工作实践，我认为可以根据管理者 是否参与、团队如何讨论以及如何决策 这3个维度，划分出6种不同的 管理模式（或者叫管理风格）。
+第一种是 独裁式。
+管理者直接 指定 下属或团队的具体工作，包括做什么事、怎么做、什么时候做和输出什么结果等，全都一一明确，团队成员不能提出不同意见和方案。
+用一句话总结就是：“ 我来决定，你来执行。”
+第二种是 民主式。
+管理者组织团队成员针对某项工作进行讨论， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3045258930.html" title="36 | 编程范式：基于原型的编程范式">36 | 编程范式：基于原型的编程范式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">36 | 编程范式：基于原型的编程范式你好，我是陈皓，网名左耳朵耗子。
+基于原型（Prototype）的编程其实也是面向对象编程的一种方式。没有class化的，直接使用对象。又叫，基于实例的编程。其主流的语言就是JavaScript，与传统的面向对象编程的比较如下：
 
-或者，也可以使用jmap等提供的命令，生成堆转储（Heap Dump）文件，然后利用jhat或Eclipse MAT等堆转储分析工具进行详细分析。
+在基于类的编程当中，对象总共有两种类型。类定义了对象的基本布局和函数特性，而接口是“可以使用的”对象，它基于特定类的样式。在此模型中，类表现为行为和结构的集合，对所有接口来说这些类的行为和结构都是相同的。因而，区分规则首先是基于行为和结构，而后才是状态。
 
-如果你使用的是Tomcat、Weblogic等Java EE服务器，这些服务器同样提供了内存管理相关的功能。
-
-另外，从某种程度上来说，GC日志等输出，同样包含着丰富的信息。
-
-
-这里有一个相对特殊的部分，就是是堆外内存中的直接内存，前面 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/851019313.html" title="第2讲 | Exception和Error有什么区别？">第2讲 | Exception和Error有什么区别？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第2讲 | Exception和Error有什么区别？世界上存在永远不会出错的程序吗？也许这只会出现在程序员的梦中。随着编程语言和软件的诞生，异常情况就如影随形地纠缠着我们，只有正确处理好意外情况，才能保证程序的可靠性。
-Java语言在设计之初就提供了相对完善的异常处理机制，这也是Java得以大行其道的原因之一，因为这种机制大大降低了编写和维护可靠程序的门槛。如今，异常处理机制已经成为现代编程语言的标配。
-今天我要问你的问题是，请对比Exception和Error，另外，运行时异常与一般异常有什么区别？
-典型回答Exception和Error都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出（throw）或者捕获（catch），它是异常处理机制的基本组成类型。
-Exception和Error体现了Java平台设计者对不同异常情况的分类。Exception是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。
-Error是指在正常情况下，不大可能出现的情况，绝大部分的Error都会导致程序（比如JVM自身）处于非正常的、不可恢复状态。既然是非正常情况，所以不便于也不需要捕获，常见的比如OutOfMemoryError之类，都是Error的子类。
-Exception又分为 可检查（checked）异常和 不检查（unchecked ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/240209494.html" title="第30讲 | Java程序运行在Docker等容器环境有哪些新问题？">第30讲 | Java程序运行在Docker等容器环境有哪些新问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第30讲 | Java程序运行在Docker等容器环境有哪些新问题？如今，Docker等容器早已不是新生事物，正在逐步成为日常开发、部署环境的一部分。Java能否无缝地运行在容器环境，是否符合微服务、Serverless等新的软件架构和场景，在一定程度上也会影响未来的技术栈选择。当然，Java对Docker等容器环境的支持也在不断增强，自然地，Java在容器场景的实践也逐渐在面试中被涉及。我希望通过专栏今天这一讲，能够帮你能做到胸有成竹。
-今天我要问你的问题是，Java程序运行在Docker等容器环境有哪些新问题？
-典型回答对于Java来说，Docker毕竟是一个较新的环境，例如，其内存、CPU等资源限制是通过CGroup（Control Group）实现的，早期的JDK版本（8u131之前）并不能识别这些限制，进而会导致一些基础问题：
-
-如果未配置合适的JVM堆和元数据区、直接内存等参数，Java就有可能试图使用超过容器限制的内存，最终被容器OOM kill，或者自身发生OOM。
-
-错误判断了可获取的CPU资源，例如，Docker限制了CPU的核数，JVM就可能设置不合适的GC并行线程数等。
-
-
-从应用打包、发布等角度出发，JDK自身就比较大，生成的镜像就更为臃肿，当我们的镜像非常多的时候，镜像的存储等开销就比较明显了。
-如果考虑到微服务、Serverless等新的架构和场景，J ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1375004159.html" title="第33讲 | 后台服务出现明显“变慢”，谈谈你的诊断思路？">第33讲 | 后台服务出现明显“变慢”，谈谈你的诊断思路？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第33讲 | 后台服务出现明显“变慢”，谈谈你的诊断思路？在日常工作中，应用或者系统出现性能问题往往是不可避免的，除了在有一定规模的IT企业或者专注于特定性能领域的企业，可能大多数工程师并不会成为专职的性能工程师，但是掌握基本的性能知识和技能，往往是日常工作的需要，并且也是工程师进阶的必要条件之一，能否定位和解决性能问题也是对你知识、技能和能力的检验。
-今天我要问你的问题是，后台服务出现明显“变慢”，谈谈你的诊断思路？
-典型回答首先，需要对这个问题进行更加清晰的定义:
-
-服务是突然变慢还是长时间运行后观察到变慢？类似问题是否重复出现？
-
-“慢”的定义是什么，我能够理解是系统对其他方面的请求的反应延时变长吗?
-
-
-第二，理清问题的症状，这更便于定位具体的原因，有以下一些思路：
-
-问题可能来自于Java服务自身，也可能仅仅是受系统里其他服务的影响。初始判断可以先确认是否出现了意外的程序错误，例如检查应用本身的错误日志。
-对于分布式系统，很多公司都会实现更加系统的日志、性能等监控系统。一些Java诊断工具也可以用于这个诊断，例如通过JFR（ [Java Flight Recordera&gt;），监控应用是否大量出现了某种类型的异常。如果有，那么异常可能就是个突破点。如果没有，可以先检查系统级别的资源等情况，监控CPU、内存等资源是否被其他进程大量占用，并且这种占用是否不符合系统正常运行 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2971887616.html" title="第31讲 | 你了解Java应用开发中的注入攻击吗？">第31讲 | 你了解Java应用开发中的注入攻击吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第31讲 | 你了解Java应用开发中的注入攻击吗？安全是软件开发领域永远的主题之一，随着新技术浪潮的兴起，安全的重要性愈发凸显出来，对于金融等行业，甚至可以说安全是企业的生命线。不论是移动设备、普通PC、小型机，还是大规模分布式系统，以及各种主流操作系统，Java作为软件开发的基础平台之一，可以说是无处不在，自然也就成为安全攻击的首要目标之一。
-今天我要问你的问题是，你了解Java应用开发中的注入攻击吗？
-典型回答注入式（Inject）攻击是一类非常常见的攻击方式，其基本特征是程序允许攻击者将不可信的动态内容注入到程序中，并将其执行，这就可能完全改变最初预计的执行过程，产生恶意效果。
-下面是几种主要的注入式攻击途径，原则上提供动态执行能力的语言特性，都需要提防发生注入攻击的可能。
-首先，就是最常见的SQL注入攻击。一个典型的场景就是Web系统的用户登录功能，根据用户输入的用户名和密码，我们需要去后端数据库核实信息。
-假设应用逻辑是，后端程序利用界面输入动态生成类似下面的SQL，然后让JDBC执行。
-Select * from use_info where username &#x3D; “input_usr_name” and password &#x3D; “input_pwd”
-
-
-但是，如果我输入的input_pwd是类似下面的文本，
-“ or “”&#x3D;”
-
-
-那么 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3720134121.html" title="第32讲 | 如何写出安全的Java代码？">第32讲 | 如何写出安全的Java代码？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第32讲 | 如何写出安全的Java代码？在上一讲中，我们已经初步接触了Java安全，今天我们将一起探讨更多Java开发中可能影响到安全的场合。很多安全问题，在特定的上下文，存在着不同的定义，尽管本质是相似或一致的，这是由于Java平台自身的特性所带来特有的问题。今天这一讲我将侧重于Java开发者的角度谈代码安全，而不是讲广义的安全风险。
-今天我要问你的问题是，如何写出安全的Java代码？
-典型回答这个问题可能有点宽泛，我们可以用特定类型的安全风险为例，如拒绝服务（DoS）攻击，分析Java开发者需要重点考虑的点。
-DoS是一种常见的网络攻击，有人也称其为“洪水攻击”。最常见的表现是，利用大量机器发送请求，将目标网站的带宽或者其他资源耗尽，导致其无法响应正常用户的请求。
-我认为，从Java语言的角度，更加需要重视的是程序级别的攻击，也就是利用Java、JVM或应用程序的瑕疵，进行低成本的DoS攻击，这也是想要写出安全的Java代码所必须考虑的。例如：
-
-如果使用的是早期的JDK和Applet等技术，攻击者构建合法但恶劣的程序就相对容易，例如，将其线程优先级设置为最高，做一些看起来无害但空耗资源的事情。幸运的是类似技术已经逐步退出历史舞台，在JDK 9以后，相关模块就已经被移除。
-
-上一讲中提到的哈希碰撞攻击，就是个典型的例子，对方可以轻易消耗系统有限的CPU和线程资源。从这个角度思 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2873535670.html" title="第38讲 | 对比Java标准NIO类库，你知道Netty是如何实现更高性能的吗？">第38讲 | 对比Java标准NIO类库，你知道Netty是如何实现更高性能的吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第38讲 | 对比Java标准NIO类库，你知道Netty是如何实现更高性能的吗？今天我会对NIO进行一些补充，在 专栏第11讲 中，我们初步接触了Java提供的几种IO机制，作为语言基础类库，Java自身的NIO设计更偏底层，这本无可厚非，但是对于一线的应用开发者，其复杂性、扩展性等方面，就存在一定的局限了。在基础NIO之上，Netty构建了更加易用、高性能的网络框架，广泛应用于互联网、游戏、电信等各种领域。
-今天我要问你的问题是，对比Java标准NIO类库，你知道Netty是如何实现更高性能的吗？
-典型回答单独从性能角度，Netty在基础的NIO等类库之上进行了很多改进，例如：
-
-更加优雅的Reactor模式实现、灵活的线程模型、利用EventLoop等创新性的机制，可以非常高效地管理成百上千的Channel。
-
-充分利用了Java的Zero-Copy机制，并且从多种角度，“斤斤计较”般的降低内存分配和回收的开销。例如，使用池化的Direct Buffer等技术，在提高IO性能的同时，减少了对象的创建和销毁；利用反射等技术直接操纵SelectionKey，使用数组而不是Java容器等。
-
-使用更多本地代码。例如，直接利用JNI调用Open SSL等方式，获得比Java内建SSL引擎更好的性能。
-
-在通信协议、序列化等其他角度的优化。
+原型编程的主张者经常争论说，基于类的语言提倡使用一个关注分类和类之间关系的开发模型。与此相对，原型编程看起来提倡程序员关注一系列对象实例的行为，而之后才关心如何将这些对象划分到最近的使用方式相似的原型对象，而不是分成类。
 
 
-总的来说，Netty并没有Java核心类 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2848866867.html" title="第37讲 | 谈谈Spring Bean的生命周期和作用域？">第37讲 | 谈谈Spring Bean的生命周期和作用域？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第37讲 | 谈谈Spring Bean的生命周期和作用域？在企业应用软件开发中，Java是毫无争议的主流语言，开放的Java EE规范和强大的开源框架功不可没，其中Spring毫无疑问已经成为企业软件开发的事实标准之一。今天这一讲，我将补充Spring相关的典型面试问题，并谈谈其部分设计细节。
-今天我要问你的问题是，谈谈Spring Bean的生命周期和作用域？
-典型回答Spring Bean生命周期比较复杂，可以分为创建和销毁两个过程。
-首先，创建Bean会经过一系列的步骤，主要包括：
+因为如此，很多基于原型的系统提倡运行时进行原型的修改，而只有极少数基于类的面向对象系统（比如第一个动态面向对象的系统Smalltalk）允许类在程序运行时被修改。
 
-实例化Bean对象。
+在基于类的语言中，一个新的实例通过类构造器和构造器可选的参数来构造，结果实例由类选定的行为和布局创建模型。
 
-设置Bean属性。
-
-如果我们通过各种Aware接口声明了依赖关系，则会注入Bean对容器基础设施层面的依赖。具体包括BeanNameAware、BeanFactoryAware和ApplicationContextAware，分别会注入Bean ID、Bean Factory或者ApplicationContext。
-
-调用BeanPostProcessor的前置初始化方法postProcessBeforeInitialization。
-
-如果实现了InitializingBean接口，则会调用afterPropertiesSet方法。
-
-调用Bean自身定义的init方法。
-
-调用BeanPostProcessor的后置初始化方法postProcessAfterIn ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3667635224.html" title="第39讲 | 谈谈常用的分布式ID的设计方案？Snowflake是否受冬令时切换影响？">第39讲 | 谈谈常用的分布式ID的设计方案？Snowflake是否受冬令时切换影响？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第39讲 | 谈谈常用的分布式ID的设计方案？Snowflake是否受冬令时切换影响？专栏的绝大部分主题都侧重于Java语言和虚拟机，基本都是单机模式下的问题，今天我会补充一个分布式相关的问题。严格来说，分布式并不算是Java领域，而是一个单独的大主题，但确实也会在Java技术岗位面试中被涉及。在准备面试时，如果有丰富的分布式系统经验当然好；如果没有，你可以选择典型问题和基础技术进行适当准备。关于分布式，我自身的实战经验也非常有限，专栏里就谈谈从理论出发的一些思考。
-今天我要问你的问题是，谈谈常用的分布式ID的设计方案？Snowflake是否受冬令时切换影响？
-典型回答首先，我们需要明确通常的分布式ID定义，基本的要求包括：
-
-全局唯一，区别于单点系统的唯一，全局是要求分布式系统内唯一。
-
-有序性，通常都需要保证生成的ID是有序递增的。例如，在数据库存储等场景中，有序ID便于确定数据位置，往往更加高效。
-
-
-目前业界的方案很多，典型方案包括：
-
-基于数据库自增序列的实现。这种方式优缺点都非常明显，好处是简单易用，但是在扩展性和可靠性等方面存在局限性。
-
-基于Twitter早期开源的 Snowflake 的实现，以及相关改动方案。这是目前应用相对比较广泛的一种方式，其结构定义你可以参考下面的示意图。
-
-
-
-整体长度通常是64 （1 + 41 + 10+ 12 &#x3D; 64）位， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3275866819.html" title="第4讲 | 强引用、软引用、弱引用、幻象引用有什么区别？">第4讲 | 强引用、软引用、弱引用、幻象引用有什么区别？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第4讲 | 强引用、软引用、弱引用、幻象引用有什么区别？在Java语言中，除了原始数据类型的变量，其他所有都是所谓的引用类型，指向各种不同的对象，理解引用对于掌握Java对象生命周期和JVM内部相关机制非常有帮助。
-今天我要问你的问题是，强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？
-典型回答不同的引用类型，主要体现的是 对象不同的可达性（reachable）状态和对垃圾收集的影响。
-所谓强引用（“Strong” Reference），就是我们最常见的普通对象引用，只要还有强引用指向一个对象，就能表明对象还“活着”，垃圾收集器不会碰这种对象。对于一个普通的对象，如果没有其他的引用关系，只要超过了引用的作用域或者显式地将相应（强）引用赋值为null，就是可以被垃圾收集的了，当然具体回收时机还是要看垃圾收集策略。
-软引用（SoftReference），是一种相对强引用弱化一些的引用，可以让对象豁免一些垃圾收集，只有当JVM认为内存不足时，才会去试图回收软引用指向的对象。JVM会确保在抛出OutOfMemoryError之前，清理软引用指向的对象。软引用通常用来实现内存敏感的缓存，如果还有空闲内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存。
-弱引用（WeakReference）并不能使对象豁免垃圾收集，仅仅是提供一种访问在弱引用状 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/89/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/89/#content-inner">89</a><span class="page-number current">90</span><a class="page-number" href="/page/91/#content-inner">91</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/91/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+在基于原型的系统中构造对象有两种方法，通过复制已有的对象或者通过扩展空对象创建。很多基于原型的系统提倡运行时进行原型的修改，而基于类的面向对象系统只有动态语言允许类在运行 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/89/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/89/#content-inner">89</a><span class="page-number current">90</span><a class="page-number" href="/page/91/#content-inner">91</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/91/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

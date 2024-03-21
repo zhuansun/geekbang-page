@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,64 +138,115 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/368299030.html" title="62 | 职责链模式（上）：如何实现可灵活扩展算法的敏感信息过滤框架？">62 | 职责链模式（上）：如何实现可灵活扩展算法的敏感信息过滤框架？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">62 | 职责链模式（上）：如何实现可灵活扩展算法的敏感信息过滤框架？前几节课中，我们学习了模板模式、策略模式，今天，我们来学习职责链模式。这三种模式具有相同的作用：复用和扩展，在实际的项目开发中比较常用，特别是框架开发中，我们可以利用它们来提供框架的扩展点，能够让框架的使用者在不修改框架源码的情况下，基于扩展点定制化框架的功能。
-今天，我们主要讲解职责链模式的原理和实现。除此之外，我还会利用职责链模式，带你实现一个可以灵活扩展算法的敏感词过滤框架。下一节课，我们会更加贴近实战，通过剖析Servlet Filter、Spring Interceptor来看，如何利用职责链模式实现框架中常用的过滤器、拦截器。
-话不多说，让我们正式开始今天的学习吧！
-职责链模式的原理和实现职责链模式的英文翻译是Chain Of Responsibility Design Pattern。在GoF的《设计模式》中，它是这么定义的：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4241894644.html" title="51 | 弹力设计总结">51 | 弹力设计总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">51 | 弹力设计总结你好，我是陈皓，网名左耳朵耗子。
+我们前面讲了那么多的弹力设计的设计模式，这里做个总结。
+弹力设计总图首先，我们的服务不能是单点，所以，我们需要在架构中冗余服务，也就是说有多个服务的副本。这需要使用到的具体技术有：
 
-Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1609522956.html" title="63 | 职责链模式（下）：框架中常用的过滤器、拦截器是如何实现的？">63 | 职责链模式（下）：框架中常用的过滤器、拦截器是如何实现的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">63 | 职责链模式（下）：框架中常用的过滤器、拦截器是如何实现的？上一节课，我们学习职责链模式的原理与实现，并且通过一个敏感词过滤框架的例子，展示了职责链模式的设计意图。本质上来说，它跟大部分设计模式一样，都是为了解耦代码，应对代码的复杂性，让代码满足开闭原则，提高代码的可扩展性。
-除此之外，我们还提到，职责链模式常用在框架的开发中，为框架提供扩展点，让框架的使用者在不修改框架源码的情况下，基于扩展点添加新的功能。实际上，更具体点来说，职责链模式最常用来开发框架的过滤器和拦截器。今天，我们就通过Servlet Filter、Spring Interceptor这两个Java开发中常用的组件，来具体讲讲它在框架开发中的应用。
-话不多说，让我们正式开始今天的学习吧！
-Servlet FilterServlet Filter是Java Servlet规范中定义的组件，翻译成中文就是过滤器，它可以实现对HTTP请求的过滤功能，比如鉴权、限流、记录日志、验证参数等等。因为它是Servlet规范的一部分，所以，只要是支持Servlet的Web容器（比如，Tomcat、Jetty等），都支持过滤器功能。为了帮助你理解，我画了一张示意图阐述它的工作原理，如下所示。
+负载均衡 + 服务健康检查–可以使用像Nginx或HAProxy这样的技术；
+服务发现 + 动态路由 + 服务健康检查，比如Consul或ZooKeeper；
+自动化运维，Kubernetes 服务调度、伸缩和故障迁移。
 
-在实际项目中，我们该如何使用Servlet Filter呢？我写了一个简单的示例代码，如下所示。添加一个过滤器，我们只需要定义一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/206657527.html" title="64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？">64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？从今天起，我们开始学习状态模式。在实际的软件开发中，状态模式并不是很常用，但是在能够用到的场景里，它可以发挥很大的作用。从这一点上来看，它有点像我们之前讲到的组合模式。
-状态模式一般用来实现状态机，而状态机常用在游戏、工作流引擎等系统开发中。不过，状态机的实现方式有多种，除了状态模式，比较常用的还有分支逻辑法和查表法。今天，我们就详细讲讲这几种实现方式，并且对比一下它们的优劣和应用场景。
-话不多说，让我们正式开始今天的学习吧！
-什么是有限状态机？有限状态机，英文翻译是Finite State Machine，缩写为FSM，简称为状态机。状态机有3个组成部分：状态（State）、事件（Event）、动作（Action）。其中，事件也称为转移条件（Transition Condition）。事件触发状态的转移及动作的执行。不过，动作不是必须的，也可能只转移状态，不执行任何动作。
-对于刚刚给出的状态机的定义，我结合一个具体的例子，来进一步解释一下。
-“超级马里奥”游戏不知道你玩过没有？在游戏中，马里奥可以变身为多种形态，比如小马里奥（Small Mario）、超级马里奥（Super Mario）、火焰马里奥（Fire Mario）、斗篷马里奥（Cape Mario）等等。在不同的游戏情节下，各个形态会互相转化，并相应的增减积 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/724758191.html" title="67 | 迭代器模式（下）：如何设计实现一个支持“快照”功能的iterator？">67 | 迭代器模式（下）：如何设计实现一个支持“快照”功能的iterator？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">67 | 迭代器模式（下）：如何设计实现一个支持“快照”功能的iterator？上两节课，我们学习了迭代器模式的原理、实现，并且分析了在遍历集合的同时增删集合元素，产生不可预期结果的原因以及应对策略。
-今天，我们再来看这样一个问题：如何实现一个支持“快照”功能的迭代器？这个问题算是对上一节课内容的延伸思考，为的是帮你加深对迭代器模式的理解，也是对你分析、解决问题的一种锻炼。你可以把它当作一个面试题或者练习题，在看我的讲解之前，先试一试自己能否顺利回答上来。
-话不多说，让我们正式开始今天的学习吧！
-问题描述我们先来介绍一下问题的背景：如何实现一个支持“快照”功能的迭代器模式？
-理解这个问题最关键的是理解“快照”两个字。所谓“快照”，指我们为容器创建迭代器的时候，相当于给容器拍了一张快照（Snapshot）。之后即便我们增删容器中的元素，快照中的元素并不会做相应的改动。而迭代器遍历的对象是快照而非容器，这样就避免了在使用迭代器遍历的过程中，增删容器中的元素，导致的不可预期的结果或者报错。
-接下来，我举一个例子来解释一下上面这段话。具体的代码如下所示。容器list中初始存储了3、8、2三个元素。尽管在创建迭代器iter1之后，容器list删除了元素3，只剩下8、2两个元素，但是，通过iter1遍历的对象是快照，而非容器list本身。所以，遍历的结果仍然是3、8、2。同理，iter2、it ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/798902252.html" title="71 | 命令模式：如何利用命令模式实现一个手游后端架构？">71 | 命令模式：如何利用命令模式实现一个手游后端架构？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">71 | 命令模式：如何利用命令模式实现一个手游后端架构？设计模式模块已经接近尾声了，现在我们只剩下3个模式还没有学习，它们分别是：命令模式、解释器模式、中介模式。这3个模式使用频率低、理解难度大，只在非常特定的应用场景下才会用到，所以，不是我们学习的重点，你只需要稍微了解，见了能认识就可以了。
-今天呢，我们来学习其中的命令模式。在学习这个模式的过程中，你可能会遇到的最大的疑惑是，感觉命令模式没啥用，是一种过度设计，有更加简单的设计思路可以替代。所以，我今天讲解的重点是这个模式的设计意图，带你搞清楚到底什么情况下才真正需要使用它。
-话不多说，让我们正式开始今天的学习吧！
-命令模式的原理解读命令模式的英文翻译是Command Design Pattern。在GoF的《设计模式》一书中，它是这么定义的：
+然后，我们需要隔离我们的业务，要隔离我们的服务我们就需要对服务进行解耦和拆分，这需要使用到以前的相关技术。
 
-The command pattern encapsulates a request as an object, thereby letting us parameterize other objects with different requests, queue or log requests, and support undoable operations.
+bulkheads模式：业务分片 、用户分片、数据库拆分。
 
-翻译成中文就是下面这样。为了帮助你理解，我对这个翻译稍微做了补充和解释，也一起放在了下面的括号中。
-命令模式将请求（命 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2864500735.html" title="73 | 中介模式：什么时候用中介模式？什么时候用观察者模式？">73 | 中介模式：什么时候用中介模式？什么时候用观察者模式？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">73 | 中介模式：什么时候用中介模式？什么时候用观察者模式？今天，我们来学习23种经典设计模式中的最后一个，中介模式。跟前面刚刚讲过的命令模式、解释器模式类似，中介模式也属于不怎么常用的模式，应用场景比较特殊、有限，但是，跟它俩不同的是，中介模式理解起来并不难，代码实现也非常简单，学习难度要小很多。
-如果你对中介模式有所了解，你可能会知道，中介模式跟之前讲过的观察者模式有点相似，所以，今天我们还会详细讨论下这两种模式的区别。
+自包含系统：所谓自包含的系统是从单体到微服务的中间状态，其把一组密切相关的微服务给拆分出来，只需要做到没有外部依赖就行。
+
+异步通讯：服务发现、事件驱动、消息队列、业务工作流。
+
+自动化运维：需要一个服务调用链和性能监控的监控系统。
+
+
+然后，接下来，我们就要进行能让整个架构接受失败的相关处理设计，也就是所谓的容错设计。这会用到下面的这些技术。
+
+错误方面：调用重试 + 熔断 + 服务的幂等性设计。
+
+一致性方面：强一致性使用两阶段提交、最终一致性使用异步通讯方式。
+
+流控方面：使用限流 + 降级技术。
+
+自动化运维方面：网关流量调度，服务监控。
+
+
+我不敢 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1050861802.html" title="51 | 技术债务，有意或无意的选择？">51 | 技术债务，有意或无意的选择？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">51 | 技术债务，有意或无意的选择？在编程的路上，我们总会碰到历史系统，接手遗留代码，然后就会忍不住抱怨，那我们是在抱怨什么呢？是债务，技术债务。以前说过， 代码既是资产也是债务，而历史系统的遗留代码往往是大量技术债务的爆发地。
+然而，技术债务到底是如何产生的？它是我们有意还是无意的选择？这里就先从技术债务的认知开始谈起吧。
+认知技术债务，最早源自沃德·坎宁安（Ward Cunningham） 1992 年在一次报告上创造的源自金融债务的比喻，它指的是 在程序设计与开发过程中，有意或无意做出的错误或不理想的技术决策，由此带来的后果，逐步累积，就像债务一样。
+当作为程序员的我们采用了一个非最优或不理想的技术方案时，就已经引入了技术债务。而这个决定，可能是有意的，也可能是无意的。有意产生的债务，一般是根据实际项目情况，如资源与期限，做出的妥协。
+而无意产生的债务，要么是因为程序员经验的缺乏引入的，要么是程序员所处的环境并没有鼓励其去关注技术债务，只是不断地生产完成需求的代码。但只要程序员在不断地生产代码，那他们就是在同时创造资产与债务。债务如果持续上升，软件在技术上的风险就不断增加，最后慢慢走向技术破产。
+以前看过另一位程序员写的一篇文章，名字就叫《老码农看到的技术债务》，印象还是比较深刻的。文中把技术债务分成了好几类，我记得的大概有如下：
+
+战略债务
+战术债务
+疏忽债务
+
+战略债务 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2196341985.html" title="51 | 适配器模式：代理、适配器、桥接、装饰，这四个模式有何区别？">51 | 适配器模式：代理、适配器、桥接、装饰，这四个模式有何区别？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">51 | 适配器模式：代理、适配器、桥接、装饰，这四个模式有何区别？前面几节课我们学习了代理模式、桥接模式、装饰器模式，今天，我们再来学习一个比较常用的结构型模式：适配器模式。这个模式相对来说还是比较简单、好理解的，应用场景也很具体，总体上来讲比较好掌握。
+关于适配器模式，今天我们主要学习它的两种实现方式，类适配器和对象适配器，以及5种常见的应用场景。同时，我还会通过剖析slf4j日志框架，来给你展示这个模式在真实项目中的应用。除此之外，在文章的最后，我还对代理、桥接、装饰器、适配器，这4种代码结构非常相似的设计模式做简单的对比，对这几节内容做一个简单的总结。
 话不多说，让我们正式开始今天的学习吧！
-中介模式的原理和实现中介模式的英文翻译是Mediator Design Pattern。在GoF中的《设计模式》一书中，它是这样定义的：
+适配器模式的原理与实现适配器模式 的英文翻译是 Adapter Design Pattern。顾名思义，这个模式就是用来做适配的，它将不兼容的接口转换为可兼容的接口，让原本由于接口不兼容而不能一起工作的类可以一起工作。对于这个模式，有一个经常被拿来解释它的例子，就是USB转接头充当适配器，把两种不兼容的接口，通过转接变得可以一起工作。
+原理很简单，我们再来看下它的代码实现。适配器模式有两种实现方式：类适配器和对象适配器。其中，类适配器使用继承关系来实现，对象适配器使用组合关系来实现。具体的代码实现如下所示。其中，ITarget表示要转化成的接口定义。Adaptee是一组不兼容ITarg ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2214754993.html" title="52 | 管理设计：分布式锁">52 | 管理设计：分布式锁</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">52 | 管理设计：分布式锁你好，我是陈皓，网名左耳朵耗子。
+我们知道，在多线程情况下访问一些共享资源需要加锁，不然就会出现数据被写乱的问题。在分布式系统下，这样的问题也是一样的。只不过，我们需要一个分布式的锁服务。对于分布式的锁服务，一般可以用数据库DB、Redis和ZooKeeper等实现。不管怎么样，分布式的锁服务需要有以下几个特点。
 
-Mediator pattern defines a separate (mediator) object that encapsulates the interaction between a set of objects and the objects delegate their interaction to a mediator object instead of interacting with each other directly.
+安全性（Safety）：在任意时刻，只有一个客户端可以获得锁（ 排他性）。
 
-翻译成中文就是：中介模式定义了一个单独的（中介）对象，来封装一组对象之间的交互。将这组对象之间的交互委派给与中介对象交互，来避免对象之 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/679507140.html" title="72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？">72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">72 | 解释器模式：如何设计实现一个自定义接口告警规则功能？上一节课，我们学习了命令模式。命令模式将请求封装成对象，方便作为函数参数传递和赋值给变量。它主要的应用场景是给命令的执行附加功能，换句话说，就是控制命令的执行，比如，排队、异步、延迟执行命令、给命令执行记录日志、撤销重做命令等等。总体上来讲，命令模式的应用范围并不广。
-今天，我们来学习解释器模式，它用来描述如何构建一个简单的“语言”解释器。比起命令模式，解释器模式更加小众，只在一些特定的领域会被用到，比如编译器、规则引擎、正则表达式。所以，解释器模式也不是我们学习的重点，你稍微了解一下就可以了。
+避免死锁：客户端最终一定可以获得锁，即使锁住某个资源的客户端在释放锁之前崩溃或者网络不可达。
+
+容错性：只要锁服务集群中的大部分节点存活，Client就可以进行加锁解锁操作。
+
+
+Redis的分布式锁服务这里提一下，避免死锁的问题。下面以Redis的锁服务为例（参考 Redis的官方文档 ）。
+我们通过以下命令对资源加锁。
+SET resource_name my_random_value NX PX 30000
+
+
+解释一下：
+
+SET NX 命令只会在 key 不存在的时候给 key 赋值， PX 命令通知Redis保存这个key 30000ms。
+
+my_random_value 必须是全局唯一的值。这个随机数在释放锁时保证释放锁操作的安全性。
+
+PX 操作后面的参数代表的是这个key的存活时间，称作锁过期时间。
+
+当资源被锁定超过这个时间时，锁将自动释放。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1072305768.html" title="52 | 设计大型DMP系统（上）：MongoDB并不是什么灵丹妙药">52 | 设计大型DMP系统（上）：MongoDB并不是什么灵丹妙药</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">52 | 设计大型DMP系统（上）：MongoDB并不是什么灵丹妙药如果你一讲一讲跟到现在，那首先要恭喜你，马上就看到胜利的曙光了。过去的50多讲里，我把计算机组成原理中的各个知识点，一点一点和你拆解了。对于其中的很多知识点，我也给了相应的代码示例和实际的应用案例。
+不过呢，相信你和我一样，觉得只了解这样一个个零散的知识点和案例还不过瘾。那么从今天开始，我们就进入应用篇。我会通过两个应用系统的案例，串联起计算机组成原理的两大块知识点，一个是我们的整个存储器系统，另一个自然是我们的CPU和指令系统了。
+我们今天就先从搭建一个大型的DMP系统开始，利用组成原理里面学到的存储器知识，来做选型判断，从而更深入地理解计算机组成原理。
+DMP：数据管理平台我们先来看一下什么是DMP系统。DMP系统的全称叫作数据管理平台（Data Management Platform），目前广泛应用在互联网的广告定向（Ad Targeting）、个性化推荐（Recommendation）这些领域。
+通常来说，DMP系统会通过处理海量的互联网访问数据以及机器学习算法，给一个用户标注上各种各样的标签。然后，在我们做个性化推荐和广告投放的时候，再利用这些这些标签，去做实际的广告排序、推荐等工作。无论是Google的搜索广告、淘宝里千人千面的商品信息，还是抖音里面的信息流推荐，背后都会有一个DMP系统。
+
+那么，一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3857382011.html" title="52 | 选择从众，还是唯一？">52 | 选择从众，还是唯一？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:22.000Z" title="发表于 2023-12-13 18:36:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">52 | 选择从众，还是唯一？想要取得成就，就会面临竞争，几乎所有的成就，都是直接或间接通过与他人的比较来评价的。理解了这样的评价与竞争关系，想要取得成就，出类拔萃，就意味着你要做出选择： 选择从众、随大流，还是选择一条只属于自己的路？
+不同的选择，意味着面临的竞争水平不同，付出的努力自不相等。
+众争有时，我们会下意识不自觉地选择从众，随大流；这样的选择往往给人更安全的感觉，但这样的选择也意味着更激烈的竞争。
+随大流，属于众争之路，感觉是安全的，看上去也是热闹的，但竞争是激烈的，而且竞争所处的水平并不高，属于中等平均水平。比如：作为一名职业的普通程序员，你的任何一次求职、晋升或加薪，都面临类似水平的竞争，这样的竞争规模局限于一个局部市场，比如公司或部门内，规模不大，但人数不少。
+在这样水平的竞争层面，其实最顶尖的那部分程序员已被排除在外了，因为这类人在市场上其实供不应求，而且没有大规模的生产方法。处在这样的众争之地，如果你永远都在看周围的人在做什么，和他们保持类似，那么你就很可能处在这群人中的一个平均水平区间。
+其实，在这样的竞争水平下，你只需要稍微付出一些努力，就能超越平均水平；即使想要脱颖而出，也只需要持续地多付出一些努力。有一句流行的话是这么说的：“以大多数人的努力程度之低，根本轮不到拼天赋”，这就是众争层面竞争关系的本质。
+先努力拉开差距，再去找到少有人走的适合自己的路。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3862187755.html" title="52 | 门面模式：如何设计合理的接口粒度以兼顾接口的易用性和通用性？">52 | 门面模式：如何设计合理的接口粒度以兼顾接口的易用性和通用性？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">52 | 门面模式：如何设计合理的接口粒度以兼顾接口的易用性和通用性？前面我们已经学习了代理模式、桥接模式、装饰器模式、适配器模式，这4种结构型设计模式。今天，我们再来学习一种新的结构型模式：门面模式。门面模式原理和实现都特别简单，应用场景也比较明确，主要在接口设计方面使用。
+如果你平时的工作涉及接口开发，不知道你有没有遇到关于接口粒度的问题呢？
+为了保证接口的可复用性（或者叫通用性），我们需要将接口尽量设计得细粒度一点，职责单一一点。但是，如果接口的粒度过小，在接口的使用者开发一个业务功能时，就会导致需要调用n多细粒度的接口才能完成。调用者肯定会抱怨接口不好用。
+相反，如果接口粒度设计得太大，一个接口返回n多数据，要做n多事情，就会导致接口不够通用、可复用性不好。接口不可复用，那针对不同的调用者的业务需求，我们就需要开发不同的接口来满足，这就会导致系统的接口无限膨胀。
+那如何来解决接口的可复用性（通用性）和易用性之间的矛盾呢？通过今天对于门面模式的学习，我想你心中会有答案。话不多说，让我们正式开始今天的学习吧！
+门面模式的原理与实现门面模式，也叫外观模式，英文全称是Facade Design Pattern。在GoF的《设计模式》一书中，门面模式是这样定义的：
+
+Provide a unified interface to a set of interfaces in a sub ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3513016414.html" title="53 | 管理设计：配置中心">53 | 管理设计：配置中心</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">53 | 管理设计：配置中心你好，我是陈皓，网名左耳朵耗子。
+我们知道，除了代码之外，软件还有一些配置信息，比如数据库的用户名和密码，还有一些我们不想写死在代码里的东西，像线程池大小、队列长度等运行参数，以及日志级别、算法策略等，还有一些是软件运行环境的参数，如Java的内存大小，应用启动的参数，包括操作系统的一些参数配置……
+所有这些东西，我们都叫做软件配置。以前，我们把软件配置写在一个配置文件中，就像Windows下的ini文件，或是Linux下的conf文件。然而，在分布式系统下，这样的方式就变得非常不好管理，并容易出错。于是，为了便于管理，我们引入了一个集中式的配置管理系统，这就是配置中心的由来。
+现在，软件的配置中心是分布式系统的一个必要组件。这个系统听起来很简单，但其实并不是。我见过好多公司的配置中心，但是我觉得做得都不好，所以，想写下这篇文章给你一些借鉴。
+配置中心的设计区分软件的配置首先，我们要区分软件的配置，软件配置的区分有多种方式。
+有一种方式是把软件的配置分成静态配置和动态配置。所谓静态配置其实就是在软件启动时的一些配置，运行时基本不会进行修改，也可以理解为是环境或软件初始化时需要用到的配置。
+例如，操作系统的网络配置，软件运行时Docker进程的配置，这些配置在软件环境初始化时就确定了，未来基本不会修改了。而所谓动态配置其实就是软件运行时的一些配置，在运行时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2858611750.html" title="53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？">53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">53 | 组合模式：如何设计实现支持递归遍历的文件系统目录树结构？结构型设计模式就快要讲完了，还剩下两个不那么常用的：组合模式和享元模式。今天，我们来讲一下 组合模式（Composite Design Pattern）。
+组合模式跟我们之前讲的面向对象设计中的“组合关系（通过组合来组装两个类）”，完全是两码事。这里讲的“组合模式”，主要是用来处理树形结构数据。这里的“数据”，你可以简单理解为一组对象集合，待会我们会详细讲解。
+正因为其应用场景的特殊性，数据必须能表示成树形结构，这也导致了这种模式在实际的项目开发中并不那么常用。但是，一旦数据满足树形结构，应用这种模式就能发挥很大的作用，能让代码变得非常简洁。
 话不多说，让我们正式开始今天的学习吧！
-解释器模式的原理和实现解释器模式的英文翻译是Interpreter Design Pattern。在GoF的《设计模式》一书中，它是这样定义的：
+组合模式的原理与实现在GoF的《设计模式》一书中，组合模式是这样定义的：
 
-Interpreter pattern is used to defines a grammatical representation for a language and provides an interpreter to deal with this grammar.
+Compose objects into tree structure to represent part-whole hierarchies.Composite lets client treat individual objects and compositions of objects uniformly.
 
-翻译成中文就是：解释器模式为某个语言定义它的语法（或者叫文法）表示，并定义一个解释器用来处理这个语法。
-看了定义，你估计会一头雾水，因为这里面有很多我们平时开发中很少接触 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1369340846.html" title="77 | 开源实战一（下）：通过剖析Java JDK源码学习灵活应用设计模式">77 | 开源实战一（下）：通过剖析Java JDK源码学习灵活应用设计模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">77 | 开源实战一（下）：通过剖析Java JDK源码学习灵活应用设计模式上一节课，我们讲解了工厂模式、建造者模式、装饰器模式、适配器模式在Java JDK中的应用，其中，Calendar类用到了工厂模式和建造者模式，Collections类用到了装饰器模式、适配器模式。学习的重点是让你了解，在真实的项目中模式的实现和应用更加灵活、多变，会根据具体的场景做实现或者设计上的调整。
-今天，我们继续延续这个话题，再重点讲一下模板模式、观察者模式这两个模式在JDK中的应用。除此之外，我还会对在理论部分已经讲过的一些模式在JDK中的应用做一个汇总，带你一块回忆复习一下。
-话不多说，让我们正式开始今天的学习吧！
-模板模式在Collections类中的应用我们前面提到，策略、模板、职责链三个模式常用在框架的设计中，提供框架的扩展点，让框架使用者，在不修改框架源码的情况下，基于扩展点定制化框架的功能。Java中的Collections类的sort()函数就是利用了模板模式的这个扩展特性。
-首先，我们看下Collections.sort()函数是如何使用的。我写了一个示例代码，如下所示。这个代码实现了按照不同的排序方式（按照年龄从小到大、按照名字字母序从小到大、按照成绩从大到小）对students数组进行排序。
-public class Demo &#123;
-  public static vo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2231015669.html" title="78 | 开源实战二（上）：从Unix开源开发学习应对大型复杂项目开发">78 | 开源实战二（上）：从Unix开源开发学习应对大型复杂项目开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">78 | 开源实战二（上）：从Unix开源开发学习应对大型复杂项目开发软件开发的难度无外乎两点，一是技术难，意思是说，代码量不一定多，但要解决的问题比较难，需要用到一些比较深的技术解决方案或者算法，不是靠“堆人”就能搞定的，比如自动驾驶、图像识别、高性能消息队列等；二是复杂度，意思是说，技术不难，但项目很庞大，业务复杂，代码量多，参与开发的人多，比如物流系统、财务系统等。第一点涉及细分专业的领域知识，跟我们专栏要讲的设计、编码无关，所以我们重点来讲第二点，如何应对软件开发的复杂度。
-简单的“hello world”程序，谁都能写得出来。几千行的代码谁都能维护得了。但是，当代码超过几万行、十几万，甚至几十万行、上百万行的时候，软件的复杂度就会呈指数级增长。这种情况下，我们不仅仅要求程序运行得了，运行得正确，还要求代码看得懂、维护得了。实际上，复杂度不仅仅体现在代码本身，还体现在协作研发上，如何管理庞大的团队，来进行有条不紊地协作开发，也是一个很复杂的难题。
-如何应对复杂软件开发？Unix开源项目就是一个值得学习的例子。
-Unix从1969年诞生，一直演进至今，代码量有几百万行，如此庞大的项目开发，能够如此完美的协作开发，并且长期维护，保持足够的代码质量，这里面有很多成功的经验可以借鉴。所以，接下来，我们就以Unix开源项目的开发为引子，分三节课的时间，通过下面三个话题，详细地讲讲应对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/89934994.html" title="79 | 开源实战二（中）：从Unix开源开发学习应对大型复杂项目开发">79 | 开源实战二（中）：从Unix开源开发学习应对大型复杂项目开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">79 | 开源实战二（中）：从Unix开源开发学习应对大型复杂项目开发我们知道，项目越复杂、代码量越多、参与开发人员越多、开发维护时间越长，我们就越是要重视代码质量。代码质量下降会导致项目研发困难重重，比如：开发效率低，招了很多人，天天加班，出活却不多；线上bug频发，查找bug困难，领导发飙，中层束手无策，工程师抱怨不断。
-导致代码质量不高的原因有很多，比如：代码无注释，无文档，命名差，层次结构不清晰，调用关系混乱，到处hardcode，充斥着各种临时解决方案等等。那怎么才能时刻保证代码质量呢？当然，首要的是团队技术素质要过硬，能够适当地利用设计原则、思想、模式编写高质量的代码。除此之外，还有一些外在的方法可循。
-今天，我就从研发管理和开发技巧的角度来带你看下，面对大型复杂项目的开发，如何长期保证代码质量，让代码长期可维护。
-话不多说，让我们正式开始今天的学习吧！
-1. 吹毛求疵般地执行编码规范严格执行代码规范，可以使一个项目乃至整个公司的代码具有完全统一的风格，就像同一个人编写的。而且，命名良好的变量、函数、类和注释，也可以提高代码的可读性。编码规范不难掌握，关键是要严格执行。在Code Review时，我们一定要严格要求，看到不符合规范的代码，一定要指出并要求修改。
-但是，据我了解，实际情况往往事与愿违。虽然大家都知道优秀的代码规范是怎样的，但在具体写代码的过程中，执行得却不 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/99/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/99/#content-inner">99</a><span class="page-number current">100</span><a class="page-number" href="/page/101/#content-inner">101</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/101/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+翻译成中文就是：将一组对象组织（Compose）成树形结构，以表示一种“部分-整体”的层次结构。组合让客户端（在很多设计模式书籍中，“客户端”代指代码 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/241515231.html" title="53 | 设计大型DMP系统（下）：SSD拯救了所有的DBA">53 | 设计大型DMP系统（下）：SSD拯救了所有的DBA</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">53 | 设计大型DMP系统（下）：SSD拯救了所有的DBA上一讲里，根据DMP系统的各个应用场景，我们从抽象的原理层面，选择了AeroSpike作为KV数据库，Kafka作为数据管道，Hadoop&#x2F;Hive来作为数据仓库。
+不过呢，肯定有不信邪的工程师会问，为什么MongoDB，甚至是MySQL这样的文档数据库或者传统的关系型数据库不适用呢？为什么不能通过优化SQL、添加缓存这样的调优手段，解决这个问题呢？
+今天DMP的下半场，我们就从数据库实现的原理，一起来看一看，这背后的原因。如果你能弄明白今天的这些更深入、更细节的原理，对于什么场景使用什么数据库，就会更加胸有成竹，而不是只有跑了大量的性能测试才知道。下次做数据库选型的时候，你就可以“以理服人”了。
+关系型数据库：不得不做的随机读写我们先来想一想，如果现在让你自己写一个最简单的关系型数据库，你的数据要怎么存放在硬盘上？
+最简单最直观的想法是，用一个CSV文件格式。一个文件就是一个数据表。文件里面的每一行就是这个表里面的一条记录。如果要修改数据库里面的某一条记录，那么我们要先找到这一行，然后直接去修改这一行的数据。读取数据也是一样的。
+要找到这样数据，最笨的办法自然是一行一行读，也就是遍历整个CSV文件。不过这样的话，相当于随便读取任何一条数据都要扫描全表，太浪费硬盘的吞吐量了。那怎么办呢？我们可以试试给这个CSV文 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/99/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/99/#content-inner">99</a><span class="page-number current">100</span><a class="page-number" href="/page/101/#content-inner">101</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/101/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

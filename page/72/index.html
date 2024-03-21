@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,81 +138,97 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/29319876.html" title="第2讲 | 网络分层的真实含义是什么？">第2讲 | 网络分层的真实含义是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第2讲 | 网络分层的真实含义是什么？长时间从事计算机网络相关的工作，我发现，计算机网络有一个显著的特点，就是这是一个不仅需要背诵，而且特别需要将原理烂熟于胸的学科。很多问题看起来懂了，但是就怕往细里问，一问就发现你懂得没有那么透彻。
-我们上一节列了之后要讲的网络协议。这些协议本来没什么稀奇，每一本教科书都会讲，并且都要求你背下来。因为考试会考，面试会问。可以这么说，毕业了去找工作还答不出这类题目的，那你的笔试基本上也就挂了。
-当你听到什么二层设备、三层设备、四层LB和七层LB中层的时候，是否有点一头雾水，不知道这些所谓的层，对应的各种协议具体要做什么“工作”？
-这四个问题你真的懂了吗？因为教科书或者老师往往会打一个十分不恰当的比喻：为什么网络要分层呀？因为不同的层次之间有不同的沟通方式，这个叫作协议。例如，一家公司也是分“层次”的，分总经理、经理、组长、员工。总经理之间有他们的沟通方式，经理和经理之间也有沟通方式，同理组长和员工。有没有听过类似的比喻？
-那么 第一个问题 来了。请问经理在握手的时候，员工在干什么？很多人听过TCP建立连接的 三次握手协议，也会把它当知识点背诵。同理问你，TCP在进行三次握手的时候，IP层和MAC层对应都有什么操作呢？
-除了上面这个不恰当的比喻，教科书还会列出每个层次所包含的协议，然后开始逐层地去讲这些协议。但是这些协议之间的关系呢？却很少有教科书会 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/222755574.html" title="第31讲 | 容器网络之Calico：为高效说出善意的谎言">第31讲 | 容器网络之Calico：为高效说出善意的谎言</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第31讲 | 容器网络之Calico：为高效说出善意的谎言上一节我们讲了Flannel如何解决容器跨主机互通的问题，这个解决方式其实和虚拟机的网络互通模式是差不多的，都是通过隧道。但是Flannel有一个非常好的模式，就是给不同的物理机设置不同网段，这一点和虚拟机的Overlay的模式完全不一样。
-在虚拟机的场景下，整个网段在所有的物理机之间都是可以“飘来飘去”的。网段不同，就给了我们做路由策略的可能。
-Calico网络模型的设计思路我们看图中的两台物理机。它们的物理网卡是同一个二层网络里面的。由于两台物理机的容器网段不同，我们完全可以将两台物理机配置成为路由器，并按照容器的网段配置路由表。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4173720359.html" title="21 | 高性能负载均衡：算法">21 | 高性能负载均衡：算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">21 | 高性能负载均衡：算法负载均衡算法数量较多，而且可以根据一些业务特性进行定制开发，抛开细节上的差异，根据算法期望达到的目的，大体上可以分为下面几类。
 
-例如，在物理机A中，我们可以这样配置：要想访问网段172.17.9.0&#x2F;24，下一跳是192.168.100.101，也即到物理机B上去。
-这样在容器A中访问容器B，当包到达物理机A的时候，就能够匹配到这条路由规则，并将包发给下一跳的路由器，也即发给物理机B。在物理机B上也有路由规则，要访问172.17.9.0&#x2F;24，从docker0的网卡进去即可。
-当容器B返回结果的时候，在物理机B上，可以做类似的配置：要想访问网段172.17.8.0&#x2F;24，下一跳是192.168.100.100，也即到物理机A上去。
-当包到达物理机B的时候，能够匹配到这条路由规则，将包发给 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1380734003.html" title="第30讲 | 容器网络之Flannel：每人一亩三分地">第30讲 | 容器网络之Flannel：每人一亩三分地</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第30讲 | 容器网络之Flannel：每人一亩三分地上一节我们讲了容器网络的模型，以及如何通过NAT的方式与物理网络进行互通。
-每一台物理机上面安装好了Docker以后，都会默认分配一个172.17.0.0&#x2F;16的网段。一台机器上新创建的第一个容器，一般都会给172.17.0.2这个地址，当然一台机器这样玩玩倒也没啥问题。但是容器里面是要部署应用的，就像上一节讲过的一样，它既然是集装箱，里面就需要装载货物。
-如果这个应用是比较传统的单体应用，自己就一个进程，所有的代码逻辑都在这个进程里面，上面的模式没有任何问题，只要通过NAT就能访问进来。
-但是因为无法解决快速迭代和高并发的问题，单体应用越来越跟不上时代发展的需要了。
-你可以回想一下，无论是各种网络直播平台，还是共享单车，是不是都是很短时间内就要积累大量用户，否则就会错过风口。所以应用需要在很短的时间内快速迭代，不断调整，满足用户体验；还要在很短的时间内，具有支撑高并发请求的能力。
-单体应用作为个人英雄主义的时代已经过去了。如果所有的代码都在一个工程里面，开发的时候必然存在大量冲突，上线的时候，需要开大会进行协调，一个月上线一次就很不错了。而且所有的流量都让一个进程扛，怎么也扛不住啊！
-没办法，一个字：拆！拆开了，每个子模块独自变化，减少相互影响。拆开了，原来一个进程扛流量，现在多个进程一起扛。所以，微服务就是从个人英 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/78632249.html" title="第33讲 | 基于XML的SOAP协议：不要说NBA，请说美国职业篮球联赛">第33讲 | 基于XML的SOAP协议：不要说NBA，请说美国职业篮球联赛</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第33讲 | 基于XML的SOAP协议：不要说NBA，请说美国职业篮球联赛上一节我们讲了RPC的经典模型和设计要点，并用最早期的ONC RPC为例子，详述了具体的实现。
-ONC RPC存在哪些问题？ONC RPC将客户端要发送的参数，以及服务端要发送的回复，都压缩为一个二进制串，这样固然能够解决双方的协议约定问题，但是存在一定的不方便。
-首先， 需要双方的压缩格式完全一致，一点都不能差。一旦有少许的差错，多一位，少一位或者错一位，都可能造成无法解压缩。当然，我们可以用传输层的可靠性以及加入校验值等方式，来减少传输过程中的差错。
-其次， 协议修改不灵活。如果不是传输过程中造成的差错，而是客户端因为业务逻辑的改变，添加或者删除了字段，或者服务端添加或者删除了字段，而双方没有及时通知，或者线上系统没有及时升级，就会造成解压缩不成功。
-因而，当业务发生改变，需要多传输一些参数或者少传输一些参数的时候，都需要及时通知对方，并且根据约定好的协议文件重新生成双方的Stub程序。自然，这样灵活性比较差。
-如果仅仅是沟通的问题也还好解决，其实更难弄的还有 版本的问题。比如在服务端提供一个服务，参数的格式是版本一的，已经有50个客户端在线上调用了。现在有一个客户端有个需求，要加一个字段，怎么办呢？这可是一个大工程，所有的客户端都要适配这个，需要重新写程序，加上这个字段，但是传输值是0，不需要这个字段的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3261100879.html" title="第2季回归 | 这次我们来“趣谈Linux操作系统”">第2季回归 | 这次我们来“趣谈Linux操作系统”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第2季回归 | 这次我们来“趣谈Linux操作系统”你好，我是你的老朋友刘超。在“趣谈网络协议”结课半年之后，我又给你带来了一个新的基础课程，“趣谈Linux操作系统”。
-在咱们“趣谈网络协议”的留言里，我和同学们进行了很多互动，同时，我也和其他做基础知识专栏的作者有了不少交流，我发现，无论是从个人的职业发展角度，还是从公司招聘候选人的角度来看，扎实的基础知识是很多人的诉求。这让我更加坚信，我应该在“趣谈基础知识”这条道路上走下去。
-在设计“趣谈Linux操作系统”专栏的时候，我仍然秉承“趣谈”和“故事化”的方式，将枯燥的基础知识结合某个场景，给你生动、具象地讲述出来，帮你加深理解、巩固记忆、夯实基础。
-在我看来，操作系统在计算机中承担着“大管家”的角色，这个“大管家”就好比一家公司的老板，我们的目标就是把这家公司做上市，具体的过程，我用了一张图来表示：
+任务平分类：负载均衡系统将收到的任务平均分配给服务器进行处理，这里的“平均”可以是绝对数量的平均，也可以是比例或者权重上的平均。
 
-Linux操作系统中的概念非常多，数据结构也很多，流程也复杂，一般人在学习的过程中很容易迷路。我希望能够将这些复杂的概念、数据结构、流程通俗地讲解出来，争取每篇文章都用一张图串起这篇的知识点。
-最终，整个专栏下来，你如果能把这些图都掌握了，你的知识就会形成体系和连接。在此基础上再进行深入学习，就会如鱼得水、易如反掌。
-一段新的征途即将开始，期待与你继续同行。为了感谢老同学，我为你送上一张10元专属优惠券，可以与限时优惠同享，优惠 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2808937039.html" title="第34讲 | 基于JSON的RESTful接口协议：我不关心过程，请给我结果">第34讲 | 基于JSON的RESTful接口协议：我不关心过程，请给我结果</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第34讲 | 基于JSON的RESTful接口协议：我不关心过程，请给我结果上一节我们讲了基于XML的SOAP协议，SOAP的S是啥意思来着？是Simple，但是好像一点儿都不简单啊！
-你会发现，对于SOAP来讲，无论XML中调用的是什么函数，多是通过HTTP的POST方法发送的。但是咱们原来学HTTP的时候，我们知道HTTP除了POST，还有PUT、DELETE、GET等方法，这些也可以代表一个个动作，而且基本满足增、删、查、改的需求，比如增是POST，删是DELETE，查是GET，改是PUT。
-传输协议问题对于SOAP来讲，比如我创建一个订单，用POST，在XML里面写明动作是CreateOrder；删除一个订单，还是用POST，在XML里面写明了动作是DeleteOrder。其实创建订单完全可以使用POST动作，然后在XML里面放一个订单的信息就可以了，而删除用DELETE动作，然后在XML里面放一个订单的ID就可以了。
-于是上面的那个SOAP就变成下面这个简单的模样。
-POST &#x2F;purchaseOrder HTTP&#x2F;1.1
-Host: www.geektime.com
-Content-Type: application&#x2F;xml; charset&#x3D;utf-8
-Content-Length: nnn
+负载均衡类：负载均衡系统根据服务器的负载来进行分配，这里的负载并不一定是通常意义上我们说的“CPU负载”，而是系统当前的压力，可以用CPU负载来衡量，也可以用连接数、I&#x2F;O使用率、网卡吞吐量等来衡量系统的压力。
 
-&lt;?xml version& ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/411368129.html" title="第35讲 | 二进制类RPC协议：还是叫NBA吧，总说全称多费劲">第35讲 | 二进制类RPC协议：还是叫NBA吧，总说全称多费劲</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第35讲 | 二进制类RPC协议：还是叫NBA吧，总说全称多费劲前面我们讲了两个常用文本类的RPC协议，对于陌生人之间的沟通，用NBA、CBA这样的缩略语，会使得协议约定非常不方便。
-在讲CDN和DNS的时候，我们讲过接入层的设计，对于静态资源或者动态资源静态化的部分都可以做缓存。但是对于下单、支付等交易场景，还是需要调用API。
-对于微服务的架构，API需要一个API网关统一的管理。API网关有多种实现方式，用Nginx或者OpenResty结合Lua脚本是常用的方式。在上一节讲过的Spring Cloud体系中，有个组件Zuul也是干这个的。
-数据中心内部是如何相互调用的？API网关用来管理API，但是API的实现一般在一个叫作 Controller层 的地方。这一层对外提供API。由于是让陌生人访问的，我们能看到目前业界主流的，基本都是RESTful的API，是面向大规模互联网应用的。
+性能最优类：负载均衡系统根据服务器的响应时间来进行任务分配，优先将新任务分配给响应最快的服务器。
 
-在Controller之内，就是咱们互联网应用的业务逻辑实现。上节讲RESTful的时候，说过业务逻辑的实现最好是无状态的，从而可以横向扩展，但是资源的状态还需要服务端去维护。资源的状态不应该维护在业务逻辑层，而是在最底层的持久化层，一般会使用分布式数据库和ElasticSearch。
-这些服务端的状态，例如订单、库存、商品等，都是重中之重，都需要持久化到硬盘上，数据不能丢，但是由于硬盘读写 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/307918026.html" title="第36讲 | 跨语言类RPC协议：交流之前，双方先来个专业术语表">第36讲 | 跨语言类RPC协议：交流之前，双方先来个专业术语表</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第36讲 | 跨语言类RPC协议：交流之前，双方先来个专业术语表到目前为止，咱们讲了四种RPC，分别是ONC RPC、基于XML的SOAP、基于JSON的RESTful和Hessian2。
-通过学习，我们知道，二进制的传输性能好，文本类的传输性能差一些；二进制的难以跨语言，文本类的可以跨语言；要写协议文件的严谨一些，不写协议文件的灵活一些。虽然都有服务发现机制，有的可以进行服务治理，有的则没有。
-我们也看到了RPC从最初的客户端服务器模式，最终演进到微服务。对于RPC框架的要求越来越多了，具体有哪些要求呢？
-
-首先，传输性能很重要。因为服务之间的调用如此频繁了，还是二进制的越快越好。
-
-其次，跨语言很重要。因为服务多了，什么语言写成的都有，而且不同的场景适宜用不同的语言，不能一个语言走到底。
-
-最好既严谨又灵活，添加个字段不用重新编译和发布程序。
-
-最好既有服务发现，也有服务治理，就像Dubbo和Spring Cloud一样。
+Hash类：负载均衡系统根据任务中的某些关键信息进行Hash运算，将相同Hash值的请求分配到同一台服务器上。常见的有源地址Hash、目标地址Hash、session id hash、用户ID Hash等。
 
 
-Protocol Buffers这是要多快好省地建设社会主义啊。理想还是要有的嘛，这里我就来介绍一个向“理想”迈进的GRPC。
-GRPC首先满足二进制和跨语言这两条，二进制说明压缩效率高，跨语言说明更灵活。但是又是二进制，又是跨语言，这就相当于两个人沟通，你不但说方言，还说缩略语，人家怎么听懂呢？所以，最好双方弄一个协议约定文件，里面规定好双方沟通的专业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1197495853.html" title="第37讲 | 知识串讲：用双十一的故事串起碎片的网络协议（上）">第37讲 | 知识串讲：用双十一的故事串起碎片的网络协议（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第37讲 | 知识串讲：用双十一的故事串起碎片的网络协议（上）基本的网络知识我们都讲完了，还记得最初举的那个“双十一”下单的例子吗？这一节开始，我们详细地讲解这个过程，用这个过程串起我们讲过的网络协议。
-我把这个过程分为十个阶段，从云平台中搭建一个电商开始，到BGP路由广播，再到DNS域名解析，从客户看商品图片，到最终下单的整个过程，每一步我都会详细讲解。这节我们先来看前三个阶段。
-1.部署一个高可用高并发的电商平台首先，咱们 要有个电商平台。假设我们已经有了一个特别大的电商平台，这个平台应该部署在哪里呢？假设我们用公有云，一般公有云会有多个位置，比如在华东、华北、华南都有。毕竟咱们的电商是要服务全国的，当然到处都要部署了。我们把主站点放在华东。
+接下来我介绍一下负载均衡算法以及它们的优缺点。
+轮询负载均衡系统收到请求后，按照顺序轮流分配到服务器上。
+轮询是最简单的一个策略，无须关注服务器本身的状态，例如：
 
-为了每个点都能“雨露均沾”，也为了高可用性，往往需要有多个机房，形成多个可用区（Available Zone）。由于咱们的应用是分布在两个可用区的，所以假如任何一个可用区挂了，都不会受影响。
-我们来回想 数据中心 那一节，每个可用区里有一片一片的机柜，每个机柜上有一排一排的服务器，每个机柜都有一个接入交换机，有一个汇聚交换机将多个机柜连在一起。
-这些服务器里面部署的都是计算节点，每台上面都有Open vSwitch创建的虚拟交换机，将来在这台机器上创建的虚拟机，都会连到Open vSwitch上。
+某个服务器当前因为触发了程序bug进入了死循环导致CPU负载很高，负载均衡系统是不感知的，还是会继续将请求源源不断地发送给它。
 
-接下来，你 在云计算的界面上创建一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1614951191.html" title="第38讲 | 知识串讲：用双十一的故事串起碎片的网络协议（中）">第38讲 | 知识串讲：用双十一的故事串起碎片的网络协议（中）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第38讲 | 知识串讲：用双十一的故事串起碎片的网络协议（中）上一节我们讲到，手机App经过了一个复杂的过程，终于拿到了电商网站的SLB的IP地址，是不是该下单了？
-别忙，俗话说的好，买东西要货比三家。大部分客户在购物之前要看很多商品图片，比来比去，最后好不容易才下决心，点了下单按钮。下单按钮一按，就要开始建立连接。建立连接这个过程也挺复杂的，最终还要经过层层封装，才构建出一个完整的网络包。今天我们就来看这个过程。
-4.购物之前看图片，静态资源CDN客户想要在购物网站买一件东西的时候，一般是先去详情页看看图片，是不是想买的那一款。
+集群中有新的机器是32核的，老的机器是16核的，负载均衡系统也是不关注的，新 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3884816744.html" title="21 人工神经网络 | 水无至清，人莫至察：模糊神经网络">21 人工神经网络 | 水无至清，人莫至察：模糊神经网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">21 人工神经网络 | 水无至清，人莫至察：模糊神经网络模糊神经网络是一类特殊的神经网络，它是神经网络和模糊逻辑结合形成的混合智能系统，通过将模糊系统的类人推理方式与神经网络的学习和连接结构相融合来协同这两种技术。简单来说， 模糊神经网络（fuzzy neural network）就是将常规的神经网络赋予模糊输入信号和模糊权值，其作用在于利用神经网络结构来实现模糊逻辑推理。
+在生活中，我们在臧否人物时很少给出非黑即白的二元评价。这是因为每个人在生活中都扮演着复杂的多重角色，不是好人就是坏人的评判方式显然有失客观。这就是模糊理论在生活中最直接的体现。正如美国加州大学伯克利分校的洛特菲·扎戴所说：“当系统的复杂性增加时，我们使它精确化的能力将减小。直到达到一个阈值，一旦超越这个阈值，复杂性和精确性将相互排斥。”
+1965年，正是这位洛特菲·扎戴提出了与模糊数学相关的一系列理论，并由此衍生出模糊系统的概念。1988年，供职于日本松下电气的高木秀幸和小林功提出了将神经网络与模糊逻辑结合的想法，这标志着神经模糊系统（Neuro-fuzzy system）的诞生。神经模糊系统的基础是 模糊集合 和一组“如果……那么……”形式的 模糊规则，利用神经网络的非线性和学习机制获得类人的推理能力。1993年，意大利帕多瓦大学的乔万尼·波尔托兰提出了将多层前馈神经网络模糊化的思路，这就是这里所讨论的模糊神 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4049097450.html" title="21丨分布式架构：如何应对高并发的用户请求">21丨分布式架构：如何应对高并发的用户请求</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">21丨分布式架构：如何应对高并发的用户请求互联网应用以及云计算的普及，使得架构设计和软件技术的关注点从如何实现复杂的业务逻辑，转变为如何满足大量用户的高并发访问请求。
+一个简单的计算处理过程，如果一旦面对大量的用户访问，整个技术挑战就会变得完全不同，软件开发方法、技术团队组织、软件的过程管理都会完全不同。
+以新浪微博为例，新浪微博最开始只有两个工程师，一个前端，一个后端，两个人开发了一个星期就把新浪微博开发出来了。现在许多年过去了，新浪微博的技术团队有上千人，这些人要应对的技术挑战，一方面来自于更多更复杂的功能，一方面来自于随着用户量的增加而带来的高并发访问压力。
+这种挑战和压力几乎对所有的大型互联网系统都是一样的，淘宝、百度、微信等，虽然功能各不相同，但都会 面对同样的高并发用户的访问请求压力。要知道，同样的功能，供几个人使用和供几亿人使用，技术架构是完全不同的。
+当同时访问系统的用户不断增加的时候，需要消耗的系统计算资源也不断增加，需要更多的CPU和内存去处理用户的计算请求，需要更多的网络带宽去传输用户的数据，需要更多的磁盘空间去存储用户的数据。当消耗的资源超过了服务器资源的极限的时候，服务器就会崩溃，整个系统无法正常使用。
+那么如何解决高并发的用户请求带来的问题？
+垂直伸缩与水平伸缩为了应对高并发用户访问带来的系统资源消耗，一种解决办法是垂直伸缩。所谓的垂直伸缩就是提升单台服 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1287160411.html" title="21｜ 实战项目（四）：用ControlNet给你的创意上色">21｜ 实战项目（四）：用ControlNet给你的创意上色</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">21｜ 实战项目（四）：用ControlNet给你的创意上色你好，我是南柯。
+上一讲我们已经学习了ControlNet的算法原理，也了解了它在AI绘画中强大的控制能力。今天我们一起来完成ControlNet的实战任务。
+在这一讲中，我们将通过写代码的方式使用ControlNet，一起完成后面这三个任务。
 
-我们部署电商应用的时候，一般会把静态资源保存在两个地方，一个是接入层nginx后面的varnish缓存里面，一般是静态页面；对于比较大的、不经常更新的静态图片，会保存在对象存储里面。这两个地方的静态资源都会配置CDN，将资源下发到边缘节点。
-配置了CDN之后，权威DNS服务器上，会为静态资源设置一个CNAME别名，指向另外一个域名 cdn.com ，返回给本地DNS服务器。
-当本地DNS服务器拿到这个新的域名时，需要继续解析这个新的域名。这个时候，再访问的时候就不是原来的权威DNS服务器了，而是 cdn.com 的权威DNS服务器。这是CDN自己的权威DNS服务器。
-在这个服务器上，还是会设置一个CNAME，指向另外一个域名，也即CDN网络的全局负载均 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/71/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/71/#content-inner">71</a><span class="page-number current">72</span><a class="page-number" href="/page/73/#content-inner">73</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/73/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+认识官方已经发布的ControlNet模型以及社区传播的第三方ControlNet模型。
+实现ControlNet论文中的控图生成任务，掌握ControlNet的基础能力。
+探索ControlNet的趣味生成功能，包括图像风格化、二维码生成、创意文字和线稿上色。
+
+掌握了这些技巧，你也一定能够发挥创意，做出很多结构鲜明的作品。让我们开始吧！
+模型获取在Hugging Face上，我们不光可以获取到海量AI绘画基础模型，还能找到各种开发者训练的ControlNet模型。正式使用之前，我们先来认识下这些模型。
+官方发布的模型首先是ControlNet论文作者在ControlNet1.0和1.1中发布的22个模型。
+ControlNet1.0的8个模型可以通过后面这个 Hugging Face链接 获取。我们可以看到ControlNet1.0各个模型的命名规则，以第一行的 “control_sd15_canny.pth” 为例，sd15表示用于训练这个ControlNet的基础模型是S ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1138924586.html" title="21｜DID和PaddleGAN：表情生动的数字人播报员">21｜DID和PaddleGAN：表情生动的数字人播报员</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">21｜DID和PaddleGAN：表情生动的数字人播报员你好，我是徐文浩。
+上一讲里，我们已经学会了通过AI来进行语音合成。有了语音识别、ChatGPT，再加上这个语音合成，我们就可以做一个能和我们语音聊天的机器人了。不过光有声音还不够，我们还希望这个声音可以是某一个特定的人的声音。就好像在电影《Her》里面那样，AI因为用了影星斯嘉丽·约翰逊的配音，也吸引到不少观众。最后，光有声音还不够，我们还希望能够有视觉上的效果，最好能够模拟自己真的在镜头面前侃侃而谈的样子。
+这些需求结合在一起，就是最近市面上很火的“数字人”，也是我们这一讲要学习的内容。当然，在这么短的时间里，我们做出来的数字人的效果肯定比不上商业公司的方案。不过作为概念演示也完全够用了。
+制作一个语音聊天机器人从文本ChatBot起步我们先从最简单的文本ChatBot起步，先来做一个和 第 6 讲 一样的文本聊天机器人。对应的代码逻辑和第6讲的ChatGPT应用基本一样，整个的UI界面也还是使用Gradio来创建。
+唯一的区别在于，我们把原先自己封装的Conversation类换成了Langchain的ConversationChain来实现，并且使用了SummaryBufferMemory。这样，我们就不需要强行设定只保留过去几轮对话了。
+import openai, os
+import gradio as gr
+fr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2756903923.html" title="21｜部署一个鲜花网络电商的人脉工具（下）">21｜部署一个鲜花网络电商的人脉工具（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">21｜部署一个鲜花网络电商的人脉工具（下）你好，我是黄佳，欢迎来到LangChain实战课！
+在上节课中，我们通过LangChain，找到了适合为某一类鲜花做推广的微博大V，并且爬取了他的信息。下面，我带着你继续完成易速鲜花电商人脉工具的后续部分。
+项目步骤复习先复习一下项目实现过程的五个具体步骤。
+第一步： 通过LangChain的搜索工具，以模糊搜索的方式，帮助运营人员找到微博中有可能对相关鲜花推广感兴趣的大V（比如喜欢牡丹花的大V），并返回UID。
+第二步： 根据微博UID，通过爬虫工具拿到相关大V的微博公开信息，并以JSON格式返回大V的数据。
+第三步： 通过LangChain调用LLM，通过信息整合以及文本生成功能，根据大V的个人信息，写一篇热情洋溢的介绍型文章，谋求与该大V的合作。
+第四步： 把LangChain输出解析功能加入进来，让LLM生成可以嵌入提示模板的格式化数据结构。
+第五步： 添加HTML、CSS，并用Flask创建一个App，在网络上部署及发布这个鲜花电商人脉工具，供市场营销部门的人员使用。
+
+第三步 ： 生成介绍文章下面我们开始第三个步骤，把步骤二中返回的JSON数据（大V的个人简介）传递给LLM，发挥大模型超强的总结整理和文本生成能力，帮助运营人员创建文案。
+这个文案可以有很多种形式，比如说可以总结一下大V的特点，根据他的自我介绍猜测一下他的兴趣爱好 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/453372993.html" title="22 | OKR的优势：为什么要用OKR来取代KPI做团队规划？">22 | OKR的优势：为什么要用OKR来取代KPI做团队规划？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">22 | OKR的优势：为什么要用OKR来取代KPI做团队规划？你好，我是华仔。
+如果让Team Leader（以下简称TL）选出自己工作中最头疼的几件事，那么团队规划一定是其中之一，因为这件事情很难有确定的标准，感觉怎么做都有一定的道理，但又不太确定什么样的规划才能拿到好结果。
+那么是不是说，如果你不是TL，就不用掌握团队规划的方法了呢？其实并不是这样的。
+首先，作为团队成员，你需要理解TL的规划，并且根据他的规划分解出自己的规划；当你自己学会了团队规划，就更容易发现潜在的机会，然后跟TL争取这些机会。
+其次，现在到了P6+级别就可能带人了，如果你想晋升到P7的话，必须具备一定的管理能力，而无论你是带实体团队还是虚拟团队，都要掌握团队规划的方法。
+KPI：关键绩效指标团队规划到底要怎么做呢？大家耳熟能详的就是KPI了。
+KPI的英文全称是 Key Performance Indicator，意思是 关键绩效指标。它把公司的目标自上而下地分解，并且通过相关的关键绩效指标来衡量实际的执行效果。
+KPI的问题虽然KPI规划法曾经的确是比较先进的管理方法，但是到了今天，它的缺点也暴露得很明显。
+首先，它只适合标准化的、目标稳定的工作。
+比如在一家生产洗衣液的工厂，生产线是标准化的流水线，KPI可以设定为产量、停机时间和良品率等，产品销售是目标稳定的活动，KPI可以设定为销售量和市场占有率 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3974323806.html" title="22 | 不要做微观的管理者">22 | 不要做微观的管理者</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:19.000Z" title="发表于 2023-12-13 18:10:19">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">22 | 不要做微观的管理者今天我和你聊一聊管理的粒度问题，在进入正题之前，我先来说说自己的故事。
+第一个故事发生在我离开 Square 之前不久。那时候正值 Square 准备 IPO 的前期，公司频繁重组，很多人的顶头上司在短时间内可能更换了好几个，我也不例外，最后的那个老板，我和他的共事时间一共也就一两个月。他的主要背景是前端，而我一直做服务器端和系统架构相关的工作。成为我的老板的时候，他刚刚转为管理者。
+不知道是新官上任三把火，还是他的管理风格使然，总之，做项目的时候，他恨不得手把手地指导我们，频繁地跟进和检查，很多并不算重要的技术决定，他也会给出自己的想法，而不是让组员做决定。
+我个人比较偏好发挥主观能动性，这种做法让我在工作中束手束脚，做事方式也遭到质疑。当时我算是比较有经验的工程师了，加上性子有些执拗，也不喜欢去争论或沟通，工作氛围的变化让我有些疲惫，恰好 Airbnb 又在那时抛出了橄榄枝，种种因素集合在一起，促使我去面试。
+面试的过程很愉快，我也很喜欢 Airbnb 的愿景和工作氛围，所以就顺势跳槽了。虽然说老板不好不是跳槽的根本原因，却让离开 Square 这个决定变得更加轻松。
+虽然后来很多人问我为什么离开 Square，我都没有提这件事。不过，听说那位管理者的团队带着带着就没了，公司又让他做回了工程师，这是后话；其实他技术不差，做事也靠谱，但是管理方面，可能 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3643381884.html" title="22 | 从亚马逊的实践，谈分布式系统的难点">22 | 从亚马逊的实践，谈分布式系统的难点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">22 | 从亚马逊的实践，谈分布式系统的难点你好，我是陈皓，网名左耳朵耗子。
+从目前已经公开的资料来看，分布式服务化架构思想实践最早的公司应该是亚马逊。因为早在2002年的时候，亚马逊CEO杰夫·贝索斯（Jeff Bezos）就向全公司颁布了下面的这几条架构规定（来自《 Steve Yegge对Google平台吐槽》一文）。
+
+所有团队的程序模块都要通过Service Interface方式将其数据与功能开放出来。
+
+团队间程序模块的信息通信，都要通过这些接口。
+
+除此之外没有其它的通信方式。其他形式一概不允许：不能直接链结别的程序（把其他团队的程序当作动态链接库来链接），不能直接读取其他团队的数据库，不能使用共享内存模式，不能使用别人模块的后门，等等。唯一允许的通信方式是调用Service Interface。
+
+任何技术都可以使用。比如：HTTP、CORBA、Pub&#x2F;Sub、自定义的网络协议等。
+
+所有的Service Interface，毫无例外，都必须从骨子里到表面上设计成能对外界开放的。也就是说，团队必须做好规划与设计，以便未来把接口开放给全世界的程序员，没有任何例外。
+
+不这样做的人会被炒鱿鱼。
+
+
+这应该就是AWS（Amazon Web Service）出现的基因吧。当然，前面说过，采用分布式系统架构后会出现很多的问题。比如：
+
+一个线上故障的工单会在不同的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3342791452.html" title="22 | 冒险和预测（一）：hazard是“危”也是“机”">22 | 冒险和预测（一）：hazard是“危”也是“机”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">22 | 冒险和预测（一）：hazard是“危”也是“机”过去两讲，我为你讲解了流水线设计CPU所需要的基本概念。接下来，我们一起来看看，要想通过流水线设计来提升CPU的吞吐率，我们需要冒哪些风险。
+任何一本讲解CPU的流水线设计的教科书，都会提到流水线设计需要解决的三大冒险，分别是 结构冒险（Structural Hazard）、 数据冒险（Data Hazard）以及 控制冒险（Control Hazard）。
+这三大冒险的名字很有意思，它们都叫作 hazard（冒险）。喜欢玩游戏的话，你应该知道一个著名的游戏，生化危机，英文名就叫Biohazard。的确，hazard还有一个意思就是“危机”。那为什么在流水线设计里，hazard没有翻译成“危机”，而是要叫“冒险”呢？
+在CPU的流水线设计里，固然我们会遇到各种“危险”情况，使得流水线里的下一条指令不能正常运行。但是，我们其实还是通过“抢跑”的方式，“冒险”拿到了一个提升指令吞吐率的机会。流水线架构的CPU，是我们主动进行的冒险选择。我们期望能够通过冒险带来更高的回报，所以，这不是无奈之下的应对之举，自然也算不上什么危机了。
+事实上，对于各种冒险可能造成的问题，我们其实都准备好了应对的方案。这一讲里，我们先从结构冒险和数据冒险说起，一起来看看这些冒险及其对应的应对方案。
+结构冒险：为什么工程师都喜欢用机械键盘？我们先来看一看结 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/71/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/71/#content-inner">71</a><span class="page-number current">72</span><a class="page-number" href="/page/73/#content-inner">73</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/73/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

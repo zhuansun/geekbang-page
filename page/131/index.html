@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,95 +138,87 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/991418790.html" title="34 | 第23~33讲课后思考题答案及常见问题答疑">34 | 第23~33讲课后思考题答案及常见问题答疑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">34 | 第23~33讲课后思考题答案及常见问题答疑你好，我是蒋德钧。
-今天，又到了我们的答疑时间，我们一起来学习下第23～33讲的课后思考题。同时，我还会给你讲解两道典型问题。
-课后思考题答案第23讲问题：Redis的只读缓存和使用直写策略的读写缓存，都会把数据同步写到后端数据库中，你觉得它们有什么区别吗？
-答案：主要的区别在于，当有缓存数据被修改时，在只读缓存中，业务应用会直接修改数据库，并把缓存中的数据标记为无效；而在读写缓存中，业务应用需要同时修改缓存和数据库。
-我把这两类缓存的优劣势汇总在一张表中，如下所示：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/493524811.html" title="第9讲 | 对比Hashtable、HashMap、TreeMap有什么不同？">第9讲 | 对比Hashtable、HashMap、TreeMap有什么不同？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第9讲 | 对比Hashtable、HashMap、TreeMap有什么不同？Map是广义Java集合框架中的另外一部分，HashMap作为框架中使用频率最高的类型之一，它本身以及相关类型自然也是面试考察的热点。
+今天我要问你的问题是，对比Hashtable、HashMap、TreeMap有什么不同？谈谈你对HashMap的掌握。
+典型回答Hashtable、HashMap、TreeMap都是最常见的一些Map实现，是以 键值对 的形式存储和操作数据的容器类型。
+Hashtable是早期Java类库提供的一个 哈希表 实现，本身是同步的，不支持null键和值，由于同步导致的性能开销，所以已经很少被推荐使用。
+HashMap是应用更加广泛的哈希表实现，行为上大致上与HashTable一致，主要区别在于HashMap不是同步的，支持null键和值等。通常情况下，HashMap进行put或者get操作，可以达到常数时间的性能，所以 它是绝大部分利用键值对存取场景的首选，比如，实现一个用户ID和用户信息对应的运行时存储结构。
+TreeMap则是基于红黑树的一种提供顺序访问的Map，和HashMap不同，它的get、put、remove之类操作都是O（log(n)）的时间复杂度，具体顺序可以由指定的Comparator来决定，或者根据键的自然顺序来判断。
+考点分析上面的回答，只是对一些基本特 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/975734495.html" title="第9讲 | 路由协议：西出网关无故人，敢问路在何方">第9讲 | 路由协议：西出网关无故人，敢问路在何方</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:22.000Z" title="发表于 2023-12-13 18:30:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第9讲 | 路由协议：西出网关无故人，敢问路在何方俗话说得好，在家千日好，出门一日难。网络包一旦出了网关，就像玄奘西行一样踏上了江湖漂泊的路。
+上一节我们描述的是一个相对简单的情形。出了网关之后，只有一条路可以走。但是，网络世界复杂得多，一旦出了网关，会面临着很多路由器，有很多条道路可以选。如何选择一个更快速的道路求取真经呢？这里面还有很多门道可以讲。
+如何配置路由？通过上一节的内容，你应该已经知道，路由器就是一台网络设备，它有多张网卡。当一个入口的网络包送到路由器时，它会根据一个本地的转发信息库，来决定如何正确地转发流量。这个转发信息库通常被称为 路由表。
+一张路由表中会有多条路由规则。每一条规则至少包含这三项信息。
 
-第24讲问题：Redis缓存在处理脏数据时，不仅会修改数据，还会把它写回数据库。我们在前面学过Redis的只读缓存模式和两种读写缓存模式（带同步直写的读写模式，带异步写回的读写模式）），请你思考下，Redis缓存对应哪一种或哪几种模式？
-答案：如果我们在使用Redis缓存时，需要把脏数据写回数据库，这就意味着，Redis中缓存的数据可以直接被修改，这就对应了读写缓存模式。更进一步分析的话，脏数据是在被替换出缓存时写回后端数据库的，这就对应了带有异步写回策略的读写缓存模式。
-第25讲问题：在只读缓存中对数据进行删改时，需要在缓存中删除相应的缓存值。如果在这个过程中，我们不是删除缓存值，而是直接更新缓存的值，你觉得，和删除缓存值相比，直接更新缓存值有什么好处和不足吗？ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2523099344.html" title="35 | Codis VS Redis Cluster：我该选择哪一个集群方案？">35 | Codis VS Redis Cluster：我该选择哪一个集群方案？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">35 | Codis VS Redis Cluster：我该选择哪一个集群方案？你好，我是蒋德钧。
-Redis的切片集群使用多个实例保存数据，能够很好地应对大数据量的场景。在 第8讲 中，我们学习了Redis官方提供的切片集群方案Redis Cluster，这为你掌握切片集群打下了基础。今天，我再来带你进阶一下，我们来学习下Redis Cluster方案正式发布前，业界已经广泛使用的Codis。
-我会具体讲解Codis的关键技术实现原理，同时将Codis和Redis Cluster进行对比，帮你选出最佳的集群方案。
-好了，话不多说，我们先来学习下Codis的整体架构和流程。
-Codis的整体架构和基本流程Codis集群中包含了4类关键组件。
+目的网络：这个包想去哪儿？
 
-codis server：这是进行了二次开发的Redis实例，其中增加了额外的数据结构，支持数据迁移操作，主要负责处理具体的数据读写请求。
-codis proxy：接收客户端请求，并把请求转发给codis server。
-Zookeeper集群：保存集群元数据，例如数据位置信息和codis proxy信息。
-codis dashboard和codis fe：共同组成了集群管理工具。其中，codis dashboard负责执行集群管理工作，包括增删codis server、codis proxy和进行数据迁移。而codis fe负责提供dash ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4044030878.html" title="36 | Redis支撑秒杀场景的关键技术和实践都有哪些？">36 | Redis支撑秒杀场景的关键技术和实践都有哪些？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">36 | Redis支撑秒杀场景的关键技术和实践都有哪些？你好，我是蒋德钧。
-秒杀是一个非常典型的活动场景，比如，在双11、618等电商促销活动中，都会有秒杀场景。秒杀场景的业务特点是 限时限量，业务系统要处理瞬时的大量高并发请求，而Redis就经常被用来支撑秒杀活动。
-不过，秒杀场景包含了多个环节，可以分成秒杀前、秒杀中和秒杀后三个阶段，每个阶段的请求处理需求并不相同，Redis并不能支撑秒杀场景的每一个环节。
-那么，Redis具体是在秒杀场景的哪个环节起到支撑作用的呢？又是如何支持的呢？清楚了这个问题，我们才能知道在秒杀场景中，如何使用Redis来支撑高并发压力，并且做好秒杀场景的应对方案。
-接下来，我们先来了解下秒杀场景的负载特征。
-秒杀场景的负载特征对支撑系统的要求秒杀活动售卖的商品通常价格非常优惠，会吸引大量用户进行抢购。但是，商品库存量却远远小于购买该商品的用户数，而且会限定用户只能在一定的时间段内购买。这就给秒杀系统带来两个明显的负载特征，相应的，也对支撑系统提出了要求，我们来分析下。
-第一个特征是瞬时并发访问量非常高。
-一般数据库每秒只能支撑千级别的并发请求，而Redis的并发处理能力（每秒处理请求数）能达到万级别，甚至更高。所以， 当有大量并发请求涌入秒杀系统时，我们就需要使用Redis先拦截大部分请求，避免大量请求直接发送给数据库，把数据库压垮。
-第二个特征是读 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2261382700.html" title="38 | 通信开销：限制Redis Cluster规模的关键因素">38 | 通信开销：限制Redis Cluster规模的关键因素</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">38 | 通信开销：限制Redis Cluster规模的关键因素你好，我是蒋德钧。
-Redis Cluster能保存的数据量以及支撑的吞吐量，跟集群的实例规模密切相关。Redis官方给出了Redis Cluster的规模上限，就是一个集群运行1000个实例。
-那么，你可能会问，为什么要限定集群规模呢？其实，这里的一个关键因素就是， 实例间的通信开销会随着实例规模增加而增大，在集群超过一定规模时（比如800节点），集群吞吐量反而会下降。所以，集群的实际规模会受到限制。
-今天这节课，我们就来聊聊，集群实例间的通信开销是如何影响Redis Cluster规模的，以及如何降低实例间的通信开销。掌握了今天的内容，你就可以通过合理的配置来扩大Redis Cluster的规模，同时保持高吞吐量。
-实例通信方法和对集群规模的影响Redis Cluster在运行时，每个实例上都会保存Slot和实例的对应关系（也就是Slot映射表），以及自身的状态信息。
-为了让集群中的每个实例都知道其它所有实例的状态信息，实例之间会按照一定的规则进行通信。这个规则就是Gossip协议。
-Gossip协议的工作原理可以概括成两点。
-一是，每个实例之间会按照一定的频率，从集群中随机挑选一些实例，把PING消息发送给挑选出来的实例，用来检测这些实例是否在线，并交换彼此的状态信息。PING消息中封装了发送消息的实例自身的状态 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2182052197.html" title="39 | Redis 6.0的新特性：多线程、客户端缓存与安全">39 | Redis 6.0的新特性：多线程、客户端缓存与安全</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">39 | Redis 6.0的新特性：多线程、客户端缓存与安全你好，我是蒋德钧。
-Redis官方在今年5月份正式推出了6.0版本，这个版本中有很多的新特性。所以，6.0刚刚推出，就受到了业界的广泛关注。
-所以，在课程的最后，我特意安排了这节课，想来和你聊聊Redis 6.0中的几个关键新特性，分别是面向网络处理的多IO线程、客户端缓存、细粒度的权限控制，以及RESP 3协议的使用。
-其中，面向网络处理的多IO线程可以提高网络请求处理的速度，而客户端缓存可以让应用直接在客户端本地读取数据，这两个特性可以提升Redis的性能。除此之外，细粒度权限控制让Redis可以按照命令粒度控制不同用户的访问权限，加强了Redis的安全保护。RESP 3协议则增强客户端的功能，可以让应用更加方便地使用Redis的不同数据类型。
-只有详细掌握了这些特性的原理，你才能更好地判断是否使用6.0版本。如果你已经在使用6.0了，也可以看看怎么才能用得更好，少踩坑。
-首先，我们来了解下6.0版本中新出的多线程特性。
-从单线程处理网络请求到多线程处理在Redis 6.0中，非常受关注的第一个新特性就是多线程。这是因为，Redis一直被大家熟知的就是它的单线程架构，虽然有些命令操作可以用后台线程或子进程执行（比如数据删除、快照生成、AOF重写），但是，从网络IO处理到实际的读写命令处理，都是由单个线程完成的。
-随着 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1088378601.html" title="加餐（一）| 经典的Redis学习资料有哪些？">加餐（一）| 经典的Redis学习资料有哪些？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">加餐（一）| 经典的Redis学习资料有哪些？你好，我是蒋德钧。
-咱们课程的“基础篇”已经结束了。在这个模块，我们学习了Redis的系统架构、数据结构、线程模型、持久化、主从复制和切片集群这些核心知识点，相信你已经初步构建了自己的一套基础知识框架。
-不过，如果想要持续提升自己的技术能力，还需要不断丰富自己的知识体系，那么，阅读就是一个很好的方式。所以，这节课，我就给你推荐几本优秀的书籍，以及一些拓展知识面的其他资料，希望能够帮助你全面掌握Redis。
-经典书籍在学习Redis时，最常见的需求有三个方面。
+出口设备：将包从哪个口扔出去？
 
-日常使用操作：比如常见命令和配置，集群搭建等；
-关键技术原理：比如我们介绍过的IO模型、AOF和RDB机制等；
-在实际使用时的经验教训，比如，Redis响应变慢了怎么办？Redis主从库数据不一致怎么办？等等。
+下一跳网关：下一个路由器的地址。
 
-接下来，我就根据这些需求，把参考资料分成工具类、原理类、实战类三种。我们先来看工具类参考资料。
-工具书：《Redis使用手册》一本好的工具书，可以帮助我们快速地了解或查询Redis的日常使用命令和操作方法。我要推荐的《Redis使用手册》，就是一本非常好用的工具书。
-在这本书中，作者把Redis的内容分成了三大部分，分别是“数据结构与应用”“附加功能”和“多机功能”。其中，我认为最有用的就是“数据结构与应用”的内容，因为它提供了丰富的操作命令介绍，不仅涵盖了Redis的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2775449679.html" title="加餐（二）| 用户Kaito：我是如何学习Redis的？">加餐（二）| 用户Kaito：我是如何学习Redis的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">加餐（二）| 用户Kaito：我是如何学习Redis的？你好，我是蒋德钧。
-在看课程留言的时候，我发现，Kaito同学的总结常常特别精彩，所以就请编辑帮我联系了Kaito，想请他来聊一聊具体是怎么学习Redis的。
-接下来，我就把Kaito的学习经验分享给你。
 
-你好，我是Kaito。
-很荣幸受到极客时间编辑的邀请，来和你分享一下我学习Redis的方法，希望可以帮助你更加高效地学习Redis。
-我先做个自我介绍。
-从毕业到现在，我已经工作7年了，目前是北京的一家移动互联网公司的资深研发工程师。我之前主导设计过垂直爬虫采集平台，后来开发面向用户的后端服务系统，现在在从事基础架构和数据库中间件方面的研发工作，具体是做跨数据中心的存储层灾备与多活领域的研发，主要技术栈是Golang。
-我们公司采用的Redis集群方案是Codis，所以我也主要负责公司内的Codis定制化开发工作。在最近的一年多时间里，我的很多工作都是围绕Redis展开的。在这期间，我遇到了很多Redis相关的问题，例如访问延迟变大、部署运维参数配置不合理，等等，也狠狠地恶补了Redis方面的知识，看过书，读过源码，出过Bug，踩过坑，一路走来，我逐渐梳理出了一套高效的学习路径，我把它分为三大模块：
+通过route命令和ip route命令都可以进行查询或者配置。
+例如，我们设置ip route add 10.176.48.0&#x2F;20 via 10.173.32.1 dev eth0，就说明要去10.176.48.0&#x2F;20这个目标网络，要从eth0端口出去，经过10.173.32.1。
+上一节的例子中，网关上的路由策略就是按照这三项配置信息进行配置的。这种配置方式的一个核心思想是： 根据目的IP地址来配置路由。
+如何配置策略路由？当然，在真实 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/901045804.html" title="第二季回归 | 照着做，你也能顺利晋升！">第二季回归 | 照着做，你也能顺利晋升！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">第二季回归 | 照着做，你也能顺利晋升！你好，我是华仔。
+2018年，我在极客时间开设了《从0开始学架构》这门课。我和你分享了自己多年研究和实践积累得到的一套 完整的架构设计方法论，来帮助你提升架构设计的能力。
+为什么架构设计能力这么重要呢？因为它是技术人员晋升到高级别必备的能力，所以后来我也在QCon等场合分享了架构师怎么成长等内容。不出意外，除了架构本身的能力提升，我还被问到了很多关于 职场晋升 的问题。常见的典型问题有下面这些：
 
-掌握数据结构和缓存的基本使用方法；
-掌握支撑Redis实现高可靠、高性能的技术；
-精通Redis底层实现原理。
+我平时工作太忙了，没有时间专门提升自己，也不知道应该优先提升什么能力。由于平时准备就不充分，心里没底，所以就算有晋升机会，我也不敢申请，怕在大家面前丢脸，怎么办？
+身边跟我差不多的、甚至不如我的同事都晋升了，而我还在原地踏步。我不知道晋升这个游戏到底要怎么玩，这背后是不是有所谓的“潜规则”？
+我得到了领导和同事的一致认可，胸有成竹地去参加晋升答辩，却感觉像茶壶里煮饺子，有货倒不出。而且我的PPT做得像流水账或者大杂烩，讲PPT像在念课文，面对评委的问题经常大脑短路，怎么办？
+我信心满满地完成了晋升答辩，评委却判定我还没达到要求。我很迷茫，不知道下一个级别的具体要求是什么，怎么做才能打动评委呢？
 
-今天的这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1609954962.html" title="加餐（五） | Redis有哪些好用的运维工具？">加餐（五） | Redis有哪些好用的运维工具？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">加餐（五） | Redis有哪些好用的运维工具？你好，我是蒋德钧。
-今天的加餐，我来给你分享一些好用的Redis运维工具。
-我们在应用Redis时，经常会面临的运维工作，包括Redis的运行状态监控，数据迁移，主从集群、切片集群的部署和运维。接下来，我就从这三个方面，给你介绍一些工具。我们先来学习下监控Redis实时运行状态的工具，这些工具都用到了Redis提供的一个监控命令：INFO。
-最基本的监控命令：INFO命令Redis本身提供的INFO命令会返回丰富的实例运行监控信息，这个命令是Redis监控工具的基础。
-INFO命令在使用时，可以带一个参数section，这个参数的取值有好几种，相应的，INFO命令也会返回不同类型的监控信息。我把INFO命令的返回信息分成5大类，其中，有的类别当中又包含了不同的监控内容，如下表所示：
+这些问题让我回想起了自己这些年的工作经历。我在软件行业摸爬滚打了16年，先后服务过华为、UC、阿里巴巴、蚂蚁金服等公司。这些公司有个共同点，那就是都具备完 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/656234691.html" title="答疑丨Java Web程序的运行时环境到底是怎样的？">答疑丨Java Web程序的运行时环境到底是怎样的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">答疑丨Java Web程序的运行时环境到底是怎样的？今天是第一模块的最后一讲。在这一讲中，我们主要讲了软件的基础原理，今天，我将会针对这一模块中大家提出的普遍问题进行总结和答疑，让我们整理一下，再接着学习下一个模块的内容。
+问题一
+@小美
+既然一个JVM是一个进程，JVM上跑Tomcat，Tomcat上可以部署多个应用。这样的话，每个跑在Tomcat上的应用是一个线程吗？该怎么理解“如果一个应用crash了，其他应用也会crash”？
 
-在监控Redis运行状态时，INFO命令返回的结果非常有用。如果你想了解INFO命令的所有参数返回结果的详细含义，可以查看Redis 官网 的介绍。这里，我给你提几个运维时需要重点关注的参数以及它们的重要返回结果。
-首先， 无论你是运行单实例或是集群，我建议你重点关注一下stat、commandstat、cpu和memory这四个参数的返回结果，这里面包含了命令的执行情况（比如命令的执行次数和执行时间、命令使用的CPU资源），内存资源的使用情况（比如内存 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3681754906.html" title="加餐（七） | 从微博的Redis实践中，我们可以学到哪些经验？">加餐（七） | 从微博的Redis实践中，我们可以学到哪些经验？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">加餐（七） | 从微博的Redis实践中，我们可以学到哪些经验？你好，我是蒋德钧。
-我们知道，微博内部的业务场景中广泛使用了Redis，积累了大量的应用和优化经验。微博有位专家曾有过一个 分享，介绍了Redis在微博的优化之路，其中有很多的优秀经验。
-俗话说“他山之石，可以攻玉”，学习掌握这些经验，可以帮助我们在自己的业务场景中更好地应用Redis。今天这节课，我就结合微博技术专家的分享，以及我和他们内部专家的交流，和你聊聊微博对Redis的优化以及我总结的经验。
-首先，我们来看下微博业务场景对Redis的需求。这些业务需求也就是微博优化和改进Redis的出发点。
-微博的业务有很多，例如让红包飞活动，粉丝数、用户数、阅读数统计，信息流聚合，音乐榜单等，同时，这些业务面临的用户体量非常大，业务使用Redis存取的数据量经常会达到TB级别。
-作为直接面向终端用户的应用，微博用户的业务体验至关重要，这些都需要技术的支持。我们来总结下微博对Redis的技术需求：
+理解程序运行时的执行环境，直观感受程序是如何运行的，对我们开发和维护软件很有意义。我们以小美同学提的这个场景为例，看下Java Web程序的运行时环境是什么样的，来重新梳理下进程、线程、应用、Web容器、Java虚拟机和操作系统之间的关系。
+我们用Java开发Web应用，开发完成，编译打包以后得到的是一个war包，这个war包放入Tomcat的应用程序路径下，启动Tomcat就可以通过HTTP请求访问这个Web应用了。
+在这个场景下，进程是哪个？线程有哪些？Web程序的war包是如何启动的？HTTP请求如何被处理？Tomcat在这里扮演的是什么角色？JVM又扮演什么角色？
+首先，我们是通过执行Tomcat的Shell脚本启动Tomcat的，而在Shell脚本里，其实启动的是Java虚拟机，大概是这样一个Shell命令：
+java org.apach ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2997805612.html" title="答疑丨对于设计模式而言，场景到底有多重要？">答疑丨对于设计模式而言，场景到底有多重要？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">答疑丨对于设计模式而言，场景到底有多重要？今天是第二模块的最后一讲。在这一讲中，我们主要讲了软件的设计原理，今天，我将会针对这一模块中大家提出的普遍问题进行总结和答疑。并且，我在最后列了一个书单，这个书单里涉及到的书，可能会对你学习设计模式有一些帮助。让我们整理一下，再接着学习下一个模块的内容。
+问题答疑我们先来看一个同学提出的问题。
+@山猫
+如果项目初始就对Button按钮进行这么复杂的设计，那么这么项目后期的维护成本也是相当之高。
+答：
+我们这个模块是讲设计的，这些设计原则都是用来解决需求变更的问题的。如果你为需求变更而进行了设计，但是预期中的需求变更却从来没有发生过，那么你的设计就属于设计过度；如果已经发生了需求变更，但是你却没有用灵活的设计方法去应对，而是通过硬编码的方式在既有代码上打补丁，那么这就是设计不足。
+因此，是否要使用各种设计原则和设计模式去设计一个非常灵活的程序，主要是看你的需求场景。如果你的场景就是需要灵活，就是要各种复用，应对各种变更，那么一开始就应该这样设计。如果你的场景根本不需要一个可复用的Button，那么就不需要这样设计。
+所以关键还是看场景。
+但是场景也会变化，一开始不需要复用，但是后来又需要复用了，那么就需要在复用的第一个场景去重构代码，而不是等将来困难局面hold不住了再重构。
+同时，设计原则和设计模式只是让代码看起来复杂了，毕竟一个接口好几个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/638559693.html" title="答疑丨工作中的交往和沟通，都有哪些小技巧呢？">答疑丨工作中的交往和沟通，都有哪些小技巧呢？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">答疑丨工作中的交往和沟通，都有哪些小技巧呢？《倚天屠龙记》里有这么一段，赵敏和周芷若势同水火，非要拼个你死我活，结果张无忌来了后，几句话就让两个人情同姐妹。看的明教众人面面相觑，最后得出一个结论：能者无所不能。
+我认识的很多技术高手也常常给我这样一种感觉，他们不只是技术好，他们几乎无所不能。对业务的理解，对人际关系的把握，对未来发展的预见性，对事物本质一针见血的描述，常常使我既惊叹，又佩服。
+曾经我以为这些人是因为技术好所以样样精通，后来我猜想他们是因为样样精通所以技术好。软件开发是一个实践性很强的技术活动。要想做好软件开发，就需要有较强的社会实践能力。我在这个模块讲了一些技术之外的社会实践规律，这些规律和技术的关系也许比大多数人想象得更加紧密。
+关于工作中的交往与沟通，我这里再分享一些小的技巧。
+保持交际和赞美很多程序员不喜欢交际，觉得浪费时间。事实上，保持适当的交际，可能会帮你节约很多时间。一方面，良好的交际关系可以营造一种更愉快的工作氛围，自己和其他同事可以保持更好的工作状态；另一方面，处理某些问题的时候，比如，需要指出某个人工作失误的时候，良好的关系可以缓冲这类指责带来的负面影响。相反，如果你们平时见面的时候就形同路人，这个时候，他更有可能认为你是对他个人的否定，而不是对工作本身的意见。
+而且，保持适当的交际并不需要花费多少时间，仅仅是简单的寒暄，聊聊天气，就可以拉近两个人 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/761874516.html" title="答疑课堂1｜热点问题答疑&amp;前两章思考题答案">答疑课堂1｜热点问题答疑&amp;前两章思考题答案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">答疑课堂1｜热点问题答疑&amp;前两章思考题答案你好，我是南柯。
+现在，我们已经完成了热身篇和基础篇的学习。在更新过程中，我也看到了很多同学的留言评论。其中包括工具安装配置问题、基础知识理解等方面的问题。这次加餐，我把评论区的共性问题做了一个整理，希望能帮你答疑解惑。
+另外，前面12讲的思考题参考答案，我也放在了这篇加餐里。不过我更希望你可以独立思考或亲自动手尝试，这样学习效果会更好。
+电脑硬件建议对于WebUI的安装，如果使用GPU，最低显存建议在8GB，最低使用GTX1050Ti的显卡设备。在此基础上，显卡越强越好。如果用的是苹果电脑，M系列处理器的安装更简单一些，不过使用苹果电脑做AI绘画需要考验你的耐心。
+举个简单的例子，同样是设置20步生成一张512x512分辨率的图像，苹果电脑需要25～30秒，而T4显卡只需要3-4秒左右。
 
-能够提供高性能、高并发的读写访问，保证读写延迟低；
-能够支持大容量存储；
-可以灵活扩展，对于不同业务能进行快速扩容。
-
-为了满足这些需求，微博对Redis做了大量的改进优化，概括来说，既有对Redis本身数据结构、工作机制的改进，也基于Redis自行研发了新功能组件，包括支持大容量存储的RedRock和实现服务化的RedisSe ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1609315375.html" title="加餐（四） | Redis客户端如何与服务器端交换命令和数据？">加餐（四） | Redis客户端如何与服务器端交换命令和数据？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">加餐（四） | Redis客户端如何与服务器端交换命令和数据？你好，我是蒋德钧。
-在前面的课程中，我们主要学习了Redis服务器端的机制和关键技术，很少涉及到客户端的问题。但是，Redis采用的是典型的client-server（服务器端-客户端）架构，客户端会发送请求给服务器端，服务器端会返回响应给客户端。
-如果要对Redis客户端进行二次开发（比如增加新的命令），我们就需要了解请求和响应涉及的命令、数据在客户端和服务器之间传输时，是如何编码的。否则，我们在客户端新增的命令就无法被服务器端识别和处理。
-Redis使用RESP（REdis Serialization Protocol）协议定义了客户端和服务器端交互的命令、数据的编码格式。在Redis 2.0版本中，RESP协议正式成为客户端和服务器端的标准通信协议。从Redis 2.0 到Redis 5.0，RESP协议都称为RESP 2协议，从Redis 6.0开始，Redis就采用RESP 3协议了。不过，6.0版本是在今年5月刚推出的，所以，目前我们广泛使用的还是RESP 2协议。
-这节课，我就向你重点介绍下RESP 2协议的规范要求，以及RESP 3相对RESP 2的改进之处。
-首先，我们先来看下客户端和服务器端交互的内容包括哪些，毕竟，交互内容不同，编码形式也不一样。
-客户端和服务器端交互的内容有哪些？为了方便你更加清晰 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/130/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/130/#content-inner">130</a><span class="page-number current">131</span><a class="page-number" href="/page/132/#content-inner">132</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/132/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+大家手中的设备可能会有差异，遇到具体的安装问题，可以先搜索下是否有前人踩过坑。写代码的同学对于解决“环境”问题的棘手都是深有体会。如果遇到解决不了的问题，写在留言区，大家一起想办法解决。这里我也推荐你通过后面 这个链接 学习更多的WebUI使用技巧。
+如果硬件环境不支持WebUI，或者折腾很久也没安装成功，这种情况也不必着急。我们课程的前4讲，也可以先用第三方平台集成的WebUI环境进行操作（推荐的工具我在后面列出）。这门课程的实战2到实战6都 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3496862906.html" title="答疑课堂2｜热点问题答疑&amp;第三、四章思考题答案">答疑课堂2｜热点问题答疑&amp;第三、四章思考题答案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">答疑课堂2｜热点问题答疑&amp;第三、四章思考题答案你好，我是南柯。
+现在，我们已经完成了进阶篇和综合演练篇的学习。在更新过程中，我也看到了很多同学的留言评论。这次加餐，我精选了评论区中的高频问题做个回复，希望能帮你答疑解惑。
+另外，第13讲到第25讲的思考题答案，我也放在了这篇加餐中。我希望你可以独立思考之后再查看答案，把答案和自己的想法做个对比。有一些没提供参考答案的是实操练习题，希望你课后多动手尝试，也欢迎你把你的实验成果用Colab链接等方式，在留言区分享出来。
+热点问题答疑Q1：在AI绘画中，如何缓解手部生成的瑕疵问题？
+我们使用SD1.4、SD1.5等模型时确实很容易生成畸形手指，即使如今最新的 SDXL模型、Google的 ideogram模型，生成的手部仍旧容易出现瑕疵。
+对于手部生成的瑕疵问题，我提供两个解决的思路。
+第一，在negative prompt中指定“bad hands, bad fingers”，引导模型关注手部区域的生成。
+第二，使用针对手部的修复插件 Depth Library，这个插件中提供了各种不同的手势深度图，用于配合ControlNet的Depth控制条件。你可以通过 这个视频 了解WebUI中如何使用Depth Library插件。
+Q2：CLIP和BLIP模型有哪些差别？
+CLIP（Contrastive Language-Imag ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1589830976.html" title="答疑：有关3个典型问题的讲解">答疑：有关3个典型问题的讲解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">答疑：有关3个典型问题的讲解你好，我是欧创新。
+截至今天这一讲，我们的基础篇和进阶篇的内容就结束了。在这个过程中，我一直有关注大家提的问题。那在实战篇正式开始之前啊，我想针对3个比较典型的问题，做一个讲解，希望你也能同步思考，调动自己已学过的内容，这对我们后面实战篇的学习也是有一定帮助的。
+问题1：有关于领域可以划分为核心域、通用域和支撑域，以及子域和限界上下文关系的话题，还有是否有边界划分的量化标准？
+我在 [第 02 讲] 中讲到了，在领域不断划分的过程中，领域会被细分为不同的子域，这个过程实际上是将问题范围不断缩小的过程。
+借用读者“密码123456”的总结，他认为：“对于领域问题来说，可以理解为，对一个问题不断地划分，直到划分为我们熟悉的、能够快速处理的小问题。然后再对小问题的处理排列一个优先级。”
+这个理解是很到位的。在领域细分到一定的范围后，我们就可以对这个子域进行事件风暴，为这个子域划分限界上下文，建立领域模型，然后就可以基于领域模型进行微服务设计了。
+虽然DDD没有明确说明子域和限界上下文的关系。我个人认为，子域的划分是一种比较粗的领域边界的划分，它不考虑子域内的领域对象、对象之间的关系和结构。子域的划分往往按照业务阶段或者功能模块边界进行粗分，其目的就是为了让你能够在一个相对较小的问题空间内，比较方便地用事件风暴来梳理业务场景。
+而限界上下文本质上也是子域，限界上 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3157718880.html" title="结束语 | 业精于勤，行成于思">结束语 | 业精于勤，行成于思</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">结束语 | 业精于勤，行成于思不知不觉，一年就这样过去了。这个专栏也到了结束的时候。在结束的时候，我需要跟大家正式说声再见，同时也谢谢各位对本专栏的厚爱，并希望大家从我的专栏里有所收获。我也借最后这个结束语回顾一下整个过程。
+老实说，在本专栏刚开始的时候，我对于这个专栏要写点什么是完全没有什么清晰的想法。一方面，我从来没有干过这样的事，这么高频度发表文章的玩法，在一开始来说我其实是相当懵逼的。另一方面，我内心对于收费这个事是很有压力的，不知道要写什么样的内容才值得收费。
+平时写CoolShell，完全是想写什么写什么，别人爱不爱看都无所谓，而对于收费的内容反而有点不知所措了。所以，在不知道要写什么专题的情况下，只能起个“左耳听风”这么烂的名字，哈哈。这也是为什么在一开始专栏的文章比较散乱，也没什么主线的原因。
+同时，极客时间的编辑也不希望我写很技术的文章，因为他们对标的是“得到”。所以，我早早就写好的《编程范式游记》压了两个多月，而在一开始发表一些非技术类的和个人成长有关的文章（因为大家都觉得这样的文章不但人气足，而且也是我的专长，呵呵）。直到库存的文章用得差不多的时候，才开始发《编程范式游记》。那时我才觉得我应该一个专题一个专题地写，这样才能够扛得住一整年的更新。
+于是才有了后面的《区块链》系列，《分布式系统的本质》系列，和《分布式架构设计模式》系列，再之后是大规模的《程序员练级 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/130/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/130/#content-inner">130</a><span class="page-number current">131</span><a class="page-number" href="/page/132/#content-inner">132</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/132/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

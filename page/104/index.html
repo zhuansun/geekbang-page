@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,83 +138,96 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1761534330.html" title="01 | 领域驱动设计：微服务设计为什么要选择DDD？">01 | 领域驱动设计：微服务设计为什么要选择DDD？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">01 | 领域驱动设计：微服务设计为什么要选择DDD？你好，我是欧创新。
-我们知道，微服务设计过程中往往会面临边界如何划定的问题，我经常看到项目团队为微服务到底应该拆多小而争得面红耳赤。不同的人会根据自己对微服务的理解而拆分出不同的微服务，于是大家各执一词，谁也说服不了谁，都觉得自己很有道理。
-那在实际落地过程中，我也确实见过不少项目在面临这种微服务设计困惑时，是靠拍脑袋硬完成的，上线后运维的压力就可想而知了。那是否有合适的理论或设计方法来指导微服务设计呢？当你看到这一讲的题目时，我想你已经知道答案了。
-没错，就是DDD。那么今天我就给你详细讲解下：“微服务设计为什么要选择领域驱动设计？”
-软件架构模式的演进在进入今天的主题之前，我们先来了解下背景。
-我们知道，这些年来随着设备和新技术的发展，软件的架构模式发生了很大的变化。软件架构模式大体来说经历了从单机、集中式到分布式微服务架构三个阶段的演进。随着分布式技术的快速兴起，我们已经进入到了微服务架构时代。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1536482978.html" title="63 | 区块链技术的本质">63 | 区块链技术的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">63 | 区块链技术的本质你好，我是陈皓，网名左耳朵耗子。
+去年专栏一开始更新的时候，就有读者留言让我发表一下对区块链技术的看法。当时我觉得区块链相关的技术相对比较简单，没什么好说的。并且，“左耳听风”专栏的主要目标是帮助大家学习更为主流的关键技术，所以那会我就把区块链相关的技术文章降级处理了。
+那为什么现在我又要写这个主题呢？
+2010年，我在浏览国外技术网站时，看到好多人在讨论一个叫bitcoin的东西，还看到有人说用几万个这个东西换了个披萨。随后，我看了一下它的 白皮书，这篇不到10页的文档读起来还是很容易的，所以建议你读一读。
+然后，我在一台电脑上尝试安装了一下，就像用BT或电驴下载一样，连入了这个没有服务器的P2P网络，下载了账本，还尝试了一下“挖矿”。
+花了不少的时间，我收到了来自系统奖励的50个比特币。当时，我默默地看着这个又耗硬盘空间，又非常吃CPU的家伙，心里想，这什么破软件，太难用了，就删除了。（是的，这50个比特币也就不知道去哪了。）
+记得比特币开始有价值的时候，像维基解密这样的机构为了避开被政府控制的银行，会接受比特币的捐款。2012年的时候，比特币已经看涨了，到了2013年，比特币的市值已经比较高了，突破了1000美金。
+那个时候，中国有好多人在挖矿。记得最厉害的是李笑来，他持有的比特币数量很可观，如果没有卖的话，现在就更为“恐怖”了。
+在2016年的时候 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2723659354.html" title="63 | 成长蓝图，进化跃迁">63 | 成长蓝图，进化跃迁</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">63 | 成长蓝图，进化跃迁回顾过去，我们会清晰地看见走过来的路线，但面向未来我们又该如何走下去？但凡过往，皆为序章，过去不可变，未来才是希望，而如何去规划并管理好未来的成长进化之路，才是我们当下要面临的主要任务。
+我们先从一个高度抽象的维度，来看看这条成长之路。
+一、成长路线结合我自己的经历、思考与总结，我对走过的路和未来的路概括成如下这张图：
 
-我们先来分析一下软件架构模式演进的三个阶段。
-第一阶段是单机架构： 采用面向过程的设计方法，系统包括客户端UI层和数据库两层，采用C&#x2F;S架构模式，整个系统围绕数据库驱动设计和开发，并且总是从设计数据库和字段开始。
-第二阶段是集中式架构： 采用面向对象的设计方法，系统包括业务接入层、业务逻辑层和数据库层，采用经典的三层架 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1701176850.html" title="05 | 聚合和聚合根：怎样设计聚合？">05 | 聚合和聚合根：怎样设计聚合？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">05 | 聚合和聚合根：怎样设计聚合？你好，我是欧创新。今天我们来学习聚合（Aggregate）和聚合根（AggregateRoot）。
-我们先回顾下上一讲，在事件风暴中，我们会根据一些业务操作和行为找出实体（Entity）或值对象（ValueObject），进而将业务关联紧密的实体和值对象进行组合，构成聚合，再根据业务语义将多个聚合划定到同一个限界上下文（Bounded Context）中，并在限界上下文内完成领域建模。
-那你知道为什么要在限界上下文和实体之间增加聚合和聚合根这两个概念吗？它们的作用是什么？怎么设计聚合？这就是我们这一讲重点要关注的问题。
-聚合在DDD中，实体和值对象是很基础的领域对象。实体一般对应业务对象，它具有业务属性和业务行为；而值对象主要是属性集合，对实体的状态和特征进行描述。但实体和值对象都只是个体化的对象，它们的行为表现出来的是个体的能力。
-那聚合在其中起什么作用呢？
-举个例子。社会是由一个个的个体组成的，象征着我们每一个人。随着社会的发展，慢慢出现了社团、机构、部门等组织，我们开始从个人变成了组织的一员，大家可以协同一致的工作，朝着一个最大的目标前进，发挥出更大的力量。
-领域模型内的实体和值对象就好比个体，而能让实体和值对象协同工作的组织就是聚合，它用来确保这些领域对象在实现共同的业务逻辑时，能保证数据的一致性。
-你可以这么理解，聚合就是由业务和逻辑 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3374715519.html" title="06 | 领域事件：解耦微服务的关键">06 | 领域事件：解耦微服务的关键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">06 | 领域事件：解耦微服务的关键你好，我是欧创新。今天我们来聊一聊“领域事件（Domain Event）”。
-在事件风暴（Event Storming）时，我们发现除了命令和操作等业务行为以外，还有一种非常重要的事件，这种事件发生后通常会导致进一步的业务操作，在DDD中这种事件被称为领域事件。
-这只是最简单的定义，并不能让我们真正理解它。那到底什么是领域事件？领域事件的技术实现机制是怎样的？这一讲，我们就重点解决这两个大的问题。
-领域事件领域事件是领域模型中非常重要的一部分，用来表示领域中发生的事件。一个领域事件将导致进一步的业务操作，在实现业务解耦的同时，还有助于形成完整的业务闭环。
-举例来说的话，领域事件可以是业务流程的一个步骤，比如投保业务缴费完成后，触发投保单转保单的动作；也可能是定时批处理过程中发生的事件，比如批处理生成季缴保费通知单，触发发送缴费邮件通知操作；或者一个事件发生后触发的后续动作，比如密码连续输错三次，触发锁定账户的动作。
-那如何识别领域事件呢？
-很简单，和刚才讲的定义是强关联的。在做用户旅程或者场景分析时，我们要捕捉业务、需求人员或领域专家口中的关键词：“如果发生……，则……”“当做完……的时候，请通知……”“发生……时，则……”等。在这些场景中，如果发生某种事件后，会触发进一步的操作，那么这个事件很可能就是领域事件。
-那领域事件为什么要用最终一致性， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2037462706.html" title="08 | 微服务架构模型：几种常见模型的对比和分析">08 | 微服务架构模型：几种常见模型的对比和分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">08 | 微服务架构模型：几种常见模型的对比和分析你好，我是欧创新。
-在上一讲中我重点介绍了DDD分层架构，同时我也提到了微服务架构模型其实还有好多种，不知道你注意到了没？这些架构模型在我们的实际应用中都具有很高的借鉴价值。
-那么今天我们就把DDD分层架构（详情介绍如有遗忘可回看 [第07讲] ）、整洁架构、六边形架构这三种架构模型放到一起，对比分析，看看如何利用好它们，帮助我们设计出高内聚低耦合的中台以及微服务架构。
-整洁架构整洁架构又名“洋葱架构”。为什么叫它洋葱架构？看看下面这张图你就明白了。整洁架构的层就像洋葱片一样，它体现了分层的设计思想。
-在整洁架构里，同心圆代表应用软件的不同部分，从里到外依次是领域模型、领域服务、应用服务和最外围的容易变化的内容，比如用户界面和基础设施。
-整洁架构最主要的原则是依赖原则，它定义了各层的依赖关系，越往里依赖越低，代码级别越高，越是核心能力。外圆代码依赖只能指向内圆，内圆不需要知道外圆的任何情况。
+图中描述了好几个阶段，从一个阶段到下一个阶段，都会经历一次转折。
+1. 开发代码（Develop Code）从刚走出学校到进入职场成为一名新手程序员，在最初的一两年内，你可能都处在这个阶段。不停地大量写代码，为各类系统的“大厦”添砖加瓦，像块海绵一样，把自己吸得满满的，朝 9 晚 24 地工作与学习，并不时自嘲为 “码农”。
+这个阶段，你为生存所需（迫），会强烈地渴望成长。
+2. 开发系统（Develop System）三、五年后，你可能从初级、中级成长到了高级，此时你不再仅仅是写代码搬砖，而是开始负责起或大或小的整个系统。这时，你最关心的是如何用最好的技术方案，去开发、优化和完善系统。
+3. 开发产品（Develop Product）从高级走向资深、专家或架构师，你会发现你的技术执行技能已经优化到了相当的程度，这时往前多走一步，关注你所实现的系统所属的产品，会让你打开新的空间，找到更有效率和效果的实现路径，减少做无用功。
+而且在技术的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1609522956.html" title="63 | 职责链模式（下）：框架中常用的过滤器、拦截器是如何实现的？">63 | 职责链模式（下）：框架中常用的过滤器、拦截器是如何实现的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">63 | 职责链模式（下）：框架中常用的过滤器、拦截器是如何实现的？上一节课，我们学习职责链模式的原理与实现，并且通过一个敏感词过滤框架的例子，展示了职责链模式的设计意图。本质上来说，它跟大部分设计模式一样，都是为了解耦代码，应对代码的复杂性，让代码满足开闭原则，提高代码的可扩展性。
+除此之外，我们还提到，职责链模式常用在框架的开发中，为框架提供扩展点，让框架的使用者在不修改框架源码的情况下，基于扩展点添加新的功能。实际上，更具体点来说，职责链模式最常用来开发框架的过滤器和拦截器。今天，我们就通过Servlet Filter、Spring Interceptor这两个Java开发中常用的组件，来具体讲讲它在框架开发中的应用。
+话不多说，让我们正式开始今天的学习吧！
+Servlet FilterServlet Filter是Java Servlet规范中定义的组件，翻译成中文就是过滤器，它可以实现对HTTP请求的过滤功能，比如鉴权、限流、记录日志、验证参数等等。因为它是Servlet规范的一部分，所以，只要是支持Servlet的Web容器（比如，Tomcat、Jetty等），都支持过滤器功能。为了帮助你理解，我画了一张示意图阐述它的工作原理，如下所示。
 
-在洋葱架构中，各层的职能是这样划分的：
+在实际项目中，我们该如何使用Servlet Filter呢？我写了一个简单的示例代码，如下所示。添加一个过滤器，我们只需要定义一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1943697662.html" title="64 | 区块链技术细节：哈希算法">64 | 区块链技术细节：哈希算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">64 | 区块链技术细节：哈希算法你好，我是陈皓，网名左耳朵耗子。
+对于计算机来说，区块链就像一个单向链表，一个数据块中保存着三个信息。
 
-领域模型实现领域内核心业务逻辑，它封装了企业级的业务规则。领域模型的主体是实体，一个实体可以是一个带方法的对象，也可以是一个数据结构和方法集合。
-领域服务实现涉及多个实体的复杂业务逻辑。
-应用服务实现与用户操作相关的服务组合与编排，它包含了应用特有的业务流程规则，封装和实现了系统所有用例。
-最外层主要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1914916918.html" title="07 | DDD分层架构：有效降低层与层之间的依赖">07 | DDD分层架构：有效降低层与层之间的依赖</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">07 | DDD分层架构：有效降低层与层之间的依赖你好，我是欧创新。前面我们讲了DDD的一些重要概念以及领域模型的设计理念。今天我们来聊聊“DDD分层架构”。
-微服务架构模型有好多种，例如整洁架构、CQRS和六边形架构等等。每种架构模式虽然提出的时代和背景不同，但其核心理念都是为了设计出“高内聚低耦合”的架构，轻松实现架构演进。而DDD分层架构的出现，使架构边界变得越来越清晰，它在微服务架构模型中，占有非常重要的位置。
-那DDD分层架构到底长什么样？DDD分层架构如何推动架构演进？我们该怎么转向DDD分层架构？这就是我们这一讲重点要解决的问题。
-什么是DDD分层架构？DDD的分层架构在不断发展。最早是传统的四层架构；后来四层架构有了进一步的优化，实现了各层对基础层的解耦；再后来领域层和应用层之间增加了上下文环境（Context）层，五层架构（DCI）就此形成了。
+真正的数据。
+自己的地址（或是ID）。
+前一个数据块的地址。
 
-我们看一下上面这张图，在最早的传统四层架构中，基础层是被其它层依赖的，它位于最核心的位置，那按照分层架构的思想，它应该就是核心，但实际上领域层才是软件的核心，所以这种依赖是有问题的。后来我们采用了依赖倒置（Dependency inversion principle,DIP）的设计，优化了传统的四层架构，实现了各层对基础层的解耦。
-我们今天讲的DDD分层架构就是优化后的四层架构。在下面这张图中，从上到下依次是：用户接口层 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/230894678.html" title="09 | 中台：数字转型后到底应该共享什么？">09 | 中台：数字转型后到底应该共享什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">09 | 中台：数字转型后到底应该共享什么？你好，我是欧创新。
-在上一讲中我们了解了分层架构的设计思想，并提到了这种设计思想对中台建设十分有利，那么今天我就来讲一讲中台。
-中台是数字化转型的一个热门话题。继阿里提出中台概念后，很多人又提出了各种各样的中台。今天我们主要讨论业务中台和数据中台。作为企业数字化中台转型的整体，我也会顺带聊一聊前台和后台的一些设计思路。
-不少企业其实在很多年前就有了建大平台的实践经验，那在中台被热议时，我相信你一定听过很多质疑声。比如，有人说：“中台就是个怪名词，它不就是已经做了好多年的平台吗？”确实，中台源于平台，但它的战略高度要比平台高很多。
-学完这一讲，你就会清楚地知道平台与中台的差异在什么地方？中台到底是什么？传统企业的中台建设方式是否应该和阿里一样…
-平台到底是不是中台？阿里提出中台战略后，很多企业开始拿着自己的系统与阿里的中台对标。有的企业在十多年前就完成了大一统的集中式系统拆分，实现了从传统大单体应用向大平台的演进，他们将公共能力和核心能力分开建设，解决了公共模块重复投入和重复建设的问题。
-那这是不是阿里所说的中台呢？在回答这个问题之前，我们不妨先了解一下阿里的中台到底是什么样的。
-阿里业务中台的前身是共享平台，而原来的共享平台更多的被当作资源团队，他们承接各业务方的需求，并为业务方在基础服务上做定制开发。 阿里业务中台的目标是把核心服务链路 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/727648486.html" title="10 | DDD、中台和微服务：它们是如何协作的？">10 | DDD、中台和微服务：它们是如何协作的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">10 | DDD、中台和微服务：它们是如何协作的？你好，我是欧创新。今天我一起来聊聊DDD、中台和微服务的关系。
-DDD和微服务来源于西方，而中台诞生于中国的阿里巴巴。DDD在二十多年前提出后一直默默前行，中台和微服务的理念近几年才出现，提出后就非常火爆。这三者看似风马牛不相及，实则缘分匪浅。中台是抽象出来的业务模型，微服务是业务模型的系统实现，DDD作为方法论可以同时指导中台业务建模和微服务建设，三者相辅相成，完美结合。
-你可能会问：凭什么DDD可以指导中台和微服务建设，究竟起到了什么作用呢？
-DDD有两把利器，那就是它的战略设计和战术设计方法。
-中台在企业架构上更多偏向业务模型，形成中台的过程实际上也是业务领域不断细分的过程。在这个过程中我们会将同类通用的业务能力进行聚合和业务重构，再根据限界上下文和业务内聚的原则建立领域模型。而DDD的战略设计最擅长的就是领域建模。
-那在中台完成领域建模后，我们就需要通过微服务来完成系统建设。此时，DDD的战术设计又恰好可以与微服务的设计完美结合。可以说，中台和微服务正是DDD实战的最佳场景。
-DDD的本质我们先简单回顾一下DDD领域、子域、核心域、通用域和支撑域等概念，后面会用到。
-在研究和解决业务问题时，DDD会按照一定的规则将业务领域进行细分，领域细分到一定的程度后，DDD会将问题范围限定在特定的边界内，并在这个边界内建立领域模型，进而 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/379649493.html" title="11 | DDD实践：如何用DDD重构中台业务模型？">11 | DDD实践：如何用DDD重构中台业务模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">11 | DDD实践：如何用DDD重构中台业务模型？你好，我是欧创新。
-进入两千年后，随着互联网应用的快速发展，很多传统企业开始触网，建设自己的互联网电商平台。后来又随着微信和App等移动互联应用的兴起，又形成了新一轮的移动应用热潮。这些移动互联应用大多面向个人或者第三方，市场和需求变化快，需要以更敏捷的速度适应市场变化，为了保持快速响应能力和频繁发版的要求，很多时候这些移动互联网应用是独立于传统核心系统建设的，但两者承载的业务大部分又都是同质的，因此很容易出现业务能力重叠的问题。
-阿里巴巴过去带动了传统企业向互联网电商转型。而如今又到了一个新的历史时期，在阿里巴巴提出中台战略后，很多企业又紧跟它的步伐，高举中台大旗，轰轰烈烈地开始了数字化转型之路。
-那么传统企业在中台转型时，该如何从错综复杂的业务中构建中台业务模型呢？今天我就用一个传统企业中台建模的案例，带你一起用DDD的设计思想来构建中台业务模型。
-传统企业应用分析互联网电商平台和传统核心应用，两者面向的渠道和客户不一样，但销售的产品却很相似，它们之间的业务模型既有相同的地方，又有不同的地方。
-现在我拿保险行业的互联网电商和传统核心应用来做个对比分析。我们看一下下面这张图，这两者在业务功能上会有很多相似和差异，这种相似和差异主要体现在四个方面。
+这样，通过追溯前一个块的地址，把所有的数据块存成了一条链。所以，我们叫其BlockChain。如下图所示。
 
-1. 核心能力的重复建设。 由于销售同质保险产品，二者在核心业务流程和功能上必然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1021766522.html" title="12 | 领域建模：如何用事件风暴构建领域模型？">12 | 领域建模：如何用事件风暴构建领域模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">12 | 领域建模：如何用事件风暴构建领域模型？你好，我是欧创新。
-还记得我在 [第01讲] 中说过，微服务设计为什么要选择DDD吗？其中有一个非常重要的原因，就是采用DDD方法建立的领域模型，可以清晰地划分微服务的逻辑边界和物理边界。可以说，在DDD的实践中，好的领域模型直接关乎微服务的设计水平。因此，我认为DDD的战略设计是比战术设计更为重要的，也正是这个原因，我们的内容会更侧重于战略设计。
-那么我们该采用什么样的方法，才能从错综复杂的业务领域中分析并构建领域模型呢？
-它就是我在前面多次提到的事件风暴。事件风暴是一项团队活动，领域专家与项目团队通过头脑风暴的形式，罗列出领域中所有的领域事件，整合之后形成最终的领域事件集合，然后对每一个事件，标注出导致该事件的命令，再为每一个事件标注出命令发起方的角色。命令可以是用户发起，也可以是第三方系统调用或者定时器触发等，最后对事件进行分类，整理出实体、聚合、聚合根以及限界上下文。而事件风暴正是DDD战略设计中经常使用的一种方法，它可以快速分析和分解复杂的业务领域，完成领域建模。
-那到底怎么做事件风暴呢？事件风暴需要提前准备些什么？又如何用事件风暴来构建领域模型呢？今天我们就来重点解决这些问题，深入了解事件风暴的全过程。
-事件风暴需要准备些什么？1. 事件风暴的参与者事件风暴采用工作坊的方式，将项目团队和领域专家聚集在一起，通过可视化、高互 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3212412289.html" title="13 | 代码模型（上）：如何使用DDD设计微服务代码模型？">13 | 代码模型（上）：如何使用DDD设计微服务代码模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">13 | 代码模型（上）：如何使用DDD设计微服务代码模型？你好，我是欧创新。
-上一讲我们完成了领域模型的设计，接下来我们就要开始微服务的设计和落地了。那微服务落地时首先要确定的就是微服务的代码结构，也就是我今天要讲的微服务代码模型。
-只有建立了标准的微服务代码模型和代码规范后，我们才可以将领域对象所对应的代码对象放在合适的软件包的目录结构中。标准的代码模型可以让项目团队成员更好地理解代码，根据代码规范实现团队协作；还可以让微服务各层的逻辑互不干扰、分工协作、各据其位、各司其职，避免不必要的代码混淆。另外，标准的代码模型还可以让你在微服务架构演进时，轻松完成代码重构。
-那在DDD里，微服务的代码结构长什么样子呢？我们又是依据什么来建立微服务代码模型？这就是我们今天重点要解决的两个问题。
-DDD分层架构与微服务代码模型我们参考DDD分层架构模型来设计微服务代码模型。没错！微服务代码模型就是依据DDD分层架构模型设计出来的。那为什么是DDD分层架构模型呢？
+每个数据块的“地址”的编码使用了计算机上的一个算法，计算机圈内人士把这个算法叫Secure Hash。有人音译为“安全哈希”，也有人意译为“安全散列”。在计算机应用中，hash算法主要有几个功能。
 
-我们先简单回顾一下 [第 07 讲] 介绍过的DDD分层架构模型。它包括用户接口层、应用层、领域层和基础层，分层架构各层的职责边界非常清晰，又能有条不紊地分层协作。
+用来生成唯一标识一个数据块的ID（身份证），这个ID几乎不能重复。
 
-用户接口层：面向前端提供服务适配，面向资源层提供资源适配。这一层聚集了接口适配相关的功能。
-应用层职责：实现服务组合和编排，适应业务流程快速变化的需求。这一层聚集了 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/103/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/#content-inner">103</a><span class="page-number current">104</span><a class="page-number" href="/page/105/#content-inner">105</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/105/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+用来做数据的特征码。只要数据中一个bit的数据出现更改，那么整个hash值就完全不一样了。而且数学上保证了，我们无法通过hash值反推回原数据。
+
+
+于是，很多公司在互联网上发布信息或软件的时候，都会带上一个Checksum（校验码）。你只要把整个文件的数据传入到那个特定的hash算法中，就会得到一串很长的字符串。如果和官方发布的Checksum字符串不一样，那么就说明信息或文件内容被人更改或是信息残缺了。因此，也被应用在“数字签名”中。
+在计算机世界里，有两个很著名的hash算法，一个叫MD5（ Wikipedia链接），一个叫SHA-2（ Wikipedia链接）， 区块链用的是SHA-256这个算法。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/206657527.html" title="64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？">64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">64 | 状态模式：游戏、工作流引擎中常用的状态机是如何实现的？从今天起，我们开始学习状态模式。在实际的软件开发中，状态模式并不是很常用，但是在能够用到的场景里，它可以发挥很大的作用。从这一点上来看，它有点像我们之前讲到的组合模式。
+状态模式一般用来实现状态机，而状态机常用在游戏、工作流引擎等系统开发中。不过，状态机的实现方式有多种，除了状态模式，比较常用的还有分支逻辑法和查表法。今天，我们就详细讲讲这几种实现方式，并且对比一下它们的优劣和应用场景。
+话不多说，让我们正式开始今天的学习吧！
+什么是有限状态机？有限状态机，英文翻译是Finite State Machine，缩写为FSM，简称为状态机。状态机有3个组成部分：状态（State）、事件（Event）、动作（Action）。其中，事件也称为转移条件（Transition Condition）。事件触发状态的转移及动作的执行。不过，动作不是必须的，也可能只转移状态，不执行任何动作。
+对于刚刚给出的状态机的定义，我结合一个具体的例子，来进一步解释一下。
+“超级马里奥”游戏不知道你玩过没有？在游戏中，马里奥可以变身为多种形态，比如小马里奥（Small Mario）、超级马里奥（Super Mario）、火焰马里奥（Fire Mario）、斗篷马里奥（Cape Mario）等等。在不同的游戏情节下，各个形态会互相转化，并相应的增减积 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2663218069.html" title="65 | 区块链技术细节：加密和挖矿">65 | 区块链技术细节：加密和挖矿</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">65 |  区块链技术细节：加密和挖矿你好，我是陈皓，网名左耳朵耗子。
+前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。
+那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。
+比特币的加密方法密钥对&#x2F;签名&#x2F;证书所谓密钥对，也就是一种非对称加密技术。这种技术，在对信息进行加密和解密时，使用两个不同的密钥。这样一来，我们就可以把其中一个密钥公布出去，称之为公钥，另一个密钥私密地保管好，称之为私钥。
+现实社会中，有人使用公钥加密，私钥解密，也有反过来用私钥加密，公钥解密，这得看具体的场景。（比特币使用了非对称加密的技术，其使用了 ECDSA 密钥对比技术。）
+比如，我把我加密的密钥发布给所有人，然后大家都用这个公钥加密信息，但其他人没有私钥，所以他们解不了密文，只有我能解密文，也只有我能看得懂别人用我的公钥加密后发给我的密文。如下图所示。
+
+但是，这会有个问题，那就是每个人都有我的公钥，别人可以截获Mike发给我的信息，然后自己用我的公钥加密一个别的信息，伪装成Mike发给我， 这样我就被黑了。于是，我们需要对Mike的身份进行验证，此时就需要用到“数字签名”的概念了。
+Mike也有一对密钥对， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3357808209.html" title="65 | 迭代器模式（上）：相比直接遍历集合数据，使用迭代器有哪些优势？">65 | 迭代器模式（上）：相比直接遍历集合数据，使用迭代器有哪些优势？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">65 | 迭代器模式（上）：相比直接遍历集合数据，使用迭代器有哪些优势？上一节课，我们学习了状态模式。状态模式是状态机的一种实现方法。它通过将事件触发的状态转移和动作执行，拆分到不同的状态类中，以此来避免状态机类中的分支判断逻辑，应对状态机类代码的复杂性。
+今天，我们学习另外一种行为型设计模式，迭代器模式。它用来遍历集合对象。不过，很多编程语言都将迭代器作为一个基础的类库，直接提供出来了。在平时开发中，特别是业务开发，我们直接使用即可，很少会自己去实现一个迭代器。不过，知其然知其所以然，弄懂原理能帮助我们更好的使用这些工具类，所以，我觉得还是有必要学习一下这个模式。
+我们知道，大部分编程语言都提供了多种遍历集合的方式，比如for循环、foreach循环、迭代器等。所以，今天我们除了讲解迭代器的原理和实现之外，还会重点讲一下，相对于其他遍历方式，利用迭代器来遍历集合的优势。
+话不多说，让我们正式开始今天的学习吧！
+迭代器模式的原理和实现迭代器模式（Iterator Design Pattern），也叫作游标模式（Cursor Design Pattern）。
+在开篇中我们讲到，它用来遍历集合对象。这里说的“集合对象”也可以叫“容器”“聚合对象”，实际上就是包含一组对象的对象，比如数组、链表、树、图、跳表。迭代器模式将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3487429568.html" title="66 | 区块链技术细节：去中心化的共识机制">66 | 区块链技术细节：去中心化的共识机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">66 | 区块链技术细节：去中心化的共识机制你好，我是陈皓，网名左耳朵耗子。
+其实，去中心化的共识机制也是要解决拜占庭将军问题（ The Byzantine Generals Problem），它是莱斯利·兰伯特（Leslie Lamport）于1982年提出来的，用来解释一致性问题的一个虚构模型。同时，它也是分布式领域中最复杂、最严格的容错模型。
+分布式一致性算法拜占庭的将军们没有一个中心化的领导机构，所以，如果他们需要攻击某个城市，所有将军需要对任何将军可能提出的攻击时间达成共识。也就是说，只有所有的将军都达成了共识，在同一个攻击时间攻击，就有非常大的胜率。但是，问题来了。这时，可能会有多个将军同时发出不同的攻击计划，而且这些将军中还有叛徒。那么，将军们怎样达成共识呢？
+莱斯利·兰伯特证明，当叛变者不超过 1&#x2F;3时，存在有效的算法。不论叛变者如何折腾，忠诚的将军们总能达成一致的结果。如果叛变者过多，则无法保证一定能达到一致性。
+拜占庭问题之所以难解，在于任何时候系统中都可能存在多个提案（因为提案成本很低），并且要完成最终的一致性确认过程十分困难，容易受干扰。但一旦确认，即为最终确认。
+比特币的区块链网络在设计时使用的 PoW（Proof of Work） 算法思路。一个是限制一段时间内整个网络中出现提案的个数（增加提案成本），另外一个是放宽对最终一致性确认的需求，约定 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2720695200.html" title="66 | 迭代器模式（中）：遍历集合的同时，为什么不能增删集合元素？">66 | 迭代器模式（中）：遍历集合的同时，为什么不能增删集合元素？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">66 | 迭代器模式（中）：遍历集合的同时，为什么不能增删集合元素？上一节课中，我们通过给ArrayList、LinkedList容器实现迭代器，学习了迭代器模式的原理、实现和设计意图。迭代器模式主要作用是解耦容器代码和遍历代码，这也印证了我们前面多次讲过的应用设计模式的主要目的是解耦。
+上一节课中讲解的内容都比较基础，今天，我们来深挖一下，如果在使用迭代器遍历集合的同时增加、删除集合中的元素，会发生什么情况？应该如何应对？如何在遍历的同时安全地删除集合元素？
+话不多说，让我们正式开始今天的内容吧！
+在遍历的同时增删集合元素会发生什么？在通过迭代器来遍历集合元素的同时，增加或者删除集合中的元素，有可能会导致某个元素被重复遍历或遍历不到。不过，并不是所有情况下都会遍历出错，有的时候也可以正常遍历，所以，这种行为称为 结果不可预期行为 或者 未决行为，也就是说，运行结果到底是对还是错，要视情况而定。
+怎么理解呢？我们通过一个例子来解释一下。我们还是延续上一节课实现的ArrayList迭代器的例子。为了方便你查看，我把相关的代码都重新拷贝到这里了。
+public interface Iterator&lt;E&gt; &#123;
+  boolean hasNext();
+  void next();
+  E currentItem();
+&#125;
+
+public class Arr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3017688784.html" title="67 | 区块链技术细节：智能合约">67 | 区块链技术细节：智能合约</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">67 | 区块链技术细节：智能合约你好，我是陈皓，网名左耳朵耗子。
+要讲清楚智能合约，我先给你看几个案例。第一个案例是打赌。比如，张三和李四打赌，周末拜仁和皇马的足球比赛谁会赢。如果拜仁赢了，张三给李四100元；如果反过来，李四给张三100元；如果打成平局，则不赢不输。
+张三和李四都怕对方不认账，所以，他们需要找一个他们都信得过的人来做公证，两人都把100元钱给这个公证人。然后，如果拜仁赢了，公证人把全部200元给李四；如果皇马赢了，则全部给张三；如果是平局，则分别退还100元。
+
+上面这个模型什么都好，就是有一个问题，这个“公证人”跑路了怎么办？因为他们只赌100元，公证人犯不着为了200元跑路。但是，如果有一万人把赌金交给公证人呢？如果张三李四赌金是100万呢？公证人的人性会受到极大的挑战，他还有那么可信吗？
+银行的资金托管业务也就是说，当业务大到一定程度的时候，个人的信用是不足以来当中间公证人这个角色了。这时，你要找更为靠谱的机构，这个机构叫银行，银行的信用等级至少在这几方面上要比个人高。
+
+银行是机构，所以受政府监管，受法律约束；
+
+银行的钱很多，就算是里面有员工作案，银行也赔得起；
+
+银行里有比较安全的资金管理流程和措施；
+
+
+因此，银行的受信程度很高，可以来做担保。
+下面，我们来看一个示例，银行在二手房交易中的“资金托管”业务。因为房屋交易时涉及到的资金数目太大，买家怕 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/103/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/103/#content-inner">103</a><span class="page-number current">104</span><a class="page-number" href="/page/105/#content-inner">105</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/105/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,92 +138,64 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/610564609.html" title="16 | CDN：静态资源如何加速？">16 | CDN：静态资源如何加速？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">16 | CDN：静态资源如何加速？你好，我是唐扬。
-前面几节课，我带你了解了缓存的定义以及常用缓存的使用姿势，你应该对包括本地缓存、分布式缓存等缓存组件的适用场景和使用技巧有了一定了解了。结合在 14讲 中我提到的客户端高可用方案，你会将单个缓存节点扩展为高可用的缓存集群，现在，你的电商系统架构演变成了下面这样：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2582488700.html" title="春节特别策划 | 高并发下如何发现和排查问题？">春节特别策划 | 高并发下如何发现和排查问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">春节特别策划 | 高并发下如何发现和排查问题？你好，我是唐扬，新年快乐！
+过年嘛，都要吃好玩好，给自己一年的辛苦付出“加餐”，那咱们的课程也不例外，在新的一年里，我为你策划了两期加餐，今天先来聊聊在高并发下，我们如何发现和排查问题。
+为什么要讲这个问题呢？是因为我在课程结束之后，发现有同学反馈说：
+虽然课程里几乎涵盖了高并发系统设计的全部方面（比如数据库、缓存和队列的使用、分布式系统主要组件的原理，以及系统运维方面需要关注的重点），但自己按照课程中提供的方式正确使用了组件，在实际工作中仍然会发现系统中各种各样的问题，比如服务性能衰减、依赖资源的抖动甚至是服务整体故障。
+尤其在高并发环境下，由于并发请求更多，对于资源和服务的压力更大，所以原本隐藏在冰山下的问题又都会在某一时间突然浮出水面。
+这其实就像墨菲定律说的那样： 如果事情有变坏的可能，不管这种可能性有多小，它总会发生。这不是一个数据概率问题，也不是一个心理学效应，而是一种必然的法则。
+在高并发场景下，一些细微的问题可能会迅速恶化，并且对系统中多个模块的SLA带来巨大的影响。比如，业务仅仅缓存的平均响应时间增加1ms或者缓存命中率下降1个百分点，都会带来灾难性的影响。这不仅增加了问题排查的难度，也对问题排查的及时性提出了更高的要求。
+那么作为团队核心开发成员的你，在系统存在隐患的时候，如何快速发现问题？在出现问题的时候又要如何排 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3996797236.html" title="期中周测试题 ，你做对了吗？">期中周测试题 ，你做对了吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">期中周测试题 ，你做对了吗？你好，我是海丰。今天，我来公布一下主观题的答案。
+我们先来回顾一下题目：
+假如，你现在是一家电商平台的产品经理，负责点评系统的产品设计，现在有一个需求是要通过计算将海量评论中的垃圾评论（如，打广告的情况）过滤出来，你会怎么思考和设计产品？
+我们知道，用户评论数据都是非结构信息，所以我们首先要做的就是将非结构化数据转化成结构化的。在文本分析中，我们可以使用“词向量”来表示文本中的数据。
+举个例子，如果用户评论中出现某些特定词，比如“尊敬的”“您好”“促销”等等，它们很有可能属于垃圾评论。那我们就可以用这些词来构成“词向量”，具体怎么做呢？下面，我分三步来讲。
+第一步：对评论进行分词。分词是文本分析的首要工作，“基于字符串匹配”是最简单的分词方法。举个例子，现在有一句短语叫做“北京亚朵酒店”，以及我们事先积累的词库。
+首先，我们可以提出短语的第一个字符串“北”，然后将短语中从“北”字开头的后续的内容与词库中收录的词语进行匹配。当匹配到了词库中的词语“北京”后，就可以停止匹配了，“京”字也就作为终止字符。这样，我们就从“北京亚朵酒店”中提出来了第一个词语“北京”。
+接着，我们就可以把“北京”这个词从原始短语中删除，从“亚”字重新开始匹配。
 
-在这个架构中我们使用分布式缓存对动态请求数据的读取做了加速，但是在我们的系统中存在着大量的静态资源请求：
+根据字符串匹配的方式，在已知业务常见词语的基础之上，我们是可以将评论中的所有词汇都切分出来的，切分的结果如上图所示。
+当 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1588460702.html" title="期中测试 | 10道高并发系统设计题目自测">期中测试 | 10道高并发系统设计题目自测</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">期中测试 | 10道高并发系统设计题目自测
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1070134493.html" title="期中测试题 | 一套习题，测出你的掌握程度">期中测试题 | 一套习题，测出你的掌握程度</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">期中测试题 | 一套习题，测出你的掌握程度你好，我是蒋德钧。
+咱们的课程已经更新过半了，我看到很多同学一直在坚持学习，课程每次更新后，都会认真回答课后题，而且还会分享自己的思考和经验。但是，我也发现，最近有不少同学都掉队了，积累了很多节课都没有学习过。
+从今天开始，我们就进入期中周了。我知道，很多同学平时确实比较忙，想等到有了大块的时间再来学习。所以，在刚开始设计课程时，我就特意设置了期中周。巧的是，我们的期中周刚好和国庆黄金周重合了。那么，现在，就是你赶上进度的好机会。
+在开始做题之前，我想多说几句。
+Redis的知识点比较多，而且一旦涉及到性能优化、可靠性保证等需求时，我们就需要和进程、线程、内存管理、磁盘IO、网络连接等计算机底层系统知识打交道。如果你不熟悉底层系统的知识，在学习Redis时，就需要进一步查资料。但是我们平时都很忙，可能会来不及查资料，过一段时间可能就忘了，再想学习时，就需要重新了解，学习成本比较高。
+针对这个问题，我想给你分享一下我自己的学习方法。我会用一个word文档或者其他的笔记软件，把涉及到的知识点先记录下来。对于那些我没搞清楚的知识点，我会把它们标记为红色，表明这是一个to-do项。等我有空的时候，我就会把这个文档拿出来，挨个儿去查看那些标红的知识点，查找相关的资料，补上知识漏洞。
+你可以不要小瞧这个文档，日积月累下来，这就是你的知识宝库。你已经了解 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/79360201.html" title="期中测试题答案 | 这些问题，你都答对了吗？">期中测试题答案 | 这些问题，你都答对了吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">期中测试题答案 | 这些问题，你都答对了吗？你好，我是蒋德钧。今天，我来公布一下主观题的答案。
+第一题Redis在接收多个网络客户端发送的请求操作时，如果有一个客户端和Redis的网络连接断开了，Redis会一直等待该客户端恢复连接吗？为什么？
+答案：
+Redis不会等待客户端恢复连接。
+原因是，Redis的网络连接是由操作系统进行处理的，操作系统内核负责监听网络连接套接字上的连接请求或数据请求，而Redis采用了IO多路复用机制epoll，不会阻塞在某一个特定的套接字上。epoll机制监测到套接字上有请求到达时，就会触发相应的事件，并把事件放到一个队列中，Redis就会对这个事件队列中的事件进行处理。这样一来，Redis只用查看和处理事件队列，就可以了。当客户端网络连接断开或恢复时，操作系统会进行处理，并且在客户端能再次发送请求时，把接收到的请求以事件形式通知Redis。
+第二题Redis的主从集群可以提升数据可靠性，主节点在和从节点进行数据同步时，会使用两个缓冲区：复制缓冲区和复制积压缓冲区。这两个缓冲区的作用各是什么？会对Redis主从同步产生什么影响吗？
+答案：
+首先来说一下复制缓冲区。
+作用： 主节点开始和一个从节点进行全量同步时，会为从节点创建一个输出缓冲区，这个缓冲区就是复制缓冲区。当主节点向从节点发送RDB文件时，如果又接收到了写命令操作，就会把它们暂存在复制缓冲区 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1698447857.html" title="期中答疑 | AI产品经理热门问题答疑合集">期中答疑 | AI产品经理热门问题答疑合集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">期中答疑 | AI产品经理热门问题答疑合集你好，我是海丰。
+到今天为止，我们的课程已经更新过半了。我非常开心看到很多同学一直在坚持留言，认真回答课后问题。不过，我也发现，不少同学已经慢慢掉队了，有的人是想要拿出大块的时间来学习，有的人是遇到问题之后没有解决，进度就停下了，总之是积累了很多的课程没有学习。
+从今天开始，我们就进入期中周了。首先，我会整理出一些关注度比较高的课后问题，在这里进行统一的解答，其次，我还准备了一道问答题，通过解决它，希望能帮助你对前半程学过的知识进行梳理，查缺补漏。
+我先给你准备一份学习指南：首先，关注度比较高的问题我分成了三类，分别是关于产品岗位、关于技术边界，以及关于项目流程的问题。你可以结合我下面的分类，直接去找对应的问题答案。如果你还有其他的疑问，也可以在留言区提问，我都会尽力解答。然后，你可以集中精力去做我留下的问答题，问答题的解决思路我会在周五进行更新，记得准时来看。
+话不多说，直接进入今天的答疑吧！
+关于产品岗位问题1：如何快速建立对一个行业的结构认知？想要快速对一个行业有整体的宏观认知，可以先从这个行业的产业链入手，了解这个产业中一个完整的价值创造过程是怎样的，行业里有哪些头尾部公司。获取这些产业认知内容的途径，我总结了一下，一般有3种方式：
 
-对于移动APP来说，这些静态资源主要是图片、视频和流媒体信息；
+通过咨询公司报告，如 艾瑞咨询、 易观智库、 艾媒网 等咨询公司的行业报告了解行业资讯和动态；
 
-对于Web网站来说，则包括了JavaScript文件、CSS文件、静态HTML文件等等。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2531207353.html" title="期末测试 | 有关DDD的内容，你掌握了多少呢？">期末测试 | 有关DDD的内容，你掌握了多少呢？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">期末测试 | 有关DDD的内容，你掌握了多少呢？你好，我是欧创新。
+《DDD实战课》这个专栏已经完结有段时间了，很庆幸啊，依然能收到很多留言，与我交流技术。为认真学习的你点赞，也很感谢你的支持！
+为了让你更好地检测自己的学习成果，我特意做了一套期末测试题。题目共有20道，满分为100分，快来检测一下吧！
 
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/50513089.html" title="期末测试 | 这些Redis核心知识，你都掌握了吗？">期末测试 | 这些Redis核心知识，你都掌握了吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">期末测试 | 这些Redis核心知识，你都掌握了吗？你好，我是蒋德钧。
+在课程的最后，我给你出了一份结课测试题，满分100分，10道单选题，10道多选题，快来测试下你的掌握程度吧。
 
-具体到你的电商系统来说，商品的图片、介绍商品使用方法的视频等等静态资源都放在了Nginx等Web服务器上，它们的读请求量极大并且对访问速度的要求很高还占据了很高的带宽，这时会出现访问速度慢带宽被占满影响动态请求的问题， 那么你就需要考虑如何针对这些静态资源进行读加速了。
-静态资源加速的考虑点你可能会问：“我们是否也可以使用分布式缓存来解决这个问题呢？”答案是否定的。一般来说，图片和视频的大小会在几兆到几百兆之间不等，如果我们的应用服务器和分布式缓存都部署在北京的机房里，这时一个杭州的用户要访问缓存中的一个视频，那这个视频文件就需要从北京传输到杭州，期间会经过多个公网骨干网络，延迟很高，会让用户感觉视频打开 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/353086284.html" title="21 | 系统架构：每秒1万次请求的系统要做服务化拆分吗？">21 | 系统架构：每秒1万次请求的系统要做服务化拆分吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">21 | 系统架构：每秒1万次请求的系统要做服务化拆分吗？你好，我是唐扬。
-通过前面几个篇章的内容，你已经从数据库、缓存和消息队列的角度对自己的垂直电商系统在性能、可用性和扩展性上做了优化。
-现在你的系统运行稳定好评不断，每天高峰期的流量已经达到了10000&#x2F;s请求，DAU也涨到了几十万。CEO非常高兴，打算继续完善产品功能进行新一轮的运营推广，争取在下个双十一可以将DAU冲击过百万。这时你开始考虑怎么通过技术上的优化改造支撑更高的并发流量，比如支撑过百万的DAU。
-于是你重新审视了自己的系统架构，分析系统中有哪些可以优化的点。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/707428081.html" title="期末测试丨快来测测你对专栏内容掌握到何种程度了">期末测试丨快来测测你对专栏内容掌握到何种程度了</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">期末测试丨快来测测你对专栏内容掌握到何种程度了你好，我是李智慧。
+《后端技术面试38讲》这个专栏已经完结了。在完结的这段时间里，我依然能收到很多评论。在这些评论中，有认真回答课后思考题的，也有积极提问的。这些评论极大地丰富了专栏的内容，感谢你一直以来的认真学习和支持。
+为了让你更好地检测自己的学习成果，我特意做了一套期末测试题。题目共有20道，满分为100分，快来检测一下吧！
 
-目前来看，工程的部署方式还是采用一体化架构。也就是说所有的功能模块，比如电商系统中的订单模块、用户模块、支付模块、物流模块等等都被打包到一个大的Web工程中，然后部署在应用服务器上。
-你隐约觉得这样的部署方式可能存在问题，于是Google了一下后发现当系统发展到一定阶段都要做微服务化的拆分，你也看到淘宝的“五彩石”项目对于淘宝整体架构的扩展性带来的巨大影响。这一切让你心驰神往。
-但是有一个问题一直萦绕在你的心里：究竟是什么促使我们将一体化架构拆分成微服务化架构？是不是说系统的整体QPS到了1万或者到了2万，就一定要做微服务化拆分呢？
-一体化架构的痛点先来回想一下你当初为什么选用了一体化架构。
-在电商项目刚刚启动的时候，你只是希望能够尽量快地将 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/973782173.html" title="34 | 降级熔断：如何屏蔽非核心系统故障的影响？">34 | 降级熔断：如何屏蔽非核心系统故障的影响？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">34 | 降级熔断：如何屏蔽非核心系统故障的影响？你好，我是唐扬。
-到目前为止，你的电商系统已经搭建了完善的服务端和客户端监控系统，并且完成了全链路压测。现在呢，你们已经发现和解决了垂直电商系统中很多的性能问题和隐患。但是千算万算，还是出现了纰漏。
-本来，你们对于应对“双十一”的考验信心满满，但因为欠缺了一些面对巨大流量的经验，在促销过程中出现了几次短暂的服务不可用，这给部分用户造成了不好的使用体验。事后，你们进行了细致的复盘，追查出现故障的根本原因，你发现，原因主要可以归结为两大类。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1382290422.html" title="期末测试｜来赴一场满分之约！">期末测试｜来赴一场满分之约！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">期末测试｜来赴一场满分之约！你好，我是南柯。
+《AI绘画核心技术与实战》的更新告一段落，非常开心能和你交流技术、共同进步，为认真学习的你点赞！为了帮你检验自己的学习成果，我特意准备了一套期末测试题。题目共有 20 道，10 道单选题，10 道多选题，满分 100 分，快来挑战一下吧！
 
-第一类原因是由于依赖的资源或者服务不可用，最终导致整体服务宕机。举例来说，在你的电商系统中就可能由于数据库访问缓慢，导致整体服务不可用。
+另外，我还准备了一份 毕业问卷，希望你能花几分钟填写一下，我会根据你的反馈继续优化课程。
 
-另一类原因是你们乐观地预估了可能到来的流量，当有超过系统承载能力的流量到来时，系统不堪重负，从而出现拒绝服务的情况。
-
-
-那么，你要如何避免再次出现这两类问题呢？我建议你采取降级、熔断以及限流的方案。限流是解决第二类问题的主要思路（下一节课，我会着重讲解）。今天这节课，我主要讲一下解决第一类问题的思路：降级和熔断。
-不过在此之前，我先带你了解一下这个问题为何存在，因为你只有弄清楚出现故障的原理，才能更好地理解熔断降级带来的好处。
-雪崩是如何发生的局部故障最终导致全局故障，这种情况有一个专业的名词儿，叫做“雪崩”。那么，为什么会发生雪崩呢？我们知道，系统在运行的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/21184191.html" title="37 | 计数系统设计（一）：面对海量数据的计数器要如何做？">37 | 计数系统设计（一）：面对海量数据的计数器要如何做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">37 | 计数系统设计（一）：面对海量数据的计数器要如何做？你好，我是唐扬。
-从今天开始，我们正式进入最后的实战篇。在之前的课程中，我分别从数据库、缓存、消息队列和分布式服务化的角度，带你了解了面对高并发的时候要如何保证系统的高性能、高可用和高可扩展。课程中虽然有大量的例子辅助你理解理论知识，但是没有一个完整的实例帮你把知识串起来。
-所以，为了将我们提及的知识落地，在实战篇中，我会以微博为背景，用两个完整的案例带你从实践的角度应对高并发大流量的冲击，期望给你一个更加具体的感性认识，为你在实现类似系统的时候提供一些思路。今天我要讲的第一个案例是如何设计一个支持高并发大存储量的计数系统。
-来看这样一个场景： 在地铁上，你也许会经常刷微博、点赞热搜，如果有抽奖活动，再转发一波，而这些与微博息息相关的数据，其实就是微博场景下的计数数据，细说起来，它主要有几类：
-
-微博的评论数、点赞数、转发数、浏览数、表态数等等；
-用户的粉丝数、关注数、发布微博数、私信数等等。
-
-微博维度的计数代表了这条微博受欢迎的程度，用户维度的数据（尤其是粉丝数），代表了这个用户的影响力，因此大家会普遍看重这些计数信息。并且在很多场景下，我们都需要查询计数数据（比如首页信息流页面、个人主页面），计数数据访问量巨大，所以需要设计计数系统维护它。
-但在设计计数系统时，不少人会出现性能不高、存储成本很大的问题，比如，把计数与 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4174713395.html" title="加餐 | 数据的迁移应该如何做？">加餐 | 数据的迁移应该如何做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">加餐 | 数据的迁移应该如何做？你好，我是唐扬。
-在“ 数据库优化方案（二）：写入数据量增加时，如何实现分库分表？”中我曾经提到，由于MySQL不像MongoDB那样支持数据的Auto Sharding（自动分片），所以无论是将MySQL单库拆分成多个数据库，还是由于数据存储的瓶颈，不得不将多个数据库拆分成更多的数据库时你都要考虑如何做数据的迁移。
-其实在实际工作中，不只是对数据库拆分时会做数据迁移， 很多场景都需要你给出数据迁移的方案， 比如说某一天，你的老板想要将应用从自建机房迁移到云上，那么你就要考虑将所有自建机房中的数据，包括MySQL、Redis、消息队列等组件中的数据全部迁移到云上，这无论对哪种规模的公司来说都是一项浩瀚的工程，所以你需要在迁移之前准备完善的迁移方案。
-“数据的迁移”的问题比较重要和繁琐，也是开发和运维同学关注的重点。在课程更新的过程中，我看到有很多同学，比如@每天晒白牙，@枫叶11，@撒旦的堕落等等，在留言区询问如何做数据迁移，所以我策划了一期加餐，准备从数据库迁移和缓存迁移两个方面带你掌握数据迁移的方法，也带你了解数据迁移过程中需要注意的关键点，尽量让你避免踩坑。
-如何平滑地迁移数据库中的数据你可能会认为：数据迁移无非是将数据从一个数据库拷贝到另一个数据库，可以通过MySQL 主从同步的方式做到准实时的数据拷贝；也可以通过mysqldump工具将源库 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3619183840.html" title="40 | 信息流设计（二）：通用信息流系统的拉模式要如何做？">40 | 信息流设计（二）：通用信息流系统的拉模式要如何做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">40 |  信息流设计（二）：通用信息流系统的拉模式要如何做？你好，我是唐扬。
-在前一节课中，我带你了解了如何用推模式来实现信息流系统，从中你应该了解到了推模式存在的问题，比如它在面对需要支撑很大粉丝数量的场景时，会出现消息推送延迟、存储成本高、方案可扩展性差等问题。虽然我们也会有一些应对的措施，比如说选择插入性能更高的数据库存储引擎来提升数据写入速度，降低数据推送延迟；定期删除冷数据以减小存储成本等等，但是由于微博大V用户粉丝量巨大，如果我们使用推模式实现信息流系统，那么只能缓解这些用户的微博推送延迟问题，没有办法彻底解决。
-这个时候你可能会问了：那么有没有一种方案可以一劳永逸地解决这个问题呢？当然有了，你不妨试试用拉模式来实现微博信息流系统。那么具体要怎么做呢？
-如何使用拉模式设计信息流系统所谓拉模式，就是指用户主动拉取他关注的所有人的微博，将这些微博按照发布时间的倒序进行排序和聚合之后，生成信息流数据的方法。
-按照这个思路实现微博信息流系统的时候你会发现：用户的收件箱不再有用，因为信息流数据不再出自收件箱，而是出自发件箱。发件箱里是用户关注的所有人数据的聚合。因此用户在发微博的时候就只需要写入自己的发件箱，而不再需要推送给粉丝的收件箱了，这样在获取信息流的时候，就要查询发件箱的数据了。
-这个逻辑我还用SQL的形式直观地表达出来，方便你理解。假设用户A关注了用户B、C、D，那么 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/931420201.html" title="01 | 高并发系统：它的通用设计方法是什么？">01 | 高并发系统：它的通用设计方法是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">01 | 高并发系统：它的通用设计方法是什么？我们知道，高并发代表着大流量，高并发系统设计的魅力就在于我们能够凭借自己的聪明才智设计巧妙的方案，从而抵抗巨大流量的冲击，带给用户更好的使用体验。这些方案好似能操纵流量，让流量更加平稳地被系统中的服务和组件处理。
-来做个简单的比喻吧。
-从古至今，长江和黄河流域水患不断，远古时期大禹曾拓宽河道，清除淤沙让流水更加顺畅；都江堰作为史上最成功的治水案例之一，用引流将岷江之水分流到多个支流中，以分担水流压力；三门峡和葛洲坝通过建造水库将水引入水库先存储起来，然后再想办法把水库中的水缓缓地排出去，以此提高下游的抗洪能力。
-而我们在应对高并发大流量时也会采用类似“抵御洪水”的方案，归纳起来共有三种方法。
-
-Scale-out（横向扩展）：分而治之是一种常见的高并发系统设计方法，采用分布式部署的方式把流量分流开，让每个服务器都承担一部分并发和流量。
-
-缓存：使用缓存来提高系统的性能，就好比用“拓宽河道”的方式抵抗高并发大流量的冲击。
-
-异步：在某些场景下，未处理完成之前我们可以让请求先返回，在数据准备好之后再通知请求方，这样可以在单位时间内处理更多的请求。
-
-
-简单介绍了这三种方法之后，我再详细地带你了解一下，这样当你在设计高并发系统时就可以有考虑的方向了。当然了，这三种方法会细化出更多的内容，我会在后面的课程中深入讲解。
-首先，我们先来了解第一种方 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4291427019.html" title="02 | 架构分层：我们为什么一定要这么做？">02 | 架构分层：我们为什么一定要这么做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">02 | 架构分层：我们为什么一定要这么做？在系统从0到1的阶段，为了让系统快速上线，我们通常是不考虑分层的。但是随着业务越来越复杂，大量的代码纠缠在一起，会出现逻辑不清晰、各模块相互依赖、代码扩展性差、改动一处就牵一发而动全身等问题。
-这时，对系统进行分层就会被提上日程，那么我们要如何对架构进行分层？架构分层和高并发架构设计又有什么关系呢？本节课，我将带你寻找答案。
-什么是分层架构软件架构分层在软件工程中是一种常见的设计方式，它是将整体系统拆分成N个层次，每个层次有独立的职责，多个层次协同提供完整的功能。
-我们在刚刚成为程序员的时候，会被“教育”说系统的设计要是“MVC”（Model-View-Controller）架构。它将整体的系统分成了Model（模型），View（视图）和Controller（控制器）三个层次，也就是将用户视图和业务处理隔离开，并且通过控制器连接起来，很好地实现了表现和逻辑的解耦，是一种标准的软件分层架构。
-
-另外一种常见的分层方式是将整体架构分为表现层、逻辑层和数据访问层：
-
-表现层，顾名思义嘛，就是展示数据结果和接受用户指令的，是最靠近用户的一层；
-逻辑层里面有复杂业务的具体实现；
-数据访问层则是主要处理和存储之间的交互。
-
-这是在架构上最简单的一种分层方式。其实，我们在不经意间已经按照三层架构来做系统分层设计了，比如在构建项目的时候，我们通常会建立三 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2650332591.html" title="04 | 系统设计目标（二）：系统怎样做到高可用？">04 | 系统设计目标（二）：系统怎样做到高可用？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">04 | 系统设计目标（二）：系统怎样做到高可用？你好，我是唐扬。
-开课之后，有同学反馈说课程中偏理论知识的讲解比较多，希望看到实例。我一直关注这些声音，也感谢你提出的建议，在04讲的开篇，我想对此作出一些回应。
-在课程设计时，我主要想用基础篇中的前五讲内容带你了解一些关于高并发系统设计的基本概念，期望能帮你建立一个整体的框架，这样方便在后面的演进篇和实战篇中对涉及的知识点做逐一的展开和延伸。比方说，本节课提到了降级，那我会在运维篇中以案例的方式详细介绍降级方案的种类以及适用的场景，之所以这么设计是期望通过前面少量的篇幅把课程先串起来，以点带面，逐步展开。
-当然，不同的声音是我后续不断优化课程内容的动力，我会认真对待每一条建议，不断优化课程，与你一起努力、进步。
-接下来，让我们正式进入课程。
-本节课，我会继续带你了解高并发系统设计的第二个目标——高可用性。你需要在本节课对提升系统可用性的思路和方法有一个直观的了解，这样，当后续对点讲解这些内容时，你能马上反应过来，你的系统在遇到可用性的问题时，也能参考这些方法进行优化。
-高可用性（High Availability，HA） 是你在系统设计时经常会听到的一个名词，它指的是系统具备较高的无故障运行的能力。
-我们在很多开源组件的文档中看到的HA方案就是提升组件可用性，让系统免于宕机无法服务的方案。比如，你知道Hadoop 1.0中的Nam ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1241409288.html" title="03 | 系统设计目标（一）：如何提升系统性能？">03 | 系统设计目标（一）：如何提升系统性能？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">03 | 系统设计目标（一）：如何提升系统性能？提到互联网系统设计，你可能听到最多的词儿就是“三高”，也就是“高并发”“高性能”“高可用”，它们是互联网系统架构设计永恒的主题。在前两节课中，我带你了解了高并发系统设计的含义，意义以及分层设计原则，接下来，我想带你整体了解一下高并发系统设计的目标，然后在此基础上，进入我们今天的话题：如何提升系统的性能？
-高并发系统设计的三大目标：高性能、高可用、可扩展高并发， 是指运用设计手段让系统能够处理更多的用户并发请求，也就是承担更大的流量。它是一切架构设计的背景和前提，脱离了它去谈性能和可用性是没有意义的。很显然嘛，你在每秒一次请求和每秒一万次请求，两种不同的场景下，分别做到毫秒级响应时间和五个九（99.999%）的可用性，无论是设计难度还是方案的复杂度，都不是一个级别的。
-而性能和可用性， 是我们实现高并发系统设计必须考虑的因素。
-性能反映了系统的使用体验，想象一下，同样承担每秒一万次请求的两个系统，一个响应时间是毫秒级，一个响应时间在秒级别，它们带给用户的体验肯定是不同的。
-可用性则表示系统可以正常服务用户的时间。我们再类比一下，还是两个承担每秒一万次的系统，一个可以做到全年不停机、无故障，一个隔三差五宕机维护，如果你是用户，你会选择使用哪一个系统呢？答案不言而喻。
-另一个耳熟能详的名词叫 “可扩展性”， 它同样是高并发系统设计需要考虑的 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/120/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/120/#content-inner">120</a><span class="page-number current">121</span><a class="page-number" href="/page/122/#content-inner">122</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/122/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/120/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/120/#content-inner">120</a><span class="page-number current">121</span><a class="page-number" href="/page/122/#content-inner">122</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/122/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

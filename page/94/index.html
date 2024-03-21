@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,81 +138,94 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/14004835.html" title="48 | 代理模式：代理在RPC、缓存、监控等场景中的应用">48 | 代理模式：代理在RPC、缓存、监控等场景中的应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">48 | 代理模式：代理在RPC、缓存、监控等场景中的应用前面几节，我们学习了设计模式中的创建型模式。创建型模式主要解决对象的创建问题，封装复杂的创建过程，解耦对象的创建代码和使用代码。
-其中，单例模式用来创建全局唯一的对象。工厂模式用来创建不同但是相关类型的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象。建造者模式是用来创建复杂对象，可以通过设置不同的可选参数，“定制化”地创建不同的对象。原型模式针对创建成本比较大的对象，利用对已有对象进行复制的方式进行创建，以达到节省创建时间的目的。
-从今天起，我们开始学习另外一种类型的设计模式：结构型模式。结构型模式主要总结了一些类或对象组合在一起的经典结构，这些经典的结构可以解决特定应用场景的问题。结构型模式包括：代理模式、桥接模式、装饰器模式、适配器模式、门面模式、组合模式、享元模式。今天我们要讲其中的代理模式。它也是在实际开发中经常被用到的一种设计模式。
-话不多说，让我们正式开始今天的学习吧！
-代理模式的原理解析代理模式（Proxy Design Pattern）的原理和代码实现都不难掌握。它在不改变原始类（或叫被代理类）代码的情况下，通过引入代理类来给原始类附加功能。我们通过一个简单的例子来解释一下这段话。
-这个例子来自我们在第25、26、39、40节中讲的性能计数器。当时我们开发了一个MetricsCo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2196341985.html" title="51 | 适配器模式：代理、适配器、桥接、装饰，这四个模式有何区别？">51 | 适配器模式：代理、适配器、桥接、装饰，这四个模式有何区别？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">51 | 适配器模式：代理、适配器、桥接、装饰，这四个模式有何区别？前面几节课我们学习了代理模式、桥接模式、装饰器模式，今天，我们再来学习一个比较常用的结构型模式：适配器模式。这个模式相对来说还是比较简单、好理解的，应用场景也很具体，总体上来讲比较好掌握。
-关于适配器模式，今天我们主要学习它的两种实现方式，类适配器和对象适配器，以及5种常见的应用场景。同时，我还会通过剖析slf4j日志框架，来给你展示这个模式在真实项目中的应用。除此之外，在文章的最后，我还对代理、桥接、装饰器、适配器，这4种代码结构非常相似的设计模式做简单的对比，对这几节内容做一个简单的总结。
-话不多说，让我们正式开始今天的学习吧！
-适配器模式的原理与实现适配器模式 的英文翻译是 Adapter Design Pattern。顾名思义，这个模式就是用来做适配的，它将不兼容的接口转换为可兼容的接口，让原本由于接口不兼容而不能一起工作的类可以一起工作。对于这个模式，有一个经常被拿来解释它的例子，就是USB转接头充当适配器，把两种不兼容的接口，通过转接变得可以一起工作。
-原理很简单，我们再来看下它的代码实现。适配器模式有两种实现方式：类适配器和对象适配器。其中，类适配器使用继承关系来实现，对象适配器使用组合关系来实现。具体的代码实现如下所示。其中，ITarget表示要转化成的接口定义。Adaptee是一组不兼容ITarg ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2190214802.html" title="54 | 享元模式（上）：如何利用享元模式优化文本编辑器的内存占用？">54 | 享元模式（上）：如何利用享元模式优化文本编辑器的内存占用？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">54 | 享元模式（上）：如何利用享元模式优化文本编辑器的内存占用？上一节课中，我们讲了组合模式。组合模式并不常用，主要用在数据能表示成树形结构、能通过树的遍历算法来解决的场景中。今天，我们再来学习一个不那么常用的模式， 享元模式（Flyweight Design Pattern）。这也是我们要学习的最后一个结构型模式。
-跟其他所有的设计模式类似，享元模式的原理和实现也非常简单。今天，我会通过棋牌游戏和文本编辑器两个实际的例子来讲解。除此之外，我还会讲到它跟单例、缓存、对象池的区别和联系。在下一节课中，我会带你剖析一下享元模式在Java Integer、String中的应用。
-话不多说，让我们正式开始今天的学习吧！
-享元模式原理与实现所谓“享元”，顾名思义就是被共享的单元。享元模式的意图是复用对象，节省内存，前提是享元对象是不可变对象。
-具体来讲，当一个系统中存在大量重复对象的时候，如果这些重复的对象是不可变对象，我们就可以利用享元模式将对象设计成享元，在内存中只保留一份实例，供多处代码引用。这样可以减少内存中对象的数量，起到节省内存的目的。实际上，不仅仅相同对象可以设计成享元，对于相似对象，我们也可以将这些对象中相同的部分（字段）提取出来，设计成享元，让这些大量相似对象引用这些享元。
-这里我稍微解释一下，定义中的“不可变对象”指的是，一旦通过构造函数初始化完成之后，它的状态（对象 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3349533892.html" title="55 | 享元模式（下）：剖析享元模式在Java Integer、String中的应用">55 | 享元模式（下）：剖析享元模式在Java Integer、String中的应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">55 | 享元模式（下）：剖析享元模式在Java Integer、String中的应用上一节课，我们通过棋牌游戏和文本编辑器这样两个实际的例子，学习了享元模式的原理、实现以及应用场景。用一句话总结一下，享元模式中的“享元”指被共享的单元。享元模式通过复用对象，以达到节省内存的目的。
-今天，我再用一节课的时间带你剖析一下，享元模式在Java Integer、String中的应用。如果你不熟悉Java编程语言，那也不用担心看不懂，因为今天的内容主要还是介绍设计思路，跟语言本身关系不大。
-话不多说，让我们正式开始今天的学习吧！
-享元模式在Java Integer中的应用我们先来看下面这样一段代码。你可以先思考下，这段代码会输出什么样的结果。
-Integer i1 &#x3D; 56;
-Integer i2 &#x3D; 56;
-Integer i3 &#x3D; 129;
-Integer i4 &#x3D; 129;
-System.out.println(i1 &#x3D;&#x3D; i2);
-System.out.println(i3 &#x3D;&#x3D; i4);
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/636427915.html" title="40 | 互联网架构模板：“存储层”技术">40 | 互联网架构模板：“存储层”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">40 | 互联网架构模板：“存储层”技术很多人对于BAT的技术有一种莫名的崇拜感，觉得只有天才才能做出这样的系统，但经过前面对架构的本质、架构的设计原则、架构的设计模式、架构演进等多方位的探讨和阐述，你可以看到，其实并没有什么神秘的力量和魔力融合在技术里面，而是业务的不断发展推动了技术的发展，这样一步一个脚印，持续几年甚至十几年的发展，才能达到当前技术复杂度和先进性。
+抛开BAT各自差异很大的业务，站在技术的角度来看，其实BAT的技术架构基本是一样的。再将视角放大，你会发现整个互联网行业的技术发展，最后都是殊途同归。
+如果你正处于一个创业公司，或者正在为成为另一个BAT拼搏，那么深入理解这种技术模式（或者叫技术结构、技术架构），对于自己和公司的发展都大有裨益。
+互联网的标准技术架构如下图所示，这张图基本上涵盖了互联网技术公司的大部分技术点，不同的公司只是在具体的技术实现上稍有差异，但不会跳出这个框架的范畴。
+
+从本期开始，我将逐层介绍每个技术点的产生背景、应用场景、关键技术，有的技术点可能已经在前面的架构模式部分有所涉及，因此就不再详细展开技术细节了，而是将关键技术点分门别类，进而形成一张架构大图，让架构师对一个公司的整体技术架构有一个完整的全貌认知。
+今天我们首先来聊聊互联网架构模板的“存储层”技术。
+SQLSQL即我们通常所说的关系数据。前几年NoSQL火了一阵子，很多人都理解 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3619183840.html" title="40 | 信息流设计（二）：通用信息流系统的拉模式要如何做？">40 | 信息流设计（二）：通用信息流系统的拉模式要如何做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">40 |  信息流设计（二）：通用信息流系统的拉模式要如何做？你好，我是唐扬。
+在前一节课中，我带你了解了如何用推模式来实现信息流系统，从中你应该了解到了推模式存在的问题，比如它在面对需要支撑很大粉丝数量的场景时，会出现消息推送延迟、存储成本高、方案可扩展性差等问题。虽然我们也会有一些应对的措施，比如说选择插入性能更高的数据库存储引擎来提升数据写入速度，降低数据推送延迟；定期删除冷数据以减小存储成本等等，但是由于微博大V用户粉丝量巨大，如果我们使用推模式实现信息流系统，那么只能缓解这些用户的微博推送延迟问题，没有办法彻底解决。
+这个时候你可能会问了：那么有没有一种方案可以一劳永逸地解决这个问题呢？当然有了，你不妨试试用拉模式来实现微博信息流系统。那么具体要怎么做呢？
+如何使用拉模式设计信息流系统所谓拉模式，就是指用户主动拉取他关注的所有人的微博，将这些微博按照发布时间的倒序进行排序和聚合之后，生成信息流数据的方法。
+按照这个思路实现微博信息流系统的时候你会发现：用户的收件箱不再有用，因为信息流数据不再出自收件箱，而是出自发件箱。发件箱里是用户关注的所有人数据的聚合。因此用户在发微博的时候就只需要写入自己的发件箱，而不再需要推送给粉丝的收件箱了，这样在获取信息流的时候，就要查询发件箱的数据了。
+这个逻辑我还用SQL的形式直观地表达出来，方便你理解。假设用户A关注了用户B、C、D，那么 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1402744117.html" title="40 | 局部最优：如何逃离？">40 | 局部最优：如何逃离？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">40 | 局部最优：如何逃离？之前看过一些关于算法方面的书，提到了一些最优化问题。最优化问题在现实中非常常见，比如工程设计中，怎样选择设计参数，使得设计方案能以尽量低的成本预算满足设计要求。而近年来热门的机器学习建模也是一个最优化问题，基于一组已知的数据去构建一个模型，让这个模型去适配未来未知的数据达到最优，然后求解关于这个模型的参数。
+在求解最优参数的算法中，很多都有一个缺陷，就是容易达到一种局部最优点，即： 参数的选择尝试收敛到了一小块范围内，无论再怎么尝试变化都没法取得更优的结果。而从全局来看，这并不是最优的选择，但算法此时就进入了一种尝试的徘徊状态，这就是局部最优点，但算法并不知道这到底是不是全局最优的。
+对于我们这些自诩智能的人，在成长的路上，其实也经常陷入这样的成长局部最优点。
+爬山关于成长最形象的类比便是爬山，但爬到山顶的路并不总是向上的。
+我长居成都，每过一阵就会去爬一回成都附近的青城山。像青城山这种著名景区的山，总有很多路标告诉你，沿着这条路一直走，你就能到达山顶。即使这条路有时会向下走，让你产生下山的感觉，但你也不会动摇，因为路标已经告诉你了，山顶就在前方，那里才是你的目的地。虽然成长这一路就像爬山，成长路上的感觉也和爬山相似，但不同的是，成长的路上并没有清晰的路标告诉你山顶在哪里。
+有时你很幸运地爬上了一个高点，你并不知道这个高点是否就是山顶了，因为再往前走， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/785101655.html" title="40 | 理解内存（上）：虚拟内存和内存保护是什么？">40 | 理解内存（上）：虚拟内存和内存保护是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">40 | 理解内存（上）：虚拟内存和内存保护是什么？我们在专栏一开始说过，计算机有五大组成部分，分别是：运算器、控制器、存储器、输入设备和输出设备。如果说计算机最重要的组件，是承担了运算器和控制器作用的CPU，那内存就是我们第二重要的组件了。内存是五大组成部分里面的存储器，我们的指令和数据，都需要先加载到内存里面，才会被CPU拿去执行。
+专栏 第9讲，我们讲了程序装载到内存的过程。可以知道，在我们日常使用的Linux或者Windows操作系统下，程序并不能直接访问物理内存。
+
+我们的内存需要被分成固定大小的页（Page），然后再通过虚拟内存地址（Virtual Address）到物理内存地址（Physical Address）的地址转换（Address Translation），才能到达实际存放数据的物理内存位置。而我们的程序看到的内存地址，都是虚拟内存地址。
+既然如此，这些虚拟内存地址究竟是怎么转换成物理内存地址的呢？这一讲里，我们就来看一看。
+简单页表想要把虚拟内存地址，映射到物理内存地址，最直观的办法，就是来建一张映射表。这个映射表，能够实现虚拟内存里面的页，到物理内存里面的页的一一映射。这个映射表，在计算机里面，就叫作 页表（Page Table）。
+页表这个地址转换的办法，会把一个内存地址分成 页号（Directory）和 偏移量（Offset）两个部分。这么说太理论了， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2927556277.html" title="40 | 程序世界里的编程范式总结">40 | 程序世界里的编程范式总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">40 | 程序世界里的编程范式总结你好，我是陈皓，网名左耳朵耗子。
+这个世界到今天已经有很多很多的编程范式，相当复杂。下面这个图比较好地描绘了这些各式各样的编程范式，这个图越往左边就越是“声明式的”，越往右边就越不是“声明式的”（指令式的），我们可以看到，函数式编程和逻辑编程，都在左边，而右边是指令式的，有状态的，有类型的。
+
+上面这个图有点乱，不过总体说来，我们可以简单地把这世界上纷乱的编程范式，分成这几类： 声明式、 命令式、 逻辑的、 函数式、 面向对象的、 面向过程的。
+于是我们归纳一下，就可以得到下面这个简单的图。简单描述一下：
+
+中间两个声明式编程范式（函数式和逻辑式）偏向于你定义要什么，而不是怎么做。
+而两边的命令式编程范式和面向对象编程范式，偏向于怎么做，而不是要做什么。
 
 
-如果不熟悉Java语言，你可能会觉得，i1和i2值都是56，i3和i4值都是129，i1跟i2值相等，i3跟i4值相等，所以输出结果应该是两个true。这样的分析是不对的，主要还是因为你对Java语法不熟悉。要正 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3286807326.html" title="57 | 观察者模式（下）：如何实现一个异步非阻塞的EventBus框架？">57 | 观察者模式（下）：如何实现一个异步非阻塞的EventBus框架？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">57 | 观察者模式（下）：如何实现一个异步非阻塞的EventBus框架？上一节课中，我们学习了观察者模式的原理、实现、应用场景，重点介绍了不同应用场景下，几种不同的实现方式，包括：同步阻塞、异步非阻塞、进程内、进程间的实现方式。
-同步阻塞是最经典的实现方式，主要是为了代码解耦；异步非阻塞除了能实现代码解耦之外，还能提高代码的执行效率；进程间的观察者模式解耦更加彻底，一般是基于消息队列来实现，用来实现不同进程间的被观察者和观察者之间的交互。
-今天，我们聚焦于异步非阻塞的观察者模式，带你实现一个类似Google Guava EventBus的通用框架。等你学完本节课之后，你会发现，实现一个框架也并非一件难事。
-话不多说，让我们正式开始今天的学习吧！
-异步非阻塞观察者模式的简易实现上一节课中，我们讲到，对于异步非阻塞观察者模式，如果只是实现一个简易版本，不考虑任何通用性、复用性，实际上是非常容易的。
-我们有两种实现方式。其中一种是：在每个handleRegSuccess()函数中创建一个新的线程执行代码逻辑；另一种是：在UserController的register()函数中使用线程池来执行每个观察者的handleRegSuccess()函数。两种实现方式的具体代码如下所示：
-&#x2F;&#x2F; 第一种实现方式，其他类代码不变，就没有再重复罗列
-public class RegP ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/985901173.html" title="59 | 模板模式（下）：模板模式与Callback回调函数有何区别和联系？">59 | 模板模式（下）：模板模式与Callback回调函数有何区别和联系？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">59 | 模板模式（下）：模板模式与Callback回调函数有何区别和联系？上一节课中，我们学习了模板模式的原理、实现和应用。它常用在框架开发中，通过提供功能扩展点，让框架用户在不修改框架源码的情况下，基于扩展点定制化框架的功能。除此之外，模板模式还可以起到代码复用的作用。
-复用和扩展是模板模式的两大作用，实际上，还有另外一个技术概念，也能起到跟模板模式相同的作用，那就是 回调（Callback）。今天我们今天就来看一下，回调的原理、实现和应用，以及它跟模板模式的区别和联系。
-话不多说，让我们正式开始今天的学习吧！
-回调的原理解析相对于普通的函数调用来说，回调是一种双向调用关系。A类事先注册某个函数F到B类，A类在调用B类的P函数的时候，B类反过来调用A类注册给它的F函数。这里的F函数就是“回调函数”。A调用B，B反过来又调用A，这种调用机制就叫作“回调”。
-A类如何将回调函数传递给B类呢？不同的编程语言，有不同的实现方法。C语言可以使用函数指针，Java则需要使用包裹了回调函数的类对象，我们简称为回调对象。这里我用Java语言举例说明一下。代码如下所示：
-public interface ICallback &#123;
-  void methodToCallback();
-&#125;
+我们再归纳一下，基本上来说，就是两大分支，一边是在解决数据和算法，一边是在解决逻辑和控制。
 
-public class BClass &#123;
-  public void proc ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1097294153.html" title="60 | 策略模式（上）：如何避免冗长的if-else/switch分支判断代码？">60 | 策略模式（上）：如何避免冗长的if-else/switch分支判断代码？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">60 | 策略模式（上）：如何避免冗长的if-else&#x2F;switch分支判断代码？上两节课中，我们学习了模板模式。模板模式主要起到代码复用和扩展的作用。除此之外，我们还讲到了回调，它跟模板模式的作用类似，但使用起来更加灵活。它们之间的主要区别在于代码实现，模板模式基于继承来实现，回调基于组合来实现。
-今天，我们开始学习另外一种行为型模式，策略模式。在实际的项目开发中，这个模式也比较常用。最常见的应用场景是，利用它来避免冗长的if-else或switch分支判断。不过，它的作用还不止如此。它也可以像模板模式那样，提供框架的扩展点等等。
-对于策略模式，我们分两节课来讲解。今天，我们讲解策略模式的原理和实现，以及如何用它来避免分支判断逻辑。下一节课，我会通过一个具体的例子，来详细讲解策略模式的应用场景以及真正的设计意图。
-话不多说，让我们正式开始今天的学习吧！
-策略模式的原理与实现策略模式，英文全称是Strategy Design Pattern。在GoF的《设计模式》一书中，它是这样定义的：
+下面再结合一张表格说明一下这世界上四大编程范式的类别，以及它们的特性和主要的编程语言。
 
-Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2720695200.html" title="66 | 迭代器模式（中）：遍历集合的同时，为什么不能增删集合元素？">66 | 迭代器模式（中）：遍历集合的同时，为什么不能增删集合元素？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">66 | 迭代器模式（中）：遍历集合的同时，为什么不能增删集合元素？上一节课中，我们通过给ArrayList、LinkedList容器实现迭代器，学习了迭代器模式的原理、实现和设计意图。迭代器模式主要作用是解耦容器代码和遍历代码，这也印证了我们前面多次讲过的应用设计模式的主要目的是解耦。
-上一节课中讲解的内容都比较基础，今天，我们来深挖一下，如果在使用迭代器遍历集合的同时增加、删除集合中的元素，会发生什么情况？应该如何应对？如何在遍历的同时安全地删除集合元素？
-话不多说，让我们正式开始今天的内容吧！
-在遍历的同时增删集合元素会发生什么？在通过迭代器来遍历集合元素的同时，增加或者删除集合中的元素，有可能会导致某个元素被重复遍历或遍历不到。不过，并不是所有情况下都会遍历出错，有的时候也可以正常遍历，所以，这种行为称为 结果不可预期行为 或者 未决行为，也就是说，运行结果到底是对还是错，要视情况而定。
-怎么理解呢？我们通过一个例子来解释一下。我们还是延续上一节课实现的ArrayList迭代器的例子。为了方便你查看，我把相关的代码都重新拷贝到这里了。
-public interface Iterator&lt;E&gt; &#123;
-  boolean hasNext();
-  void next();
-  E currentItem();
-&#125;
+程序编程范式。一个是左脑，一个是右脑。我们程序员基本上是在用左脑，左脑是理性分析，喜欢数据证据，线性思维，陷入细节，具体化的，不抽象。但是，实际上玩儿出这些东西的都在右脑，函数式，还有像逻辑式的抽象能力都在右脑。所以我们非线性的想象力都在这边，而标准化教育把我们这边已经全部干掉了，我们只剩左边。我们陷入细节，我一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3803135717.html" title="40 | 运用学过的设计原则和思想完善之前讲的性能计数器项目（下）">40 | 运用学过的设计原则和思想完善之前讲的性能计数器项目（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">40 | 运用学过的设计原则和思想完善之前讲的性能计数器项目（下）上一节课中，我们针对版本1存在的问题（特别是Aggregator类、ConsoleReporter和EmailReporter类）进行了重构优化。经过重构之后，代码结构更加清晰、合理、有逻辑性。不过，在细节方面还是存在一些问题，比如ConsoleReporter、EmailReporter类仍然存在代码重复、可测试性差的问题。今天，我们就在版本3中持续重构这部分代码。
+除此之外，在版本3中，我们还会继续完善框架的功能和非功能需求。比如，让原始数据的采集和存储异步执行，解决聚合统计在数据量大的情况下会导致内存吃紧问题，以及提高框架的易用性等，让它成为一个能用且好用的框架。
+话不多说，让我们正式开始版本3的设计与实现吧！
+代码重构优化我们知道，继承能解决代码重复的问题。我们可以将ConsoleReporter和EmailReporter中的相同代码逻辑，提取到父类ScheduledReporter中，以解决代码重复问题。按照这个思路，重构之后的代码如下所示：
+public abstract class ScheduledReporter &#123;
+  protected MetricsStorage metricsStorage;
+  protected Aggregator aggregator;
+  protec ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1473410410.html" title="40 应用场景 | 数字巴别塔：机器翻译">40 应用场景 | 数字巴别塔：机器翻译</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">40 应用场景 | 数字巴别塔：机器翻译根据圣经旧约《创世纪》中的记载，大洪水劫后，诺亚的子孙们在巴比伦附近的示拿地定居。说着同样语言的人类联合起来兴建巴别塔，这让上帝深为他们的虚荣和傲慢而震怒。于是他悄悄地离开天国来到人间，变乱了人类的语言，无法交流的人们做鸟兽散，巴别塔的伟念也就轰然倒塌。
+圣经中对语言诞生的描述充满了天谴的色彩，虽然事实根本就不是这么回事，但语言的差异的的确确给人类的沟通与交流平添了诸多隔阂。难道伟大的巴别塔注定只是存在于幻想之中的空中楼阁吗？
+令人沮丧的是，眼下这个问题的答案还是“是”。但在世界首台计算机ENIAC于1946年诞生后，科学家们就提出了利用计算机实现不同语言之间的自动翻译的想法。而在经历了超过一个甲子的岁月后，机器翻译已经取得了长足的进展，今天的执牛耳者则无疑是互联网巨头谷歌。
+机器翻译源于对自然语言的处理。 1949年，洛克菲勒基金会的科学家沃伦·韦弗提出了利用计算机实现不同语言的自动翻译的想法，并且得到了学术界和产业界的广泛支持。韦弗的观点也代表了当时学术界的主流意见，就是以逐字对应的方法实现机器翻译。
+语言作为信息的载体，其本质可以被视为一套编码与解码系统，只不过这套系统的作用对象是客观世界与人类社会。将字&#x2F;词看成构成语言的基本元素的话，每一种语言就都可以解构为所有字&#x2F;词组成的集合。而引入中介语言可以把所有语言的编码统 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/308773174.html" title="41 | 互联网架构模板：“开发层”和“服务层”技术">41 | 互联网架构模板：“开发层”和“服务层”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">41 | 互联网架构模板：“开发层”和“服务层”技术上一期，我介绍了互联网架构模板中的存储层技术。关于这部分内容，我将逐层介绍每个技术点的产生背景、应用场景和关键技术，希望让你可以对整体的技术架构有一个全貌认知。
+今天我们来聊聊互联网架构模板的“开发层”和“服务层”技术。
+开发层技术1.开发框架
+在专栏第38、39期中，我们深入分析了互联网业务发展的一个特点：复杂度越来越高。复杂度增加的典型现象就是系统越来越多，不同的系统由不同的小组开发。如果每个小组用不同的开发框架和技术，则会带来很多问题，典型的问题有：
 
-public class Arr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3357808209.html" title="65 | 迭代器模式（上）：相比直接遍历集合数据，使用迭代器有哪些优势？">65 | 迭代器模式（上）：相比直接遍历集合数据，使用迭代器有哪些优势？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">65 | 迭代器模式（上）：相比直接遍历集合数据，使用迭代器有哪些优势？上一节课，我们学习了状态模式。状态模式是状态机的一种实现方法。它通过将事件触发的状态转移和动作执行，拆分到不同的状态类中，以此来避免状态机类中的分支判断逻辑，应对状态机类代码的复杂性。
-今天，我们学习另外一种行为型设计模式，迭代器模式。它用来遍历集合对象。不过，很多编程语言都将迭代器作为一个基础的类库，直接提供出来了。在平时开发中，特别是业务开发，我们直接使用即可，很少会自己去实现一个迭代器。不过，知其然知其所以然，弄懂原理能帮助我们更好的使用这些工具类，所以，我觉得还是有必要学习一下这个模式。
-我们知道，大部分编程语言都提供了多种遍历集合的方式，比如for循环、foreach循环、迭代器等。所以，今天我们除了讲解迭代器的原理和实现之外，还会重点讲一下，相对于其他遍历方式，利用迭代器来遍历集合的优势。
-话不多说，让我们正式开始今天的学习吧！
-迭代器模式的原理和实现迭代器模式（Iterator Design Pattern），也叫作游标模式（Cursor Design Pattern）。
-在开篇中我们讲到，它用来遍历集合对象。这里说的“集合对象”也可以叫“容器”“聚合对象”，实际上就是包含一组对象的对象，比如数组、链表、树、图、跳表。迭代器模式将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2785809528.html" title="69 | 访问者模式（下）：为什么支持双分派的语言不需要访问者模式？">69 | 访问者模式（下）：为什么支持双分派的语言不需要访问者模式？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">69 | 访问者模式（下）：为什么支持双分派的语言不需要访问者模式？上一节课中，我们学习了访问者模式的原理和实现，并且还原了访问者模式诞生的思维过程。总体上来讲，这个模式的代码实现比较难，所以应用场景并不多。从应用开发的角度来说，它的确不是我们学习的重点。
-不过，我们前面反复说过，学习我的专栏，并不只是让你掌握知识，更重要的是锻炼你分析、解决问题的能力，锻炼你的逻辑思维能力，所以，今天我们继续把访问者模式作为引子，一块讨论一下这样两个问题，希望能激发你的深度思考：
+技术人员之间没有共同的技术语言，交流合作少。
 
-为什么支持双分派的语言不需要访问者模式呢？
-除了访问者模式，上一节课中的例子还有其他实现方案吗？
+每类技术都需要投入大量的人力和资源并熟练精通。
 
-话不多说，让我们正式开始今天的学习吧！
-为什么支持双分派的语言不需要访问者模式？实际上，讲到访问者模式，大部分书籍或者资料都会讲到Double Dispatch，中文翻译为双分派。虽然学习访问者模式，并不用非得理解这个概念，我们前面的讲解就没有提到它，但是，为了让你在查看其它书籍或者资料的时候，不会卡在这个概念上，我觉得有必要在这里讲一下。
-除此之外，我觉得，学习Double Dispatch还能加深你对访问者模式的理解，而且能一并帮你搞清楚今天文章标题中的这个问题：为什么支持双分派的语言就不需要访问者模式？这个问题在面试中可是会被问到的哦！
-既然有Double Dispatch，对应的就有Single Dispatch ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/93/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/93/#content-inner">93</a><span class="page-number current">94</span><a class="page-number" href="/page/95/#content-inner">95</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/95/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+不同团队之间人员无法快速流动，人力资源不能高效的利用。
+
+
+所以，互联网公司都会指定一个大的技术方向，然后使用统一的开发框架。例如，Java相关的开发框架SSH、SpringMVC、Play，Ruby的Ruby on Rails，PHP的ThinkPHP，Python的Django等。使用统一的开发框架能够解决上面提到的各种问题，大大提升组织和团队的开发效率。
+对于框架的选择，有一个总的原则： 优选成熟的框架，避免盲目追逐新技术！
+为什么呢？
+首先，成熟的框架资料文档齐备，各种坑基本上都有人踩过了，遇到问题很容易通过搜索来解决。
+其次，成熟的框架受众更广，招聘时更加容易招到合适的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4235492489.html" title="41 | 单例模式（上）：为什么说支持懒加载的双重检测不比饿汉式更优？">41 | 单例模式（上）：为什么说支持懒加载的双重检测不比饿汉式更优？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">41 | 单例模式（上）：为什么说支持懒加载的双重检测不比饿汉式更优？从今天开始，我们正式进入到设计模式的学习。我们知道，经典的设计模式有23种。其中，常用的并不是很多。据我的工作经验来看，常用的可能都不到一半。如果随便抓一个程序员，让他说一说最熟悉的3种设计模式，那其中肯定会包含今天要讲的单例模式。
+网上有很多讲解单例模式的文章，但大部分都侧重讲解，如何来实现一个线程安全的单例。我今天也会讲到各种单例的实现方法，但是，这并不是我们专栏学习的重点，我重点还是希望带你搞清楚下面这样几个问题（第一个问题会在今天讲解，后面三个问题放到下一节课中讲解）。
+
+为什么要使用单例？
+单例存在哪些问题？
+单例与静态类的区别？
+有何替代的解决方案？
+
+话不多说，让我们带着这些问题，正式开始今天的学习吧！
+为什么要使用单例？单例设计模式（Singleton Design Pattern）理解起来非常简单。一个类只允许创建一个对象（或者实例），那这个类就是一个单例类，这种设计模式就叫作单例设计模式，简称单例模式。
+对于单例的概念，我觉得没必要解释太多，你一看就能明白。我们重点看一下，为什么我们需要单例这种设计模式？它能解决哪些问题？接下来我通过两个实战案例来讲解。
+实战案例一：处理资源访问冲突我们先来看第一个例子。在这个例子中，我们自定义实现了一个往文件中打印日志的Logger类。具体的代码实现如下所示 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/833916726.html" title="41 | 弹力设计：认识故障和弹力设计">41 | 弹力设计：认识故障和弹力设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">41 | 弹力设计：认识故障和弹力设计你好，我是陈皓，网名左耳朵耗子。
+我前面写的《分布式系统架构的本质》系列文章，从分布式系统的业务层、中间件层、数据库层等各个层面介绍了高并发架构、异地多活架构、容器化架构、微服务架构、高可用架构、弹性化架构等，也就是所谓的“纲”。通过这个“纲”，你能够按图索骥，掌握分布式系统中每个部件的用途与总体架构思路。
+为了让你更深入地了解分布式系统，在接下来的几期中，我想谈谈分布式系统中一些比较关键的设计模式，其中包括容错、性能、管理等几个方面。
+
+容错设计又叫弹力设计，其中着眼于分布式系统的各种“容忍”能力，包括容错能力（服务隔离、异步调用、请求幂等性）、可伸缩性（有&#x2F;无状态的服务）、一致性（补偿事务、重试）、应对大流量的能力（熔断、降级）。可以看到，在确保系统正确性的前提下，系统的可用性是弹力设计保障的重点。
+
+管理篇 会讲述一些管理分布式系统架构的一些设计模式，比如网关方面的，边车模式，还有一些刚刚开始流行的，如Service Mesh相关的设计模式。
+
+性能设计篇 会讲述一些缓存、CQRS、索引表、优先级队列、业务分片等相关的架构模式。
+
+
+我相信，你在掌握了这些设计模式之后，无论是对于部署一个分布式系统，开发一个分布式的业务模块，还是研发一个新的分布式系统中间件，都会有所裨益。
+今天分享的就是《分布式系统设计模式》系列文章中的第一篇《 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/93/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/93/#content-inner">93</a><span class="page-number current">94</span><a class="page-number" href="/page/95/#content-inner">95</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/95/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

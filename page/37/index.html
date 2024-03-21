@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:15'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,122 +138,61 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1843480495.html" title="78 | 程序员练级攻略：异步I/O模型和Lock-Free编程">78 | 程序员练级攻略：异步I/O模型和Lock-Free编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">78 | 程序员练级攻略：异步I&#x2F;O模型和Lock-Free编程你好，我是陈皓，网名左耳朵耗子。
-异步I&#x2F;O模型异步I&#x2F;O模型是我个人觉得所有程序员都必需要学习的一门技术或是编程方法，这其中的设计模式或是解决方法可以借鉴到分布式架构上来。再说一遍，学习这些模型，是非常非常重要的，你千万要认真学习。
-史蒂文斯（Stevens）在《 UNIX网络编程》一书6.2 I&#x2F;O Models中介绍了五种I&#x2F;O模型。
-
-阻塞I&#x2F;O
-非阻塞I&#x2F;O
-I&#x2F;O的多路复用（select和poll）
-信号驱动的I&#x2F;O（SIGIO）
-异步I&#x2F;O（POSIX的aio_functions）
-
-然后，在前面我们也阅读过了 - C10K Problem 。相信你对I&#x2F;O模型也有了一定的了解。 这里，我们需要更为深入地学习I&#x2F;O模型，尤其是其中的异步I&#x2F;O模型。
-首先，我们看一篇和Java相关的I&#x2F;O模型的文章来复习一下之前的内容。 Thousands of Threads and Blocking I&#x2F;O: The Old Way to Write Java Servers Is New Again (and Way Better) ，这个PPT中不仅回顾和比较了各种I ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3159056066.html" title="81 | 程序员练级攻略：分布式架构入门">81 | 程序员练级攻略：分布式架构入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">81 | 程序员练级攻略：分布式架构入门你好，我是陈皓，网名左耳朵耗子。
-学习分布式系统跟学习其它技术非常不一样，分布式系统涵盖的面非常广，具体来说涵盖如下几方面：
-
-服务调度，涉及服务发现、配置管理、弹性伸缩、故障恢复等。
-
-资源调度，涉及对底层资源的调度使用，如计算资源、网络资源和存储资源等。
-
-流量调度，涉及路由、负载均衡、流控、熔断等。
-
-数据调度，涉及数据复本、数据一致性、分布式事务、分库、分表等。
-
-容错处理，涉及隔离、幂等、重试、业务补偿、异步、降级等。
-
-自动化运维，涉及持续集成、持续部署、全栈监控、调用链跟踪等。
-
-
-所有这些形成了分布式架构的整体复杂度，也造就了分布式系统中的很多很多论文、图书以及很多很多的项目。要学好分布式系统及其架构，我们需要大量的时间和实践才能真正掌握这些技术。
-这里有几点需要你注意一下。
-
-分布式系统之所以复杂，就是因为它太容易出错了。这意味着， 你要把处理错误的代码当成正常功能的代码来处理。
-
-开发一个健壮的分布式系统的成本是单体系统的几百倍甚至几万倍。这意味着， 我们要自己开发一个，需要能力很强的开发人员。
-
-非常健壮的开源的分布式系统并不多，或者说基本没有。这意味着， 如果你要用开源的，那么你需要hold得住其源码。
-
-管理或是协调多个服务或机器是非常难的。这意味着， 我们要去读很多很多的分布式系统的论文。
-
-在分布式环境下，出了问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2467252409.html" title="80 | 程序员练级攻略：数据库">80 | 程序员练级攻略：数据库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">80 | 程序员练级攻略：数据库你好，我是陈皓，网名左耳朵耗子。
-对于数据库方向，重点就是两种数据库，一种是以SQL为代表的关系型数据库，另一种是以非SQL为代表的NoSQL数据库。关系型数据库主要有三个：Oracle、MySQL 和 Postgres。
-在这里，我们只讨论越来越主流的MySQL数据库。首先，我们要了解数据库的一些实现原理和内存的一些细节，然后我们要知道数据的高可用和数据复制这些比较重要的话题，了解一下关系型数据库的一些实践和难点。然后，我们会进入到NoSQL数据库的学习。
-NoSQL数据库千奇百怪，其主要是解决了关系型数据库中的各种问题。第一个大问题就是数据的Schema非常多，用关系型数据库来表示不同的Data Schema是非常笨拙的，所以要有不同的数据库（如时序型、键值对型、搜索型、文档型、图结构型等）。另一个大问题是，关系型数据库的ACID是一件很讨厌的事，这极大地影响了数据库的性能和扩展性，所以NoSQL在这上面做了相应的妥协以解决大规模伸缩的问题。
-对于一个程序员，你可能觉得数据库的事都是DBA的事，然而我想告诉你你错了，这些事才真正是程序员的事。因为程序是需要和数据打交道的，所以程序员或架构师不仅需要设计数据模型，还要保证整体系统的稳定性和可用性，数据是整个系统中关键中的关键。所以，作为一个架构师或程序员，你必须了解最重要的数据存储——数据库。
-关系 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4243008574.html" title="82 | 程序员练级攻略：分布式架构经典图书和论文">82 | 程序员练级攻略：分布式架构经典图书和论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">82 | 程序员练级攻略：分布式架构经典图书和论文你好，我是陈皓，网名左耳朵耗子。
-经典图书首先，我推荐几本分布式架构方面的经典图书。
-
-**Distributed Systems for fun and profit**，这是一本免费的电子书。作者撰写此书的目的是希望以一种更易于理解的方式，讲述以亚马逊的Dynamo、谷歌的Bigtable和MapReduce等为代表的分布式系统背后的核心思想。
-
-**Designing Data Intensive Applications**，这本书是一本非常好的书，我们知道，在分布式的世界里，数据结点的扩展是一件非常麻烦的事。这本书深入浅出地用很多的工程案例讲解了如何让数据结点做扩展。作者马丁·科勒普曼（Martin Kleppmann）在分布式数据系统领域有着很深的功底，并在这本书中完整地梳理各类纷繁复杂设计背后的技术逻辑，不同架构之间的妥协与超越，很值得开发人员与架构设计者阅读。
-这本书深入到B-Tree、SSTables、LSM这类数据存储结构中，并且从外部的视角来审视这些数据结构对NoSQL和关系型数据库的影响。这本书可以让你很清楚地了解到真正世界的大数据架构中的数据分区、数据复制的一些坑，并提供了很好的解决方案。最赞的是，作者将各种各样技术的本质非常好地关联在一起，令你触类旁通。
-而且，这本书完全就是抽丝剥茧，循循善诱，从“提出问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2948227777.html" title="84 | 程序员练级攻略：微服务">84 | 程序员练级攻略：微服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">84 | 程序员练级攻略：微服务你好，我是陈皓，网名左耳朵耗子。
-微服务是分布式系统中最近比较流行的架构模型，也是SOA架构的一个进化。微服务架构并不是银弹，所以，也不要寄希望于微服务架构能够解决所有的问题。微服务架构主要解决的是如何快速地开发和部署我们的服务，这对于一个能够适应快速开发和成长的公司是非常必要的。同时我也觉得，微服务中有很多很不错的想法和理念，所以学习微服务是每一个技术人员迈向卓越的架构师的必经之路。
-首先，你需要看一下，Martin Fowler的这篇关于微服务架构的文档 - Microservice Architecture （ 中译版），这篇文章说明了微服务的架构与传统架构的不同之处在于，微服务的每个服务与其数据库都是独立的，可以无依赖地进行部署。你也可以看看Martin Fowler老人家现身说法的 视频。
-另外，你还可以简单地浏览一下，各家对微服务的理解。
-
-AWS的理解 - What are Microservices?。
-Microsoft的理解 - Microservices architecture style。
-Pivotal的理解 - Microservices。
-
-微服务架构接下来，你可以看一下 IBM红皮书：Microservices Best Practices for Java ，这本书非常好，不但有通过把Spring Boot和 Dr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1256364273.html" title="83 | 程序员练级攻略：分布式架构工程设计">83 | 程序员练级攻略：分布式架构工程设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">83 | 程序员练级攻略：分布式架构工程设计你好，我是陈皓，网名左耳朵耗子。
-要学好分布式架构，你首先需要学习一些架构指导性的文章和方法论，即分布式架构设计原则。下面是几篇很不错的文章，值得一读。
-
-Designs, Lessons and Advice from Building Large Distributed Systems，Google 杰夫·迪恩（Jeff Dean）2009年一次演讲的PPT。2010年，斯坦福大学请杰夫·迪恩到大学里给他们讲了一节课，你可以在YouTube上看一下， Building Software Systems At Google and Lessons Learned ，其回顾了Google发展的历史。
-
-The Twelve-Factor App ，如今，软件通常会作为一种服务来交付，它们被称为网络应用程序，或软件即服务（SaaS）。12-Factor 为构建SaaS应用提供了方法论，是架构师必读的文章。（ 中译版）这篇文章在业内的影响力很大，必读！
-
-Notes on Distributed Systems for Young Bloods ，给准备进入分布式系统领域的人的一些忠告。
-
-On Designing and Deploying Internet-Scale Services（ 中译版），微软Windows Live服务平台的一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2200648344.html" title="85 | 程序员练级攻略：容器化和自动化运维">85 | 程序员练级攻略：容器化和自动化运维</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">85 | 程序员练级攻略：容器化和自动化运维你好，我是陈皓，网名左耳朵耗子。
-这篇文章我们来重点学习 Docker 和 Kubernetes，它们已经是分布式架构和自动化运维的必备工具了。对于这两个东西，你千万不要害怕，因为技术方面都不算复杂，只是它们的玩法和传统运维不一样，所以你不用担心，只要你花上一点时间，一定可以学好的。
-Docker
-你可以先看一下Docker的官方介绍 Docker Overview 。
-
-然后再去一个Web在线的Playground上体验一下， Katacoda Docker Playground 或者是 Play With Docker 。
-
-接下来，跟着 Learn Docker 这个文档中的教程自己安装一个Docker的环境，实操一把。
-
-然后跟着 Docker Curriculum 这个超详细的教程玩一下Docker。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/591542612.html" title="096 | 如何利用机器学习技术来检测广告欺诈？">096 | 如何利用机器学习技术来检测广告欺诈？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">096 | 如何利用机器学习技术来检测广告欺诈？在上一期的内容中，我们聊了如何帮助广告商扩大受众群这个话题，也就是受众扩展技术。受众扩展的目的是让广告商投放的广告能够接触到更广泛的受众，甚至有可能提高广告效果。
+在计算广告高级话题的最后一篇分享，同时也是整个广告模块的最后一篇分享里，我想来聊一聊广告中一个非常棘手，同时也是一个非常实际的问题：欺诈检测（Fraud Detection）。
+什么是广告欺诈广告欺诈是一个多大规模的问题呢？
+根据一个统计数字[1]，到2015年的时候，就因为广告欺诈，全美的市场营销和媒体业每年的耗费约为82亿美元。这个数字中大约有56%，也就是46亿多美元的耗费来自于“ 非法流量”（Invalid Traffic）。我们把这个数字和全美每年596亿的广告支出进行对比，就可以看出这是一个惊人的数字。当然，因为各种欺诈手段层出不穷，并不是所有的欺诈都能够被甄别出来。因此，我们其实有理由相信真实的数字会更高。
+那么，怎么来定义广告欺诈呢？什么样的行为算是广告欺诈呢？
+我们这里主要讨论三种形式的广告欺诈。这三种广告欺诈模式其实对应着三种流行的广告计费模式。
+第一种欺诈叫“ 展示欺诈”（Impression Fraud），也就是造假者产生虚假的竞价信息，然后把这些竞价展示放到广告交易平台上去贩卖，并且在广告商购买了这些展示后获利。
+第二种欺诈叫“ 点击欺诈”（Cli ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3314723769.html" title="097 | LDA模型的前世今生">097 | LDA模型的前世今生</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">097 | LDA模型的前世今生在文本挖掘中，有一项重要的工作就是分析和挖掘出文本中隐含的结构信息，而不依赖任何提前标注的信息。今天我要介绍的是一个叫做 LDA（Latent Dirichlet Allocation）的模型，它在过去十年里开启了一个领域叫 主题模型。
+从LDA提出后，不少学者都利用它来分析各式各样的文档数据，从新闻数据到医药文档，从考古文献到政府公文。一段时间内，LDA成了分析文本信息的标准工具。从最原始的LDA发展出来的各类模型变种，则被应用到了多种数据类型上，包括图像、音频、混合信息、推荐系统、文档检索等等，各类主题模型变种层出不穷。下面我来简单剖析一下LDA这个模型，聊聊它的模型描述以及训练方法等基础知识。
+LDA的背景介绍LDA的论文作者是戴维·布雷（David Blei）、吴恩达和迈克尔·乔丹（Michael Jordan）。这三位都是今天机器学习界炙手可热的人物。论文最早发表在2002年的神经信息处理系统大会（Neural Information Processing Systems，简称NIPS）上，然后长文章（Long Paper）于2003年在机器学习顶级期刊《机器学习研究杂志》（Journal of Machine Learning Research）上发表。迄今为止，这篇论文已经有超过1万9千次的引用数，也成了机器学习史上的重要文献之一。
+论 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/758801063.html" title="097 | TiDB：一个国产新数据库的创业故事">097 | TiDB：一个国产新数据库的创业故事</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">097 | TiDB：一个国产新数据库的创业故事TiDB是一个位于北京的创业公司PingCAP的产品，它是一个新型的数据库。PingCAP成立于2015年。联合创始人是刘奇、黄东旭和崔秋。在2017年的时候，他们完成了1500万美元的融资。今天我们的故事主角就是这个国产数据库和它背后的公司。
+说起数据库产业，其中的经典是关系数据库。这一类要么是外国大公司的商业数据库，其代表是Oracle数据库，IBM的DB2，以及微软的SQL Server；要么就是开源的数据库，这类以MySQL和PostgreSQL为代表。
+进入新世纪后，随着大数据相关技术的出现，又有了一些NoSQL的产品。
+在数据库的发展上，关系数据库好用，但是扩展性差，对于大数据场景不好；NoSQL产品可以支持大量的数据和大规模的访问，但是可用性却非常差，对产品开发来说，使用时要注意的事情太多。
+那么说，有没有一种产品兼有关系型数据库和NoSQL的优点呢？进入到2012年以后，大数据技术奠基者谷歌发表了一系列新论文，主要讲述了它们新开发的一个叫做Spanner的数据库。这种数据库同时具备了关系数据库和NoSQL的优点。所以通常我们又把这个类型的数据库称为NewSQL。
+TiDB就是这样一款数据库，它的基本理念就是基于NewSQL的技术，这个项目的名字TiDB，也包含了一定的含义。引用联合创始人黄东旭的说法，Ti是金属元素钛， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1094930300.html" title="098 | LDA变种模型知多少">098 | LDA变种模型知多少</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">098 | LDA变种模型知多少我们在之前的分享中曾经介绍过文本挖掘（Text Mining）中的重要工具LDA（Latent Diriclet Allocation）的基本原理。在文本挖掘中，有一项重要的工作就是分析和挖掘出文本中隐含的结构信息，而不依赖任何提前标注（Labeled）的信息。也就是说，我们希望能够利用文本挖掘技术来对无标签的数据进行挖掘，这是典型的无监督学习。
+LDA就是一个出色的无监督学习的文本挖掘模型。这个模型在过去的十年里开启了主题模型（Topic Model）这个领域。不少学者都利用LDA来分析各式各样的文档数据，从新闻数据到医药文档，从考古文献到政府公文。在一段时间内，LDA成为了分析文本信息的标准工具。而从最原始的LDA发展出来的各类模型变种，则被应用到了多种数据类型上，包括图像、音频、混合信息、推荐系统、文档检索等等，可以说各类主题模型变种层出不穷。
+今天我们就结合几篇经典论文，来看一看 LDA的各种扩展模型。当然，在介绍今天的内容之前，我们首先来回顾一下LDA模型的一些基本信息。
+LDA模型的回顾LDA模型是一个典型的 产生式模型（Generative Model）。产生式模型的一大特点就是通过一组概率语言，对数据的产生过程进行描述，从而对现实数据建立一个模型。注意，这个产生过程的本质是描述的一个 联合概率分布（Joint Distribution ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4229267002.html" title="098 | 大数据创业公司的前景：红海创业多艰辛">098 | 大数据创业公司的前景：红海创业多艰辛</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">098 | 大数据创业公司的前景：红海创业多艰辛我们介绍了很多大数据创业公司，这些公司在大体上可以分成开源软件创业公司和闭源软件创业公司两类。
+开源软件创业公司是指，很多的大数据创业公司的背后是某一个或者几个开源项目的创始人，或者是项目的主要开发者。
+闭源软件创业公司是指创业公司有自己闭源的软件，这种又分为两类：一类是闭源的基础架构软件，一类是闭源的商业应用软件。
+我们通常用“红海”“蓝海”来形容创业的难易程度，基础架构类创业，无论开源还是闭源，很多时候就属于红海，毕竟相对于应用层面的创业，基础架构类的创业要艰难很多，这主要是因为应用层面的创业是直接和商业行为联系的。
+基础架构类的创业，其创业依赖于其他客户对其产品的使用和付费。比如说Hadoop生态圈里各种开源软件为基础的创业公司，如果没有人去用这个公司的产品，这个公司也就不容易赚到钱。
+不过，凡事都有两面，从好的方面来说，如果有大客户用了，那么可能会有持续稳定的收入。从坏的方面来说，一则很多客户不一定愿意去用不熟悉的开源产品，二则如果真的要用，大公司自己有技术实力去把开源的产品拿过来，自己二次开发，并且维护使用。但是无论如何，要想在基础架构类进行创业，都不是一件容易的事情。
+基础架构类里面最普遍的创业企业都和某个开源项目有联系。比如说Spark后面站的是Databricks，Kafka后面站的是Confluent，DataSta ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/658380819.html" title="099 | 如何通过企业技术积累去分析一家企业？">099 | 如何通过企业技术积累去分析一家企业？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">099 | 如何通过企业技术积累去分析一家企业？通过企业的技术积累去分析一家企业是一个行之有效的办法。一个企业如果想要成功，要么需要在商业上有所建树，要么需要在技术上有所建树，总之，一定需要有在某些方面和别人有明显的优势，才可以在激烈的竞争里面站稳脚跟。
+如果我们要对上述的话一一举例的话，我想，亚马逊的成功，背后应该是对商业深刻理解的成功。谷歌的成功，很大程度上是对技术的极致追求的成功。
+从2003年开始，谷歌发表了一系列论文，这促成了大数据时代的到来，之后谷歌又在人工智能领域发力，实现了“AlphaGo战胜人类最顶级围棋高手”这样历史性的突破。我们可以看到在谷歌踏足的每一个领域，很大程度上展现出来的技术水平都代表了这个领域人类突破性的进展。
+所以，谷歌对技术的极致追求可见一斑。也正是因为谷歌对技术的极致追求，它才能在互联网海量数据的搜索和广告领域占据无可取代的地位。其广告收入就像印钞机一般，24小时源源不断地提供巨额营收。
+那么我们应该如何通过企业技术积累去分析呢。首先有一个前提，一个人如果可以从技术积累去分析企业，那么对分析企业的人本身也提出了一些要求。
+如果分析企业的人本身对技术不够精通，不是某一个领域专家的话，那么透过技术去分析企业多少就有点镜花水月了，毕竟分析者自己也无法比其他人能够更早地判断在某个行业里，哪一家拥有独特技术的企业是否可以一飞冲天。
+所以，能够通过技术积累 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3533182840.html" title="099 | 针对大规模数据，如何优化LDA算法？">099 | 针对大规模数据，如何优化LDA算法？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">099 | 针对大规模数据，如何优化LDA算法？周一，我们分享了LDA（Latent Diriclet Allocation）的各种扩展模型，介绍了基于上游的和下游的两种把额外信息融入到LDA模型中的方法。同时，我们也讨论了在时间尺度上如何把LDA模型扩展到可以“感知”不同的时间段对于模型的影响。以LDA为代表的主题模型在过去的十年间发展出了一整套的扩展，为各式各样的应用场景提供了有力的工具。
+尽管LDA在模型的表达力上给研究者们提供了把各种场景和模型结合的可能性，但是LDA的训练过程比较复杂，而且速度也比较慢。因此，如何能够把LDA真正应用到工业级的场景中，对于很多人来说，都是一件煞费苦心的事情。今天我们就来聊聊 LDA的算法优化问题。
+LDA模型训练我们首先来回顾一下LDA模型的训练过程，从高维度上为你分析一下为什么这个过程很困难。
+LDA模型中最重要的未知变量就是每个单词对应的 主题下标（Index）或者说是 主题“赋值”（Assignment）。这个主题下标是从每个文档对应的主题分布中“采样”得来的。每个文档的主题分布本身也是一个未知的多项式分布，用来表达当前这个文档的所属主题，比如有多少百分比属于运动、有多少百分比属于金融等等。这个分布是从一个全局的狄利克雷（Diriclet）分布中产生的。狄利克雷分布在这里起到了 超参数 的作用，其参数的取值往往也是未知的。但是我们可以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3109798557.html" title="09丨Raft算法（三）：如何解决成员变更的问题？">09丨Raft算法（三）：如何解决成员变更的问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-10T00:00:00.000Z" title="发表于 2023-10-10 00:00:00">2023-10-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+在日常工作中，你可能会遇到服务器故障的情况，这时你就需要替换集群中的服务器。如果遇到需要改变数据副本数的情况，则需要增加或移除集群中的服务器。总的来说，在日常工作中，集群中的服务器数量是会发生变化的。
+讲到这儿，也许你会问：“老韩，Raft 是共识算法，对集群成员进行变更时（比如增加 2 台服务器），会不会因为集群分裂，出现 2 个领导者呢？”
+在我看来，的确会出现这个问题，因为 Raft 的领导者选举，建立在“大多数”的基础之上，那么当成员变更时，集群成员发生了变化，就可能同时存在新旧配置的 2 个“大多数”，出现 2 个领导者，破坏了 Raft 集群的领导者唯一性，影响了集群的运行。
+而关于成员变更，不仅是 Raft 算法中比较难理解的一部分，非常重要，也是 Raft 算法中唯一被优化和改进的部分。比如，最初实现成员变更的是联合共识（Joint Consensus），但这个方法实现起来难，后来 Raft 的作者就提出了一种改进后的方法，单节点变更（single-server changes）。
+为了帮你掌握这块内容，今天我除了带你了解成员变更问题的本质之外，还会讲一下如何通过单节点变更的方法，解决成员变更的问题。学完本讲内容之后，你不仅能理解成员变更的问题和单节点变更的原理，也能更好地理解 Raft 源码实现，掌握解决成员变更问题的方法。
+在开始今天内容之前， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1393964820.html" title="09丨软件设计实践：如何使用UML完成一个设计文档？">09丨软件设计实践：如何使用UML完成一个设计文档？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">09丨软件设计实践：如何使用UML完成一个设计文档？在上一篇文章中，我们讨论了为什么要建模，以及建模的4+1视图模型，4+1视图模型很好地向我们展示了如何对一个软件的不同方面用不同的模型图进行建模与设计，以完整描述一个软件的业务场景与技术实现。但是软件开发是有阶段性的，在不同的开发阶段用不同的模型图描述业务场景与设计思路，在不同阶段输出不同的设计文档，对于现实的开发更有实践意义。
+软件建模与设计过程可以拆分成需求分析、概要设计和详细设计三个阶段。UML规范包含了十多种模型图，常用的有7种：类图、序列图、组件图、部署图、用例图、状态图和活动图。下面我们讨论如何画这7种模型图，以及如何在需求分析、概要设计、详细设计三个阶段使用这7种模型输出合适的设计文档。
+类图类图是最常见的UML图形，用来描述类的特性和类之间的静态关系。
+一个类包含三个部分：类的名字、类的属性列表和类的方法列表。类之间有6种静态关系：关联、依赖、组合、聚合、继承、泛化。把相关的一组类及其关系用一张图画出来，就是类图。
+类图主要是在 详细设计阶段 画，如果类图已经设计出来了，那么开发工程师只需要按照类图实现代码就可以了，只要类方法的逻辑不是太复杂，不同的工程师实现出来的代码几乎是一样的，这样可以保证软件的规范、统一。在实践中，我们通常不需要把一个软件所有的类都画出来，把核心的、有代表性的、有一定技术难度的类图画出来，一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/774097647.html" title="09｜全面调教：让GPT理解“否定”">09｜全面调教：让GPT理解“否定”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/">零基础GPT应用入门课</a></span></div><div class="content">09｜全面调教：让GPT理解“否定”你好，我是键盘，我们继续驯服 GPT。
+这节课我们来直面“人智协作”中绕不开的底层诉求——精准控制。什么意思呢？它可以拆解成两个子课题。
 
 
-有了上述的一些感性体会之后，你就可以阅读Docker官方文档 Docker Documentation 了，这是学习Docker最好的方式。
-如果你想了解一下Docker的底层技术细节，你可以参看我的文章。
+要： 清晰、明确地表达你的需求。
+不要： 引导AI规避你不想生成的内容。
 
-Docker 基础技术：Linux Namespace（上）
-Docker 基础技术：Linux Namespace（下）
-Docker 基础技术：Cgroup
-Docker 基础技术：AUFS
-Docker 基础技术： ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3750195186.html" title="86 | 程序员练级攻略：机器学习和人工智能">86 | 程序员练级攻略：机器学习和人工智能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">86 | 程序员练级攻略：机器学习和人工智能你好，我是陈皓，网名左耳朵耗子。
-我之前写过一篇机器学习的入门文章，因为我也是在入门和在学习的人，所以，那篇文章和这篇机器学习和人工智能方向的文章可能都会有点太肤浅。如果你有更好的学习方式或资料，欢迎补充。
-基本原理简介我们先来介绍一下机器学习的基本原理。
-机器学习主要有两种方式，一种是监督式学习（Supervised Learning），另一种是非监督式学习（Unsupervised Learning）。下面简单地说一下这两者的不同。
-
-监督式学习（Supervised Learning）。所谓监督式学习，也就是说，我们需要提供一组学习样本，包括相关的特征数据和相应的标签。我们的程序可以通过这组样本来学习相关的规律或是模式，然后通过得到的规律或模式来判断没有被打过标签的数据是什么样的数据。
-举个例子，假设需要识别一些手写的数字，我们要找到尽可能多的手写体数字的图像样本，然后人工或是通过某种算法来明确地标注上什么是这些手写体的图片，谁是1，谁是2，谁是3…… 这组数据叫样本数据，又叫训练数据（training data）。然后通过机器学习的算法，找到每个数字在不同手写体下的特征，找到规律和模式。通过得到的规律或模式来识别那些没有被打过标签的手写数据，以此完成识别手写体数字的目的。
-
-非监督式学习（Unsupervised Learning ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1665196375.html" title="87 | 程序员练级攻略：前端基础和底层原理">87 | 程序员练级攻略：前端基础和底层原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">87 | 程序员练级攻略：前端基础和底层原理你好，我是陈皓，网名左耳朵耗子。
-对于前端的学习和提高，我的基本思路是这样的。首先，前端的三个最基本的东西HTML 5、CSS 3和JavaScript（ES6）是必须要学好的。这其中有很多很多的技术，比如，CSS 3引申出来的Canvas（位图）、SVG（矢量图） 和 WebGL（3D图），以及CSS的各种图形变换可以让你做出非常丰富的渲染效果和动画效果。
-ES6简直就是把JavaScript带到了一个新的台阶，JavaScript语言的强大，大大释放了前端开发人员的生产力，让前端得以开发更为复杂的代码和程序，于是像React和Vue这样的框架开始成为前端编程的不二之选。
-我一直认为学习任何知识都要从基础出发，所以这篇文章我会着重介绍基础知识和基本原理，尤其是如下的这些知识，都是前端程序员需要花力气啃下来的硬骨头。
-
-JavaScript的核心原理。这里我会给出好些网上很不错的讲JavaScript的原理的文章或图书，你一定要学好语言的特性，并且详细了解其中的各种坑。
-
-浏览器的工作原理。这也是一块硬骨头，我觉得这是前端程序员需要了解和明白的关键知识点，不然，你将无法深入下去。
-
-网络协议HTTP。也是要着重了解的，尤其是HTTP&#x2F;2，还有HTTP的几种请求方式：短连接、长连接、Stream连接、WebSocket连接。
-
-前 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/709811900.html" title="91 | 程序员练级攻略的正确打开方式">91 | 程序员练级攻略的正确打开方式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">91 | 程序员练级攻略的正确打开方式你好，我是陈皓，网名左耳朵耗子。
-到这里，我估计《程序员练级攻略》系列文章你都已经了解个大概了，不知道此时此刻你有什么样的感受？这份攻略其实是给了一个进阶的地图，也罗列了很多书籍和文档。但我可以确定地说，只是看这些列表，你肯定会抱怨说头都要大了，而且，你可能还会觉得纸上谈兵，不知道怎么把这些知识转变成自己的能力，尤其是你的工作中没有这些场景，你都可能不知道怎么实操。
-所以，在这里，我把我个人相关的实践都写一下，这样会让你更好地掌握这份攻略。如果大家有更好的方法，也欢迎留言。
-对于本攻略来说，你并不需要按顺序学习，你可以从自己喜欢的切入点，按自己喜欢的路线学习，通常来说，有如下的一些注意事项。
-
-《入门篇》和《专业基础篇》中的那些书和文章，你肯定是得认真精读的，这是基础。但是也没有必要揪住细节不放，重要的是知道这个技术的“解题思路”，抓住其中的重点，一个技术的关键点就那么几个。
-《高手成长篇》的相关书籍、文章和论文，你不一定全读，可以挑感兴趣的内容研究。
-《修养篇》和《设计篇》里的内容，你可能要经常拿出来读，因为这些都是经验，随着你的成长，以及阅历的增加，你每次读都会收获更多新东西，正所谓常看常新。另外，你还可以顺着这些东西找到更多的“修养”和“设计”。
-
-但是读这些资料，很多人都是记忆式的学习方式。但，你也知道，记忆学习是简单粗暴的，所以也很容 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/36/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/#content-inner">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/38/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+大多数人都盯着“要什么”，却忽略了“精准地不要什么”的重要性，结果就是因为这20%的细节，让80%的结果可用性大幅下降。这就是课程标题中“让GPT理解否定”的含义了。
+其实在GPT这类语言模型中遇到的“控制”难题到了非文本生成模型中也无法回避。比如Midjourney，它的出图质量那么高，为什么大家花了钱还在愁落地应用呢？Stable Diffusion + ControlNet会告诉你，是控制。ControlNet插件就是直接指挥SD应该用什么表情、什么角度、什么姿势等等细节来绘图的。控制效果不好，消耗更多的成本，也足够让你质疑AI、怀疑人生。
+这节课我会带你设计一个脚本人设来实现长图的自动切割，通过案例讲明白如何让 GPT 理解“否定”。这个脚本在商品详情页的裁剪、图片邮件切割等等这类图片切割的场景里都非常实用。
+我们需要用到Mac自带的AppleScript，Windows用户使用Python也可以替代实现。如果你会使用Figma，也可以让ChatGPT帮助开发一个插件来实现。
+以上方案都不需要开发基础，我会把它们作为分支功能 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/36/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/#content-inner">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/38/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

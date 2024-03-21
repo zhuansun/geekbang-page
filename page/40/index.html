@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,107 +138,64 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/597661112.html" title="108 | Go编程模式：错误处理">108 | Go编程模式：错误处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">108 | Go编程模式：错误处理你好，我是陈皓，网名左耳朵耗子。
-错误处理一直是编程必须要面对的问题。错误处理如果做得好的话，代码的稳定性会很好。不同的语言有不同的错误处理的方式。Go语言也一样，这节课，我们来讨论一下Go语言的错误出处，尤其是那令人抓狂的 if err != nil 。
-在正式讨论“Go代码里满屏的 if err != nil 怎么办”这件事儿之前，我想先说一说编程中的错误处理。
-C语言的错误检查首先，我们知道，处理错误最直接的方式是通过错误码，这也是传统的方式，在过程式语言中通常都是用这样的方式处理错误的。比如 C 语言，基本上来说，其通过函数的返回值标识是否有错，然后通过全局的 errno 变量加一个 errstr 的数组来告诉你为什么出错。
-为什么是这样的设计呢？道理很简单，除了可以共用一些错误，更重要的是这其实是一种妥协，比如： read()、 write()、 open() 这些函数的返回值其实是返回有业务逻辑的值，也就是说，这些函数的返回值有两种语义：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1813859599.html" title="101 | 仁科：飞跃发展的企业级软件帝国">101 | 仁科：飞跃发展的企业级软件帝国</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">101 | 仁科：飞跃发展的企业级软件帝国上回我们讲到Integral System对个人计算机上基于客户端&#x2F;服务器的人力资源软件开发毫无兴趣，于是大卫 · 杜菲尔德（David Duffield）于1987年创办了仁科。仁科在经历了一段缺钱难熬的日子后获得了飞速发展，1992年底顺利上市。
+上市前夕，仁科公司的人力资源软件占到了人力资源软件市场大约40%的份额。此时即使再努力，在人力资源软件市场上，仁科公司能够扩张的空间也已经非常有限了。所以如果仁科需要继续发展，业务的多元化不可避免。
+自1992年开始，杜菲尔德一边忙着公司的IPO，一边着手考虑公司多元化发展的问题。他给仁科公司选择的第一个多元化发展方向是财务软件。
+财务管理软件市场有别于人力资源管理软件市场，这是杜菲尔德第一次进入他不熟悉的领域。而且，财务管理软件市场竞争非常激烈，有很多的竞争对手，这一切都预示着这场战斗不好打。
+但是作为全球最早进入客户端&#x2F;服务器架构的企业级软件开发公司，在人力资源软件市场上的成功，让仁科公司积累了丰富的客户端&#x2F;服务器架构的企业级软件开发经验。技术上，仁科公司比财务管理软件市场上的每个竞争者都更有优势。
+为了确保仁科公司进军财务软件市场能够一炮打响，杜菲尔德把仁科公司的精英资源都调集过来，全力开发这款财务软件。
+1992年底的时候，这款财务软件在公司里的收入还屈指 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3190495240.html" title="101 | 基础文本分析模型之二：概率隐语义分析">101 | 基础文本分析模型之二：概率隐语义分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">101 | 基础文本分析模型之二：概率隐语义分析在上一篇的分享里，我们展开了文本分析这个方向，讨论了“隐语义分析”（Latent Semantic Indexing）这个模型。隐语义分析的核心是基于矩阵分解的代数方法。这种方法的好处自然是能够直接利用代数计算方法对文本进行分析，而短板则是无法很好地解释结果。而“解释性”是很多概率模型的一大优势，因此，自然就有很多研究者想到是否能够把概率的语言移植到隐语义分析上。
+今天，我们就来分享“ 概率隐语义分析”（Probabilistic Latent Semantic Indexing）的一些基本内容。概率隐语义分析有时候又被简称为 PLSA（Probability Latent Semantic Analysis）。
+隐语义分析核心思想上周我们介绍过隐语义分析的核心思想，首先来简要回顾一下。
+隐语义分析的核心其实就是用无监督的方法从文本中提取特性，而这些特性可能会对原来文本的深层关系有着更好的解释。
+简单来说，隐语义分析就是利用了“矩阵分解”的概念，从而对“词-文档矩阵”（Term-Document Matrix）进行分解。
+概率隐语义分析既然概率隐语义分析是利用概率的语言，那么我们就来看看概率隐语义分析是如何对文档进行建模的。
+首先， PLSA是对文档和里面单词的联合分布进行建模。这个文档和单词的联合分布其实就是类似隐语义分析中的那个文 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3879850465.html" title="101 | 高效沟通：Talk和Code同等重要">101 | 高效沟通：Talk和Code同等重要</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">101 | 高效沟通：Talk和Code同等重要你好，我是陈皓，网名左耳朵耗子。
+Talk is cheap，show me the code，是我们技术人常说的一句话，也是技术社区中经常用的一句话。这句话的意思是，那些光说不练的人说一句是很简单的，而写代码的人则会为一句话付出很多很多的精力，其表明，一个看上去再简单的东西，用一行一行的代码实现起来，并能让其运转起来也是一件很复杂很辛苦的事。说得容易，做起来难！
+这句话是Linus说的，也是我引入到中文社区的，然而，逐渐地，大众对这句话的解读开始有点变味了，走向了另外一个极端——他们觉得代码才是最重要的，甚至其中有些人开始觉得真正的技术人员是只用代码说话的！
+似乎，这个世界上总是会有一些人，当他们看到一个观点的时候，在他们的脑袋里只有两个答案，一个是true，如果不是true，那就是false。就好像只要一个人犯了个错误，这个人就是一个不折不扣的大坏蛋，如果一个人是个好人，那他要在所有的地方都是优秀完美的。
+对于技术人员来说，其实，Talk和Code是同样重要的， Talk是人对人说的话，而Code也不仅仅只是人对机器说的话，也更是另外一种人对人说的话（因为Code需要易读和易维护，就需要让人读懂）。可见，无论是Code还是Talk其实都是要和人交流的，Code是间接交流，Talk则是直接交流。在公司中工作，需要了解公司的意图，与团 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2372058687.html" title="102 | 仁科：收购和被收购">102 | 仁科：收购和被收购</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">102 | 仁科：收购和被收购进入2003年，仁科公司打算和JD Edwards合并。当时市面上最大的企业软件公司是SAP，第二大是甲骨文，而第三和第四分别就是仁科和JD Edwards。这两者显然是强强联合，虽然不一定能威胁到SAP，起码也可以让甲骨文喝上一壶。
+2003年6月6日，仁科还沉浸在几天前以18亿美元签约，和竞争对手JD Edwards公司合并的喜悦之中。而就在这一天，甲骨文公司向仁科公司发出了51亿美元的巨额收购要约。此举除了出人意料之外，也让大家对甲骨文到底抱着什么心态来收购仁科产生了各种看法。
+在硅谷，一般没有人会去做敌意收购（又称“恶意收购”）。这种做法，很多时候会偷鸡不成蚀把米：收购来的公司成为空壳，所有技术大牛都跑路。
+甲骨文和仁科是竞争对手，却去收购对方，显然是敌意收购。面对甲骨文的收购，仁科进行了激烈的抨击。仁科公司认为，甲骨文的这次收购是非常恶劣的行为。
+经过慎重考虑之后，仁科公司董事会宣布不接受甲骨文51亿美元的收购要约。他们认为，甲骨文的这个价格远远低于仁科公司的实际价值，其目的主要是为了破坏仁科与JD Edwards的合并。
+与此同时，仁科公司表示最近几年仁科软件的市场份额上越来越多，和JD Edwards的联合会让公司业务再上一个台阶。而且甲骨文公司表示只是收购仁科公司，却没有表明是不是会收购仁科联合了JD Edwards之后的新公司。所以为 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3727387493.html" title="102 | 基础文本分析模型之三：EM算法">102 | 基础文本分析模型之三：EM算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">102 | 基础文本分析模型之三：EM算法周一我们分享的模型是“概率隐语义分析”（Probabilistic Latent Semantic Indexing），或者简称为PLSA，这类模型有效地弥补了隐语义分析的不足，在LDA兴起之前，成为了有力的文本分析工具。
+不管是PLSA，还是LDA，其模型的训练过程都直接或者间接地依赖一个算法，这个算法叫作“ 期望最大化”（Expectation Maximization），或简称为 EM算法。实际上，EM算法是针对隐参数模型（Latent Variable Model）最直接有效的训练方法之一。既然这些模型都需要EM算法，我们今天就来谈一谈这个算法的一些核心思想。
+EM和MLE的关系EM算法深深根植于一种更加传统的统计参数方法： 最大似然估计（Maximum Likelihood Estimation），有时候简称为 MLE。 绝大多数的机器学习都可以表达成为某种概率模型的MLE求解过程。
+具体来说，MLE是这样构造的。首先，我们通过概率模型写出当前数据的“似然表达”。所谓的“似然”表达，其实也就是在当前模型的参数值的情况下，看整个数据出现的可能性有多少。可能性越低，表明参数越无法解释当前的数据。反之，如果可能性非常高，则表明参数可以比较准确地解释当前的数据。因此， MLE的思想其实就是找到一组参数的取值，使其可以最好地解释现在的数据。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3787366707.html" title="102 | 高效沟通：沟通阻碍和应对方法">102 | 高效沟通：沟通阻碍和应对方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">102 | 高效沟通：沟通阻碍和应对方法你好，我是陈皓，网名左耳朵耗子。
+了解了沟通原理和相关问题之后，我们来系统地分析一下哪些因素会成为沟通中最主要的障碍，并给出应对方法。
+信息不准确对照我们在沟通原理中提到的沟通模型，可以看到，如果被编码的信息本身是错误的，或是你的编码器中有bug，把信息编辑错了，那么，无论是你有多牛的沟通技巧，采用多有效率的沟通方式，都不可能表达清楚。用词不当，词不达意，添油加醋，断章取义，歪曲事实……都是这类沟通方式最糟糕的表现。
+针对这类情况，我给出的建议是，在沟通之前，首先要想清楚沟通的目的是什么，然后整理自己的措辞。如果是一些比较重要的沟通，最好可以把自己的想法写下来，然后放一会儿，再回过头来看，想象一下如果是别人对自己讲这些话，自己会怎么理解。
+在实时交谈的过程中时，面对一些容易让人产生误解，或是自己感觉没有表达好的信息，你需要停下来，思考一下，换个方式，重新再来一次。我也经常这样。我会停一下，告诉对方，让他等一下，给我一点时间来组织语言和逻辑，或者说，对不起，我没表达好，我换个思路重新说……
+而当别人没有表达清楚的时候，你要及时打断对方，跟对方说，你没有听懂，你不知道这是什么意思，是否可以重新澄清一下，等等。这都是我们日常沟通中惯用的手法。而如果你明明知道你不懂却不好意思问的话，这就是沟通中最大的阻碍了，沟通就是要来来回回的确认。
+这里的关键点是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3927495417.html" title="103 | 为什么需要Word2Vec算法？">103 | 为什么需要Word2Vec算法？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">103 | 为什么需要Word2Vec算法？至此，关于文本分析这个方向，我们已经介绍了 LDA（Latent Diriclet Allocation），这是一个出色的无监督学习的文本挖掘模型。还有“ 隐语义分析”（Latent Semantic Indexing），其核心是基于矩阵分解的代数方法。接着，我们分享了“ 概率隐语义分析”（Probabilistic Latent Semantic Indexing），这类模型有效地弥补了隐语义分析的不足，成为了在LDA兴起之前的有力的文本分析工具。我们还介绍了 EM（Expectation Maximization）算法，这是针对隐参数模型最直接有效的训练方法之一。
+今天，我们进入文本分析的另外一个环节，介绍一个最近几年兴起的重要文本模型， Word2Vec。可以说，这个模型对文本挖掘、自然语言处理、乃至很多其他领域比如网络结构分析（Network Analysis）等都有很重要的影响。
+我们先来看Word2Vec的一个最基本的形式。
+Word2Vec背景了解任何一种模型或者算法都需要了解这种方法背后被提出的动机，这是一种 能够拨开繁复的数学公式从而了解模型本质的方法。
+那么，Word2Vec的提出有什么背景呢？我们从两个方面来进行解读。
+首先，我们之前在介绍LDA和PLSA等隐变量模型的时候就提到过，这些模型的一大优势就是在文档信息没 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/167203850.html" title="103 | 仁科的成与败">103 | 仁科的成与败</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">103 | 仁科的成与败仁科公司的故事至此告一段落。我们一起观看了仁科从一开始跌宕起伏的创业史，到波澜壮阔的发展史，到最后狗血的恶意收购过程。看完故事，你的心底多少都有些感触吧？今天我就仁科发展过程中的成败聊聊我个人的看法，希望可以给你一些启发。
+首先说说仁科公司成功的地方吧。它一路走来的优异表现主要得益于两个方面，第一个是创始人的技术眼光和洞察力，第二个是仁科在商业上确实没有犯过什么致命性的错误。
+首先，仁科的创始人杜菲尔德无疑具备独到的眼光和让人惊叹的技术洞察力。
+早年的时候他在大型机上做人力资源管理软件的开发，后来预见到了客户端&#x2F;服务器架构的个人计算机的普及，在被董事会怼回来的情况下重新创业，并在这个新的架构下取得了巨大的成功。
+而后他又在互联网时代，迅速预见到以浏览器作为客户端的软件才是未来的大势所趋，仁科公司迅速完成转型。从技术发展的角度上来说，仁科的创始人可谓非常具备前瞻性。
+其次，仁科在商业上未曾犯过什么大的错误。这使得仁科在从小到大的过程中没有经历生死存亡的危局。
+仁科公司无论是创业的时候聚焦于人力资源市场，还是企业做大以后向其他领域扩张；无论是和投资公司合作进军新领域以降低风险，还是在人才招聘上舍得大价钱招人，都是可圈可点的商业行为。
+每年增长90%的销售业绩，足以说明这一点。我们可以说，这个销售业绩，在任何一家公司看来都是一个神话般的成就。所以如果一切 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3615067245.html" title="103 | 高效沟通：沟通方式及技巧">103 | 高效沟通：沟通方式及技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">103 | 高效沟通：沟通方式及技巧你好，我是陈皓，网名左耳朵耗子。
+沟通方式好的沟通方式有很多种，我主要介绍最常用的三种：尊重、倾听和情绪控制。
+尊重尊重对方在高效沟通中非常重要，也是一个很关键的前提。这里你需要记住以下两个原则。
 
-一种是成功的值，比如 open() 返回的文件句柄指针 FILE* ；
-另一种是错误 NULL。这会导致调用者并不知道是什么原因出错了，需要去检查 errno 以获得出错的原因，从而正确地处理错误。
+我可以不同意你，但是会捍卫你说话的权利。即便在你不认同对方观点的情况下，也要尊重对方的表达，认真聆听，这个时候有可能你会发现不一样的东西，从而改变自己最初不准确的认知。
 
-一般而言，这样的错误处理方式在大多数情况下是没什么问题的，不过也有例外的情况，我们来看一下下面这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1642033072.html" title="110 | Go编程模式：委托和反转控制">110 | Go编程模式：委托和反转控制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">110 | Go编程模式：委托和反转控制你好，我是陈皓，网名左耳朵耗子。
-控制反转（ Inversion of Control ，loC ）是一种软件设计的方法，它的主要思想是把控制逻辑与业务逻辑分开，不要在业务逻辑里写控制逻辑，因为这样会让控制逻辑依赖于业务逻辑，而是反过来，让业务逻辑依赖控制逻辑。
-我之前在《 IoC&#x2F;DIP其实是一种管理思想》这篇文章中，举过一个开关和电灯的例子。其实，这里的开关就是控制逻辑，电器是业务逻辑。我们不要在电器中实现开关，而是要把开关抽象成一种协议，让电器都依赖它。这样的编程方式可以有效降低程序复杂度，并提升代码重用度。
-面向对象的设计模式我就不提了，我们来看看Go语言使用Embed结构的一个示例。
-嵌入和委托结构体嵌入在Go语言中，我们可以很轻松地把一个结构体嵌到另一个结构体中，如下所示：
-type Widget struct &#123;
-    X, Y int
-&#125;
-type Label struct &#123;
-    Widget        &#x2F;&#x2F; Embedding (delegation)
-    Text   string &#x2F;&#x2F; Aggregation
-&#125;
+赢得对方的尊重需要先尊重对方。在你对他人表现出足够的尊重之后，同时你也能够赢得对方的尊重，他会更乐于跟你交谈，而且交流的内容也会更为细致和深入，从而实现良好的沟通效果。此外，在这样的背景下，当你和对方出现观点不一致的情况时，对方也会更乐于聆听你，并顺着你的思路去思考。
+所以可以说，尊重对方并赢得对方尊重的沟通方式，通常会进行得比较深入，沟通效果也会很不错。
 
 
-在这个示例中，我们把 Widget 嵌入到了 Label 中，于是，我们可以这样使用：
-label  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3387742494.html" title="112 | Go编程模式：Go Generation">112 | Go编程模式：Go Generation</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">112 | Go编程模式：Go Generation你好，我是陈皓，网名左耳朵耗子。
-这节课，我们来学习一下Go语言的代码生成的玩法。
-Go语言的代码生成主要还是用来解决编程泛型的问题。泛型编程主要是解决这样一个问题：因为静态类型语言有类型，所以，相关的算法或是对数据处理的程序会因为类型不同而需要复制一份，这样会导致数据类型和算法功能耦合。
-我之所以说泛型编程可以解决这样的问题，就是说，在写代码的时候，不用关心处理数据的类型，只需要关心相关的处理逻辑。
-泛型编程是静态语言中非常非常重要的特征，如果没有泛型，我们就很难做到多态，也很难完成抽象，这就会导致我们的代码冗余量很大。
-现实中的类比为了帮你更好地理解，我举个现实当中的例子。我们用螺丝刀来做打比方，螺丝刀本来只有一个拧螺丝的作用，但是因为螺丝的类型太多，有平口的，有十字口的，有六角的……螺丝还有不同的尺寸，这就导致我们的螺丝刀为了要适配各种千奇百怪的螺丝类型（样式和尺寸），也是各种样式的。
-而真正的抽象是，螺丝刀不应该关心螺丝的类型，它只要关注自己的功能是不是完备，并且让自己可以适配不同类型的螺丝就行了，这就是所谓的泛型编程要解决的实际问题。
-Go语方的类型检查因为Go语言目前并不支持真正的泛型，所以，只能用 interface&#123;&#125; 这样的类似于 void* 的过度泛型来玩，这就导致我们要在实际过程中进行类型 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3384709240.html" title="111 | Go编程模式：Map-Reduce">111 | Go编程模式：Map-Reduce</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">111 | Go编程模式：Map-Reduce你好，我是陈皓，网名左耳朵耗子。
-这节课，我们来学习一下函数式编程中非常重要的Map、Reduce、Filter这三种操作。这三种操作可以让我们轻松灵活地进行一些数据处理，毕竟，我们的程序大多数情况下都在倒腾数据。尤其是对于一些需要统计的业务场景来说，Map、Reduce、Filter是非常通用的玩法。
-话不多说，我们先来看几个例子。
-基本示例Map示例在下面的程序代码中，我写了两个Map函数，这两个函数需要两个参数：
-
-一个是字符串数组 [] string，说明需要处理的数据是一个字符串；
-另一个是一个函数func(s string) string 或 func(s string) int。
-
-func MapStrToStr(arr []string, fn func(s string) string) []string &#123;
-    var newArray &#x3D; []string&#123;&#125;
-    for _, it :&#x3D; range arr &#123;
-        newArray &#x3D; append(newArray, fn(it))
-    &#125;
-    return newArray
-&#125;
-
-func MapStrToInt(arr []string, ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/437923722.html" title="113 | Go编程模式：修饰器">113 | Go编程模式：修饰器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">113 | Go编程模式：修饰器你好，我是陈皓，网名左耳朵耗子。
-之前，我写过一篇文章《 Python修饰器的函数式编程》，这种模式可以很轻松地把一些函数装配到另外一些函数上，让你的代码更加简单，也可以让一些“小功能型”的代码复用性更高，让代码中的函数可以像乐高玩具那样自由地拼装。
-所以，一直以来，我都对修饰器（Decoration）这种编程模式情有独钟，这节课，我们就来聊聊Go语言的修饰器编程模式。
-如果你看过我刚说的文章，就一定知道，这是一种函数式编程的玩法——用一个高阶函数来包装一下。
-多唠叨一句，关于函数式编程，我之前还写过一篇文章《 函数式编程》，这篇文章主要是想通过详细介绍从过程式编程的思维方式过渡到函数式编程的思维方式，带动更多的人玩函数式编程。所以，如果你想了解一下函数式编程，那么可以点击链接阅读一下这篇文章。其实，Go语言的修饰器编程模式，也就是函数式编程的模式。
-不过，要提醒你注意的是，Go 语言的“糖”不多，而且又是强类型的静态无虚拟机的语言，所以，没有办法做到像 Java 和 Python 那样写出优雅的修饰器的代码。当然，也许是我才疏学浅，如果你知道更多的写法，请你一定告诉我。先谢过了。
-简单示例我们先来看一个示例：
-package main
-
-import &quot;fmt&quot;
-
-func decorator(f func(s string)) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/505090125.html" title="114 | Go编程模式：Pipeline">114 | Go编程模式：Pipeline</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">114 | Go编程模式：Pipeline你好，我是陈皓，网名左耳朵耗子。
-这节课，我着重介绍一下Go编程中的Pipeline模式。对于Pipeline，用过Unix&#x2F;Linux命令行的人都不会陌生， 它是一种把各种命令拼接起来完成一个更强功能的技术方法。
-现在的流式处理、函数式编程、应用网关对微服务进行简单的API编排，其实都是受Pipeline这种技术方式的影响。Pipeline可以很容易地把代码按单一职责的原则拆分成多个高内聚低耦合的小模块，然后轻松地把它们拼装起来，去完成比较复杂的功能。
-HTTP 处理这种Pipeline的模式，我在 上节课 中有过一个示例，我们再复习一下。
-上节课，我们有很多 WithServerHead() 、 WithBasicAuth() 、 WithDebugLog() 这样的小功能代码，在需要实现某个HTTP API 的时候，我们就可以很轻松地把它们组织起来。
-原来的代码是下面这个样子：
-http.HandleFunc(&quot;&#x2F;v1&#x2F;hello&quot;, WithServerHeader(WithAuthCookie(hello)))
-http.HandleFunc(&quot;&#x2F;v2&#x2F;hello&quot;, WithServerHeader(WithBasicAuth(hello) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/422789407.html" title="115 | Go编程模式：Kubernetes Visitor模式">115 | Go编程模式：Kubernetes Visitor模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">115 | Go编程模式：Kubernetes Visitor模式你好，我是陈皓，网名左耳朵耗子。
-这节课，我们来重点讨论一下，Kubernetes 的 kubectl 命令中的使用到的一个编程模式：Visitor（其实， kubectl 主要使用到了两个，一个是Builder，另一个是Visitor）。
-本来，Visitor 是面向对象设计模式中一个很重要的设计模式（可以看下Wikipedia Visitor Pattern词条），这个模式是将算法与操作对象的结构分离的一种方法。这种分离的实际结果是能够在不修改结构的情况下向现有对象结构添加新操作，是遵循开放&#x2F;封闭原则的一种方法。这节课，我们重点学习一下 kubelet 中是怎么使用函数式的方法来实现这个模式的。
-一个简单示例首先，我们来看一个简单设计模式的Visitor的示例。
-
-我们的代码中有一个 Visitor 的函数定义，还有一个 Shape 接口，这需要使用 Visitor 函数作为参数。
-我们的实例的对象 Circle 和 Rectangle 实现了 Shape 接口的 accept() 方法，这个方法就是等外面给我们传递一个Visitor。
-
-package main
-
-import (
-    &quot;encoding&#x2F;json&quot;
-    &quot;encoding&#x2F;x ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1048654561.html" title="开篇词 | 洞悉技术的本质，享受科技的乐趣">开篇词 | 洞悉技术的本质，享受科技的乐趣</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">开篇词  |  洞悉技术的本质，享受科技的乐趣你好，我是陈皓，网名左耳朵耗子。我目前在创业，MegaEase 是我的公司，致力于为企业提供高可用、高并发、高性能的分布式技术产品，同时也提供物联网（IoT）方向的技术产品。
-我之前在阿里巴巴、亚马逊、汤森路透等公司任职，职业背景是金融和电子商务行业，主要研究的技术方向是一些大规模分布式系统的基础架构。
-从大学毕业一直做技术工作，到今天有 20 年了，还在写代码，因为我对技术有很大的热情。我从 2002 年开始写技术博客，到 2009 年左右开始在独立的域名 CoolShell.cn（酷壳）上分享我对技术的一些见解和心得。
-本来只想记录一下，没想到得到了很多人的认可，这对我来说是一个不小的鼓励。我的文章和分享始终坚持观点鲜明的特点，因为我希望可以引发大家的讨论和批评，这样分享才更有意义。
-无论我的观点是否偏激、不成熟，或者言辞犀利，在经历过大家的批评和讨论后，我都能够从中得到不在我视角内的思考和认知，这对我来说是非常重要的补充，对我的个人成长非常重要。
-我相信，看到这些文章和讨论的人，也能从中收获到更多的东西。
-坦率地讲，刚收到专栏撰写邀请的时候，我心里面是拒绝的。正如前面所说的，我分享的目的是跟大家交流和讨论，我认为，全年付费专栏这样的方式可能并不好。而且，付费专栏还有文章更新频率的 KPI，这对于像我这样一定要有想法才会写文章的人来 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2586556946.html" title="加餐 | 谈谈我的“三观”">加餐 | 谈谈我的“三观”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">加餐 | 谈谈我的“三观”你好，我是陈皓，网名左耳朵耗子。
-也许是人到了四十多了，才敢写这么大的命题。不过，我还是想把我的想法记录下来，算是对我思考的一个“快照”（snapshot），给未来的我看看。我想这篇文章要么被未来的我打脸，要么打未来我的脸。但不管怎么样，我觉得对自己来说都很有意义。
-我在标题中提到的“三观”指的是世界观、人生观和价值观：
-
-世界观代表你是怎么看这个世界的， 是左还是右，是激进还是保守，是理想还是现实，是乐观还是悲观……
-人生观代表你想成为什么样的人， 是成为有钱人，还是成为人生的体验者，是成为老师，还是成为行业专家，是成为有思想的人，还是成为有创造力的人……
-价值观则代表你觉得什么对你来说更重要， 是名是利，是过程还是结果，是付出还是索取，是国家还是自己，是家庭还是职业……
-
-人的三观其实是会变的，回顾一下我的过去，我感觉我的三观至少在这几个阶段有比较明显的变化：学生时代、刚走上社会的年轻时代、三十岁后、还有现在。估计其他人也都差不多吧。
-
-学生时代的三观更多是学校给的，用各种标准答案给的。
-刚走上社会后发现完全不是这么一回事，但学生时代的三观已经在思想中根深蒂固，以至于三观开始分裂，内心开始挣扎。
-三十岁后，不如意的事越来越多，对社会越来越了解，有些人屈从现实，有些人不服输继续奋斗，有些人展露才能开始影响社会。此时我们分裂的三观开始收敛，而我属于还在继续 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2255915621.html" title="迭代｜全新交付专栏全部音频">迭代｜全新交付专栏全部音频</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">迭代｜全新交付专栏全部音频你好，我是极客时间专栏的编辑杨静。
-2017年10月10日，《左耳听风》专栏上线了，它是极客时间平台上最早交付的几门课程之一。在这门课中，资深技术专家、骨灰级程序员陈皓对他多年来的经验和思考进行了系统性的梳理、总结。到2018年10月专栏结课，我们在一年内更新了110多讲内容。
-截止到今天，也就是 2022 年 4 月 1 日，距离《左耳听风》这个专栏结课已经过去差不多三年半的时间了。一直到现在，它依然是极客时间上体量最大、学习人数最多的几门课程之一。这门课的文章有 60,691 次收藏，169,976 处划线，16,878 条笔记。这些都是我们一起学习的印记，是我们持续努力、不断精进的点滴证明。
-感谢每一位同学在课程评论区中的积极留言。你不仅分享了自己的学习收获、心得与经验，提出了自己的疑惑和问题，还反馈了课程中的不足，帮助我们一起将这门课打磨得更加完美。真心感谢你的每一次批评指正。
-这些反馈中，提及比较多的是音频问题。基于此，我们决定对专栏的音频内容进行全面替换（除结束语），修正过去存在的错误，并且进一步优化讲述感。同时，在音频迭代的过程中，我们也重新检查了一遍文稿内容，纠正了一些错别字及语句不顺的问题。这样，后面新加入的同学可以获得更好的学习体验，已经学完的同学也可以在复习的时候有不一样的感受。
-这次音频迭代涉及课程里的 117 讲内容，我们会分两次 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/39/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/#content-inner">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/#content-inner">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/41/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+注意，尊重并不代表要低三下四、随声附和，做一个墙头草可以让别人很容易和你相处，但要赢得对方的尊重，这还远远不够， 你一定要和对方有观点上的交互，甚至是碰撞。沟通的目的不是为了附和对方，而是产生一种更完整更全面的认知。只有当双方都愿意接受不同的观点时，此时的沟通才会迸发出更多的火花，而这一切都需要发生在相互尊重的基础之上。
+倾听《沟通的艺术》一书中将“倾听”定位为至少与“说”同等重要的沟通形式，足以见其重要性。作者认为，倾听与 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/523521699.html" title="104 | Word2Vec算法有哪些扩展模型？">104 | Word2Vec算法有哪些扩展模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">104 | Word2Vec算法有哪些扩展模型？从上一期的分享开始，我们进入到文本分析的另外一个环节，那就是介绍一个最近几年兴起的重要文本模型，Word2Vec。这个模型对文本挖掘、自然语言处理等很多领域都有重要影响。我们讨论了Word2Vec模型的基本假设，主要是如何从离散的词包输入获得连续的词的表达，以及如何能够利用上下文从而学习到词的隐含特性。我们还聊了两个Word2Vec模型，SG（SkipGram）模型和CBOW（Continuous-Bag-of-Word）模型，讨论了它们都有什么特性以及如何实现。
+今天，我们就来看一看 Word2Vec的一些扩展模型。
+Word2Vec的扩展思路在列举几个比较知名的Word2Vec扩展模型之前，我们首先来看看这个模型怎么进行扩展。
+首先，我们来回忆一下Word2Vec的一个基本的性质，那就是这是一个语言模型。而语言模型本身其实是一个 离散分布模型。我们一起来想一想，什么是语言模型？语言模型就是针对某一个词库（这里其实就是一个语言的所有单词），然后在某种语境下，产生下一个单词的模型。也就是说，语言模型是一个 产生式模型，而且这个产生式模型是产生单词这一离散数据的。
+既然是这样，如果我们更改这个词库，变成任何的离散数据，那么，Word2Vec这个模型依然能够输出在新词库下的离散数据。比如，如果我们把词汇库从英语单词换成物品的下标，那Wor ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/39/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/#content-inner">39</a><span class="page-number current">40</span><a class="page-number" href="/page/41/#content-inner">41</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/41/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

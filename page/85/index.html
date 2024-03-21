@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,101 +138,75 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2774274744.html" title="33 | 传统的可扩展架构模式：分层架构和SOA">33 | 传统的可扩展架构模式：分层架构和SOA</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">33 | 传统的可扩展架构模式：分层架构和SOA相比于高性能、高可用架构模式在最近几十年的迅猛发展来说，可扩展架构模式的发展可以说是步履蹒跚，最近几年火热的微服务模式算是可扩展模式发展历史中为数不多的亮点，但这也导致了现在谈可扩展的时候必谈微服务，甚至微服务架构都成了架构设计的银弹，高性能也用微服务、高可用也用微服务，很多时候这样的架构设计看起来高大上，实际上是大炮打蚊子，违背了架构设计的“合适原则”和“简单原则”。
-为了帮助你在实践中更好的进行可扩展架构设计，我将分别介绍几种可扩展架构模式，指出每种架构模式的关键点和优缺点。今天我来介绍传统的可扩展模式，包括分层架构和SOA，后面还会介绍微服务架构。
-分层架构分层架构是很常见的架构模式，它也叫N层架构，通常情况下，N至少是2层。例如，C&#x2F;S架构、B&#x2F;S架构。常见的是3层架构（例如，MVC、MVP架构）、4层架构，5层架构的比较少见，一般是比较复杂的系统才会达到或者超过5层，比如操作系统内核架构。
-按照分层架构进行设计时，根据不同的划分维度和对象，可以得到多种不同的分层架构。
-1、C&#x2F;S架构、B&#x2F;S架构
-划分的对象是整个业务系统，划分的维度是用户交互，即将和用户交互的部分独立为一层，支撑用户交互的后台作为另外一层。例如，下面是C&#x2F;S架构结构图。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3830769444.html" title="31 | 如何应对接口级的故障？">31 | 如何应对接口级的故障？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">31 | 如何应对接口级的故障？你好，我是华仔。
+前几讲我介绍了异地多活方案。它主要用来应对系统级的故障，例如机器宕机、机房故障和网络故障等问题。这些系统级的故障虽然影响很大，但发生概率较小。在实际业务运行过程中，还有另外一种故障影响可能没有那么大，但发生的概率较高，这就是今天我要跟你聊的接口级的故障。
+接口级故障的典型表现就是，系统并没有宕机、网络也没有中断，但业务却出现问题了，例如业务响应缓慢、大量访问超时和大量访问出现异常（给用户弹出提示“无法连接数据库”）。
+这类问题的主要原因在于系统压力太大、负载太高，导致无法快速处理业务请求，由此引发更多的后续问题。最常见的情况就是，数据库慢查询将数据库的服务器资源耗尽，导致读写超时，业务读写数据库时要么无法连接数据库、要么超时，最终用户看到的现象就是访问很慢，一会儿访问抛出异常，一会儿访问又是正常结果。
+如果进一步探究，导致接口级故障的原因可以分为两大类：
 
-2、MVC架构、MVP架构
-划分的对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1725918207.html" title="35 | 微服务架构最佳实践 - 方法篇">35 | 微服务架构最佳实践 - 方法篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">35 | 微服务架构最佳实践 - 方法篇专栏上一期，我谈了实施微服务需要避免踩的陷阱，简单提炼为：
+内部原因：包括程序bug导致死循环，某个接口导致数据库慢查询，程序逻辑不完善导致耗尽内存等。
+外部原因：包括黑客攻击，促销或者抢购引入了超出平时几倍甚至几十倍的用户，第三方系统大量请求，第三方系统响应缓慢等。
 
-微服务拆分过细，过分强调“small”。
+解决接口级故障的核心思想和异地多活基本类似，都是 优先保证核心业务 和 优先保证绝大部分用户。常见的应对方法有四种，降级、熔断、限流和排队，下面我会一一讲解。
+1. 降级 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3013660057.html" title="31 | 导学：为什么业务和管理是晋升高级别的基石？">31 | 导学：为什么业务和管理是晋升高级别的基石？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">31 | 导学：为什么业务和管理是晋升高级别的基石？你好，我是华仔。
+从今天开始，我们进入到课程的第六部分，专项提升。
+很多技术人员在刚进职场的时候都有一个朴素的想法：
 
-微服务基础设施不健全，忽略了“automated”。
+我很喜欢技术，我就想一直深入做技术，成为技术高手。至于业务和管理，还是让别人去搞定吧。
+做管理要处理各种乱七八糟的事情，要参加各种无聊的会议；做业务要跟形形色色的客户打交道，要揣摩客户的想法，这些事情我都不想去掺和。大家分工合作，各自做好自己专业领域内的事情就行了，毕竟也没有谁要求产品和业务一定要懂技术呀。
+我只要在关键时刻发挥我的技术水平，就像武侠高手一样，平时不出手，一出手就惊艳所有人！
 
-微服务并不轻量级，规模大了后，“lightweight”不再适应。
+这种想法虽然很美好，但不符合现实。我在 第3讲 中为你介绍了三条晋升原则，其中有一条就是 价值原则，为公司创造价值才有机会晋升。
+对于高级别的人来说，业务能力和管理能力都是创造价值的核心能力。如果你不懂业务和管理，职场天花板就会很低，很难晋升到比较高的级别。
+接下来，我分别针对业务和管理进行说明。
+为什么要懂业务？对于技术人员来说，懂业务的好处主要体现在以下3个方面。
+1. 更好地理解需求首先，懂业务能让你更好地理解需求。
+大部分技术人员从事的项目都属于业务项目，比如2C的电商、支付、出行、旅游和本地生活等，以及2B的云平台、ERP系统和广告系统等，这些业务项目是公司的核心利润来源。
+理想的情况 是，产品经理和技术人员各司 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2341710965.html" title="31 | 工程师、产品经理、数据工程师是如何一起工作的？">31 | 工程师、产品经理、数据工程师是如何一起工作的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:19.000Z" title="发表于 2023-12-13 18:10:19">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">31 | 工程师、产品经理、数据工程师是如何一起工作的？做为一名工程师，免不了与产品经理打交道，如果公司大一些，数据量多一些，还会有数据工程师这个角色。今天会和你主要聊一聊在工作中，产品经理和数据工程师在哪些方面对我们工程师的帮助最大，以及我从他们身上都学到了些什么。
+先来说说产品经理我工作过的两个公司在早期的时候，很多服务器相关的研发组都是没有产品经理的。这种事在国内公司里比较少见，因为国内大部分产品都是由产品经理来驱动的，但在硅谷很多早期的公司里，这并不算太奇怪，毕竟很多产品经理的职责是工程师兼有的。
+随着公司的发展和壮大，每个小组都有了固定的产品经理角色，我接触的产品经理也就慢慢多了起来。
+在这个从无到有的过程中，对我帮助最大的是什么呢？我觉得应该是对项目边界和进度把控。
+第一，当一个公司足够大的时候，虽然自顶而下管理，很多大的目标和方向在公司内保持了一致性，但是还有很多东西是需要讨论和确定的。
+比如：产品和项目的边界如何确定，应该由哪个组做；如果两个组的工作范围有一定的重合性，如何确保两个组的工作是互补而不是重复甚至矛盾的；如果两个组要做的东西有一定的依赖性，在时间安排上如何保证被依赖的部分可以提前完成。
+这样一些跨组协调，虽然技术管理者在一定程度上会有很大的话语权，也会参与所有的讨论和决策，但是有产品经理的帮助，他们可以更多把精力放在技术相关的问题上。
+第二，不论你是在哪 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2056618871.html" title="31 | 应用性能管理：用户的使用体验应该如何监控？">31 | 应用性能管理：用户的使用体验应该如何监控？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">31 | 应用性能管理：用户的使用体验应该如何监控？你好，我是唐扬。
+上一节课中，我带你了解了服务端监控搭建的过程。有了监控报表之后，你的团队在维护垂直电商系统时，就可以更早地发现问题，也有直观的工具辅助你们分析排查问题了。
+不过你很快发现，有一些问题，服务端的监控报表无法排查，甚至无法感知。比如，有用户反馈创建订单失败，但是从服务端的报表来看，并没有什么明显的性能波动，从存储在Elasticsearch里的原始日志中，甚至没有找到这次创建订单的请求。这有可能是客户端有Bug，或者网络抖动导致创建订单的请求并没有发送到服务端。
+再比如，有些用户会反馈，使用长城宽带打开商品详情页面特别慢，甚至出现DNS解析失败的情况。 那么，当我们遇到这类问题时，要如何排查和优化呢？
+这里面涉及一个概念叫应用性能管理（Application Performance Management，简称APM）， 它的含义是： 对应用各个层面做全方位的监测，期望及时发现可能存在的问题，并加以解决，从而提升系统的性能和可用性。
+你是不是觉得和之前讲到的服务端监控很相似？其实，服务端监控的核心关注点是后端服务的性能和可用性，而应用性能管理的核心关注点是终端用户的使用体验。也就是说，你需要衡量从客户端请求发出开始，到响应数据返回到客户端为止，这个端到端的整体链路上的性能情况。
+如果你能做到这一点，那么无论是订单创建问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2730687195.html" title="31 | 理论五：让你最快速地改善代码质量的20条编程规范（上）">31 | 理论五：让你最快速地改善代码质量的20条编程规范（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">31 | 理论五：让你最快速地改善代码质量的20条编程规范（上）前面我们讲了很多设计原则，后面还会讲到很多设计模式，利用好它们可以有效地改善代码质量。但是，这些知识的合理应用非常依赖个人经验，用不好有时候会适得其反。而我们接下来要讲的编码规范正好相反。编码规范大部分都简单明了，在代码细节方面，能立竿见影地改善质量。除此之外，我们前面也讲到，持续低层次、小规模重构依赖的基本上都是编码规范，这也是改善代码可读性的有效手段。
+关于编码规范、如何编写可读代码，很多书籍已经讲得很好了，我在前面的加餐中也推荐过几本经典书籍。不过，这里我根据我自己的开发经验，总结罗列了20条我个人觉得最好用的编码规范。掌握这20条编码规范，能你最快速地改善代码质量。因为内容比较多，所以，我分为三节课来讲解，分别介绍编码规范的三个部分：命名与注释（Naming and Comments）、代码风格（Code Style）和编程技巧（Coding Tips）。
+命名大到项目名、模块名、包名、对外暴露的接口，小到类名、函数名、变量名、参数名，只要是做开发，我们就逃不过“起名字”这一关。命名的好坏，对于代码的可读性来说非常重要，甚至可以说是起决定性作用的。除此之外，命名能力也体现了一个程序员的基本编程素养。这也是我把“命名”放到第一个来讲解的原因。
+取一个特别合适的名字是一件非常有挑战的事情，即便是对母语是英语的程序员 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2532680578.html" title="31 | 画图：一图胜千言">31 | 画图：一图胜千言</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">31 | 画图：一图胜千言对于写作这种展现形式，有一种最好的补充手段就是画图。有时文字描述了半天还不如一张图来得清晰，正所谓：一图胜千言。这对于程序员特别需要的技术性文档或文章写作，都是最好的补充注解，有时甚至起到了画龙点睛的效果。
+以前我在网上发一些技术博文，就常有读者留言问我是用什么工具画图的。其实我感觉他们很可能问错了问题，因为我曾经为了画好图尝试过各种不同的画图工具软件，但最后发现能不能画好图和工具的关系并不大。
+一、为何？程序员不是主要写代码的么，为什么需要画图？
+有些程序员会认为写好代码就好，画好图有什么用？程序员成为架构师后是不是就天天画架构图，成为了所谓的 PPT 架构师？曾经读过一篇文章《在首席架构师眼里，架构的本质是…》，里面提出了一个架构师能力模型图，（我重新绘制）如下：
 
-
-针对这些问题，今天我们看看微服务最佳实践应该如何去做。我会分两期介绍这部分内容，今天是微服务架构最佳实践的方法篇，下一期是基础设施篇。
-服务粒度针对微服务拆分过细导致的问题，我建议基于团队规模进行拆分，类似贝索斯在定义团队规模时提出的“两个披萨”理论（每个团队的人数不能多到两张披萨都不够吃的地步），分享一个我认为微服务拆分粒度的“三个火枪手”原则，即一个微服务三个人负责开发。当我们在实施微服务架构时，根据团队规模来划分微服务数量，如果业务规继续发展，团队规模扩大，我们再将已有的微服务进行拆分。例如，团队最初有6个人，那么可以划分为2个微服务，随着业务的发展，业务功能越来越多，逻辑越来越复杂，团队扩展到12个人，那么我们可以将已有的2个微服务进行拆分，变成4个微服务。
-为什么是3个人，不是4个，也不是2个呢？
-首先，从系统规模来讲，3个人负责开发一个系统，系统的复杂度刚好达到每个人都能全面理解整个系统，又能够进行分工的粒度；如果是2个人开发一个系统，系统的复杂度不够，开发人员可能觉得无法体现自己的技术实力；如果是4 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3289138178.html" title="36 | 微服务架构最佳实践 - 基础设施篇">36 | 微服务架构最佳实践 - 基础设施篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">36 | 微服务架构最佳实践 - 基础设施篇每项微服务基础设施都是一个平台、一个系统、一个解决方案，如果要自己实现，其过程和做业务系统类似，都需要经过需求分析、架构设计、开发、测试、部署上线等步骤，专栏里我来简单介绍一下每个基础设施的主要作用，更多详细设计你可以参考Spring Cloud的相关资料（ https://projects.spring.io/spring-cloud/）。
-下面进入今天的内容，微服务架构最佳实践的基础设施篇。
-自动化测试微服务将原本大一统的系统拆分为多个独立运行的“微”服务，微服务之间的接口数量大大增加，并且微服务提倡快速交付，版本周期短，版本更新频繁。如果每次更新都靠人工回归整个系统，则工作量大，效率低下，达不到“快速交付”的目的，因此必须通过自动化测试系统来完成绝大部分测试回归的工作。
-自动化测试涵盖的范围包括代码级的单元测试、单个系统级的集成测试、系统间的接口测试，理想情况是每类测试都自动化。如果因为团队规模和人力的原因无法全面覆盖，至少要做到接口测试自动化。
-自动化部署相比大一统的系统，微服务需要部署的节点增加了几倍甚至十几倍，微服务部署的频率也会大幅提升（例如，我们的业务系统70%的工作日都有部署操作），综合计算下来，微服务部署的次数是大一统系统部署次数的几十倍。这么大量的部署操作，如果继续采用人工手工处理，需要投入大量的人力，且容易出错，因 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1646391160.html" title="38 | 架构师应该如何判断技术演进的方向？">38 | 架构师应该如何判断技术演进的方向？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">38 | 架构师应该如何判断技术演进的方向？互联网的出现不但改变了普通人的生活方式，同时也促进了技术圈的快速发展和开放。在开源和分享两股力量的推动下，最近10多年的技术发展可以说是目不暇接，你方唱罢我登场，大的方面有大数据、云计算、人工智能等，细分的领域有NoSQL、Node.js、Docker容器化等。各个大公司也乐于将自己的技术分享出来，以此来提升自己的技术影响力，打造圈内技术口碑，从而形成强大的人才吸引力，典型的有，Google的大数据论文、淘宝的全链路压测、微信的红包高并发技术等。
-对于技术人员来说，技术的快速发展当然是一件大好事，毕竟这意味着技术百宝箱中又多了更多的可选工具，同时也可以通过学习业界先进的技术来提升自己的技术实力。但对于架构师来说，除了这些好处，却也多了“甜蜜的烦恼”：面对层出不穷的新技术，我们应该采取什么样的策略？
-架构师可能经常会面临下面这些诱惑或者挑战：
-
-现在Docker虚拟化技术很流行，我们要不要引进，引入Docker后可以每年节省几十万元的硬件成本呢？
-
-竞争对手用了阿里的云计算技术，听说因为上了云，业务增长了好几倍呢，我们是否也应该尽快上云啊？
-
-我们的技术和业界顶尖公司（例如，淘宝、微信）差距很大，应该投入人力和时间追上去，不然招聘的时候没有技术影响力！
-
-公司的技术发展现在已经比较成熟了，程序员都觉得在公司学不到东西，我们可以尝试引入Gol ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3524128956.html" title="39 | 互联网技术演进的模式">39 | 互联网技术演进的模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">39 | 互联网技术演进的模式由于各行业的业务发展轨迹并不完全相同，无法给出一个统一的模板让所有的架构师拿来就套用，因此我以互联网的业务发展为案例，谈谈互联网技术演进的模式，其他行业可以参考分析方法对自己的行业进行分析。
-互联网业务千差万别，但由于它们具有“规模决定一切”的相同点，其发展路径也基本上是一致的。互联网业务发展一般分为几个时期：初创期、发展期、竞争期、成熟期。
-不同时期的差别主要体现在两个方面： 复杂性、用户规模。
-业务复杂性互联网业务发展第一个主要方向就是“业务越来越复杂”，我们来看看不同时期业务的复杂性的表现。
-1.初创期
-互联网业务刚开始一般都是一个创新的业务点，这个业务点的重点不在于“完善”，而在于“创新”，只有创新才能吸引用户；而且因为其“新”的特点，其实一开始是不可能很完善的。只有随着越来越多的用户的使用，通过快速迭代试错、用户的反馈等手段，不断地在实践中去完善，才能继续创新。
-初创期的业务对技术就一个要求：“快”，但这个时候却又是创业团队最弱小的时期，可能就几个技术人员，所以这个时候十八般武艺都需要用上：能买就买，有开源的就用开源的。
-我还以淘宝和QQ为例。
-第一版的淘宝（ https://blog.csdn.net/linlin_juejue&#x2F;article&#x2F;details&#x2F;5959171）：
-
-第一版的QQ（ http:/ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/636427915.html" title="40 | 互联网架构模板：“存储层”技术">40 | 互联网架构模板：“存储层”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">40 | 互联网架构模板：“存储层”技术很多人对于BAT的技术有一种莫名的崇拜感，觉得只有天才才能做出这样的系统，但经过前面对架构的本质、架构的设计原则、架构的设计模式、架构演进等多方位的探讨和阐述，你可以看到，其实并没有什么神秘的力量和魔力融合在技术里面，而是业务的不断发展推动了技术的发展，这样一步一个脚印，持续几年甚至十几年的发展，才能达到当前技术复杂度和先进性。
-抛开BAT各自差异很大的业务，站在技术的角度来看，其实BAT的技术架构基本是一样的。再将视角放大，你会发现整个互联网行业的技术发展，最后都是殊途同归。
-如果你正处于一个创业公司，或者正在为成为另一个BAT拼搏，那么深入理解这种技术模式（或者叫技术结构、技术架构），对于自己和公司的发展都大有裨益。
-互联网的标准技术架构如下图所示，这张图基本上涵盖了互联网技术公司的大部分技术点，不同的公司只是在具体的技术实现上稍有差异，但不会跳出这个框架的范畴。
-
-从本期开始，我将逐层介绍每个技术点的产生背景、应用场景、关键技术，有的技术点可能已经在前面的架构模式部分有所涉及，因此就不再详细展开技术细节了，而是将关键技术点分门别类，进而形成一张架构大图，让架构师对一个公司的整体技术架构有一个完整的全貌认知。
-今天我们首先来聊聊互联网架构模板的“存储层”技术。
-SQLSQL即我们通常所说的关系数据。前几年NoSQL火了一阵子，很多人都理解 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/308773174.html" title="41 | 互联网架构模板：“开发层”和“服务层”技术">41 | 互联网架构模板：“开发层”和“服务层”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">41 | 互联网架构模板：“开发层”和“服务层”技术上一期，我介绍了互联网架构模板中的存储层技术。关于这部分内容，我将逐层介绍每个技术点的产生背景、应用场景和关键技术，希望让你可以对整体的技术架构有一个全貌认知。
-今天我们来聊聊互联网架构模板的“开发层”和“服务层”技术。
-开发层技术1.开发框架
-在专栏第38、39期中，我们深入分析了互联网业务发展的一个特点：复杂度越来越高。复杂度增加的典型现象就是系统越来越多，不同的系统由不同的小组开发。如果每个小组用不同的开发框架和技术，则会带来很多问题，典型的问题有：
-
-技术人员之间没有共同的技术语言，交流合作少。
-
-每类技术都需要投入大量的人力和资源并熟练精通。
-
-不同团队之间人员无法快速流动，人力资源不能高效的利用。
-
-
-所以，互联网公司都会指定一个大的技术方向，然后使用统一的开发框架。例如，Java相关的开发框架SSH、SpringMVC、Play，Ruby的Ruby on Rails，PHP的ThinkPHP，Python的Django等。使用统一的开发框架能够解决上面提到的各种问题，大大提升组织和团队的开发效率。
-对于框架的选择，有一个总的原则： 优选成熟的框架，避免盲目追逐新技术！
-为什么呢？
-首先，成熟的框架资料文档齐备，各种坑基本上都有人踩过了，遇到问题很容易通过搜索来解决。
-其次，成熟的框架受众更广，招聘时更加容易招到合适的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1111752914.html" title="43 | 互联网架构模板：“用户层”和“业务层”技术">43 | 互联网架构模板：“用户层”和“业务层”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">43 | 互联网架构模板：“用户层”和“业务层”技术上一期，我从计算机网络层的角度谈了应对“高性能”和“高可用”的整体架构设计。今天，我将从“用户层”和“业务层”的角度谈谈常见的应用场景和关键技术。
-用户层技术1.用户管理
-互联网业务的一个典型特征就是通过互联网将众多分散的用户连接起来，因此用户管理是互联网业务必不可少的一部分。
-稍微大一点的互联网业务，肯定会涉及多个子系统，这些子系统不可能每个都管理这么庞大的用户，由此引申出用户管理的第一个目标： 单点登录（SSO），又叫统一登录。单点登录的技术实现手段较多，例如cookie、JSONP、token等，目前最成熟的开源单点登录方案当属CAS，其架构如下（ https://apereo.github.io/cas/4.2.x/planning/Architecture.html ）：
-
-除此之外，当业务做大成为了平台后，开放成为了促进业务进一步发展的手段，需要允许第三方应用接入，由此引申出用户管理的第二个目标： 授权登录。现在最流行的授权登录就是OAuth 2.0协议，基本上已经成为了事实上的标准，如果要做开放平台，则最好用这个协议，私有协议漏洞多，第三方接入也麻烦。
-用户管理系统面临的主要问题是用户数巨大，一般至少千万级，QQ、微信、支付宝这种巨无霸应用都是亿级用户。不过也不要被这个数据给吓倒了，用户管理虽然数据量巨大，但实现起来 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1159083792.html" title="42 | 互联网架构模板：“网络层”技术">42 | 互联网架构模板：“网络层”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">42 | 互联网架构模板：“网络层”技术除了复杂度，互联网业务发展的另外两个关键特点是“高性能”和“高可用”。通常情况下，我们在设计高可用和高性能系统的时候，主要关注点在系统本身的复杂度，然后通过各种手段来实现高可用和高性能的要求，例如我前面介绍的计算高性能架构模式、存储高可用架构模式等。但是当我们站在一个公司的的角度来思考架构的时候，单个系统的高可用和高性能并不等于整体业务的高可用和高性能，互联网业务的高性能和高可用需要从更高的角度去设计，这个高点就是“网络”，所以我将相关措施统一划归为“网络层”。注意这里的网络层和通常理解的如何搭建一个局域网这种概念不一样，这里强调的是站在网络层的角度整体设计架构，而不是某个具体网络的搭建。
-接下来我将介绍互联网架构模板的“网络层”技术的几个关键架构设计点，部分内容专栏前面已经有深入阐述，今天作为概要的总结把它们归纳一下。
-负载均衡顾名思议，负载均衡就是将请求均衡地分配到多个系统上。使用负载均衡的原因也很简单：每个系统的处理能力是有限的，为了应对大容量的访问，必须使用多个系统。例如，一台32核64GB内存的机器，性能测试数据显示每秒处理Hello World的HTTP请求不超过2万，实际业务机器处理HTTP请求每秒可能才几百QPS，而互联网业务并发超过1万是比较常见的，遇到双十一、过年发红包这些极端场景，每秒可以达到几十万的请求。
-1.DNS
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/607235893.html" title="44 | 互联网架构模板：“平台”技术">44 | 互联网架构模板：“平台”技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">44 | 互联网架构模板：“平台”技术当业务规模比较小、系统复杂度不高时，运维、测试、数据分析、管理等支撑功能主要由各系统或者团队独立完成。随着业务规模越来越大，系统复杂度越来越高，子系统数量越来越多，如果继续采取各自为政的方式来实现这些支撑功能，会发现重复工作非常多。因此我们自然而然就会想到将这些支撑功能做成平台，避免重复造轮子，减少不规范带来的沟通和协作成本。
-今天，我就来聊聊互联网架构模板的“平台”技术。由于每个平台本身都是一个庞大的体系，专栏只是介绍一下平台的核心职责和关键设计点，具体细节就不详细展开了。
-运维平台运维平台核心的职责分为四大块：配置、部署、监控、应急，每个职责对应系统生命周期的一个阶段，如下图所示：
-
-
-配置：主要负责资源的管理。例如，机器管理、IP地址管理、虚拟机管理等。
-
-部署：主要负责将系统发布到线上。例如，包管理、灰度发布管理、回滚等。
-
-监控：主要负责收集系统上线运行后的相关数据并进行监控，以便及时发现问题。
-
-应急：主要负责系统出故障后的处理。例如，停止程序、下线故障机器、切换IP等。
-
-
-运维平台的核心设计要素是“四化”：标准化、平台化、自动化、可视化。
-1.标准化
-需要制定运维标准，规范配置管理、部署流程、监控指标、应急能力等，各系统按照运维标准来实现，避免不同的系统不同的处理方式。标准化是运维平台的基础， 没有标准化就没有运维平台。
-如果某 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/84/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><span class="page-number current">85</span><a class="page-number" href="/page/86/#content-inner">86</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/86/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+架构师能力模型图
+结合我自己的经历和经验，这个能力模型针对架构师这个岗位来说还是比较符合的。程序员出色到了一定程度后想成长为一名架构师，就需要看看能力模型中的其他方面。而掌握好画图技法，对这个能力模型有什么帮助吗？
+前面讲系统设计的文章《多维与视图》中我已经给出过结论：“用更系统化的视图去观察和思考，想必也会让你得到更成体系化的系统设计。”
+在今天这个时代，我们都体验过各种各样的地图软件，一个国家，一个城市，一个街区，地图软件总是在不同的抽象维度上来展示地图。而对于一个复杂的软件系统，也需 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/944131152.html" title="31 | 编程范式：泛型编程">31 | 编程范式：泛型编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。
+在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。
+C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stroustrup 创建的C++语言横空出世，它既可以全面兼容C语言，又巧妙揉合了一些面向对象的编程理念。现在来看，不得不佩服Stroustrup的魄力。在这里，我也向你推荐一本书，书名是《C++语言的设计和演化》。
+这本书系统介绍了C++诞生的背景以及初衷，书的作者就是 Stroustrup 本人，所以你可以非常详细地从语言创建者的角度了解他的设计思路和创新之旅。当然，就是在今天，C++这门语言也还有很多争议，这里我不细说。如果你感兴趣的话，可以看看我几年前在酷壳上发表的文章《 C++的坑真的多吗？》。
+从语言角度来说，实际上早期C++的许多工作是对C的强化和净化，并把完全兼容C作为强制性要求（这也是C++复杂晦涩的原因，这点Java就干得比C++彻底得多）。在C89、C99这两个C语言的标准中，有许多改进都是从C++中引进的。
+可见，C++对C语言的贡献非常之大。是的，因为C++很大程度就是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3796169110.html" title="31 深度学习框架下的神经网络 | 左右互搏：生成式对抗网络">31 深度学习框架下的神经网络 | 左右互搏：生成式对抗网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:17.000Z" title="发表于 2024-02-29 12:17:17">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">31 深度学习框架下的神经网络 | 左右互搏：生成式对抗网络2016年10月，谷歌大脑的研究者们做了一个有趣的实验：使用三个并不复杂的神经网络执行保密通信的任务，两个合法通信方共享的只有保密的密钥，而没有商定的加解密算法，第三个神经网络则作为窃听者出现。
+这种配置显然颠覆了密码学的常识：无论是公钥体制还是私钥体制，加解密的算法都是已知的。如果合法通信双方不能统一加解密的方法，实现保密通信就是“巧妇难为无米之炊”。可谷歌偏偏不信这个邪，他们就是要让神经网络实现双盲的加密与解密。
+实验的结果同样令人惊讶：经过不断的试错与调整，接收方可以精确恢复出发送方的明文，而窃听者的错误率稳定在50%左右，意味着她的破译只是随机的猜测。 这个实验的意义在于展示出神经网络的潜能：它们不仅能够在欠缺先验规则的条件下，通过对大量数据的无监督学习完成目标，甚至还能够在学习过程中根据实际条件的变化对完成目标的方式进行动态调整。
+这个实验的环境，就是在最近两年名声大噪的 生成式对抗网络。生成式对抗网络（generative adversarial network）由《深度学习》的第一作者伊安·古德菲洛提出， 这是一类在无监督学习中使用的人工智能算法，由两个在零和游戏框架下相互竞争的神经网络实现。“零和游戏”（zero-sum game）这个术语来自于博弈论，意思是博弈双方的利益之和为零。由于一方的收益必然意味着 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3009634254.html" title="32 | 5W1H8C1D分析法：P5/P6怎么理解业务功能？">32 | 5W1H8C1D分析法：P5/P6怎么理解业务功能？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">32 | 5W1H8C1D分析法：P5&#x2F;P6怎么理解业务功能？你好，我是华仔。
+对于P5&#x2F;P6级别来说，业务方面的要求主要是 理解业务功能。如果你想要快速地入门业务功能，建议使用我总结的5W1H8C1D分析法。
+这个名字看起来很长，其实它是由4个部分组成的：5W + 1H + 8C + 1D，实际操作的时候并不难。
+1932年，美国政治学家拉斯维尔提出了一个 5W分析法。后来，人们在它基础上补充了1H（How），形成了5W1H分析法，这个方法在企业管理、日常工作和学习提升中得到的广泛应用。
+我根据自己多年的实践摸索，在5W和1H的基础进一步补充了 8C 和 1D，从而形成了5W1H8C1D分析法， 它是指用5W1H+8C的思路来分析和理解业务功能，并且在功能上线后熟悉运行数据（1D）。
+对于P5&#x2F;P6级别的技术人员来说，这就已经能够基本满足业务开发和晋升的要求了。
+这一讲，我会针对5W、1H、8C和1D这4个部分逐一讲解。
+5W我们先来看5W。不知道你还记不记得，在 第26讲，我介绍一个5W根因分析法，通过5个Why来挖掘根本原因。
+不过这里的5W指的是5个不同的英文单词：When（何时）、Where（何地）、Who（何人）、What（何事）、Why（何因），代表 需求产生的背景 和 功能上线后的运行环境，类似于操作系统上下文（Context）的概念。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/846113774.html" title="32 | AI与物联网架构：从智能引擎到物联网平台">32 | AI与物联网架构：从智能引擎到物联网平台</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">32 | AI与物联网架构：从智能引擎到物联网平台当我们在说大数据技术的时候，说的可能是几种差别很大的技术。
+一种是大数据底层技术，指的就是各种大数据计算框架、存储系统、SQL引擎等等，这些技术比较通用，经过十几年的优胜劣汰，主流的技术产品相对比较集中，主要就是我上篇专栏讨论的MapReduce、Spark、Hive、Flink等技术产品。
+一种是大数据平台技术，Spark、Hive这些大数据底层技术产品不像我们前面讨论过的分布式缓存、分布式消息队列，在处理用户请求的应用中，使用这些技术产品的API接口就可以了。大数据计算的数据通常不是用户请求的数据，计算时间也往往超过了一次用户请求响应能够接受的时间。但是大数据的计算结果又常常需要在用户交互过程中直接呈现，比如电商常用的智能推荐，用户购买一个商品，系统会推荐可能感兴趣的商品，这些推荐的商品就是大数据计算的结果。所以在互联网系统架构中，需要把处理用户请求的在线业务系统和大数据计算系统打通。这就需要一个大数据平台来完成。
+此外还有一种技术是数据分析与机器学习算法，上面提到的商品智能推荐就是这样一种算法，通过算法向用户呈现他感兴趣的商品，使互联网应用看起来好像有某种智能一样。
+大数据平台架构我们先看下大数据平台架构。上面说过，大数据平台主要就是跨越需要长时间处理的大数据计算和需要实时响应的互联网应用之间的鸿沟，使系统成为一个完整的整体。 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/84/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/#content-inner">84</a><span class="page-number current">85</span><a class="page-number" href="/page/86/#content-inner">86</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/86/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

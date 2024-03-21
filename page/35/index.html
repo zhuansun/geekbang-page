@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,113 +138,86 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3763500409.html" title="60 | 性能设计：数据库扩展">60 | 性能设计：数据库扩展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">60 | 性能设计：数据库扩展你好，我是陈皓，网名左耳朵耗子。
-读写分离 CQRS读写分离是数据库扩展最简单实用的玩法了，这种方法针对读多写少的业务场景还是很管用的，而且还可以有效地把业务做相应的隔离。
-如下图所示，数据库只有一个写库，有两个读库，所有的服务都写一个数据库。对于读操作来说，服务A和服务B走从库A，服务D和服务E走从库B，服务C在从库A和从库B间做轮询。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3122794114.html" title="09 | 架构设计原则案例">09 | 架构设计原则案例</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:13.000Z" title="发表于 2023-12-13 23:07:13">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">09 | 架构设计原则案例周二，我给你介绍了架构设计的三条核心原则，先复习一下：合适原则、简单原则和演化原则。我们在架构设计实践中，应该时刻谨记这三条设计原则，指导我们设计出合适的架构，即使是代表中国互联网技术最顶尖水平的BAT，其架构的发展历程也同样遵循这三条原则。
+今天我就以大家耳熟能详的淘宝和手机QQ作为案例，来简单分析一下。
+淘宝注：以下部分内容摘自《淘宝技术发展》。
+淘宝技术发展主要经历了“个人网站”→“Oracle&#x2F;支付宝&#x2F;旺旺”→“Java时代1.0”→“Java时代2.0”→“Java时代3.0”→“分布式时代”。我们看看每个阶段的主要驱动力是什么。
+1.个人网站
 
-这样的方法好处是：
-
-比较容易实现。数据库的master-slave的配置和服务框架里的读写分离都比较成熟，应用起来也很快。
-可以很好地把各个业务隔离开来。不会因为一个业务把数据库拖死而导致所有的业务都死掉。
-可以很好地分担数据库的读负载，毕竟读操作是最耗数据库CPU的操作。
-
-这样的方法不好的地方是：
-
-写库有单点故障问题。如果是写库出了性能问题，那么所有的业务一样不可用。对于交易型的业务，要得到高的写操作速度，这样的方式不行。
-数据库同步不实时，需要强一致性的读写操作还是需要落在写库上。
-
-综上所述，一般来说，这样的玩法主要是为了减少读操作的压力。
-当然，这样的读写分离看上去有点差强人意，那么，我们还是为之找一个更靠谱的设计——CQRS。关于CQRS，我在这里只做一个简单的介绍，更多的细节你可以上网自行Google。
-CQRS全称Command and Query Responsibility Segregat ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2917424240.html" title="62 | 性能设计：边缘计算">62 | 性能设计：边缘计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">62 | 性能设计：边缘计算你好，我是陈皓，网名左耳朵耗子。
-前面我们通过一个秒杀的示例，展示了如何在CDN结点上简单地部署小服务，然后就可以完成在数据中心很难完成的事，我想你应该能看到边缘结点的一些威力。今天，我会和你聊聊我所认识的边缘计算，这也是我创业的方向。
-首先，一说起边缘计算，网上大多数文章都会说这是和IoT相关的一个技术。其实，我觉得这个说法只说对了边缘计算的一部分，边缘计算可以做的事情还有很多很多。
-所谓边缘计算，它是相对于数据中心而言。数据中心喜欢把所有的服务放在一个机房里集中处理用户的数据和请求，集中式部署一方面便于管理和运维，另一方面也便于服务间的通讯有一个比较好的网络保障。的确没错。不过，我们依然需要像CDN这样的边缘式的内容发布网络，把我们的静态内容推到离用户最近的地方，然后获得更好的性能。
-如果我们让CDN的这些边缘结点拥有可定制的计算能力，那么就可以像秒杀那样，可以在边缘结点上处理很多事情，从而为我们的数据中心带来更好的性能，更好的扩展性，还有更好的稳定性。而我们的用户也会觉得响应飞快，从而有了更好的用户体验。
-下面，让我们来看看为什么边缘计算会变成一个必然的产物。这里，我有两个例子。
-为什么要有边缘计算从趋势上来说首先，我们得看一下整个时代是怎么发展的。我们处在信息化革命时代，也有人叫数字化革命，总之就是电脑时代。这个时代，把各式各样的信息都给数字化掉 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2321437361.html" title="55 | 管理设计：服务网格">55 | 管理设计：服务网格</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">55 | 管理设计：服务网格你好，我是陈皓，网名左耳朵耗子。
-前面，我讨论了Sidecar边车模式，这是一个非常不错的分布式架构的设计模式。因为这个模式可以有效地分离系统控制和业务逻辑，并且可以让整个系统架构在控制面上可以集中管理，可以显著地提高分布式系统的整体控制和管理效率，并且可以让业务开发更快速。
-那么，我们不妨在上面这个模式下think big一下。假如，我们在一个分布式系统中，已经把一些标准的Sidecar给部署好了。比如前面文章说过的熔断、限流、重试、幂等、路由、监视等这些东西。我们在每个计算结点上都部署好了这些东西，那么真实的业务服务只需要往这个集群中放，就可以和本地的Sidecar通信，然后由Sidecar委托代理与其它系统的交互和控制。这样一来，我们的业务开发和运维岂不是简单至极了？
-是啊，试想一下，如果某云服务提供商，提供了一个带着前面我们说过的那些各式各样的分布式设计模式的Sidecar集群，那么我们的用户真的就只用写业务逻辑相关的service了。写好一个就往这个集群中部署，开发和运维工作量都会得到巨大的降低和减少。
-什么是Service Mesh这就是CNCF（Cloud Native Computing Foundation，云原生计算基金会）目前主力推动的新一代的微服务架构——Service Mesh服务网格。
-在 What’s a service m ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1683736450.html" title="61 | 性能设计：秒杀">61 | 性能设计：秒杀</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">61 | 性能设计：秒杀你好，我是陈皓，网名左耳朵耗子。
-一说起秒杀，大家都觉得这事很有技术含量。实际上，并不是这个样子的，秒杀这种互联网的交易方式其实并没有我们想象中的那么复杂。下面先让我们来系统地看一下，秒杀是怎么做的。
-秒杀的流程“秒杀”其实是商家为了促销，使用非常低的价格销售商品，比如，1元卖iPhone，100台，于是来了一百万人抢购。
-我们把技术挑战放在一边，先从用户或是产品的角度来看一下，秒杀的流程是什么样的。
-
-首先，你需要一个秒杀的landing page，在这个秒杀页上有一个倒计时的按钮。
-一旦这个倒计时的时间到了，按钮就被点亮，让你可以点击按钮下单。
-一般来说下单时需要你填写一个校验码，以防止是机器来抢。
-
-从技术上来说，这个倒计时按钮上的时间和按钮可以被点击的时间是需要后台服务器来校准的，这意味着：
-
-前端页面要不断地向后端来请求，开没开始，开没开始……
-每次询问的时候，后端都会给前端一个时间，以校准前端的时间。
-一旦后端服务器表示OK可以开始，后端服务会返回一个URL。
-这个URL会被安置在那个按钮上，就可以点击了。
-点击后，如果抢到了库存，就进入支付页面，如果没有则返回秒杀已结束。
-
-这个不断轮询的过程，就好像大家等着抢。你想想，有100万人来不停地询问有没有开始了这个事，估计后端也扛不住。
-秒杀的技术挑战接下来，我们需要来看一下“秒杀”的技术挑战。
-面 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1943697662.html" title="64 | 区块链技术细节：哈希算法">64 | 区块链技术细节：哈希算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">64 | 区块链技术细节：哈希算法你好，我是陈皓，网名左耳朵耗子。
-对于计算机来说，区块链就像一个单向链表，一个数据块中保存着三个信息。
-
-真正的数据。
-自己的地址（或是ID）。
-前一个数据块的地址。
-
-这样，通过追溯前一个块的地址，把所有的数据块存成了一条链。所以，我们叫其BlockChain。如下图所示。
-
-每个数据块的“地址”的编码使用了计算机上的一个算法，计算机圈内人士把这个算法叫Secure Hash。有人音译为“安全哈希”，也有人意译为“安全散列”。在计算机应用中，hash算法主要有几个功能。
-
-用来生成唯一标识一个数据块的ID（身份证），这个ID几乎不能重复。
-
-用来做数据的特征码。只要数据中一个bit的数据出现更改，那么整个hash值就完全不一样了。而且数学上保证了，我们无法通过hash值反推回原数据。
+2003年4月7日马云提出成立淘宝，2003年5月10日淘宝就上线了，中间只有1个月，怎么办？淘宝的答案就是：买一个。
 
 
-于是，很多公司在互联网上发布信息或软件的时候，都会带上一个Checksum（校验码）。你只要把整个文件的数据传入到那个特定的hash算法中，就会得到一串很长的字符串。如果和官方发布的Checksum字符串不一样，那么就说明信息或文件内容被人更改或是信息残缺了。因此，也被应用在“数字签名”中。
-在计算机世界里，有两个很著名的hash算法，一个叫MD5（ Wikipedia链接），一个叫SHA-2（ Wikipedia链接）， 区块链用的是SHA-256这个算法。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1536482978.html" title="63 | 区块链技术的本质">63 | 区块链技术的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">63 | 区块链技术的本质你好，我是陈皓，网名左耳朵耗子。
-去年专栏一开始更新的时候，就有读者留言让我发表一下对区块链技术的看法。当时我觉得区块链相关的技术相对比较简单，没什么好说的。并且，“左耳听风”专栏的主要目标是帮助大家学习更为主流的关键技术，所以那会我就把区块链相关的技术文章降级处理了。
-那为什么现在我又要写这个主题呢？
-2010年，我在浏览国外技术网站时，看到好多人在讨论一个叫bitcoin的东西，还看到有人说用几万个这个东西换了个披萨。随后，我看了一下它的 白皮书，这篇不到10页的文档读起来还是很容易的，所以建议你读一读。
-然后，我在一台电脑上尝试安装了一下，就像用BT或电驴下载一样，连入了这个没有服务器的P2P网络，下载了账本，还尝试了一下“挖矿”。
-花了不少的时间，我收到了来自系统奖励的50个比特币。当时，我默默地看着这个又耗硬盘空间，又非常吃CPU的家伙，心里想，这什么破软件，太难用了，就删除了。（是的，这50个比特币也就不知道去哪了。）
-记得比特币开始有价值的时候，像维基解密这样的机构为了避开被政府控制的银行，会接受比特币的捐款。2012年的时候，比特币已经看涨了，到了2013年，比特币的市值已经比较高了，突破了1000美金。
-那个时候，中国有好多人在挖矿。记得最厉害的是李笑来，他持有的比特币数量很可观，如果没有卖的话，现在就更为“恐怖”了。
-在2016年的时候 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/944131152.html" title="31 | 编程范式：泛型编程">31 | 编程范式：泛型编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">31 | 编程范式：泛型编程你好，我是陈皓，网名左耳朵耗子。
-在上节课，我从C语言开始说起，聊了聊面向过程式的编程范式，相信从代码的角度你对这类型的语言已经有了一些理解。作为一门高级语言，C语言绝对是编程语言历史发展中的一个重要里程碑，但随着认知的升级，面向过程的C语言已经无法满足更高层次的编程的需要。于是，C++出现了。
-C++语言1980年，AT&amp;T贝尔实验室的 Bjarne Stroustrup 创建的C++语言横空出世，它既可以全面兼容C语言，又巧妙揉合了一些面向对象的编程理念。现在来看，不得不佩服Stroustrup的魄力。在这里，我也向你推荐一本书，书名是《C++语言的设计和演化》。
-这本书系统介绍了C++诞生的背景以及初衷，书的作者就是 Stroustrup 本人，所以你可以非常详细地从语言创建者的角度了解他的设计思路和创新之旅。当然，就是在今天，C++这门语言也还有很多争议，这里我不细说。如果你感兴趣的话，可以看看我几年前在酷壳上发表的文章《 C++的坑真的多吗？》。
-从语言角度来说，实际上早期C++的许多工作是对C的强化和净化，并把完全兼容C作为强制性要求（这也是C++复杂晦涩的原因，这点Java就干得比C++彻底得多）。在C89、C99这两个C语言的标准中，有许多改进都是从C++中引进的。
-可见，C++对C语言的贡献非常之大。是的，因为C++很大程度就是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3487429568.html" title="66 | 区块链技术细节：去中心化的共识机制">66 | 区块链技术细节：去中心化的共识机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">66 | 区块链技术细节：去中心化的共识机制你好，我是陈皓，网名左耳朵耗子。
-其实，去中心化的共识机制也是要解决拜占庭将军问题（ The Byzantine Generals Problem），它是莱斯利·兰伯特（Leslie Lamport）于1982年提出来的，用来解释一致性问题的一个虚构模型。同时，它也是分布式领域中最复杂、最严格的容错模型。
-分布式一致性算法拜占庭的将军们没有一个中心化的领导机构，所以，如果他们需要攻击某个城市，所有将军需要对任何将军可能提出的攻击时间达成共识。也就是说，只有所有的将军都达成了共识，在同一个攻击时间攻击，就有非常大的胜率。但是，问题来了。这时，可能会有多个将军同时发出不同的攻击计划，而且这些将军中还有叛徒。那么，将军们怎样达成共识呢？
-莱斯利·兰伯特证明，当叛变者不超过 1&#x2F;3时，存在有效的算法。不论叛变者如何折腾，忠诚的将军们总能达成一致的结果。如果叛变者过多，则无法保证一定能达到一致性。
-拜占庭问题之所以难解，在于任何时候系统中都可能存在多个提案（因为提案成本很低），并且要完成最终的一致性确认过程十分困难，容易受干扰。但一旦确认，即为最终确认。
-比特币的区块链网络在设计时使用的 PoW（Proof of Work） 算法思路。一个是限制一段时间内整个网络中出现提案的个数（增加提案成本），另外一个是放宽对最终一致性确认的需求，约定 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3017688784.html" title="67 | 区块链技术细节：智能合约">67 | 区块链技术细节：智能合约</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">67 | 区块链技术细节：智能合约你好，我是陈皓，网名左耳朵耗子。
-要讲清楚智能合约，我先给你看几个案例。第一个案例是打赌。比如，张三和李四打赌，周末拜仁和皇马的足球比赛谁会赢。如果拜仁赢了，张三给李四100元；如果反过来，李四给张三100元；如果打成平局，则不赢不输。
-张三和李四都怕对方不认账，所以，他们需要找一个他们都信得过的人来做公证，两人都把100元钱给这个公证人。然后，如果拜仁赢了，公证人把全部200元给李四；如果皇马赢了，则全部给张三；如果是平局，则分别退还100元。
-
-上面这个模型什么都好，就是有一个问题，这个“公证人”跑路了怎么办？因为他们只赌100元，公证人犯不着为了200元跑路。但是，如果有一万人把赌金交给公证人呢？如果张三李四赌金是100万呢？公证人的人性会受到极大的挑战，他还有那么可信吗？
-银行的资金托管业务也就是说，当业务大到一定程度的时候，个人的信用是不足以来当中间公证人这个角色了。这时，你要找更为靠谱的机构，这个机构叫银行，银行的信用等级至少在这几方面上要比个人高。
-
-银行是机构，所以受政府监管，受法律约束；
-
-银行的钱很多，就算是里面有员工作案，银行也赔得起；
-
-银行里有比较安全的资金管理流程和措施；
+估计大部分人很难想象如今技术牛气冲天的阿里最初的淘宝竟然是买来的，我们看看当初决策的依据：
 
 
-因此，银行的受信程度很高，可以来做担保。
-下面，我们来看一个示例，银行在二手房交易中的“资金托管”业务。因为房屋交易时涉及到的资金数目太大，买家怕 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2663218069.html" title="65 | 区块链技术细节：加密和挖矿">65 | 区块链技术细节：加密和挖矿</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">65 |  区块链技术细节：加密和挖矿你好，我是陈皓，网名左耳朵耗子。
-前面一讲中提到的技术解决了交易信息不能被篡改的问题。但还有一个比较重要的问题，那就是，我们每个人只能发起和自己有关的交易，也就是能发起自己对别人付钱的交易，我们不能发起别人对我付钱，或是别人向别人付钱的交易。
-那么，在比特币中是怎么解决这个问题的？让我们先看一些基础的加密技术。
-比特币的加密方法密钥对&#x2F;签名&#x2F;证书所谓密钥对，也就是一种非对称加密技术。这种技术，在对信息进行加密和解密时，使用两个不同的密钥。这样一来，我们就可以把其中一个密钥公布出去，称之为公钥，另一个密钥私密地保管好，称之为私钥。
-现实社会中，有人使用公钥加密，私钥解密，也有反过来用私钥加密，公钥解密，这得看具体的场景。（比特币使用了非对称加密的技术，其使用了 ECDSA 密钥对比技术。）
-比如，我把我加密的密钥发布给所有人，然后大家都用这个公钥加密信息，但其他人没有私钥，所以他们解不了密文，只有我能解密文，也只有我能看得懂别人用我的公钥加密后发给我的密文。如下图所示。
+当时对整个项目组来说压力最大的就是时间，怎么在最短的时间内把一个从来就没有的网站从零开始建立起来？了解淘宝历史的人知道淘宝是在 2003 年 5 月 10 日上线的，这之间只有一个月。要是你在这个团队里，你怎么做？我们的答案就是：买一个来。
 
-但是，这会有个问题，那就是每个人都有我的公钥，别人可以截获Mike发给我的信息，然后自己用我的公钥加密一个别的信息，伪装成Mike发给我， 这样我就被黑了。于是，我们需要对Mike的身份进行验证，此时就需要用到“数字签名”的概念了。
-Mike也有一对密钥对， ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/34/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/#content-inner">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/36/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+淘宝当时在初创时，没有过多考虑技术是否优越、性能是否海量以及稳定性如何，主要的考虑因素就是：快！
+因为此时业务要求快速上线，时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/804804.html" title="09 | 每个工程师都应该了解的：大数据时代的算法">09 | 每个工程师都应该了解的：大数据时代的算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:19.000Z" title="发表于 2023-12-13 18:10:19">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">09 | 每个工程师都应该了解的：大数据时代的算法开了这个专栏之后，经常有读者问算法相关的问题。
+
+能不能讲讲算法在工作中的运用？你个人学习算法的过程是怎样的？我对算法还是有点怕。除此之外，你认为大学是应该多花时间学应用技术还是理论知识呢？谢谢。
+
+今天就来聊聊我自己学习算法的过程，以及算法在实际工作中的应用。
+以前，我们认为大数据总是优于好算法。也就是说，只要数据量足够大，即使算法没有那么好，也会产生好的结果。
+前一阵子“极客时间” App 发布了一条极客新闻：“算法比数据更重要，AlphaGo Zero 完胜旧版。”新闻的内容是谷歌人工智能团队 DeepMind 发布了新版的 AlphaGo 计算机程序，名为 AlphaGo Zero。这款软件能够从空白状态开始，不需要人类输入任何命令，便可以迅速自学围棋，并以 100 比 0 的战绩击败了上一代 AlphaGo。
+AlphaGo Zero 最大的突破在于实现了“白板理论”。白板理论认为：婴儿是一块白板，可以通过后天学习和训练来提高智力。AI的先驱图灵认为，只要能用机器制造一个类似于小孩的AI，然后加以训练，就能得到一个近似成人智力，甚至超越人类智力的 AI。
+自学成才的 AlphaGo Zero 正是实现了这一理论。AlphaGo 的首席研究员大卫·席尔瓦（David Silver）认为，从 AlphaGo Zero 中可以发 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2030560253.html" title="09 | 理论六：为什么基于接口而非实现编程？有必要为每个类都定义接口吗？">09 | 理论六：为什么基于接口而非实现编程？有必要为每个类都定义接口吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">09 | 理论六：为什么基于接口而非实现编程？有必要为每个类都定义接口吗？在上一节课中，我们讲了接口和抽象类，以及各种编程语言是如何支持、实现这两个语法概念的。今天，我们继续讲一个跟“接口”相关的知识点：基于接口而非实现编程。这个原则非常重要，是一种非常有效的提高代码质量的手段，在平时的开发中特别经常被用到。
+为了让你理解透彻，并真正掌握这条原则如何应用，今天，我会结合一个有关图片存储的实战案例来讲解。除此之外，这条原则还很容易被过度应用，比如为每一个实现类都定义对应的接口。针对这类问题，在今天的讲解中，我也会告诉你如何来做权衡，怎样恰到好处地应用这条原则。
+话不多说，让我们正式开始今天的学习吧！
+如何解读原则中的“接口”二字？“基于接口而非实现编程”这条原则的英文描述是：“Program to an interface, not an implementation”。我们理解这条原则的时候，千万不要一开始就与具体的编程语言挂钩，局限在编程语言的“接口”语法中（比如Java中的interface接口语法）。这条原则最早出现于1994年GoF的《设计模式》这本书，它先于很多编程语言而诞生（比如Java语言），是一条比较抽象、泛化的设计思想。
+实际上，理解这条原则的关键，就是理解其中的“接口”两个字。还记得我们上一节课讲的“接口”的定义吗？从本质上来看，“接口”就是一组“协议”或者“约 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/374990087.html" title="09 | 程序装载：“640K内存”真的不够用么？">09 | 程序装载：“640K内存”真的不够用么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">09 | 程序装载：“640K内存”真的不够用么？计算机这个行业的历史上有过很多成功的预言，最著名的自然是“摩尔定律”。当然免不了的也有很多“失败”的预测，其中一个最著名的就是，比尔·盖茨在上世纪80年代说的“640K ought to be enough for anyone”，也就是“640K内存对哪个人来说都够用了”。
+那个年代，微软开发的还是DOS操作系统，程序员们还在绞尽脑汁，想要用好这极为有限的640K内存。而现在，我手头的开发机已经是16G内存了，上升了一万倍还不止。那比尔·盖茨这句话在当时也是完全的无稽之谈么？有没有哪怕一点点的道理呢？这一讲里，我就和你一起来看一看。
+程序装载面临的挑战上一讲，我们看到了如何通过链接器，把多个文件合并成一个最终可执行文件。在运行这些可执行文件的时候，我们其实是通过一个装载器，解析ELF或者PE格式的可执行文件。装载器会把对应的指令和数据加载到内存里面来，让CPU去执行。
+说起来只是装载到内存里面这一句话的事儿，实际上装载器需要满足两个要求。
+第一，可执行程序加载后占用的内存空间应该是连续的。我们在 第6讲 讲过，执行指令的时候，程序计数器是顺序地一条一条指令执行下去。这也就意味着，这一条条指令需要连续地存储在一起。
+第二，我们需要同时加载很多个程序，并且不能让程序自己规定在内存中加载的位置。 虽然编译出来的指令里已经有了对应的各种各 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/555896776.html" title="09 | 答疑解惑：渴望、热情和选择">09 | 答疑解惑：渴望、热情和选择</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">09 | 答疑解惑：渴望、热情和选择你好，我是陈皓，网名左耳朵耗子。
+自从专栏上线以来，我陆陆续续从专栏留言、微信、微博、公开演讲等多种途径收到了一些用户的提问。在这节答疑课中，我特意挑选了其中最有代表性的三个问题来回答，希望能对你有帮助。
+
+加班太严重完全没有时间学习，怎么办？
+为什么你能写出这么多东西？
+怎样选择自己的人生和职业发展？
+
+加班太严重完全没有时间学习，怎么办？过去的7年时间里，这个问题我已经被很多人问过无数遍了。我觉得有必要在这里统一回答一下。老实说，我真的很理解年轻人工作压力大这事儿，现在的公司加班都很厉害，尤其在大城市工作还要算上路上奔波的时间，这样一来，对于很多人来说，可能就完全没有时间学习和成长了。
+但是从另外一方面，我们在通宵打游戏，追美剧，泡妞的时候，从来不会给自己找借口说时间不够。我们总是能够挤得出时间来干这些“顺人性”的事，甚至做到废寝忘食，而不找任何借口。
+所以，我觉得，可能并不在于加班和工作强度大到没时间，关键看你对学习有多少的渴望程度，对要学的东西有多大的热情。这点是非常重要的，因为学习这事其实挺反人性的。反人性的事基本上都是要付出很多，而且还要坚持很久。所以，如果对学习没有渴望的话，或是不能从学习中找到快乐的话，那么其实是很难坚持的，无论你有没有时间。
+说两个发生在我身上的故事供大家参考。
+第一个故事，发生在2001年到2002年期间，那时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3902393923.html" title="09 | 粗放与精益：编程的两种思路与方式">09 | 粗放与精益：编程的两种思路与方式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:22.000Z" title="发表于 2023-12-13 18:36:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">09 | 粗放与精益：编程的两种思路与方式几年前，我给团队负责的整个系统写过一些公共库，有一次同事发现这个库里存在一个Bug，并告诉了我出错的现象。然后我便去修复这个Bug，最终只修改了一行代码，但发现一上午就这么过去了。
+一上午只修复了一个Bug，而且只改了一行代码，到底发生了什么？时间都去哪里了？以前觉得自己写代码很快，怎么后来越来越慢了？我认真地思考了这个问题，开始认识到我的编程方式和习惯在那几年已经慢慢发生了变化，形成了明显的两个阶段的转变。这两个阶段是：
+
+写得粗放，写得多
+写得精益，写得好
+
+多与粗放粗放，在软件开发这个年轻的行业里其实没有确切的定义，但在传统行业中确实存在相近的关于 “粗放经营” 的概念可类比。引用其百科词条定义如下：
+
+粗放经营（Extensive Management），泛指技术和管理水平不高，生产要素利用效率低，产品粗制滥造，物质和劳动消耗高的生产经营方式。
+
+若把上面这段话里面的 “经营” 二字改成 “编程”，就很明确地道出了我想表达的粗放式编程的含义。
+一个典型的粗放式编程场景大概是这样的：需求到开发手上后，开始编码，编码完成，人肉测试，没问题后快速发布到线上，然后进入下一个迭代。
+我早期参与的大量项目过程都与此类似，不停地重复接需求，快速开发，发布上线。在这个过程中，我只是在不停地堆砌功能代码，每天产出的代码量不算少，但感觉都很类似，也很粗 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2127581367.html" title="09 机器学习 | 大道至简：朴素贝叶斯方法">09 机器学习 | 大道至简：朴素贝叶斯方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">09 机器学习 | 大道至简：朴素贝叶斯方法周二我和你分享了机器学习中的线性回归算法，这一算法解决的是从连续取值的输入映射为连续取值的输出的回归问题。今天我分享的算法则用于解决分类问题，即将连续取值的输入映射为离散取值的输出，算法的名字叫作“ 朴素贝叶斯方法”。
+解决分类问题的依据是数据的属性。朴素贝叶斯分类器假定样本的不同属性满足条件独立性假设，并在此基础上应用贝叶斯定理执行分类任务。 其基本思想在于分析待分类样本出现在每个输出类别中的后验概率，并以取得最大后验概率的类别作为分类的输出。
+假设训练数据的属性由n维随机向量$\bf x$表示，其分类结果用随机变量y表示，那么x和y的统计规律就可以用联合概率分布$P(X, Y)$描述，每一个具体的样本$(x_i, y_i)$都可以通过$P(X, Y)$独立同分布地产生。
+朴素贝叶斯分类器的出发点就是这个联合概率分布，根据条件概率的性质可以得到
+$$ P(X, Y) &#x3D; P(Y) \cdot P(X|Y)$$
+$$&#x3D; P(X) \cdot P(Y|X) $$
+在上式中，P(Y)代表着每个类别出现的概率，也就是 类先验概率；P(X|Y)代表着在给定的类别下不同属性出现的概率，也就是 类似然概率。
+先验概率容易根据训练数据计算出来，只需要统计不同类别样本的数目即可。而似然概率受属性取值数目的影响，其估计较为困难。
+如果每 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1495765041.html" title="090 | Cassandra和DataStax的故事">090 | Cassandra和DataStax的故事</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">090 | Cassandra和DataStax的故事Cassandra是大数据时代中非常具有影响力的一个开源项目，DataStax则是背后支持开源Cassandra并将其商业化的公司。今天我们就来聊一下Cassandra和Datatax的故事。
+我们都知道，在大数据发展历史上，谷歌的“三驾马车”：谷歌文件系统、 MapReduce、 BigTable。三者都曾经扮演了非常重要的角色，Hadoop开源生态圈里也有对应的Hadoop文件系统，Hadoop MapReduce和HBase。
+但是在大数据发展史上，还有一篇影响力几乎等同于谷歌“三驾马车”的论文。它讲的就是亚马逊发布的Dynamo系统。
+2008年，Dynamo系统的作者之一阿维纳什·拉克希曼（Avinash Lakshman），跳槽去了Facebook。跳槽的阿维纳（Avinash）和Facebook网站的另外一个工程师普拉桑特·马利克（Prashant Malik），一起开发了Cassandra，一个Dynamo的开源山寨版。
+Cassandra开发出来之后很快就被开源了。早期Facebook对于开源这件事还是非常支持的，但是它开源的Cassandra很快就受到了一次重大的打击，这个打击可以说是十分致命的。
+早年的Facebook对于谷歌技术非常崇拜，但对于亚马逊的技术却缺乏信心。于是Facebook准备开发移动App ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/983022241.html" title="090 | 如何优化广告的竞价策略？">090 | 如何优化广告的竞价策略？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">090 | 如何优化广告的竞价策略？广告的竞价排名是计算广告系统中非常重要的一个话题，我们介绍了目前广泛使用的基于第二价位的广告竞拍，以及在此基础上，DSP或者广告商究竟该如何形成自己的竞价策略（Bidding Strategy）。
+今天，我们就来看一些 具体的广告竞价策略方法。
+单个广告推广计划优化我们首先来看单个广告“推广计划”（Campaign）的竞价策略的优化。
+在上一次的分享里我们介绍了，利用统计决策的一个重要假设就是最终的出价是一个各种输入（例如环境、用户、页面等）的函数输出。这里我们采用一个简化的假设，认为一个推广计划的出价是点击率的一个函数。在这样的情况下，我们先来理清一些概念。
+第一个概念是“ 赢的概率”（Winning Probability）。这里面，如果我们知道现在市场的一个价格分布以及我们的出价。那么，赢的概率就是一个已知概率密度函数求概率的计算，也就是通常情况下的一个积分计算。
+第二个概念就是“ 效用”（Utility）。这是一个广告商关注的指标，通常情况下是点击率的某种函数，比如利润，那就是每一次点击后的价值减去成本。
+在这种情况下的成本其实主要就是 出价后产生的交易价格。如果是基于第一价位的竞价，那么这个成本就是出价；如果是基于第二价位的竞价，这个成本就是超过第二价位多少还能赢得竞价的价格。
+最后还有一点需要说明，那就是所有的广告推广计划都必须要在预 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2133697900.html" title="091 | Databricks之Spark的数据金砖王国">091 | Databricks之Spark的数据金砖王国</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">091 | Databricks之Spark的数据金砖王国说起大数据的创业公司，我们一定都会提到Databricks这公司，而这家公司知名的原因，一大部分来自于它的开源产品Spark。Spark是Hadoop生态圈里大红大紫的项目，事实上，它甚至已经取代了新一代的经典运行框架：Hadoop MapReduce。
+所以，想要了解Databricks这家创业公司，我们就需要先了解Spark这个Apache开源项目。Spark是一个大数据计算框架，它诞生于加州大学伯克利分校AMP实验室，是当时的博士生马泰·扎哈里亚（Matei Zaharia）的博士论文课题。
+2010年，Spark在BSD License下开源。经过几年发展以后，在2013年成立了Databricks，同年，它被Databricks捐献给Apache基金会，并将开源模式转向了Apache 2.0，从此，Spark正式成为Apache家族里顶级开源项目之一。
+Spark是目前整个Hadoop的生态系统里最为活跃的计算框架，它已经取代了Hadoop原来MapReduce框架的地位，目前，只有Flink的计算框架尚能与它平分秋色（有关Flink的情况，我们会在后面的文章里详细介绍）。
+Spark框架下支持SQL、机器学习、图计算、流计算等各种各样的计算模型，应用起来十分广泛。它不仅在开源社区里广受追捧，在大公司里也常常被拿来 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/34/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/#content-inner">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/#content-inner">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/36/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,78 +138,106 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3822827152.html" title="15 | 边界：微服务的各种边界在架构演进中的作用？">15 | 边界：微服务的各种边界在架构演进中的作用？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">15 | 边界：微服务的各种边界在架构演进中的作用？你好，我是欧创新。
-前几讲我们已经介绍过了，在用DDD进行微服务设计时，我们可以通过事件风暴来确定领域模型边界，划定微服务边界，定义业务和系统运行边界，从而保证微服务的单一职责和随需而变的架构演进能力。
-那重点落到边界的时候，总结一下就是，微服务的设计要涉及到逻辑边界、物理边界和代码边界等等。
-那么这些边界在微服务架构演进中到底起到什么样的作用？我们又该如何理解这些边界呢？这就是我们今天重点要解决的问题。
-演进式架构在微服务设计和实施的过程中，很多人认为：“将单体拆分成多少个微服务，是微服务的设计重点。”可事实真的是这样吗？其实并非如此！
-Martin Fowler 在提出微服务时，他提到了微服务的一个重要特征——演进式架构。那什么是演进式架构呢？演进式架构就是以支持增量的、非破坏的变更作为第一原则，同时支持在应用程序结构层面的多维度变化。
-那如何判断微服务设计是否合理呢？其实很简单，只需要看它是否满足这样的情形就可以了：随着业务的发展或需求的变更，在不断重新拆分或者组合成新的微服务的过程中，不会大幅增加软件开发和维护的成本，并且这个架构演进的过程是非常轻松、简单的。
-这也是微服务设计的重点，就是看微服务设计是否能够支持架构长期、轻松的演进。
-那用DDD方法设计的微服务，不仅可以通过限界上下文和聚合实现微服务内外的解耦，同时也可以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2911890207.html" title="14 | 代码模型（下）：如何保证领域模型与代码模型的一致性？">14 | 代码模型（下）：如何保证领域模型与代码模型的一致性？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">14 | 代码模型（下）：如何保证领域模型与代码模型的一致性？你好，我是欧创新。
-在 [第 12 讲] 中，我们了解了如何用事件风暴来构建领域模型，在构建领域模型的过程中，我们会提取出很多的领域对象，比如聚合、实体、命令和领域事件等。到了 [第 13 讲]，我们又根据DDD分层架构模型，建立了标准的微服务代码模型，为代码对象定义好了分层和目录结构。
-那要想完成微服务的设计和落地，这之后其实还有一步，也就是我们今天的重点——将领域对象映射到微服务代码模型中。那为什么这一步如此重要呢？
-DDD强调先构建领域模型然后设计微服务，以保证领域模型和微服务的一体性，因此我们不能脱离领域模型来谈微服务的设计和落地。但在构建领域模型时，我们往往是站在业务视角的，并且有些领域对象还带着业务语言。我们还需要将领域模型作为微服务设计的输入，对领域对象进行设计和转换，让领域对象与代码对象建立映射关系。
-接下来我们围绕今天的重点，详细来讲一讲。
-领域对象的整理完成微服务拆分后，领域模型的边界和领域对象就基本确定了。
-我们第一个重要的工作就是，整理事件风暴过程中产生的各个领域对象，比如：聚合、实体、命令和领域事件等内容，将这些领域对象和业务行为记录到下面的表格中。
-你可以看到，这张表格里包含了：领域模型、聚合、领域对象和领域类型四个维度。一个领域模型会包含多个聚合，一个聚合包含多个领域对象，每个领域对象都有自 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3073138270.html" title="16 | 视图：如何实现服务和数据在微服务各层的协作？">16 | 视图：如何实现服务和数据在微服务各层的协作？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">16 | 视图：如何实现服务和数据在微服务各层的协作？你好，我是欧创新。
-在DDD分层架构和微服务代码模型里，我们根据领域对象的属性和依赖关系，将领域对象进行分层，定义了与之对应的代码对象和代码目录结构。分层架构确定了微服务的总体架构，微服务内的主要对象有服务和实体等，它们一起协作完成业务逻辑。
-那在运行过程中，这些服务和实体在微服务各层是如何协作的呢？今天我们就来解剖一下基于DDD分层架构的微服务，看看它的内部结构到底是什么样的。
-服务的协作1. 服务的类型我们先来回顾一下分层架构中的服务。按照分层架构设计出来的微服务，其内部有Facade服务、应用服务、领域服务和基础服务。各层服务的主要功能和职责如下。
-Facade服务： 位于用户接口层，包括接口和实现两部分。用于处理用户发送的Restful请求和解析用户输入的配置文件等，并将数据传递给应用层。或者在获取到应用层数据后，将DO组装成DTO，将数据传输到前端应用。
-应用服务： 位于应用层。用来表述应用和用户行为，负责服务的组合、编排和转发，负责处理业务用例的执行顺序以及结果拼装，对外提供粗粒度的服务。
-领域服务： 位于领域层。领域服务封装核心的业务逻辑，实现需要多个实体协作的核心领域逻辑。它对多个实体或方法的业务逻辑进行组合或编排，或者在严格分层架构中对实体方法进行封装，以领域服务的方式供应用层调用。
-基础服务： 位于基础层。提 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2462621485.html" title="17 | 从后端到前端：微服务后，前端如何设计？">17 | 从后端到前端：微服务后，前端如何设计？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">17 | 从后端到前端：微服务后，前端如何设计？你好，我是欧创新。
-微服务架构通常采用前后端分离的设计方式。作为企业级的中台，在完成单体应用拆分和微服务建设后，前端项目团队会同时面对多个中台微服务项目团队，这时候的前端人员就犹如维修电工一样了。
-面对如此多的微服务暴露出来的API服务，如何进行正确的连接和拼装，才能保证不出错？这显然不是一件很容易的事情。而当服务出现变更时，又如何通知所有受影响的项目团队，这里面的沟通成本相信也不小。
-相应的，要从一定程度上解决上述问题，我们是不是可以考虑先有效降低前端集成的复杂度呢？先做到前端聚合，后端解耦——这是一个很有意思的话题。今天我们就一起来聊聊微前端（Micro Frontend）的设计思想，探讨一下中台微服务后，前后端的设计和集成方式。
-单体前端的困境传统企业在完成中台转型后，虽然后台的业务完成了微服务架构的升级，但前端仍然是单体模式，由一个团队创建并维护一个前端应用。随着时间推移和业务发展，前端会变得越来越臃肿，越来越难维护。而随着5G和移动互联技术的应用，企业业务活动将会进一步移动化和线上化。过去很多企业的做法是为不同的业务开发出独立的APP。但很显然用户并不想装那么多的APP！
-为了提高用户体验，实现统一运营，很多企业开始缩减和整合APP，将企业内所有的业务能力都尽量集中到一个APP中。试想如果仍然沿用单体前端的设计模式。前端项目 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1656814383.html" title="19 | 总结（一）：微服务设计和拆分要坚持哪些原则？">19 | 总结（一）：微服务设计和拆分要坚持哪些原则？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">19 | 总结（一）：微服务设计和拆分要坚持哪些原则？你好，我是欧创新。
-我们前面已经讲了很多DDD的设计方法和实践案例。虽然DDD的设计思想和方法很好，但由于企业发展历程以及企业技术和文化的不同，DDD和微服务的实施策略也会有差异。那么面对这种差异，我们应该如何落地DDD和微服务呢？今天我们就来聊聊微服务的设计原则和演进策略。
-微服务的演进策略在从单体向微服务演进时，演进策略大体分为两种：绞杀者策略和修缮者策略。
-1. 绞杀者策略绞杀者策略是一种逐步剥离业务能力，用微服务逐步替代原有单体系统的策略。它对单体系统进行领域建模，根据领域边界，在单体系统之外，将新功能和部分业务能力独立出来，建设独立的微服务。新微服务与单体系统保持松耦合关系。
-随着时间的推移，大部分单体系统的功能将被独立为微服务，这样就慢慢绞杀掉了原来的单体系统。绞杀者策略类似建筑拆迁，完成部分新建筑物后，然后拆除部分旧建筑物。
-2. 修缮者策略修缮者策略是一种维持原有系统整体能力不变，逐步优化系统整体能力的策略。它是在现有系统的基础上，剥离影响整体业务的部分功能，独立为微服务，比如高性能要求的功能，代码质量不高或者版本发布频率不一致的功能等。
-通过这些功能的剥离，我们就可以兼顾整体和局部，解决系统整体不协调的问题。修缮者策略类似古建筑修复，将存在问题的部分功能重建或者修复后，重新加入到原有的建筑中，保持建筑原貌和功能 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3427836562.html" title="18 | 知识点串讲：基于DDD的微服务设计实例">18 | 知识点串讲：基于DDD的微服务设计实例</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">18 | 知识点串讲：基于DDD的微服务设计实例你好，我是欧创新。
-为了更好地理解DDD的设计流程，今天我会用一个项目来带你了解DDD的战略设计和战术设计，走一遍从领域建模到微服务设计的全过程，一起掌握DDD的主要设计流程和关键点。
-项目基本信息项目的目标是实现在线请假和考勤管理。功能描述如下：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/724758191.html" title="67 | 迭代器模式（下）：如何设计实现一个支持“快照”功能的iterator？">67 | 迭代器模式（下）：如何设计实现一个支持“快照”功能的iterator？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">67 | 迭代器模式（下）：如何设计实现一个支持“快照”功能的iterator？上两节课，我们学习了迭代器模式的原理、实现，并且分析了在遍历集合的同时增删集合元素，产生不可预期结果的原因以及应对策略。
+今天，我们再来看这样一个问题：如何实现一个支持“快照”功能的迭代器？这个问题算是对上一节课内容的延伸思考，为的是帮你加深对迭代器模式的理解，也是对你分析、解决问题的一种锻炼。你可以把它当作一个面试题或者练习题，在看我的讲解之前，先试一试自己能否顺利回答上来。
+话不多说，让我们正式开始今天的学习吧！
+问题描述我们先来介绍一下问题的背景：如何实现一个支持“快照”功能的迭代器模式？
+理解这个问题最关键的是理解“快照”两个字。所谓“快照”，指我们为容器创建迭代器的时候，相当于给容器拍了一张快照（Snapshot）。之后即便我们增删容器中的元素，快照中的元素并不会做相应的改动。而迭代器遍历的对象是快照而非容器，这样就避免了在使用迭代器遍历的过程中，增删容器中的元素，导致的不可预期的结果或者报错。
+接下来，我举一个例子来解释一下上面这段话。具体的代码如下所示。容器list中初始存储了3、8、2三个元素。尽管在创建迭代器iter1之后，容器list删除了元素3，只剩下8、2两个元素，但是，通过iter1遍历的对象是快照，而非容器list本身。所以，遍历的结果仍然是3、8、2。同理，iter2、it ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2532479116.html" title="68 | 访问者模式（上）：手把手带你还原访问者模式诞生的思维过程">68 | 访问者模式（上）：手把手带你还原访问者模式诞生的思维过程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">68 | 访问者模式（上）：手把手带你还原访问者模式诞生的思维过程前面我们讲到，大部分设计模式的原理和实现都很简单，不过也有例外，比如今天要讲的访问者模式。它可以算是23种经典设计模式中最难理解的几个之一。因为它难理解、难实现，应用它会导致代码的可读性、可维护性变差，所以，访问者模式在实际的软件开发中很少被用到，在没有特别必要的情况下，建议你不要使用访问者模式。
+尽管如此，为了让你以后读到应用了访问者模式的代码的时候，能一眼就能看出代码的设计意图，同时为了整个专栏内容的完整性，我觉得还是有必要给你讲一讲这个模式。除此之外，为了最大化学习效果，我今天不只是单纯地讲解原理和实现，更重要的是，我会手把手带你还原访问者模式诞生的思维过程，让你切身感受到创造一种新的设计模式出来并不是件难事。
+话不多说，让我们正式开始今天的学习吧！
+带你“发明”访问者模式假设我们从网站上爬取了很多资源文件，它们的格式有三种：PDF、PPT、Word。我们现在要开发一个工具来处理这批资源文件。这个工具的其中一个功能是，把这些资源文件中的文本内容抽取出来放到txt文件中。如果让你来实现，你会怎么来做呢？
+实现这个功能并不难，不同的人有不同的写法，我将其中一种代码实现方式贴在这里。其中，ResourceFile是一个抽象类，包含一个抽象函数extract2txt()。PdfFile、PPTFile、WordFile ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3026780820.html" title="68 | 谈谈传统金融和虚拟货币">68 | 谈谈传统金融和虚拟货币</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">68 | 谈谈传统金融和虚拟货币你好，我是陈皓，网名左耳朵耗子。
+前面我们讲了银行的资金托管业务以及国际贸易业务。我讲这些东西，主要想讲什么呢？
+金融的本质我想讲金融的本质。我个人认为金融行业最大的本质就是—— 促进交易完成，实现价值提升！ 也就是说，如果整个社会的交易能够更快更高效更安全地完成，那么我们这个社会就会有更好的运作效率，更低的成本，更多的价值。这对于促进整个社会的经济发展是相当关键的。
+所以，为了保证交易完成，金融行业需要解决下面几个问题。
 
-请假人填写请假单提交审批，根据请假人身份、请假类型和请假天数进行校验，根据审批规则逐级递交上级审批，逐级核批通过则完成审批，否则审批不通过退回申请人。
-根据考勤规则，核销请假数据后，对考勤数据进行校验，输出考勤统计。
+交易中的信用问题。所以，银行会来做中间人来担保。
 
-战略设计战略设计是根据用户旅程分析，找出领域对象和聚合根，对实体和值对象进行聚类组成聚合，划分限界上下文，建立领域模型的过程。
-战略设计采用的方法是事件风暴，包括：产品愿景、场景分析、领域建模和微服务拆分等几个主要过程。
-战略设计阶段建议参与人员：领域专家、业务需求方、产品经理、架构师、项目经理、开发经理和测试经理。
-1. 产品愿景产品愿景是对产品顶层价值设计，对产品目标用户、核心价值、差异化竞争点等信息达成一致，避免产品偏离方向。
-事件风暴时，所有参与者针对每一个要点，在贴纸上写出自己的意见，贴到白板上。事件风暴主持者会对每个贴纸，讨论并对发散的意见进行收敛和统一，形成下面的产品愿景图。
+交易中资金不足的问题。通过借贷来让交易完成。
 
-我们把这个产品愿景图整理成一段文字就是： 为了满足内外部人员，他们的在线请假、自 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2120398548.html" title="基于DDD的微服务设计实例代码详解">基于DDD的微服务设计实例代码详解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">基于DDD的微服务设计实例代码详解你好，我是欧创新。好久不见，今天我带着你期待的案例来了。
-还记得我们在 [第 18 讲] 中用事件风暴完成的“在线请假考勤”项目的领域建模和微服务设计吗？今天我们就在这个项目的基础上看看，用DDD方法设计和开发出来的微服务代码到底是什么样的？点击 Github 获取完整代码，接下来的内容是我对代码的一个详解，期待能帮助你更好地实践我们这个专栏所学到的知识。
-项目回顾“在线请假考勤”项目中，请假的核心业务流程是：请假人填写请假单提交审批；根据请假人身份、请假类型和请假天数进行校验并确定审批规则；根据审批规则确定审批人，逐级提交上级审批，逐级核批通过则完成审批，否则审批不通过则退回申请人。
-在 [第 18 讲] 的微服务设计中，我们已经拆分出了两个微服务：请假和考勤微服务。今天我们就围绕“请假微服务”来进行代码详解。微服务采用的开发语言和数据库分别是：Java、Spring boot 和 PostgreSQL。
-请假微服务采用的DDD设计思想请假微服务中用到了很多的DDD设计思想和方法，主要包括以下几个：
+交易中大额的问题。把一个大额的金融事件以股份的方式拆碎进行大众投资。
 
-聚合中的对象请假微服务包含请假（leave）、人员（person）和审批规则（rule）三个聚合。leave聚合完成请假申请和审核核心逻辑；person聚合管理人员信息和上下级关系；rule是一个单实体聚合，提供请假审批规则查询。
-Leave是请假 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1508525904.html" title="20 | 总结（二）：分布式架构关键设计10问">20 | 总结（二）：分布式架构关键设计10问</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">20 | 总结（二）：分布式架构关键设计10问你好，我是欧创新。
-前面我们重点讲述了领域建模、微服务设计和前端设计方法，它们组合在一起就可以形成中台建设的整体解决方案。而中台大多基于分布式微服务架构，这种企业级的数字化转型有很多地方值得我们关注和思考。
-我们不仅要关注企业商业模式、业务边界以及前中台的融合，还要关注数据技术体系、微服务设计、多活等多领域的设计和协同。结合实施经验和思考，今天我们就来聊聊分布式架构下的几个关键问题。
-一、选择什么样的分布式数据库？分布式架构下的数据应用场景远比集中式架构复杂，会产生很多数据相关的问题。谈到数据，首先就是要选择合适的分布式数据库。
-分布式数据库大多采用数据多副本的方式，实现数据访问的高性能、多活和容灾。目前主要有三种不同的分布式数据库解决方案。它们的主要差异是数据多副本的处理方式和数据库中间件。
-1. 一体化分布式数据库方案它支持数据多副本、高可用。多采用Paxos协议，一次写入多数据副本，多数副本写入成功即算成功。代表产品是OceanBase和高斯数据库。
-2. 集中式数据库+数据库中间件方案它是集中式数据库与数据库中间件结合的方案，通过数据库中间件实现数据路由和全局数据管理。数据库中间件和数据库独立部署，采用数据库自身的同步机制实现主副本数据的一致性。集中式数据库主要有MySQL和PostgreSQL数据库，基于这两种数据库衍生出了很 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1698826797.html" title="抽奖｜《DDD实战课》沉淀成书了，感谢有你！">抽奖｜《DDD实战课》沉淀成书了，感谢有你！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">抽奖｜《DDD实战课》沉淀成书了，感谢有你！你好，我是欧创新。好久不见！
-专栏结课已经快一年了，累计有 10000 余人加入学习，非常感谢大家的支持。每次登录后台查看留言，依然能看到大家的分享，真的非常开心能和你一直保持联系、保持交流！
-《DDD实战课》完结后，我并没有停止在DDD方面的深度探索，他一直延伸至我工作的方方面面。做了很多次的实践与思考，和诸多技术大牛进行切磋，加之专栏的铺垫和积累，历时一年，我完成了这本书 《中台架构与实现：基于DDD和微服务》，特来与你分享好消息。
 
-完整学习过专栏的同学，对DDD的优势应该了如指掌了，有所遗忘的同学也可以再去看看 开篇词，这里不再赘述。但话说回来，DDD与微服务，乃至中台设计的结合，目前仍是一个非常新的领域。对于如何利用DDD，完成中台和微服务的协同设计，其实还有很多难题等待攻克。
-想必你在购买这个专栏的时候，就已经了解到DDD相关的资料在市面上的表现是怎样的一个状态。微服务开发和技术的学习资料非常多，但在中台数字化转型过程中，关于如何进行业务领域边界划分，如何完成中台领域建模实现能力复用，如何完成单体应用拆分和微服务设计，如何实现前中后台的协同设计等等，可参考和借鉴的资料并不是很多。即便有一些，真正理解和实施起来也是困难重重。这也是我写书的源动力。
-目前这本书已经正式出版，极客商城、京东、当当同步开售。由于新上架， 现在极客商城刚 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/335259563.html" title="开篇词 | 学好了DDD，你能做什么？">开篇词 | 学好了DDD，你能做什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">开篇词 | 学好了DDD，你能做什么？你好，我是欧创新，人保高级架构师，一名奋斗在软件架构一线十余年的技术人。
-目前热衷于采用领域驱动设计（DDD）实现中台业务建模，专注基于DDD的微服务设计和开发等。另外，我也正在深入探索传统企业中台数字化转型的技术和方法体系。很高兴在这个专栏和你见面！
-我与DDD说起DDD的实践，那就不得不提微服务了。2015年，我刚开始接触微服务，那时候和别人去介绍微服务的设计理念，接受度并不高，毕竟大家普遍采用的还是集中式架构。
-但即便是在四年前，业务的日渐复杂也是可以预见的，微服务的价值确确实实存在。我就从那个时候开始深入研究，作为公司的高级架构师，我也一直处于公司中台转型和微服务建设的一线。
-这个过程中，我和我的技术团队踩过不少坑，最尖锐的一个问题是：“微服务到底怎么拆分和设计才算合理，拆多小才叫微服务？”而微服务的边界历来也是最容易产生争议的地方。
-紧接着，阿里巴巴成功完成了中台战略转型。于是，很多大型公司也开启了中台数字化战略转型，中型公司也根据自身需求跃跃欲试。但也有很多公司由于历史原因，存在着大量系统重复建设的问题。
-作为中台，需要将通用的可复用的业务能力沉淀到中台业务模型，实现企业级能力复用。因此中台面临的首要问题就是中台领域模型的重构。而中台落地时，依然会面临微服务设计和拆分的问题。这两个问题一前一后，放在任何一家公司，我想都是一个不小的挑 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/104/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/#content-inner">104</a><span class="page-number current">105</span><a class="page-number" href="/page/106/#content-inner">106</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/106/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+总之，金融行业就是要促进社会的交易，使得这个社会的交易越来越活跃，从而可以产生更多的价值。那么，这个社会的经济就会越来越健康。
+下图给出了金融行业的四个重要属性。
+
+
+效率提升：加快货币、股票、债券的流通性，快速地促成交易。
+
+价值提升：通过金融产品的流通性，让实际价值得到充分的体现，并升值。
+
+激励机制：为实体经济添砖加瓦，并激励社会持续付出和成长。
+
+信用评级：建立信用社会、评估信用等级，从而改善社会。
+
+
+是不是有银行做担保，有这些金融机构我们就可以高枕无忧了？不是的，我在前面说过，主要是钱不够多，只要钱多到一定数量的时候，什么事都可能发生。因为逐利是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4118339733.html" title="69 | 程序员练级攻略：介绍">69 | 程序员练级攻略：介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">69 | 程序员练级攻略：介绍你好，我是陈皓，网名左耳朵耗子。
+2011年，我在 CoolShell 上发表了 《 程序员技术练级攻略》一文，收到了很多读读者的追捧，同时，这几年时间里，我还陆续收到了一些人的反馈，说跟着这篇文章找到了不错的工作，他们希望我把这篇文章更新一下，因为毕竟行业的变化很快。
+是的， 老实说，抛开这几年技术的更新迭代不说，那篇文章写得也不算特别系统，同时标准也有点低，当时是给一个想要入门的朋友写的。所以，非常有必要从头更新一下《程序员练级攻略》这一主题。
+前言导读升级版的《程序员练级攻略》会比Coolshell上的内容更多，也更专业。这篇文章有【入门篇】、【修养篇】、【专业基础篇】、【软件设计篇】、【高手成长篇】五大篇章。它们会帮助你从零开始，一步步地，系统地，完成从陌生到熟悉，到理解掌握，从编码到设计再到架构，从码农到程序员再到工程师再到架构师的进阶，实现从普通到精通到卓越的完美转身……
+在 入门篇 中，我先推荐的是把Python和JavaScript作为入门语言，并给出了相应的学习资源和方法。Python语法比较简单，有大量的库和语法糖，是零基础的人学习编程的不二之选。而JavaScript是前端语言，更容易让你获得编程的成就感。
+随后，我们需要学习使用操作系统Linux、编程工具Visual Studio Code等入门必学内容。Web互联网作为第三次 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2785809528.html" title="69 | 访问者模式（下）：为什么支持双分派的语言不需要访问者模式？">69 | 访问者模式（下）：为什么支持双分派的语言不需要访问者模式？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">69 | 访问者模式（下）：为什么支持双分派的语言不需要访问者模式？上一节课中，我们学习了访问者模式的原理和实现，并且还原了访问者模式诞生的思维过程。总体上来讲，这个模式的代码实现比较难，所以应用场景并不多。从应用开发的角度来说，它的确不是我们学习的重点。
+不过，我们前面反复说过，学习我的专栏，并不只是让你掌握知识，更重要的是锻炼你分析、解决问题的能力，锻炼你的逻辑思维能力，所以，今天我们继续把访问者模式作为引子，一块讨论一下这样两个问题，希望能激发你的深度思考：
+
+为什么支持双分派的语言不需要访问者模式呢？
+除了访问者模式，上一节课中的例子还有其他实现方案吗？
+
+话不多说，让我们正式开始今天的学习吧！
+为什么支持双分派的语言不需要访问者模式？实际上，讲到访问者模式，大部分书籍或者资料都会讲到Double Dispatch，中文翻译为双分派。虽然学习访问者模式，并不用非得理解这个概念，我们前面的讲解就没有提到它，但是，为了让你在查看其它书籍或者资料的时候，不会卡在这个概念上，我觉得有必要在这里讲一下。
+除此之外，我觉得，学习Double Dispatch还能加深你对访问者模式的理解，而且能一并帮你搞清楚今天文章标题中的这个问题：为什么支持双分派的语言就不需要访问者模式？这个问题在面试中可是会被问到的哦！
+既然有Double Dispatch，对应的就有Single Dispatch ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2115659088.html" title="70 | 备忘录模式：对于大对象的备份和恢复，如何优化内存和时间的消耗？">70 | 备忘录模式：对于大对象的备份和恢复，如何优化内存和时间的消耗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">70 | 备忘录模式：对于大对象的备份和恢复，如何优化内存和时间的消耗？上两节课，我们学习了访问者模式。在23种设计模式中，访问者模式的原理和实现可以说是最难理解的了，特别是它的代码实现。其中，用Single Dispatch来模拟Double Dispatch的实现思路尤其不好理解。不知道你有没有将它拿下呢？如果还没有弄得很清楚，那就要多看几遍、多自己动脑经琢磨一下。
+今天，我们学习另外一种行为型模式，备忘录模式。这个模式理解、掌握起来不难，代码实现比较灵活，应用场景也比较明确和有限，主要是用来防丢失、撤销、恢复等。所以，相对于上两节课，今天的内容学起来相对会比较轻松些。
+话不多说，让我们正式开始今天的学习吧！
+备忘录模式的原理与实现备忘录模式，也叫快照（Snapshot）模式，英文翻译是Memento Design Pattern。在GoF的《设计模式》一书中，备忘录模式是这么定义的：
+
+Captures and externalizes an object’s internal state so that it can be restored later, all without violating encapsulation.
+
+翻译成中文就是：在不违背封装原则的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便之后恢复对象为先前的状态。
+在我看来，这个模式的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/959326212.html" title="70 | 程序员练级攻略：零基础启蒙">70 | 程序员练级攻略：零基础启蒙</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">70 | 程序员练级攻略：零基础启蒙你好，我是陈皓，网名左耳朵耗子。
+如果你从来没有接触过程序语言，这里给你两个方面的教程，一个偏后端，一个偏前端。对从零基础开始的人来说，最重要的是能够对编程有兴趣，而要对编程有兴趣，就要有成就感。而成就感又来自于用程序打造东西，所以，我推荐下面这份不错的入门教程。
+第一份入门教程，主要是让你体会到编程是什么。
+
+《与孩子一起学编程》 ，这本书以Python语言教你如何写程序，是一本老少咸宜的编程书。其中会教你编一些小游戏，还会和你讲基本的编程知识，相当不错。
+两个在线编程入门的网站： Codecademy: Learn Python 和 People Can Program ，你也可以在这两个网站上学习Python，只不过是英文的。
+
+然后，你可以到 CodeAbbey 上去做一些在线编程的小练习。
+第二份入门教程，主要是让你做点实际有用的东西。嗯，做个网页吧。
+
+MDN的 Web开发入门 ，MDN全称是Mozilla Developer Network，你可以认为是Web方面的官方技术网站。这个教程会带着你建立一个网站。然后，你可以把你的网页发布在GitHub上。
+
+这两份教程都很不错，都是从零开始，带着你从环境准备开始，一点一点地从一些简单又有意思的东西入手，让你感觉一下编程世界是什么样的，相信这两个教程可以让零基础的你喜欢上编程。
+编程入门 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/798902252.html" title="71 | 命令模式：如何利用命令模式实现一个手游后端架构？">71 | 命令模式：如何利用命令模式实现一个手游后端架构？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">71 | 命令模式：如何利用命令模式实现一个手游后端架构？设计模式模块已经接近尾声了，现在我们只剩下3个模式还没有学习，它们分别是：命令模式、解释器模式、中介模式。这3个模式使用频率低、理解难度大，只在非常特定的应用场景下才会用到，所以，不是我们学习的重点，你只需要稍微了解，见了能认识就可以了。
+今天呢，我们来学习其中的命令模式。在学习这个模式的过程中，你可能会遇到的最大的疑惑是，感觉命令模式没啥用，是一种过度设计，有更加简单的设计思路可以替代。所以，我今天讲解的重点是这个模式的设计意图，带你搞清楚到底什么情况下才真正需要使用它。
+话不多说，让我们正式开始今天的学习吧！
+命令模式的原理解读命令模式的英文翻译是Command Design Pattern。在GoF的《设计模式》一书中，它是这么定义的：
+
+The command pattern encapsulates a request as an object, thereby letting us parameterize other objects with different requests, queue or log requests, and support undoable operations.
+
+翻译成中文就是下面这样。为了帮助你理解，我对这个翻译稍微做了补充和解释，也一起放在了下面的括号中。
+命令模式将请求（命 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/453487315.html" title="71 | 程序员练级攻略：正式入门">71 | 程序员练级攻略：正式入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">71 | 程序员练级攻略：正式入门你好，我是陈皓，网名左耳朵耗子。
+学习了前面文章中的入门级经验和知识后，你可能会有两种反应。
+
+一种反应可能是，你对编程有一点的兴趣了，甚至有一点点小骄傲，可能还会四处炫耀。我想说，请保持这种感觉，但是你也要清醒一下，上面的那些东西，还不算真正的入门，你只是入门了一条腿。
+
+另一种反应也可能是，你被吓着了，觉得太难了。感觉不是一般人能玩的，如果是这样的话，我想鼓励你一下–“ 无论你做什么事，你都会面对各式各样的困难，这对每个人来说都是一样的，而只有兴趣、热情和成就感才能让你不畏惧这些困难”。所以，你问问你自己，是否从中收获了成就感，如果没有的话，可能这条路并不适合你。如果有的话，哪怕一丁点儿，你也应该继续坚持下来。
+
+
+这篇文章，我主要是让你成为更为专业的入门程序员。请注意，此时，你可能需要读一些比较枯燥的书，但我想说，这些是非常非常重要的。你一定要坚持住。
+编程技能在系统地学习编程技能之前，我希望你能先看一下” The Key To Accelerating Your Coding Skills“， 这篇文章会告诉你如何有效地快速提高自己的编程能力。
+然后接下来是下面几大块内容，但还只是入门级的。
+
+编程技巧方面 - 你可以开始看怎么把程序写好的书了，这里推荐的是《 代码大全》。这本书好多年没有更新了，其中有一些内容可能有点过时，但还是一本非常好 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2747902006.html" title="72 | 程序员练级攻略：程序员修养">72 | 程序员练级攻略：程序员修养</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">72 | 程序员练级攻略：程序员修养你好，我是陈皓，网名左耳朵耗子。
+在完成上述的入门知识学习之后，我们要向专业的计算机软件开发进军了。但是在学习那些专业的知识前，我们先要抽一部分的篇幅来说一下程序员的修养。这是程序员的工程师文化，也就是程序员的价值观，因为我觉得如果你的技术修养不够的话，你学再多的知识也是没有用的。
+要了解程序员的修养，你可以先从Quora上的这个贴子开始 “ What are some of the most basic things every programmer should know?”，我摘录一些在这里供你参考。
+
+Bad architecture causes more problems than bad code.
+You will spend more time thinking than coding.
+The best programmers are always building things.
+There’s always a better way.
+Code reviews by your peers will make all of you better.
+Fewer features for better code is always the right answer in the end.
+If it’s not tested,  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/104/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/104/#content-inner">104</a><span class="page-number current">105</span><a class="page-number" href="/page/106/#content-inner">106</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/106/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

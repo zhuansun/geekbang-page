@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:15'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,141 +138,65 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1173367560.html" title="29 | 推荐阅读：分布式数据调度相关论文">29 | 推荐阅读：分布式数据调度相关论文</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">29 | 推荐阅读：分布式数据调度相关论文你好，我是陈皓，网名左耳朵耗子。
-我们在之前的系列文章《分布式系统架构的本质》中说过，分布式系统的一个关键技术是“数据调度”。因为我们需要扩充节点，提高系统的高可用性，所以必须冗余数据结点。
-建立数据结点的副本看上去容易，但其中最大的难点就是分布式一致性的问题。下面，我会带你看看数据调度世界中的一些技术点以及相关的技术论文。
-对于分布式的一致性问题，相信你在前面看过好几次下面这张图。从中，我们可以看出，Paxos算法的重要程度。还有人说，分布式下真正的一致性算法只有Paxos。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1655304065.html" title="080 | 广告系统架构">080 | 广告系统架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">080 | 广告系统架构从本周开始，我们就进入了计算广告这个重要的应用领域。周一我们首先介绍了广告系统的概述，了解了这个领域要解决的主要问题以及发展的简要历史。我们知道了广告系统中有发布商、广告商、受众群这些实体，还有应运而生的各类中间平台。
+今天，我们就更加细致地来看一下 广告系统的架构，熟悉各个组件都是怎么运作的。
+实时广告竞标的重要生态圈在前一篇分享里，我们提到了“ 实时竞标”广告系统（简称为 RTB）这个概念。现在，我们首先来回顾一下这个系统的重要生态圈。
+实时竞标系统的生态圈里有四个重要的“角色”：广告商、发布商、广告交换商和用户。在此基础上，这个生态圈产生了一些重要的新的中间平台。
 
-Paxos算法Paxos算法，是莱斯利·兰伯特（Lesile Lamport）于1990年提出来的一种基于消息传递且具有高度容错特性的一致性算法。但是这个算法太过于晦涩，所以，一直以来都属于理论上的论文性质的东西。
-其进入工程圈的源头在于Google的Chubby lock——一个分布式的锁服务，用在了Bigtable中。直到Google发布了下面的这两篇论文，Paxos才进入到工程界的视野中来。
+供应侧平台，简称SSP，负责管理众多发布商的展示机会，接受来自需求侧平台的竞价（简称Bid），同时自动地展示广告。
 
-Bigtable: A Distributed Storage System for Structured Data
+广告交易平台，简称ADX，是负责多个SSP和需求侧平台进行匹配的中间平台。
 
-The Chubby lock service for loosely-coupled distributed systems
+需求侧平台，简称DSP，是负责管理众多广告商诸多广告的平台。
 
-
-Google与B ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2036511950.html" title="30 | 编程范式：起源">30 | 编程范式：起源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">30 | 编程范式：起源序你好，我是陈皓，网名左耳朵耗子。
-现在很多的文章和演讲都在谈架构，很少有人再会谈及编程范式。然而， 这些基础性和本质性的话题，却是非常非常重要的。
-一方面，我发现在一些语言争论上，有很多人对编程语言的认识其实并不深；另一方面，通过编程语言的范式，我们不但可以知道整个编程语言的发展史，而且还能提高自己的编程技能，写出更好的代码。
-我希望通过一系列的文章带大家漫游一下各式各样的编程范式。（这一系列文章中代码量很大，很难用音频体现出来，所以没有录制音频，还望谅解。）
-
-01 | 编程范式游记：起源
-02 | 编程范式游记：泛型编程
-03 | 编程范式游记：类型系统和泛型的本质
-04 | 编程范式游记：函数式编程
-05 | 编程范式游记：修饰器模式
-06 | 编程范式游记：面向对象编程
-07 | 编程范式游记：基于原型的编程范式
-08 | 编程范式游记：Go 语言的委托模式
-09 | 编程范式游记：编程的本质
-10 | 编程范式游记：逻辑编程范式
-11 | 编程范式游记：程序世界里的编程范式
-
-这一经历可能有些漫长，途中也会有各式各样的语言的代码。但是我保证这一历程对于一个程序员来说是非常有价值的，因为你不但可以对主流编程语言的一些特性有所了解，而且当我们到达终点的时候，你还能了解到编程的本质是什么。
-这一系列文章中有各种语言的代码，其中有C、C++、Python ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3655932601.html" title="28 | 推荐阅读：分布式系统架构经典资料">28 | 推荐阅读：分布式系统架构经典资料</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">28 | 推荐阅读：分布式系统架构经典资料你好，我是陈皓，网名左耳朵耗子。
-前段时间，我写了一系列分布式系统架构方面的文章，有很多读者纷纷留言讨论相关的话题，还有读者留言表示对分布式系统架构这个主题感兴趣，希望我能推荐一些学习资料。
-就像我在前面的课程中多次提到的，分布式系统的技术栈巨大无比，所以我要推荐的学习资料也比较多，后面在课程中我会结合主题逐步推荐给你。在今天这一讲中，我将推荐一些分布式系统的基础理论和一些不错的图书和资料。
-这一讲比较长，所以我特意整理了目录，帮你快速找到自己感兴趣的内容。
-基础理论
-CAP 定理
-Fallacies of Distributed Computing
-
-经典资料
-Distributed systems theory for the distributed systems engineer
-FLP Impossibility Result
-An introduction to distributed systems
-Distributed Systems for fun and profit
-Distributed Systems: Principles and Paradigms
-Scalable Web Architecture and Distributed Systems
-Principles of Distributed Syste ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/692793914.html" title="32 | 编程范式：类型系统和泛型的本质">32 | 编程范式：类型系统和泛型的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">32 | 编程范式：类型系统和泛型的本质你好，我是陈皓，网名左耳朵耗子。
-前面，我们讨论了从C到C++的泛型编程方法，并且初探了更为抽象的函数式编程。正如在上一讲中所说的，泛型编程的方式并不只有C++这一种类型，我们只是通过这个过程了解一下，底层静态类型语言的泛型编程原理。这样能够方便我们继续后面的历程。
-是的，除了C++那样的泛型，如果你了解其它编程语言一定会发现，在动态类型语言或是某些有语法糖支持的语言中，那个 swap() 或 search() 函数的泛型其实可以很简单地就实现了。
-比如，你甚至可以把 swap() 函数简单地写成下面这个样子（包括Go语言也有这样的语法）：
-b, a &#x3D; a, b;
+数据处理平台，简称DMP，是为SSP、ADX、DSP提供数据服务的中间商。
 
 
-在上一讲后面的Reduce函数中，可以看到，在编程世界中，我们需要处理好两件事：
-
-第一件事是编程语言中的类型问题。
-第二件事是对真实世界中业务代码的抽象、重用和拼装。
-
-所以，在这一讲中，我们还是继续深入地讨论上面这两个问题，着重讨论一下编程语言中的类型系统和泛型编程的本质。
-类型系统在计算机科学中，类型系统用于定义如何将编程语言中的数值和表达式归类为许多不同的类型，以及如何操作这些类型，还有这些类型如何互相作用。类型可以确认一个值或者一组值，具有特定的意义和目的。
-一般来说，编程语言会有两种类型，一种是内建类型，如int、float和char等，一种是抽象类型， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/432270148.html" title="34 | 编程范式：修饰器模式">34 | 编程范式：修饰器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">34 | 编程范式：修饰器模式你好，我是陈皓，网名左耳朵耗子。
-在上一讲中，我们领略了函数式编程的趣味和魅力，主要讲了函数式编程的主要技术。还记得有哪些吗？递归、Map、Reduce、Filter等，并利用Python的Decorator和Generator功能，将多个函数组合成了管道。
-此时，你心中可能会有个疑问，这个decorator又是怎样工作的呢？这就是本文中要讲述的内容，“Decorator模式”，又叫“修饰器模式”，或是“装饰器模式”。
-Python的DecoratorPython的Decorator在使用上和Java的Annotation（以及C#的Attribute）很相似，就是在方法名前面加一个@XXX注解来为这个方法装饰一些东西。但是，Java&#x2F;C#的Annotation也很让人望而却步，太过于复杂了。你要玩它，需要先了解一堆Annotation的类库文档，感觉几乎就是在学另外一门语言。
-而Python使用了一种相对于Decorator Pattern和Annotation来说非常优雅的方法，这种方法不需要你去掌握什么复杂的OO模型或是Annotation的各种类库规定，完全就是语言层面的玩法：一种函数式编程的技巧。
-这是我最喜欢的一个模式了，也是一个挺好玩儿的东西，这个模式动用了函数式编程的一个技术——用一个函数来构造另一个函数。
-好了，我们先来点感 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/905989416.html" title="33 | 编程范式：函数式编程">33 | 编程范式：函数式编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">33 | 编程范式：函数式编程你好，我是陈皓，网名左耳朵耗子。
-从前三章内容中，我们了解到，虽然C语言简单灵活，能够让程序员在高级语言特性之上轻松进行底层上的微观控制，被誉为“高级语言中的汇编语言”，但其基于过程和底层的设计初衷又成了它的短板。
-在程序世界中，编程工作更多的是解决业务上的问题，而不是计算机的问题，我们需要更为贴近业务、更为抽象的语言，如典型的面向对象语言C++和Java等。
-C++很大程度上解决了C语言中的各种问题和不便，尤其是通过类、模板、虚函数和运行时识别等解决了C语言的泛型编程问题。然而，如何做更为抽象的泛型呢？答案就是函数式编程（Functional Programming）。
-函数式编程相对于计算机的历史而言，函数式编程其实是一个非常古老的概念。函数式编程的基础模型来源于 λ 演算，而 λ 演算并没有被设计在计算机上执行。它是由 Alonzo Church 和 Stephen Cole Kleene 在 20 世纪 30 年代引入的一套用于研究函数定义、函数应用和递归的形式系统。
-如 Alonzo 所说，像 booleans、integers 或者其他的数据结构都可以被函数取代掉。
-
-我们来看一下函数式编程，它的理念就来自于数学中的代数。
-f(x)&#x3D;5x^2+4x+3
-g(x)&#x3D;2f(x)+5&#x3D;10x^2+8x+11
-h(x) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3045258930.html" title="36 | 编程范式：基于原型的编程范式">36 | 编程范式：基于原型的编程范式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">36 | 编程范式：基于原型的编程范式你好，我是陈皓，网名左耳朵耗子。
-基于原型（Prototype）的编程其实也是面向对象编程的一种方式。没有class化的，直接使用对象。又叫，基于实例的编程。其主流的语言就是JavaScript，与传统的面向对象编程的比较如下：
-
-在基于类的编程当中，对象总共有两种类型。类定义了对象的基本布局和函数特性，而接口是“可以使用的”对象，它基于特定类的样式。在此模型中，类表现为行为和结构的集合，对所有接口来说这些类的行为和结构都是相同的。因而，区分规则首先是基于行为和结构，而后才是状态。
-
-原型编程的主张者经常争论说，基于类的语言提倡使用一个关注分类和类之间关系的开发模型。与此相对，原型编程看起来提倡程序员关注一系列对象实例的行为，而之后才关心如何将这些对象划分到最近的使用方式相似的原型对象，而不是分成类。
-
-
-因为如此，很多基于原型的系统提倡运行时进行原型的修改，而只有极少数基于类的面向对象系统（比如第一个动态面向对象的系统Smalltalk）允许类在程序运行时被修改。
-
-在基于类的语言中，一个新的实例通过类构造器和构造器可选的参数来构造，结果实例由类选定的行为和布局创建模型。
-
-在基于原型的系统中构造对象有两种方法，通过复制已有的对象或者通过扩展空对象创建。很多基于原型的系统提倡运行时进行原型的修改，而基于类的面向对象系统只有动态语言允许类在运行 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2927556277.html" title="40 | 程序世界里的编程范式总结">40 | 程序世界里的编程范式总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">40 | 程序世界里的编程范式总结你好，我是陈皓，网名左耳朵耗子。
-这个世界到今天已经有很多很多的编程范式，相当复杂。下面这个图比较好地描绘了这些各式各样的编程范式，这个图越往左边就越是“声明式的”，越往右边就越不是“声明式的”（指令式的），我们可以看到，函数式编程和逻辑编程，都在左边，而右边是指令式的，有状态的，有类型的。
-
-上面这个图有点乱，不过总体说来，我们可以简单地把这世界上纷乱的编程范式，分成这几类： 声明式、 命令式、 逻辑的、 函数式、 面向对象的、 面向过程的。
-于是我们归纳一下，就可以得到下面这个简单的图。简单描述一下：
-
-中间两个声明式编程范式（函数式和逻辑式）偏向于你定义要什么，而不是怎么做。
-而两边的命令式编程范式和面向对象编程范式，偏向于怎么做，而不是要做什么。
-
-
-我们再归纳一下，基本上来说，就是两大分支，一边是在解决数据和算法，一边是在解决逻辑和控制。
-
-下面再结合一张表格说明一下这世界上四大编程范式的类别，以及它们的特性和主要的编程语言。
-
-程序编程范式。一个是左脑，一个是右脑。我们程序员基本上是在用左脑，左脑是理性分析，喜欢数据证据，线性思维，陷入细节，具体化的，不抽象。但是，实际上玩儿出这些东西的都在右脑，函数式，还有像逻辑式的抽象能力都在右脑。所以我们非线性的想象力都在这边，而标准化教育把我们这边已经全部干掉了，我们只剩左边。我们陷入细节，我一 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2648547453.html" title="38 | 编程范式：编程的本质">38 | 编程范式：编程的本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">38 | 编程范式：编程的本质你好，我是陈皓，网名左耳朵耗子。
-前面我们讲了各式各样的不同语言的编程范式，从C语言的泛型，讲到C++的泛型，再讲到函数式的 Map&#x2F;Reduce&#x2F;Filter，以及 Pipeline 和 Decorator，还有面向对象的多态通过依赖接口而不是实现的桥接模式、策略模式和代理模式，以及面向对象的IoC，还有JavaScript的原型编程在运行时对对象原型进行修改，以及Go语言的委托模式……
-所有的这一切，不知道你是否看出一些端倪，或是其中的一些共性来了？
-两篇论文1976年，瑞士计算机科学家，Algol W，Modula，Oberon和Pascal语言的设计师 Niklaus Emil Wirth 写了一本非常经典的书《 Algorithms + Data Structures &#x3D; Programs》（链接为1985年版） ，即算法 + 数据结构 &#x3D; 程序。
-这本书主要写了算法和数据结构的关系，这本书对计算机科学的影响深远，尤其在计算机科学的教育中。
-1979年，英国逻辑学家和计算机科学家 Robert Kowalski 发表论文 Algorithm &#x3D; Logic + Control，并且主要开发“逻辑编程”相关的工作。
-Robert Kowalski是一位逻辑学家和计算机科学家，从20世纪70年代末 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/216951190.html" title="37 | 编程范式：Go语言的委托模式">37 | 编程范式：Go语言的委托模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">37 | 编程范式：Go语言的委托模式你好，我是陈皓，网名左耳朵耗子。
-我们再来看Go语言这个模式，Go语言的这个模式挺好玩儿的。声明一个struct，跟C很一样，然后直接把这个struct类型放到另一个struct里。
-委托的简单示例我们来看几个示例：
-type Widget struct &#123;
-    X, Y int
-&#125;
-
-type Label struct &#123;
-    Widget        &#x2F;&#x2F; Embedding (delegation)
-    Text   string &#x2F;&#x2F; Aggregation
-    X int         &#x2F;&#x2F; Override
-&#125;
-
-func (label Label) Paint() &#123;
-	&#x2F;&#x2F; [0xc4200141e0] - Label.Paint(&quot;State&quot;)
-    fmt.Printf(&quot;[%p] - Label.Paint(%q)\n&quot;,
-    	&amp;label, label.Text)
-&#125;
-
-
-由上面可知：
-
-我们声明了一个 Widget，其有 X 和 Y；
-
-然后用它来声明一个 Label，直接把 Widget 委托进去；
-
- ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/31/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/#content-inner">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/#content-inner">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/33/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+值得注意的是，以上的这种区别仅仅是一种概念上的区分，目的是为了让从业人员能够更加清晰地理解各个系统的目标和作用。在实际的运作中，不少平台都充当了多个角色，甚至有比较大的互联网广告平台在这几个子系统中都有所涉及。
+用户行为定向了解了实时竞价系统的生态环境之后 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/186720425.html" title="081 | 亚马逊的大数据故事：创新和拿来并存的云服务">081 | 亚马逊的大数据故事：创新和拿来并存的云服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">081 | 亚马逊的大数据故事：创新和拿来并存的云服务随着大数据的发展，数据处理变得越来越重要，亚马逊的云端数据处理和分析服务也逐渐多起来。亚马逊的这些服务，除去已经提到的DynamoDB和Elastic MapReduce，还有很多。它们的来源大致分为两种：一种是自己开发的，另外一种则是拿开源的包装一下。今天我们就来看一看这些服务。
+RedshiftRedshift是亚马逊比较早的一个基于云的数据仓库系统。Redshift是一个兼容PostgreSQL 8.0.2版本的数据仓库系统，前端对SQL语言的解析复用了PostgreSQL 8.0.2版本的源代码，后端最初是基于一家亚马逊投资的公司ParAccel的并行数据仓库处理技术。Redshift在2012年以Beta版发布，2013年2月正式亮相。
+Redshift无疑是亚马逊最为成功的数据处理云服务之一，或许我们都不需要加“之一”这种说法。Redshift自诞生开始就受到了中小型企业的欢迎，很多大型企业（比如Airbnb）也一度使用它。
+Redshift到底有多牛？证据之一，在2017年的年度大会OpenWorld上，Oracle创始人拉里 · 埃里森（Larry Elison）在发表主题演讲时，把Redshift作为Oracle的唯一对标的产品进行了比较。Oracle在数据库领域的建树，决定了任何一个被Oracle作为敌人对待 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/540376573.html" title="081 | 广告回馈预估综述">081 | 广告回馈预估综述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">081 | 广告回馈预估综述在上一篇的分享里，我们详细地讨论了广告系统的架构，熟悉了各个组件都是怎么运作的，特别是我们重点剖析了对于每一个广告请求，供应侧平台（SSP）、广告交易平台（ADX）、需求侧平台（DSP）以及数据处理平台（DMP）都扮演了什么样的角色。同时，我们介绍了对于用户信息的追踪和整合，业界的基本技术就是存储用户的Cookie，以及慢慢催生的Cookie的整合技术。
+今天，我们就来看一看整个计算广告领域最核心的一个问题： 广告回馈预估。
+什么是广告回馈预估什么是广告回馈预估？广告回馈预估要解决什么问题？我们先来弄明白这个问题。
+我们说过计算广告有两大应用领域：搜索广告和展示广告，以及围绕这些广告的生态系统。这些系统或者领域都希望达到一个最终的目的，那就是用户和广告进行 交互，并且能够对广告所代表的服务或者产品产生印象，从而达成某种程度的 交易。
+这里的“交互”包括对传统广告的点击，也包括对视频广告的观看。而在和广告交互之后，用户对于广告所代表的服务或商品达成的“交易”，包括购买、订阅甚至是改变印象等等。那么，这一切和广告本身的交互以及和广告所代表的服务或者商品达成的交易，我们都通通称为“ 回馈”（Feedback）。
+而我们所说的“ 回馈预估”， 就是要预测用户这种行为的可能性，或者说是概率。也就是说，我们希望了解用户是不是有可能点击这个广告；有多大概率观看完这段视 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3681706121.html" title="082 | Google的点击率系统模型">082 | Google的点击率系统模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">082 | Google的点击率系统模型广告是很多互联网公司的重要收入来源，比如Google、Facebook、微软、阿里巴巴、百度、腾讯等。以Facebook为例，它的2017年第一季度财报显示，公司总营收为78.4亿美元，这其中98%的收入来自广告。同样，在这些公司内部，都有着完善的广告系统来支撑其广告业务。
+当然，大型广告系统的成功需要依靠很多相互协调的子系统和组件。今天我要和你聊的是广告系统里最基础的一个子系统，也是整个广告系统的核心功能之一—— 点击率预估系统。点击率预估，顾名思义就是根据环境和广告的类型，来估计用户有多大的可能性点击当前的广告。这个预估值会用于广告系统的其他组件，比如对广告主（投放广告的客户）的计费模块。因此，点击率预估的准确性和实时性就变得十分重要。
+今天和你分享一篇广告点击率预估文献史上非常重要的论文，它来自Google广告团队，标题是《工程实践视角下的广告点击率预估》（“Ad Click Prediction: a View from the Trenches”）。
+论文背景这篇论文发表于KDD 2013年的工业论文组，在短短几年时间里就获得了近200次的文章引用数，不少公司争相研究其中的内容，希望能够复制类似的算法和技术。
+这篇文章的作者群多达16人，他们都是来自Google西雅图、匹兹堡、硅谷以及剑桥等地办公室的研究人员和工程师，文章的致谢部分 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/691326313.html" title="082 | 阿里巴巴的大数据故事：数据分析平台发展史">082 | 阿里巴巴的大数据故事：数据分析平台发展史</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">082 | 阿里巴巴的大数据故事：数据分析平台发展史阿里巴巴是国内最早开始做大数据的公司，也是国内最早开始做云计算的公司。阿里巴巴的数据分析平台非常齐全，今天我带大家看一看阿里巴巴的大数据发展历史。我们首先看看数据分析平台方面的发展。
+MaxCompute阿里巴巴作为国内最大的互联网公司之一，也需要一个大数据分析平台。阿里巴巴发展大数据平台，走了两条路：一部分业务用的是开源的Hadoop，另外一部分则用了自己研发的平台。这个自己研发的平台最初叫ODPS，也就是现在的MaxCompute。
+阿里巴巴的平台研发，时间上比微软、谷歌或者雅虎起步的时候稍微晚了一点。这个平台最初主要做法是前端和Hive兼容，使用了Hive的语法，后端从查询优化到查询的执行，到数据的存储都是自己开发的。当时负责开发的是徐常亮。
+平台的开发一开始并不顺利。但是通过几年的磨合，这个平台也开发得有模有样了，和阿里内部使用开源Hadoop的组并驾齐驱。到后来，很多阿里内部业务都泡在了MaxCompute上。当然，阿里巴巴的MapReduce叫作E-MapReduce，至今依然是阿里云支持的服务之一。
+MaxCompute在2015年迎来了一次大换血。当时微软Cosmos部门负责SCOPE开发的领导，微软合伙人之一的周靖人加盟阿里云，成为阿里的副总裁兼首席科学家，MaxCompute成为了他手下负责的方向之一。
+此后随 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/405836494.html" title="083 | Facebook的广告点击率预估模型">083 | Facebook的广告点击率预估模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">083 | Facebook的广告点击率预估模型上一篇文章我们讲了整个计算广告领域最核心的一个问题：广告回馈预估。广告回馈预估，就是预测“用户与广告的交互以及达成交易这种行为”的概率，也就是点击率预估和转化率预估。广告回馈预估存在着数据稀疏等难点和挑战，目前在这个领域比较流行的模型有对数几率回归和数模型等。
+今天，我们就来看一个广告回馈预估的实例： Facebook的广告点击率预估。我们会结合2014年发表的一篇论文《Facebook的广告点击率预估实践经验》（Practical Lessons from Predicting Clicks on Ads at Facebook）来进行分析[1]。
+Facebook广告预估Facebook的广告不是我们之前介绍过的搜索广告或者展示广告的简单应用，而是 社交广告。可以说，社交广告是最近10年慢慢崛起的一种新的广告类型。在论文发表的时候，也就是2014年，Facebook有7.5亿“日活跃用户”（Daily Active Users）和超过1百万的广告商，这个数字在当时是相当惊人的。而今天，在Facebook上活跃的大约有14.5亿用户和5百万广告商。因此，广告系统所需要应对的规模是成倍增加的。
+我们说Facebook的广告是社交广告，也就是说，这些广告不依赖于用户输入的搜索关键词。从Facebook的角度来说，广告商在其平台上投放广告 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1381405620.html" title="083 | 阿里巴巴的大数据故事：流计算引擎发展史">083 | 阿里巴巴的大数据故事：流计算引擎发展史</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">083 | 阿里巴巴的大数据故事：流计算引擎发展史在阿里巴巴的发展过程中，流数据处理一直是业务中很重要的一部分。和数据分析平台不一样，阿里巴巴内部的流数据处理平台有很多套。
+在阿里巴巴的流数据发展历程里，有两个著名的流引擎JStorm和Blink依然还在产生着深远的影响。这种影响并不仅仅在阿里巴巴集团的内部，并且扩散到了全球的开源世界。比起其他用于集团内部的流计算引擎，它们更被人所熟知，今天我们就来重点分析一下这两个流计算引擎的发展。
+我们先来说说Storm和JStorm
+Storm是被Twitter收购以后才开源出来的流计算引擎。阿里巴巴集团是在封仲淹带领的团队下才开始使用Storm的。
+我在之前讲Storm的时候说过，这种流计算引擎是用一种比较小众的函数式编程语言Clojure开发出来的。国内的Clojure专家屈指可数，因此阿里巴巴使用Storm时遇到了很多的问题。
+毕竟有些时候需要去增加或者改变一些功能，而这也就意味着需要对系统进行改进或者定制，但是Clojure语言十分小众，懂这种编程语言的人尚且不多，更不用说专业去修改了，所以，这些都决定了这种工作非常难以展开。
+鉴于Storm十分难以改进和定制，又是当时开源世界里最成熟的流计算引擎。于是，从2012年开始，阿里巴巴决定用Java对Storm进行重写，这就是JStorm项目的由来。
+按照封仲淹的观点来说，JStorm就是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2881730407.html" title="084 | 大公司的大数据战略得失：自建轮子成本高">084 | 大公司的大数据战略得失：自建轮子成本高</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">084 | 大公司的大数据战略得失：自建轮子成本高介绍完主流大公司的大数据战略，我们来分析一下这些公司的状况。大体来说，我们可以把这些公司分成两类：一类是自己造轮子的，另一类是在Hadoop生态圈里面抱团取暖的。前者主要有三个公司：谷歌、微软和阿里巴巴，后者就是其他我们耳熟能详的大公司了。今天我们就来聊聊自己造轮子的公司。
+谷歌自建轮子是一件可以理解的事情，“三驾马车”的出现才真正把人类带入了大数据时代。毕竟没有谷歌就没有大数据，更不会存在“某个软硬件体系可以低成本高效率地解决整个互联网数据的分析和存储”的事情。可以不夸张地说，它的前方基本一片空白，于是在“自建轮子”这件事上，谷歌没有多少选择权。
+谷歌的目标是做世界上最好的搜索引擎，因此它需要大数据相关的基础架构。没有这套东西，就没有谷歌这个搜索引擎，有了这套东西，才能继续把搜索做下去。至于这个东西需要消耗多少成本，对谷歌来说都是没有办法的事儿。
+更为重要的是，大数据这个概念，以及和这个概念相关的一切技术架构，在谷歌开始发明之前都是不存在。所以谷歌只能选择从无到有自建轮子开发大数据的基础架构。
+不过从另一个角度来说，从无到有地把这一套东西搭起来，这无疑也是谷歌对全世界最大的贡献。
+至于微软为什么要建设自己的轮子，原因也并不复杂。在微软大规模投钱进入搜索领域的时候，谷歌已经发明了自己的轮子，但是市面上公开的轮子，那个叫Hadoop的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1285763675.html" title="084 | 雅虎的广告点击率预估模型">084 | 雅虎的广告点击率预估模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">084 | 雅虎的广告点击率预估模型在上一篇文章中，我和你分享了广告回馈预估的一个实例：Facebook的广告点击率预估。我们重点讲了Facebook利用“归一化的交叉熵”这个概念，来衡量广告模型的精准度。另外，我们还分享了Facebook提出的两层模型架构，也就是一开始先利用树模型GBDT来对特性进行非线性转换和选择，然后再利用一个在线学习的线性模型进行最后的预测，这个架构后来得到了很多研究者和实践者的追随。
+今天，我们来分析另外一个经典的公司实例： 雅虎的广告点击率预估模型。
+雅虎早期的广告预估模型对于曾经的互联网巨头雅虎来说，广告系统很早就成为其重要的经济支柱。早在2007年甚至更早的时候，雅虎的工程师和研究人员就投入到了对广告点击率预估的研究中。这方面的几个代表作我列在了文末的参考文献（[1]、[2]和[3]）里，如感兴趣，你可以进一步学习。
+我们在这里集中讲讲这些工作的核心思路。
+首先，雅虎的研发人员很早就注意到了广告预估模型的一个难点，那就是 数据的稀疏性。这些具有稀疏性的数据带来了一个后果，那就是 模型对很多“罕见事件”（Rare Events）的估计会出现很大的不稳定性。
+我们来举个例子，如果广告1在纽约地区展示了1万次，点击200次，点击率是0.02；而广告2在旧金山地区展示了1百次，点击3次，点击率是0.03，在这样的情况下，我们能判断广告2就一定比广告1有更高 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2517290537.html" title="085 | LinkedIn的广告点击率预估模型">085 | LinkedIn的广告点击率预估模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">085 | LinkedIn的广告点击率预估模型上一篇文章我们讲了雅虎的广告预估模型。雅虎早期的模型主要集中在如何利用两轮架构来对点击率进行精确建模，后期的模型回归到了比较传统的利用线性模型外加特性哈希来进行大规模点击率预估的模式。
+今天，我们继续来做公司的案例分析，结合论文《LASER：在线广告的可扩展响应预测平台》（LASER: a scalable response prediction platform for online advertising）[1]，来了解LinkedIn这家公司是怎么来做最基本的广告预估的。
+LinkedIn广告预估模型我们首先来看一看LinkedIn的广告预估模型。这个模型的一大“卖点”就是直接充分考虑了“冷启动”和“热启动”两种模式。
+那么，什么是“冷启动”，什么又是“热启动”呢？
+从我们之前的分享中可以看出，很多点击率预估的模型，都强烈依赖于对用户过去信息以及对广告过去表现的建模。比如刚刚讲过的雅虎预估模型，在它早期的模式中就已经见到了这种信息的作用。
+然而，当我们出现新用户或者新广告时，就会有“冷启动”的问题。也就是说，“冷启动”主要是针对新用户或者新广告而言的。这时候基于历史信息的特性都无法起作用了，一般来说需要有专门的处理。
+相对于“冷启动”，“热启动”指的是我们已经掌握了用户或者广告的一定信息，然后利用这些历史信息来对点击率进行预测。 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/31/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/#content-inner">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/#content-inner">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/33/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

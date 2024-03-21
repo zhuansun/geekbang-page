@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,84 +138,7 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1330967209.html" title="24 | FMEA方法，排除架构可用性隐患的利器">24 | FMEA方法，排除架构可用性隐患的利器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">24 | FMEA方法，排除架构可用性隐患的利器我在前面的专栏分析高可用复杂度的时候提出了一个问题：高可用和高性能哪个更复杂，大部分同学都分析出了正确的答案：高可用更复杂一些，主要原因在于异常的场景很多，只要有一个场景遗漏，架构设计就存在可用性隐患，而根据墨菲定律“可能出错的事情最终都会出错”，架构隐患总有一天会导致系统故障。因此，我们在进行架构设计的时候必须全面分析系统的可用性，那么如何才能做到“全面”呢？
-我今天介绍的FMEA方法，就是保证我们做到全面分析的一个非常简单但是非常有效的方法。
-FMEA介绍FMEA（Failure mode and effects analysis，故障模式与影响分析）又称为失效模式与后果分析、失效模式与效应分析、故障模式与后果分析等，专栏采用“ 故障模式与影响分析”，因为这个中文翻译更加符合可用性的语境。FMEA是一种在各行各业都有广泛应用的可用性分析方法，通过对系统范围内潜在的故障模式加以分析，并按照严重程度进行分类，以确定失效对于系统的最终影响。
-FMEA最早是在美国军方开始应用的，20世纪40年代后期，美国空军正式采用了FMEA。尽管最初是在军事领域建立的方法，但FMEA方法现在已广泛应用于各种各样的行业，包括半导体加工、餐饮服务、塑料制造、软件及医疗保健行业。FMEA之所以能够在这些差异很大的领域都得到应用，根本原因在于FMEA是一套分析 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2416425496.html" title="27 | 如何设计计算高可用架构？">27 | 如何设计计算高可用架构？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">27 | 如何设计计算高可用架构？计算高可用的主要设计目标是当出现部分硬件损坏时，计算任务能够继续正常运行。因此计算高可用的本质是通过冗余来规避部分故障的风险，单台服务器是无论如何都达不到这个目标的。所以计算高可用的设计思想很简单：通过增加更多服务器来达到计算高可用。
-计算高可用架构的设计复杂度主要体现在 任务管理 方面，即当任务在某台服务器上执行失败后，如何将任务重新分配到新的服务器进行执行。因此，计算高可用架构设计的关键点有下面两点。
-1.哪些服务器可以执行任务
-第一种方式和计算高性能中的集群类似，每个服务器都可以执行任务。例如，常见的访问网站的某个页面。
-第二种方式和存储高可用中的集群类似，只有特定服务器（通常叫“主机”）可以执行任务。当执行任务的服务器故障后，系统需要挑选新的服务器来执行任务。例如，ZooKeeper的Leader才能处理写操作请求。
-2.任务如何重新执行
-第一种策略是对于已经分配的任务即使执行失败也不做任何处理，系统只需要保证新的任务能够分配到其他非故障服务器上执行即可。
-第二种策略是设计一个任务管理器来管理需要执行的计算任务，服务器执行完任务后，需要向任务管理器反馈任务执行结果，任务管理器根据任务执行结果来决定是否需要将任务重新分配到另外的服务器上执行。
-需要注意的是：“任务分配器”是一个逻辑的概念，并不一定要求系统存在一个独立的任务分配器模块。例如：
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/341580218.html" title="25 | 高可用存储架构：双机架构">25 | 高可用存储架构：双机架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">25 | 高可用存储架构：双机架构存储高可用方案的本质都是通过将数据复制到多个存储设备，通过数据冗余的方式来实现高可用，其复杂性主要体现在如何应对复制延迟和中断导致的数据不一致问题。因此，对任何一个高可用存储方案，我们需要从以下几个方面去进行思考和分析：
-
-数据如何复制？
-
-各个节点的职责是什么？
-
-如何应对复制延迟？
-
-如何应对复制中断？
-
-
-常见的高可用存储架构有主备、主从、主主、集群、分区，每一种又可以根据业务的需求进行一些特殊的定制化功能，由此衍生出更多的变种。由于不同业务的定制功能难以通用化，今天我将针对业界通用的方案，来分析常见的双机高可用架构：主备、主从、主备&#x2F;主从切换和主主。
-主备复制主备复制是最常见也是最简单的一种存储高可用方案，几乎所有的存储系统都提供了主备复制的功能，例如MySQL、Redis、MongoDB等。
-1.基本实现
-下面是标准的主备方案结构图：
-
-其整体架构比较简单，主备架构中的“备机”主要还是起到一个备份作用，并不承担实际的业务读写操作，如果要把备机改为主机，需要人工操作。
-2.优缺点分析
-主备复制架构的优点就是简单，表现有：
-
-对于客户端来说，不需要感知备机的存在，即使灾难恢复后，原来的备机被人工修改为主机后，对于客户端来说，只是认为主机的地址换了而已，无须知道是原来的备机升级为主机。
-
-对于主机和备机来说，双方只需要进行数据复制即可 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3376426642.html" title="26 | 高可用存储架构：集群和分区">26 | 高可用存储架构：集群和分区</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">26 | 高可用存储架构：集群和分区上一期我讲了高可用存储架构中常见的双机架构，分别为主备复制、主从复制、双机切换和主主复制，并分析了每类架构的优缺点以及适应场景。
-今天我们一起来看看另外两种常见的高可用存储架构：数据集群和数据分区。
-数据集群主备、主从、主主架构本质上都有一个隐含的假设：主机能够存储所有数据，但主机本身的存储和处理能力肯定是有极限的。以PC为例，Intel 386时代服务器存储能力只有几百MB，Intel 奔腾时代服务器存储能力可以有几十GB，Intel 酷睿多核时代的服务器可以有几个TB。单纯从硬件发展的角度来看，似乎发展速度还是挺快的，但如果和业务发展速度对比，那就差得远了。早在2013年，Facebook就有2500亿张上传照片，当时这些照片的容量就已经达到了250 PB字节（250 × 1024TB），平均一天上传的图片有3亿5000万张。如此大量的数据，单台服务器肯定是无法存储和处理的，我们必须使用多台服务器来存储数据，这就是数据集群架构。
-简单来说，集群就是多台机器组合在一起形成一个统一的系统，这里的“多台”，数量上至少是3台；相比而言，主备、主从都是2台机器。根据集群中机器承担的不同角色来划分，集群可以分为两类：数据集中集群、数据分散集群。
-1.数据集中集群
-数据集中集群与主备、主从这类架构相似，我们也可以称数据集中集群为1主多备或者1主多从。无论是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1756699895.html" title="29 | 异地多活设计4大技巧">29 | 异地多活设计4大技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">29 | 异地多活设计4大技巧专栏上一期我介绍了三种不同类型的异地多活架构，复习一下每个架构的关键点：
-
-同城异区
-
-关键在于搭建高速网络将两个机房连接起来，达到近似一个本地机房的效果。架构设计上可以将两个机房当作本地机房来设计，无须额外考虑。
-
-跨城异地
-
-关键在于数据不一致的情况下，业务不受影响或者影响很小，这从逻辑的角度上来说其实是矛盾的，架构设计的主要目的就是为了解决这个矛盾。
-
-跨国异地
-
-主要是面向不同地区用户提供业务，或者提供只读业务，对架构设计要求不高。
-基于这个分析，跨城异地多活是架构设计复杂度最高的一种，接下来我将介绍跨城异地多活架构设计的一些技巧和步骤，今天我们先来看4大技巧，掌握这些技巧可以说是完成好设计步骤的前提。
-技巧1：保证核心业务的异地多活“异地多活”是为了保证业务的高可用，但很多架构师在考虑这个“业务”时，会不自觉地陷入一个思维误区：我要保证所有业务都能“异地多活”！
-假设我们需要做一个“用户子系统”，这个子系统负责“注册”“登录”“用户信息”三个业务。为了支持海量用户，我们设计了一个“用户分区”的架构，即正常情况下用户属于某个主分区，每个分区都有其他数据的备份，用户用邮箱或者手机号注册，路由层拿到邮箱或者手机号后，通过Hash计算属于哪个中心，然后请求对应的业务中心。基本的架构如下：
-
-这样一个系统，如果3个业务要同时实现异地多活，会发现这些难以 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2140323198.html" title="28 | 业务高可用的保障：异地多活架构">28 | 业务高可用的保障：异地多活架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">28 | 业务高可用的保障：异地多活架构无论是高可用计算架构，还是高可用存储架构，其本质的设计目的都是为了解决部分服务器故障的场景下，如何保证系统能够继续提供服务。但在一些极端场景下，有可能所有服务器都出现故障。例如，典型的有机房断电、机房火灾、地震、水灾……这些极端情况会导致某个系统所有服务器都故障，或者业务整体瘫痪，而且即使有其他地区的备份，把备份业务系统全部恢复到能够正常提供业务，花费的时间也比较长，可能是半小时，也可能是12小时。因为备份系统平时不对外提供服务，可能会存在很多隐藏的问题没有发现。如果业务期望达到即使在此类灾难性故障的情况下，业务也不受影响，或者在几分钟内就能够很快恢复，那么就需要设计异地多活架构。
-今天我来聊聊异地多活架构，接下来还会再讲异地多活架构的设计技巧和流程。
-应用场景顾名思义，异地多活架构的关键点就是异地、多活，其中异地就是指地理位置上不同的地方，类似于“不要把鸡蛋都放在同一篮子里”；多活就是指不同地理位置上的系统都能够提供业务服务，这里的“活”是活动、活跃的意思。判断一个系统是否符合异地多活，需要满足两个标准：
-
-正常情况下，用户无论访问哪一个地点的业务系统，都能够得到正确的业务服务。
-
-某个地方业务异常的时候，用户访问其他地方正常的业务系统，能够得到正确的业务服务。
-
-
-与“活”对应的是字是“备”，备是备份，正常情况下对外是不提供服务的，如果需 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3830769444.html" title="31 | 如何应对接口级的故障？">31 | 如何应对接口级的故障？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">31 | 如何应对接口级的故障？你好，我是华仔。
-前几讲我介绍了异地多活方案。它主要用来应对系统级的故障，例如机器宕机、机房故障和网络故障等问题。这些系统级的故障虽然影响很大，但发生概率较小。在实际业务运行过程中，还有另外一种故障影响可能没有那么大，但发生的概率较高，这就是今天我要跟你聊的接口级的故障。
-接口级故障的典型表现就是，系统并没有宕机、网络也没有中断，但业务却出现问题了，例如业务响应缓慢、大量访问超时和大量访问出现异常（给用户弹出提示“无法连接数据库”）。
-这类问题的主要原因在于系统压力太大、负载太高，导致无法快速处理业务请求，由此引发更多的后续问题。最常见的情况就是，数据库慢查询将数据库的服务器资源耗尽，导致读写超时，业务读写数据库时要么无法连接数据库、要么超时，最终用户看到的现象就是访问很慢，一会儿访问抛出异常，一会儿访问又是正常结果。
-如果进一步探究，导致接口级故障的原因可以分为两大类：
-
-内部原因：包括程序bug导致死循环，某个接口导致数据库慢查询，程序逻辑不完善导致耗尽内存等。
-外部原因：包括黑客攻击，促销或者抢购引入了超出平时几倍甚至几十倍的用户，第三方系统大量请求，第三方系统响应缓慢等。
-
-解决接口级故障的核心思想和异地多活基本类似，都是 优先保证核心业务 和 优先保证绝大部分用户。常见的应对方法有四种，降级、熔断、限流和排队，下面我会一一讲解。
-1. 降级 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/21395865.html" title="32 | 可扩展架构的基本思想和模式">32 | 可扩展架构的基本思想和模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">32 | 可扩展架构的基本思想和模式软件系统与硬件和建筑系统最大的差异在于软件是可扩展的，一个硬件生产出来后就不会再进行改变、一个建筑完工后也不会再改变其整体结构。例如，一颗CPU生产出来后装到一台PC机上，不会再返回工厂进行加工以增加新的功能；金字塔矗立千年历经风吹雨打，但其现在的结构和当时建成完工时的结构并无两样。相比之下，软件系统就完全相反，如果一个软件系统开发出来后，再也没有任何更新和调整，反而说明了这套软件系统没有发展、没有生命力。真正有生命力的软件系统，都是在不断迭代和发展的，典型的如Windows操作系统，从Windows 3.0到Windows 95到Windows XP，直到现在的Windows 10，一直在跟着技术的发展而不断地发展。
-今天我们进入架构可扩展模式的学习，这部分内容包括分层架构、SOA架构、微服务和微内核等，先来聊聊架构的可扩展模式。
-软件系统的这种天生和内在的可扩展的特性，既是魅力所在，又是难点所在。魅力体现在我们可以通过修改和扩展，不断地让软件系统具备更多的功能和特性，满足新的需求或者顺应技术发展的趋势。而难点体现在如何以最小的代价去扩展系统，因为很多情况下牵一发动全身，扩展时可能出现到处都要改，到处都要推倒重来的情况。这样做的风险不言而喻：改动的地方越多，投入也越大，出错的可能性也越大。因此，如何避免扩展时改动范围太大，是软件架构可扩展性设计 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1133783325.html" title="30 | 异地多活设计4步走">30 | 异地多活设计4步走</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">30 | 异地多活设计4步走上一期，基于异地多活架构设计复杂度最高的“跨城异地”，我结合自己的经验总结了异地多活设计的4个技巧及其核心思想，我认为掌握这些技巧是进入具体设计步骤的前提。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1133783325.html" title="30 | 异地多活设计4步走">30 | 异地多活设计4步走</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">30 | 异地多活设计4步走上一期，基于异地多活架构设计复杂度最高的“跨城异地”，我结合自己的经验总结了异地多活设计的4个技巧及其核心思想，我认为掌握这些技巧是进入具体设计步骤的前提。
 今天，在掌握这4大技巧的基础上，我来讲讲跨城异地多活架构设计的4个步骤。
 第1步：业务分级按照一定的标准将业务进行分级，挑选出核心的业务，只为核心业务设计异地多活，降低方案整体复杂度和实现成本。
 常见的分级标准有下面几种：
@@ -232,18 +155,85 @@ FMEA最早是在美国军方开始应用的，20世纪40年代后期，美国空
 
 同样以QQ为例，聊天可能很难为腾讯带来收益，因为聊天没法插入广告；而QQ空间反而可能带来更多收益，因为QQ空间可以插入很多广告，因此如果从收入的角度来看，QQ空间做异地多活的优先级反而高于QQ聊天了。
 以我们一直在举例的用户管理系统为例，“登录”业务符合“访问量大的业务”和“核心业务”这两条标准，因此我们将登录业务作为核心业务。
-第2步：数据分类挑选出核心业务后，需要对核心业务相关的数据进一步分析，目的在于识别所有的数据及 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3371401785.html" title="34 | 深入理解微服务架构：银弹 or 焦油坑？">34 | 深入理解微服务架构：银弹 or 焦油坑？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">34 | 深入理解微服务架构：银弹 or 焦油坑？微服务是近几年非常火热的架构设计理念，大部分人认为是Martin Fowler提出了微服务概念，但事实上微服务概念的历史要早得多，也不是Martin Fowler创造出来的，Martin只是将微服务进行了系统的阐述（原文链接： https://martinfowler.com/articles/microservices.html）。不过不能否认Martin在推动微服务起到的作用，微服务能火，Martin功不可没。
-微服务的定义相信你早已耳熟能详，参考维基百科，我就来简单梳理一下微服务的历史吧（ https://en.wikipedia.org/wiki/Microservices#History）：
+第2步：数据分类挑选出核心业务后，需要对核心业务相关的数据进一步分析，目的在于识别所有的数据及 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1716665221.html" title="30 | 理论四：如何通过封装、抽象、模块化、中间层等解耦代码？">30 | 理论四：如何通过封装、抽象、模块化、中间层等解耦代码？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">30 | 理论四：如何通过封装、抽象、模块化、中间层等解耦代码？前面我们讲到，重构可以分为大规模高层重构（简称“大型重构”）和小规模低层次重构（简称“小型重构”）。大型重构是对系统、模块、代码结构、类之间关系等顶层代码设计进行的重构。对于大型重构来说，今天我们重点讲解最有效的一个手段，那就是“解耦”。解耦的目的是实现代码高内聚、松耦合。关于解耦，我准备分下面三个部分来给你讲解。
 
-2005年：Dr. Peter Rodgers在Web Services Edge大会上提出了“Micro-Web-Services”的概念。
+“解耦”为何如此重要？
+如何判定代码是否需要“解耦”？
+如何给代码“解耦”？
 
-2011年：一个软件架构工作组使用了“microservice”一词来描述一种架构模式。
+话不多说，现在就让我们正式开始今天的学习吧！
+“解耦”为何如此重要？软件设计与开发最重要的工作之一就是应对复杂性。人处理复杂性的能力是有限的。过于复杂的代码往往在可读性、可维护性上都不友好。那如何来控制代码的复杂性呢？手段有很多，我个人认为，最关键的就是解耦，保证代码松耦合、高内聚。如果说重构是保证代码质量不至于腐化到无可救药地步的有效手段，那么利用解耦的方法对代码重构，就是保证代码不至于复杂到无法控制的有效手段。
+我们在 第22讲 有介绍，什么是“高内聚、松耦合”。如果印象不深，你可以再去回顾一下。实际上，“高内聚、松耦合”是一个比较通用的设计思想，不仅可以指导细粒度的类和类之间关系的设计，还能指导粗粒度的系统、架构、模块的设计。相对于编码规范，它能够在更高层次上提高代码的可读性和可维护性。
+不管是阅读代码还是修改代码，“高 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/771603061.html" title="30 | 给系统加上眼睛：服务端监控要怎么做？">30 | 给系统加上眼睛：服务端监控要怎么做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">30 | 给系统加上眼睛：服务端监控要怎么做？你好，我是唐扬。
+在一个项目的生命周期里，运行维护占据着很大的比重，在重要性上，它几乎与项目研发并驾齐驱。而在系统运维过程中，能够及时地发现问题并解决问题，是每一个团队的本职工作。所以，你的垂直电商系统在搭建之初，运维团队肯定完成了对于机器CPU、内存、磁盘、网络等基础监控，期望能在出现问题时，及时地发现并且处理。你本以为万事大吉，却没想到系统在运行过程中，频频得到用户的投诉，原因是：
 
-2012年：同样是这个架构工作组，正式确定用“microservice”来代表这种架构。
+使用的数据库主从延迟变长，导致业务功能上出现了问题；
+接口的响应时间变长，用户反馈商品页面出现空白页；
+系统中出现大量错误，影响了用户的正常使用。
 
-2012年：ThoughtWorks的James Lewis针对微服务概念在QCon San Francisco 2012发表了演讲。
+这些问题，你本应该及时发现并处理的，但现实是，你只能被动地收到用户的反馈后，手忙脚乱地修复。这时你的团队才意识到，要想快速地发现和定位业务系统中出现的问题，必须搭建一套完善的服务端监控体系。正所谓“道路千万条，监控第一条，监控不到位，领导两行泪”。不过在搭建的过程中，你的团队又陷入了困境：
 
-2014年：James Lewis和Martin Fowler合写了关 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/83/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/83/#content-inner">83</a><span class="page-number current">84</span><a class="page-number" href="/page/85/#content-inner">85</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/85/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+首先，监控的指标要如何选择呢？
+采集这些指标可以有哪些方法和途径呢？
+指标采集到之后又要如何处理和展示呢？
+
+这些问题一环扣一环，关乎着系统的稳定性和可用性，而本节课，我就带你解决这些问题，搭建一套服务端监控体系。
+监控指标如何选择你在搭建监控系统时，所面临的第一个问题就是选择什么样的监控指标，也就是监控什么。有些同 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2036511950.html" title="30 | 编程范式：起源">30 | 编程范式：起源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">30 | 编程范式：起源序你好，我是陈皓，网名左耳朵耗子。
+现在很多的文章和演讲都在谈架构，很少有人再会谈及编程范式。然而， 这些基础性和本质性的话题，却是非常非常重要的。
+一方面，我发现在一些语言争论上，有很多人对编程语言的认识其实并不深；另一方面，通过编程语言的范式，我们不但可以知道整个编程语言的发展史，而且还能提高自己的编程技能，写出更好的代码。
+我希望通过一系列的文章带大家漫游一下各式各样的编程范式。（这一系列文章中代码量很大，很难用音频体现出来，所以没有录制音频，还望谅解。）
+
+01 | 编程范式游记：起源
+02 | 编程范式游记：泛型编程
+03 | 编程范式游记：类型系统和泛型的本质
+04 | 编程范式游记：函数式编程
+05 | 编程范式游记：修饰器模式
+06 | 编程范式游记：面向对象编程
+07 | 编程范式游记：基于原型的编程范式
+08 | 编程范式游记：Go 语言的委托模式
+09 | 编程范式游记：编程的本质
+10 | 编程范式游记：逻辑编程范式
+11 | 编程范式游记：程序世界里的编程范式
+
+这一经历可能有些漫长，途中也会有各式各样的语言的代码。但是我保证这一历程对于一个程序员来说是非常有价值的，因为你不但可以对主流编程语言的一些特性有所了解，而且当我们到达终点的时候，你还能了解到编程的本质是什么。
+这一系列文章中有各种语言的代码，其中有C、C++、Python ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3973885635.html" title="30 | 编程马拉松">30 | 编程马拉松</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:20.000Z" title="发表于 2023-12-13 18:10:20">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">30 | 编程马拉松今天，我和你聊聊“编程马拉松 Hackathon”的故事。
+Hackathon是一个合成词，取自Hack和Marathon，意为“编程马拉松”，又叫“黑客节”或“编程节”，它起源于Sun公司在1999年的 JavaOne 大会的一次活动。
+在那次活动中，约翰·盖奇 （John Gage）向参会人员发出了一个挑战：用Java为新款的Palm V编写一个程序。这个程序可以让Palm V用户通过红外线端口和其他Palm V的用户通信，此外，Palm V用户还能够通过该程序在网上注册他们的手机。这个活动第一次引入了编程马拉松的概念，并沿用至今。
+现在，湾区比较知名的创业公司都有个不成文的传统，通常一年会有几次编程马拉松，国内的一些互联网公司和技术社区也举办过类似的活动，就是有一周的三五天内，大家不工作而是去“Hack”一些自己感兴趣的小项目 。
+编程马拉松期间，全公司理论上是不允许有任何工作相关的会议，所以你每天照常上班，但上班的内容是自己找一群小伙伴，大家一起做一个和工作不直接相关的项目，最后一天则展示自己的成果。
+编程马拉松与平时工作的不同之处就在于，它让你去探索一些平时工作中无暇顾及的创意和想法，在很短的时间内推进和完成一个项目。
+不只是说一说，而是去通过设计、交互和程序去展示你的想法。编程马拉松的另外一个好处是，可以让你在团队工作中和一些平时少有合作的同事建立很 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3768283628.html" title="30 深度学习框架下的神经网络 | 昨日重现：循环神经网络">30 深度学习框架下的神经网络 | 昨日重现：循环神经网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">30 深度学习框架下的神经网络 | 昨日重现：循环神经网络今天是除夕，明天就是春节啦，在这里，给你拜个早年，祝你狗年大吉，新春快乐，在新的一年里，福旺运旺！
+今天我们继续讨论深度学习框架下的神经网络，聊一聊 循环神经网络。
+2017年，一本名叫《阳光失了玻璃窗》的诗集出版了。这本来是再普通不过的事情，可诗集的作者是赫赫有名的网红机器人微软小冰，或者更确切地说，小冰背后的算法，就让事情变得没那么简单了。
+我在网上拜读了一些小冰的诗，实话实说，它们让我想起了几年前那些将简单的旋律和节奏随机排列组合而批量生产出来，至今仍在广场舞音乐中大行其道的网络歌曲。但小冰的诗显然技高一筹，循环神经网络和递归神经网络这些高大上的技术让它的排列组合更加难以捉摸。
+在深度学习中，RNN这个缩写有两层含义，它既可以表示循环神经网络（Recurrent Neural Network），也可以表示递归神经网络（Recursive Neural Network）。巧的是，这两个RNN之间的关系还很密切：循环神经网络可以看成是递归神经网络的特例，递归神经网络则可以视为循环神经网络的推广。
+循环神经网络和我们前面介绍的所有神经网络都不一样，它的独特之处在于引入了“时间”的维度，因而适用于处理时间序列类型的数据。回忆一下上次分享的卷积神经网络，它具有空间上的参数共享的特性，也就是同样的核函数可以应用在图像的不同区域之上 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2097460806.html" title="31 | AI产品经理面试，这些问题你必须会答！">31 | AI产品经理面试，这些问题你必须会答！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">31 | AI产品经理面试，这些问题你必须会答！你好，我是海丰。
+我们在看大厂或者独角兽企业招聘信息的时候，会发现他们最看重两方面：学历和经历。学历一般是看你的学校是不是名校，专业是不是对口。经历一般是看你是否在行业内的知名公司待过，有没有优秀的项目产出。这是我们进入知名互联网公司最基础的敲门砖。
+那么，这是不是就意味着，普通院校出身、没有互联网大项目经验的同学就没有机会了呢？其实也不全是，这要靠一点点的“运气”，比如一些独角兽企业一直没有招到合适的人，业务老大急需要干活的人，而你又恰好在面试的时候表现很好，就很可能顺利拿到Offer。
+不过，这种“运气”并不常有。因为产品经理入门的门槛比较低，所以很多企业会把招聘的门槛设在学历和经历这些硬性指标上。
+看到这儿，你是不是有些气馁？难道我之前付出的努力全都白费了吗？当然不是。相比于传统产品经理，AI产品经理的处境可好太多了。 AI 产品经理有天然的稀缺性，还有专业技术加持，现阶段企业对 AI 产品经理的要求放得比较宽，毕竟目前这方面的人才还是太少了。
+因此，如果你想抓住AI产品经理岗位现阶段的红利，顺利拿到Offer、进入大厂，除了要学好我们的专栏，夯实AI技术能力，面试环节也是必须要重视的。这节课，我就带你梳理一下AI产品经理面试的常见问题和应对策略。
+面试官在考察候选人之前，事先都会对岗位进行定义，再决定问你哪些问题。虽然产品经理 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4032106419.html" title="31 | GPU（下）：为什么深度学习需要使用GPU？">31 | GPU（下）：为什么深度学习需要使用GPU？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">31 | GPU（下）：为什么深度学习需要使用GPU？上一讲，我带你一起看了三维图形在计算机里的渲染过程。这个渲染过程，分成了顶点处理、图元处理、 栅格化、片段处理，以及最后的像素操作。这一连串的过程，也被称之为图形流水线或者渲染管线。
+因为要实时计算渲染的像素特别地多，图形加速卡登上了历史的舞台。通过3dFx的Voodoo或者NVidia的TNT这样的图形加速卡，CPU就不需要再去处理一个个像素点的图元处理、栅格化和片段处理这些操作。而3D游戏也是从这个时代发展起来的。
+你可以看这张图，这是“古墓丽影”游戏的多边形建模的变化。这个变化，则是从1996年到2016年，这20年来显卡的进步带来的。
+
+图片来源
+Shader的诞生和可编程图形处理器不知道你有没有发现，在Voodoo和TNT显卡的渲染管线里面，没有“顶点处理“这个步骤。在当时，把多边形的顶点进行线性变化，转化到我们的屏幕的坐标系的工作还是由CPU完成的。所以，CPU的性能越好，能够支持的多边形也就越多，对应的多边形建模的效果自然也就越像真人。而3D游戏的多边形性能也受限于我们CPU的性能。无论你的显卡有多快，如果CPU不行，3D画面一样还是不行。
+所以，1999年NVidia推出的GeForce 256显卡，就把顶点处理的计算能力，也从CPU里挪到了显卡里。不过，这对于想要做好3D游戏的程序员们还不够，即使到了GeFor ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2460168477.html" title="31 | 事务机制：Redis能实现ACID属性吗？">31 | 事务机制：Redis能实现ACID属性吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">31 | 事务机制：Redis能实现ACID属性吗？你好，我是蒋德钧。
+事务是数据库的一个重要功能。所谓的事务，就是指对数据进行读写的一系列操作。事务在执行时，会提供专门的属性保证，包括原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）和持久性（Durability），也就是ACID属性。这些属性既包括了对事务执行结果的要求，也有对数据库在事务执行前后的数据状态变化的要求。
+那么，Redis可以完全保证ACID属性吗？毕竟，如果有些属性在一些场景下不能保证的话，很可能会导致数据出错，所以，我们必须要掌握Redis对这些属性的支持情况，并且提前准备应对策略。
+接下来，我们就先了解ACID属性对事务执行的具体要求，有了这个知识基础后，我们才能准确地判断Redis的事务机制能否保证ACID属性。
+事务ACID属性的要求首先来看原子性。原子性的要求很明确，就是一个事务中的多个操作必须都完成，或者都不完成。业务应用使用事务时，原子性也是最被看重的一个属性。
+我给你举个例子。假如用户在一个订单中购买了两个商品A和B，那么，数据库就需要把这两个商品的库存都进行扣减。如果只扣减了一个商品的库存，那么，这个订单完成后，另一个商品的库存肯定就错了。
+第二个属性是一致性。这个很容易理解，就是指数据库中的数据在事务执行前后是一致的。
+第三个属性是隔离性。它要求数据 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2793127763.html" title="31 | 大数据架构：大数据技术架构的思想和原理是什么？">31 | 大数据架构：大数据技术架构的思想和原理是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">31 | 大数据架构：大数据技术架构的思想和原理是什么？我在开篇词讲到，任何新技术都不是凭空产生的，都是在既有技术的基础之上，进行了一些创新性的组合扩展，应用到一些合适的场景之中，然后爆发出来巨大的生产力。后面几篇我要讲的大数据技术，区块链技术都是如此。
+大数据技术其实是分布式技术在数据处理领域的创新性应用，本质和我们此前讲到的分布式技术思路一脉相承：用更多的计算机组成一个集群，提供更多的计算资源，从而满足更大的计算压力要求。
+前面我们讨论的各种分布式缓存、负载均衡、分布式存储等都是讲如何在高并发的访问压力下，利用更多的计算机满足用户的请求访问压力。而大数据技术讨论的是，如何利用更多的计算机满足大规模的数据计算要求。
+大数据就是将各种数据统一收集起来进行计算，发掘其中的价值。这些数据，既包括数据库的数据，也包括日志数据，还包括专门采集的用户行为数据；既包括企业内部自己产生的数据，也包括从第三方采购的数据，还包括使用网络爬虫获取的各种互联网公开数据。
+面对如此庞大的数据，如何存储，如何利用大规模的服务器集群处理计算大量的数据，就是大数据技术的核心关键。
+分布式文件存储HDFS架构大规模数据计算首先要解决的是大规模数据的存储问题。如何将数百T，数百P的数据存储起来，通过一个文件系统统一管理，这本身就是一个极大的挑战。
+我曾在专栏 第5篇 讲过，分布式文件系统HDFS的架构。
+HDFS可 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/83/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/83/#content-inner">83</a><span class="page-number current">84</span><a class="page-number" href="/page/85/#content-inner">85</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/85/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

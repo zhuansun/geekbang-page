@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,102 +138,120 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4145951798.html" title="第17讲 | P2P协议：我下小电影，99%急死你">第17讲 | P2P协议：我下小电影，99%急死你</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第17讲 | P2P协议：我下小电影，99%急死你如果你想下载一个电影，一般会通过什么方式呢？
-当然，最简单的方式就是通过 HTTP 进行下载。但是相信你有过这样的体验，通过浏览器下载的时候，只要文件稍微大点，下载的速度就奇慢无比。
-还有种下载文件的方式，就是通过 FTP，也即 文件传输协议。FTP采用两个TCP连接来传输一个文件。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2096095726.html" title="22｜易速鲜花聊天客服机器人的开发（上）">22｜易速鲜花聊天客服机器人的开发（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">22｜易速鲜花聊天客服机器人的开发（上）你好，我是黄佳，欢迎来到LangChain实战课！
+上节课，咱们的易速鲜花人脉工具成功上线。市场部的朋友们用了都说好。
+这节课，我们继续为易速鲜花市场部、销售部和客服部门的员工，以及易速鲜花的广大用户来开发一个聊天机器人。
+“聊天机器人”项目说明聊天机器人（Chatbot）是LLM和LangChain的核心用例之一，很多人学习大语言模型，学习LangChain，就是为了开发出更好的、更能理解用户意图的聊天机器人。聊天机器人的核心特征是，它们可以进行长时间的对话并访问用户想要了解的信息。
 
-控制连接：服务器以被动的方式，打开众所周知用于FTP的端口21，客户端则主动发起连接。该连接将命令从客户端传给服务器，并传回服务器的应答。常用的命令有：list——获取文件目录；reter——取一个文件；store——存一个文件。
+如图所示，聊天机器人设计过程中的核心组件包括：
 
-数据连接：每当一个文件在客户端与服务器之间传输时，就创建一个数据连接。
+聊天模型：这是对话的基础，它更偏向于自然的对话风格。你可以参考LangChain相关文档中所支持的聊天模型的列表。尽管大模型（LLM）也可以应用于聊天机器人，但专用的聊天模型（Chat Model）更适合对话场景。
+提示模板：帮助你整合默认消息、用户输入、历史交互以及检索时需要的上下文。
+记忆：它允许机器人记住与用户之间的先前互动，增强对话连贯性。
+检索器：这是一个可选组件，特别适合那些需要提供特定领域知识的机器人。
+
+整体来说，聊天机器人的关键在于其记忆和检索能力，记忆使聊天机器人能够记住过去的交互，而检索则为聊天机器人提供最新的、特定于领域的信息。
+项目的技术实现细节在这个聊天机器人的实现过程中，我们将遵 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/9141960.html" title="23 | OKR规划法：Team Leader 怎么做团队规划？">23 | OKR规划法：Team Leader 怎么做团队规划？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">23 | OKR规划法：Team Leader 怎么做团队规划？你好，我是华仔。
+上一讲我介绍了KPI的问题和OKR的优势，你一定很想知道：OKR到底要怎么用呢？
+其实，用OKR做规划可以分为两个阶段。
+第一个阶段是， P9&#x2F;P10 级别的 业务负责人 针对 整条业务线 做业务规划。
+第二个阶段是， P7&#x2F;P8 级别的 Team Leader 针对 专业团队 做团队规划。
+你可能会想，做团队规划，是不是只要了解第二阶段就行了呢？然而并不是这样，P7&#x2F;P8的TL同样要了解第一阶段。
+因为你只有理解业务规划背后的逻辑，才能做出与之匹配的团队规划。
+这也是为什么在很多公司，当你的级别到了P7+，就有机会参与业务规划的讨论的原因。
+这一讲我就会为你介绍，在这两个阶段怎么使用OKR规划法来做规划。
+阶段一：业务规划我们先来看第一个阶段，业务规划。
+第一步：聚焦业务目标（O）业务规划的第一步是聚焦业务目标，也就是O。
+聚焦是OKR规划法的第一核心理念，也是OKR和KPI在做法上的核心区别之一。
+业务负责人（有可能不是一个人，而是一个决策团队）使用OKR进行规划的时候，要在众多可以选择的方向中，挑出最重要的几个，一般不超过3个。
+而如果使用KPI，很多人的进行规划的时候，就是简单地把一些指标的数值分别增加一点。
+这就是使用OKR规划的优势： 聚焦于最重要的事情，争取 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3425534329.html" title="23 | RPC框架：10万QPS下如何实现毫秒级的服务调用？">23 | RPC框架：10万QPS下如何实现毫秒级的服务调用？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">23 | RPC框架：10万QPS下如何实现毫秒级的服务调用？你好，我是唐扬。
+在 21讲 和 22讲 中，你的团队已经决定对垂直电商系统做服务化拆分，以便解决扩展性和研发成本高的问题。与此同时，你们在不断学习的过程中还发现系统做了服务化拆分之后会引入一些新的问题，这些问题我在上节课提到过，归纳起来主要是两点：
+
+服务拆分单独部署后，引入的服务跨网络通信的问题；
+在拆分成多个小服务之后，服务如何治理的问题。
+
+如果想要解决这两方面问题，你需要了解微服务化所需要的中间件的基本原理和使用技巧，那么本节课，我会带你掌握解决第一个问题的核心组件： RPC框架。
+来思考这样一个场景： 你的垂直电商系统的QPS已经达到了每秒2万次，在做了服务化拆分之后，由于我们把业务逻辑都拆分到了单独部署的服务中，那么假设你在完成一次完整的请求时需要调用4～5次服务，计算下来，RPC服务需要承载大概每秒10万次的请求。而你该如何设计RPC框架承载如此大的请求量呢？我建议你：
+
+选择合适的网络模型，有针对性地调整网络参数优化网络传输性能；
+选择合适的序列化方式，以提升封包、解包的性能。
+
+接下来我从原理出发，让你对于RPC有一个理性的认识，这样你在设计RPC框架时就可以清晰地知道自己的设计目标是什么了。
+你所知道的RPC说到RPC（Remote Procedure Call，远程过程调用），你不会陌生，它指的是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/629669914.html" title="23 | 冒险和预测（二）：流水线里的接力赛">23 | 冒险和预测（二）：流水线里的接力赛</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">23 | 冒险和预测（二）：流水线里的接力赛上一讲，我为你讲解了结构冒险和数据冒险，以及应对这两种冒险的两个解决方案。一种方案是增加资源，通过添加指令缓存和数据缓存，让我们对于指令和数据的访问可以同时进行。这个办法帮助CPU解决了取指令和访问数据之间的资源冲突。另一种方案是直接进行等待。通过插入NOP这样的无效指令，等待之前的指令完成。这样我们就能解决不同指令之间的数据依赖问题。
+着急的人，看完上一讲的这两种方案，可能已经要跳起来问了：“这也能算解决方案么？”的确，这两种方案都有点儿笨。
+第一种解决方案，好比是在软件开发的过程中，发现效率不够，于是研发负责人说：“我们需要双倍的人手和研发资源。”而第二种解决方案，好比你在提需求的时候，研发负责人告诉你说：“来不及做，你只能等我们需求排期。” 你应该很清楚地知道，“堆资源”和“等排期”这样的解决方案，并不会真的提高我们的效率，只是避免冲突的无奈之举。
+那针对流水线冒险的问题，我们有没有更高级或者更高效的解决方案呢？既不用简单花钱加硬件电路这样“堆资源”，也不是纯粹等待之前的任务完成这样“等排期”。
+答案当然是有的。这一讲，我们就来看看计算机组成原理中，一个更加精巧的解决方案， 操作数前推。
+NOP操作和指令对齐要想理解操作数前推技术，我们先来回顾一下， 第5讲 讲过的，MIPS体系结构下的R、I、J三类指令，以及 第20讲 里的五级流 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2020995877.html" title="23 | 分布式系统的技术栈">23 | 分布式系统的技术栈</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">23 | 分布式系统的技术栈你好，我是陈皓，网名左耳朵耗子。
+正如我们前面所说的，构建分布式系统的目的是增加系统容量，提高系统的可用性，转换成技术方面，也就是完成下面两件事。
+
+大流量处理。通过集群技术把大规模并发请求的负载分散到不同的机器上。
+关键业务保护。提高后台服务的可用性，把故障隔离起来阻止多米诺骨牌效应（雪崩效应）。如果流量过大，需要对业务降级，以保护关键业务流转。
+
+说白了就是干两件事。一是提高整体架构的吞吐量，服务更多的并发和流量，二是为了提高系统的稳定性，让系统的可用性更高。
+提高架构的性能咱们先来看看，提高系统性能的常用技术。
 
 
-FTP的两种工作模式每传输一个文件，都要建立一个全新的数据连接。FTP有两种工作模式，分别是 主动模式（ PORT）和 被动模式（ PASV），这些都是站在FTP服务器的角度来说的。
-主动模式下，客户端随机打开一个大于1024的端口N，向服务器的命令端口21发起连接，同时开放N+1端口监听，并向服务器发出 “port N+1” 命令，由服务器从自己的数据端口20，主动连接到客户端指定的数据端口N+1。
-被动模式下，当开启一个FTP连接时，客户端打开两个任意的本地端口N（大于1024）和N+1。第一个端口连接服务器的21端口，提交PASV命令。然后 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/723989396.html" title="第1讲 | 为什么要学习网络协议？">第1讲 | 为什么要学习网络协议？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第1讲 | 为什么要学习网络协议？《圣经》中有一个通天塔的故事，大致是说，上帝为了阻止人类联合起来，就让人类说不同的语言。人类没法儿沟通，达不成“协议”，通天塔的计划就失败了。
-但是千年以后，有一种叫“程序猿”的物种，敲着一种这个群体通用的语言，连接着全世界所有的人，打造这互联网世界的通天塔。如今的世界，正是因为互联网，才连接在一起。
-当”Hello World!”从显示器打印出来的时候，还记得你激动的心情吗？
-public class HelloWorld &#123;
-  public static void main(String[] args)&#123;
-    System.out.println(&quot;Hello World!&quot;);
-  &#125;
-&#125;
+缓存系统。加入缓存系统，可以有效地提高系统的访问能力。从前端的浏览器，到网络，再到后端的服务，底层的数据库、文件系统、硬盘和CPU，全都有缓存，这是提高快速访问能力最有效的手段。对于分布式系统下的缓存系统，需要的是一个缓存集群。这其中需要一个Proxy来做缓存的分片和路由。
+
+负载均衡系统。负载均衡系统是水平扩展的关键技术，它可以使用多台机器来共同分担一部分流量请求。
+
+异步调用。异步系统主要通过消息队列来对请求做排队处理，这样可以把前端的请求的峰值给“削平”了，而后端通过自己能够处理的速度来处理请求。这样可以增加系统的吞吐量，但是实时性就差很多了。同时，还会引入消息丢失的问题，所以要对消息做持久化，这会造成“有状态”的结点，从而增加了 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3227636884.html" title="23 | 如何处理工作中的人际关系？">23 | 如何处理工作中的人际关系？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:20.000Z" title="发表于 2023-12-13 18:10:20">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">23 | 如何处理工作中的人际关系？当我们初入职场的时候，职能级别可能比较低，大部分工作会比较独立，即使不是特别善于处理各种人际关系，问题也不算大，一来用不着你来协调资源，独立工作会占主要部分，很多时候都处于闷头写代码的状态；二来，组里会有一些老员工，可以帮助你做各种沟通工作。
+但是，若想职场进阶，一直往前走，到了某个阶段，比如需要你去做更多的协调和沟通工作而不是仅仅写代码的时候，如何处理人际关系就成为了一项必不可少的软技能，重要性不比技术上的硬技能低。
+今天我和你聊聊如何处理工作中的人际关系。
+在文章的开始，我先来说几个情景，你可以参考一下自身在工作中有没有遇到过这样的问题。
+
+J 总是很耐心，你什么时候去问他问题，他都会细心解答。
 
 
-如果你是程序员，一定看得懂上面这一段文字。这是每一个程序员向计算机世界说“你好，世界”的方式。但是，你不一定知道，这段文字也是一种协议，是人类和计算机沟通的协议， 只有通过这种协议，计算机才知道我们想让它做什么。
-协议三要素当然，这种协议还是更接近人类语言，机器不能直接读懂，需要进行翻译，翻译的工作教给编译器，也就是程序员常说的compile。这个过程比较复杂，其中的编译原理非常复杂，我在这里不进行详述。
-
-但是可以看得出，计算机语言作为程序员控制一台计算机工作的协议，具备了协议的三要素 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2147880244.html" title="第20讲 | CDN：你去小卖部取过快递么？">第20讲 | CDN：你去小卖部取过快递么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第20讲 | CDN：你去小卖部取过快递么？上一节，我们看到了网站的一般访问模式。
-当一个用户想访问一个网站的时候，指定这个网站的域名，DNS就会将这个域名解析为地址，然后用户请求这个地址，返回一个网页。就像你要买个东西，首先要查找商店的位置，然后去商店里面找到自己想要的东西，最后拿着东西回家。
-那这里面还有没有可以优化的地方呢？
-例如你去电商网站下单买个东西，这个东西一定要从电商总部的中心仓库送过来吗？原来基本是这样的，每一单都是单独配送，所以你可能要很久才能收到你的宝贝。但是后来电商网站的物流系统学聪明了，他们在全国各地建立了很多仓库，而不是只有总部的中心仓库才可以发货。
-电商网站根据统计大概知道，北京、上海、广州、深圳、杭州等地，每天能够卖出去多少书籍、卫生纸、包、电器等存放期比较长的物品。这些物品用不着从中心仓库发出，所以平时就可以将它们分布在各地仓库里，客户一下单，就近的仓库发出，第二天就可以收到了。
-这样，用户体验大大提高。当然，这里面也有个难点就是，生鲜这类东西保质期太短，如果提前都备好货，但是没有人下单，那肯定就坏了。这个问题，我后文再说。
-我们先说，我们的网站访问可以借鉴“就近配送”这个思路。
-全球有这么多的数据中心，无论在哪里上网，临近不远的地方基本上都有数据中心。是不是可以在这些数据中心里部署几台机器，形成一个缓存的集群来缓存部分数据，那么用户访问数据的时候， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3019854590.html" title="第22讲 | VPN：朝中有人好做官">第22讲 | VPN：朝中有人好做官</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第22讲 | VPN：朝中有人好做官前面我们讲到了数据中心，里面很复杂，但是有的公司有多个数据中心，需要将多个数据中心连接起来，或者需要办公室和数据中心连接起来。这该怎么办呢？
-
-第一种方式是走公网，但是公网太不安全，你的隐私可能会被别人偷窥。
-
-第二种方式是租用专线的方式把它们连起来，这是土豪的做法，需要花很多钱。
-
-第三种方式是用VPN来连接，这种方法比较折中，安全又不贵。
+H 人倒不错，不过什么东西都说不清楚，问他东西特别费劲。
 
 
+A 总是特别有主意，你很难说服他。在审查项目或代码的时候，有时候他给出的建议非常好，有时候就会比较主观，如果不按照他说的做吧，就得花时间说服他，那就会比较烦。
 
-VPN，全名 Virtual Private Network， 虚拟专用网，就是利用开放的公众网络，建立专用数据传输通道，将远程的分支机构、移动办公人员等连接起来。
-VPN是如何工作的？VPN通过隧道技术在公众网络上仿真一条点到点的专线，是通过利用一种协议来传输另外一种协议的技术，这里面涉及三种协议： 乘客协议、 隧道协议 和 承载协议。
-我们以IPsec协议为例来说明。
 
-你知道如何通过自驾进行海南游吗？这其中，你的车怎么通过琼州海峡呢？这里用到轮渡，其实这就用到 隧道协议。
-在广州这边开车是有“协议”的，例如靠右行驶、红灯停、绿灯行，这个就相当于“被封装”的 乘客协议。当然在海南那面，开车也是同样的协议。这就相当于需要连接在一起的一个公司的两个分部。
-但是在海上坐船航行，也有它的协议，例如要看灯塔、要按航道航行等。这就是外层的 承载协议。
-那我的车如何从广州到海南呢？这就需要你遵循开车的协议，将车 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3002981264.html" title="第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？">第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第27讲 | 云中的网络QoS：邻居疯狂下电影，我该怎么办？在小区里面，是不是经常有住户不自觉就霸占公共通道，如果你找他理论，他的话就像一个相声《楼道曲》说的一样：“公用公用，你用我用，大家都用，我为什么不能用？”。
-除此之外，你租房子的时候，有没有碰到这样的情况：本来合租共享WiFi，一个人狂下小电影，从而你网都上不去，是不是很懊恼？
-在云平台上，也有这种现象，好在有一种流量控制的技术，可以实现 QoS（Quality of Service），从而保障大多数用户的服务质量。
-对于控制一台机器的网络的QoS，分两个方向，一个是入方向，一个是出方向。
+W 喜欢和大家讨论问题，无论是公开场合还是私下交流，不过讨论完之后他就会写文档或者发 Email，把大家讨论的想法或主意说成是自己的，有点喜欢抢功劳的样子。
 
-其实我们能控制的只有出方向，通过Shaping，将出的流量控制成自己想要的模样。而进入的方向是无法控制的，只能通过Policy将包丢弃。
-控制网络的QoS有哪些方式？在Linux下，可以通过TC控制网络的QoS，主要就是通过队列的方式。
-无类别排队规则第一大类称为 无类别排队规则（Classless Queuing Disciplines）。还记得我们讲 ip addr 的时候讲过的 pfifo_fast，这是一种不把网络包分类的技术。
+以上的情景告诉我们，在工作中，我们总会对一个人产生感性的判断。比如：这个人很好相处，这个人很难合作等等。
+这一点其实无可厚非，但是在工作中，我们需要尽量摆脱自己的感性 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2215551425.html" title="23 | 实战一（上）：针对业务系统的开发，如何做需求分析和设计？">23 | 实战一（上）：针对业务系统的开发，如何做需求分析和设计？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:02.000Z" title="发表于 2023-12-18 17:50:02">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">23 | 实战一（上）：针对业务系统的开发，如何做需求分析和设计？对于一个工程师来说，如果要追求长远发展，你就不能一直只把自己放在执行者的角色，不能只是一个代码实现者，你还要有独立负责一个系统的能力，能端到端（end to end）开发一个完整的系统。这其中的工作就包括：前期的需求沟通分析、中期的代码设计实现、后期的系统上线维护等。
+前面我们还提到过，大部分工程师都是做业务开发的。很多工程师都觉得，做业务开发没啥技术含量，没有成长，就是简单的CRUD，翻译业务逻辑，根本用不上专栏中讲的设计原则、思想、模式。
+所以，针对这两个普遍的现象，今天，我通过一个积分兑换系统的开发实战，一方面给你展示一个业务系统从需求分析到上线维护的整个开发套路，让你能举一反三地应用到所有其他系统的开发中，另一方面也给你展示在看似没有技术含量的业务开发中，实际上都蕴含了哪些设计原则、思想、模式。
+话不多说，让我们正式开始今天的学习吧！
+需求分析积分是一种常见的营销手段，很多产品都会通过它来促进消费、增加用户粘性，比如淘宝积分、信用卡积分、商场消费积分等等。假设你是一家类似淘宝这样的电商平台的工程师，平台暂时还没有积分系统。Leader希望由你来负责开发这样一个系统，你会如何来做呢？
+你可能会说，只要产品经理给我产品设计文档（PRD）、线框图，我照着实现就可以了。我觉得，这种想法有点狭隘。我认为，技术人员应该更 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1233199080.html" title="23 | 异步架构：如何避免互相依赖的系统间耦合？">23 | 异步架构：如何避免互相依赖的系统间耦合？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">23 | 异步架构：如何避免互相依赖的系统间耦合？上一篇文章中我们讨论过，使用缓存架构可以减少不必要的计算，快速响应用户请求。但是缓存只能改善系统的读操作性能，也就是在读取数据的时候，可以不从数据源中读取，而是通过缓存读取，以加速数据读取速度。
+但是对于写操作，缓存是无能为力的。虽然缓存的写入速度也很快，但是通常情况下，我们不能把用户提交的数据直接写入缓存中，因为缓存通常被认为是一种不可靠的存储。缓存通常无法保证数据的持久性和一致性等这些数据存储的基本要求，因此数据写操作还是需要写入到RDBMS或者NoSQL数据库中，但是数据库操作通常都比较慢。
+那么如何提高系统的写操作的性能呢？
+此外，两个应用系统之间需要远程传递数据，常规的做法就是直接进行远程调用，用HTTP或者其他RMI方式进行远程调用。但是这种方式其实是把两个应用耦合起来了，被调用的应用产生了故障或者升级，都可能会引起调用者故障，或者也不得不升级。
+这种系统间的耦合情况又该如何避免呢？
+解决以上问题的主要手段就是使用消息队列的异步架构，有时候也被称为事件驱动架构。
+使用消息队列实现异步架构消息队列实现异步架构是目前互联网应用系统中一种典型的架构模式。所谓异步架构是和同步架构相对应的。同步架构是说，当应用程序调用服务的时候，当前程序需要阻塞等待服务完成，返回服务结果后才能继续向下执行。
+如下图例子：
 
-pfifo_fast分为三个先入先出的队列，称为三个Band。根据网络包里面TOS，看这个包到底应该进入哪个队列。TOS总共四位，每一位表示的意思不同，总共十六种类型。
-通过命令行tc qdisc  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1292537572.html" title="第32讲 | RPC协议综述：远在天边，近在眼前">第32讲 | RPC协议综述：远在天边，近在眼前</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第32讲 | RPC协议综述：远在天边，近在眼前前面我们讲了容器网络如何实现跨主机互通，以及微服务之间的相互调用。
+应用程序代码Clint ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2474301592.html" title="23 | 想成为架构师，你必须掌握的CAP细节">23 | 想成为架构师，你必须掌握的CAP细节</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">23 | 想成为架构师，你必须掌握的CAP细节理论的优点在于清晰简洁、易于理解，但缺点就是高度抽象化，省略了很多细节，导致在将理论应用到实践时，由于各种复杂情况，可能出现误解和偏差，CAP理论也不例外。如果我们没有意识到这些关键的细节点，那么在实践中应用CAP理论时，就可能发现方案很难落地。
+而且当谈到数据一致性时，CAP、ACID、BASE难免会被我们拿出来讨论，原因在于这三者都是和数据一致性相关的理论，如果不仔细理解三者之间的差别，则可能会陷入一头雾水的状态，不知道应该用哪个才好。
+今天，我来讲讲CAP的具体细节，简单对比一下ACID、BASE几个概念的关键区别点。
+CAP关键细节点埃里克·布鲁尔（Eric Brewer）在《CAP理论十二年回顾：“规则”变了》（ http://www.infoq.com/cn/articles/cap-twelve-years-later-how-the-rules-have-changed）一文中详细地阐述了理解和应用CAP的一些细节点，可能是由于作者写作风格的原因，对于一些非常关键的细节点一句话就带过了，这里我特别提炼出来重点阐述。
 
-网络是打通了，那服务之间的互相调用，该怎么实现呢？你可能说，咱不是学过Socket吗。服务之间分调用方和被调用方，我们就建立一个TCP或者UDP的连接，不就可以通信了？
+CAP关注的粒度是 数据，而不是整个系统。
 
-你仔细想一下，这事儿没这么简单。我们就拿最简单的场景，客户端调用一个加法函数，将两个整数加起来，返回它们的和。
-如果放在本地调用，那是简单的不能再简单了，只要稍微学过一种编程语言，三下五除二就搞定了。但是一旦变成了远程调用，门槛一下子就上去了。
-首先你要会Socket编程，至少先要把咱们这门网络协议课学一下，然后再看N本砖头厚的Socket程序设计的书，学会咱们学过的几种Socket程序设计的模型。这就使得本来大学毕业就能干的一项工作，变成了一件五年工作经验都不一定干好的工作，而且，搞定了Socket程序设计，才是万里长征的第一步。后面还有很多问题呢！
-如何解决这五个问题？问题一：如何规定远程调用的语法？客户端如何告诉服务端，我是一个加法，而另一个是乘法。我是用字符串“add”传给你，还是传给你一个整数，比如1表示加法，2表示乘法？服务端该如何告诉客户端，我的这个加法，目前只能加整数，不能加小数，不能加字符串；而另一个加法“add1”，它能实现小数和整数的混合加法。那返回值是什么？正确的时候返回什 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3181215980.html" title="第3讲 | ifconfig：最熟悉又陌生的命令行">第3讲 | ifconfig：最熟悉又陌生的命令行</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第3讲 | ifconfig：最熟悉又陌生的命令行上一节结尾给你留的一个思考题是，你知道怎么查看IP地址吗？
-当面试听到这个问题的时候，面试者常常会觉得走错了房间。我面试的是技术岗位啊，怎么问这么简单的问题？
-的确，即便没有专业学过计算机的人，只要倒腾过电脑，重装过系统，大多也会知道这个问题的答案：在Windows上是ipconfig，在Linux上是ifconfig。
-那你知道在Linux上还有什么其他命令可以查看IP地址吗？答案是ip addr。如果回答不上来这个问题，那你可能没怎么用过Linux。
-那你知道ifconfig和ip addr的区别吗？这是一个有关net-tools和iproute2的“历史”故事，你刚来到第三节，暂时不用了解这么细，但这也是一个常考的知识点。
-想象一下，你登录进入一个被裁剪过的非常小的Linux系统中，发现既没有ifconfig命令，也没有ip addr命令，你是不是感觉这个系统压根儿没法用？这个时候，你可以自行安装net-tools和iproute2这两个工具。当然，大多数时候这两个命令是系统自带的。
-安装好后，我们来运行一下ip addr。不出意外，应该会输出下面的内容。
-root@test:~# ip addr
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2110221668.html" title="第6讲 | 交换机与VLAN：办公室太复杂，我要回学校">第6讲 | 交换机与VLAN：办公室太复杂，我要回学校</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">第6讲 | 交换机与VLAN：办公室太复杂，我要回学校上一次，我们在宿舍里组建了一个本地的局域网LAN，可以愉快地玩游戏了。这是一个非常简单的场景，因为只有一台交换机，电脑数目很少。今天，让我们切换到一个稍微复杂一点的场景，办公室。
-拓扑结构是怎么形成的？我们常见到的办公室大多是一排排的桌子，每个桌子都有网口，一排十几个座位就有十几个网口，一个楼层就会有几十个甚至上百个网口。如果算上所有楼层，这个场景自然比你宿舍里的复杂多了。具体哪里复杂呢？我来给你具体讲解。
-首先，这个时候，一个交换机肯定不够用，需要多台交换机，交换机之间连接起来，就形成一个稍微复杂的 拓扑结构。
-我们先来看 两台交换机 的情形。两台交换机连接着三个局域网，每个局域网上都有多台机器。如果机器1只知道机器4的IP地址，当它想要访问机器4，把包发出去的时候，它必须要知道机器4的MAC地址。
+原文就只有一句话：
 
-于是机器1发起广播，机器2收到这个广播，但是这不是找它的，所以没它什么事。交换机A一开始是不知道任何拓扑信息的，在它收到这个广播后，采取的策略是，除了广播包来的方向外，它还要转发给其他所有的网口。于是机器3也收到广播信息了，但是这和它也没什么关系。
-当然，交换机B也是能够收到广播信息的，但是这时候它也是不知道任何拓扑信息的，因而也是进行广播的策略，将包转发到局域网三。这个时候，机器4和机器5都收到了广播信息。机器4主动响应说，这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2002701942.html" title="结束语 | 放弃完美主义，执行力就是限时限量认真完成">结束语 | 放弃完美主义，执行力就是限时限量认真完成</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:30:23.000Z" title="发表于 2023-12-13 18:30:23">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">趣谈网络协议</a></span></div><div class="content">结束语 | 放弃完美主义，执行力就是限时限量认真完成你好，我是刘超。
-从筹备、上线到今天专栏完结，过去了将近半年的时间。200多天，弹指一挥间。
-我原本计划写36篇，最后愣是写到了45篇。原本编辑让我一篇写两三千字，结果几乎每篇都是四五千字。这里面涉及图片张数我没具体数过，但是据说多到让编辑上传到吐。编辑一篇我的稿件的工作量相当于别的专栏的两倍。
-人常说，有多少付出，就有多少回报。但是，写这个“趣谈网络协议”专栏，我收获的东西远超过我的想象。我希望你的收获也是如此。为什么这么说呢？我们把时间放回到这个专栏最开始的时候，我慢慢跟你讲。
-我不是最懂的人，但我想尝试成为这样的人今年年初，极客时间来找我，希望我讲一些偏重基础的知识，比如网络协议。
-他们一提到这个主题，我就很兴奋，因为这也触动了我心中长期以来的想法，因为网络这个东西学起来实在是太痛苦。
-但是，说实话，接下这个重任，我心里其实是有点“怕”的。我怕自己不够专业，毕竟业内有这么多网络工程师和研究网络理论的教授。我讲这个课会不会贻笑大方啊？
-我知道，很多技术人员不敢写博客、写公众号，其实都有这种“怕”的心理：我又不牛，没啥要分享的，要是误导了别人怎么办？
-如果你想做出一些成绩，这个心理一定要克服。其实每个人都有自己的 相对优势。对于某个东西，你研究的时间不一定是最长的，但是你可能有特殊的角度、表达方式和应用场景。坚定了这个想法之后， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3338504169.html" title="02 | 初惑：技术方向的选择">02 | 初惑：技术方向的选择</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">02 | 初惑：技术方向的选择初入职场或还在校的同学想必都会有些共同的疑惑，比如：“到底我该选哪个技术方向？”“现在该学哪门语言？”“未来 Java 语言的发展趋势如何？”这些问题的本质其实都是技术的投资决策问题，也即现在我该把时间精力花在哪个方向上，未来的收益才可能最大。
-这个问题并不好回答，因为这个问题的本质和 “我现在应该投资哪只股票” 一样。没有人能回答好这个问题，我觉得最好的做法就是：从投资的出发点而非终点来选择一条路径。
-至于这样选择的路径是否能在未来获得很好的收益，这是没法预测的。但选择技术方向和选择股票不同的是，只要你在这条路径上持续努力、学习与进步，基本可以保证能和 “大盘” 持平而不至于有亏损，但是否能取得超过 “大盘” 的收益，其实是看运气的。
-选择语言选择技术方向，从某种意义上讲就是选择语言。
-虽然有一些流传的说法，类似于：“语言并不重要，必要的时候可以在各种语言间自由切换。”但实际情况是，能做到自由切换的前提是你得对一门语言掌握到通透之后，再学习其他语言才可能触类旁通。
-计算机程序语言虽然很多，但种类其实有限。2018 TIOBE 程序语言排行榜（见下图）上的前三位（Java、C、C++），本质上其实是一类语言。但大部分人只能选择去熟悉并通透其中一种，因为这些语言背后都有庞大的生态圈。
+C与A之间的取舍可以在同一系统内以非常细小的粒度反复发生，而每一次的决策可能因为具体的操作，乃至因为牵涉到特定的数据或用户而有所不同。
 
-2018 TIOBE 程序语言排行榜
-要做到通透，只熟悉语言本身是远 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/73/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/#content-inner">73</a><span class="page-number current">74</span><a class="page-number" href="/page/75/#content-inner">75</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/75/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3779642275.html" title="23 | 旁路缓存：Redis是如何工作的？">23 | 旁路缓存：Redis是如何工作的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">23 | 旁路缓存：Redis是如何工作的？你好，我是蒋德钧。
+我们知道，Redis提供了高性能的数据存取功能，所以广泛应用在缓存场景中，既能有效地提升业务应用的响应速度，还可以避免把高并发大压力的请求发送到数据库层。
+但是，如果Redis做缓存时出现了问题，比如说缓存失效，那么，大量请求就会直接积压到数据库层，必然会给数据库带来巨大的压力，很可能会导致数据库宕机或是故障，那么，业务应用就没有办法存取数据、响应用户请求了。这种生产事故，肯定不是我们希望看到的。
+正因为Redis用作缓存的普遍性以及它在业务应用中的重要作用，所以，我们需要系统地掌握缓存的一系列内容，包括工作原理、替换策略、异常处理和扩展机制。具体来说，我们需要解决四个关键问题：
+
+Redis缓存具体是怎么工作的？
+Redis缓存如果满了，该怎么办？
+为什么会有缓存一致性、缓存穿透、缓存雪崩、缓存击穿等异常，该如何应对？
+Redis的内存毕竟有限，如果用快速的固态硬盘来保存数据，可以增加缓存的数据量，那么，Redis缓存可以使用快速固态硬盘吗？
+
+这节课，我们来了解下缓存的特征和Redis适用于缓存的天然优势，以及Redis缓存的具体工作机制。
+缓存的特征要想弄明白Redis为什么适合用作缓存，我们得清楚缓存都有什么特征。
+首先，你要知道，一个系统中的不同层之间的访问速度不一样，所以我们才需要缓存，这样就可以把一些需要 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/73/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/#content-inner">73</a><span class="page-number current">74</span><a class="page-number" href="/page/75/#content-inner">75</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/75/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

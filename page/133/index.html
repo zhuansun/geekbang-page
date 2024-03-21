@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,101 +138,65 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4131872047.html" title="15 | 消息队列的考验：Redis有哪些解决方案？">15 | 消息队列的考验：Redis有哪些解决方案？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">15 | 消息队列的考验：Redis有哪些解决方案？你好，我是蒋德钧。
-现在的互联网应用基本上都是采用分布式系统架构进行设计的，而很多分布式系统必备的一个基础软件就是消息队列。
-消息队列要能支持组件通信消息的快速读写，而Redis本身支持数据的高速访问，正好可以满足消息队列的读写性能需求。不过，除了性能，消息队列还有其他的要求，所以，很多人都很关心一个问题：“Redis适合做消息队列吗？”
-其实，这个问题的背后，隐含着两方面的核心问题：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/602022226.html" title="结束语 | 聊一聊机遇、方向、能力、努力！">结束语 | 聊一聊机遇、方向、能力、努力！</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">结束语  | 聊一聊机遇、方向、能力、努力！你好，我是王争。从专栏上线到今天，足足有8个月的时间了。在这8个月里，我陪你一块完成了100篇正文和11篇加餐的学习。今天，我要正式地跟你说声再见了。
+你可能知道，除了《设计模式之美》这个专栏，我还有另外一个专栏《数据结构与算法之美》。两个专栏加起来已经有10万多读者了。算法专栏一直稳居极客时间的TOP 1。设计模式专栏发布时间较晚，但上升势头很好，跻身TOP 10指日可待。当然，这不是什么了不起的成绩，也并非我一个人努力的结果。我说这些当然也不是为了炫耀。
+成绩虽小，算不上成功，但起码称得上“成事（做成了一件事情）”。在这篇结束语里面，我打算结合我自己写专栏的经历，跟你聊一聊对人一生有很大影响的四样东西：机遇、方向、能力、努力，我觉得它们一起决定了你是否能“成事”。
+机遇我觉得，能赶上“知识付费”的风口，在最火热的时间段，推出了算法专栏，这是算法专栏能卖得这么好的最主要的外在原因。当时，大部分人对“知识付费”还认识不清，看到有人来讲课、分享经验，激动不已，于是开始一直“剁手买买买”。除此之外，还有一个很大原因是，当时并没有多少人讲算法，碰巧很多人在算法知识这方面也比较欠缺，所以，我的专栏不仅碰到了风口，还抢占了先机。现在，风口已经过去，大部分人对“知识付费”的认识也变得越来越理性。所以，如果算法专栏现在才推出，没有风口、没有先机，我不敢 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/419933971.html" title="结束语 | 雄关漫道真如铁，而今迈步从头越">结束语 | 雄关漫道真如铁，而今迈步从头越</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">结束语 | 雄关漫道真如铁，而今迈步从头越去年，“极客时间”联系到我，询问是否愿意开一个人工智能主题的专栏，因为我对知识经济充满好奇，对知识分享更是有极大的热情，所以我几乎是不加思考就答应了下来，对于接下来一年会遇到的挑战和收获丝毫没有准备。
+一年过去了，我们的专栏到了说再见的时候。现在我的感受是，我和你一起完成了一个不可能完成的任务。今天就和你聊聊一路走来我遇到的那些挑战和收获。
+我的第一个挑战就是在浩如烟海的人工智能知识库中，究竟要为你准备什么样的内容才能照顾到不同人群的需求。人工智能技术涵盖面广，变化更新很快，涉及到大量的工程实践以及纯粹的理论工作，如何取舍呢？
+最后呈现给你的156期内容，涵盖推荐、搜索、广告、自然语言处理和计算机视觉这五个人工智能核心技术模块，带你了解最关键的概念、模型和技术；最新的顶级学术会议论文导读，帮助你跟踪最新的技术动态；以及数据科学家成长和数据科学团队建设的经验之谈，帮助初学者快速入门。
+一切取舍之间的纠结都是为了打造一整套丰富的内容，给初学者一个理想的入门手册，带你跨进人工智能的大门，看清这里面都有什么，在心里画出一张人工智能的地图；同时还能给你一个进阶指南，让你能够找到继续精进的方向。
+对于顶级学术会议中精彩论文的分享，我花费了很多精力。现在很多会议动辄发表一两百篇甚至几百篇新论文，我每次都要扎进去选取我认为最优质的内容你给解读。我之所以觉得 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3985107729.html" title="结束语丨期待未来的你，成为优秀的软件架构师">结束语丨期待未来的你，成为优秀的软件架构师</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">结束语丨期待未来的你，成为优秀的软件架构师软件编程似乎是一件没有门槛的工作，任何接受过义务教育的人经过一些基本的编程培训就能够写一些可以执行的代码。但是，想要设计一个架构良好、易于维护、富有弹性的系统，却是一件非常困难的事。就我所见，很多项目团队压根没有“系统架构设计”这样一个软件开发阶段，也没有一个对整个系统技术架构掌控的人，项目管理者往往只是关注内外部的各种沟通，和人员、进度的管理，任由系统架构在日趋一日的开发过程中逐渐腐烂。
+我怀疑很多软件工程师从来没有体会过良好架构设计带来的好处：系统模块、层次边界清晰，团队每个人的工作都很少耦合；需求变更不需要在一大堆代码中改来改去，只要扩展几个类就轻松实现；用户量快速增加时，只需要变更部署方案就可以应对，甚至不需要改动代码。而得到最大好处的则是老板，他不必因为急剧膨胀的技术人员招聘预算而愁眉不展，也不必在公司年会上宣布996加班而被整个业界的唾沫星淹死。
+一个优秀的软件架构师应该能够设计一个良好架构的系统，并在它漫长的生命周期中保持架构持续演进、清晰合理。一个优秀的软件架构师应该能够写漂亮的技术PPT，也能写漂亮的代码，让自己开发的核心代码支撑起系统的核心架构，又让自己的架构方案得到大多数人的拥护。一个优秀的软件架构师应该有宏观的技术视角，能够用更广阔的愿景去诠释当前项目的技术、架构和未来的演化趋势。一个优秀的软件架构师应该拥有某种技术 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1734230882.html" title="结束语丨静下心来，享受技术的乐趣">结束语丨静下心来，享受技术的乐趣</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-22T00:00:00.000Z" title="发表于 2023-10-22 00:00:00">2023-10-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%AE%AE%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E6%88%98/">分布式协议与算法实战</a></span></div><div class="content">你好，我是韩健。
+一晃几个月的时间就过去了，这段日子里，我们一起在课程里沟通交流，与我而言，这是一段很特别的经历。我看到很多同学凌晨还在学习、留言，留言区里经常会看到熟悉的身影，比如约书亚、唔多志、每天晒白牙、小晏子，很感谢你们一直保持着学习的热情。
+就要说再见了，借今天这个机会，我想跟你唠点儿心里话。我问自己，如果只说一句话会是啥？想来想去，我觉得就是它了：静下心来，享受技术的乐趣。其实这与我之前的经历有关，我想你也能从我的经历中，看到你自己的影子。
+我们都有这样的感觉，无论任何事情，如果想把它做好，其实都不容易。我记得自己在开发 InfluxDB 系统期间，为了确保进度不失控，常常睡在公司，加班加点；在写稿期间，为了交付更高质量的课程，我总是会有很多想法，偶尔会通宵写稿，核对每句话、每个细节；再比如，为了解答 kernel_distribution 同学的一个关于外部 PPT 的问题，我通过 Google 找到相关代码的出处，然后反复推敲，在凌晨 4 点准备了一个答案。
+当然，技术的学习就更加不容易了，不是读几遍材料、调调代码就可以了，而是需要我们设计检测模型，来验证自己是否准确地理解了技术。我曾见过一些团队，做技术决策的依据是不成立的，设计和开发的系统，尽管迭代多版，也始终稳定不下来。在我看来，这些团队最大的问题，就是对技术的理解不准、不够。
+在我看来，我们需要调整下心态，也 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3695071156.html" title="结束语｜一个人要像一支队伍">结束语｜一个人要像一支队伍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/">零基础GPT应用入门课</a></span></div><div class="content">结束语｜一个人要像一支队伍你好，我是键盘。我们再启程。
+从结果反推的魔法再次“得逞”，专栏顺利完成，不敢想象的10万字、4周。这一切都是从1个简单的心愿开始的——将我的合作伙伴“共享大脑”介绍给大家。
 
-消息队列的消息存取需求是什么？
-Redis如何实现消息队列的需求？
+再开新局之前，我想和你分享3组小故事，聊聊AI降临给我带来的那些小火苗，回顾来时的路，希望能给你不一样的启发。
 
-这节课，我们就来聊一聊消息队列的特征和Redis提供的消息队列方案。只有把这两方面的知识和实践经验串连起来，才能彻底理解基于Redis实现消息队列的技术实践。以后当你需要为分布式系统组件做消息队列选型时，就可以根据组件通信量和消息通信速度的要求，选择出适合的Redis消息队列方案了。
-我们先来看下第一个问题：消息队列的消息读取有什么样的需求？
-消息队列的消息存取需求我先介绍一下消息队列存取消息的过程。在分布式系统中，当两个组件要基于消息队列进行通信时，一个组件会把要处理的数据以消息的形式传递给消息队列，然后，这个组件就可以继续执行其他操作了；远端的另一个组件从消息队列中把消息读取出来，再在本地进行处理。
-为了方便你理解，我还是借助一个例子来解释一下。
-假设组件1需要对采集到的数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2330727060.html" title="17 | 为什么CPU结构也会影响Redis的性能？">17 | 为什么CPU结构也会影响Redis的性能？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">17 | 为什么CPU结构也会影响Redis的性能？你好，我是蒋德钧。
-很多人都认为Redis和CPU的关系很简单，就是Redis的线程在CPU上运行，CPU快，Redis处理请求的速度也很快。
-这种认知其实是片面的。CPU的多核架构以及多CPU架构，也会影响到Redis的性能。如果不了解CPU对Redis的影响，在对Redis的性能进行调优时，就可能会遗漏一些调优方法，不能把Redis的性能发挥到极限。
-今天，我们就来学习下目前主流服务器的CPU架构，以及基于CPU多核架构和多CPU架构优化Redis性能的方法。
-主流的CPU架构要了解CPU对Redis具体有什么影响，我们得先了解一下CPU架构。
-一个CPU处理器中一般有多个运行核心，我们把一个运行核心称为一个物理核，每个物理核都可以运行应用程序。每个物理核都拥有私有的一级缓存（Level 1 cache，简称L1 cache），包括一级指令缓存和一级数据缓存，以及私有的二级缓存（Level 2 cache，简称L2 cache）。
-这里提到了一个概念，就是物理核的私有缓存。它其实是指缓存空间只能被当前的这个物理核使用，其他的物理核无法对这个核的缓存空间进行数据存取。我们来看一下CPU物理核的架构。
+像孩子一样好奇大事的发生往往悄无声息，1月份，ChatGPT悄然闯进了我的小日子。有了新玩具，当然就要挖个大坑好好玩一把。
 
-因为L1和L2缓存是每个物理核私有的，所以，当数据或指令保存在L1、L2缓存时，物理核访问它们的延迟不超过10纳秒，速度非常快。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2047725300.html" title="12 | 有一亿个keys要统计，应该用哪种集合？">12 | 有一亿个keys要统计，应该用哪种集合？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">12 | 有一亿个keys要统计，应该用哪种集合？你好，我是蒋德钧。
-在Web和移动应用的业务场景中，我们经常需要保存这样一种信息：一个key对应了一个数据集合。我举几个例子。
+✦ 重度社恐的救赎我是一个不善言辞的社恐，喜欢独自走楼梯的人，拜这种“缺陷”所赐，我却很擅长和不会话说的对象沟通，比如说家里阳台满满的植物，比如ChatGPT。深度了解习性，才能和谐共处，不和谐的那些淘汰就好。这就是课程中所谓的 驯服 和 迭代。
+让我们回到一切的起点，看看当时的智障对话。下面是一个典型的代表，站在那个时间点，这个对话可以说毫无意义。
 
-手机App中的每天的用户登录信息：一天对应一系列用户ID或移动设备ID；
-电商网站上商品的用户评论列表：一个商品对应了一系列的评论；
-用户在手机App上的签到打卡信息：一天对应一系列用户的签到记录；
-应用网站上的网页访问信息：一个网页对应一系列的访问点击。
+玩笑归玩笑，1个月后ChatGPT就“食言”，自己分裂了人格——角色扮演prompt它不就是人格分裂吗？我现在的侧边栏已经排了满满的人设。
+因为该死的好奇心，我设计了很多人设来检验“人格”分裂的危害，强调一下，是AI分裂啊。有MV导演、文档整理和重磅新手推荐助手等等，我也通过它们吃透了角色prompt设计的精髓。
 
-我们知道，Redis集合类型的特点就是一个键对应一系列的数据，所以非常适合用来存取这些数据。但是，在这些场景中，除了记录信息，我们往往还需要对集合中的数据进行统计，例如：
+有个细节GPT并没有扯谎。那就是赋予AI一个精准的人设，不要在一个会话里面尝试“分 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1009979939.html" title="结束语｜人生的价值就在于创造">结束语｜人生的价值就在于创造</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">结束语｜人生的价值就在于创造你好，我是黄佳。
+时间过得真快，转眼间就到了本专栏的最后一节课，我想为坚持学到最后的你大声鼓掌，也很开心能将我的阶段性沉淀传递出去，相信此刻的你已经体验到了 LangChain 的魅力。
+技术上的进步，还需要你不断去练习，因为我深知： 动手实践，比千言万语更有力量。所以在结束语中，我们不再谈技术细节，只分享一点我近期的感悟吧！如果我们恰好有共鸣，那就太棒了。
+某一个深夜，SpaceX 研发的最新一代运载火箭系统“星舰”升空，但在发射仅3分钟后，“超重型推进器”未能与“星舰”分离，在高空解体。
+不过，SpaceX CEO 马斯克没有太多的情绪，他在推特写道：“恭喜 SpaceX 团队令人兴奋的星舰试射，这为几个月后的下一次试射积累了许多经验。”马斯克希望在10年内建造1000艘“星舰”登陆火星，使人类成为跨行星物种的愿景不变。
 
-在移动应用中，需要统计每天的新增用户数和第二天的留存用户数；
-在电商网站的商品评论中，需要统计评论列表中的最新评论；
-在签到打卡中，需要统计一个月内连续打卡的用户数；
-在网页访问记录中，需要统计独立访客（Unique Visitor，UV）量。
-
-通常情况下，我们面临的用户数量以及访问量都是巨大的，比如百万、千万级别的用户数量，或者千万级别、甚至亿级别的访问信息。所以，我们必须要选择能够非常高效地统计大量数据（例如亿级）的集合类型。
-要想选择合适的集合，我们就得了解常用的集合统计模式。 这节课，我就给你介绍集合类型常见的四种统计模式，包括聚合统计、排序统计、二值状态统计和基数统计 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/280561632.html" title="18 | 波动的响应延迟：如何应对变慢的Redis？（上）">18 | 波动的响应延迟：如何应对变慢的Redis？（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">18 | 波动的响应延迟：如何应对变慢的Redis？（上）你好，我是蒋德钧。
-在Redis的实际部署应用中，有一个非常严重的问题，那就是Redis突然变慢了。一旦出现这个问题，不仅会直接影响用户的使用体验，还可能会影响到“旁人”，也就是和Redis在同一个业务系统中的其他系统，比如说数据库。
-举个小例子，在秒杀场景下，一旦Redis变慢了，大量的用户下单请求就会被拖慢，也就是说，用户提交了下单申请，却没有收到任何响应，这会给用户带来非常糟糕的使用体验，甚至可能会导致用户流失。
-而且，在实际生产环境中，Redis往往是业务系统中的一个环节（例如作为缓存或是作为数据库）。一旦Redis上的请求延迟增加，就可能引起业务系统中的一串儿“连锁反应”。
-我借助一个包含了Redis的业务逻辑的小例子，简单地给你解释一下。
-应用服务器（App Server）要完成一个事务性操作，包括在MySQL上执行一个写事务，在Redis上插入一个标记位，并通过一个第三方服务给用户发送一条完成消息。
-这三个操作都需要保证事务原子性，所以，如果此时Redis的延迟增加，就会拖累App Server端整个事务的执行。这个事务一直完成不了，又会导致MySQL上写事务占用的资源无法释放，进而导致访问MySQL的其他请求被阻塞。很明显，Redis变慢会带来严重的连锁反应。
-
-我相信，不少人遇到过这个问题，那具体该怎么解决 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3790392730.html" title="19 | 波动的响应延迟：如何应对变慢的Redis？（下）">19 | 波动的响应延迟：如何应对变慢的Redis？（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">19 | 波动的响应延迟：如何应对变慢的Redis？（下）你好，我是蒋德钧。
-上节课，我介绍了判断Redis变慢的两种方法，分别是响应延迟和基线性能。除此之外，我还给你分享了从Redis的自身命令操作层面排查和解决问题的两种方案。
-但是，如果在排查时，你发现Redis没有执行大量的慢查询命令，也没有同时删除大量过期keys，那么，我们是不是就束手无策了呢？
-当然不是！我还有很多“锦囊妙计”，准备在这节课分享给你呢！
-如果上节课的方法不管用，那就说明，你要关注影响性能的其他机制了，也就是文件系统和操作系统。
-Redis会持久化保存数据到磁盘，这个过程要依赖文件系统来完成，所以，文件系统将数据写回磁盘的机制，会直接影响到Redis持久化的效率。而且，在持久化的过程中，Redis也还在接收其他请求，持久化的效率高低又会影响到Redis处理请求的性能。
-另一方面，Redis是内存数据库，内存操作非常频繁，所以，操作系统的内存机制会直接影响到Redis的处理效率。比如说，如果Redis的内存不够用了，操作系统会启动swap机制，这就会直接拖慢Redis。
-那么，接下来，我再从这两个层面，继续给你介绍，如何进一步解决Redis变慢的问题。
-
-文件系统：AOF模式你可能会问，Redis是个内存数据库，为什么它的性能还和文件系统有关呢？
-我在前面讲过，为了保证数据可靠性，Redis会采用AOF日志 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3799613451.html" title="20 | 删除数据后，为什么内存占用率还是很高？">20 | 删除数据后，为什么内存占用率还是很高？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">20 | 删除数据后，为什么内存占用率还是很高？你好，我是蒋德钧。
-在使用Redis时，我们经常会遇到这样一个问题：明明做了数据删除，数据量已经不大了，为什么使用top命令查看时，还会发现Redis占用了很多内存呢？
-实际上，这是因为，当数据删除后，Redis释放的内存空间会由内存分配器管理，并不会立即返回给操作系统。所以，操作系统仍然会记录着给Redis分配了大量内存。
-但是，这往往会伴随一个潜在的风险点：Redis释放的内存空间可能并不是连续的，那么，这些不连续的内存空间很有可能处于一种闲置的状态。这就会导致一个问题：虽然有空闲空间，Redis却无法用来保存数据，不仅会减少Redis能够实际保存的数据量，还会降低Redis运行机器的成本回报率。
-打个形象的比喻。我们可以把Redis的内存空间比作高铁上的车厢座位数。如果高铁的车厢座位数很多，但运送的乘客数很少，那么，高铁运行一次的效率低，成本高，性价比就会降低，Redis也是一样。如果你正好租用了一台16GB内存的云主机运行Redis，但是却只保存了8GB的数据，那么，你租用这台云主机的成本回报率也会降低一半，这个结果肯定不是你想要的。
-所以，这节课，我就和你聊聊Redis的内存空间存储效率问题，探索一下，为什么数据已经删除了，但内存却闲置着没有用，以及相应的解决方案。
-什么是内存碎片？通常情况下，内存空间闲置，往往是因为操作系 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3779642275.html" title="23 | 旁路缓存：Redis是如何工作的？">23 | 旁路缓存：Redis是如何工作的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">23 | 旁路缓存：Redis是如何工作的？你好，我是蒋德钧。
-我们知道，Redis提供了高性能的数据存取功能，所以广泛应用在缓存场景中，既能有效地提升业务应用的响应速度，还可以避免把高并发大压力的请求发送到数据库层。
-但是，如果Redis做缓存时出现了问题，比如说缓存失效，那么，大量请求就会直接积压到数据库层，必然会给数据库带来巨大的压力，很可能会导致数据库宕机或是故障，那么，业务应用就没有办法存取数据、响应用户请求了。这种生产事故，肯定不是我们希望看到的。
-正因为Redis用作缓存的普遍性以及它在业务应用中的重要作用，所以，我们需要系统地掌握缓存的一系列内容，包括工作原理、替换策略、异常处理和扩展机制。具体来说，我们需要解决四个关键问题：
-
-Redis缓存具体是怎么工作的？
-Redis缓存如果满了，该怎么办？
-为什么会有缓存一致性、缓存穿透、缓存雪崩、缓存击穿等异常，该如何应对？
-Redis的内存毕竟有限，如果用快速的固态硬盘来保存数据，可以增加缓存的数据量，那么，Redis缓存可以使用快速固态硬盘吗？
-
-这节课，我们来了解下缓存的特征和Redis适用于缓存的天然优势，以及Redis缓存的具体工作机制。
-缓存的特征要想弄明白Redis为什么适合用作缓存，我们得清楚缓存都有什么特征。
-首先，你要知道，一个系统中的不同层之间的访问速度不一样，所以我们才需要缓存，这样就可以把一些需要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3309845710.html" title="21 | 缓冲区：一个可能引发“惨案”的地方">21 | 缓冲区：一个可能引发“惨案”的地方</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">21 | 缓冲区：一个可能引发“惨案”的地方你好，我是蒋德钧。今天，我们一起来学习下Redis中缓冲区的用法。
-缓冲区的功能其实很简单，主要就是用一块内存空间来暂时存放命令数据，以免出现因为数据和命令的处理速度慢于发送速度而导致的数据丢失和性能问题。但因为缓冲区的内存空间有限，如果往里面写入数据的速度持续地大于从里面读取数据的速度，就会导致缓冲区需要越来越多的内存来暂存数据。当缓冲区占用的内存超出了设定的上限阈值时，就会出现缓冲区溢出。
-如果发生了溢出，就会丢数据了。那是不是不给缓冲区的大小设置上限，就可以了呢？显然不是，随着累积的数据越来越多，缓冲区占用内存空间越来越大，一旦耗尽了Redis实例所在机器的可用内存，就会导致Redis实例崩溃。
-所以毫不夸张地说，缓冲区是用来避免请求或数据丢失的惨案的，但也只有用对了，才能真正起到“避免”的作用。
-我们知道，Redis是典型的client-server架构，所有的操作命令都需要通过客户端发送给服务器端。所以，缓冲区在Redis中的一个主要应用场景，就是在客户端和服务器端之间进行通信时，用来暂存客户端发送的命令数据，或者是服务器端返回给客户端的数据结果。此外，缓冲区的另一个主要应用场景，是在主从节点间进行数据同步时，用来暂存主节点接收的写命令和数据。
-这节课，我们就分别聊聊服务器端和客户端、主从集群间的缓冲区溢出问题，以及应对方案。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3800514353.html" title="22 | 第11～21讲课后思考题答案及常见问题答疑">22 | 第11～21讲课后思考题答案及常见问题答疑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">22 | 第11～21讲课后思考题答案及常见问题答疑你好，我是蒋德钧。
-咱们的课程已经更新到第21讲了，今天，我们来进行一场答疑。
-前半部分，我会给你讲解第11～21讲的课后思考题。在学习这部分内容时，可以和你的答案进行对照，看看还有哪里没有考虑到。当然，有些问题不一定有标准答案，我们还可以继续讨论。
-后半部分，我会围绕着许多同学都很关注的如何排查慢查询命令和bigkey的问题，重点解释一下，希望可以解答你的困惑。
-好了，我们现在开始。
-课后思考题答案第11讲问题：除了String类型和Hash类型，还有什么类型适合保存第11讲中所说的图片吗？
-答案：除了String和Hash，我们还可以使用Sorted Set类型进行保存。Sorted Set的元素有member值和score值，可以像Hash那样，使用二级编码进行保存。具体做法是，把图片ID的前7位作为Sorted Set的key，把图片ID的后3位作为member值，图片存储对象ID作为score值。
-Sorted Set中元素较少时，Redis会使用压缩列表进行存储，可以节省内存空间。不过，和Hash不一样，Sorted Set插入数据时，需要按score值的大小排序。当底层结构是压缩列表时，Sorted Set的插入性能就比不上Hash。所以，在我们这节课描述的场景中，Sorted Set类型虽然可以用来保存，但并不是最 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2606993339.html" title="25 | 缓存异常（上）：如何解决缓存和数据库的数据不一致问题？">25 | 缓存异常（上）：如何解决缓存和数据库的数据不一致问题？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">25 | 缓存异常（上）：如何解决缓存和数据库的数据不一致问题？你好，我是蒋德钧。
-在实际应用Redis缓存时，我们经常会遇到一些异常问题，概括来说有4个方面：缓存中的数据和数据库中的不一致；缓存雪崩；缓存击穿和缓存穿透。
-只要我们使用Redis缓存，就必然会面对缓存和数据库间的一致性保证问题，这也算是Redis缓存应用中的“必答题”了。最重要的是，如果数据不一致，那么业务应用从缓存中读取的数据就不是最新数据，这会导致严重的错误。比如说，我们把电商商品的库存信息缓存在Redis中，如果库存信息不对，那么业务层下单操作就可能出错，这当然是不能接受的。所以，这节课我就重点和你聊聊这个问题。关于缓存雪崩、穿透和击穿等问题，我会在下一节课向你介绍。
-接下来，我们就来看看，缓存和数据库之间的数据不一致是怎么引起的。
-缓存和数据库的数据不一致是如何发生的？首先，我们得清楚“数据的一致性”具体是啥意思。其实，这里的“一致性”包含了两种情况：
-
-缓存中有数据，那么，缓存的数据值需要和数据库中的值相同；
-缓存中本身没有数据，那么，数据库中的值必须是最新值。
-
-不符合这两种情况的，就属于缓存和数据库的数据不一致问题了。不过，当缓存的读写模式不同时，缓存数据不一致的发生情况不一样，我们的应对方法也会有所不同，所以，我们先按照缓存读写模式，来分别了解下不同模式下的缓存不一致情况。我在 第23讲 中讲过，根 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/132/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/132/#content-inner">132</a><span class="page-number current">133</span><a class="page-number" href="/page/134/#content-inner">134</a><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/134/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+仰望苍穹，宇宙浩瀚。每每想起人类已在月球上留下脚印，而今又要再度出发，就不由在心中感慨：如此有幸，能生活在这个时代。如此有幸，能见证通用人工智能时代的到来！
+是的，人类见证过一次次的历史时刻，现在，我们又站在另一个历史的节点上——通用人工智能的诞生。这并不仅仅是一个技术的进步，更是对未来世界的重新塑造。让我深感幸运的是，即便 AI 如此发达，有些东西仍是不可替代的，那就是人的创造力和情感。
+也许， 人生的真正价值并不仅仅是在于我们 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/234075939.html" title="结束语｜未来可期，一起拥抱AI绘画的新时代">结束语｜未来可期，一起拥抱AI绘画的新时代</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">结束语｜未来可期，一起拥抱AI绘画的新时代你好，我是南柯。
+今天是我们《AI绘画核心技术与实战》课程的最后一讲，从4月底开始筹备这门课程算起，前前后后历时快5个月的时间。对我来说这是一段非常有意义的时光。感谢你的一路相伴。
+如果用一句话总结这段经历，那便是白天为公司做大模型追赶GPT-4，深夜伏案翻阅论文总结AI绘画背后的算法技巧。可以说在 “10-10-6” 的工作模式之余，我将全部的心力都倾注到了这门课程里。
+知识性的内容我们前面已经讨论了很多，今天我更想和你说一些我的心里话，希望可以带给你一些启发。
+一次教学相长的求知之旅在我看来，今天的AIGC至少包括两层含义，也就是AI绘画和GPT。做个类比，多模态生成（AI绘画）和多模态理解（GPT-4）可以看做是金庸先生笔下的倚天剑与屠龙刀，是潜力无穷且相辅相成的技术。我无疑是幸运的，能够同时亲历这两大技术带来的变革。
+其实，当今AIGC世界，背后无非是凭借扩散模型、文本编码器、Tranformer等等这些砖砖瓦瓦搭建起来的，想要搞懂背后的机理并不是一件遥不可及的事情。
+即使仅仅从AI绘画切入，看到的也是一个宏大的世界。AI绘画相关的算法原理、代码实现和应用场景绝不是短短十几万字能讲清楚的。我能做的就是尽我所能，提炼出我觉得最基础、最核心的内容，毫无保留地分享给你。
+这里我也想感谢你们的陪伴和支持，每每看到有人留言，我都会发自内心地感 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/65966051.html" title="结束语｜送你一张通往未来“通用人工智能”时代的船票">结束语｜送你一张通往未来“通用人工智能”时代的船票</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">结束语｜送你一张通往未来“通用人工智能”时代的船票你好，我是徐文浩。
+课程到这里，终于要结束了。在去年年底和极客时间定下要写这门课程的时候，我并没有想到AI会在过去几个月里掀起怎样一阵滔天巨浪。忽然之间，似乎AIGC和大语言模型变成了一个人人都可以参与讨论的话题。连我年近七十的父母昨天晚上也来问我怎么才能用上ChatGPT，让我一时都有些恍惚。上一次，人人都关心的技术产品，大概还是需要排队才能买到的iPhone。
+虽然谈不上完美，但是它真的有用尽管这不是我第一次在极客时间上写课程了，而且这一次的内容也比前两次要短一些。但是写一个30讲、十几万字课程的过程还是非常煎熬的，特别是这一次有了更多和之前不一样的挑战。
+因为AI大模型领域每天都在发生新的变化，在整个课程写作的过程中，突发情况层出不穷。比如，因为开源项目的版本升级很频繁，甚至很多升级是不向前兼容的，导致我很多提前写完的稿子不得不二次回炉返工。我早早就写完了第11讲，里面介绍了如何使用llama-index来分片索引文章，并且让ChatGPT能够根据上下文来更准确地回答问题。但是，就在实际连载要发表的前几天，llama-index就进行了大规模地大升级，所有的API接口都发生了变化。所以那几天，我不得不停下来重新修订了一遍对应的内容和代码，避免上线的时候你没法运行成功。
+另外，准备演示代码和对应的数据花费的时间也远比预想的要多得 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1128030569.html" title="结课 | 溯洄从之，道阻且长">结课 | 溯洄从之，道阻且长</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">结课 | 溯洄从之，道阻且长
+三个月的时间弹指即逝，40期的《人工智能基础课》已走到尾声。在专栏里，我和你一起走马观花地浏览了人工智能的技术概观，以 建立人工智能初步的知识体系。
+算起来，经历了三起三落之后，人工智能已步入花甲之年。虽然在创造者眼中仍然是个孩子，但对你我这些后学之辈来说，这位老人身上还是有无穷的奥秘有待探索。在我看来， 《人工智能基础课》应该是一份简历、一份提纲，勾勒出这个领域的基本框架。当然，简历无法浓缩一个人丰富的经历，40篇文章的体量也不足以覆盖人工智能的全部内容。想要基于这份提纲深入研究，还需要大量的时间和精力的付出。
+在互动中，不少朋友都表达了从事人工智能工作的意愿。实话实说，把这门技艺当成茶余饭后的谈资和养活自己的饭碗是截然不同的两码事情，所以需要深思熟虑之后再做选择。
+如果你还没有走出校园，那就应该踏踏实实学好相关的基础课程和专业课程，仰望星空不如脚踏实地，一味好高骛远只会把理想变成毫无根基的空中楼阁。
+如果你已经走入了工作岗位，那一定会知道不能盲目追逐热点的道理。所以在决定转行之前，务必要想清楚想做什么和能做什么，别让自己成为热点的牺牲品。
+相比于转行，我认为更好的做法是 将人工智能融入到现有的工作之中。人工智能的价值在于落地，它的优势则是几乎在所有领域都有用武之地。
+与其星辰大海，不如近水楼台，将自身专门的领域知识和人工智能的方法结合，以处理和解决 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2294643156.html" title="结课测试 | Java核心技术的这些知识，你真的掌握了吗？">结课测试 | Java核心技术的这些知识，你真的掌握了吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">结课测试 | Java核心技术的这些知识，你真的掌握了吗？你好，我是杨晓峰。
+《Java核心技术面试精讲》已经完结一段时间了。在这段时间里，我依然收到了很多用户的留言，很感谢你一直以来的认真学习和支持！
+为了帮助你检验自己的学习效果，我特别给你准备了一套结课测试题。这套测试题共有 10 道题目，包括1道单选题，9道多选题，满分 100 分，系统会自动评分。
+点击下面按钮，马上开始测试吧！
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/132/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/132/#content-inner">132</a><span class="page-number current">133</span><a class="page-number" href="/page/134/#content-inner">134</a><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/134/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

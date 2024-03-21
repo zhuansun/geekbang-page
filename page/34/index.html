@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:15'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,130 +138,93 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3574938405.html" title="50 | 弹力设计：降级设计">50 | 弹力设计：降级设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">50 | 弹力设计：降级设计你好，我是陈皓，网名左耳朵耗子。
-所谓的降级设计（Degradation），本质是为了解决资源不足和访问量过大的问题。当资源和访问量出现矛盾的时候，在有限的资源下，为了能够扛住大量的请求，我们就需要对系统进行降级操作。也就是说，暂时牺牲掉一些东西，以保障整个系统的平稳运行。
-我记得我在伦敦参与诺丁山狂欢节的时候，以及看阿森纳英超足球比赛的时候，散场时因为人太多，所有的公交系统（公交车，地铁）完全免费，就是为了让人通行得更快。而且早在散场前，场外就备着一堆公交车和地铁了，这样就是为了在最短时间内把人疏散掉。
-虽然亏掉了一些钱，但是相比因为人员拥塞造成道路交通拥塞以及还可能出现的一些意外情况所造成的社会成本的损失，公交免费策略真是很明智的做法。与此类似，我们的系统在应对一些突发情况的时候也需要这样的降级流程。
-一般来说，我们的降级需要牺牲掉的东西有：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/592271378.html" title="08丨软件设计的方法论：软件为什么要建模？">08丨软件设计的方法论：软件为什么要建模？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:44.000Z" title="发表于 2024-03-01 18:18:44">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">08丨软件设计的方法论：软件为什么要建模？我们开发的绝大多数软件都是用来解决现实问题的。通过计算机软件，可以用高效、自动化的方式去解决现实中低效的、手工的业务过程。
+因此软件开发的本质就是在计算机的虚拟空间中根据现实需求创建一个新世界。阿里的工程师在创造一个“500平方公里”的交易市场，百度的工程师在创造一个“一万层楼”的图书馆，新浪微博的工程师在创造“两亿份报纸”，腾讯的工程师在创造“数10亿个聊天茶室和棋牌室”。
+现实世界纷繁复杂，庞大的软件系统也需要很多人合作，开发出众多的模块和代码。如何使软件系统准确反映现实世界的业务逻辑和需求？庞大的软件系统如何能在开发之初就使各个相关方对未来的软件蓝图有清晰的认知和认可，以便在开发过程中使不同工程师们能够有效合作，能够让软件的各个模块边界清晰、易于维护和部署？
+这个由软件工程师创造出来的虚拟世界，是一个恢弘大气的罗马都城，还是一片垃圾遍地的棚户区，就看软件工程师如何设计它了，而软件设计的主要过程就是软件建模。
+软件建模所谓软件建模，就是为要开发的软件建造模型。模型是对客观存在的抽象，我们常说的数学建模，就是用数学公式作为模型，抽象表达事务的本质规律，比如著名的$E&#x3D;mc^2$，就是质量能量转换的物理规律的数学模型。除了数学公式是模型，还有一些东西也是模型，比如地图，就是对地理空间的建模。各种图纸，机械装置的图纸、电子电路的图纸 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2014624963.html" title="08｜巧用神经网络：如何用UNet预测噪声">08｜巧用神经网络：如何用UNet预测噪声</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">08｜巧用神经网络：如何用UNet预测噪声你好，我是南柯。
+前面我们已经学习了扩散模型加噪和去噪的过程，也了解了Transformer的基本原理。之前我还埋下了一个伏笔，那便是使用UNet网络预测每一步的噪声。
+今天我就来为你解读UNet的核心知识。在这一讲，我们主要解决后面这三个问题。
 
-降低一致性。从强一致性变成最终一致性。
-停止次要功能。停止访问不重要的功能，从而释放出更多的资源。
-简化功能。把一些功能简化掉，比如，简化业务流程，或是不再返回全量数据，只返回部分数据。
+UNet模型的工作原理是怎样的？
+在各种AI绘画模型里用到的UNet结构有什么特殊之处？
+UNet与Transformer要如何结合？
 
-降低一致性我们要清楚地认识到，这世界上大多数系统并不是都需要强一致性的。对于降低一致性，把强一致性变成最终一致性的做法可以有效地释放资源，并且让系统运行得更快，从而可以扛住更大的流量。一般来说，会有两种做法，一种是简化流程 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3983642823.html" title="49 | 弹力设计：限流设计">49 | 弹力设计：限流设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">49 | 弹力设计：限流设计你好，我是陈皓，网名左耳朵耗子。
-保护系统不会在过载的情况下出现问题，我们就需要限流。
-我们在一些系统中都可以看到这样的设计，比如，我们的数据库访问的连接池，还有我们的线程池，还有Nginx下的用于限制瞬时并发连接数的limit_conn模块，限制每秒平均速率的limit_req模块，还有限制MQ的生产速，等等。
-限流的策略限流的目的是通过对并发访问进行限速，相关的策略一般是，一旦达到限制的速率，那么就会触发相应的限流行为。一般来说，触发的限流行为如下。
+搞懂了这些，在你的日常工作中，便可以根据实际需求对预测噪声的模型做各种魔改了，也会为我们之后训练扩散模型的实战课打好基础。
+初识UNet在正式认识UNet之前，我们有必要先了解一下图像分割这个任务。
+图像分割是计算机视觉领域的一种基本任务，它的目标是将图像划分为多个区域，对应于原图中不同的语义内容。比如下面这个例子，就是针对自动驾驶场景的图像分割效果。
 
-拒绝服务。把多出来的请求拒绝掉。一般来说，好的限流系统在受到流量暴增时，会统计当前哪个客户端来的请求最多，直接拒掉这个客户端，这种行为可以把一些不正常的或者是带有恶意的高并发访问挡在门外。
+图像分割与我们熟悉的图像分类任务目标有所不同，图像分类任务的目标是为整张图像分配一个整体标签，而图像分割任务的目标是为每个像素分配对应的类别标签。
+UNet出现之前，图像分割采用的主要方法是2015年提出的 FCN（全卷积网络）。与传统的CNN（卷积神经网络）不同，FCN去掉了最后的全连接层，而是使用转置卷积层实现上采样的过程。通过这样的操作，FCN可以获得与输入图像相同尺寸的输出。
 
-服务降级。关闭或是把后端服务做降级处理。这样可以让服务有足够的资源来处理更多的请求。降级有很多方式，一种是把一些不重要的服务给停掉，把CPU、内存或是数据的资源让给更重要的功能；一种是不再返回全量数据，只返回部分数据。
+虽然FCN为图像分割任 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2306057863.html" title="08｜文本改写和内容审核，别让你的机器人说错话">08｜文本改写和内容审核，别让你的机器人说错话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">08｜文本改写和内容审核，别让你的机器人说错话你好，我是徐文浩。
+前面，我们已经把OpenAI最主要的接口介绍完了。这一讲也是我们基础知识篇里面的最后一讲，我们会覆盖完OpenAI的GPT系列模型剩下的一些接口。也许有些接口你不一定会频繁使用，但是了解一下没有什么坏处，说不定你有什么需求就能用得上它。
+在这一讲里，我们会一起来看看OpenAI为文本改写和内容审核提供的功能有哪些。以及OpenAI的GPT系列有哪些模型，这些模型有哪些区别，什么情况下我们应该用什么模型。
+文本改写，从使用提示语开始我猜课程学到这里，你应该已经用过不少基于AI大语言模型的产品了。很常见的一类应用，就是写作助手。比如Notion AI就能帮助你，在已经写好的文章里面选取一段内容，你可以让AI帮你修改。这个修改可以是让文本短一点或者长一点，也可以是让文本改一下自己的语气。
 
+不过，OpenAI的GPT的系列模型是一个生成式的模型，也就是它的用法是你给它一段文字，然后它补全后面的文字。按理来说，你是没法让它修改一段内容的。当然，在看了那么多不同的“提示语”之后，相信你自然想到可以通过一段提示语来解决这个问题。比如，下面这段代码就是这样的，我们通过上一讲介绍的ChatGPT的模型来实现了这个功能。
+def make_text_short(text):
+    messages = []
+    messages ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/484324245.html" title="08｜迭代答案：让结果更惊喜">08｜迭代答案：让结果更惊喜</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/">零基础GPT应用入门课</a></span></div><div class="content">08｜迭代答案：让结果更惊喜你好，我是键盘，我们继续驯服 GPT。
+我们已经讲完怎么设计prompt，怎么更好地写出少冗余的prompt，接下来就要同步打磨ChatGPT的输出结果和prompt本身了。
+为什么不是单纯调整中间过程来迭代结果？因为输入影响输出，我们没办法保证设计“一定没有错漏”这种完美的情况，而且初始prompt是源头，影响权重最大。
+这节课，我会带你实现一个ChatHub，打通主流AI产品之间的协作，在这个过程中反复打磨prompt本身和输出结果。
+开始整活明确打造AI全明星ChatHub这个目标之后，我们开始着手设计。 课程中会用到Python（必备）和Arc浏览器（非必需）。
+关于Python，你不需要Python基础，但需要 安装好程序和环境，在ChatGPT的协助下大概需要半天来解决，属于一劳永逸的准备工作。Arc浏览器这边主要是利用它的分屏功能，传统浏览器的话，使用标签分离也可以解决。
 
-因为全量数据需要做SQL Join操作，部分的数据则不需要，所以可以让SQL执行更快，还有最快的一种是直接返回预设的缓存，以牺牲一致性的方式来获得更大的性能吞吐。
+先思维，再技术眼尖的小伙伴看到“多标签”可能就明白了，ChatHub就是通过让AI接管浏览器的权限自动打开多标签。再次强调，用什么技术并不重要，“从结果反推来实现”的思维是贯穿整套课程的。
+之所以用这个轻量方式来实现ChatHub，原因有3个。
 
-特权请求。所谓特权请求的意思是，资源不够了，我只能把有限的资源分给重要的用户，比如：分给权利更高的VIP用户。在多租户系统下，限 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4241894644.html" title="51 | 弹力设计总结">51 | 弹力设计总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">51 | 弹力设计总结你好，我是陈皓，网名左耳朵耗子。
-我们前面讲了那么多的弹力设计的设计模式，这里做个总结。
-弹力设计总图首先，我们的服务不能是单点，所以，我们需要在架构中冗余服务，也就是说有多个服务的副本。这需要使用到的具体技术有：
+不应该依赖多余的工具 ： 高端的食材往往只需要最朴素的烹饪方式。规划prompt用记事本，访问AI就靠浏览器本身。
+工具只是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2782525328.html" title="08｜链（上）：写一篇完美鲜花推文？用SequencialChain链接不同的组件">08｜链（上）：写一篇完美鲜花推文？用SequencialChain链接不同的组件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">08｜链（上）：写一篇完美鲜花推文？用SequencialChain链接不同的组件你好，我是黄佳。欢迎来到LangChain实战课！
+到这节课，我们已经学到了不少LangChain的应用，也体会到了LangChain功能的强大。但也许你心里开始出现了一个疑问：LangChain，其中的 Chain 肯定是关键组件，为什么我们还没有讲到呢？
+这的确是个好问题。对于简单的应用程序来说，直接调用LLM就已经足够了。因此，在前几节课的示例中，我们主要通过LangChain中提供的提示模板、模型接口以及输出解析器就实现了想要的功能。
+什么是 Chain但是，如果你想开发更复杂的应用程序，那么就需要通过 “Chain” 来链接LangChain的各个组件和功能——模型之间彼此链接，或模型与其他组件链接。
 
-负载均衡 + 服务健康检查–可以使用像Nginx或HAProxy这样的技术；
-服务发现 + 动态路由 + 服务健康检查，比如Consul或ZooKeeper；
-自动化运维，Kubernetes 服务调度、伸缩和故障迁移。
+这种将多个组件相互链接，组合成一个链的想法简单但很强大。它简化了复杂应用程序的实现，并使之更加模块化，能够创建出单一的、连贯的应用程序，从而使调试、维护和改进应用程序变得容易。
+说到链的实现和使用，也简单。
 
-然后，我们需要隔离我们的业务，要隔离我们的服务我们就需要对服务进行解耦和拆分，这需要使用到以前的相关技术。
+首先LangChain通过设计好的接口，实现一个具体的链的功能。例如，LLM链（LLMChain）能够接受用户输入，使用 PromptTemplate 对其进行格式化，然后将格式化的响应传递给 LLM。这就相当于把整个Model I&#x2F;O的流程封装到链里面。
+实现了链的具体功能 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2535140103.html" title="09 | K近邻算法：机器学习入门必学算法">09 | K近邻算法：机器学习入门必学算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%88%90%E4%B8%BAAI%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">成为AI产品经理</a></span></div><div class="content">09 | K近邻算法：机器学习入门必学算法你好，我是海丰。
+今天，我们正式进入算法的学习，来学习K 近邻算法（K-Nearest Neighbor），简称 KNN 算法。它是一种用来解决分类问题的算法，简单来说，就是用来预测用户是男是女，或者是否喜欢某件商品。 分类算法有很多，只不过，不同算法的实现机制不同，我们今天要讲的 KNN 算法是基于距离计算的方式来解决分类问题的。
+下面，我就借助生活中常见的例子，给你讲清楚 KNN 算法的原理、优缺点，以及应用场景。
+如何理解 KNN 算法我们的生活中总是充斥着各种各样的小抉择，这些抉择虽然对我们的影响不大，但总会让我们有些苦恼。比如，手机买什么牌子、买什么型号？午饭吃什么？周末陪女朋友去哪儿玩？你每次遇到这类问题的时候，都会怎么解决呢？
+先别着急回答，我们先来做一个小测试题。如果现在就让你给女朋友选礼物，你会怎么做？我希望你能在 5 秒内，从下面 3 个选项中选一个：
 
-bulkheads模式：业务分片 、用户分片、数据库拆分。
+随便选一个就行了
+问问周围兄弟们都送了什么礼物
+做一份详细的报告，根据女朋友的情况量身定制礼物挑选方案
 
-自包含系统：所谓自包含的系统是从单体到微服务的中间状态，其把一组密切相关的微服务给拆分出来，只需要做到没有外部依赖就行。
+好了，我想你有很大可能会选择第2个选项。因为选1，就意味着你会承担更高的风险，选到一个非常不靠谱的礼物，还很有可能踩雷，而选3意味着你会花费大量的时间和成本去做准备，一般人估计也没有这么大的耐心。
+事实上也是这样，如果你周围最好的几个朋友都送了女朋友口红，只有少数几 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4254206314.html" title="09 | P7提升攻略：怎么成为让人信服的“团队专家”？">09 | P7提升攻略：怎么成为让人信服的“团队专家”？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:24.000Z" title="发表于 2024-01-09 11:54:24">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">09 |  P7提升攻略：怎么成为让人信服的“团队专家”？你好，我是华仔。
+上一讲我们学到了，P6的核心能力要求是独立负责端到端的任务。晋升到P7，就说明你在技术上已经小有所成。
+但是P7是一个比较尴尬的级别，业界流传一种说法，P7相当于王者荣耀的“永恒钻石”段位。也就是说，P7是很多人职业发展的天花板，这个级别很难再往上晋升。
+那么，P7的能力要求是什么，如果还想继续晋升，应该怎么提升自己呢？这一讲我们就来了解一下。
+P7是一线团队的核心，对应的工作年限是4～8年，核心能力要求用一句话概括就是， 指挥单个团队达成目标。这句话有两个关键词：
+1. 团队
+P7和P6一样都是业界核心劳动力，人数众多。但管理岗位是有限的，结果自然“僧多粥少”。
+所以P7可以分为两种。一种是担任Team Leader的P7，一般带3～10人的专业团队，也就是组织结构概念上的团队，核心职责是团队管理。
+另一种是作为团队骨干的P7，他们虽然不是Team Leader，但是一般也会负责某个项目或者专项小组（比如Android性能优化小组和前端效能提升小组），带3～5人的虚拟团队。他们不承担团队管理职责，只关注小组目标的实现。
 
-异步通讯：服务发现、事件驱动、消息队列、业务工作流。
+2. 目标
+担任Team Leader的P7主要是带领团队实现 业务目标，担任虚拟团队负责人的P7主要是实现小组的 专项目标。
+总的来说，P7的主要提升目标是 成为让人信服的团队专家。接 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/230894678.html" title="09 | 中台：数字转型后到底应该共享什么？">09 | 中台：数字转型后到底应该共享什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T18:02:59.000Z" title="发表于 2023-12-18 18:02:59">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DDD%E5%AE%9E%E6%88%98%E8%AF%BE/">DDD实战课</a></span></div><div class="content">09 | 中台：数字转型后到底应该共享什么？你好，我是欧创新。
+在上一讲中我们了解了分层架构的设计思想，并提到了这种设计思想对中台建设十分有利，那么今天我就来讲一讲中台。
+中台是数字化转型的一个热门话题。继阿里提出中台概念后，很多人又提出了各种各样的中台。今天我们主要讨论业务中台和数据中台。作为企业数字化中台转型的整体，我也会顺带聊一聊前台和后台的一些设计思路。
+不少企业其实在很多年前就有了建大平台的实践经验，那在中台被热议时，我相信你一定听过很多质疑声。比如，有人说：“中台就是个怪名词，它不就是已经做了好多年的平台吗？”确实，中台源于平台，但它的战略高度要比平台高很多。
+学完这一讲，你就会清楚地知道平台与中台的差异在什么地方？中台到底是什么？传统企业的中台建设方式是否应该和阿里一样…
+平台到底是不是中台？阿里提出中台战略后，很多企业开始拿着自己的系统与阿里的中台对标。有的企业在十多年前就完成了大一统的集中式系统拆分，实现了从传统大单体应用向大平台的演进，他们将公共能力和核心能力分开建设，解决了公共模块重复投入和重复建设的问题。
+那这是不是阿里所说的中台呢？在回答这个问题之前，我们不妨先了解一下阿里的中台到底是什么样的。
+阿里业务中台的前身是共享平台，而原来的共享平台更多的被当作资源团队，他们承接各业务方的需求，并为业务方在基础服务上做定制开发。 阿里业务中台的目标是把核心服务链路 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2841884422.html" title="09 | 切片集群：数据增多了，是该加内存还是加实例？">09 | 切片集群：数据增多了，是该加内存还是加实例？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">09 | 切片集群：数据增多了，是该加内存还是加实例？你好，我是蒋德钧。今天我们来学习切片集群。
+我曾遇到过这么一个需求：要用Redis保存5000万个键值对，每个键值对大约是512B，为了能快速部署并对外提供服务，我们采用云主机来运行Redis实例，那么，该如何选择云主机的内存容量呢？
+我粗略地计算了一下，这些键值对所占的内存空间大约是25GB（5000万*512B）。所以，当时，我想到的第一个方案就是：选择一台32GB内存的云主机来部署Redis。因为32GB的内存能保存所有数据，而且还留有7GB，可以保证系统的正常运行。同时，我还采用RDB对数据做持久化，以确保Redis实例故障后，还能从RDB恢复数据。
+但是，在使用的过程中，我发现，Redis的响应有时会非常慢。后来，我们使用INFO命令查看Redis的latest_fork_usec指标值（表示最近一次fork的耗时），结果显示这个指标值特别高，快到秒级别了。
+这跟Redis的持久化机制有关系。在使用RDB进行持久化时，Redis会fork子进程来完成，fork操作的用时和Redis的数据量是正相关的，而fork在执行时会阻塞主线程。数据量越大，fork操作造成的主线程阻塞的时间越长。所以，在使用RDB对25GB的数据进行持久化时，数据量较大，后台运行的子进程在fork创建时阻塞了主线程，于是就导致Redis响应变慢了。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/472100209.html" title="09 | 数据库优化方案（二）：写入数据量增加时，如何实现分库分表？">09 | 数据库优化方案（二）：写入数据量增加时，如何实现分库分表？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">09 | 数据库优化方案（二）：写入数据量增加时，如何实现分库分表？你好，我是唐扬。
+前一节课，我们学习了在高并发下数据库的一种优化方案：读写分离，它就是依靠主从复制的技术使得数据库实现了数据复制为多份，增强了抵抗大量并发读请求的能力，提升了数据库的查询性能的同时，也提升了数据的安全性。当某一个数据库节点，无论是主库还是从库发生故障时，我们还有其他的节点中存储着全量的数据，保证数据不会丢失。此时，你的电商系统的架构图变成了下面这样：
 
-自动化运维：需要一个服务调用链和性能监控的监控系统。
-
-
-然后，接下来，我们就要进行能让整个架构接受失败的相关处理设计，也就是所谓的容错设计。这会用到下面的这些技术。
-
-错误方面：调用重试 + 熔断 + 服务的幂等性设计。
-
-一致性方面：强一致性使用两阶段提交、最终一致性使用异步通讯方式。
-
-流控方面：使用限流 + 降级技术。
-
-自动化运维方面：网关流量调度，服务监控。
-
-
-我不敢 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3513016414.html" title="53 | 管理设计：配置中心">53 | 管理设计：配置中心</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">53 | 管理设计：配置中心你好，我是陈皓，网名左耳朵耗子。
-我们知道，除了代码之外，软件还有一些配置信息，比如数据库的用户名和密码，还有一些我们不想写死在代码里的东西，像线程池大小、队列长度等运行参数，以及日志级别、算法策略等，还有一些是软件运行环境的参数，如Java的内存大小，应用启动的参数，包括操作系统的一些参数配置……
-所有这些东西，我们都叫做软件配置。以前，我们把软件配置写在一个配置文件中，就像Windows下的ini文件，或是Linux下的conf文件。然而，在分布式系统下，这样的方式就变得非常不好管理，并容易出错。于是，为了便于管理，我们引入了一个集中式的配置管理系统，这就是配置中心的由来。
-现在，软件的配置中心是分布式系统的一个必要组件。这个系统听起来很简单，但其实并不是。我见过好多公司的配置中心，但是我觉得做得都不好，所以，想写下这篇文章给你一些借鉴。
-配置中心的设计区分软件的配置首先，我们要区分软件的配置，软件配置的区分有多种方式。
-有一种方式是把软件的配置分成静态配置和动态配置。所谓静态配置其实就是在软件启动时的一些配置，运行时基本不会进行修改，也可以理解为是环境或软件初始化时需要用到的配置。
-例如，操作系统的网络配置，软件运行时Docker进程的配置，这些配置在软件环境初始化时就确定了，未来基本不会修改了。而所谓动态配置其实就是软件运行时的一些配置，在运行时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2214754993.html" title="52 | 管理设计：分布式锁">52 | 管理设计：分布式锁</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">52 | 管理设计：分布式锁你好，我是陈皓，网名左耳朵耗子。
-我们知道，在多线程情况下访问一些共享资源需要加锁，不然就会出现数据被写乱的问题。在分布式系统下，这样的问题也是一样的。只不过，我们需要一个分布式的锁服务。对于分布式的锁服务，一般可以用数据库DB、Redis和ZooKeeper等实现。不管怎么样，分布式的锁服务需要有以下几个特点。
-
-安全性（Safety）：在任意时刻，只有一个客户端可以获得锁（ 排他性）。
-
-避免死锁：客户端最终一定可以获得锁，即使锁住某个资源的客户端在释放锁之前崩溃或者网络不可达。
-
-容错性：只要锁服务集群中的大部分节点存活，Client就可以进行加锁解锁操作。
-
-
-Redis的分布式锁服务这里提一下，避免死锁的问题。下面以Redis的锁服务为例（参考 Redis的官方文档 ）。
-我们通过以下命令对资源加锁。
-SET resource_name my_random_value NX PX 30000
-
-
-解释一下：
-
-SET NX 命令只会在 key 不存在的时候给 key 赋值， PX 命令通知Redis保存这个key 30000ms。
-
-my_random_value 必须是全局唯一的值。这个随机数在释放锁时保证释放锁操作的安全性。
-
-PX 操作后面的参数代表的是这个key的存活时间，称作锁过期时间。
-
-当资源被锁定超过这个时间时，锁将自动释放。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2702593907.html" title="54 | 管理设计：边车模式">54 | 管理设计：边车模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">54 | 管理设计：边车模式你好，我是陈皓，网名左耳朵耗子。
-所谓的边车模式，对应于我们生活中熟知的边三轮摩托车。也就是说，我们可以通过给一个摩托车加上一个边车的方式来扩展现有的服务和功能。这样可以很容易地做到”控制”和”逻辑”的分离。
-也就是说，我们不需要在服务中实现控制面上的东西，如监视、日志记录、限流、熔断、服务注册、协议适配转换等这些属于控制面上的东西，而只需要专注地做好和业务逻辑相关的代码，然后，由“边车”来实现这些与业务逻辑没有关系的控制功能。
-边车模式设计具体来说，你可以理解为，边车就有点像一个服务的Agent，这个服务所有对外的进出通讯都通过这个Agent来完成。这样，我们就可以在这个Agent上做很多文章了。但是，我们需要保证的是，这个Agent要和应用程序一起创建，一起停用。
-边车模式有时候也叫搭档模式，或是伴侣模式，或是跟班模式。就像我们在《编程范式游记》中看到的那样， 编程的本质就是将控制和逻辑分离和解耦，而边车模式也是异曲同工，同样是让我们在分布式架构中做到逻辑和控制分离。
-对于监视、日志、限流、熔断、服务注册、协议转换等等这些功能，其实都是大同小异，甚至是完全可以做成标准化的组件和模块的。一般来说，我们有两种方式。
-
-一种是通过SDK、Lib或Framework软件包方式，在开发时与真实的应用服务集成起来。
-
-另一种是通过像Sidecar这样的方式，在运 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2577676403.html" title="56 | 管理设计：网关模式">56 | 管理设计：网关模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">56 | 管理设计：网关模式你好，我是陈皓，网名左耳朵耗子。
-前面，我们讲了Sidecar和Service Mesh这两种设计模式，它们都是在不侵入业务逻辑的情况下，把控制面（control plane）和数据面（data plane）的处理解耦分离。但是这两种模式都让我们的运维成本变得特别大，因为每个服务都需要一个Sidecar，这让本来就复杂的分布式系统的架构就更为复杂和难以管理了。
-在谈Service Mesh的时候，我们提到了Gateway。我个人觉得并不需要为每个服务的实例都配置上一个Sidecar。其实，一个服务集群配上一个Gateway就可以了，或是一组类似的服务配置上一个Gateway。
-这样一来，Gateway方式下的架构，可以细到为每一个服务的实例配置一个自己的Gateway，也可以粗到为一组服务配置一个，甚至可以粗到为整个架构配置一个接入的Gateway。于是，整个系统架构的复杂度就会变得简单可控起来。
-
-这张图展示了一个多层Gateway架构，其中有一个总的Gateway接入所有的流量，并分发给不同的子系统，还有第二级Gateway用于做各个子系统的接入Gateway。可以看到，网关所管理的服务粒度可粗可细。通过网关，我们可以把分布式架构组织成一个星型架构，由网络对服务的请求进行路由和分发，也可以架构成像Servcie Mesh那样的网格架构，或者只是为了适 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1983838970.html" title="57 | 管理设计：部署升级策略">57 | 管理设计：部署升级策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">57 | 管理设计：部署升级策略你好，我是陈皓，网名左耳朵耗子。
-在分布式系统的世界里，一个服务有多个实例，所以部署或是升级一个服务也会变得比较麻烦。今天我们讨论服务部署的模式。一般来说，有如下几种：
-
-停机部署（Big Bang &#x2F; Recreate）： 把现有版本的服务停机，然后部署新的版本。
-
-蓝绿部署（Blue&#x2F;Green &#x2F;Stage）：部署好新版本后，把流量从老服务那边切过来。
-
-滚动部署（Rolling Update &#x2F; Ramped）： 一点一点地升级现有的服务。
-
-灰度部署（Canary）：把一部分用户切到新版本上来，然后看一下有没有问题。如果没有问题就继续扩大升级，直到全部升级完成。
-
-AB测试（A&#x2F;B Testing）：同时上线两个版本，然后做相关的比较。
-
-
-下面，我们来看一下每种方式的使用场景和优缺点。
-停机部署停机部署其实是最简单粗暴的方式，就是简单地把现有版本的服务停机，然后部署新的版本。有时候，我们不得不使用这样的方式来部署或升级多个服务。比如，新版本中的服务使用到了和老版本完全不兼容的数据表设计。这个时候，我们对生产有两个变更，一个是数据库，另一个是服务，而且新老版本互不兼容，所以只能使用停机部署的方式。
-这种方式的优势是，在部署过程中不会出现新老版本同时在线的情况，所有状态完全一致。停机部署主要是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2121070793.html" title="58 | 性能设计：缓存">58 | 性能设计：缓存</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">58 | 性能设计：缓存你好，我是陈皓，网名左耳朵耗子。
-前面分享了《分布式系统设计模式》系列文章的前两部分——弹力设计篇和管理设计篇。今天开始这一系列的最后一部分内容——性能设计篇，主题为《性能设计篇之“缓存”》。
-基本上来说，在分布式系统中最耗性能的地方就是最后端的数据库了。一般来说，只要小心维护好，数据库四种操作（select、update、insert和delete）中的三个写操作insert、update和delete不太会出现性能问题（insert一般不会有性能问题，update和delete一般会有主键，所以也不会太慢）。除非索引建得太多，而数据库里的数据又太多，这三个操作才会变慢。
-绝大多数情况下，select是出现性能问题最大的地方。一方面，select会有很多像join、group、order、like等这样丰富的语义，而这些语义是非常耗性能的；另一方面，大多数应用都是读多写少，所以加剧了慢查询的问题。
-分布式系统中远程调用也会消耗很多资源，因为网络开销会导致整体的响应时间下降。为了挽救这样的性能开销，在业务允许的情况（不需要太实时的数据）下，使用缓存是非常必要的事情。
-从另一个方面说，缓存在今天的移动互联网中是必不可少的一部分，因为网络质量不一定永远是最好的，所以前端也会为所有的API加上缓存。不然，网络不通畅的时候，没有数据，前端都不知道怎么展示UI了。既然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1918198860.html" title="59 | 性能设计：异步处理">59 | 性能设计：异步处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">59 | 性能设计：异步处理你好，我是陈皓，网名左耳朵耗子。
-在弹力设计篇中我们讲过，异步通讯的设计模式有助于提高系统的稳定性和容错能力。其实，异步通讯在分布式系统中还可以增加整个系统的吞吐量，从而可以面对更高的并发，并可以从容地利用好现有的系统资源。为什么这么说呢？
-我们试想一下，在你的工作中，有很多人会来找你，让你帮着做事。如果你是这种请求响应式的工作方式，那么本质上来说，你是在被动工作，也就是被别人驱动的工作方式。
-当你在做一件事的时候，如果有别人来找你做其它事，你就会被打断而要去干别的事。而如果你可以统筹安排这些事情，本来五件事只需要2个小时，如果不能，或者老被别人打乱思路，那你可能就要花5个小时。异步处理任务可以让你更好地利用好时间和资源。利用好了时间和资源，性能自然就会提升上来。
-这就好像邮递业务一样，你寄东西的时候，邮递公司会把大量的去往同一个方向的订单合并处理，并统一地调配物流交通工具，从而在整体上更为节省资源和时间。
-在分布式架构中，我们的系统被拆成了很多的子系统。如果想把这堆系统合理地用好，并更快地处理大量的任务，我们就需要统一地规划和统筹整体，这样可以达到整体的最优。本质上，这和邮递公司处理邮件一样，是相同的道理。
-在计算机的世界里，到处都是异步处理。比如：当程序读写文件时，我们的操作系统并不会真正同步地去操作硬盘，而是把硬盘读写请求先在内存中hold上一小会 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/33/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#content-inner">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/#content-inner">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/35/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+这时，公司CEO突然传来一个好消息，运营推广持续带来了流量，你所设计的电商系统的订单量突破了五千万。订单数据都是单表存储的，你的压力倍增，因为无论是数据库的查询还是写入性能都在下降，数据库的磁盘空间也在报警。所以，你主动分析现阶段自己需要考虑的问题，并寻求高效的解决方式，以便系统能正常运转下去。 你考虑的问题主要有以下几点：
+1.系统正在持续不断地发展，注册的用户越来越多，产生的订单越来越多，数据库中存储的数据也越来越多，单个表的数据量超过了千万甚至到了亿级别。这时即使你使用了索引，索引占用的空间也随着数据量的增长而增大，数据库就无法缓存全量的索引信息，那么就需要从磁盘上读取索引数据，就会影响到查询的性能了。 那么这时你要如何提升查询性能呢？
+2.数据量的增加也占据了磁盘的空间，数据库在备份和恢复的时间变长， 你如何让数据库系统支持如此大的数据量呢？ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/33/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#content-inner">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/#content-inner">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/35/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:15'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,103 +138,93 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2015469645.html" title="04｜提示工程（上）：用少样本FewShotTemplate和ExampleSelector创建应景文案">04｜提示工程（上）：用少样本FewShotTemplate和ExampleSelector创建应景文案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">04｜提示工程（上）：用少样本FewShotTemplate和ExampleSelector创建应景文案你好，我是黄佳，欢迎来到LangChain实战课！
-上节课我给你留了一个思考题： 在提示模板的构建过程中加入了partial_variables，也就是输出解析器指定的format_instructions之后，为什么能够让模型生成结构化的输出？
-当你用print语句打印出最终传递给大模型的提示时，一切就变得非常明了。
-您是一位专业的鲜花店文案撰写员。
-对于售价为 50 元的 玫瑰 ，您能提供一个吸引人的简短描述吗？
-The output should be a markdown code snippet formatted in the following schema, including the leading and trailing "```json" and "```":
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/434435333.html" title="01｜快速开始：由简入繁，从解答到解决">01｜快速开始：由简入繁，从解答到解决</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9B%B6%E5%9F%BA%E7%A1%80GPT%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%E8%AF%BE/">零基础GPT应用入门课</a></span></div><div class="content">01｜快速开始：由简入繁，从解答到解决你好，我是键盘，我们开始来撩 ChatGPT。
+好不容易来到 ChatGPT 的新世界传送门口，相信很多人就愣住了。一半是兴奋，一半是落寞：“WOW？就这样？我在哪，我该说点什么？”虽然惊叹于网上不少 ChatGPT 的炫酷操作，但是亲赴战场了，却不知道怎么开始。
+关于这一句“开场白”，大家都遇到了哪些共性问题呢？我通过身边的朋友了解、提炼了一下：
 
-```json
-&#123;
-        "description": string  // 鲜花的描述文案
-        "reason": string  // 问什么要这样写这个文案
-&#125;
+我要用英语吗？
+不知道怎么写prompt，有什么公式或者简单好用的技巧？
+ChatGPT 的结果总是和预期有偏差，怎么解决？
+ChatGPT 话总是没说完，怎么应对？
+现在AI们这么卷，我实在来不及体验了，学习这些知识能否复用？
 
 
-秘密在于，LangChain的输出解析器偷偷的在提示中加了一段话，也就是 {format_instructions} 中的内容。这段由LangChain自动添加的文字，就清楚地指示着我们 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/327332409.html" title="05｜提示工程（下）：用思维链和思维树提升模型思考质量">05｜提示工程（下）：用思维链和思维树提升模型思考质量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">05｜提示工程（下）：用思维链和思维树提升模型思考质量你好，我是黄佳，欢迎来到LangChain实战课！
-我在 第4课 的结尾时说了，你可以尝试用思维链也就是CoT（Chain of Thought）的概念来引导模型的推理，让模型生成更详实、更完备的文案，今天我们就一起看一看CoT的使用。
-什么是 Chain of ThoughtCoT这个概念来源于学术界，是谷歌大脑的Jason Wei等人于2022年在论文《 Chain-of-Thought Prompting Elicits Reasoning in Large Language Models（自我一致性提升了语言模型中的思维链推理能力）》中提出来的概念。它提出，如果生成一系列的中间推理步骤，就能够显著提高大型语言模型进行复杂推理的能力。
-Few-Shot CoTFew-Shot CoT 简单的在提示中提供了一些链式思考示例（Chain-of-Thought Prompting），足够大的语言模型的推理能力就能够被增强。简单说，就是给出一两个示例，然后在示例中写清楚推导的过程。
+提交给 AI 的提示词，包括像 Midjourney 这样的文生图人工智能，都被称为 prompt。
 
-论文中给出了一个大模型通过思维链做数学题的示例。图左和图右，大模型都读入了OneShot示例，但是图左只给出了答案，而图右则在OneShot示例中给出了解题的具体思路。结果，只给出了答案的模型推理错误，而给出解题思路后，同一个模型生成了正确的答案。
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3239959551.html" title="06｜调用模型：使用OpenAI API还是微调开源Llama2/ChatGLM？">06｜调用模型：使用OpenAI API还是微调开源Llama2/ChatGLM？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">06｜调用模型：使用OpenAI API还是微调开源Llama2&#x2F;ChatGLM？你好，我是黄佳，欢迎来到LangChain实战课！
-之前，我们花了两节课的内容讲透了提示工程的原理以及LangChain中的具体使用方式。今天，我们来着重讨论Model I&#x2F;O中的第二个子模块，LLM。
+本节课，我们立足于实践案例，由简入繁，一一解决这些问题。无论是否有基础，通过这一节课，你都会拨开迷雾，让自己有个清晰的方向。
+提问 5 要素作为当今顶流大语言模型之一， ChatGPT 支持任何自然语言，请放心用中文开始。 如果你也关注 ChatGPT 的核心竞争对手们，Calude 支持，谷歌 Bard 也即将支持。对于比普通话更困难的闽南语，手机端ChatGPT也能通过内置的Whisper听懂。
+既然 AI 自动解决了语言障碍，那我们就能聚焦真正重要的问题了。首 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/907391812.html" title="01｜重新出发，让我们学会和AI说话">01｜重新出发，让我们学会和AI说话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%BE%8E/">AI大模型之美</a></span></div><div class="content">01｜重新出发，让我们学会和AI说话你好，我是徐文浩。
+欢迎你打开 AI 世界的大门。我猜你是被这段时间大火的ChatGPT吸引过来的吧？既然你是带着这样的目的打开了这门课程，那么我也一定会给你想要的。我们的课程会先从ChatGPT的主题开始，在接下来的几讲里，我会为你介绍如何使用OpenAI的API来和AI应用沟通。这些API背后，其实和ChatGPT一样，使用的是OpenAI的GPT-3.5系列的大语言模型。
+整个课程，我们都会使用真实的数据、代码来演示如何利用好大语言模型。所以这一讲，我会先带你做好一系列准备工作。不过不用担心，去运行这些程序并不需要你专门去买一块昂贵的显卡。事实上，如果你不是一个程序员，而是一个产品经理，或者只是对AI感兴趣的非技术人，那么你可以使用浏览器就能访问的免费开发环境，来试验这些问题。
+OpenAI的API能做到哪些神奇的事情？号称离“通用人工智能（AGI）”已经不远的产品长什么样子？GPT-3这样的模型和之前基于深度学习的自然语言处理解决方案又有什么不同？这些吊人胃口的问题，我会在课程里一一揭晓。
+下面我们就先来做一些准备工作，注册账号并搭建开发环境。
+创建 OpenAI 的 API Key为了学习这门课程，你需要先去注册一个可以使用OpenAI的API的账号，这是账号注册的 入口。目前，OpenAI还没有向中国大陆和香港地区开放，所以账号的注册 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2926518068.html" title="02 | Bug引发事故，该不该追究责任？">02 | Bug引发事故，该不该追究责任？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:20.000Z" title="发表于 2023-12-13 18:10:20">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">02 | Bug引发事故，该不该追究责任？“人非圣贤，孰能无过？”技术人员也是人，因此编程过程中难免出 Bug，出了 Bug 系统就会出问题，出了问题系统就会宕机。那么，Bug 引发的一连串事故，该不该追究责任，又如何去追责呢？
+今天我就和你聊聊 Bug 和责任的问题。
+记得有一次，一个国内的访问团来公司参观。在交流的过程中，有人问：“在你们的工作中，工程师的 Bug 或者失误引发的问题，会不会被追究责任，会不会扣工资，会不会被开除？”
+当时我很诚实地按照实际情况回答说：“不会。”
+这个人又继续问：“那出了事故没有任何惩罚，不会有问题吗？”当时，我围绕着员工的素质、自觉性和责任心进行了回答。后来再次思考这个问题，我越想越觉得有意思。
+我在 Airbnb 负责支付和交易业务，这意味着大部分的错误都等价于真金白银。无论是从用户那少收钱，导致公司亏损，还是从用户那多收钱引起法律或者合约的纠纷，只要跟钱沾了边，都不是小事情。
+俗话说 “常在河边走，哪有不湿鞋”，各种因为代码问题引起的麻烦也是屡见不鲜。那么，在Bug引发问题的情况下，怎样处理才能最大程度上保持团队的主动性、责任感和执行力呢？
+我们先来假想两种极端的情况：如果每个错误都会受到惩罚，会怎样；如果所有的错误都没有任何追究和跟进，又会怎样？
+假如每个错误都会受到惩罚，不难想象，以下情况一定难以避免。
 
-让我们带着下面的问题来开始这一节课的学习。大语言模型，不止ChatGPT一种。调用OpenAI的API，当然方便且高效，不过，如果我就是想用其他的模型（比如说开源的Llama2或者ChatGLM），该怎么做？再进一步，如果我就是想在本机上从头训练出来一个新模型，然后在LangChain中使用自己的模型，又该怎么做？
-关于大模型的微调（或称精调）、预训练、重新训练、乃至从头训练，这是一个相当大的话题，不仅仅需要足够的知识和经验，还需要大量的语料数据、GPU硬件和强大的工程能力。别说一节课了，我想两三个专栏也不一定能讲全讲透。不过，我可以提纲挈领地把大模型的训练流程和使用方法给你缕一缕。这样你就能体验到，在LangChain中使用自己微调的模型是完全没问题的。
-大语言模型发展史说到语言模型，我们不妨先从其发展史中去了解一些关键信息。
-Google 2018 年的论文名篇Attention is all you need，提出了Transformer架构，也给这一次AI的腾飞点了火。T ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2050531098.html" title="07｜输出解析：用OutputParser生成鲜花推荐列表">07｜输出解析：用OutputParser生成鲜花推荐列表</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">07｜输出解析：用OutputParser生成鲜花推荐列表你好，我是黄佳，欢迎来到LangChain实战课！
-首先请你回忆一下 第4课 中我们学了什么: 为一些花和价格生成吸引人的描述，并将这些描述和原因存储到一个CSV文件中。为了实现这个目标，程序调用了OpenAI模型，并利用了结构化输出解析器，以及一些数据处理和存储的工具。
-今天我要带着你深入研究一下LangChain中的输出解析器，并用一个新的解析器——Pydantic 解析器来重构第4课中的程序。这节课也是模型I&#x2F;O框架的最后一讲。
+大家都怕闯祸，所以风险高的事没 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3705408455.html" title="02 | 从哪些维度评判代码质量的好坏？如何具备写出高质量代码的能力？">02 | 从哪些维度评判代码质量的好坏？如何具备写出高质量代码的能力？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">02 | 从哪些维度评判代码质量的好坏？如何具备写出高质量代码的能力？在我的工作经历中，每当同事评论起项目代码质量的时候，听到的最多的评语就是：“代码写得很烂”或者“代码写得很好”。用“好”“烂”这样的字眼来描述，非常地笼统。当我具体问到底如何烂、如何好的时候，尽管大部分同事都能简单地罗列上几个点，但往往都不够全面、非常零碎，也切不中要害。
+当然，也有一些工程师对如何评价代码质量有所认识，比如，好代码是易扩展、易读、简单、易维护的等等，但他们对于这些评价的理解往往只停留在表面概念上，对于诸多更深入的问题，比如，“怎么才算可读性好？什么样的代码才算易扩展、易维护？可读、可扩展与可维护之间有什么关系？可维护中‘维护’两字该如何理解？”等等，并没有太清晰的认识。
+对于程序员来说，辨别代码写得“好”还是“烂”，是一个非常重要的能力。这也是我们写出好代码的前提。毕竟，如果我们连什么是好代码、什么是烂代码，都分辨不清，又谈何写出好代码呢？
+所以，今天我们就聊一聊关于代码质量评判的相关问题，希望你在学完今天的内容之后，对代码质量的评判有个更加清晰、更加透彻的认识和理解。
+如何评价代码质量的高低？实际上，咱们平时嘴中常说的“好”和“烂”，是对代码质量的一种描述。“好”笼统地表示代码质量高，“烂”笼统地表示代码质量低。对于代码质量的描述，除了“好”“烂”这样比较简单粗暴的描述方式之外，我们也经常会听 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3338504169.html" title="02 | 初惑：技术方向的选择">02 | 初惑：技术方向的选择</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:21.000Z" title="发表于 2023-12-13 18:36:21">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">02 | 初惑：技术方向的选择初入职场或还在校的同学想必都会有些共同的疑惑，比如：“到底我该选哪个技术方向？”“现在该学哪门语言？”“未来 Java 语言的发展趋势如何？”这些问题的本质其实都是技术的投资决策问题，也即现在我该把时间精力花在哪个方向上，未来的收益才可能最大。
+这个问题并不好回答，因为这个问题的本质和 “我现在应该投资哪只股票” 一样。没有人能回答好这个问题，我觉得最好的做法就是：从投资的出发点而非终点来选择一条路径。
+至于这样选择的路径是否能在未来获得很好的收益，这是没法预测的。但选择技术方向和选择股票不同的是，只要你在这条路径上持续努力、学习与进步，基本可以保证能和 “大盘” 持平而不至于有亏损，但是否能取得超过 “大盘” 的收益，其实是看运气的。
+选择语言选择技术方向，从某种意义上讲就是选择语言。
+虽然有一些流传的说法，类似于：“语言并不重要，必要的时候可以在各种语言间自由切换。”但实际情况是，能做到自由切换的前提是你得对一门语言掌握到通透之后，再学习其他语言才可能触类旁通。
+计算机程序语言虽然很多，但种类其实有限。2018 TIOBE 程序语言排行榜（见下图）上的前三位（Java、C、C++），本质上其实是一类语言。但大部分人只能选择去熟悉并通透其中一种，因为这些语言背后都有庞大的生态圈。
 
-下面先来看看LangChain中的输出解析器究竟是什么，有哪些种类。
-LangChain 中的输出解析器语言模型输出的是文本，这是给人类阅读的。但很多时候，你可能想要获得的是程序能够处理的结构化信息。这就是输出解析器发挥作用的地方。
-输出解析器是 一种专用于处理和构建语言模型响应的类。一个基本的输出解析器类通常需要实现两个核心方法。
+2018 TIOBE 程序语言排行榜
+要做到通透，只熟悉语言本身是远 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/276049358.html" title="02 | 如何才能做好动静分离？有哪些方案可选？">02 | 如何才能做好动静分离？有哪些方案可选？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T16:20:06.000Z" title="发表于 2024-03-01 16:20:06">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">如何设计一个秒杀系统</a></span></div><div class="content">02 | 如何才能做好动静分离？有哪些方案可选？上一篇文章中，我介绍了秒杀系统在架构上要考虑的几个原则，我估计你很快就会问：“知易行难，这些原则应该怎么应用到系统中呢？”别急，从这篇文章开始，我就会逐一介绍秒杀系统的各个关键环节中涉及的关键技术。
+今天我们就先来讨论第一个关键点：数据的动静分离。不知道你之前听过这个解决方案吗？不管你有没有听过，我都建议你先停下来思考动静分离的价值。如果你的系统还没有开始应用动静分离的方案，那你也可以想想为什么没有，是之前没有想到，还是说业务体量根本用不着？
+不过我可以确信地说，如果你在一个业务飞速发展的公司里，并且你在深度参与公司内类秒杀类系统的架构或者开发工作，那么你迟早会想到动静分离的方案。为什么？很简单， 秒杀的场景中，对于系统的要求其实就三个字：快、准、稳。
+那怎么才能“快”起来呢？我觉得抽象起来讲，就只有两点，一点是提高单次请求的效率，一点是减少没必要的请求。今天我们聊到的“动静分离”其实就是瞄着这个大方向去的。
+不知道你是否还记得，最早的秒杀系统其实是要刷新整体页面的，但后来秒杀的时候，你只要点击“刷新抢宝”按钮就够了，这种变化的本质就是动静分离，分离之后，客户端大幅度减少了请求的数据量。这不自然就“快”了吗？
+何为动静数据那到底什么才是动静分离呢？所谓“动静分离”，其实就是把用户请求的数据（如HTML页面）划分为“动态数据”和“静态数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/741410782.html" title="02 | 数据结构：快速的Redis有哪些慢操作？">02 | 数据结构：快速的Redis有哪些慢操作？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:14.000Z" title="发表于 2024-03-04 22:10:14">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">02 | 数据结构：快速的Redis有哪些慢操作？你好，我是蒋德钧。
+一提到Redis，我们的脑子里马上就会出现一个词：“快。”但是你有没有想过，Redis的快，到底是快在哪里呢？实际上，这里有一个重要的表现：它接收到一个键值对操作后，能以 微秒级别 的速度找到数据，并快速完成操作。
+数据库这么多，为啥Redis能有这么突出的表现呢？一方面，这是因为它是内存数据库，所有操作都在内存上完成，内存的访问速度本身就很快。另一方面，这要归功于它的数据结构。这是因为，键值对是按一定的数据结构来组织的，操作键值对最终就是对数据结构进行增删改查操作，所以高效的数据结构是Redis快速处理数据的基础。这节课，我就来和你聊聊数据结构。
+说到这儿，你肯定会说：“这个我知道，不就是String（字符串）、List（列表）、Hash（哈希）、Set（集合）和Sorted Set（有序集合）吗？”其实，这些只是Redis键值对中值的数据类型，也就是数据的保存形式。而这里，我们说的数据结构，是要去看看它们的底层实现。
+简单来说，底层数据结构一共有6种，分别是简单动态字符串、双向链表、压缩列表、哈希表、跳表和整数数组。它们和数据类型的对应关系如下图所示：
 
-get_format_instructions：这个方法需要返回一个字符串，用于指导如何格式化语言模型的输出，告诉它应该如何组织并构建它的回答。
-parse：这个方法接收一个字符串（也就是语言模型的输出）并将其解析为特定的数据结构或格式。这一步通常用于确保模型的输出符合我们的预期，并且能够以我们需要的形式进行后续处理。
+可以看到，String类型的底层实现只有一种数据结构，也就是简单动态字符串。而List、Hash、Set和Sorted Set这四种数据类型，都有两种底层实 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4291427019.html" title="02 | 架构分层：我们为什么一定要这么做？">02 | 架构分层：我们为什么一定要这么做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">02 | 架构分层：我们为什么一定要这么做？在系统从0到1的阶段，为了让系统快速上线，我们通常是不考虑分层的。但是随着业务越来越复杂，大量的代码纠缠在一起，会出现逻辑不清晰、各模块相互依赖、代码扩展性差、改动一处就牵一发而动全身等问题。
+这时，对系统进行分层就会被提上日程，那么我们要如何对架构进行分层？架构分层和高并发架构设计又有什么关系呢？本节课，我将带你寻找答案。
+什么是分层架构软件架构分层在软件工程中是一种常见的设计方式，它是将整体系统拆分成N个层次，每个层次有独立的职责，多个层次协同提供完整的功能。
+我们在刚刚成为程序员的时候，会被“教育”说系统的设计要是“MVC”（Model-View-Controller）架构。它将整体的系统分成了Model（模型），View（视图）和Controller（控制器）三个层次，也就是将用户视图和业务处理隔离开，并且通过控制器连接起来，很好地实现了表现和逻辑的解耦，是一种标准的软件分层架构。
 
-还有一个可选的方法。
+另外一种常见的分层方式是将整体架构分为表现层、逻辑层和数据访问层：
 
-pa ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2782525328.html" title="08｜链（上）：写一篇完美鲜花推文？用SequencialChain链接不同的组件">08｜链（上）：写一篇完美鲜花推文？用SequencialChain链接不同的组件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">08｜链（上）：写一篇完美鲜花推文？用SequencialChain链接不同的组件你好，我是黄佳。欢迎来到LangChain实战课！
-到这节课，我们已经学到了不少LangChain的应用，也体会到了LangChain功能的强大。但也许你心里开始出现了一个疑问：LangChain，其中的 Chain 肯定是关键组件，为什么我们还没有讲到呢？
-这的确是个好问题。对于简单的应用程序来说，直接调用LLM就已经足够了。因此，在前几节课的示例中，我们主要通过LangChain中提供的提示模板、模型接口以及输出解析器就实现了想要的功能。
-什么是 Chain但是，如果你想开发更复杂的应用程序，那么就需要通过 “Chain” 来链接LangChain的各个组件和功能——模型之间彼此链接，或模型与其他组件链接。
+表现层，顾名思义嘛，就是展示数据结果和接受用户指令的，是最靠近用户的一层；
+逻辑层里面有复杂业务的具体实现；
+数据访问层则是主要处理和存储之间的交互。
 
-这种将多个组件相互链接，组合成一个链的想法简单但很强大。它简化了复杂应用程序的实现，并使之更加模块化，能够创建出单一的、连贯的应用程序，从而使调试、维护和改进应用程序变得容易。
-说到链的实现和使用，也简单。
+这是在架构上最简单的一种分层方式。其实，我们在不经意间已经按照三层架构来做系统分层设计了，比如在构建项目的时候，我们通常会建立三 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2835423006.html" title="02 | 架构设计的历史背景">02 | 架构设计的历史背景</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">02 | 架构设计的历史背景理解了架构的有关概念和定义之后，今天，我会给你讲讲架构设计的历史背景。我认为，如果想要深入理解一个事物的本质，最好的方式就是去追寻这个事物出现的历史背景和推动因素。我们先来简单梳理一下软件开发进化的历史，探索一下软件架构出现的历史背景。
+机器语言（1940年之前）最早的软件开发使用的是“ 机器语言”，直接使用二进制码0和1来表示机器可以识别的指令和数据。例如，在8086机器上完成“s&#x3D;768+12288-1280”的数学运算，机器码如下：
+101100000000000000000011
+000001010000000000110000
+001011010000000000000101
 
-首先LangChain通过设计好的接口，实现一个具体的链的功能。例如，LLM链（LLMChain）能够接受用户输入，使用 PromptTemplate 对其进行格式化，然后将格式化的响应传递给 LLM。这就相当于把整个Model I&#x2F;O的流程封装到链里面。
-实现了链的具体功能 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4058055232.html" title="09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图">09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">09｜链（下）：想学“育花”还是“插花”？用RouterChain确定客户意图你好，我是黄佳。欢迎来到LangChain实战课！
-上一节课中，我带着你学习了Chain的基本概念，还使用了LLMChain和SequencialChain，这一节课，我们再来看看其他类型的一些Chain的用法。
-任务设定首先，还是先看一下今天要完成一个什么样的任务。
-这里假设咱们的鲜花运营智能客服ChatBot通常会接到两大类问题。
 
-鲜花养护（保持花的健康、如何浇水、施肥等）
-鲜花装饰（如何搭配花、如何装饰场地等）
+不用多说，不管是当时的程序员，还是现在的程序员，第一眼看到这样一串东西时，肯定是一头雾水，因为这实在是太难看懂了，这还只是一行运算，如果要输出一个“hello world”，面对几十上百行这样的0&#x2F;1串，眼睛都要花了！
+看都没法看，更何况去写这样的程序，如果不小心哪个地方敲错了，将1敲成了0，例如：
+101100000000000000000011
+000001010000000000110000
+001011000000000000000101
 
-你的需求是， 如果接到的是第一类问题，你要给ChatBot A指示；如果接到第二类的问题，你要给ChatBot B指示。
 
-我们可以根据这两个场景来构建两个不同的目标链。遇到不同类型的问题，LangChain会通过RouterChain来自动引导大语言模型选择不同的模板。
-当然我们的运营过程会遇到更多种类的问题，你只需要通过同样的方法扩充逻辑即可。
-整体框架RouterChain，也叫路由链，能动态选择用于给定输入的下一个链。我们会根据用户的问题内容，首先使用路由器链确定问题更适合哪个处理模板，然后将问题发送到该处理模板进行回答。如果问题不适合任何已定义的处理模板，它会被发送到默认链。
-在这里，我们会用LLMRouterChain和MultiPromptChain（也是一种路由链）组合实 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2669479270.html" title="10｜记忆：通过Memory记住客户上次买花时的对话细节">10｜记忆：通过Memory记住客户上次买花时的对话细节</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">10｜记忆：通过Memory记住客户上次买花时的对话细节你好，我是黄佳，欢迎来到LangChain实战课！
-在默认情况下，无论是LLM还是代理都是无状态的，每次模型的调用都是独立于其他交互的。也就是说，我们每次通过API开始和大语言模型展开一次新的对话，它都不知道你其实昨天或者前天曾经和它聊过天了。
-你肯定会说，不可能啊，每次和ChatGPT聊天的时候，ChatGPT明明白白地记得我之前交待过的事情。
-
-的确如此，ChatGPT之所以能够记得你之前说过的话，正是因为它使用了 记忆（Memory）机制，记录了之前的对话上下文，并且把这个上下文作为提示的一部分，在最新的调用中传递给了模型。在聊天机器人的构建中，记忆机制非常重要。
-
-使用ConversationChain不过，在开始介绍LangChain中记忆机制的具体实现之前，先重新看一下我们上一节课曾经见过的ConversationChain。
-这个Chain最主要的特点是，它提供了包含AI 前缀和人类前缀的对话摘要格式，这个对话格式和记忆机制结合得非常紧密。
-让我们看一个简单的示例，并打印出ConversationChain中的内置提示模板，你就会明白这个对话格式的意义了。
-from langchain import OpenAI
-from langchain.chains import ConversationChain
-
-#  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1848002715.html" title="12｜代理（中）：AgentExecutor究竟是怎样驱动模型和工具完成任务的？">12｜代理（中）：AgentExecutor究竟是怎样驱动模型和工具完成任务的？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">12｜代理（中）：AgentExecutor究竟是怎样驱动模型和工具完成任务的？你好，我是黄佳，欢迎来到LangChain实战课！
-上节课中，你了解了ReAct框架的原理，最后我给你留了一道思考题，让你说一说LangChain中的“代理”和“链”的差异究竟是什么。
-我的答案是： 在链中，一系列操作被硬编码（在代码中）。在代理中，语言模型被用作推理引擎来确定要采取哪些操作以及按什么顺序执行这些操作。
-下面这个图，就展现出了Agent接到任务之后，自动进行推理，然后自主调用工具完成任务的过程。
-
-那么，你看LangChain，乃至整个大模型应用开发的核心理念就呼之欲出了。这个核心理念就是 操作的序列并非硬编码在代码中，而是使用语言模型（如GPT-3或GPT-4）来选择执行的操作序列。
-这里，我又一次重复了上一段话，显得有点啰嗦，但是这个思路真的是太重要了，它也凸显了LLM作为AI自主决定程序逻辑这个编程新范式的价值，我希望你仔细认真地去理解。
-Agent 的关键组件在LangChain的代理中，有这样几个关键组件。
-
-代理（Agent）：这个类决定下一步执行什么操作。它由一个语言模型和一个提示（prompt）驱动。提示可能包含代理的性格（也就是给它分配角色，让它以特定方式进行响应）、任务的背景（用于给它提供更多任务类型的上下文）以及用于激发更好推理能力的提示策略（例如ReAct）。La ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/879533637.html" title="11｜代理（上）：ReAct框架，推理与行动的协同">11｜代理（上）：ReAct框架，推理与行动的协同</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">11｜代理（上）：ReAct框架，推理与行动的协同你好，我是黄佳，欢迎来到LangChain实战课！
-在之前介绍的思维链（CoT）中，我向你展示了 LLMs 执行推理轨迹的能力。在给出答案之前，大模型通过中间推理步骤（尤其是与少样本提示相结合）能够实现复杂的推理，获得更好的结果，以完成更具挑战的任务。
-然而，仅仅应用思维链推理并不能解决大模型的固有问题： 无法主动更新自己的知识，导致出现事实幻觉。也就是说，因为缺乏和外部世界的接触，大模型只拥有训练时见过的知识，以及提示信息中作为上下文提供的附加知识。如果你问的问题超出它的知识范围，要么大模型向你坦白：“我的训练时间截至XXXX年XX月XX日”，要么它就会开始一本正经地胡说。
-下面这张图就属于第二种情况，我制作的一个Prompt骗过了大模型，它会误以为我引述的很多虚构的东西是事实，而且它还会顺着这个思路继续胡编乱造。
-
-这个问题如何解决呢？
-也不难。你可以让大模型先在本地知识库中进行搜索，检查一下提示中的信息的真实性，如果真实，再进行输出；如果不真实，则进行修正。如果本地知识库找不到相应的信息，可以调用工具进行外部搜索，来检查提示信息的真实性。
-
-上面所说的无论本地知识库还是搜索引擎，都不是封装在大模型内部的知识，我们把它们称为“外部工具”。
-代理的作用每当你遇到这种需要模型做自主判断、自行调用工具、自行决定下一步行动的时候，Age ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1457749217.html" title="13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理">13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/LangChain%E5%AE%9E%E6%88%98%E8%AF%BE/">LangChain实战课</a></span></div><div class="content">13｜代理（下）：结构化工具对话、Self-Ask with Search以及Plan and execute代理你好，我是黄佳，欢迎来到LangChain实战课！
-在上一讲中，我们深入LangChain程序内部机制，探索了AgentExecutor究竟是如何思考（Thought）、执行（Execute&#x2F;Act）和观察（Observe）的，这些步骤之间的紧密联系就是代理在推理（Reasoning）和工具调用过程中的“生死因果”。
-现在我们趁热打铁，再学习几种更为复杂的代理：Structured Tool Chat（结构化工具对话）代理、Self-Ask with Search（自主询问搜索）代理、Plan and execute（计划与执行） 代理。
-什么是结构化工具LangChain的第一个版本是在 2022 年 11 月推出的，当时的设计是基于 ReAct 论文构建的，主要围绕着代理和工具的使用，并将二者集成到提示模板的框架中。
-早期的工具使用十分简单，AgentExecutor引导模型经过推理调用工具时，仅仅能够生成两部分内容：一是工具的名称，二是输入工具的内容。而且，在每一轮中，代理只被允许使用一个工具，并且输入内容只能是一个简单的字符串。这种简化的设计方式是为了让模型的任务变得更简单，因为进行复杂的操作可能会使得执行过程变得不太稳定。
-不过，随着语言模型的发展， ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+如果要找出这个程序中的错误，程序员的心里阴影面积有多大？
+归纳一下，机器语言的主要问题是三难： 太 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2179239062.html" title="02 | 程序员如何用技术变现？（下）">02 | 程序员如何用技术变现？（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">02 | 程序员如何用技术变现？（下）你好，我是陈皓，网名左耳朵耗子。
+我不算是聪明的人，经历也不算特别成功，但一步一步走来，我认为，我能做到的，你一定也能做到，而且应该还能做得比我更好。
+如何让自己的技能变现还是那句话，本质上来说，程序员是个手艺人，有手艺的人就能做出别人做不出来的东西，而付费也是一件很自然的事了。那么，这个问题就变成如何让自己的“手艺”更为值钱的问题了。
+第一， 千里之行，积于跬步。任何一件成功的大事，都是通过一个一个的小成功达到的。所以，你得确保你有一个一个的小成功。
+具体说来，首先，你得让自己身边的人有求于你，或是向别人推荐你。这就需要你能够掌握大多数人不能掌握的技能或技术，需要你更多地学习，并要有更多的别人没有的经验和经历。
+一旦你身边的人开始有求于你，或是向别人推荐你，你就会被外部的人注意到，于是其他人就会付费来获取你的帮助。而一旦你的帮忙对别人来说有效果，那就会产生效益，无论是经济效益还是社会效益，都会为你开拓更大的空间。
+你也会因为这样的正向反馈而鼓励自己去学习和钻研更多的东西，从而得到一个正向的循环。而且这个正向循环，一旦开始就停不下来了。
+第二， 关注有价值的东西。什么是有价值的东西？价值其实是受供需关系影响的，供大于求，就没什么价值，供不应求，就有价值。这意味着你不仅要看到市场，还要看到技术的趋势，能够分辨出什么是主流技术，什么是过渡式的技术。 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

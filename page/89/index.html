@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,98 +138,80 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/874292969.html" title="第19讲 | Java并发包提供了哪些并发工具类？">第19讲 | Java并发包提供了哪些并发工具类？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第19讲 | Java并发包提供了哪些并发工具类？通过前面的学习，我们一起回顾了线程、锁等各种并发编程的基本元素，也逐步涉及了Java并发包中的部分内容，相信经过前面的热身，我们能够更快地理解Java并发包。
-今天我要问你的问题是，Java并发包提供了哪些并发工具类？
-典型回答我们通常所说的并发包也就是java.util.concurrent及其子包，集中了Java并发的各种基础工具类，具体主要包括几个方面：
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2587501249.html" title="34 深度学习之外的人工智能 | 乌合之众的逆袭：集群智能">34 深度学习之外的人工智能 | 乌合之众的逆袭：集群智能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:17.000Z" title="发表于 2024-02-29 12:17:17">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">34 深度学习之外的人工智能 | 乌合之众的逆袭：集群智能梅拉妮·米切尔在《复杂》中举过一个例子：在巴西的亚马逊雨林中，几十万只行军蚁（已知的行为最简单的生物）正在行进。用现在时髦的话说，这是一支去中心化、自组织的大军。在这个蚁蚁平等的团体中，单个蚂蚁几乎没有视力，也不具备什么智能。可聚集成团体的他们组成了扇形的团状，一路风卷残云地吃掉所有能吃掉的，带走所有能带走的。高效的它们只需一天就能消灭雨林里一个足球场面积内的所有食物。到了夜间，蚂蚁会自发形成一个球体，保护起蚁后和幼蚁，天亮后又各就各位，继续行军。
+快速飞行的蝙蝠群在狭窄的洞穴中互不碰撞，大雁群在飞行时自发地排列成人字形、海洋鱼群通过几何构型充分利用水流的能量……这些自然界中的集群行为早早就吸引了人类的注意。在由大量数目的生物个体构成的群体中，不同个体之间的局部行为并非互不相关，而是互相作用和影响，进而作为整体化的协调有序的行为产生对外界环境的响应。生物群体正是通过个体行为之间的互动达到“整体大于部分之和”的有利效果，就像一百只行军蚁只会横冲直撞，一百万只行军蚁却能整齐划一。
+实现集群智能的智能体必须能够在环境中表现出自主性、反应性、学习性和自适应性等一系列智能特性，但这并不意味着群体中的个体都很复杂。 集群智能的核心是由众多简单个体组成的群体能够通过相互之间的简单合作来实现某些功能，完成某些任务。其中，“简单个体”是指单个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2523099344.html" title="35 | Codis VS Redis Cluster：我该选择哪一个集群方案？">35 | Codis VS Redis Cluster：我该选择哪一个集群方案？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-04T22:10:13.000Z" title="发表于 2024-03-04 22:10:13">2024-03-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">Redis核心技术与实战</a></span></div><div class="content">35 | Codis VS Redis Cluster：我该选择哪一个集群方案？你好，我是蒋德钧。
+Redis的切片集群使用多个实例保存数据，能够很好地应对大数据量的场景。在 第8讲 中，我们学习了Redis官方提供的切片集群方案Redis Cluster，这为你掌握切片集群打下了基础。今天，我再来带你进阶一下，我们来学习下Redis Cluster方案正式发布前，业界已经广泛使用的Codis。
+我会具体讲解Codis的关键技术实现原理，同时将Codis和Redis Cluster进行对比，帮你选出最佳的集群方案。
+好了，话不多说，我们先来学习下Codis的整体架构和流程。
+Codis的整体架构和基本流程Codis集群中包含了4类关键组件。
 
-提供了比synchronized更加高级的各种同步结构，包括CountDownLatch、CyclicBarrier、Semaphore等，可以实现更加丰富的多线程操作，比如利用Semaphore作为资源控制器，限制同时进行工作的线程数量。
+codis server：这是进行了二次开发的Redis实例，其中增加了额外的数据结构，支持数据迁移操作，主要负责处理具体的数据读写请求。
+codis proxy：接收客户端请求，并把请求转发给codis server。
+Zookeeper集群：保存集群元数据，例如数据位置信息和codis proxy信息。
+codis dashboard和codis fe：共同组成了集群管理工具。其中，codis dashboard负责执行集群管理工作，包括增删codis server、codis proxy和进行数据迁移。而codis fe负责提供dash ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1286842990.html" title="35 | 关系：学徒与导师">35 | 关系：学徒与导师</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:36:22.000Z" title="发表于 2023-12-13 18:36:22">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%9B%E9%98%B6%E6%94%BB%E7%95%A5/">程序员进阶攻略</a></span></div><div class="content">35 | 关系：学徒与导师现在很多公司都有一种带新人的导师（Mentor）制度，导师制的初衷是为了帮助新员工快速熟悉公司环境，并提供工作技能和个人成长的帮助，正所谓 “传帮带”。
+这是用制度建立并约束了一种在新、老员工之间的关系，这本是一个很好的出发点。但想要类似这样的制度关系发挥期望的作用，恐怕就需要 “导师” 和 “学徒” 都有一个更高层次的清晰认知，毕竟制度只能在其中起到催化的作用。
+起源导师制诞生于十四世纪，随之带来的是一场翻天覆地的变化。
+突然之间，那时的年轻男女们可以用自己最富余的资产——时间，去交换当时最稀缺的资源——培训。在那个时代，经验丰富的手艺人，比如，铁匠、鞋匠、木匠等，他们指导这些年轻人，并承诺将来某天年轻人能学会他们的技能然后去开创属于自己的事业。作为交换，年轻人会提供低成本且廉价的劳动力。
+作为学徒，年轻人可能赚不到什么钱，但却能学到关于这门手艺的各种经验和技巧。比如：一个铁匠学徒，能学会或掌握如何去建造高温火炉，组合不同的金属以产生不同熔点的合金混合物，以及制作耙、刀或犁等工作技能。这些经验和技巧，在当时的学校里是都教不了的，只能进入这行业去获得第一手的经验。
+那么程序员这行的导师制，像是中世纪时期那样吗？似乎有点像，但也不完全一样。我们都知道编程这门手艺，你读的书再多、再好也不如真正动手去做。可是你一旦开始做了，也会很快掉入迷宫，因为路径千万，到底怎 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3127504394.html" title="35 | 存储器层次结构全景：数据存储的大金字塔长什么样？">35 | 存储器层次结构全景：数据存储的大金字塔长什么样？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:18:52.000Z" title="发表于 2023-12-13 18:18:52">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">深入浅出计算机组成原理</a></span></div><div class="content">35 | 存储器层次结构全景：数据存储的大金字塔长什么样？今天开始，我们要进入到计算机另一个重要的组成部分，存储器。
+如果你自己组装过PC机，你肯定知道，想要CPU，我们只要买一个就好了，但是存储器，却有不同的设备要买。比方说，我们要买内存，还要买硬盘。买硬盘的时候，不少人会买一块SSD硬盘作为系统盘，还会买上一块大容量的HDD机械硬盘作为数据盘。内存和硬盘都是我们的存储设备。而且，像硬盘这样的持久化存储设备，同时也是一个I&#x2F;O设备。
+在实际的软件开发过程中，我们常常会遇到服务端的请求响应时间长，吞吐率不够的情况。在分析对应问题的时候，相信你没少听过类似“主要瓶颈不在CPU，而在I&#x2F;O”的论断。可见，存储在计算机中扮演着多么重要的角色。那接下来这一整个章节，我会为你梳理和讲解整个存储器系统。
+这一讲，我们先从存储器的层次结构说起，让你对各种存储器设备有一个整体的了解。
+理解存储器的层次结构在有计算机之前，我们通常把信息和数据存储在书、文件这样的物理介质里面。有了计算机之后，我们通常把数据存储在计算机的存储器里面。而存储器系统是一个通过各种不同的方法和设备，一层一层组合起来的系统。下面，我们把计算机的存储器层次结构和我们日常生活里处理信息、阅读书籍做个对照，好让你更容易理解、记忆存储器的层次结构。
+我们常常把CPU比喻成计算机的“大脑”。我们思考的东西，就好比CP ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/182855336.html" title="35 | 实战一（下）：手把手带你将ID生成器代码从“能用”重构为“好用”">35 | 实战一（下）：手把手带你将ID生成器代码从“能用”重构为“好用”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:50:03.000Z" title="发表于 2023-12-18 17:50:03">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BE%8E/">设计模式之美</a></span></div><div class="content">35 | 实战一（下）：手把手带你将ID生成器代码从“能用”重构为“好用”上一节课中，我们结合ID生成器代码讲解了如何发现代码质量问题。虽然ID生成器的需求非常简单，代码行数也不多，但看似非常简单的代码，实际上还是有很多优化的空间。综合评价一下的话，小王的代码也只能算是“能用”、勉强及格。我们大部分人写出来的代码都能达到这个程度。如果想要在团队中脱颖而出，我们就不能只满足于这个60分及格，大家都能做的事情，我们要做得更好才行。
+上一节课我们讲了，为什么这份代码只能得60分，这一节课我们再讲一下，如何将60分的代码重构为80分、90分，让它从“能用”变得“好用”。话不多说，让我们正式开始今天的学习吧！
+回顾代码和制定重构计划为了方便你查看和对比，我把上一节课中的代码拷贝到这里。
+public class IdGenerator &#123;
+  private static final Logger logger &#x3D; LoggerFactory.getLogger(IdGenerator.class);
 
-各种线程安全的容器，比如最常见的ConcurrentHashMap、有序的ConcurrentSkipListMap，或者通过类似快照机制，实现线程安全的动态数组CopyOnWriteArrayList等。
+  public static String generate() &#123;
+    String id &#x3D; &quot;&quot;;
+    try &#123;
+      String hostName &#x3D; InetAddress.getL ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1725918207.html" title="35 | 微服务架构最佳实践 - 方法篇">35 | 微服务架构最佳实践 - 方法篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T23:07:14.000Z" title="发表于 2023-12-13 23:07:14">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a></span></div><div class="content">35 | 微服务架构最佳实践 - 方法篇专栏上一期，我谈了实施微服务需要避免踩的陷阱，简单提炼为：
 
-各种并发队列实现，如各种BlockingQueue实现，比较典型的ArrayBlockingQueue、 SynchronousQueue或针对特定场景的PriorityBlockingQueue等。
+微服务拆分过细，过分强调“small”。
 
-强大的Executor框架，可以创建各种不同类型的线程池，调度任务运行等，绝大部分情况下，不再需要自己从头实现线程池和任务调度 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1530151697.html" title="第1讲 | 谈谈你对Java平台的理解？">第1讲 | 谈谈你对Java平台的理解？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第1讲 | 谈谈你对Java平台的理解？从你接触Java开发到现在，你对Java最直观的印象是什么呢？是它宣传的 “Write once, run anywhere”，还是目前看已经有些过于形式主义的语法呢？你对于Java平台到底了解到什么程度？请你先停下来总结思考一下。
-今天我要问你的问题是，谈谈你对Java平台的理解？“Java是解释执行”，这句话正确吗？
-典型回答Java本身是一种面向对象的语言，最显著的特性有两个方面，一是所谓的“ 书写一次，到处运行”（Write once, run anywhere），能够非常容易地获得跨平台能力；另外就是 垃圾收集（GC, Garbage Collection），Java通过垃圾收集器（Garbage Collector）回收分配内存，大部分情况下，程序员不需要自己操心内存的分配和回收。
-我们日常会接触到JRE（Java Runtime Environment）或者JDK（Java Development Kit）。 JRE，也就是Java运行环境，包含了JVM和Java类库，以及一些模块等。而JDK可以看作是JRE的一个超集，提供了更多工具，比如编译器、各种诊断工具等。
-对于“Java是解释执行”这句话，这个说法不太准确。我们开发的Java的源代码，首先通过Javac编译成为字节码（bytecode），然后，在运行时，通过 Java虚 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1270669098.html" title="第22讲 | AtomicInteger底层实现原理是什么？如何在自己的产品代码中应用CAS操作？">第22讲 | AtomicInteger底层实现原理是什么？如何在自己的产品代码中应用CAS操作？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第22讲 | AtomicInteger底层实现原理是什么？如何在自己的产品代码中应用CAS操作？在今天这一讲中，我来分析一下并发包内部的组成，一起来看看各种同步结构、线程池等，是基于什么原理来设计和实现的。
-今天我要问你的问题是，AtomicInteger底层实现原理是什么？如何在自己的产品代码中应用CAS操作？
-典型回答AtomicIntger是对int类型的一个封装，提供原子性的访问和更新操作，其原子性操作的实现是基于CAS（ compare-and-swap）技术。
-所谓CAS，表征的是一系列操作的集合，获取当前数值，进行一些运算，利用CAS指令试图进行更新。如果当前数值未变，代表没有其他线程进行并发修改，则成功更新。否则，可能出现不同的选择，要么进行重试，要么就返回一个成功或者失败的结果。
-从AtomicInteger的内部属性可以看出，它依赖于Unsafe提供的一些底层能力，进行底层操作；以volatile的value字段，记录数值，以保证可见性。
-private static final jdk.internal.misc.Unsafe U &#x3D; jdk.internal.misc.Unsafe.getUnsafe();
-private static final long VALUE &#x3D; U.objectFieldOffset(AtomicInteg ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3792199353.html" title="第21讲 | Java并发类库提供的线程池有哪几种？ 分别有什么特点？">第21讲 | Java并发类库提供的线程池有哪几种？ 分别有什么特点？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第21讲 | Java并发类库提供的线程池有哪几种？ 分别有什么特点？我在 专栏第17讲 中介绍过线程是不能够重复启动的，创建或销毁线程存在一定的开销，所以利用线程池技术来提高系统资源利用效率，并简化线程管理，已经是非常成熟的选择。
-今天我要问你的问题是，Java并发类库提供的线程池有哪几种？ 分别有什么特点？
-典型回答通常开发者都是利用Executors提供的通用线程池创建方法，去创建不同配置的线程池，主要区别在于不同的ExecutorService类型或者不同的初始参数。
-Executors目前提供了5种不同的线程池创建配置：
+微服务基础设施不健全，忽略了“automated”。
 
-newCachedThreadPool()，它是一种用来处理大量短时间工作任务的线程池，具有几个鲜明特点：它会试图缓存线程并重用，当无缓存线程可用时，就会创建新的工作线程；如果线程闲置的时间超过60秒，则被终止并移出缓存；长时间闲置时，这种线程池，不会消耗什么资源。其内部使用SynchronousQueue作为工作队列。
-
-newFixedThreadPool(int nThreads)，重用指定数目（nThreads）的线程，其背后使用的是无界的工作队列，任何时候最多有nThreads个工作线程是活动的。这意味着，如果任务数量超过了活动队列数目，将在工作队列中等待空闲线程出现；如果有工作线程退出，将会有新的工作线程被创建，以补足指定的数目nThrea ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/914695340.html" title="第20讲 | 并发包中的ConcurrentLinkedQueue和LinkedBlockingQueue有什么区别？">第20讲 | 并发包中的ConcurrentLinkedQueue和LinkedBlockingQueue有什么区别？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第20讲 | 并发包中的ConcurrentLinkedQueue和LinkedBlockingQueue有什么区别？在上一讲中，我分析了Java并发包中的部分内容，今天我来介绍一下线程安全队列。Java标准库提供了非常多的线程安全队列，很容易混淆。
-今天我要问你的问题是，并发包中的ConcurrentLinkedQueue和LinkedBlockingQueue有什么区别？
-典型回答有时候我们把并发包下面的所有容器都习惯叫作并发容器，但是严格来讲，类似ConcurrentLinkedQueue这种“Concurrent*”容器，才是真正代表并发。
-关于问题中它们的区别：
-
-Concurrent类型基于lock-free，在常见的多线程访问场景，一般可以提供较高吞吐量。
-
-而LinkedBlockingQueue内部则是基于锁，并提供了BlockingQueue的等待性方法。
-
-
-不知道你有没有注意到，java.util.concurrent包提供的容器（Queue、List、Set）、Map，从命名上可以大概区分为Concurrent*、CopyOnWrite 和Blocking 等三类，同样是线程安全容器，可以简单认为：
-
-Concurrent类型没有类似CopyOnWrite之类容器相对较重的修改开销。
-
-但是，凡事都是有代价的，Concurrent往往提供了较低的遍历一致性 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1137940589.html" title="第24讲 | 有哪些方法可以在运行时动态生成一个Java类？">第24讲 | 有哪些方法可以在运行时动态生成一个Java类？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第24讲 | 有哪些方法可以在运行时动态生成一个Java类？在开始今天的学习前，我建议你先复习一下 专栏第6讲 有关动态代理的内容。作为Java基础模块中的内容，考虑到不同基础的同学以及一个循序渐进的学习过程，我当时并没有在源码层面介绍动态代理的实现技术，仅进行了相应的技术比较。但是，有了 上一讲 的类加载的学习基础后，我想是时候该进行深入分析了。
-今天我要问你的问题是，有哪些方法可以在运行时动态生成一个Java类？
-典型回答我们可以从常见的Java类来源分析，通常的开发过程是，开发者编写Java代码，调用javac编译成class文件，然后通过类加载机制载入JVM，就成为应用运行时可以使用的Java类了。
-从上面过程得到启发，其中一个直接的方式是从源码入手，可以利用Java程序生成一段源码，然后保存到文件等，下面就只需要解决编译问题了。
-有一种笨办法，直接用ProcessBuilder之类启动javac进程，并指定上面生成的文件作为输入，进行编译。最后，再利用类加载器，在运行时加载即可。
-前面的方法，本质上还是在当前程序进程之外编译的，那么还有没有不这么low的办法呢？
-你可以考虑使用Java Compiler API，这是JDK提供的标准API，里面提供了与javac对等的编译器功能，具体请参考 java.compiler 相关文档。
-进一步思考，我们一直围绕Java源码编译成 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2241929753.html" title="第23讲 | 请介绍类加载过程，什么是双亲委派模型？">第23讲 | 请介绍类加载过程，什么是双亲委派模型？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第23讲 | 请介绍类加载过程，什么是双亲委派模型？Java通过引入字节码和JVM机制，提供了强大的跨平台能力，理解Java的类加载机制是深入Java开发的必要条件，也是个面试考察热点。
-今天我要问你的问题是，请介绍类加载过程，什么是双亲委派模型？
-典型回答一般来说，我们把Java的类加载过程分为三个主要步骤：加载、链接、初始化，具体行为在 Java虚拟机规范 里有非常详细的定义。
-首先是加载阶段（Loading），它是Java将字节码数据从不同的数据源读取到JVM中，并映射为JVM认可的数据结构（Class对象），这里的数据源可能是各种各样的形态，如jar文件、class文件，甚至是网络数据源等；如果输入数据不是ClassFile的结构，则会抛出ClassFormatError。
-加载阶段是用户参与的阶段，我们可以自定义类加载器，去实现自己的类加载过程。
-第二阶段是链接（Linking），这是核心的步骤，简单说是把原始的类定义信息平滑地转化入JVM运行的过程中。这里可进一步细分为三个步骤：
-
-验证（Verification），这是虚拟机安全的重要保障，JVM需要核验字节信息是符合Java虚拟机规范的，否则就被认为是VerifyError，这样就防止了恶意信息或者不合规的信息危害JVM的运行，验证阶段有可能触发更多class的加载。
-
-准备（Preparation），创建类或接口中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3249711498.html" title="第27讲 | Java常见的垃圾收集器有哪些？">第27讲 | Java常见的垃圾收集器有哪些？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第27讲 | Java常见的垃圾收集器有哪些？垃圾收集机制是Java的招牌能力，极大地提高了开发效率。如今，垃圾收集几乎成为现代语言的标配，即使经过如此长时间的发展， Java的垃圾收集机制仍然在不断的演进中，不同大小的设备、不同特征的应用场景，对垃圾收集提出了新的挑战，这当然也是面试的热点。
-今天我要问你的问题是，Java常见的垃圾收集器有哪些？
-典型回答实际上，垃圾收集器（GC，Garbage Collector）是和具体JVM实现紧密相关的，不同厂商（IBM、Oracle），不同版本的JVM，提供的选择也不同。接下来，我来谈谈最主流的Oracle JDK。
-
-Serial GC，它是最古老的垃圾收集器，“Serial”体现在其收集工作是单线程的，并且在进行垃圾收集过程中，会进入臭名昭著的“Stop-The-World”状态。当然，其单线程设计也意味着精简的GC实现，无需维护复杂的数据结构，初始化也简单，所以一直是Client模式下JVM的默认选项。
-从年代的角度，通常将其老年代实现单独称作Serial Old，它采用了标记-整理（Mark-Compact）算法，区别于新生代的复制算法。
-Serial GC的对应JVM参数是：
+微服务并不轻量级，规模大了后，“lightweight”不再适应。
 
 
--XX:+UseSerialGC
+针对这些问题，今天我们看看微服务最佳实践应该如何去做。我会分两期介绍这部分内容，今天是微服务架构最佳实践的方法篇，下一期是基础设施篇。
+服务粒度针对微服务拆分过细导致的问题，我建议基于团队规模进行拆分，类似贝索斯在定义团队规模时提出的“两个披萨”理论（每个团队的人数不能多到两张披萨都不够吃的地步），分享一个我认为微服务拆分粒度的“三个火枪手”原则，即一个微服务三个人负责开发。当我们在实施微服务架构时，根据团队规模来划分微服务数量，如果业务规继续发展，团队规模扩大，我们再将已有的微服务进行拆分。例如，团队最初有6个人，那么可以划分为2个微服务，随着业务的发展，业务功能越来越多，逻辑越来越复杂，团队扩展到12个人，那么我们可以将已有的2个微服务进行拆分，变成4个微服务。
+为什么是3个人，不是4个，也不是2个呢？
+首先，从系统规模来讲，3个人负责开发一个系统，系统的复杂度刚好达到每个人都能全面理解整个系统，又能够进行分工的粒度；如果是2个人开发一个系统，系统的复杂度不够，开发人员可能觉得无法体现自己的技术实力；如果是4 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2145983118.html" title="35 | 技术进阶之道：你和这个星球最顶级的程序员差几个等级？">35 | 技术进阶之道：你和这个星球最顶级的程序员差几个等级？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:18:45.000Z" title="发表于 2024-03-01 18:18:45">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%9538%E8%AE%B2/">后端技术面试38讲</a></span></div><div class="content">35 | 技术进阶之道：你和这个星球最顶级的程序员差几个等级？这些年，我跟一些年轻的软件工程师朋友们交流，关于未来的职业发展，大家普遍都有憧憬和规划，要做架构师，要做技术总监，要做CTO。对于如何实现自己的职业规划，也都信心满满：努力工作，好好学习，不断提升自己。但现实总是复杂的，日复一日的工作生活总能让人一次又一次地陷入迷茫。其原因之一就是对职业发展轨迹和自我能力进步的一般规律缺乏认识，导致做事找不到方向或是操之过急。
+软件技术的生态江湖与等级体系软件编程这个领域看似平等、开放、自由，但这并不代表混乱、无序。这个领域并没有什么成文的行为准则，却自有一套运作体系，依靠这套体系，软件开发的技术和知识以极快的速度在全世界范围内传播、推广。如果你致力于成为软件架构师，那么你必须了解一下软件技术的生态江湖与等级体系，因为你的技术处境和你的技术发展之路就在其中。
+全世界从事软件开发的技术人员大约有几千万，有序稳定的组织方式总是金字塔结构，在软件开发这个领域也不例外，我们按照每个人的影响力和技能水平，使用二八定律进行划分，得到一个如下的金字塔结构。
 
+80%的工程师处在这个金字塔最底层，全世界绝大多数的代码出自这一层的工程师之手，但是他们却没有任何技术决策能力和技术影响力。用什么编程语言，用什么数据库，用什么编程框架，日志规范与代码规范如何制定，统统不由他们决定。大多数情况下，一个10人团队， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2990956230.html" title="35 | 流量控制：高并发系统中我们如何操纵流量？">35 | 流量控制：高并发系统中我们如何操纵流量？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:53.000Z" title="发表于 2024-03-01 18:10:53">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">35 |  流量控制：高并发系统中我们如何操纵流量？你好，我是唐扬。
+上一节课里，我带你了解了微服务架构中常见的两种有损的服务保护策略：熔断和降级。它们都是通过暂时关闭某些非核心服务或者组件从而保护核心系统的可用性。但是，并不是所有的场景下都可以使用熔断降级的策略，比如，电商系统在双十一、618大促的场景。
+这种场景下，系统的峰值流量会超过了预估的峰值，对于核心服务也产生了比较大的影响，而你总不能把核心服务整体降级吧？那么在这个时候要如何保证服务的稳定性呢？你认为可以使用限流的方案。而提到限流，我相信你多多少少在以下几个地方出错过：
 
+限流算法选择不当，导致限流效果不好；
+开启了限流却发现整体性能有损耗；
+只实现了单机的限流却没有实现整体系统的限流。
 
-ParNew GC，很明显是个新生代GC实现，它实际是Serial GC的多线程版本，最常见的应用场景是配合 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4227037280.html" title="第25讲 | 谈谈JVM内存区域的划分，哪些区域可能发生OutOfMemoryError?">第25讲 | 谈谈JVM内存区域的划分，哪些区域可能发生OutOfMemoryError?</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第25讲 | 谈谈JVM内存区域的划分，哪些区域可能发生OutOfMemoryError?今天，我将从内存管理的角度，进一步探索Java虚拟机（JVM）。垃圾收集机制为我们打理了很多繁琐的工作，大大提高了开发的效率，但是，垃圾收集也不是万能的，懂得JVM内部的内存结构、工作机制，是设计高扩展性应用和诊断运行时问题的基础，也是Java工程师进阶的必备能力。
-今天我要问你的问题是，谈谈JVM内存区域的划分，哪些区域可能发生OutOfMemoryError？
-典型回答通常可以把JVM内存区域分为下面几个方面，其中，有的区域是以线程为单位，而有的区域则是整个JVM进程唯一的。
-首先， 程序计数器（PC，Program Counter Register）。在JVM规范中，每个线程都有它自己的程序计数器，并且任何时间一个线程都只有一个方法在执行，也就是所谓的当前方法。程序计数器会存储当前线程正在执行的Java方法的JVM指令地址；或者，如果是在执行本地方法，则是未指定值（undefined）。
-第二， Java虚拟机栈（Java Virtual Machine Stack），早期也叫Java栈。每个线程在创建时都会创建一个虚拟机栈，其内部保存一个个的栈帧（Stack Frame），对应着一次次的Java方法调用。
-前面谈程序计数器时，提到了当前方法；同理，在一个时间点，对应的只会有一个活动的栈 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/860617995.html" title="第29讲 | Java内存模型中的happen-before是什么？">第29讲 | Java内存模型中的happen-before是什么？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-18T17:39:34.000Z" title="发表于 2023-12-18 17:39:34">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E7%B2%BE%E8%AE%B2/">Java核心技术面试精讲</a></span></div><div class="content">第29讲 | Java内存模型中的happen-before是什么？Java语言在设计之初就引入了线程的概念，以充分利用现代处理器的计算能力，这既带来了强大、灵活的多线程机制，也带来了线程安全等令人混淆的问题，而Java内存模型（Java Memory Model，JMM）为我们提供了一个在纷乱之中达成一致的指导准则。
-今天我要问你的问题是，Java内存模型中的happen-before是什么？
-典型回答Happen-before关系，是Java内存模型中保证多线程操作可见性的机制，也是对早期语言规范中含糊的可见性概念的一个精确定义。
-它的具体表现形式，包括但远不止是我们直觉中的synchronized、volatile、lock操作顺序等方面，例如：
+说白了，你之所以出现这些问题还是对限流的算法以及实际应用不熟练，而本节课，我将带你了解这些内容，希望你能将这些经验应用到实际项目中，从而提升整体系统的鲁棒性。
+究竟什么是限流限流指的是通过限制到达系统的并发请求数量，保证系统能够正常响应部分用户请求，而对于超过限制的流量，则只能通过拒绝服务的方式保证整体系统的可用性。限流策略一般部署在服务的入口层，比如API网关中，这样可以对系统整体流量做塑形。而在微服务架构中，你也可以在RPC客户端中引入限流的策略，来保证单个服务不会被过大的流量压垮。
+其实，无论在实际工作生活中还是在之前学习过的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2232142387.html" title="35 | 理解并建立自己的工作弹性">35 | 理解并建立自己的工作弹性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-13T18:10:19.000Z" title="发表于 2023-12-13 18:10:19">2023-12-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%B1%E8%B5%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%AF%BE/">朱赟的技术管理课</a></span></div><div class="content">35 | 理解并建立自己的工作弹性在设计软件系统的时候，我们常常会提到弹性架构设计。一个好的软件系统就像是一个具备弹性的有机生命体，能够动态地改变自己的特性或功能，调配资源，去适应外界的变幻并满足不同的需求。
+具备弹性的架构才是有生命力的，比如系统压力和容量都是重要的变化维度，如果一个系统能够根据系统压力和容量的增减而动态地调整自己的处理能力，我们说这样的架构就是弹性架构。
+今天我要和你探讨的不是技术上的弹性，而是工作的弹性、心态上的弹性。其实，从某种角度而言，道理是相通的。
+我们经常会从朋友圈或各种媒体上看到渲染焦虑情绪的文章：三十而立了，焦虑；每天要学的内容太多，学会的太少，焦虑；AI 时代来了，到处是机器学习，你还在自己学习，焦虑；开始一份新工作，但是似乎离梦想更远了，焦虑；诗和远方到底在哪呢，只看到了眼前的苟且，焦虑。
+有些人可能只是过过嘴瘾，宣泄一下情绪，但有更多的人确实感受到了方方面面的压力，并且真的开始焦虑起来。比如你平时的工作本来就很紧张，项目一个接着一个，到处是里程碑和 Deadline，老板又很严厉，然后你就会变得敏感、紧张和焦虑。
+为什么同样的事情，同样的要求，组里其他的同事看起来都游刃有余呢？真实的情况可能是，别人也很焦虑，只是表面上看不出来而已。
+事实上，不安、轻度的焦虑，几乎会伴随人的一生。那些有抱负、有上进心并取得过成功的人，同样会有各种坏情绪，只是他 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2887956389.html" title="35 | 管理四象限：小白要怎么快速入门带团队？">35 | 管理四象限：小白要怎么快速入门带团队？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-09T11:54:25.000Z" title="发表于 2024-01-09 11:54:25">2024-01-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97/">大厂晋升指南</a></span></div><div class="content">35 | 管理四象限：小白要怎么快速入门带团队？你好，我是华仔。
+业务和管理是技术人员晋升到高级别的基石。前三讲我分别介绍了三种学习业务的方式，分别适合三种不同级别。扫除了业务上的障碍之后，我们再来看看管理上的困境。
+我曾经参加过内部的Team Leader管理交流会议。不同的TL分享自己对管理的理解，各种说法都有：
 
-线程内执行的每个操作，都保证happen-before后面的操作，这就保证了基本的程序顺序规则，这是开发者在书写程序时的基本约定。
+有人推荐樊登的《可复制的领导力》，但是感觉有些方法不太适合这家公司。
+有人特别崇拜华为的创始人任正非，强调管理一定要做好员工激励，但是也有人反对说一线TL根本没有任正非那么大的权力和影响力，怎么激励不是自己说了算的。
+有人认为谷歌的《重新定义团队》强调人性化管理和创造力，非常适合互联网公司，但也有人认为谷歌的方法在国内的环境中很难落地。
+有人很坦诚地直接说，其实自己对管理并没有什么理解，反而有很多疑惑。最核心的疑问就是，自己从一个技术高手变成管理者之后，不知道管理者要做什么事情，感觉就是天天开会。这个回答反而引起了现场很多人的共鸣。
 
-对于volatile变量，对它的写操作，保证happen-before在随后对该变量的读取操作。
-
-对于一个锁的解锁操作，保证happen-before加锁操作。
-
-对象构建完成，保证happen-before于finalizer的开始动作。
-
-甚至是类似线程内部操作的完成，保证happen-before其他Thread.join()的线程等。
-
-
-这些happen-before关系是存在着传递性的 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/88/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/#content-inner">88</a><span class="page-number current">89</span><a class="page-number" href="/page/90/#content-inner">90</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/90/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+的确，新晋管理者面临的一个非常大的问题就是 不知道要做什么。有的人可能自己去看一些管理的书籍进行学习，但是对于学习的内容是否正确，是否适合当前团队其实也是心存疑虑。
+其实，无论你采用谁的管理方法，变化的只是理念和技巧，管理的工作范畴本身是不变的。
+所以这一讲我会为你介绍一种管理思维框架，叫 管理四象限。它可以帮助你快速地 明确管理的工 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/88/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/#content-inner">88</a><span class="page-number current">89</span><a class="page-number" href="/page/90/#content-inner">90</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/90/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             

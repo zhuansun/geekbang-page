@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-21 07:45:10'
+  postUpdate: '2024-03-21 11:05:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -138,85 +138,107 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="geekbang" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1429485187.html" title="13｜前浪DALL-E 2：帮你魔改经典画作">13｜前浪DALL-E 2：帮你魔改经典画作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">13｜前浪DALL-E 2：帮你魔改经典画作你好，我是南柯。
-通过上一章的学习，我们已经掌握了AI绘画的基础知识，了解了扩散模型、CLIP模型、自回归模型等模块的基本原理。从今天开始我们进入进阶篇的学习，我会带你基于已经了解的基础知识，继续探索业界最新最火的AI绘画模型。学完这部分内容，AI绘画的黑魔法在你面前就不是秘密了。
-这一讲，我们将要学习的是引爆本轮AI绘画技术热潮的明星模型：DALL-E 2。
-DALL-E 2是2022年4月由OpenAI发布的AI绘画模型，它的绘画效果相比过去的工作有了质的飞跃，而且它提出的unCLIP结构、图像变体能力也被后来的方法所效仿。我们只有真正理解了DALL-E 2，才算拿到了进入AI绘画世界的钥匙。
-初识DALL-E 2DALL-E这个名字源自西班牙艺术家Salvador Dali和皮克斯动画机器人Wall-E的组合。如果你想体验OpenAI的DALL-E 2原汁原味的效果，可以使用Edge浏览器NewBing的AI绘画能力。目前，NewBing的AI绘画能力还没有向中国大陆地区开放，需要你发挥聪明才智来体验它。如果你有好的办法，也欢迎你分享在评论区。
-比如我们要求DALL-E 2帮我们生成一只可爱的精灵。你可以点开图像查看效果。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/653470a0c458853aef5813f1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1345</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://s2.loli.net/2023/10/21/zfMGZnL6qB9S3Ue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">geekbang</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">geekbang</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2155805436.html" title="一键到达 | 数学基础复习课">一键到达 | 数学基础复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 数学基础复习课任何学习都是一个过程，需要不断复习，以强化理解。
+从今天开始，我会带你复习专栏的内容。按照专栏的七个模块，我为你把每个模块里发布过的文章要点卡都梳理出来，你可以用来回顾每一篇的内容。点击要点卡，一键到达你最需要温故的那一篇。
+今天来复习专栏的第一部分内容，数学基础。在这个模块里，我们一起学习了线性代数、概率论、数理统计、最优化方法、信息论和形式逻辑这几个内容。
+复习的过程中，还有什么困惑，获得了什么收获，都欢迎你继续给我留言。
 
 
-这里如果我们使用中文描述，生成的图像效果似乎打了点折扣。这是因为中文描述在输入到模型前需要先翻译成英文，翻 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3126414570.html" title="14｜挑战者Imagen：为什么会后来居上？">14｜挑战者Imagen：为什么会后来居上？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">14｜挑战者Imagen：为什么会后来居上？你好，我是南柯。
-上一讲我们一起探索了OpenAI推出的DALL-E 2背后的技术原理。仅仅过去一个月，在2022年5月， Google便发布了自己的AI绘画模型Imagen。Imagen在效果上显著优于DALL-E 2，并且通过实验证明，只要文本模型足够大，就不再需要扩散先验模型。
-一年之后，2023年的4月28日，后来者StabilityAI，也就是搞出来Stable Diffusion这个模型的公司，发布了DeepFloyd模型。这个模型完美地解决了DALL-E 2不能在生成图像中指定文字内容的问题，是当下公认的效果最好的AI绘画模型之一。并且， DeepFloyd模型的技术方案，恰恰就是我们今天要讲的主角Imagen。
-今天这一讲我们来探讨Imagen背后的技术，主要搞清楚以下几个问题。
-第一，相比DALL-E 2，Imagen在能力上有哪些优势？
-第二，Imagen的工作原理是怎样的？
-第三，DeepFloyd又在Imagen的基础上做了哪些改进？
-明白了这些，你会对AI绘画技术的发展趋势理解更深刻，在选择AI绘画模型时也会更加得心应手。让我们开始吧！
-初识Imagen我们先来看看Imagen模型在AI绘画这个任务上的表现，建立一个直观感受。
 
-Imagen可以在生成的图像中指定写入的文字，之后我们简称这个能力为“Text-in ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3913350641.html" title="15｜显微镜下的Stable Diffusion（一）：惊艳效果下的关键技术揭秘">15｜显微镜下的Stable Diffusion（一）：惊艳效果下的关键技术揭秘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">15｜显微镜下的Stable Diffusion（一）：惊艳效果下的关键技术揭秘你好，我是南柯。
-我们之前已经学习了Stable Diffusion的核心组成模块，比如CLIP、VAE、UNet、注意力机制、采样器等等。在第二个实战项目（可以回顾 12讲 复习），我们已经动手训练了自己的扩散模型，也基于基础模型微调了我们自己的Stable Diffusion。
-为了方便表述，后面我们就用SD指代Stable Diffusion。对于我们来说，SD已经不再是黑盒子了。但其实除了我们已经知道的内容，SD能够生成精美构图的背后，还有很多黑魔法在起作用。
-今天，我会带你尝试用“显微镜”解析SD，深入探索其中的技术细节，比如文本引导的原理、注意力机制的实现细节等。学完这一讲，你会对SD的工作原理有更深刻和全面的理解，并将这些知识灵活地应用到你自己的项目中。
-SD模型的演化之路你也许在社交媒体或者Hugging Face等论坛上，看到过各种各样的SD模型版本，从早期的SD1.4到近期的SDXL 1.0。SD版本号演化的背后，其实是技术路线的改变或者训练数据的优化，搞清楚SD的演化路径能帮助我们理解AI绘画的发展趋势。
-当前开源社区流行的SD模型有多个版本，比如SD1.4、SD1.5、SD2.0、SD2.1、SD Reimagine、SDXL等。表面看起来眼花缭乱，但其实这些模型之间存在或多或少 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2967805008.html" title="16｜显微镜下的Stable Diffusion（二）：从图像变体到神雕侠侣（SDXL）">16｜显微镜下的Stable Diffusion（二）：从图像变体到神雕侠侣（SDXL）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">16｜显微镜下的Stable Diffusion（二）：从图像变体到神雕侠侣（SDXL）你好，我是南柯。
-在上一讲，我们详细探讨了Stable Diffusion模型的核心技术，包括无分类器引导、UNet模块构成、负向描述词原理等。
-事实上，随着AI绘画技术的不断发展，Stable Diffusion模型也在持续进化，比如2023年6月刚刚发布的SDXL模型。参考上一讲的叫法，为了方便，我们还是将Stable Diffusion简称为SD。
-在SD模型家族中，有两个具有特殊能力的模型，也就是我们今天要探讨的SD图像变体（Stable Diffusion Reimagine）和“神雕侠侣”（SDXL）。SD图像变体模型用来对标DALL-E 2的图像变体功能，SDXL模型则用来和Midjourney这个最强画师掰掰手腕。
-在我看来，生成图像变体和生成通用高美感图片，是当前多数开源垂类模型都做不好的事情。所以这一讲，我们把这SD中的两个特殊模型单独拿出来，用显微镜分析它们的能力和背后的算法原理。理解了这些之后，也会给我们向自己的SD模型引入新能力带来启发。
-SD图像变体你是否还记得，在关于DALL-E 2的解读中（可以回顾 第13讲 内容），我们提到了一种名为图像变体的图像生成策略。
-我带你快速回忆一下这个策略的设计理念。用户输入一张图像，使用CLIP的图像编码器提取图像表征作为图像解码 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1019925595.html" title="17｜巅峰画师Midjourney：一起来猜猜年入1亿美元背后的技术方案">17｜巅峰画师Midjourney：一起来猜猜年入1亿美元背后的技术方案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">17｜巅峰画师Midjourney：一起来猜猜年入1亿美元背后的技术方案你好，我是南柯。
-前面我们已经学习了DALL-E 2、Imagen、DeepFloyd、SDXL这些AI绘画的明星模型。这一讲我们就一起来探讨Midjourney，它是当下公认的AI绘画最强模型。
-在 第3讲，我们便已领略过Midjourney的文生图、图像融合和垫图生成能力。从22年11月的Midjourney v4、Nijijourney，到今年3月的Midjourney v5，MJ凭借其高质量的生成效果、30美元一个月的付费服务，实现了非常可观的收入。因此，训练出对标Midjourney的模型也成为了很多大企业追求的目标。
-在我写这一讲内容的时候，Midjourney背后的技术并没有公开。今天这一讲，我们不妨一起猜猜看，Midjourney这个AI绘画圈子里最值钱的“技术方案”是怎样的。
-特别提示一下，我们这一讲的分析会涉及很多进阶篇的背景知识，比如DALL-E 2、Imagen、SD模型背后的技术原理等，推荐你课前进行温习。
-回顾Midjourney的发展不知道你是否思考过这个问题：做一个Midjourney这样的产品，需要多少人？
-国内的互联网公司可以轻松投入数百人去做类似的项目。实际上呢，在Midjourney v4发布的时期，这个公司只有不到20名全职员工。
-2019年的时候，David Holz ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3669428678.html" title="18｜DreamBooth和LoRA：低成本实现IP专属的AI绘画模型">18｜DreamBooth和LoRA：低成本实现IP专属的AI绘画模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">18｜DreamBooth和LoRA：低成本实现IP专属的AI绘画模型你好，我是南柯。
-学完前两章内容，我们已经掌握了AI绘画的基本原理，也熟悉了AI绘画的经典解决方案。从这一讲开始，我们正式进入课程的综合演练篇，一起探讨图像定制化生成与编辑的经典算法方案。
-使用Stable Diffusion模型的时候，基于prompt生成图像已经是我们比较熟悉的模式，比如一个人在某个地方做某件事。这种方式生成的图像类似开盲盒，因为我们在看到效果之前，并不确定图中生成的物体和风格是什么样的。
-而接下来我们要学习的定制化图像生成技术就不同了，它的目标是控制指定的一个人在某个地方做某件事，或者控制生成的图片是某只动物，再或者生成的图像是某个确定的风格。
-可不要小看了这个定制化的思想，海外非常流行的LensaAI和国内风靡一时的“妙鸭相机”，它们都是定制化图像生成的具体产品方案。今天这一讲，我们要学习三种经典的定制化算法方案，分别是Textual Inversion、DreamBooth和LoRA。
-Textual Inversion为了帮你更好地理解Textual Inversion这个算法，我先带你回顾下SD词嵌入向量的使用方式。
-在SD AI绘画过程中，我们输入的prompt首先会经过tokenizer完成分词，得到每个分词的token_id。之后在预训练的词嵌入库中根据token_id拿到词嵌 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/882792529.html" title="20｜ControlNet：出道即巅峰，构图控制没有对手">20｜ControlNet：出道即巅峰，构图控制没有对手</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">20｜ControlNet：出道即巅峰，构图控制没有对手你好，我是南柯。
-我们知道Stable Diffusion可以用文本引导图像生成。除了使用prompt这种比较原始的方式，还有没有控制能力更强的方法呢？
-其实早在第2讲，我就留过一个思考题，AI 绘画生成的图像在手部和脸部细节存在瑕疵有哪些解决方式。而我们今天要讲的技术—— ControlNet 就可以解决这个问题，对图像结构做出一定的限制，比如手部的关键点信息、五官信息等。
-2023年2月，ControlNet这个方法一经提出，便凭借其对于AI绘画效果的控制能力火遍全网。最初的ControlNet主要用于线稿上色、图像风格化、可控姿态的人体生成等任务。如今各路网友脑洞大开，使用ControlNet做出了创意二维码、将文字自然地融入照片等趣味效果。
-这一讲，我们一起来探讨ControlNet背后的技术原理和各种应用场景。掌握了ControlNet这个“大杀器”，你对于AI绘画效果的控制能力会上一个台阶，在下个实战篇实现创意AI绘画任务时也会更加得心应手。
-初识ControlNet如果说prompt是对于AI绘画模型指令级的控制，ControlNet无疑是构图级的控制。为了让你对它建立感性认识，我们先结合一些图片例子，感受一下ControlNet的构图控制能力。
-我们首先需要准备一张原始图片，比如一张鹿的照片，我们可以通过图像边 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3066514891.html" title="19｜ 实战项目（三）：动手做一个自己的LoRA模型">19｜ 实战项目（三）：动手做一个自己的LoRA模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">19｜ 实战项目（三）：动手做一个自己的LoRA模型你好，我是南柯。
-上一讲我们已经学习了LoRA的算法原理，搞懂了引入LoRA技术减少可学习参数的技巧。
-如今LoRA几乎家喻户晓，我们在Civitai或者Hugging Face上，也能找到各种各样的LoRA模型。这些LoRA模型既可以代表人物形象、动物形象或者某个特定物体，也可以代表水彩风、油画风这种特定的风格。
-这一讲我们不妨自己动手，从零开始训练自己的LoRA模型。我们会以宝可梦生成和彩铅风格生成为例，完成两个模型的训练，借此探索LoRA模型表达内容和表达风格的能力如何实现。
-如何训练一个LoRA在我们动手训练LoRA前，我先为你预告一下整个流程。
-对于LoRA的训练，我们首先需要考虑两个问题：数据集获取和基础模型选择。幸运的是，我们已经熟悉了 Hugging Face 和 Civitai 这两个强大的开源社区，可以免费获取到海量数据集和基础模型。
-数据准备我们可以使用 Hugging Face 上现有的数据集，完成宝可梦的生成任务。这个数据集中包含800多张训练图片。从后面的数据集说明中你可以看到，每一张图，我们都可以获取到它对应的prompt。
 
-首先，我们可以通过后面这两行代码下载并加载数据集。
-from datasets import load_dataset
 
-dataset = load_dataset("lam ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1287160411.html" title="21｜ 实战项目（四）：用ControlNet给你的创意上色">21｜ 实战项目（四）：用ControlNet给你的创意上色</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">21｜ 实战项目（四）：用ControlNet给你的创意上色你好，我是南柯。
-上一讲我们已经学习了ControlNet的算法原理，也了解了它在AI绘画中强大的控制能力。今天我们一起来完成ControlNet的实战任务。
-在这一讲中，我们将通过写代码的方式使用ControlNet，一起完成后面这三个任务。
 
-认识官方已经发布的ControlNet模型以及社区传播的第三方ControlNet模型。
-实现ControlNet论文中的控图生成任务，掌握ControlNet的基础能力。
-探索ControlNet的趣味生成功能，包括图像风格化、二维码生成、创意文字和线稿上色。
 
-掌握了这些技巧，你也一定能够发挥创意，做出很多结构鲜明的作品。让我们开始吧！
-模型获取在Hugging Face上，我们不光可以获取到海量AI绘画基础模型，还能找到各种开发者训练的ControlNet模型。正式使用之前，我们先来认识下这些模型。
-官方发布的模型首先是ControlNet论文作者在ControlNet1.0和1.1中发布的22个模型。
-ControlNet1.0的8个模型可以通过后面这个 Hugging Face链接 获取。我们可以看到ControlNet1.0各个模型的命名规则，以第一行的 “control_sd15_canny.pth” 为例，sd15表示用于训练这个ControlNet的基础模型是S ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2792069406.html" title="23｜实战项目（五）：做一个类似LensaAI的梦幻照相馆">23｜实战项目（五）：做一个类似LensaAI的梦幻照相馆</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">23｜实战项目（五）：做一个类似LensaAI的梦幻照相馆你好，我是南柯。
-第18讲 和 第19讲 我们学习了定制化图像生成的常见方法，初步了解了如何训练LoRA，得到代表内容和风格的定制化模型。经过训练LoRA模型的实战，我们发现训练一个LoRA并不困难，但是想实现LensaAI或者妙鸭相机类似的效果却并不容易。
-今天这一讲，我们将目光聚焦到人像生成上，继续探讨使用LoRA进行定制化图像生成的技巧。你可不要小看这些技巧，它们正是很多商业产品惊艳效果下的黑魔法。
-通过这一讲的实战，我们的LoRA模型效果也会大为改观。最后，我们会训练出一个能高度还原人像效果的LoRA模型，有了这个模型，你就能实现一个梦幻照相馆的项目。课程讲解里的目标形象我们设置为奥黛丽赫本，当然你也可以使用自己的几张照片或者是宠物的照片来制作你的专属照相馆。
-如何做一个梦幻照相馆在正式开始实战前，按照惯例，我们需要先准备训练数据，并选好基础模型。
-模型和数据和上一个实战项目不同，今天我们要做的梦幻照相馆希望呈现出真人风格，我向你推荐一个名为“墨幽人造人”的模型，你可以点开 Colab 通过图中的方式获取 下载链接。当然你也可以尝试自己喜欢的其他基础模型。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/660348169.html" title="一键到达 | 机器学习复习课">一键到达 | 机器学习复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 机器学习复习课今天我们来复习专栏的第二部分内容，机器学习。在这个模块里，我们一起学习了线性回归、逻辑回归、决策树、朴素贝叶斯以及支持向量机等内容。
+点击要点卡，直达你最需要复习的那一篇。
 
-在Colab中，我们可以通过后面这两行代码指定模型的保存路径，并下载模型。
-pretrained_model_name_or_path = "/content/ ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/111/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/111/#content-inner">111</a><span class="page-number current">112</span><a class="page-number" href="/page/113/#content-inner">113</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/113/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+
+
+
+
+
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2782855077.html" title="一键到达 | 深度学习之外的人工智能复习课">一键到达 | 深度学习之外的人工智能复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 深度学习之外的人工智能复习课今天我们来复习专栏的第六部分内容，深度学习之外的人工智能。在这个模块里，我们一起学习了概率图、知识图谱、迁移学习等内容。
+点击要点卡，直达你最需要复习的那篇。
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4171158147.html" title="一键到达 | 深度学习复习课">一键到达 | 深度学习复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 深度学习复习课今天我们来复习专栏的第四部分内容，深度学习。在这个模块里，我们一起学习了深度前馈网络、正则化、自编码器、深度强化学习等内容。
+点击要点卡，直达你最需要复习的那一篇。
+
+
+
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/760438270.html" title="一键到达 | 深度学习框架下的神经网络复习课">一键到达 | 深度学习框架下的神经网络复习课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:17:18.000Z" title="发表于 2024-02-29 12:17:18">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E8%AF%BE/">人工智能基础课</a></span></div><div class="content">一键到达 | 深度学习框架下的神经网络复习课今天我们来复习专栏的第五部分内容，深度学习框架下的神经网络。在这个模块里，我们一起学习了深度信念网络、卷积神经网络、循环神经网络、长短期记忆网络等内容。
+点击要点卡，直达你最需要复习的那篇。
+
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2949251319.html" title="一键直达 | 系列解读文章回顾">一键直达 | 系列解读文章回顾</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/">技术与商业案例解读</a></span></div><div class="content">一键直达 | 系列解读文章回顾你好，很荣幸我们能够一起走过一年的时间，我是这个专栏的主编毛倩倩。
+在《技术与商业案例解读》这个全年专栏中，徐飞特别针对一些行业撰写了几大系列文章，希望让你对一个个行业内企业在技术与商业发展上的逻辑有更深刻的思考。
+这些系列文章虽有序却分散在全年的专栏目录中，专栏的最后，我特别整理了几大系列文章的直达目录，以方便你按行业领域来回顾。
+点击相应文章标题，直达你最需要回顾的那篇。
+1. 西雅图公司系列：（001）RealNetworks：一个帝国的兴衰（上）
+（002）RealNetworks：一个帝国的兴衰（下）
+（003）以RealNetworks为例，谈谈初创公司如何应对巨头碾压
+（004）可视化分析鼻祖Tableau
+（005）从Tableau上市，看学术界和工业界人士创业
+（006）在线旅游帝国Expedia崛起的背后
+（007）房产经纪的颠覆者Redfin：在“传统”与“现代”间徘徊
+（008）房产经纪的“协作者”Zillow：一个地产数据平台
+（009）颠覆还是协作，房地产市场上Redfin和Zillow的抉择
+（010）应用交付网络大厂F5：“一招鲜”之殇
+（011）在线差旅报销鼻祖Concur：在转型中获得发展
+（012）漫谈企业转型：在市场变迁中寻找生机
+（013）克雷公司沉浮录：行走在超级计算机市场
+（014）“单一化”的隐忧：从克雷 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3529274563.html" title="先导篇｜先睹为快，AI绘画作品集">先导篇｜先睹为快，AI绘画作品集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-02-29T12:01:07.000Z" title="发表于 2024-02-29 12:01:07">2024-02-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E7%BB%98%E7%94%BB%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%AE%9E%E6%88%98/">AI绘画核心技术与实战</a></span></div><div class="content">先导篇｜先睹为快，AI绘画作品集你好，我是南柯。
+在过去的一年，AI绘画的各种惊艳能力和效果，铺天盖地向我们涌来。无论是LensaAI的创意头像生成，或者是Midjourney足以以假乱真的AI绘画效果，再或者是Adobe Firefly变魔术般的AI修图能力，都让我们叹为观止。
+同时，我们熟悉的短视频平台和美图工具，也纷纷推出了各种特色鲜明的风格化图像、风格化视频效果，为我们带来了一波一波的视觉冲击。
+事实上，AI绘画工具能做的事情远比我们想象中多得多！这一讲，我们不妨先睹为快，一起看看AI画师能帮助我们完成哪些事情。
+图像类技能我们先来看看AI画师的图像类经典技能。这些技能在GAN时代便已经广为人知，随着以扩散模型为核心的AI绘画技术大爆发，这些经典任务的效果得到了大幅提升。
+创意图像生成创意图像生成是AI画师应用最广泛的技能，简单来说就是输入一个prompt（文本描述），得到对应的图像效果。绘画的构图、内容、风格都可以任意指定，拼的就是我们的想象力。比如我们一起来创作三幅画。
+第一幅画作：神秘森林中，一名旅行者正在远眺瀑布，四周是高耸入云的树木。
+
+第二幅画作：一座科技先进的城市，中心有一个神秘球形建筑，展示未来世界的繁荣。
+
+第三幅画作：一名穿着华丽古装的优雅女子，周围繁花似锦，采用中国国画风格，展示古典氛围。
+
+上面三个例子分别从构图、内容和风格维度展示了AI画师的能力。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2293045254.html" title="内参特刊 | 和你聊聊每个人都关心的人工智能热点话题">内参特刊 | 和你聊聊每个人都关心的人工智能热点话题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E6%8A%80%E6%9C%AF%E5%86%85%E5%8F%82/">AI技术内参</a></span></div><div class="content">内参特刊 | 和你聊聊每个人都关心的人工智能热点话题受极客邦科技邀请，1月份我回国参加AICon，1月13日晚做了一场直播，直播的主题是“人工智能20问”，编辑们收集整理了一些大家感兴趣的有关人工智能的话题，我在直播中分享了我自己这些年来的一些经验和心得。这场直播的文字精简版已经发布在InfoQ的公众号上，今天我也和你在专栏里分享，希望其中的某些话题能够对你有所启发，也欢迎你留言和我讨论。
+暖场篇
+Q：您本硕博学的都是计算机科学专业，这个专业其实有很多方向，您为什么会选择人工智能这样一个比较新的领域？
+
+A：我到美国读博的时候，开始并没有想去学习人工智能，而是想做一些操作系统及软件的研发。到了美国以后，我的导师认为社交媒体的数据挖掘、机器学习应用比较前沿，希望有一个相关课题，当时把新的课题给了我。我从这个课题入手，接触了机器学习，接触了人工智能，然后慢慢地走上了人工智能的发展方向。
+
+Q：您怎么定义人工智能？
+
+A：我认为人工智能有两个方面非常重要。一是人工智能是 数据驱动 的，也就是说一个人工智能产品一定得是有数据支撑的；另一方面人工智能是一个 持续的决策过程，比如说AlphaGo、无人驾驶等，都是利用机器学习，以及其他算法进行持续决策的一个过程。 在人工智能这个定义中，数据驱动和持续决策应该说是非常重要的两个元素。
+落地篇
+Q：您能不能详细介绍一下目前在Etsy有哪些人工智能的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4174713395.html" title="加餐 | 数据的迁移应该如何做？">加餐 | 数据的迁移应该如何做？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-01T18:10:52.000Z" title="发表于 2024-03-01 18:10:52">2024-03-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A140%E9%97%AE/">高并发系统设计40问</a></span></div><div class="content">加餐 | 数据的迁移应该如何做？你好，我是唐扬。
+在“ 数据库优化方案（二）：写入数据量增加时，如何实现分库分表？”中我曾经提到，由于MySQL不像MongoDB那样支持数据的Auto Sharding（自动分片），所以无论是将MySQL单库拆分成多个数据库，还是由于数据存储的瓶颈，不得不将多个数据库拆分成更多的数据库时你都要考虑如何做数据的迁移。
+其实在实际工作中，不只是对数据库拆分时会做数据迁移， 很多场景都需要你给出数据迁移的方案， 比如说某一天，你的老板想要将应用从自建机房迁移到云上，那么你就要考虑将所有自建机房中的数据，包括MySQL、Redis、消息队列等组件中的数据全部迁移到云上，这无论对哪种规模的公司来说都是一项浩瀚的工程，所以你需要在迁移之前准备完善的迁移方案。
+“数据的迁移”的问题比较重要和繁琐，也是开发和运维同学关注的重点。在课程更新的过程中，我看到有很多同学，比如@每天晒白牙，@枫叶11，@撒旦的堕落等等，在留言区询问如何做数据迁移，所以我策划了一期加餐，准备从数据库迁移和缓存迁移两个方面带你掌握数据迁移的方法，也带你了解数据迁移过程中需要注意的关键点，尽量让你避免踩坑。
+如何平滑地迁移数据库中的数据你可能会认为：数据迁移无非是将数据从一个数据库拷贝到另一个数据库，可以通过MySQL 主从同步的方式做到准实时的数据拷贝；也可以通过mysqldump工具将源库 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/2586556946.html" title="加餐 | 谈谈我的“三观”">加餐 | 谈谈我的“三观”</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-20T09:48:40.000Z" title="发表于 2023-10-20 09:48:40">2023-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A6%E8%80%B3%E5%90%AC%E9%A3%8E/">左耳听风</a></span></div><div class="content">加餐 | 谈谈我的“三观”你好，我是陈皓，网名左耳朵耗子。
+也许是人到了四十多了，才敢写这么大的命题。不过，我还是想把我的想法记录下来，算是对我思考的一个“快照”（snapshot），给未来的我看看。我想这篇文章要么被未来的我打脸，要么打未来我的脸。但不管怎么样，我觉得对自己来说都很有意义。
+我在标题中提到的“三观”指的是世界观、人生观和价值观：
+
+世界观代表你是怎么看这个世界的， 是左还是右，是激进还是保守，是理想还是现实，是乐观还是悲观……
+人生观代表你想成为什么样的人， 是成为有钱人，还是成为人生的体验者，是成为老师，还是成为行业专家，是成为有思想的人，还是成为有创造力的人……
+价值观则代表你觉得什么对你来说更重要， 是名是利，是过程还是结果，是付出还是索取，是国家还是自己，是家庭还是职业……
+
+人的三观其实是会变的，回顾一下我的过去，我感觉我的三观至少在这几个阶段有比较明显的变化：学生时代、刚走上社会的年轻时代、三十岁后、还有现在。估计其他人也都差不多吧。
+
+学生时代的三观更多是学校给的，用各种标准答案给的。
+刚走上社会后发现完全不是这么一回事，但学生时代的三观已经在思想中根深蒂固，以至于三观开始分裂，内心开始挣扎。
+三十岁后，不如意的事越来越多，对社会越来越了解，有些人屈从现实，有些人不服输继续奋斗，有些人展露才能开始影响社会。此时我们分裂的三观开始收敛，而我属于还在继续 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/111/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/111/#content-inner">111</a><span class="page-number current">112</span><a class="page-number" href="/page/113/#content-inner">113</a><span class="space">&hellip;</span><a class="page-number" href="/page/135/#content-inner">135</a><a class="extend next" rel="next" href="/page/113/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
